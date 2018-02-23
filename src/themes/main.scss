@@ -1,0 +1,54 @@
+@import 'global';
+@import 'settings';
+@import 'navbar';
+@import 'markdown';
+@import '~foundation-sites/scss/foundation';
+
+@include foundation-prototype-classes;
+@include foundation-global-styles;
+@include foundation-xy-grid-classes;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+
+.default-theme {
+
+  @include foundation-button;
+  @include foundation-button-group;
+  @include foundation-badge;
+  @include foundation-callout;
+  @include foundation-label;
+  @include foundation-menu;
+  @include foundation-forms;
+  @include foundation-table;
+  @include foundation-top-bar;
+  @include foundation-pagination;
+
+  .dropdown-pane,
+  .nt-overlay-container {
+    border-radius: $dropdown-radius;
+  }
+
+}
+
+body.default-theme {
+  font-family: $body-font-family;
+  font-size: rem-calc(14);
+}
+
+img {
+  border: none;
+}
+
+ol, ul {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: get-color(primary);
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    color: darken(get-color(primary), 10%);
+  }
+}

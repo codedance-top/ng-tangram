@@ -1,0 +1,41 @@
+@import '~foundation-sites/scss/util/util';
+@import '../themes/global';
+
+@include add-foundation-colors;
+
+$wrapper-header-height: 64px;
+$navbar-width: 230px;
+$navbar-background: #1e222a;
+
+.wrapper {
+  height: 100%;
+
+}
+.wrapper-header {
+  height: $wrapper-header-height;
+  background-color: white;
+  padding: 0;
+  .menu {
+    background: transparent;
+  }
+  .logo {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+    width: $navbar-width;
+  }
+  .logo img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+}
+.wrapper-body {
+  margin: 20px 20px 20px 20px;
+  padding: 0px 0px;
+  background-color: #FFF;
+  border-radius: 10px;
+}

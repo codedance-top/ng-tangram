@@ -1,0 +1,23 @@
+# 纱幕 Scrim 
+
+
+## 何时使用
+
+
+## 代码演示
+
+<nt-example>
+  <nt-example-showcase>
+    <demo-scrim-basic></demo-scrim-basic>
+  </nt-example-showcase>
+  <nt-example-legend ntTitle="基本">最简单的下拉菜单。</nt-example-legend>
+  <nt-example-code [ntCode]="basicCode"></nt-example-code>
+</nt-example>
+
+
+## API
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+
+

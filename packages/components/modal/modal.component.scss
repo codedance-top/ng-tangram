@@ -1,0 +1,52 @@
+@import '~@angular/cdk/overlay';
+
+// @import '~foundation-sites/scss/util/mixins';
+@import '~foundation-sites/scss/foundation';
+
+/// Default background color of a modal.
+/// @type Color
+$reveal-background: $white !default;
+
+/// Default width of a modal, with no class applied.
+/// @type Number
+$reveal-width: 600px !default;
+
+/// Default maximum width of a modal.
+/// @type Number
+$reveal-max-width: $global-width !default;
+
+/// Default padding inside a modal.
+/// @type Number
+$reveal-padding: $global-padding !default;
+
+/// Default border around a modal.
+/// @type Number
+$reveal-border: 1px solid $medium-gray !default;
+
+/// Default radius for modal.
+/// @type Number
+$reveal-radius: $global-radius !default;
+
+/// z-index for modals. The overlay uses this value, while the modal itself uses this value plus one.
+/// @type Number
+$reveal-zindex: 1005 !default;
+
+/// Background color of modal overlays.
+/// @type Color
+$reveal-overlay-background: rgba($black, 0.45) !default;
+
+@include foundation-close-button;
+@include foundation-reveal;
+
+.reveal {
+  display: block;
+}
+
+@include cdk-overlay;
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  &.dark-backdrop {
+    background: #000;
+    opacity: 0.6 !important;
+  }
+}

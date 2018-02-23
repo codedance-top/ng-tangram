@@ -1,0 +1,3 @@
+2018-02-01
+组件代码的 scss(非.component.scss) 文件在server编译时会出错，原因是服务器编译时缺少ExtractTextPlugin插件。
+服务器编译时不需要重新输出 css 代码，只在 browser 编译时输出即可。
