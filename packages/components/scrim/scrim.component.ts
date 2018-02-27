@@ -3,33 +3,11 @@ import { Component, ElementRef, Renderer2, Input, ViewEncapsulation } from '@ang
 import { NtScrimService } from './scrim.service';
 
 import { trigger, transition, AnimationEvent } from '@angular/animations';
-import { fadeIn, fadeOut } from '../../animate/fading';
+import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 
 @Component({
-  selector: '[nt-scrim], [npScrim]',
-  template: `
-    <ng-content></ng-content>
-    <div [@fade] class="nt-scrim" *ngIf="_isOpen">
-        <div class="nt-scrim-animation">
-          <div class="sk-circle">
-            <div class="sk-circle1 sk-child"></div>
-            <div class="sk-circle2 sk-child"></div>
-            <div class="sk-circle3 sk-child"></div>
-            <div class="sk-circle4 sk-child"></div>
-            <div class="sk-circle5 sk-child"></div>
-            <div class="sk-circle6 sk-child"></div>
-            <div class="sk-circle7 sk-child"></div>
-            <div class="sk-circle8 sk-child"></div>
-            <div class="sk-circle9 sk-child"></div>
-            <div class="sk-circle10 sk-child"></div>
-            <div class="sk-circle11 sk-child"></div>
-            <div class="sk-circle12 sk-child"></div>
-          </div>
-        </div>
-        <h3 class="nt-scrim-text">{{_text}}</h3>
-    </div>
-  `,
-  styleUrls: ['scrim.component.scss'],
+  selector: '[nt-scrim], [ntScrim]',
+  templateUrl: 'scrim.component.html',
   encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('fade', [
@@ -40,25 +18,23 @@ import { fadeIn, fadeOut } from '../../animate/fading';
 })
 export class NtScrimComponent {
 
-  _isOpen = false;
-  _text = '正在加载';
+  private _isOpen = false;
 
-  constructor(
-    private renderer2: Renderer2,
-    private elementRef: ElementRef) {
-  }
+  @Input('ntScrimText') text = 'Loading...';
 
   @Input('ntOpenScrim')
-  set open(value: boolean) {
+  set isOpen(value: boolean) {
     this._isOpen = value;
     const style = window.getComputedStyle(this.elementRef.nativeElement);
     if (style.position !== 'absolute' || style.position !== 'absolute') {
       this.renderer2.setStyle(this.elementRef.nativeElement, 'position', 'relative');
     }
   }
+  get isOpen() { return this._isOpen; }
 
-  @Input('ntScrimText')
-  set text(value: string) {
-    this._text = value;
+
+  constructor(
+    private renderer2: Renderer2,
+    private elementRef: ElementRef) {
   }
 }

@@ -1,12 +1,12 @@
 {
   "name": "ng-tangram",
   "version": "0.1.0",
-  "description": "",
+  "description": "Angular 5+ Components",
   "private": true,
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/livebridge-lab/ng-tangram"
   },
   "scripts": {
     "start": "npm run dev",
@@ -91,7 +91,7 @@
     "url-loader": "^0.6.2",
     "web-animations-js": "^2.3.1",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "~2.9.3",
+    "webpack-dev-server": "^2.9.7",
     "webpack-merge": "^4.1.1",
     "webpack-node-externals": "^1.6.0"
   }

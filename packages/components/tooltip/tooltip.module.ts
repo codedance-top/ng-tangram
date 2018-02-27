@@ -1,7 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NtOverlayModule } from '../overlay';
+import { NtOverlayModule } from '@ng-tangram/components/_core/overlay';
 
 import { NtTooltipComponent } from './tooltip.component';
 

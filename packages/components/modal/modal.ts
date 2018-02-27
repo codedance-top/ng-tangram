@@ -58,7 +58,7 @@ export class NtModal {
   private _attachModalContainer(overlayRef: OverlayRef, config: NtModalConfig) {
     const containerPortal = new ComponentPortal(NtModalContainer, null);
     const containerRef: ComponentRef<NtModalContainer> = overlayRef.attach(containerPortal);
-    containerRef.instance._config = config;
+    containerRef.instance.config = config;
     return containerRef.instance;
   }
 

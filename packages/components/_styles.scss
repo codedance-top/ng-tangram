@@ -1,0 +1,42 @@
+@import '~foundation-sites/scss/foundation';
+// @import './~/ant-icon/ant-icon.css';
+@import '_core/overlay/overlay';
+@import '_core/option/option';
+@import 'dropdown/dropdown';
+@import 'forms/forms';
+@import 'modal/modal';
+@import 'popconfirm/popconfirm';
+@import 'popover/popover';
+@import 'scrim/scrim';
+@import 'select/select';
+@import 'tooltip/tooltip';
+
+@mixin ng-tangram {
+
+  @include foundation-flex-classes;
+  @include foundation-prototype-shadow;
+
+  @include foundation-badge;
+  @include foundation-breadcrumbs;
+  @include foundation-button;
+  @include foundation-button-group;
+  @include foundation-callout;
+  @include foundation-close-button;
+  @include foundation-forms;
+  @include foundation-label;
+  @include foundation-menu;
+  @include foundation-reveal;
+  @include foundation-pagination;
+
+  // @include nt-ant-icon;
+  @include nt-dropdown;
+  @include nt-forms;
+  @include nt-modal;
+  @include nt-overlay;
+  @include nt-popconfirm;
+  @include nt-popover;
+  @include nt-scrim;
+  @include nt-select;
+  @include nt-tooltip;
+}
+

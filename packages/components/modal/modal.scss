@@ -1,0 +1,13 @@
+@import '~@angular/cdk/overlay';
+@mixin nt-modal {
+  @include cdk-overlay;
+  .reveal {
+    display: block;
+  }
+  .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+    &.dark-backdrop {
+      background: #000;
+      opacity: 0.6 !important;
+    }
+  }
+}

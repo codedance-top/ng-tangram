@@ -1,52 +1,30 @@
 
 import { Component, ElementRef, Renderer2, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { OverlayOrigin } from '@angular/cdk/overlay';
-import { NtOverlayPosition, NtOverlayComponent } from '../overlay';
+import { NtOverlayPosition, NtOverlayComponent } from '@ng-tangram/components/_core/overlay';
 
 @Component({
   selector: '[nt-tooltip]',
-  template: `
-  <ng-content></ng-content>
-  <nt-overlay
-    [ntOrigin]="_origin"
-    [ntPosition]="_positions"
-    ntTriggerType="hover"
-    ntOverlayClass="tootip-overlay"
-    ntArrowVisibled>
-    <div class="tooltip">
-      {{_title}}
-    </div>
-  </nt-overlay>
-  `,
-  styleUrls: ['tooltip.component.scss'],
+  templateUrl: 'tooltip.component.html',
   encapsulation: ViewEncapsulation.None,
   host: {
-    '(mouseenter)': '_overlay.onMouseEnter()',
-    '(mouseleave)': '_overlay.onMouseLeave()'
+    '(mouseenter)': 'overlay.onMouseEnter()',
+    '(mouseleave)': 'overlay.onMouseLeave()'
   }
 })
 
 export class NtTooltipComponent {
 
-  _title = '';
-  _origin: OverlayOrigin;
-  _positions = 'top';
+  readonly origin: OverlayOrigin;
 
-  @ViewChild(NtOverlayComponent) _overlay: NtOverlayComponent;
+  @Input('ntTitle') title = '';
+  @Input('ntPosition') positions: NtOverlayPosition = 'top';
+
+  @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
 
   constructor(
     private _renderer: Renderer2,
     private _elementRef: ElementRef) {
-    this._origin = new OverlayOrigin(_elementRef);
-  }
-
-  @Input('ntTitle')
-  set title(value: string) {
-    this._title = value;
-  }
-
-  @Input('ntPosition')
-  set position(value: NtOverlayPosition) {
-    this._positions = value;
+    this.origin = new OverlayOrigin(_elementRef);
   }
 }

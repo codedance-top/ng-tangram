@@ -1,0 +1,54 @@
+$nt-select-radius: $global-radius !default;
+$nt-select-background: $white !default;
+
+@mixin nt-select {
+
+  .nt-select {
+    position: relative;
+    display: block;
+  }
+
+  .nt-select input[readonly] {
+    background-color: $input-background;
+    cursor: auto !important;
+    padding-right: 2rem;
+  }
+
+  .nt-select.open input {
+    outline: none;
+    border: $input-border-focus;
+    background-color: $input-background-focus;
+    box-shadow: $input-shadow-focus;
+  }
+
+  .nt-select-caret {
+    position: absolute;
+    right: .8rem;
+    top: 1.2rem;
+    &::after{
+      display: block;
+      width: 0;
+      height: 0;
+      border: inset 6px;
+      content: '';
+      border-bottom-width: 0;
+      border-top-style: solid;
+      border-color: $select-triangle-color transparent transparent;
+      right: 5px;
+      left: auto;
+      margin-top: -3px;
+    }
+  }
+
+  .nt-select-pane {
+    min-width: 100px;
+    border-radius: $nt-select-radius;
+    background-color: $nt-select-background;
+    max-height: 0px;
+    overflow-y: scroll;
+    transition: max-height .3s;
+    &.folded {
+      max-height: 256px;
+    }
+  }
+}

@@ -3,6 +3,11 @@
 @import 'navbar';
 @import 'markdown';
 @import '~foundation-sites/scss/foundation';
+@import '../../packages/components/styles';
+
+@import 'vaadin';
+
+@include ng-tangram;
 
 @include foundation-prototype-classes;
 @include foundation-global-styles;
@@ -10,27 +15,10 @@
 @include foundation-visibility-classes;
 @include foundation-float-classes;
 
-.default-theme {
+@include foundation-table;
+@include foundation-top-bar;
 
-  @include foundation-button;
-  @include foundation-button-group;
-  @include foundation-badge;
-  @include foundation-callout;
-  @include foundation-label;
-  @include foundation-menu;
-  @include foundation-forms;
-  @include foundation-table;
-  @include foundation-top-bar;
-  @include foundation-pagination;
-
-  .dropdown-pane,
-  .nt-overlay-container {
-    border-radius: $dropdown-radius;
-  }
-
-}
-
-body.default-theme {
+body {
   font-family: $body-font-family;
   font-size: rem-calc(14);
 }

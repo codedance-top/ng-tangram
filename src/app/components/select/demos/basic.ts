@@ -5,9 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <form #form="ngForm" (ngSubmit)="submit(form.value)">
       <nt-select name="name" placeholder="请选择" [(ngModel)]="name">
-        <nt-option ntValue="A">A</nt-option>
-        <nt-option ntValue="B">B</nt-option>
-        <nt-option ntValue="C">C</nt-option>
+        <nt-option *ngFor="let alphabet of alphabets" [ntValue]="alphabet">{{alphabet}}{{alphabet}}{{alphabet}}</nt-option>
       </nt-select>
       <button class="button" type="submit">Submit</button>
     </form>
@@ -15,7 +13,12 @@ import { Component } from '@angular/core';
 })
 export class DemoSelectBasciComponent {
 
-  name = '';
+  alphabets = Array(26).fill(0).map((v, index) => String.fromCharCode(65 + index));
+
+  name = 'B';
+
+  constructor() {
+  }
 
   submit(value: any) {
     console.log(value);

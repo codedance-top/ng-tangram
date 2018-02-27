@@ -1,22 +1,14 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { trigger, transition } from '@angular/animations';
-import { fadeOut } from '../../animate/fading';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { fadeOut } from '@ng-tangram/animate/fading';
 
 export declare type NtCalloutColor = 'primary' | 'secondary' | 'success' | 'warning' | 'alert';
 export declare type NtCalloutSize = 'small' | 'large' | 'medium';
 
 @Component({
   selector: 'nt-callout',
-  template: `
-    <div *ngIf="_display" [@fadeOut] class="callout {{_size}} {{_color}}">
-      <h3 *ngIf="_title">{{_title}}</h3>
-      <ng-content></ng-content>
-      <button *ngIf="this._closable" (click)="close()" class="close-button" type="button">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-  `,
-  styleUrls: ['callout.component.scss'],
+  templateUrl: 'callout.component.html',
   encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('fadeOut', [
@@ -26,35 +18,24 @@ export declare type NtCalloutSize = 'small' | 'large' | 'medium';
 })
 export class NtCalloutComponent {
 
-  _title: string;
-  _color: NtCalloutColor = 'primary';
-  _size: NtCalloutSize = 'medium';
-  _display = true;
-  _closable: boolean;
+  private _display = true;
+  private _closable: boolean;
+
+  get display() { return this._display; }
+
+  @Input('ntTitle') title: string = '';
+
+  @Input('ntColor') color: NtCalloutColor = 'primary';
+
+  @Input('ntSize') size: NtCalloutSize = 'medium';
+
+  @Input('ntClosable')
+  set closable(value: boolean) { this._closable = coerceBooleanProperty(value); }
+  get closable() { return this._closable; }
 
   @Output('ntOnClose') onClose = new EventEmitter<any>();
 
   constructor() { }
-
-  @Input('ntColor')
-  set color(value: NtCalloutColor) {
-    this._color = value;
-  }
-
-  @Input('ntTitle')
-  set title(value: string) {
-    this._title = value;
-  }
-
-  @Input('ntSize')
-  set size(value: NtCalloutSize) {
-    this._size = value;
-  }
-
-  @Input('ntClosable')
-  set closable(value: boolean) {
-    this._closable = value === false ? false : true;
-  }
 
   close() {
     if (this._display) {

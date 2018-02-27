@@ -1,0 +1,11 @@
+<ng-content></ng-content>
+<nt-overlay
+  [ntOrigin]="origin"
+  [ntPosition]="positions"
+  ntTriggerType="hover"
+  ntOverlayClass="tootip-overlay"
+  ntArrowVisibled>
+  <div class="tooltip">
+    {{title}}
+  </div>
+</nt-overlay>

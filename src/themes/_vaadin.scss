@@ -1,0 +1,11 @@
+$foundation-palette: ( primary: #007bff, secondary: #6c757d, success: #28a745, warning: #fd7e14, alert: #dc3545, );
+$select-background: #f3f5f7;
+$select-border: 0px;
+$select-border-focus: 0px;
+$input-background: #f3f5f7;
+$input-border: 0px;
+$input-border-focus: 0px;
+$input-shadow: none;
+$input-placeholder-color: $dark-gray;
+$input-transition: background-color .6s, box-shadow .6s;
+$input-padding: $form-spacing / 2 $form-spacing;

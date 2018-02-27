@@ -1,0 +1,18 @@
+<input #input type="text"
+  (focus)="onFocus()"
+  (window:resize)="onResize($event)"
+  [readonly]="!filter"
+  [placeholder]="placeholder"
+  [disabled]="disabled">
+<span class="nt-select-caret"></span>
+<nt-overlay
+  [ntOrigin]="origin"
+  ntTriggerType="click"
+  ntPosition="bottomLeft"
+  (ntOnShow)="onShow()"
+  (ntOnClose)="onClose()"
+  ntFixed>
+  <div class="nt-select-pane" [class.folded]="state === 'folded'" [ngStyle]="{ 'width.px': width }">
+    <ng-content></ng-content>
+  </div>
+</nt-overlay>

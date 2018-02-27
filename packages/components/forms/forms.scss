@@ -1,0 +1,124 @@
+$input-shadow: none !default;
+$input-placeholder-color: $dark-gray !default;
+$input-transition: background-color .6s, box-shadow .6s !default;
+// $input-padding: $form-spacing / 2 $form-spacing;
+$input-invalid-color: get-color(alert) !default;
+$input-invalid-background: lighten($input-invalid-color, 42%) !default;
+
+$input-valid-color: get-color(success) !default;
+$input-valid-background: ligthen($input-valid-color, 42%) !default;
+
+$input-warning-color: get-color(warning) !default;
+$input-warning-background: ligthen($input-warning-color, 42%) !default;
+
+$form-static-label-width: 120px;
+
+@mixin form-validate($color, $background-color) {
+
+  label,
+  .form-error { color: $color; }
+
+  select,
+  textarea,
+  input,
+  .input-group {
+    border-color: $color;
+    background-color: $background-color;
+  }
+}
+
+@mixin form-inline {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+
+  .form-label {
+    vertical-align: top;
+    line-height: 34px;
+  }
+  .form-group {
+    display: inline-block;
+  }
+}
+
+@mixin nt-forms {
+
+  .form-field {
+    .form-label {
+      display: inline-block;
+      max-width: 100%;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    &.form-inline {
+      @include form-inline;
+    }
+  }
+
+  .input-group {
+    box-shadow: $input-shadow;
+    border-radius: $input-radius;
+    background-color: $input-background;
+    transition: $input-transition;
+    .input-group-label {
+      color: $input-placeholder-color;
+      border: 0;
+      background-color: transparent;
+      & + {
+        select,
+        textarea,
+        input {
+          padding-left: 0px;
+        }
+      }
+    }
+    select,
+    textarea,
+    input {
+      box-shadow: none;
+      background-color: transparent;
+      & +.input-group-label {
+        padding-right: 0px;
+      }
+    }
+    // &:hover {
+    //   background-color: darken($input-background, 5%);
+    //   select,
+    //   textarea,
+    //   input {
+    //     box-shadow: none;
+    //     background-color: transparent;
+    //   }
+    // }
+    // &:focus-within {
+    //   box-shadow: $input-shadow-focus;
+    //   background-color: #FFF;
+    //   select,
+    //   textarea,
+    //   input {
+    //     box-shadow: none;
+    //     background-color: transparent;
+    //   }
+    // }
+  }
+
+  .form-static {
+    display: block;
+    width: 100%;
+    .form-label { width: $form-static-label-width; }
+  }
+
+  .has-error {
+    @include form-validate($input-invalid-color, $input-invalid-background);
+    .form-error {
+      display: block;
+    }
+  }
+  .has-success {
+    @include form-validate($input-valid-color, $input-valid-background);
+  }
+  .has-warning {
+    @include form-validate($input-warning-color, $input-warning-background);
+  }
+}

@@ -1,2 +1,2 @@
 export { NtSelectModule } from './select.module';
-export { NtSelectComponent } from './select.component';
+export { NtSelectComponent, NtSelectChange } from './select.component';

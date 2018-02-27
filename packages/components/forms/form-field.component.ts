@@ -8,59 +8,42 @@ export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
 @Component({
   selector: 'nt-form-field',
   template: `
-    <label class="form-label" *ngIf="_labelVisible">{{_label}}</label>
+    <label class="form-label" *ngIf="labelVisible">{{label}}</label>
     <div class="form-group">
       <ng-content></ng-content>
-      <span class="form-error">{{_label}} 验证错误</span>
+      <span class="form-error">{{label}} Invalid</span>
     </div>
   `,
-  styleUrls: ['form-field.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
     'class': 'form-field',
-    '[class.form-inline]': '_orientation === "horizontal"'
+    '[class.form-inline]': 'orientation === "horizontal"'
   }
 })
 export class NtFormFieldComponent implements AfterViewInit {
 
-  _label: string;
-  _labelVisible = true;
-  _orientation: NtFormFieldOrientation;
+  @Input('ntLabel') label: string;
+  @Input('ntLabelVisible') labelVisible = true;
+  @Input('ntOrientation') orientation: NtFormFieldOrientation;
 
-  // @ContentChildren(FormControl) formControls: QueryList<FormControl>;
-  @ContentChildren(FormControlName) formControlNames: QueryList<FormControlName>;
+  @ContentChildren(FormControlName) formControls: QueryList<FormControl | FormControlName>;
 
-  private subscriptions: Subscription[] = [];
+  private _subscriptions: Subscription[] = [];
 
   constructor(
     private elementRef: ElementRef,
     private render: Renderer2) {
   }
 
-  @Input('ntLabel')
-  set label(value: string) {
-    this._label = value;
-  }
-
-  @Input('ntLabelVisible')
-  set labelVisible(value: string) {
-
-  }
-
-  @Input('ntOrientation')
-  set orientation(value: NtFormFieldOrientation) {
-    this._orientation = value;
-  }
-
   ngAfterViewInit() {
-    let controlNames = this.formControlNames
+    let controls = this.formControls
       .toArray()
-      .map(controlName => controlName);
+      .concat();
 
-    controlNames.forEach(control => this.subscriptions.push(
+    controls.forEach(control => this._subscriptions.push(
       control.statusChanges
         .subscribe(() => {
-          if (controlNames.some(control => control.valid)) {
+          if (controls.some(control => control.valid)) {
             this.render.removeClass(this.elementRef.nativeElement, 'has-error');
           } else {
             this.render.addClass(this.elementRef.nativeElement, 'has-error');
@@ -70,6 +53,6 @@ export class NtFormFieldComponent implements AfterViewInit {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this._subscriptions.forEach(sub => sub.unsubscribe());
   }
 }

@@ -15,7 +15,7 @@ let uniqueId = 0;
   styleUrls: ['checkbox.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
-    '[class]': '_class.join(" ")',
+    '[class]': '["checkbox", color]',
     '(click)': 'onClick()'
   },
   providers: [
@@ -24,8 +24,7 @@ let uniqueId = 0;
 })
 export class NtCheckboxComponent implements ControlValueAccessor {
 
-  _class: string[] = ['checkbox'];
-  _color: NtCheckboxColor = '';
+  @Input('ntColor') color: NtCheckboxColor = '';
 
   _checked: boolean = false;
 
@@ -41,12 +40,6 @@ export class NtCheckboxComponent implements ControlValueAccessor {
   constructor(
     private _renderer: Renderer2,
     private _elementRef: ElementRef) {
-  }
-
-  @Input('ntColor')
-  set color(value: NtCheckboxColor) {
-    this._color = value;
-    this._setClass();
   }
 
   writeValue(value: any) {
@@ -68,10 +61,5 @@ export class NtCheckboxComponent implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean) {
     this._renderer.setProperty(this.inputRef.nativeElement, 'disabled', isDisabled);
-  }
-
-  private _setClass() {
-    this._class = this._class.slice(0, 1);
-    this._color && this._class.push(this._color);
   }
 }

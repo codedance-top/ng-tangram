@@ -1,4 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 export declare type NtButtonGroupColor = '' | 'primary' | 'secondary' | 'success' | 'warning' | 'alert';
 export declare type NtButtonGroupSize = '' | 'tiny' | 'small' | 'large' | 'medium';
@@ -6,41 +7,20 @@ export declare type NtButtonGroupSize = '' | 'tiny' | 'small' | 'large' | 'mediu
 @Component({
   selector: 'nt-button-group, [nt-button-group]',
   template: `<ng-content></ng-content>`,
-  styleUrls: ['button-group.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
-    '[class]': '_class.join(" ")'
+    '[class]': '["button-group", color, size].join(" ")',
+    '[class.expanded]': 'expanded'
   }
 })
-
 export class NtButtonGroupComponent {
-  _class: string[] = ['button-group'];
-  _color: NtButtonGroupColor = '';
-  _size: NtButtonGroupSize = '';
-  _expanded: boolean = false;
 
-  @Input('ntColor')
-  set color(value: NtButtonGroupColor) {
-    this._color = value;
-    this._setClass();
-  }
+  private _expanded: boolean = false;
 
-  @Input('ntSize')
-  set size(value: NtButtonGroupSize) {
-    this._size = value;
-    this._setClass();
-  }
+  @Input('ntColor') color: NtButtonGroupColor = '';
+  @Input('ntSize') size: NtButtonGroupSize = '';
 
   @Input('ntExpanded')
-  set expanded(value: boolean) {
-    this._expanded = value === false ? false : true;
-    this._setClass();
-  }
-
-  private _setClass() {
-    this._class = this._class.slice(0, 1);
-    this._color && this._class.push(this._color);
-    this._size && this._class.push(this._size);
-    this._expanded && this._class.push('expanded');
-  }
+  set expanded(value: boolean) { this._expanded = coerceBooleanProperty(value); }
+  get expanded() { return this._expanded; }
 }

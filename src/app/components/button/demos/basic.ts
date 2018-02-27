@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <button nt-button>默认</button>
     <button nt-button ntType="hollow">空心</button>
     <button nt-button ntType="clear">清空</button>
-    <button nt-button ntDisabled>不可用</button>
+    <button nt-button disabled>不可用</button>
   `
 })
 export class DemoButtonBasicComponent { }

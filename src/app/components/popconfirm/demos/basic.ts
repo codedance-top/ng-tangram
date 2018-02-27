@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <a class="button" nt-popconfirm
       ntTitle="确定要删除吗？"
-      (ntOnOk)="onOk()"
+      (ntOnConfirm)="onConfirm()"
       (ntOnCancel)="onCancel()">删除</a>
       <br>
     {{ message }}
@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
 export class DemoPopConfirmBasciComponent {
 
   message = '';
-  onOk() {
+  onConfirm() {
     this.message = '点击确定了';
   }
   onCancel() {

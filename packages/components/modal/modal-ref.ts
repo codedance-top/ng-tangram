@@ -15,18 +15,15 @@ let uniqueId = 0;
 
 export class NtModalRef<T, R = any> {
 
-  private routerSubscription: Subscription;
-
   componentInstance: T;
 
-  closable: boolean | undefined = this._containerInstance._config.closable;
+  closable: boolean | undefined = this._containerInstance.config.closable;
 
+  private _routerSubscription: Subscription;
   private _afterOpen = new Subject<void>();
   private _afterClosed = new Subject<R | undefined>();
   private _beforeClose = new Subject<R | undefined>();
   private _result: R | undefined;
-
-  /** Subscription to changes in the user's location. */
   private _locationChanges: ISubscription = Subscription.EMPTY;
 
   constructor(
@@ -36,7 +33,7 @@ export class NtModalRef<T, R = any> {
     readonly id: string = `nt-modal-${uniqueId++}`) {
 
     // Emit when opening animation completes
-    _containerInstance._animationStateChanged
+    _containerInstance.animationStateChanged
       .pipe(filter(event => event.phaseName === 'done' && event.toState === 'enter'), take(1))
       .subscribe(() => {
         this._afterOpen.next();
@@ -44,7 +41,7 @@ export class NtModalRef<T, R = any> {
       });
 
     // Dispose overlay when closing animation is complete
-    _containerInstance._animationStateChanged
+    _containerInstance.animationStateChanged
       .pipe(filter(event => event.phaseName === 'done' && event.toState === 'exit'), take(1))
       .subscribe(() => {
         this._overlayRef.dispose();
@@ -71,7 +68,7 @@ export class NtModalRef<T, R = any> {
     this._result = modalResult;
 
     // Transition the backdrop in parallel to the modal.
-    this._containerInstance._animationStateChanged
+    this._containerInstance.animationStateChanged
       .pipe(filter(event => event.phaseName === 'start'), take(1))
       .subscribe(() => {
         this._beforeClose.next(modalResult);
