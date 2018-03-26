@@ -1,9 +1,11 @@
-import {
-  AfterContentInit, ChangeDetectorRef, Component, ContentChild, EventEmitter, ElementRef,
-  Input, ViewChild, Renderer2, ViewEncapsulation
-} from '@angular/core';
 import { OverlayOrigin } from '@angular/cdk/overlay';
-import { NtOverlayPosition, NtOverlayComponent, NtOverlayTriggerType } from '@ng-tangram/components/_core/overlay';
+import {
+  AfterContentInit, ChangeDetectorRef, Component, ContentChild, ElementRef, EventEmitter, Input,
+  Renderer2, ViewChild, ViewEncapsulation
+} from '@angular/core';
+import {
+  NtOverlayComponent, NtOverlayPosition, NtOverlayTriggerType
+} from '@ng-tangram/components/core/overlay';
 
 @Component({
   selector: 'nt-dropdown, [nt-dropdown]',

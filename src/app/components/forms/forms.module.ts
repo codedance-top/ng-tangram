@@ -1,3 +1,5 @@
+import { NtDatePickerModule } from './../../../../packages/components/datepicker/datepicker.module';
+import { NtSelectModule } from './../../../../packages/components/select/select.module';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,6 +14,7 @@ import { FormsDocumentComponent } from './forms.component';
 
 import { DemoFormLoginComponent } from './demos/login';
 import { DemoFormInlineComponent } from './demos/inline';
+import { NtCalloutModule } from '@ng-tangram/components/callout';
 
 @NgModule({
   imports: [
@@ -19,6 +22,9 @@ import { DemoFormInlineComponent } from './demos/inline';
     ReactiveFormsModule,
     NtExampleModule,
     NtFormsModule,
+    NtCalloutModule,
+    NtSelectModule,
+    NtDatePickerModule,
     NtAntIconModule,
     RouterModule.forChild([
       { path: '', component: FormsDocumentComponent }

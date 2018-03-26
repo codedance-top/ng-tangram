@@ -1,7 +1,17 @@
-import { Component, Input, OnInit, ViewEncapsulation, ContentChildren, QueryList, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
-import { FormGroup, FormControl, FormControlName } from "@angular/forms";
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { transition, trigger } from '@angular/animations';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import {
+  AfterViewInit, Component, ContentChildren, ElementRef, Input, OnChanges, OnDestroy, OnInit,
+  QueryList, Renderer2, SimpleChanges, ViewEncapsulation
+} from '@angular/core';
+import { FormControl, FormControlName, FormGroup } from '@angular/forms';
+import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
+
+import { merge } from 'rxjs/observable/merge';
 import { Subscription } from 'rxjs/Subscription';
+
+import { NtFormFieldControl } from './form-field-control';
+import { NtFormConfig } from './invalid-handler';
 
 export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
 
@@ -10,46 +20,75 @@ export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
   template: `
     <label class="form-label" *ngIf="labelVisible">{{label}}</label>
     <div class="form-group">
-      <ng-content></ng-content>
-      <span class="form-error">{{label}} Invalid</span>
+      <div class="form-input">
+        <ng-content></ng-content>
+      </div>
+      <span class="form-error" [@fade]="_invalid">{{ label }} Invalid</span>
     </div>
   `,
+  animations: [
+    trigger('fade', [
+      transition('* => false', fadeOut(.15)),
+      transition('* => true', fadeIn(.15))
+    ])
+  ],
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'form-field',
-    '[class.form-inline]': 'orientation === "horizontal"'
+    'class': 'nt-form-field',
+    '[class.has-error]': '_invalid',
+    '[class.form-static]': 'labelHorizontally',
   }
 })
-export class NtFormFieldComponent implements AfterViewInit {
+export class NtFormFieldComponent implements AfterViewInit, OnDestroy, OnChanges {
 
-  @Input('ntLabel') label: string;
-  @Input('ntLabelVisible') labelVisible = true;
-  @Input('ntOrientation') orientation: NtFormFieldOrientation;
-
-  @ContentChildren(FormControlName) formControls: QueryList<FormControl | FormControlName>;
+  /** 表单可见性 */
+  private _labelVisible = true;
 
   private _subscriptions: Subscription[] = [];
 
+  _config: NtFormConfig;
+
+  _required = false;
+
+  _invalid = false;
+
+  @Input('ntLabel') label: string;
+
+  @Input('ntLabelVisible')
+  set labelVisible(value: boolean) { this._labelVisible = coerceBooleanProperty(value); }
+  get labelVisible() { return this._labelVisible; }
+
+  get labelHorizontally() { return this.labelOrientation === "horizontal"; }
+
+  get errors() { return true; }
+
+  @Input('ntLabelOrientation') labelOrientation: NtFormFieldOrientation;
+
+  /** 表单模型 */
+  @ContentChildren(FormControlName) formControls: QueryList<FormControlName>;
+
+  /** 表单正确时的样式 */
+  @ContentChildren('ntFormValidClass') _validClass: string;
+
+  /** 表单错误时的样式 */
+  @ContentChildren('ntFormInvalidClass') _invalidClass: string;
+
   constructor(
     private elementRef: ElementRef,
-    private render: Renderer2) {
-  }
+    private render: Renderer2) { }
 
   ngAfterViewInit() {
-    let controls = this.formControls
-      .toArray()
-      .concat();
 
+    const controls = this.formControls.toArray().concat();
     controls.forEach(control => this._subscriptions.push(
-      control.statusChanges
-        .subscribe(() => {
-          if (controls.some(control => control.valid)) {
-            this.render.removeClass(this.elementRef.nativeElement, 'has-error');
-          } else {
-            this.render.addClass(this.elementRef.nativeElement, 'has-error');
-          }
-        }))
+      control.statusChanges.subscribe(() => {
+        this._invalid = !controls.some(control => control.valid);
+      }))
     );
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+
   }
 
   ngOnDestroy() {

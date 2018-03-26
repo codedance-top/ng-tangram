@@ -1,0 +1,20 @@
+
+
+@keyframes nt-button-click-anim {
+  0% {
+    box-shadow: 0 0 0 2px lighten(get-color(primary), 25%);
+  }
+
+  100% {
+    box-shadow: 0 0 0 5px transparent;
+  }
+}
+
+@mixin nt-button {
+
+  button:focus {
+    outline: none;
+    z-index: 1;
+    // animation: nt-button-click-anim .5s 1;
+  }
+}

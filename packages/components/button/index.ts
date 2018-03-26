@@ -1,3 +1,3 @@
-export { NtButtonModule } from './button.module';
-export { NtButtonComponent, NtButtonColor, NtButtonSize, NtButtonType } from './button.component';
-export { NtButtonGroupComponent } from './button-group.component';
+export * from './button.module';
+export * from './button.component';
+export * from './button-group.component';

@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NtOverlayModule } from '@ng-tangram/components/_core/overlay';
+import { NgModule } from '@angular/core';
+import { NtOverlayModule } from '@ng-tangram/components/core/overlay';
 
-import { NtDropdownComponent } from './dropdown.component';
 import { NtDropdownPaneComponent } from './dropdown-pane.component';
+import { NtDropdownComponent } from './dropdown.component';
 
 @NgModule({
   imports: [CommonModule, NtOverlayModule],

@@ -1,20 +1,9 @@
-const {
-  realpathSync
-} = require('fs');
-const {
-  join
-} = require('path');
+const { realpathSync } = require('fs');
+const { join } = require('path');
 
-const {
-  SourceMapDevToolPlugin,
-  NamedModulesPlugin
-} = require('webpack');
-const {
-  CommonsChunkPlugin
-} = require('webpack').optimize;
-const {
-  NamedLazyChunksWebpackPlugin
-} = require('@angular/cli/plugins/webpack');
+const { SourceMapDevToolPlugin, NamedModulesPlugin } = require('webpack');
+const { CommonsChunkPlugin } = require('webpack').optimize;
+const { NamedLazyChunksWebpackPlugin } = require('@angular/cli/plugins/webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const resolveHtmlPlugin = require('../plugins/html');
 

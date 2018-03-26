@@ -1,19 +1,8 @@
-const {
-  join
-} = require('path');
-const {
-  EnvironmentPlugin,
-  HashedModuleIdsPlugin
-} = require('webpack');
-const {
-  ModuleConcatenationPlugin
-} = require('webpack').optimize;
-const {
-  SuppressExtractedTextChunksWebpackPlugin
-} = require('@angular/cli/plugins/webpack');
-const {
-  PurifyPlugin
-} = require('@angular-devkit/build-optimizer');
+const { join } = require('path');
+const { EnvironmentPlugin, HashedModuleIdsPlugin } = require('webpack');
+const { ModuleConcatenationPlugin } = require('webpack').optimize;
+const { SuppressExtractedTextChunksWebpackPlugin } = require('@angular/cli/plugins/webpack');
+const { PurifyPlugin } = require('@angular-devkit/build-optimizer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const resolveHtmlPlugin = require('../plugins/html');

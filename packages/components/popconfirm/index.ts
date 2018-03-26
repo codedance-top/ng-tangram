@@ -1,2 +1,2 @@
-export { NtPopConfirmModule } from './popconfirm.module';
-export { NtPopConfirmComponent } from './popconfirm.component';
+export * from './popconfirm.module';
+export * from './popconfirm.component';

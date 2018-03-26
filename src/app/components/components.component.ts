@@ -22,7 +22,8 @@ export class ComponentsComponent implements OnInit {
 
   categories = COMPONENTS_ROUTES
     .filter(route => route.path !== '')
-    .map(route => ({ path: route.path, title: route.data.title }));
+    .map(route => ({ path: route.path, title: route.data.title }))
+    .sort((a, b) => a.path.localeCompare(b.path));
 
   constructor() {
   }

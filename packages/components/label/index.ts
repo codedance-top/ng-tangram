@@ -1,2 +1,2 @@
-export { NtLabelModule } from './label.module';
-export { NtLabelColor, NtLabelComponent } from './label.component';
+export * from './label.module';
+export * from './label.component';

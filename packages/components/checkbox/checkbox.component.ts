@@ -1,5 +1,6 @@
-
-import { Component, forwardRef, Input, ViewChild, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
+import {
+  Component, ElementRef, forwardRef, Input, Renderer2, ViewChild, ViewEncapsulation
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export declare type NtCheckboxColor = '' | 'primary' | 'secondary' | 'success' | 'warning' | 'alert';

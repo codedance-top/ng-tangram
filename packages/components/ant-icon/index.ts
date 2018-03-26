@@ -1,2 +1,2 @@
-export { NtAntIconModule } from './ant-icon.module';
-export { NtAntIconComponent } from './ant-icon.component';
+export * from './ant-icon.module';
+export * from './ant-icon.component';

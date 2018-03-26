@@ -24,7 +24,7 @@ import { Component } from '@angular/core';
       <button nt-button>按钮3</button>
     </nt-button-group>
     <nt-button-group>
-      <button nt-button ntType="hollow">按钮0</button>
+      <button nt-button ntColor="purple">按钮0</button>
       <button nt-button>按钮1</button>
       <button nt-button ntColor="secondary">按钮2</button>
       <button nt-button ntColor="warning">按钮3</button>

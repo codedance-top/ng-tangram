@@ -1,0 +1,19 @@
+<input #input type="text" (focus)="onFocus()" readonly [placeholder]="placeholder" [disabled]="disabled">
+<span class="nt-datepicker-caret" [@fade] *ngIf="!value"></span>
+<span class="nt-datepicker-clear" (click)="clear()" [@fade] *ngIf="value"></span>
+<nt-overlay
+  [ntOrigin]="origin"
+  ntTriggerType="click"
+  ntPosition="bottomLeft"
+  ntArrowVisibled
+  (ntOnShow)="onShow()"
+  (ntOnClose)="onClose()">
+  <nt-datepicker-calendar
+    [ntSelected]="value"
+    [ntDateFilter]="dateFilter"
+    [ntStartAt]="startAt"
+    [ntMaxDate]="maxDate"
+    [ntMinDate]="minDate"
+    (ntSelectedChange)="select($event)">
+  </nt-datepicker-calendar>
+</nt-overlay>

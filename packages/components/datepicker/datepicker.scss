@@ -1,0 +1,154 @@
+$nt-datepicker-background-selected: get-color(primary) !default;
+$nt-datepicker-background-active: $light-gray !default;
+$nt-datepicker-block-width: 2.5em !default;
+$nt-datepicker-block-padding: rem-calc(4 5) !default;
+$nt-datepicker-color: $black !default;
+$nt-datepicker-color-selected: $white !default;
+$nt-datepicker-color-hover: get-color(primary) !default;
+$nt-datepicker-color-disabled: $medium-gray !default;
+$nt-datepicker-font-size: rem-calc(12) !default;
+$nt-datepicker-pane-radius: $global-radius !default;
+$nt-datepicker-pane-padding: rem-calc(4) !default;
+$nt-datepicker-pane-background: $white !default;
+@mixin nt-datepicker-table {
+  table {
+    font-size: $nt-datepicker-font-size;
+    margin: 0;
+    user-select: none;
+    border-collapse: separate;
+  }
+  tbody,
+  tfoot,
+  thead {
+    border: 0px;
+    background: transparent !important;
+  }
+  tfoot button {
+    margin-bottom: 0px;
+  }
+  td,
+  th {
+    text-align: center;
+    width: $nt-datepicker-block-width;
+    height: 2em;
+    box-sizing: border-box;
+    white-space: nowrap;
+    transition: color .3s;
+    padding: rem-calc(4 0);
+    span {
+      cursor: pointer;
+      box-sizing: border-box;
+      padding: $nt-datepicker-block-padding;
+      border-radius: $nt-datepicker-pane-radius;
+      transition: background-color .15s;
+      &:hover {
+        color: $nt-datepicker-color-hover;
+      }
+    }
+    &[colspan="3"] {
+      width: $nt-datepicker-block-width * 3;
+      span {
+        padding: 0;
+      }
+    }
+    &.active span {
+      background-color: $nt-datepicker-background-active;
+    }
+    &.selected span {
+      color: $nt-datepicker-color-selected;
+      background-color: $nt-datepicker-background-selected;
+      cursor: auto;
+    }
+    &.disabled span {
+      color: $nt-datepicker-color-disabled;
+      cursor: no-drop;
+    }
+  } // tbody td span {
+  //   display: block;
+  // }
+  tr {
+    padding: 4px 0px;
+    &:nth-child(even),
+    &:nth-child(odd) {
+      background: transparent !important;
+    }
+  }
+}
+
+@mixin nt-datepicker {
+  .nt-datepicker {
+    position: relative;
+    display: block;
+    margin: 0 0 $form-spacing;
+
+    &:focus {
+      outline: none;
+    }
+  }
+  .nt-datepicker input[readonly] {
+    background-color: $input-background;
+    cursor: auto !important;
+    padding-right: 2rem;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+  .nt-datepicker.open input {
+    outline: none;
+    border: $input-border-focus;
+    background-color: $input-background-focus;
+    box-shadow: $input-shadow-focus;
+  }
+  .nt-datepicker-pane {
+    position: relative;
+    border-radius: $nt-datepicker-pane-radius;
+    background-color: $nt-datepicker-pane-background;
+    padding: $nt-datepicker-pane-padding;
+    @include nt-datepicker-table;
+    .nt-datepicker-month {
+      td,
+      th {
+        width: 14.28571428%;
+      }
+    }
+    .nt-datepicker-year {
+      td,
+      th {
+        width: 33.333333333%;
+        height: 3.9em;
+      }
+    }
+    .nt-datepicker-multi-year {
+      td,
+      th {
+        width: 25%;
+        height: 3.9em;
+      }
+    }
+  }
+  .nt-datepicker-clear,
+  .nt-datepicker-caret {
+    position: absolute;
+    right: .8rem;
+    top: .8rem;
+    &::after {
+      font-family: "anticon";
+      display: block;
+      color: $select-triangle-color;
+      font-size: 1rem;
+      left: auto;
+      margin-top: -3px;
+    }
+  }
+  .nt-datepicker-caret {
+    pointer-events: none;
+    &::after {
+      content: '\e6bb';
+    }
+  }
+  .nt-datepicker-clear {
+    cursor: pointer;
+    &::after {
+      content: '\e633';
+    }
+  }
+}

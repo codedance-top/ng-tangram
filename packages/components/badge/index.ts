@@ -1,2 +1,2 @@
-export { NtBadgeModule } from './badge.module';
-export { NtBadgeColor, NtBadgeComponent } from './badge.component';
+export * from './badge.module';
+export * from './badge.component';

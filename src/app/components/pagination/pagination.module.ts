@@ -15,7 +15,8 @@ import { DemoPaginationBasicComponent } from './demos/basic';
     NtPaginationModule,
     RouterModule.forChild([
       { path: '', component: PaginationDocumentComponent }
-    ])],
+    ])
+  ],
   exports: [PaginationDocumentComponent],
   declarations: [PaginationDocumentComponent, DemoPaginationBasicComponent],
 })

@@ -1,0 +1,17 @@
+<table>
+  <thead>
+    <tr>
+      <th *ngFor="let week of _weekdays">{{week.narrow}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let _rows of _weeks">
+      <td *ngFor="let week of _rows"
+        [class.disabled]="!week.enabled"
+        [class.selected]="week.value === _selectedDate && week.enabled"
+        [class.active]="_todayDate === week.value && week.enabled">
+        <span (click)="_dateSelected(week)">{{ week.displayValue }}</span>
+      </td>
+    </tr>
+  </tbody>
+</table>

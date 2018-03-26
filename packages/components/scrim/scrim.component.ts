@@ -1,12 +1,10 @@
-
-import { Component, ElementRef, Renderer2, Input, ViewEncapsulation } from '@angular/core';
-import { NtScrimService } from './scrim.service';
-
-import { trigger, transition, AnimationEvent } from '@angular/animations';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { AnimationEvent, transition, trigger } from '@angular/animations';
+import { Component, ElementRef, Input, Renderer2, ViewEncapsulation } from '@angular/core';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 
 @Component({
-  selector: '[nt-scrim], [ntScrim]',
+  selector: '[nt-scrim], nt-scrim',
   templateUrl: 'scrim.component.html',
   encapsulation: ViewEncapsulation.None,
   animations: [
@@ -14,7 +12,10 @@ import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
       transition('void => *', fadeIn(.15)),
       transition('* => void', fadeOut(.15))
     ])
-  ]
+  ],
+  host: {
+
+  }
 })
 export class NtScrimComponent {
 
@@ -22,19 +23,8 @@ export class NtScrimComponent {
 
   @Input('ntScrimText') text = 'Loading...';
 
-  @Input('ntOpenScrim')
-  set isOpen(value: boolean) {
-    this._isOpen = value;
-    const style = window.getComputedStyle(this.elementRef.nativeElement);
-    if (style.position !== 'absolute' || style.position !== 'absolute') {
-      this.renderer2.setStyle(this.elementRef.nativeElement, 'position', 'relative');
-    }
-  }
+  set isOpen(value: boolean) { this._isOpen = coerceBooleanProperty(value); }
   get isOpen() { return this._isOpen; }
 
-
-  constructor(
-    private renderer2: Renderer2,
-    private elementRef: ElementRef) {
-  }
+  constructor(private elementRef: ElementRef) { }
 }

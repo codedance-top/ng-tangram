@@ -1,2 +1,2 @@
-export { NtMenuModule } from './menu.module';
-export { NtMenuComponent, NtMenuAlign, NtMenuOrientation } from './menu.component';
+export * from './menu.module';
+export * from './menu.component';

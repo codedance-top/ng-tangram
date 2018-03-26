@@ -1,4 +1,5 @@
 const marked = require('marked');
+const markdownInclude = require('markdown-include');
 
 const renderer = new marked.Renderer();
 

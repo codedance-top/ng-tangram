@@ -1,0 +1,70 @@
+// $table-padding: rem-calc(28 16 16) !default;
+$table-padding: rem-calc(8 16 10);
+$nt-table-sort-asc: '\2191' !default;
+$nt-table-sort-desc: '\2193' !default;
+$nt-table-sort-color: $dark-gray !default;
+$nt-table-sort-color-active: lighten(get-color(primary), 10%) !default;
+$nt-table-selector-padding: rem-calc(8 10 10) !default;
+@mixin nt-table-column {}
+
+@mixin nt-table-selector {
+  .nt-selector-header,
+  .nt-selector-cell {
+    width: 2em;
+    padding: $nt-table-selector-padding;
+    input {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+@mixin nt-table-sort {
+  .nt-column-sort {
+    cursor: pointer;
+    transition: background-color .2s;
+    position: relative;
+
+    &:after {
+      position: absolute;
+      right: -1em;
+      font-size: 1em;
+      color: $nt-table-sort-color;
+      opacity: 0;
+      content: $nt-table-sort-asc;
+      transition: opacity .2s;
+    }
+    &:hover::after {
+      opacity: .4;
+    }
+    &.asc:after,
+    &.desc:after {
+      opacity: 1;
+      color: $nt-table-sort-color-active;
+    }
+    &.asc:after {
+      content: $nt-table-sort-asc;
+    }
+    &.desc:after {
+      content: $nt-table-sort-desc;
+    }
+  }
+}
+
+@mixin nt-table {
+  .nt-table {
+    display: block;
+    margin-bottom: $global-margin;
+    overflow: hidden;
+    table {
+      margin-bottom: 0px;
+
+      td.hidden,
+      th.hidden {
+        display: none;
+      }
+
+      @include nt-table-selector;
+      @include nt-table-sort;
+    }
+  }
+}

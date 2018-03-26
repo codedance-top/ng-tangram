@@ -1,23 +1,21 @@
-// import 'reflect-metadata';
-
+import { Overlay, OverlayConfig, OverlayContainer, OverlayRef } from '@angular/cdk/overlay';
 import {
-  Injectable, Inject, Injector, Optional, InjectionToken, ApplicationRef,
-  TemplateRef, ComponentRef, ComponentFactoryResolver, ViewContainerRef
-} from '@angular/core';
-import { Location } from '@angular/common';
-import { Overlay, OverlayContainer, OverlayRef, OverlayConfig } from '@angular/cdk/overlay';
-import {
-  ComponentPortal, TemplatePortal, ComponentType, PortalInjector,
-  PortalHost, DomPortalHost
+  ComponentPortal, ComponentType, DomPortalHost, PortalHost, PortalInjector, TemplatePortal
 } from '@angular/cdk/portal';
-import { NtModalContainer } from './modal-container';
-import { NtModalConfig } from './modal-config';
-import { NtModalRef } from './modal-ref';
-
+import { Location } from '@angular/common';
+import {
+  ApplicationRef, ComponentFactoryResolver, ComponentRef, Inject, Injectable, InjectionToken,
+  Injector, Optional, TemplateRef
+} from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+
+import { NtModalConfig } from './modal-config';
+import { NtModalContainer } from './modal-container';
+import { NtModalRef } from './modal-ref';
 
 export const NT_MODAL_DATA = new InjectionToken<any>('nt-modal-data');
 export const NT_MODAL_DEFAULT_CONFIG = new InjectionToken<NtModalConfig>('nt-model-default-config');
+export type NtModalContent<T> = TemplateRef<T> | ComponentType<T>;
 
 @Injectable()
 export class NtModal {
@@ -35,13 +33,13 @@ export class NtModal {
     private _componentFactoryResolver: ComponentFactoryResolver,
     private _applicationRef: ApplicationRef) { }
 
-  open<T = any>(templateOrComponent: TemplateRef<T> | ComponentType<T>, config: NtModalConfig = {}) {
+  open<T = any>(content: NtModalContent<T>, config: NtModalConfig = {}): NtModalRef<T, any> {
 
     config = { ...this._defaultConfig || new NtModalConfig(), ...config };
 
     const overlayRef = this._createOverlay(config);
     const modalContainerRef = this._attachModalContainer(overlayRef, config);
-    const modalRef = this._attachModalContent(templateOrComponent, modalContainerRef, overlayRef, config);
+    const modalRef = this._attachModalContent(content, modalContainerRef, overlayRef, config);
 
     this._openModalsAtThisLevel.push(modalRef);
     modalRef.afterClosed().subscribe(() => this._removeOpenModal(modalRef));
@@ -63,7 +61,7 @@ export class NtModal {
   }
 
   private _attachModalContent<T>(
-    templateOrComponent: TemplateRef<T> | ComponentType<T>,
+    content: NtModalContent<T>,
     modalContainer: NtModalContainer,
     overlayRef: OverlayRef,
     config: NtModalConfig): NtModalRef<T> {
@@ -78,12 +76,11 @@ export class NtModal {
       });
     }
 
-    if (templateOrComponent instanceof TemplateRef) {
-      modalContainer.attachTemplatePortal(new TemplatePortal<T>(templateOrComponent, null!, <any>{ $implicit: config.data, modalRef }));
+    if (content instanceof TemplateRef) {
+      modalContainer.attachTemplatePortal(new TemplatePortal<T>(content, null!, <any>{ $implicit: config.data, modalRef }));
     } else {
       const injector = this._createInjector<T>(config, modalRef, modalContainer);
-      const contentRef = modalContainer.attachComponentPortal<T>(
-        new ComponentPortal(templateOrComponent, undefined, injector));
+      const contentRef = modalContainer.attachComponentPortal<T>(new ComponentPortal(content, undefined, injector));
       modalRef.componentInstance = contentRef.instance;
     }
 

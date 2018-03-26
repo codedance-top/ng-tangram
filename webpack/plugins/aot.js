@@ -1,6 +1,3 @@
-
-
-// path 模块
 const path = require('path');
 
 // angular

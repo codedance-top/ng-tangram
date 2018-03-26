@@ -1,6 +1,5 @@
-
-import { Component, Input, ElementRef, Host, ViewEncapsulation, Renderer2 } from '@angular/core';
 import { CdkConnectedOverlay, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import { Component, ElementRef, Host, Input, Renderer2, ViewEncapsulation } from '@angular/core';
 
 export declare type NtDropdownPaneSize = '' | 'tiny' | 'small' | 'large';
 

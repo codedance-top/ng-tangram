@@ -1,6 +1,7 @@
-
-import { Component, Input, ContentChildren, QueryList, AfterContentInit, ViewEncapsulation } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import {
+  AfterContentInit, Component, ContentChildren, Input, QueryList, ViewEncapsulation
+} from '@angular/core';
 
 export declare type NtMenuAlign = '' | 'center' | 'right';
 export declare type NtMenuOrientation = '' | 'horizontal' | 'vertical';

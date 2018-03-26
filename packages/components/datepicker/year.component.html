@@ -1,0 +1,13 @@
+<table>
+  <tbody>
+    <tr *ngFor="let _rows of _months">
+      <td *ngFor="let month of _rows"
+        [class.disabled]="!month.enabled"
+        [class.selected]="month.value === _selectedMonth && month.enabled"
+        (click)="_monthSelected(month.value)">
+        <span *ngIf="month.enabled">{{ month.displayValue }}</span>
+        <span *ngIf="!month.enabled">{{ month.displayValue }}</span>
+      </td>
+    </tr>
+  </tbody>
+</table>

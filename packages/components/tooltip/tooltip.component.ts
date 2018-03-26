@@ -1,7 +1,8 @@
-
-import { Component, ElementRef, Renderer2, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { OverlayOrigin } from '@angular/cdk/overlay';
-import { NtOverlayPosition, NtOverlayComponent } from '@ng-tangram/components/_core/overlay';
+import {
+  Component, ElementRef, Input, Renderer2, ViewChild, ViewEncapsulation
+} from '@angular/core';
+import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core/overlay';
 
 @Component({
   selector: '[nt-tooltip]',
@@ -12,12 +13,11 @@ import { NtOverlayPosition, NtOverlayComponent } from '@ng-tangram/components/_c
     '(mouseleave)': 'overlay.onMouseLeave()'
   }
 })
-
 export class NtTooltipComponent {
 
   readonly origin: OverlayOrigin;
 
-  @Input('ntTitle') title = '';
+  @Input('nt-tooltip') title = '';
   @Input('ntPosition') positions: NtOverlayPosition = 'top';
 
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;

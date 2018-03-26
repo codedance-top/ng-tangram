@@ -1,2 +1,2 @@
-export { NtTooltipModule } from './tooltip.module';
-export { NtTooltipComponent } from './tooltip.component';
+export * from './tooltip.module';
+export * from './tooltip.component';

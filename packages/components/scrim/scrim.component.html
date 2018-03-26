@@ -1,5 +1,4 @@
-<ng-content></ng-content>
-<div [@fade] class="nt-scrim" *ngIf="isOpen">
+<div class="nt-scrim" *ngIf="isOpen" [@fade]>
   <div class="nt-scrim-animation">
     <div class="sk-circle">
       <div class="sk-circle1 sk-child"></div>
@@ -16,5 +15,5 @@
       <div class="sk-circle12 sk-child"></div>
     </div>
   </div>
-  <h3 class="nt-scrim-text">{{ text}}</h3>
+  <h3 class="nt-scrim-text">{{ text }}</h3>
 </div>

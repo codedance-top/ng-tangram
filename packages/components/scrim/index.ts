@@ -1,3 +1,3 @@
-export { NtScrimModule } from './scrim.module';
-export { NtScrimComponent } from './scrim.component';
-export { NtScrimService } from './scrim.service';
+export * from './scrim.module';
+export * from './scrim.component';
+export * from './scrim.directive';

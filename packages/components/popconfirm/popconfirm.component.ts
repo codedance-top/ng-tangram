@@ -1,10 +1,10 @@
-
-import { Component, Input, Output, ElementRef, EventEmitter, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { OverlayOrigin } from '@angular/cdk/overlay';
-import { NtOverlayPosition, NtOverlayComponent } from '@ng-tangram/components/_core/overlay';
-
-import { AnimationEvent, trigger, transition } from '@angular/animations';
+import {
+  Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild, ViewEncapsulation
+} from '@angular/core';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
+import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core/overlay';
 
 @Component({
   selector: '[nt-popconfirm]',
@@ -18,7 +18,7 @@ export class NtPopConfirmComponent {
 
   readonly origin: OverlayOrigin;
 
-  @Input('ntTitle') title = '';
+  @Input('nt-popconfirm') title = '';
   @Input('ntPosition') position = 'top';
 
   @Output('ntOnConfirm') onConfirm = new EventEmitter<any>();

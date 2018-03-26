@@ -1,12 +1,12 @@
-
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NtOptionModule, NtOverlayModule, NtOptionComponent } from '@ng-tangram/components/_core';
-import { NtSelectComponent } from './select.component';
+import { NgModule } from '@angular/core';
+import { NtOptionComponent, NtOptionModule, NtOverlayModule } from '@ng-tangram/components/core';
+
 import { NtDropdownModule } from '../dropdown';
+import { NtSelectComponent } from './select.component';
 
 @NgModule({
-  imports: [CommonModule, NtOverlayModule, NtOptionModule, NtDropdownModule],
+  imports: [CommonModule, NtOverlayModule, NtOptionModule],
   exports: [NtSelectComponent, NtOptionModule],
   declarations: [NtSelectComponent]
 })

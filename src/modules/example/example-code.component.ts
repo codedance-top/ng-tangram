@@ -6,7 +6,9 @@ import { highlightAll, highlight } from 'prismjs';
   selector: 'nt-example-code',
   template: `
     <div class="example-code" [class.shown]="shown">
-      <span class="code-shown" (click)="shown=!shown"><nt-ant-icon [ntType]="!shown ? 'eyeo' : 'eye'"></nt-ant-icon>代码</span>
+      <span class="code-shown"
+        (click)="shown=!shown"
+        [nt-tooltip]="shown ? '收起代码' : '展开代码'"><nt-ant-icon [ntType]="!shown ? 'eyeo' : 'eye'"></nt-ant-icon>代码</span>
       <pre class="language-{{language}}"><code class="language-{{language}}">{{code}}</code></pre>
     </div>
   `,

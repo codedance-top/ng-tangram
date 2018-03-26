@@ -1,6 +1,7 @@
-
-import { Component, EventEmitter, Input, Inject, Output, Optional, ViewEncapsulation } from '@angular/core';
-import { NtPaginationConfig, NT_PAGINATION_CONFIG } from './pagination-config';
+import {
+  Component, EventEmitter, Inject, Input, Optional, Output, ViewEncapsulation
+} from '@angular/core';
+import { NT_PAGINATION_CONFIG, NtPaginationConfig } from './pagination-config';
 
 @Component({
   selector: 'nt-pagination, [nt-pagination]',
@@ -46,7 +47,7 @@ export class NtPaginationComponent {
   @Output('ntOnPageChange') onPageChange = new EventEmitter<number>();
 
   constructor(
-    @Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig: NtPaginationConfig,
+    @Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig,
   ) {
     this._config = { ...this._config, ...defaultConfig || {} };
   }

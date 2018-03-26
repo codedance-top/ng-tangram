@@ -3,7 +3,13 @@
 $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
-$foundation-palette: ( primary: #007bff, secondary: #6c757d, success: #28a745, warning: #fd7e14, alert: #dc3545, );
+$foundation-palette: (
+  primary: #007bff,
+  secondary: #6c757d,
+  success: #28a745,
+  warning: #fd7e14,
+  alert: #dc3545
+);
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;

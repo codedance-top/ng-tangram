@@ -1,15 +1,13 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
-
-import { NtButtonModule } from '../button/button.module';
-import { NtModalContainer } from './modal-container';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { NtModal } from './modal';
+import { NtModalContainer } from './modal-container';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, PortalModule, OverlayModule, NtButtonModule],
+  imports: [CommonModule, RouterModule, PortalModule, OverlayModule],
   entryComponents: [NtModalContainer],
   declarations: [NtModalContainer],
   providers: [NtModal]

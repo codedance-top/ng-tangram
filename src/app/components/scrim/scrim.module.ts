@@ -9,12 +9,14 @@ import { NtPaginationModule } from '@ng-tangram/components/pagination';
 import { ScrimDocumentComponent } from './scrim.component';
 
 import { DemoScrimBasciComponent } from './demos/basic';
+import { NtTableModule } from '@ng-tangram/components/table';
 
 @NgModule({
   imports: [
     CommonModule,
     NtExampleModule,
     NtScrimModule,
+    NtTableModule,
     NtPaginationModule,
     RouterModule.forChild([
       { path: '', component: ScrimDocumentComponent }

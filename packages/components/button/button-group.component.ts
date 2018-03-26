@@ -1,5 +1,5 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 export declare type NtButtonGroupColor = '' | 'primary' | 'secondary' | 'success' | 'warning' | 'alert';
 export declare type NtButtonGroupSize = '' | 'tiny' | 'small' | 'large' | 'medium';

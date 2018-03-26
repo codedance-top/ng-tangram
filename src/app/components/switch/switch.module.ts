@@ -17,4 +17,3 @@ import { SwitchDocumentComponent } from './switch.component';
   declarations: [SwitchDocumentComponent],
 })
 export class SwitchDocumentModule { }
-  

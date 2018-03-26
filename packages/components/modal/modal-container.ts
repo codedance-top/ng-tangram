@@ -44,18 +44,12 @@ export class NtModalContainer extends BasePortalOutlet {
   set config(value: NtModalConfig) { this._config = value; }
   get config () { return this._config; }
 
-  /** State of the modal animation. */
   state: 'void' | 'enter' | 'exit' = 'enter';
 
-  /** Emits when an animation state changes. */
   animationStateChanged = new EventEmitter<AnimationEvent>();
 
   constructor() { super(); }
 
-  /**
- * Attach a ComponentPortal as content to this modal container.
- * @param portal Portal to be attached as the modal content.
- */
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {
     if (this._portalOutlet.hasAttached()) {
       throwNtModalContentAlreadyAttachedError();
@@ -63,10 +57,6 @@ export class NtModalContainer extends BasePortalOutlet {
     return this._portalOutlet.attachComponentPortal(portal);
   }
 
-  /**
- * Attach a TemplatePortal as content to this modal container.
- * @param portal Portal to be attached as the modal content.
- */
   attachTemplatePortal<C>(portal: TemplatePortal<C>): EmbeddedViewRef<C> {
     if (this._portalOutlet.hasAttached()) {
       throwNtModalContentAlreadyAttachedError();

@@ -1,17 +1,22 @@
 @import '~foundation-sites/scss/foundation';
 // @import './~/ant-icon/ant-icon.css';
-@import '_core/overlay/overlay';
-@import '_core/option/option';
+@import 'button/button';
+@import 'core/overlay/overlay';
+@import 'core/option/option';
+
 @import 'dropdown/dropdown';
+@import 'datepicker/datepicker';
 @import 'forms/forms';
 @import 'modal/modal';
 @import 'popconfirm/popconfirm';
 @import 'popover/popover';
 @import 'scrim/scrim';
 @import 'select/select';
+@import 'table/table';
 @import 'tooltip/tooltip';
 
 @mixin ng-tangram {
+
 
   @include foundation-flex-classes;
   @include foundation-prototype-shadow;
@@ -29,14 +34,18 @@
   @include foundation-pagination;
 
   // @include nt-ant-icon;
+  @include nt-button;
   @include nt-dropdown;
+  @include nt-datepicker;
   @include nt-forms;
   @include nt-modal;
   @include nt-overlay;
+  @include nt-option;
   @include nt-popconfirm;
   @include nt-popover;
   @include nt-scrim;
   @include nt-select;
+  @include nt-table;
   @include nt-tooltip;
 }
 

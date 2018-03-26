@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'demo-popconfirm-basic',
   template: `
-    <a class="button" nt-popconfirm
-      ntTitle="确定要删除吗？"
+    <a class="button"
+      nt-popconfirm="确定要删除吗？"
       (ntOnConfirm)="onConfirm()"
       (ntOnCancel)="onCancel()">删除</a>
       <br>

@@ -1,22 +1,30 @@
-/**
- * 表单自动聚焦
- */
-
-import { Directive, Input, Renderer2, ElementRef, HostListener } from '@angular/core';
-import { FormGroup, FormControl, FormGroupName } from "@angular/forms";
+import {
+  AfterContentInit, ContentChildren, Directive, ElementRef, HostListener, Input, OnChanges,
+  QueryList, Renderer2, SimpleChanges
+} from '@angular/core';
+import { FormControl, FormGroup, FormGroupName } from '@angular/forms';
+import { NtFormFieldComponent } from './form-field.component';
 
 @Directive({
   selector: '[ntFormAutofocus][formGroup],[ntFormAutofocus][FormGroupName]'
 })
-export class NtFormAutofocusDirective {
+export class NtFormAutofocusDirective implements AfterContentInit, OnChanges {
 
   @Input('formGroup') form: FormGroup;
-
   @Input('ntFormInvalidEmit') emitError: 'ordered' | 'all' = 'all';
+  @ContentChildren(NtFormFieldComponent) formFields: QueryList<NtFormFieldComponent>;
 
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2) { }
+
+  ngAfterContentInit() {
+
+  }
+
+  ngOnChanges(change: SimpleChanges) {
+
+  }
 
   @HostListener('submit')
   onSubmit() {

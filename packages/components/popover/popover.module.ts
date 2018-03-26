@@ -1,11 +1,10 @@
-
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NtOverlayModule } from '@ng-tangram/components/_core/overlay';
+import { NgModule } from '@angular/core';
+import { NtOverlayModule } from '@ng-tangram/components/core/overlay';
 
-import { NtPopoverComponent } from './popover.component';
-import { NtPopoverPaneComponent } from './popover-pane.component';
 import { NtDropdownModule } from '../dropdown';
+import { NtPopoverPaneComponent } from './popover-pane.component';
+import { NtPopoverComponent } from './popover.component';
 
 @NgModule({
   imports: [CommonModule, NtOverlayModule,  NtDropdownModule],

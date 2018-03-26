@@ -1,4 +1,3 @@
-
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 export declare type NtBadgeColor = '' | 'primary' | 'secondary' | 'success' | 'warning' | 'alert';

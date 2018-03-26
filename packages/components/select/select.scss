@@ -6,12 +6,19 @@ $nt-select-background: $white !default;
   .nt-select {
     position: relative;
     display: block;
+    margin: 0 0 $form-spacing;
+
+    &:focus {
+      outline: none;
+    }
   }
 
-  .nt-select input[readonly] {
+  .nt-select input {
     background-color: $input-background;
     cursor: auto !important;
     padding-right: 2rem;
+    text-overflow: ellipsis;
+    margin: 0;
   }
 
   .nt-select.open input {
@@ -23,20 +30,13 @@ $nt-select-background: $white !default;
 
   .nt-select-caret {
     position: absolute;
-    right: .8rem;
-    top: 1.2rem;
-    &::after{
-      display: block;
-      width: 0;
-      height: 0;
-      border: inset 6px;
-      content: '';
-      border-bottom-width: 0;
-      border-top-style: solid;
-      border-color: $select-triangle-color transparent transparent;
-      right: 5px;
-      left: auto;
-      margin-top: -3px;
+    right: .6rem;
+    top: .6rem;
+    pointer-events: none;
+    &::after {
+      display: inline-block;
+      color: $select-triangle-color;
+      content: '\25BC';
     }
   }
 
@@ -50,5 +50,9 @@ $nt-select-background: $white !default;
     &.folded {
       max-height: 256px;
     }
+  }
+
+  .nt-select-pane nt-ant-icon {
+    margin-right: .3rem;
   }
 }

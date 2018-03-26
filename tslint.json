@@ -5,13 +5,11 @@
     "curly": true,
     "eofline": false,
     "forin": true,
-    "indent": [true, 4],
+    "indent": [true, "spaces", 2],
     "label-position": true,
     "member-ordering": [
       true,
-      {
-        "order": ["static-field", "instance-field"]
-      }
+      { "order": ["static-field", "instance-field"] }
     ],
     "max-line-length": [true, 160],
     "no-arg": true,

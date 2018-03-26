@@ -1,2 +1,2 @@
-export { NtCalloutModule } from './callout.module';
-export { NtCalloutComponent, NtCalloutColor, NtCalloutSize } from './callout.component';
+export * from './callout.module';
+export * from './callout.component';

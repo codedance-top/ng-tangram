@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { trigger, transition } from '@angular/animations';
+import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { fadeOut } from '@ng-tangram/animate/fading';
 
 export declare type NtCalloutColor = 'primary' | 'secondary' | 'success' | 'warning' | 'alert';

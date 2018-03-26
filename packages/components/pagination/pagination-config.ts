@@ -1,8 +1,8 @@
 import { InjectionToken } from '@angular/core';
 
 export class NtPaginationConfig {
-  previousLabel?: string = '上一页';
-  nextLabel?: string = '下一页';
+  previousLabel?: string = 'Previous';
+  nextLabel?: string = 'Next';
   size?: number = 3;
   pageSize?: number = 10;
 }

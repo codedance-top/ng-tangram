@@ -9,8 +9,7 @@ export const COMPONENTS_ROUTES: Routes = [
   { path: 'callout', loadChildren: './callout/callout.module#CalloutDocumentModule', data: { title: 'Callout 提示框' } },
   // { path: 'checkbox', loadChildren: './checkbox/checkbox.module#CheckboxDocumentModule', data: { title: 'Checkbox 复选框' } },
   // { path: 'collapse', loadChildren: './collapse/collapse.module#CollapseDocumentModule', data: { title: 'Collapse ' } },
-  // { path: 'datatable', loadChildren: './datatable/datatable.module#DatatableDocumentModule', data: { title: 'Datatable ' } },
-  // { path: 'datepicker', loadChildren: './datepicker/datepicker.module#DatePickerDocumentModule', data: { title: 'DatePicker ' } },
+  { path: 'datepicker', loadChildren: './datepicker/datepicker.module#DatePickerDocumentModule', data: { title: 'DatePicker 日期选择框' } },
   // { path: 'datepicker-range', loadChildren: './datepicker-range/datepicker-range.module#DatePickerRangeDocumentModule',
   //   data: { title: 'DatePickerRange ' } },
   { path: 'dropdown', loadChildren: './dropdown/dropdown.module#DropdownDocumentModule', data: { title: 'Dropdown 下拉菜单' } },
@@ -27,6 +26,7 @@ export const COMPONENTS_ROUTES: Routes = [
   // { path: 'switch', loadChildren: './switch/switch.module#SwitchDocumentModule', data: { title: 'Switch ' } },
   // { path: 'tabs', loadChildren: './tabs/tabs.module#TabsDocumentModule', data: { title: 'Tabs ' } },
   // { path: 'timepicker', loadChildren: './time-picker/time-picker.module#TimePickerDocumentModule', data: { title: 'TimePicker ' } },
+  { path: 'table', loadChildren: './table/table.module#TableDocumentModule', data: { title: 'Table 表格' } },
   { path: 'tooltip', loadChildren: './tooltip/tooltip.module#TooltipDocumentModule', data: { title: 'Tooltip 提示' } },
   // { path: 'uploader', loadChildren: './uploader/uploader.module#UploaderDocumentModule', data: { title: 'Uploader ' } },
 ];

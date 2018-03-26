@@ -1,2 +1,2 @@
-export { NtCheckboxModule } from './checkbox.module';
-export { NtCheckboxComponent } from './checkbox.component';
+export * from './checkbox.module';
+export * from './checkbox.component';

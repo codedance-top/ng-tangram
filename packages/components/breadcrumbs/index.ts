@@ -1,2 +1,2 @@
-export { NtBreadcrumbsModule } from './breadcrumbs.module';
-export { NtBreadcrumbsComponent } from './breadcrumbs.component';
+export * from './breadcrumbs.module';
+export * from './breadcrumbs.component';

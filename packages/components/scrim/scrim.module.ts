@@ -1,13 +1,12 @@
-
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { NtScrimComponent } from './scrim.component';
-import { NtScrimService } from './scrim.service';
+import { NtScrimDirective } from './scrim.directive';
 
 @NgModule({
   imports: [CommonModule],
-  exports: [NtScrimComponent],
-  declarations: [NtScrimComponent],
-  providers: [NtScrimService]
+  entryComponents: [NtScrimComponent],
+  exports: [NtScrimComponent, NtScrimDirective],
+  declarations: [NtScrimComponent, NtScrimDirective]
 })
 export class NtScrimModule { }

@@ -10,11 +10,20 @@ import 'rxjs/add/operator/filter';
   <div class="grid-x grid-margin-x">
     <div class="cell medium-6 large-4">
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()" ntFormAutofocus>
-        <nt-form-field ntLabel="用户名">
+        <nt-form-field ntLabel="用户名" ntLabelOrientation="horizontal">
           <input type="text" name="username" formControlName="username" placeholder="用户名">
         </nt-form-field>
-        <nt-form-field ntLabel="密码">
+        <nt-form-field ntLabel="密码" ntLabelOrientation="horizontal">
           <input type="password" name="password" formControlName="password" placeholder="密码">
+        </nt-form-field>
+        <nt-form-field ntLabel="选择框" ntLabelOrientation="horizontal">
+          <nt-select formControlName="select" placeholder="select">
+            <nt-option ntValue="1">1</nt-option>
+            <nt-option ntValue="2">2</nt-option>
+          </nt-select>
+        </nt-form-field>
+        <nt-form-field ntLabel="日期选择" ntLabelOrientation="horizontal">
+          <nt-datepicker formControlName="datepicker" placeholder="datepicker"></nt-datepicker>
         </nt-form-field>
         <div class="grid-x">
           <div class="small-7 columns">
@@ -29,7 +38,9 @@ import 'rxjs/add/operator/filter';
         <button type="submit" class="button expanded">Login</button>
       </form>
       <p>还没有账号？<a>现在注册!</a></p>
-      {{ formValues | json }}
+      <nt-callout *ngIf="formValues">
+        {{ formValues | json }}
+      </nt-callout>
     </div>
   </div>
   `
@@ -44,7 +55,9 @@ export class DemoFormLoginComponent {
   constructor(private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      select: ['', Validators.required],
+      datepicker: ['', Validators.required],
     });
 
     this.loginSubject
@@ -55,6 +68,7 @@ export class DemoFormLoginComponent {
   }
 
   onLogin() {
+    console.log(this.loginForm.value);
     this.loginSubject.next(this.loginForm);
   }
 }

@@ -1,5 +1,8 @@
-import { Component, Input, Output, HostListener, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import {
+    Component, EventEmitter, HostListener, Input, Output, ViewEncapsulation
+} from '@angular/core';
+
 export declare type NtButtonType = '' | 'hollow' | 'clear';
 export declare type NtButtonColor = '' | 'primary' | 'secondary' | 'success' | 'warning' | 'alert';
 export declare type NtButtonSize =  '' | 'tiny' | 'small' | 'large' | 'medium';
