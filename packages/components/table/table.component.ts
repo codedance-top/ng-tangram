@@ -52,12 +52,12 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
     return this._columns ? this._columns.toArray() : [];
   }
 
-  @Input('ntDataSource') dataSource: Array<T>;
+  @Input() dataSource: Array<T>;
 
-  @Output('ntSelectionChange')
+  @Output()
   readonly selectionChange: EventEmitter<T | T[]> = new EventEmitter();
 
-  @Output('ntSortChange')
+  @Output()
   readonly sortChanges: EventEmitter<NtColumnSortChange | NtColumnSortChange[]> = new EventEmitter();
 
   readonly columSortChanges: Observable<NtColumnSortChange> = defer(() => {
@@ -122,7 +122,7 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
 
   private _clearSort(filter?: NtColumnSortChange) {
     this._columns
-      .filter(column => column.columnKey !== filter.column)
+      .filter(column => column.name !== filter.column)
       .forEach(column => column.sort = '');
   }
 

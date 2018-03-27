@@ -22,4 +22,3 @@ import { DemoButtonGroupComponent } from './demos/group';
   declarations: [ButtonDocumentComponent, DemoButtonBasicComponent, DemoButtonGroupComponent]
 })
 export class ButtonDocumentModule { }
-

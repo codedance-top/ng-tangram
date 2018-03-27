@@ -1,17 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NT_FORM_CONFIG, NtFormConfig } from '@ng-tangram/components/forms/invalid-handler';
-
 import { NtFormAutofocusDirective } from './form-autofocus.directive';
+import { NtFormErrorPipe } from './form-error.pipe';
 import { NtFormFieldComponent } from './form-field.component';
+import { FormValidationTransformer, NT_VALIDATION_TRANSFOMER } from './validation';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   exports: [FormsModule, ReactiveFormsModule, NtFormFieldComponent, NtFormAutofocusDirective],
   providers: [
-    { provide: NT_FORM_CONFIG, useClass: NtFormConfig }
+    { provide: NT_VALIDATION_TRANSFOMER, useClass: FormValidationTransformer }
   ],
-  declarations: [NtFormFieldComponent, NtFormAutofocusDirective],
+  declarations: [NtFormFieldComponent, NtFormAutofocusDirective, NtFormErrorPipe],
 })
 export class NtFormsModule { }

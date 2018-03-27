@@ -24,22 +24,22 @@ export class NtMenuComponent implements AfterContentInit {
   private _nested: boolean = false;
   private _align: NtMenuAlign = '';
 
-  @Input('ntSimple')
+  @Input()
   set simple(value: boolean) { this._simple = coerceBooleanProperty(value); }
   get simple() { return this._simple; }
 
-  @Input('ntExpanded')
+  @Input()
   set expanded(value: boolean) { this._expanded = coerceBooleanProperty(value); }
   get expanded() { return this._expanded; }
 
   set nested(value: boolean) { this._nested = coerceBooleanProperty(value); }
   get nested() { return this._nested; }
 
-  @Input('ntAlign')
+  @Input()
   set align(value: NtMenuAlign) { this._align = value; }
   get align() { return this._align; }
 
-  @Input('ntOrientation') orientation: NtMenuOrientation = '';
+  @Input() orientation: NtMenuOrientation = '';
 
   @ContentChildren(NtMenuComponent) childMenus: QueryList<NtMenuComponent>;
 

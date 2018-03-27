@@ -22,16 +22,16 @@
   <nt-example-showcase>
     <demo-form-login></demo-form-login>
   </nt-example-showcase>
-  <nt-example-legend ntTitle="登录框">普通的登录框。</nt-example-legend>
-  <nt-example-code [ntCode]="loginCode"></nt-example-code>
+  <nt-example-legend title="登录框">普通的登录框。</nt-example-legend>
+  <nt-example-code [code]="loginCode"></nt-example-code>
 </nt-example>
 
 ## API
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| ntColor | 属性：颜色 | `primary`、 `secondry`、 `success`、 `warning`、 `alert` | `primary` |
-| ntSize | 属性：提示框大小 | `small`、 `medium`、`large` | `medium` |
-| ntClosable | 属性：是否显示关闭按钮 | `boolean` | - |
-| ntOnClose | 事件：关闭时触发 | `function` | - |
+| color | 属性：颜色 | `primary`、 `secondry`、 `success`、 `warning`、 `alert` | `primary` |
+| size | 属性：提示框大小 | `small`、 `medium`、`large` | `medium` |
+| closable | 属性：是否显示关闭按钮 | `boolean` | - |
+| onClose | 事件：关闭时触发 | `function` | - |
 

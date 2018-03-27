@@ -14,7 +14,7 @@ export class NtScrimDirective implements OnDestroy {
 
   private _componentRef: ComponentRef<NtScrimComponent>;
 
-  @Input('ntScrimText')
+  @Input('scrimText')
   set text(value: string) { this._componentRef.instance.text = value; }
 
   @Input('ntScrim')

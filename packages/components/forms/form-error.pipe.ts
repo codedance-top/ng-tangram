@@ -1,0 +1,12 @@
+import { Inject, Pipe, PipeTransform } from '@angular/core';
+import { ValidationErrors } from '@angular/forms';
+import { NT_VALIDATION_TRANSFOMER, NtValidationTransformer } from './validation';
+
+@Pipe({ name: 'ntFormError' })
+export class NtFormErrorPipe implements PipeTransform {
+  constructor(@Inject(NT_VALIDATION_TRANSFOMER) private _transformer: NtValidationTransformer) { }
+
+  transform(value: ValidationErrors, ...args: any[]) {
+    return this._transformer.transform(value, args[0]);
+  }
+}

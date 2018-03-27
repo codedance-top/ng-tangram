@@ -35,7 +35,7 @@ export class NtDatePickerYearComponent<D> implements AfterContentInit {
   private _minDate: D | null;
   private _maxDate: D | null;
 
-  @Input('ntActiveDate')
+  @Input()
   get activeDate(): D { return this._activeDate; }
   set activeDate(value: D) {
     let oldActiveDate = this._activeDate;
@@ -50,7 +50,7 @@ export class NtDatePickerYearComponent<D> implements AfterContentInit {
   get activeYear() { return this._activeDate ? this._dateAdapter.getYear(this._activeDate) : null; }
 
   /** The currently selected date. */
-  @Input('ntSelected')
+  @Input()
   get selected(): D | null { return this._selected; }
   set selected(value: D | null) {
     this._selected = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
@@ -58,27 +58,27 @@ export class NtDatePickerYearComponent<D> implements AfterContentInit {
   }
 
   /** The minimum selectable date. */
-  @Input('ntMinDate')
+  @Input()
   get minDate(): D | null { return this._minDate; }
   set minDate(value: D | null) {
     this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
 
   /** The maximum selectable date. */
-  @Input('ntMaxDate')
+  @Input()
   get maxDate(): D | null { return this._maxDate; }
   set maxDate(value: D | null) {
     this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
 
   /** A function used to filter which dates are selectable. */
-  @Input('ntDateFilter') dateFilter: (date: D) => boolean;
+  @Input() dateFilter: (date: D) => boolean;
 
   /** Emits when a new month is selected. */
-  @Output('ntSelectedChange') readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
+  @Output() readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
 
   /** Emits the selected month. This doesn't imply a change on the selected date */
-  @Output('ntMonthSelected') readonly monthSelected: EventEmitter<D> = new EventEmitter<D>();
+  @Output() readonly monthSelected: EventEmitter<D> = new EventEmitter<D>();
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,

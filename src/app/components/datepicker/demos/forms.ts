@@ -5,12 +5,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   selector: 'demo-datepicker-forms',
   template: `
   <form [formGroup]="form" (ngSubmit)="submit()" ntFormAutofocus>
-    <nt-form-field ntLabel="正常">
+    <nt-form-field label="正常">
       <nt-datepicker
         placeholder="普通的日期选择框" formControlName="normal"></nt-datepicker>
     </nt-form-field>
-    <nt-form-field ntLabel="参数">
-      <nt-datepicker placeholder="带参数的日期选择框" [ntMinDate]="minDate" [ntMaxDate]="maxDate" formControlName="params"></nt-datepicker>
+    <nt-form-field label="参数">
+      <nt-datepicker placeholder="带参数的日期选择框" [minDate]="minDate" [maxDate]="maxDate" formControlName="params"></nt-datepicker>
     </nt-form-field>
     <button class="button" type="submit">Submit</button>
   </form>

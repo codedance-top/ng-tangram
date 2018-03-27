@@ -19,10 +19,10 @@ export class NtPopConfirmComponent {
   readonly origin: OverlayOrigin;
 
   @Input('nt-popconfirm') title = '';
-  @Input('ntPosition') position = 'top';
+  @Input() position = 'top';
 
-  @Output('ntOnConfirm') onConfirm = new EventEmitter<any>();
-  @Output('ntOnCancel') onCancel = new EventEmitter<any>();
+  @Output() onConfirm = new EventEmitter<any>();
+  @Output() onCancel = new EventEmitter<any>();
 
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
 

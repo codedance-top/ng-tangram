@@ -32,7 +32,7 @@ export class NtDatePickerMultiYearComponent<D>  {
   private _minDate: D | null;
   private _maxDate: D | null;
 
-  @Input('ntActiveDate')
+  @Input()
   get activeDate(): D { return this._activeDate; }
   set activeDate(value: D) {
     let oldActiveDate = this._activeDate;
@@ -46,7 +46,7 @@ export class NtDatePickerMultiYearComponent<D>  {
   }
 
   /** The currently selected date. */
-  @Input('ntSelected')
+  @Input()
   get selected(): D | null { return this._selected; }
   set selected(value: D | null) {
     this._selected = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
@@ -54,27 +54,27 @@ export class NtDatePickerMultiYearComponent<D>  {
   }
 
   /** The minimum selectable date. */
-  @Input('ntMinDate')
+  @Input()
   get minDate(): D | null { return this._minDate; }
   set minDate(value: D | null) {
     this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
 
   /** The maximum selectable date. */
-  @Input('ntMaxDate')
+  @Input()
   get maxDate(): D | null { return this._maxDate; }
   set maxDate(value: D | null) {
     this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
 
   /** A function used to filter which dates are selectable. */
-  @Input('ntDateFilter') dateFilter: (date: D) => boolean;
+  @Input() dateFilter: (date: D) => boolean;
 
   /** Emits when a new year is selected. */
-  @Output('ntSelectedChange') readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
+  @Output() readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
 
   /** Emits the selected year. This doesn't imply a change on the selected date */
-  @Output('ntYearSelected') readonly yearSelected: EventEmitter<D> = new EventEmitter<D>();
+  @Output() readonly yearSelected: EventEmitter<D> = new EventEmitter<D>();
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,

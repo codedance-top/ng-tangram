@@ -23,17 +23,17 @@ export class NtCalloutComponent {
 
   get display() { return this._display; }
 
-  @Input('ntTitle') title: string = '';
+  @Input() title: string = '';
 
-  @Input('ntColor') color: NtCalloutColor = 'primary';
+  @Input() color: NtCalloutColor = 'primary';
 
-  @Input('ntSize') size: NtCalloutSize = 'medium';
+  @Input() size: NtCalloutSize = 'medium';
 
-  @Input('ntClosable')
+  @Input()
   set closable(value: boolean) { this._closable = coerceBooleanProperty(value); }
   get closable() { return this._closable; }
 
-  @Output('ntOnClose') onClose = new EventEmitter<any>();
+  @Output() onClose = new EventEmitter<any>();
 
   constructor() { }
 

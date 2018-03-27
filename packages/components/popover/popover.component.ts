@@ -19,7 +19,7 @@ export class NtPopoverComponent {
   readonly origin: OverlayOrigin;
 
   @Input('nt-popover') title = '';
-  @Input('ntPosition') position = 'top';
+  @Input() position = 'top';
 
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
 

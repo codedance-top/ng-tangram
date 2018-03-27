@@ -8,32 +8,32 @@
   </table>
   <nt-datepicker-month
     *ngSwitchCase="'month'"
-    [(ntActiveDate)]="_activeDate"
-    [ntSelected]="selected"
-    [ntDateFilter]="dateFilter"
-    [ntMaxDate]="maxDate"
-    [ntMinDate]="minDate"
-    (ntSelectedChange)="_dateSelected($event)">
+    [(activeDate)]="_activeDate"
+    [selected]="selected"
+    [dateFilter]="dateFilter"
+    [maxDate]="maxDate"
+    [minDate]="minDate"
+    (selectedChange)="_dateSelected($event)">
   </nt-datepicker-month>
   <nt-datepicker-year
     *ngSwitchCase="'year'"
-    [ntActiveDate]="_activeDate"
-    [ntSelected]="selected"
-    [ntDateFilter]="dateFilter"
-    [ntMaxDate]="maxDate"
-    [ntMinDate]="minDate"
-    (ntMonthSelected)="_monthSelectedInYearView($event)"
-    (ntSelectedChange)="_goToDateInView($event, 'month')">
+    [activeDate]="_activeDate"
+    [selected]="selected"
+    [dateFilter]="dateFilter"
+    [maxDate]="maxDate"
+    [minDate]="minDate"
+    (monthSelected)="_monthSelectedInYearView($event)"
+    (selectedChange)="_goToDateInView($event, 'month')">
   </nt-datepicker-year>
   <nt-datepicker-multi-year
     *ngSwitchCase="'multi-year'"
-    [ntActiveDate]="_activeDate"
-    [ntSelected]="selected"
-    [ntDateFilter]="dateFilter"
-    [ntMaxDate]="maxDate"
-    [ntMinDate]="minDate"
-    (ntYearSelected)="_yearSelectedInMultiYearView($event)"
-    (ntSelectedChange)="_goToDateInView($event, 'year')">
+    [activeDate]="_activeDate"
+    [selected]="selected"
+    [dateFilter]="dateFilter"
+    [maxDate]="maxDate"
+    [minDate]="minDate"
+    (yearSelected)="_yearSelectedInMultiYearView($event)"
+    (selectedChange)="_goToDateInView($event, 'year')">
   </nt-datepicker-multi-year>
 </div>
 

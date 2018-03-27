@@ -8,12 +8,12 @@
   [value]="filter && focused ? '' : triggerValue">
 <span class="nt-select-caret"></span>
 <nt-overlay
-  [ntOrigin]="origin"
-  ntTriggerType="click"
-  ntPosition="bottomLeft"
-  ntFixed
-  (ntOnShow)="onShow()"
-  (ntOnClose)="onClose()">
+  [origin]="origin"
+  triggerType="click"
+  position="bottomLeft"
+  fixed
+  (onShow)="onShow()"
+  (onClose)="onClose()">
   <div #selectPane class="nt-select-pane" [class.folded]="state === 'folded'" [style.width.px]="width">
     <ng-content></ng-content>
   </div>

@@ -13,5 +13,5 @@ export declare type NtLabelColor = '' | 'primary' | 'secondary' | 'success' | 'w
 })
 
 export class NtLabelComponent {
-  @Input('ntColor') color: NtLabelColor = '';
+  @Input() color: NtLabelColor = '';
 }

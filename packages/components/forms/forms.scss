@@ -1,7 +1,6 @@
 $input-shadow: none !default;
 $input-placeholder-color: $dark-gray !default;
-$input-transition: background-color .6s,
-box-shadow .6s !default;
+$input-transition: background-color .6s, box-shadow .6s !default;
 $input-padding: $form-spacing / 2 $form-spacing;
 $input-invalid-color: get-color(alert) !default;
 $input-invalid-background: lighten($input-invalid-color, 42%) !default;
@@ -9,9 +8,10 @@ $input-valid-color: get-color(success) !default;
 $input-valid-background: ligthen($input-valid-color, 42%) !default;
 $input-warning-color: get-color(warning) !default;
 $input-warning-background: ligthen($input-warning-color, 42%) !default;
-$form-static-label-width: 120px;
 
-@mixin form-inline-extends {
+$horizontal-label-width: 120px;
+
+@mixin form-extends {
   .input-group {
     box-shadow: $input-shadow;
     border-radius: $input-radius;
@@ -34,15 +34,34 @@ $form-static-label-width: 120px;
     input {
       box-shadow: none;
       background-color: transparent;
-      & +.input-group-label {
+      & + .input-group-label {
         padding-right: 0px;
       }
     }
   }
+
+  .nt-form-control {
+    margin: 0 0 $form-spacing;
+  }
+  .nt-form-control input {
+    background-color: $input-background;
+    cursor: auto !important;
+    padding-right: 2rem;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+
+  .nt-form-control.focus input {
+    outline: none;
+    border: $input-border-focus;
+    background-color: $input-background-focus;
+    box-shadow: $input-shadow-focus;
+  }
 }
 
-@mixin form-validate ($color, $background-color) {
-  .form-label {
+@mixin nt-form-validate ($color, $background-color) {
+
+  .nt-form-label {
     color: $color;
   }
   select,
@@ -54,75 +73,75 @@ $form-static-label-width: 120px;
     background-color: $background-color;
     outline: none;
   }
-
-  $input-height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
-
-  .form-error {
-    position: absolute;
-    top: $input-height;
-    font-size: rem-calc(12);
-    margin-bottom: 0px;
-    padding-top: rem-calc(12);
-  }
 }
 
 @mixin nt-form-inline {
   box-sizing: border-box;
   display: inline-block;
   position: relative;
-  .form-label {
+  .nt-form-label {
     vertical-align: top;
-    line-height: 34px;
   }
-  .form-group {
+  .nt-form-group {
     display: inline-block;
   }
 }
 
+@mixin nt-form-label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  &.required {
+    // position: relative;
+    &:after {
+      padding-left: .2em;
+      content: '*';
+      color: $input-invalid-color;
+    }
+  }
+}
+
+@mixin nt-form-horizontal {
+
+  $input-height: ($input-font-size * unitless-calc($input-line-height))+(get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
+
+  padding-left: $horizontal-label-width;
+  position: relative;
+
+  .nt-form-label {
+    vertical-align: top;
+    position: absolute;
+    left: 0;
+    width: $horizontal-label-width;
+    line-height: $input-height;
+    margin-bottom: 0;
+    padding-right: 1rem;
+    text-align: right;
+  }
+}
+
+@mixin nt-form-group {
+
+}
+
 @mixin nt-forms {
 
-  .nt-form-field {
-    margin-bottom: $form-spacing * 1.5;
-    display: block;
-    .form-label {
-      display: inline-block;
-      max-width: 100%;
-      margin-bottom: 5px;
-      &.required {
-        // position: relative;
-        &:after {
-          padding-left: .2em;
-          content: '*';
-          color: $input-invalid-color;
-        }
-      }
-    }
-    &.nt-form-inline {
-      @include nt-form-inline;
-    }
+  @include form-extends;
 
-    .form-group {
-      position: relative;
-    }
-  }
-  @include form-inline-extends;
-  .form-static {
+  .nt-form-field {
     display: block;
-    width: 100%;
-    .form-label {
-      width: $form-static-label-width;
-    }
+    .nt-form-label { @include nt-form-label; }
+    &.nt-form-inline { @include nt-form-inline; }
+    &.nt-form-horizontal { @include nt-form-horizontal; }
   }
+
   .has-error {
-    @include form-validate($input-invalid-color, $input-invalid-background);
-    .form-error {
-      display: block;
-    }
+    @include nt-form-validate($input-invalid-color, $input-invalid-background);
   }
   .has-success {
-    @include form-validate($input-valid-color, $input-valid-background);
+    @include nt-form-validate($input-valid-color, $input-valid-background);
   }
   .has-warning {
-    @include form-validate($input-warning-color, $input-warning-background);
+    @include nt-form-validate($input-warning-color, $input-warning-background);
   }
 }

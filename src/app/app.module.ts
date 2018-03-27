@@ -1,5 +1,5 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
-import LOCALE_ZH from '@angular/common/locales/zh';
+import locale from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 
-registerLocaleData(LOCALE_ZH);
+registerLocaleData(locale);
 
 const ROUTES: Routes = [
   { path: '', redirectTo: 'components', pathMatch: 'full' },

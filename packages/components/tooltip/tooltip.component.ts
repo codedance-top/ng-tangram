@@ -18,7 +18,7 @@ export class NtTooltipComponent {
   readonly origin: OverlayOrigin;
 
   @Input('nt-tooltip') title = '';
-  @Input('ntPosition') positions: NtOverlayPosition = 'top';
+  @Input() position: NtOverlayPosition = 'top';
 
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
 

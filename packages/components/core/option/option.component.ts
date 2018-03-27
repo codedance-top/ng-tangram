@@ -42,7 +42,7 @@ export class NtOptionComponent implements AfterViewChecked {
 
   get multiple() { return this._parent && this._parent.multiple; }
 
-  @Input('ntValue')
+  @Input()
   set value(value: any) { this._value = value; }
   get value() { return this._value; }
 

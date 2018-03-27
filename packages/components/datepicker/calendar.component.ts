@@ -28,48 +28,48 @@ export class NtDatePickerCalendarComponent<D> implements AfterContentInit, OnCha
 
   private _startAt: D | null;
 
-  @Input('ntStartAt')
+  @Input()
   get startAt(): D | null { return this._startAt; }
   set startAt(value: D | null) { this._startAt = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
 
   /** The currently selected date. */
   private _selected: D | null;
 
-  @Input('ntSelected')
+  @Input()
   get selected(): D | null { return this._selected; }
   set selected(value: D | null) { this._selected = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
 
   /** The minimum selectable date. */
   private _minDate: D | null;
 
-  @Input('ntMinDate')
+  @Input()
   get minDate(): D | null { return this._minDate; }
   set minDate(value: D | null) { this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
 
   /** The maximum selectable date. */
   private _maxDate: D | null;
 
-  @Input('ntMaxDate')
+  @Input()
   get maxDate(): D | null { return this._maxDate; }
   set maxDate(value: D | null) { this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
 
   /** A function used to filter which dates are selectable. */
-  @Input('ntDateFilter') dateFilter: (date: D) => boolean;
+  @Input() dateFilter: (date: D) => boolean;
 
   /** Emits when the currently selected date changes. */
-  @Output('ntSelectedChange') readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
+  @Output() readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
 
   /**
    * Emits the year chosen in multiyear view.
    * This doesn't imply a change on the selected date.
    */
-  @Output('ntYearChange') readonly yearSelected: EventEmitter<D> = new EventEmitter<D>();
+  @Output() readonly yearSelected: EventEmitter<D> = new EventEmitter<D>();
 
   /**
    * Emits the month chosen in year view.
    * This doesn't imply a change on the selected date.
    */
-  @Output('ntMonthChange') readonly monthSelected: EventEmitter<D> = new EventEmitter<D>();
+  @Output() readonly monthSelected: EventEmitter<D> = new EventEmitter<D>();
 
   /** Reference to the current month view component. */
   @ViewChild(NtDatePickerMonthComponent) monthView: NtDatePickerMonthComponent<D>;

@@ -14,8 +14,8 @@
       <nt-example-showcase>
         <demo-dropdown-basic></demo-dropdown-basic>
       </nt-example-showcase>
-      <nt-example-legend ntTitle="基本">最简单的下拉菜单。</nt-example-legend>
-      <nt-example-code [ntCode]="basicCode"></nt-example-code>
+      <nt-example-legend title="基本">最简单的下拉菜单。</nt-example-legend>
+      <nt-example-code [code]="basicCode"></nt-example-code>
     </nt-example>
   </div>
 </div>

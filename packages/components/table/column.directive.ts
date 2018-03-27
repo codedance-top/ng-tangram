@@ -53,7 +53,7 @@ export class NtColumnComponent implements NtColumn, AfterContentInit {
 
   visibled = true;
 
-  @Input('ntSortable')
+  @Input()
   set sortable(value: boolean) { this._sortable = coerceBooleanProperty(value); }
   get sortable() { return this._sortable; }
 
@@ -61,11 +61,11 @@ export class NtColumnComponent implements NtColumn, AfterContentInit {
     return this.header && this.header.elementRef.nativeElement.textContent;
   }
 
-  @Input('ntColumnKey') columnKey: string;
+  @Input() name: string;
 
-  @Input('ntWidth') width: number | string = 'auto';
+  @Input() width: number | string = 'auto';
 
-  @Input('ntAlign') align: 'left' | 'center' | 'right' = 'left';
+  @Input() align: 'left' | 'center' | 'right' = 'left';
 
   @ViewChild(TemplateRef) template: TemplateRef<any>;
 
@@ -94,7 +94,7 @@ export class NtColumnComponent implements NtColumn, AfterContentInit {
       }
 
       /** 用户操作的操作才会触发事件 */
-      this.sortChange.emit(new NtColumnSortChange(isUserInput, this.columnKey, this.sort));
+      this.sortChange.emit(new NtColumnSortChange(isUserInput, this.name, this.sort));
     }
   }
 

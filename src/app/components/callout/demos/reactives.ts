@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'demo-callout-reactives',
   template: `
-    <nt-callout [ntColor]="color">
+    <nt-callout [color]="color">
       动态改变颜色提示
     </nt-callout>
     <select #select (change)="color = select.value">

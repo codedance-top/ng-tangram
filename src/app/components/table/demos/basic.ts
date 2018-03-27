@@ -4,22 +4,24 @@ import { NtColumnSortChange, NtTableComponent } from '@ng-tangram/components/tab
 @Component({
   selector: 'demo-table-basic',
   template: `
-  <nt-table [ntDataSource]="dataSource">
+  <nt-table [dataSource]="dataSource">
 
-    <nt-column ntColumnKey="name">
+    <nt-column name="name">
       <nt-column-header>名称</nt-column-header>
       <nt-column-cell *ntColumnCellDef="let item">{{ item.name }}</nt-column-cell>
     </nt-column>
 
-    <nt-column ntColumnKey="age" ntAlign="center">
+    <nt-column name="age" align="center">
       <nt-column-header>年龄</nt-column-header>
       <nt-column-cell *ntColumnCellDef="let item">{{ item.age }}</nt-column-cell>
     </nt-column>
 
-    <nt-column ntColumnKey="address" ntAlign="right">
+    <nt-column name="address" align="right">
       <nt-column-header>地址</nt-column-header>
       <nt-column-cell *ntColumnCellDef="let item">{{ item.address }}</nt-column-cell>
     </nt-column>
+
+  </nt-table>
   `
 })
 export class DemoTableBasicComponent {

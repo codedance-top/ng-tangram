@@ -53,7 +53,7 @@ export class NtDatePickerMonthComponent<D> implements AfterContentInit {
   /**
    * The date to display in this month view (everything other than the month and year is ignored).
    */
-  @Input('ntActiveDate')
+  @Input()
   get activeDate(): D { return this._activeDate; }
   set activeDate(value: D) {
     const oldActiveDate = this._activeDate;
@@ -65,7 +65,7 @@ export class NtDatePickerMonthComponent<D> implements AfterContentInit {
   }
 
   /** The currently selected date. */
-  @Input('ntSelected')
+  @Input()
   get selected(): D | null { return this._selected; }
   set selected(value: D | null) {
     this._selected = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
@@ -73,27 +73,27 @@ export class NtDatePickerMonthComponent<D> implements AfterContentInit {
   }
 
   /** The minimum selectable date. */
-  @Input('ntMinDate')
+  @Input()
   get minDate(): D | null { return this._minDate; }
   set minDate(value: D | null) {
     this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
 
   /** The maximum selectable date. */
-  @Input('ntMaxDate')
+  @Input()
   get maxDate(): D | null { return this._maxDate; }
   set maxDate(value: D | null) {
     this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
 
   /** A function used to filter which dates are selectable. */
-  @Input('ntDateFilter') dateFilter: (date: D) => boolean;
+  @Input() dateFilter: (date: D) => boolean;
 
   /** Emits when a new date is selected. */
-  @Output('ntSelectedChange') readonly selectedChange: EventEmitter<D | null> = new EventEmitter<D | null>();
+  @Output() readonly selectedChange: EventEmitter<D | null> = new EventEmitter<D | null>();
 
   /** Emits when any date is activated. */
-  @Output('ntActiveDateChange') readonly activeDateChange: EventEmitter<D> = new EventEmitter<D>();
+  @Output() readonly activeDateChange: EventEmitter<D> = new EventEmitter<D>();
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,

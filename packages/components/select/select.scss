@@ -6,26 +6,10 @@ $nt-select-background: $white !default;
   .nt-select {
     position: relative;
     display: block;
-    margin: 0 0 $form-spacing;
 
     &:focus {
       outline: none;
     }
-  }
-
-  .nt-select input {
-    background-color: $input-background;
-    cursor: auto !important;
-    padding-right: 2rem;
-    text-overflow: ellipsis;
-    margin: 0;
-  }
-
-  .nt-select.open input {
-    outline: none;
-    border: $input-border-focus;
-    background-color: $input-background-focus;
-    box-shadow: $input-shadow-focus;
   }
 
   .nt-select-caret {

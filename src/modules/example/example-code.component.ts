@@ -8,8 +8,8 @@ import { highlightAll, highlight } from 'prismjs';
     <div class="example-code" [class.shown]="shown">
       <span class="code-shown"
         (click)="shown=!shown"
-        [nt-tooltip]="shown ? '收起代码' : '展开代码'"><nt-ant-icon [ntType]="!shown ? 'eyeo' : 'eye'"></nt-ant-icon>代码</span>
-      <pre class="language-{{language}}"><code class="language-{{language}}">{{code}}</code></pre>
+        [nt-tooltip]="shown ? '收起代码' : '展开代码'"><nt-ant-icon [type]="!shown ? 'eyeo' : 'eye'"></nt-ant-icon>代码</span>
+      <pre class="language-{{lang}}"><code class="language-{{lang}}">{{code}}</code></pre>
     </div>
   `,
   styles: [`
@@ -42,11 +42,11 @@ import { highlightAll, highlight } from 'prismjs';
 
 export class NtExampleCodeComponent implements AfterContentInit {
 
-  @Input('ntCode')
+  @Input()
   code: string;
 
-  @Input('ntLang')
-  language: string = 'typescript';
+  @Input()
+  lang: string = 'typescript';
 
   shown = false;
 

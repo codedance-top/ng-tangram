@@ -8,30 +8,30 @@ import { Component } from '@angular/core';
       <button nt-button>按钮2</button>
       <button nt-button>按钮3</button>
     </nt-button-group>
-    <nt-button-group ntColor="success">
+    <nt-button-group color="success">
       <button nt-button>按钮1</button>
       <button nt-button>按钮2</button>
       <button nt-button>按钮3</button>
     </nt-button-group>
-    <nt-button-group ntSize="small">
+    <nt-button-group size="small">
       <button nt-button>按钮1</button>
       <button nt-button>按钮2</button>
       <button nt-button>按钮3</button>
     </nt-button-group>
-    <nt-button-group ntSize="tiny">
+    <nt-button-group size="tiny">
       <button nt-button>按钮1</button>
       <button nt-button>按钮2</button>
       <button nt-button>按钮3</button>
     </nt-button-group>
     <nt-button-group>
-      <button nt-button ntColor="purple">按钮0</button>
+      <button nt-button color="purple">按钮0</button>
       <button nt-button>按钮1</button>
-      <button nt-button ntColor="secondary">按钮2</button>
-      <button nt-button ntColor="warning">按钮3</button>
-      <button nt-button ntColor="success">按钮4</button>
-      <button nt-button ntColor="alert">按钮5</button>
+      <button nt-button color="secondary">按钮2</button>
+      <button nt-button color="warning">按钮3</button>
+      <button nt-button color="success">按钮4</button>
+      <button nt-button color="alert">按钮5</button>
     </nt-button-group>
-    <nt-button-group ntExpanded>
+    <nt-button-group expanded>
       <button nt-button>按钮1</button>
       <button nt-button>按钮2</button>
       <button nt-button>按钮3</button>

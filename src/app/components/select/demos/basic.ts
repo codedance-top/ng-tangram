@@ -5,17 +5,17 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   selector: 'demo-select-basic',
   template: `
     <form [formGroup]="form" (ngSubmit)="submit()" ntFormAutofocus>
-      <nt-form-field ntLabel="单选">
+      <nt-form-field label="单选">
         <nt-select name="single" placeholder="单选" formControlName="single">
-          <nt-option *ngFor="let alphabet of alphabets" [ntValue]="alphabet">
+          <nt-option *ngFor="let alphabet of alphabets" [value]="alphabet">
             {{alphabet}}
           </nt-option>
         </nt-select>
       </nt-form-field>
-      <nt-form-field ntLabel="多选">
+      <nt-form-field label="多选">
         <nt-select name="multiple" placeholder="多选" formControlName="multiple" multiple>
-          <nt-option *ngFor="let alphabet of alphabets" [ntValue]="alphabet">
-            <nt-ant-icon ntType="appstore1"></nt-ant-icon> {{alphabet}}
+          <nt-option *ngFor="let alphabet of alphabets" [value]="alphabet">
+            <nt-ant-icon type="appstore1"></nt-ant-icon> {{alphabet}}
           </nt-option>
         </nt-select>
       </nt-form-field>

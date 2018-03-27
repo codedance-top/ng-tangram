@@ -9,5 +9,5 @@ export declare type NtDropdownPaneSize = '' | 'tiny' | 'small' | 'large';
   encapsulation: ViewEncapsulation.None
 })
 export class NtDropdownPaneComponent {
-  @Input('ntSize') size: NtDropdownPaneSize = 'small';
+  @Input() size: NtDropdownPaneSize = 'small';
 }

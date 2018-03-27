@@ -3,25 +3,25 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'demo-scrim-basic',
   template: `
-  <nt-table [ntScrim]="isOpen" ntScrimText="正在加载中..." [ntDataSource]="dataSource">
+  <nt-table [ntScrim]="isOpen" scrimText="正在加载中..." [dataSource]="dataSource">
 
-    <nt-column ntColumnKey="name">
+    <nt-column name="name">
       <nt-column-header>Name</nt-column-header>
       <nt-column-cell *ntColumnCellDef="let item">{{ item.name }}</nt-column-cell>
     </nt-column>
 
-    <nt-column ntColumnKey="age">
+    <nt-column name="age">
       <nt-column-header>Age</nt-column-header>
       <nt-column-cell *ntColumnCellDef="let item">{{ item.age }}</nt-column-cell>
     </nt-column>
 
-    <nt-column ntColumnKey="address">
+    <nt-column name="address">
       <nt-column-header>Address</nt-column-header>
       <nt-column-cell *ntColumnCellDef="let item">{{ item.address }}</nt-column-cell>
     </nt-column>
 
   </nt-table>
-  <nt-pagination [ntTotal]="300" [ntPageIndex]="pageIndex" [ntPageSize]="20" (ntOnPageChange)="onPageChange($event)"></nt-pagination>
+  <nt-pagination [total]="300" [pageIndex]="pageIndex" [pageSize]="20" (onPageChange)="onPageChange($event)"></nt-pagination>
   `
 })
 export class DemoScrimBasciComponent {

@@ -1,13 +1,13 @@
 <ng-content></ng-content>
 <nt-overlay
-  [ntOrigin]="origin"
-  [ntPosition]="position"
-  ntTriggerType="click" ntArrowVisibled>
+  [origin]="origin"
+  [position]="position"
+  triggerType="click" arrowVisibled>
   <nt-dropdown-pane>
-    <p class="popconfirm"><nt-ant-icon class="popconfirm-icon" ntType="infocirlce"></nt-ant-icon> {{ title }}</p>
+    <p class="popconfirm"><nt-ant-icon class="popconfirm-icon" type="infocirlce"></nt-ant-icon> {{ title }}</p>
     <div class="popconfirm-action">
-      <button nt-button ntColor="secondary" ntSize="tiny" (click)="cancel()">取消</button>
-      <button nt-button ntSize="tiny" (click)="confirm()">确认</button>
+      <button nt-button color="secondary" size="tiny" (click)="cancel()">取消</button>
+      <button nt-button size="tiny" (click)="confirm()">确认</button>
     </div>
   </nt-dropdown-pane>
 </nt-overlay>

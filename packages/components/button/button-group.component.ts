@@ -17,10 +17,10 @@ export class NtButtonGroupComponent {
 
   private _expanded: boolean = false;
 
-  @Input('ntColor') color: NtButtonGroupColor = '';
-  @Input('ntSize') size: NtButtonGroupSize = '';
+  @Input() color: NtButtonGroupColor = '';
+  @Input() size: NtButtonGroupSize = '';
 
-  @Input('ntExpanded')
+  @Input()
   set expanded(value: boolean) { this._expanded = coerceBooleanProperty(value); }
   get expanded() { return this._expanded; }
 }

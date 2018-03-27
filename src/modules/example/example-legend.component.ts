@@ -29,5 +29,5 @@ import { Component, Input } from '@angular/core';
 })
 
 export class NtExampleLegendComponent {
-  @Input('ntTitle') title: string;
+  @Input() title: string;
 }

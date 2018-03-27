@@ -25,7 +25,7 @@ let uniqueId = 0;
 })
 export class NtCheckboxComponent implements ControlValueAccessor {
 
-  @Input('ntColor') color: NtCheckboxColor = '';
+  @Input() color: NtCheckboxColor = '';
 
   _checked: boolean = false;
 
@@ -34,7 +34,7 @@ export class NtCheckboxComponent implements ControlValueAccessor {
 
   @ViewChild('input') inputRef: ElementRef;
 
-  @Input('ntValue') _value: any ;
+  @Input() value: any ;
 
   readonly id: string = `nt-checkbox-${uniqueId++}`;
 

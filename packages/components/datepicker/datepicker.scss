@@ -79,25 +79,12 @@ $nt-datepicker-pane-background: $white !default;
   .nt-datepicker {
     position: relative;
     display: block;
-    margin: 0 0 $form-spacing;
 
     &:focus {
       outline: none;
     }
   }
-  .nt-datepicker input[readonly] {
-    background-color: $input-background;
-    cursor: auto !important;
-    padding-right: 2rem;
-    text-overflow: ellipsis;
-    margin: 0;
-  }
-  .nt-datepicker.open input {
-    outline: none;
-    border: $input-border-focus;
-    background-color: $input-background-focus;
-    box-shadow: $input-shadow-focus;
-  }
+
   .nt-datepicker-pane {
     position: relative;
     border-radius: $nt-datepicker-pane-radius;

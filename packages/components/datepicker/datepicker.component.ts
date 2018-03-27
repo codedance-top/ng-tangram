@@ -20,7 +20,7 @@ import { NtDatePickerCalendarComponent } from './calendar.component';
   encapsulation: ViewEncapsulation.None,
   host: {
     'class': 'nt-datepicker nt-form-control',
-    '[class.open]': 'overlay.isOpen',
+    '[class.focus]': 'overlay.isOpen',
     'tabindex': '0'
   },
   animations: [
@@ -60,19 +60,19 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
   get placeholder() { return this._placeholder || ''; }
   set placeholder(value: string) { this._placeholder = value || ''; }
 
-  @Input('ntStartAt')
+  @Input()
   get startAt(): D | null { return this._startAt || this.value; }
   set startAt(value: D | null) { this._startAt = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
 
-  @Input('ntMinDate')
+  @Input()
   get minDate(): D | null { return this._minDate; }
   set minDate(value: D | null) { this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
 
-  @Input('ntMaxDate')
+  @Input()
   get maxDate(): D | null { return this._maxDate; }
   set maxDate(value: D | null) { this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
 
-  @Input('ntDateFilter') dateFilter: (date: D) => boolean;
+  @Input() dateFilter: (date: D) => boolean;
 
   @ViewChild('input') input: ElementRef;
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
@@ -89,8 +89,7 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     private _elementRef: ElementRef,
     private _ngZone: NgZone,
     private _renderer: Renderer2,
-    @Self() @Optional() public ngControl: NgControl) {
-    super();
+    @Self() @Optional() public ngControl: NgControl) { super();
     this.origin = new OverlayOrigin(_elementRef);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;

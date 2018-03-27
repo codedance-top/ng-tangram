@@ -53,7 +53,7 @@ export class NtSelectChange {
     'class': 'nt-select nt-form-control',
     'tabindex': '0',
     '(resize)': 'onResize()',
-    '[class.open]': 'overlay.isOpen'
+    '[class.focus]': 'overlay.isOpen'
   }
 })
 export class NtSelectComponent extends NtFormFieldControl<any> implements AfterContentInit, ControlValueAccessor, NtOptionParentComponent, OnDestroy {
@@ -110,7 +110,7 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
    * 选项是否可以过滤
    * TODO: 计划在 0.2.0 >= 版本中支持
    */
-  @Input('ntFilter')
+  @Input()
   set filter(value: boolean) { this._filter = coerceBooleanProperty(value); }
   get filter() { return this._filter; }
 
@@ -139,13 +139,13 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
 
   private readonly _destroy = new Subject<void>();
 
-  @Output('ntSelectionChange')
+  @Output()
   readonly selectionChange: EventEmitter<NtSelectChange> = new EventEmitter<NtSelectChange>();
 
-  @Output('ntValueChange')
+  @Output()
   readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input('ntCompareWith')
+  @Input()
   set compareWith(fn: (o1: any, o2: any) => boolean) {
     if (typeof fn !== 'function') {
       throw getNtSelectNonFunctionValueError();
@@ -246,6 +246,7 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
   }
 
   private _resetOptions() {
+
     const changedOrDestroyed = merge(this.options.changes, this._destroy);
 
     this._scrollTop = 0;

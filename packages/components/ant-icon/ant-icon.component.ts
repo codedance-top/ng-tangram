@@ -8,5 +8,5 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 })
 export class NtAntIconComponent {
 
-  @Input('ntType') type: string;
+  @Input() type: string;
 }

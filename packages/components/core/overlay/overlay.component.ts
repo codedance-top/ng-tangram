@@ -47,41 +47,41 @@ export class NtOverlayComponent {
   get isOpen() { return this._isOpen; }
   get isMouseIn() { return this._isMouseIn; }
 
-  @Input('ntOrigin')
+  @Input()
   set origin(value: OverlayOrigin) { this._origin = value; }
   get origin() { return this._origin; }
 
-  @Input('ntPosition')
+  @Input()
   set position(value: NtOverlayPosition) { this._position = value; this._setPosition(); }
   get positions() { return this._positionPairs; }
 
   get paddingClass() { return this._paddingClass; }
 
-  @Input('ntFixed')
+  @Input()
   set fixed(value: boolean) { this._fixed = coerceBooleanProperty(value); this._setPosition(); }
   get fixed() { return this._fixed; }
 
-  @Input('ntArrowVisibled')
+  @Input()
   set arrowVisibled(value: boolean) { this._arrowVisibled = coerceBooleanProperty(value); }
   get arrowVisibled() { return this._arrowVisibled; }
 
-  @Input('ntNoSpacing')
+  @Input()
   set noSpacing(value: boolean) { this._noSpacing = coerceBooleanProperty(value); }
   get noSpacing() { return this._noSpacing; }
 
-  @Input('ntTriggerType')
+  @Input()
   set triggerType(value: NtOverlayTriggerType) { this._triggerType = value; }
   get triggerType() { return this._triggerType; }
 
-  @Input('ntOverlayClass')
+  @Input()
   set overlayClass(value: string) { this._overlayClass = value; }
   get overlayClass() { return this._overlayClass; }
 
   @ViewChild(CdkConnectedOverlay) cdkConnectedOverlay: CdkConnectedOverlay;
 
-  @Output('ntOnShow') onShow = new EventEmitter<any>();
-  @Output('ntOnClose') onClose = new EventEmitter<any>();
-  @Output('ntOnPositionChange') onPositionChange = new EventEmitter<ConnectedOverlayPositionChange>();
+  @Output() onShow = new EventEmitter<any>();
+  @Output() onClose = new EventEmitter<any>();
+  @Output() onPositionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
   constructor(
     private _renderer: Renderer2,

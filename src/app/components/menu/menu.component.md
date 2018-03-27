@@ -15,24 +15,24 @@
   <nt-example-showcase>
     <demo-menu-basic></demo-menu-basic>
   </nt-example-showcase>
-  <nt-example-legend ntTitle="基本">最简单的下拉菜单。</nt-example-legend>
-  <nt-example-code [ntCode]="basicCode"></nt-example-code>
+  <nt-example-legend title="基本">最简单的下拉菜单。</nt-example-legend>
+  <nt-example-code [code]="basicCode"></nt-example-code>
 </nt-example>
 
 <nt-example>
   <nt-example-showcase>
     <demo-menu-align></demo-menu-align>
   </nt-example-showcase>
-  <nt-example-legend ntTitle="基本">最简单的下拉菜单。</nt-example-legend>
-  <nt-example-code [ntCode]="alignCode"></nt-example-code>
+  <nt-example-legend title="基本">最简单的下拉菜单。</nt-example-legend>
+  <nt-example-code [code]="alignCode"></nt-example-code>
 </nt-example>
 
 <nt-example>
   <nt-example-showcase>
     <demo-menu-nested></demo-menu-nested>
   </nt-example-showcase>
-  <nt-example-legend ntTitle="基本">最简单的下拉菜单。</nt-example-legend>
-  <nt-example-code [ntCode]="nestedCode"></nt-example-code>
+  <nt-example-legend title="基本">最简单的下拉菜单。</nt-example-legend>
+  <nt-example-code [code]="nestedCode"></nt-example-code>
 </nt-example>
 
 ## API

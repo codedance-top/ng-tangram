@@ -12,5 +12,5 @@ export declare type NtBadgeColor = '' | 'primary' | 'secondary' | 'success' | 'w
 })
 export class NtBadgeComponent {
 
-  @Input('ntColor') color: NtBadgeColor = '';
+  @Input() color: NtBadgeColor = '';
 }

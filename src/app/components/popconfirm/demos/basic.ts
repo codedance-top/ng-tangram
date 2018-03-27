@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   template: `
     <a class="button"
       nt-popconfirm="确定要删除吗？"
-      (ntOnConfirm)="onConfirm()"
-      (ntOnCancel)="onCancel()">删除</a>
+      (onConfirm)="onConfirm()"
+      (onCancel)="onCancel()">删除</a>
       <br>
     {{ message }}
   `

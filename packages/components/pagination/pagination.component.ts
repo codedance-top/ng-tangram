@@ -24,27 +24,27 @@ export class NtPaginationComponent {
   get totalPage() { return this._totalPage; }
   get pages() { return this._pages; }
 
-  @Input('ntPageSize')
+  @Input()
   set pageSize(value: number) { this._config.pageSize = value; }
   get pageSize() { return this.config.pageSize; }
 
-  @Input('ntPreviousLabel')
+  @Input()
   set previousLabel(value: string) { this._config.previousLabel = value; }
   get previousLabel() { return this.config.previousLabel; }
 
-  @Input('ntNextLabel')
+  @Input()
   set nextLabel(value: string) { this._config.nextLabel = value; }
   get nextLabel() { return this.config.nextLabel; }
 
-  @Input('ntTotal')
+  @Input()
   set total(value: number) { this._total = value; this._build(); }
   get total() { return this._total; }
 
-  @Input('ntPageIndex')
+  @Input()
   set pageIndex(value: number) { this._pageIndex = value; this._build(); }
   get pageIndex() { return this._pageIndex; }
 
-  @Output('ntOnPageChange') onPageChange = new EventEmitter<number>();
+  @Output() onPageChange = new EventEmitter<number>();
 
   constructor(
     @Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig,
