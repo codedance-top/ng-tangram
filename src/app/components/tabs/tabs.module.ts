@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { NtExampleModule } from '@modules/example/example.module';
+import { NtExampleModule } from '@modules/example';
 import { TabsDocumentComponent } from './tabs.component';
 
 @NgModule({
@@ -17,4 +17,3 @@ import { TabsDocumentComponent } from './tabs.component';
   declarations: [TabsDocumentComponent],
 })
 export class TabsDocumentModule { }
-  

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { NtExampleModule } from '@modules/example/example.module';
+import { NtExampleModule } from '@modules/example';
 
 import { COMPONENTS_ROUTES } from './components.routes';
 import { ComponentsComponent } from './components.component';

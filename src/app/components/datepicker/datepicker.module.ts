@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NtExampleModule } from '@modules/example/example.module';
+import { NtExampleModule } from '@modules/example';
 import { NT_DATE_LOCALE } from '@ng-tangram/components/core';
 import { NtDatePickerModule } from '@ng-tangram/components/datepicker';
 import { NtFormsModule } from '@ng-tangram/components/forms';

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { NtExampleModule } from '@modules/example/example.module';
+import { NtExampleModule } from '@modules/example';
 import { RadioDocumentComponent } from './radio.component';
 
 @NgModule({
@@ -17,4 +17,3 @@ import { RadioDocumentComponent } from './radio.component';
   declarations: [RadioDocumentComponent],
 })
 export class RadioDocumentModule { }
-  

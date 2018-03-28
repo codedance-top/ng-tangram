@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { NtExampleModule } from '@modules/example/example.module';
+import { NtExampleModule } from '@modules/example';
 import { NtAntIconModule } from '@ng-tangram/components/ant-icon';
 import { NtSelectModule } from '@ng-tangram/components/select';
 import { NtFormsModule } from '@ng-tangram/components/forms';

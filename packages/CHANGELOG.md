@@ -8,6 +8,7 @@
 * Add Component datepicker
 * Add Component dropdown
 * Add Component form-field
+* Add Component input
 * Add Component label
 * Add Component menu
 * Add Component pagination

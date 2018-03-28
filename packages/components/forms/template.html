@@ -30,9 +30,9 @@
   }
 }}
 
-
-
 <nt-form-field>
   <label *ntFormLabel>开始日期</label>
   <nt-datepicker formControlName="date" placeholder="请选择日期"></nt-datepicker>
+
+  <ng-container *ntFormError="let error">{{  }}</ng-container>
 </nt-form-field>

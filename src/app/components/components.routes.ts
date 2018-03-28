@@ -14,6 +14,7 @@ export const COMPONENTS_ROUTES: Routes = [
   //   data: { title: 'DatePickerRange ' } },
   { path: 'dropdown', loadChildren: './dropdown/dropdown.module#DropdownDocumentModule', data: { title: 'Dropdown 下拉菜单' } },
   { path: 'forms', loadChildren: './forms/forms.module#FormsDocumentModule', data: { title: 'Forms 表单' } },
+  { path: 'input', loadChildren: './input/input.module#InputDocumentModule', data: { title: 'Input 输入框' } },
   { path: 'label', loadChildren: './label/label.module#LabelDocumentModule', data: { title: 'Label 标签' } },
   { path: 'menu', loadChildren: './menu/menu.module#MenuDocumentModule', data: { title: 'Menu 导航菜单' } },
   { path: 'modal', loadChildren: './modal/modal.module#ModalDocumentModule', data: { title: 'Modal 模态框' } },

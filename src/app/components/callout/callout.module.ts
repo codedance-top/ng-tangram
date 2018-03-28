@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { NtExampleModule } from '@modules/example/example.module';
+import { NtExampleModule } from '@modules/example';
 import { NtCalloutModule } from '@ng-tangram/components/callout';
 import { NtAntIconModule } from '@ng-tangram/components/ant-icon';
 

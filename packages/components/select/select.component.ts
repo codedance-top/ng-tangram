@@ -129,7 +129,8 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
   }
 
   @ViewChild('input') input: ElementRef;
-  @ViewChild('selectPane') selectPane: ElementRef;
+  @ViewChild('pane') pane: ElementRef;
+
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
   @ContentChildren(NtOptionComponent) options: QueryList<NtOptionComponent>;
 
@@ -202,12 +203,12 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
   onShow() {
     this._state = 'folded';
     this.onResize();
-    setTimeout(() => this.selectPane.nativeElement.scrollTop = this._scrollTop, 0);
+    setTimeout(() => this.pane.nativeElement.scrollTop = this._scrollTop, 0);
   }
 
   onClose() {
     this._state = 'closed';
-    this._scrollTop = this.selectPane.nativeElement.scrollTop;
+    this._scrollTop = this.pane.nativeElement.scrollTop;
     this._onTouched();
   }
 

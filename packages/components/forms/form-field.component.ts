@@ -39,7 +39,6 @@ export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
       </span>
     </div>
   `,
-
   animations: [
     trigger('fade', [
       transition('true => false', fadeOut(.15)),

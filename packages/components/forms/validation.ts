@@ -18,6 +18,10 @@ export interface NtValidationTransformer {
 @Injectable()
 export class FormValidationTransformer implements NtValidationTransformer {
 
+  constructor() {
+
+  }
+
   transform(errors: ValidationErrors, label?: string) {
     if (!errors) {
       return '';
@@ -47,8 +51,6 @@ export class FormValidationTransformer implements NtValidationTransformer {
   }
 }
 
-
-
 export const NT_VALIDATION_TRANSFOMER = new InjectionToken<NtValidationTransformer>('nt-validation-transformer');
 
-export const NT_VALIDATION_TEMPLATES = new InjectionToken<{ [key: string]: any }>('nt-validation-transformer');
+// export const NT_VALIDATION_TEMPLATES = new InjectionToken<{ [key: string]: any }>('nt-validation-transformer');

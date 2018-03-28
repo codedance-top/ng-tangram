@@ -8,7 +8,7 @@ import { FormValidationTransformer, NT_VALIDATION_TRANSFOMER } from './validatio
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  exports: [FormsModule, ReactiveFormsModule, NtFormFieldComponent, NtFormAutofocusDirective],
+  exports: [FormsModule, ReactiveFormsModule, NtFormFieldComponent, NtFormAutofocusDirective, NtFormErrorPipe],
   providers: [
     { provide: NT_VALIDATION_TRANSFOMER, useClass: FormValidationTransformer }
   ],
