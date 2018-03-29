@@ -18,6 +18,7 @@ export class NtButtonGroupComponent {
   private _expanded: boolean = false;
 
   @Input() color: NtButtonGroupColor = '';
+
   @Input() size: NtButtonGroupSize = '';
 
   @Input()

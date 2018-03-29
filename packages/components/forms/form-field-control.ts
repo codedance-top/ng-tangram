@@ -16,12 +16,6 @@ export abstract class NtFormFieldControl<T> {
   /** The value of the control. */
   value: T | null;
 
-  /**
-   * Stream that emits whenever the state of the control changes such that the parent `NtFormField`
-   * needs to run change detection.
-   */
-  readonly stateChanges: Observable<void>;
-
   /** The placeholder for this control. */
   readonly placeholder: string;
 
@@ -40,9 +34,6 @@ export abstract class NtFormFieldControl<T> {
   /** Whether the control is disabled. */
   readonly disabled: boolean;
 
-  /** Whether the control is in an error state. */
-  readonly errorState: boolean;
-
-  /** Handles a click on the control's container. */
-  // abstract onContainerClick(event: MouseEvent): void;
+  /**  */
+  abstract focus(): void;
 }

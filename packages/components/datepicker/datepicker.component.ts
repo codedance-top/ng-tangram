@@ -2,8 +2,8 @@ import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { OverlayOrigin } from '@angular/cdk/overlay';
 import {
-  AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter,
-  Inject, Input, NgZone, Optional, Output, Renderer2, Self, ViewChild, ViewEncapsulation
+  ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Inject, Input,
+  NgZone, Optional, Output, Renderer2, Self, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
@@ -20,27 +20,36 @@ import { NtDatePickerCalendarComponent } from './calendar.component';
   encapsulation: ViewEncapsulation.None,
   host: {
     'class': 'nt-datepicker nt-form-control',
-    '[class.focus]': 'overlay.isOpen',
-    'tabindex': '0'
+    '[class.focus]': 'overlay.isOpen'
   },
   animations: [
     trigger('fade', [
       transition('* => void', fadeOut(.15)),
       transition('void => *', fadeIn(.15))
     ])
+  ],
+  providers: [
+    { provide: NtFormFieldControl, useExisting: NtDatePickerComponent }
   ]
 })
-export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements ControlValueAccessor, AfterContentInit {
+export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements ControlValueAccessor {
 
   readonly origin: OverlayOrigin;
 
   private _disabled = false;
   private _lastValueValid = false;
+  private _readonly = false;
+  private _required = false;
+
   private _value: D | null;
   private _startAt: D | null;
   private _minDate: D | null;
   private _maxDate: D | null;
-  private _placeholder: string;
+
+  private _focused = false;
+
+  get empty() { return !this.value; }
+  get focused(): boolean { return this._focused; }
 
   get value(): D | null { return this._value; }
   set value(value: D | null) {
@@ -49,16 +58,22 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     value = this._getValidDateOrNull(value);
     const oldDate = this.value;
     this._value = value;
-    this.input.nativeElement.value = value ? this._dateAdapter.format(value, this._dateFormats.display.dateInput) : '';
+    this.inputRef.nativeElement.value = value ? this._dateAdapter.format(value, this._dateFormats.display.dateInput) : '';
   }
+
+  @Input() placeholder = '';
 
   @Input()
   set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
   get disabled() { return this._disabled; }
 
   @Input()
-  get placeholder() { return this._placeholder || ''; }
-  set placeholder(value: string) { this._placeholder = value || ''; }
+  get required(): boolean { return this._required; }
+  set required(value: boolean) { this._required = coerceBooleanProperty(value); }
+
+  @Input()
+  set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
+  get readonly() { return this._readonly; }
 
   @Input()
   get startAt(): D | null { return this._startAt || this.value; }
@@ -74,7 +89,8 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
 
   @Input() dateFilter: (date: D) => boolean;
 
-  @ViewChild('input') input: ElementRef;
+  @ViewChild('input') inputRef: ElementRef;
+
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
   @ViewChild(NtDatePickerCalendarComponent) calendar: NtDatePickerCalendarComponent<D>;
 
@@ -89,15 +105,12 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     private _elementRef: ElementRef,
     private _ngZone: NgZone,
     private _renderer: Renderer2,
-    @Self() @Optional() public ngControl: NgControl) { super();
+    @Self() @Optional() public ngControl: NgControl) {
+    super();
     this.origin = new OverlayOrigin(_elementRef);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
-  }
-
-  ngAfterContentInit() {
-
   }
 
   writeValue(value: D) {
@@ -112,14 +125,26 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     this._onTouched = fn;
   }
 
-  onFocus() {
-    if (!this.overlay.isOpen && !this.disabled) {
+  _onInputFocus() {
+    if (!this.disabled) {
       this.overlay.show();
     }
   }
 
-  onShow() {
+  onOpen() {
+    this._focused = true;
     this.calendar._init();
+  }
+
+  onClose() {
+    this._focused = false;
+    typeof this._onTouched === 'function' && this._onTouched();
+  }
+
+  focus() {
+    if (!this.disabled) {
+      this.inputRef.nativeElement.focus();
+    }
   }
 
   select(date: D) {
@@ -129,12 +154,14 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
   }
 
   clear() {
-    this.value = null;
-    typeof this._onChange === 'function' && this._onChange(this.value);
+    if (this.value !== null && !this.disabled) {
+      this.value = null;
+      typeof this._onChange === 'function' && this._onChange(this.value);
+    }
   }
 
-  onClose() {
-    typeof this._onTouched === 'function' && this._onTouched();
+  setDisabledState(isDisabled: boolean) {
+    this._disabled = isDisabled;
   }
 
   /**

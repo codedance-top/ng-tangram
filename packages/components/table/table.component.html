@@ -1,7 +1,7 @@
 <table [class]="class">
   <thead>
     <tr>
-      <th class="nt-selector-header" *ngIf="selector">
+      <th class="nt-selector-header" *ngIf="selectable">
         <input type="checkbox" (click)="selectAll()" [checked]="allSelected">
       </th>
       <th
@@ -21,10 +21,10 @@
 </table>
 
 <ng-template #dataRow let-data>
-  <td class="nt-selector-cell" *ngIf="selector">
+  <td class="nt-selector-cell" *ngIf="selectable">
     <input type="checkbox" (click)="select(data)" [checked]="checkSelected(data)">
   </td>
   <td *ngFor="let column of columns" [style.textAlign]="column.align" [class.hidden]="!column.visibled">
-    <ng-container *ngTemplateOutlet="column.cellDef.template; context: {$implicit: data};"></ng-container>
+    <ng-container *ngTemplateOutlet="column.cell.template; context: {$implicit: data};"></ng-container>
   </td>
 </ng-template>

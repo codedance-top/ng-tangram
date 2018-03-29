@@ -1,9 +1,5 @@
 <ng-content></ng-content>
-<nt-overlay
-  [origin]="origin"
-  [position]="position"
-  triggerType="click"
-  arrowVisibled>
+<nt-overlay [origin]="origin" [position]="position" trigger="click" arrow>
   <div class="dropdown-pane small popover">
     <div class="popover-title" *ngIf="title">{{title}}</div>
     <div class="popover-pane">

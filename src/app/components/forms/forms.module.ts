@@ -4,7 +4,7 @@ import { NtSelectModule } from './../../../../packages/components/select/select.
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { NtExampleModule } from '@modules/example';
 import { NtAntIconModule } from '@ng-tangram/components/ant-icon/ant-icon.module';
@@ -15,14 +15,17 @@ import { FormsDocumentComponent } from './forms.component';
 import { DemoFormLoginComponent } from './demos/login';
 import { DemoFormInlineComponent } from './demos/inline';
 import { NtCalloutModule } from '@ng-tangram/components/callout';
+import { NtInputModule } from '@ng-tangram/components/input';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     NtExampleModule,
     NtFormsModule,
     NtCalloutModule,
+    NtInputModule,
     NtSelectModule,
     NtDatePickerModule,
     NtAntIconModule,

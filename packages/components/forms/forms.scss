@@ -120,10 +120,6 @@ $horizontal-label-width: 120px;
   }
 }
 
-@mixin nt-form-group {
-
-}
-
 @mixin nt-forms {
 
   @include form-extends;

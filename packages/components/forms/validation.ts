@@ -16,11 +16,7 @@ export interface NtValidationTransformer {
 }
 
 @Injectable()
-export class FormValidationTransformer implements NtValidationTransformer {
-
-  constructor() {
-
-  }
+export class NtFormValidationTransformer implements NtValidationTransformer {
 
   transform(errors: ValidationErrors, label?: string) {
     if (!errors) {
@@ -44,7 +40,7 @@ export class FormValidationTransformer implements NtValidationTransformer {
     }
   }
 
-  private _format(template: string, ...args: any[]) {
+  protected _format(template: string, ...args: any[]) {
     return template.replace(/\{(\d+)\}/g, function (match: any, number: number) {
       return typeof args[number] !== 'undefined' ? args[number] : match;
     });
@@ -52,5 +48,3 @@ export class FormValidationTransformer implements NtValidationTransformer {
 }
 
 export const NT_VALIDATION_TRANSFOMER = new InjectionToken<NtValidationTransformer>('nt-validation-transformer');
-
-// export const NT_VALIDATION_TEMPLATES = new InjectionToken<{ [key: string]: any }>('nt-validation-transformer');

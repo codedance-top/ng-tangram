@@ -35,9 +35,9 @@ export class NtOverlayComponent {
   private _position: NtOverlayPosition = 'bottomLeft';
   private _positionPairs = OVERLAY_POSITIONS[this._position];
   private _paddingClass = getPositionClassName(this._positionPairs[0]);
-  private _arrowVisibled = false;
+  private _arrow = false;
   private _noSpacing = false;
-  private _triggerType: NtOverlayTriggerType = '';
+  private _trigger: NtOverlayTriggerType = '';
   private _overlayClass = '';
   private _fixed = false;
 
@@ -62,16 +62,16 @@ export class NtOverlayComponent {
   get fixed() { return this._fixed; }
 
   @Input()
-  set arrowVisibled(value: boolean) { this._arrowVisibled = coerceBooleanProperty(value); }
-  get arrowVisibled() { return this._arrowVisibled; }
+  set arrow(value: boolean) { this._arrow = coerceBooleanProperty(value); }
+  get arrow() { return this._arrow; }
 
   @Input()
   set noSpacing(value: boolean) { this._noSpacing = coerceBooleanProperty(value); }
   get noSpacing() { return this._noSpacing; }
 
   @Input()
-  set triggerType(value: NtOverlayTriggerType) { this._triggerType = value; }
-  get triggerType() { return this._triggerType; }
+  set trigger(value: NtOverlayTriggerType) { this._trigger = value; }
+  get trigger() { return this._trigger; }
 
   @Input()
   set overlayClass(value: string) { this._overlayClass = value; }
@@ -79,9 +79,9 @@ export class NtOverlayComponent {
 
   @ViewChild(CdkConnectedOverlay) cdkConnectedOverlay: CdkConnectedOverlay;
 
-  @Output() onShow = new EventEmitter<any>();
-  @Output() onClose = new EventEmitter<any>();
-  @Output() onPositionChange = new EventEmitter<ConnectedOverlayPositionChange>();
+  @Output() opened = new EventEmitter<any>();
+  @Output() closed = new EventEmitter<any>();
+  @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
   constructor(
     private _renderer: Renderer2,
@@ -117,16 +117,16 @@ export class NtOverlayComponent {
 
   show() {
     this._isOpen = true;
-    this.onShow.next();
+    this.opened.next();
   }
 
   hide() {
     this._isOpen = false;
-    this.onClose.next();
+    this.closed.next();
   }
 
   click() {
-    if (this.triggerType === 'click') {
+    if (this.trigger === 'click') {
       this.isOpen ? this.hide() : this.show();
     }
   }
@@ -136,14 +136,14 @@ export class NtOverlayComponent {
   }
 
   onMouseEnter() {
-    if (this.triggerType === 'hover') {
+    if (this.trigger === 'hover') {
       this._isMouseIn = true;
       this.show();
     }
   }
 
   onMouseLeave() {
-    if (this.triggerType === 'hover') {
+    if (this.trigger === 'hover') {
       this._closeEvent.next(this._isMouseIn = false);
     }
   }

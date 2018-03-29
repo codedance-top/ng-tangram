@@ -1,7 +1,7 @@
 <div *ngIf="display" [@fadeOut] class="callout {{ size }} {{ color || 'primary' }}">
   <h3 *ngIf="title">{{title}}</h3>
   <ng-content></ng-content>
-  <button *ngIf="this.closable" (click)="close()" class="close-button" type="button">
+  <button *ngIf="this.closable" (click)="_close()" class="close-button" type="button">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>

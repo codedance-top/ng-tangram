@@ -21,8 +21,8 @@ export class NtPopConfirmComponent {
   @Input('nt-popconfirm') title = '';
   @Input() position = 'top';
 
-  @Output() onConfirm = new EventEmitter<any>();
-  @Output() onCancel = new EventEmitter<any>();
+  @Output() confirm = new EventEmitter<any>();
+  @Output() cancel = new EventEmitter<any>();
 
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
 
@@ -32,13 +32,8 @@ export class NtPopConfirmComponent {
     this.origin = new OverlayOrigin(_elementRef);
   }
 
-  confirm() {
-    this.onConfirm.emit();
-    this.overlay.hide();
-  }
-
-  cancel() {
-    this.onCancel.emit();
+  _closeOverlay(isConfirm: boolean) {
+    (isConfirm ? this.confirm : this.cancel).emit();
     this.overlay.hide();
   }
 }

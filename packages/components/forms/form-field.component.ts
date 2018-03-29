@@ -1,13 +1,10 @@
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  AfterViewInit, ChangeDetectorRef, Component, ContentChildren, ElementRef, Input, NgZone,
-  OnChanges, OnDestroy, OnInit, QueryList, SimpleChanges, ViewEncapsulation
+  AfterViewInit, Component, ContentChild, ContentChildren, ElementRef, Input, OnChanges, OnDestroy,
+  OnInit, Optional, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, NgZone
 } from '@angular/core';
-import {
-  AbstractControl, AbstractControlDirective, ControlContainer, FormArray, FormArrayName,
-  FormControl, FormControlName, FormGroup, NgControl, ValidationErrors
-} from '@angular/forms';
+import { FormGroupDirective, NgForm } from '@angular/forms';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -31,26 +28,26 @@ export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
   template: `
     <label class="nt-form-label" *ngIf="labelVisible">{{label}}</label>
     <div class="nt-form-group">
-      <div class="nt-form-inputs">
+      <div class="nt-form-control">
         <ng-content></ng-content>
       </div>
-      <span class="form-error" [class.is-visible]="_invalid" [@fade]="_invalid">
+      <span class="form-error is-visible" *ngIf="_invalid" [@fade]="_invalid">
         {{ errors | ntFormError :label }}
       </span>
     </div>
   `,
   animations: [
     trigger('fade', [
-      transition('true => false', fadeOut(.15)),
-      transition('false => true', fadeIn(.15))
+      transition('* => false', fadeOut(.15)),
+      transition('* => true', fadeIn(.15))
     ])
   ],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'tabindex': '0',
     'class': 'nt-form-field',
     '[class.has-error]': '_invalid',
-    '[class.nt-form-horizontal]': 'labelHorizontally',
+    '[class.nt-form-horizontal]': 'horizontal',
   }
 })
 export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
@@ -60,11 +57,7 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
   private readonly _destroy = new Subject<void>();
 
-  _required = false;
-
   _invalid = false;
-
-  _message: string;
 
   @Input() label: string;
 
@@ -72,18 +65,13 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   set labelVisible(value: boolean) { this._labelVisible = coerceBooleanProperty(value); }
   get labelVisible() { return this._labelVisible; }
 
-  get labelHorizontally() { return this.labelOrientation === 'horizontal'; }
+  get horizontal() { return this.orientation === 'horizontal'; }
 
-  get errors() {
-    if (!this._controls || this._controls.length === 0) {
-      return null;
-    }
-    return this._controls.map(control => control.errors)[0];
-  }
+  get required() { return this.control.required; }
 
-  // @Input() inp
+  get errors() { return this.control.ngControl.errors; }
 
-  @Input() labelOrientation: NtFormFieldOrientation;
+  @Input() orientation: NtFormFieldOrientation;
 
   /** 表单正确时的样式 */
   @Input() validClass: string;
@@ -92,72 +80,46 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   @Input() invalidClass: string;
 
   /** 表单模型 */
-  @ContentChildren(FormControl) _controls: QueryList<FormControl>;
+  @ContentChild(NtFormFieldControl) control: NtFormFieldControl<any>;
 
-  /** 表单模型 */
-  @ContentChildren(FormControlName) _controlContainers: QueryList<FormControlName>;
+  get ngSubmit() { return (this._parentForm || this._parentFormGroup || <any>{}).ngSubmit || null; }
+
+  get ngControl() { return this.control.ngControl || null; }
 
   readonly statusChanges: Observable<any> = defer(() => {
-    if (this.controls) {
-      return this.controls.map(control => control.statusChanges);
+    if (this.control) {
+      return this.ngControl ? this.ngControl.statusChanges : null;
     }
-
     return this._ngZone.onStable
       .asObservable()
       .pipe(take(1), switchMap(() => this.statusChanges));
   });
 
-  readonly controls: Observable<AbstractControlDirective | AbstractControl> = defer(() => {
-
-    if (this._controls && this._controlContainers) {
-      return merge(
-        ...this._controlContainers.map(control => control.statusChanges),
-        ...this._controls.map(control => control.statusChanges)
-      );
-    }
-
-    return this._ngZone.onStable
-      .asObservable()
-      .pipe(take(1), switchMap(() => this.controls));
-  });
-
   constructor(
-    // @Inject(NT_FORM_CONFIG) _config:
     private _ngZone: NgZone,
-    private _changeDetectorRef: ChangeDetectorRef) { }
+    private _changeDetectorRef: ChangeDetectorRef,
+    @Optional() private _parentForm: NgForm,
+    @Optional() private _parentFormGroup: FormGroupDirective) {
+
+    /**  */
+    this.statusChanges.pipe(takeUntil(this._destroy)).subscribe(() => this._validate());
+  }
 
   ngAfterViewInit() {
+    if (this.ngSubmit && this.ngControl) {
+      this.ngSubmit.pipe(takeUntil(this._destroy)).subscribe(() => this._validate());
+    }
+  }
 
-    merge([
-      this._controls.changes.pipe(startWith(null), takeUntil(this._destroy)),
-      this._controlContainers.changes.pipe(startWith(null), takeUntil(this._destroy))
-    ])
-      .subscribe(() => {
-        this._resetValidation();
-      });
-
-    // console.log(this.aformControls);
+  private _validate() {
+    if (this.ngControl) {
+      this._invalid = this.ngControl.invalid;
+      this._changeDetectorRef.markForCheck();
+    }
   }
 
   ngOnDestroy() {
     this._destroy.next();
     this._destroy.complete();
-  }
-
-  private _resetValidation() {
-
-    const changedOrDestroyed = merge(this._controls.changes, this._destroy);
-
-    this.controls
-      .pipe(takeUntil(changedOrDestroyed))
-      .map(_ => this._controls.some(control => control.invalid) || this._controlContainers.some(control => control.invalid))
-      .subscribe(valid => { this._invalid = valid; });
-
-
-    merge(...this._controls.map(control => control.statusChanges))
-      .pipe(takeUntil(changedOrDestroyed))
-      .subscribe(() => {
-        this._changeDetectorRef.markForCheck();
-      });
   }
 }

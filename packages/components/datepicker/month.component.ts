@@ -4,8 +4,6 @@ import {
 } from '@angular/core';
 import { DateAdapter, NT_DATE_FORMATS, NtDateFormats } from '@ng-tangram/components/core';
 
-import { Subscription } from 'rxjs/Subscription';
-
 import { createMissingDateImplError } from './datepicker-errors';
 import { NtDatePickerCell } from './datepicker-models';
 

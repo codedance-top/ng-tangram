@@ -36,6 +36,6 @@ export class DemoSelectBasciComponent {
   }
 
   submit() {
-    // console.log(this.form);
+
   }
 }

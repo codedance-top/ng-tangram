@@ -54,8 +54,7 @@ export class NtOptionComponent implements AfterViewChecked {
 
   readonly stateChanges = new Subject<void>();
 
-  @Output()
-  readonly onSelectionChange = new EventEmitter<NtOptionSelectionChange>();
+  @Output() readonly selectionChange = new EventEmitter<NtOptionSelectionChange>();
 
   constructor(
     private _element: ElementRef,
@@ -99,6 +98,6 @@ export class NtOptionComponent implements AfterViewChecked {
   }
 
   private _emitSelectionChangeEvent(isUserInput = false): void {
-    this.onSelectionChange.emit(new NtOptionSelectionChange(this, isUserInput));
+    this.selectionChange.emit(new NtOptionSelectionChange(this, isUserInput));
   }
 }

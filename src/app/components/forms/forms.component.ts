@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class FormsDocumentComponent {
   loginCode = require('!!raw-loader!./demos/login');
+  inlineCode = require('!!raw-loader!./demos/inline');
 }

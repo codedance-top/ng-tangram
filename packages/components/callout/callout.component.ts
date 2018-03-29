@@ -33,14 +33,14 @@ export class NtCalloutComponent {
   set closable(value: boolean) { this._closable = coerceBooleanProperty(value); }
   get closable() { return this._closable; }
 
-  @Output() onClose = new EventEmitter<any>();
+  @Output() closed = new EventEmitter<any>();
 
   constructor() { }
 
-  close() {
+  _close() {
     if (this._display) {
       this._display = false;
-      this.onClose.emit();
+      this.closed.emit();
     }
   }
 }

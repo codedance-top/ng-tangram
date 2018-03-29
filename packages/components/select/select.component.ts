@@ -7,11 +7,12 @@ import {
   ElementRef, EventEmitter, forwardRef, Inject, InjectionToken, Input, isDevMode, NgZone, OnDestroy,
   Optional, Output, QueryList, Renderer2, Self, ViewChild, ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import {
   NT_OPTION_PARENT_COMPONENT, NtOptionComponent, NtOptionParentComponent, NtOptionSelectionChange,
   NtOverlayComponent, NtOverlayPosition
 } from '@ng-tangram/components/core';
+
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { Observable } from 'rxjs/Observable';
@@ -45,18 +46,19 @@ export class NtSelectChange {
   selector: 'nt-select',
   templateUrl: 'select.component.html',
   providers: [
-    { provide: NT_OPTION_PARENT_COMPONENT, useExisting: NtSelectComponent }
+    { provide: NT_OPTION_PARENT_COMPONENT, useExisting: NtSelectComponent },
+    { provide: NtFormFieldControl, useExisting: NtSelectComponent }
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'class': 'nt-select nt-form-control',
-    'tabindex': '0',
     '(resize)': 'onResize()',
     '[class.focus]': 'overlay.isOpen'
   }
 })
-export class NtSelectComponent extends NtFormFieldControl<any> implements AfterContentInit, ControlValueAccessor, NtOptionParentComponent, OnDestroy {
+export class NtSelectComponent extends NtFormFieldControl<any>
+  implements AfterContentInit, ControlValueAccessor, NtOptionParentComponent, OnDestroy {
 
   readonly origin: OverlayOrigin;
 
@@ -70,6 +72,7 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
   private _multiple = false;
   private _value: any;
   private _viewValue: any;
+  private _required = false;
 
   private _scrollTop = 0;
 
@@ -87,19 +90,20 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
     return this._selectionModel.selected[0].label;
   }
 
-  get empty(): boolean {
-    return !this._selectionModel || this._selectionModel.isEmpty();
-  }
+  get empty(): boolean { return !this._selectionModel || this._selectionModel.isEmpty(); }
 
-  get focused(): boolean {
-    return this._focused;
-  }
+  get focused(): boolean { return this._focused; }
 
   @Input()
   set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
   get disabled() { return this._disabled; }
 
+  @Input()
+  get required(): boolean { return this._required; }
+  set required(value: boolean) { this._required = coerceBooleanProperty(value); }
+
   get state() { return this._state; }
+
   get width() { return this._width; }
 
   @Input()
@@ -140,11 +144,9 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
 
   private readonly _destroy = new Subject<void>();
 
-  @Output()
-  readonly selectionChange: EventEmitter<NtSelectChange> = new EventEmitter<NtSelectChange>();
+  @Output() readonly selectionChange: EventEmitter<NtSelectChange> = new EventEmitter<NtSelectChange>();
 
-  @Output()
-  readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
+  @Output() readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
   @Input()
   set compareWith(fn: (o1: any, o2: any) => boolean) {
@@ -160,7 +162,7 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
 
   readonly optionSelectionChanges: Observable<NtOptionSelectionChange> = defer(() => {
     if (this.options) {
-      return merge(...this.options.map(option => option.onSelectionChange));
+      return merge(...this.options.map(option => option.selectionChange));
     }
 
     return this._ngZone.onStable
@@ -179,8 +181,6 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
     this.origin = new OverlayOrigin(_elementRef);
 
     if (this.ngControl) {
-      // Note: we provide the value accessor through here, instead of
-      // the `providers` to avoid running into a circular import.
       this.ngControl.valueAccessor = this;
     }
   }
@@ -200,7 +200,7 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
     this._width = this.input.nativeElement.clientWidth;
   }
 
-  onShow() {
+  onOpen() {
     this._state = 'folded';
     this.onResize();
     setTimeout(() => this.pane.nativeElement.scrollTop = this._scrollTop, 0);
@@ -223,10 +223,9 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
     this._focused = false;
   }
 
-  // onContainerClick(event: MouseEvent): void {
-  //   this.onFocus();
-  //   this.overlay.show();
-  // }
+  focus() {
+    this.input.nativeElement.focus();
+  }
 
   writeValue(value: any) {
     if (this.options) {
@@ -278,7 +277,7 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
   }
 
   private _setSelectionByValue(value: any | any[], isUserInput = false): void {
-    // console.log('_setSelectionByValue', value);
+
     if (this.multiple && value) {
       if (!Array.isArray(value)) {
         throw getNtSelectNonArrayValueError();
@@ -289,11 +288,7 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
       this._sortValues();
     } else {
       this._clearSelection();
-
       const correspondingOption = this._selectValue(value, isUserInput);
-      // if (correspondingOption) {
-      // this._keyManager.setActiveItem(this.options.toArray().indexOf(correspondingOption));
-      // }
     }
 
     this._changeDetectorRef.markForCheck();
@@ -302,11 +297,9 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
   private _selectValue(value: any, isUserInput = false): NtOptionComponent | undefined {
     const correspondingOption = this.options.find((option: NtOptionComponent) => {
       try {
-        // Treat null as a special reset value.
         return option.value != null && this._compareWith(option.value, value);
       } catch (error) {
         if (isDevMode()) {
-          // Notify developers of errors in their comparator.
           console.warn(error);
         }
         return false;
@@ -361,7 +354,6 @@ export class NtSelectComponent extends NtFormFieldControl<any> implements AfterC
   private _onSelect(option: NtOptionComponent) {
     const wasSelected = this._selectionModel.isSelected(option);
 
-    // TODO(crisbeto): handle blank/null options inside multi-select.
     if (this.multiple) {
       this._selectionModel.toggle(option);
       wasSelected ? option.deselect() : option.select();

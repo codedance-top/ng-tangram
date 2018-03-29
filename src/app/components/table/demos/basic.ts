@@ -4,8 +4,7 @@ import { NtColumnSortChange, NtTableComponent } from '@ng-tangram/components/tab
 @Component({
   selector: 'demo-table-basic',
   template: `
-  <nt-table [dataSource]="dataSource">
-
+  <nt-table #table [dataSource]="dataSource">
     <nt-column name="name">
       <nt-column-header>名称</nt-column-header>
       <nt-column-cell *ntColumnCellDef="let item">{{ item.name }}</nt-column-cell>

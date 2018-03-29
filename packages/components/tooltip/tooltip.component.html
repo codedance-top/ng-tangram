@@ -1,10 +1,5 @@
 <ng-content></ng-content>
-<nt-overlay
-  [origin]="origin"
-  [position]="position"
-  triggerType="hover"
-  overlayClass="tootip-overlay"
-  arrowVisibled>
+<nt-overlay [origin]="origin" [position]="position" trigger="hover" overlayClass="tootip-overlay" arrow>
   <div class="tooltip">
     {{title}}
   </div>

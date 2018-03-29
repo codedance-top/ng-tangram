@@ -23,7 +23,7 @@ export class NtDropdownComponent {
 
   @Input() position: NtOverlayPosition = 'bottomLeft';
 
-  @Input() triggerType: NtOverlayTriggerType = 'hover';
+  @Input() trigger: NtOverlayTriggerType = 'hover';
 
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
 

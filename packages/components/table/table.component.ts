@@ -18,6 +18,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { NT_COLUMN_TABLE, NtColumn, NtColumnSortChange, NtColumnTable } from './column';
 import { NtColumnComponent, NtColumnHeaderDirective } from './column.directive';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'nt-table',
@@ -43,22 +44,24 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
 
   private _multipleSortable = false;
 
+  private _selectable = false;
+
   private readonly _destroy = new Subject<void>();
 
   @ContentChildren(NtColumnComponent)
   private _columns: QueryList<NtColumnComponent>;
 
-  get columns() {
-    return this._columns ? this._columns.toArray() : [];
-  }
+  get columns() { return this._columns ? this._columns.toArray() : []; }
 
   @Input() dataSource: Array<T>;
 
-  @Output()
-  readonly selectionChange: EventEmitter<T | T[]> = new EventEmitter();
+  @Input()
+  set selectable(value: boolean) { this._selectable = coerceBooleanProperty(value); }
+  get selectable() { return this._selectable; }
 
-  @Output()
-  readonly sortChanges: EventEmitter<NtColumnSortChange | NtColumnSortChange[]> = new EventEmitter();
+  @Output() readonly selectedChange: EventEmitter<T | T[]> = new EventEmitter();
+
+  @Output() readonly sortChanged: EventEmitter<NtColumnSortChange | NtColumnSortChange[]> = new EventEmitter();
 
   readonly columSortChanges: Observable<NtColumnSortChange> = defer(() => {
     if (this._columns) {
@@ -71,8 +74,6 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
   });
 
   get selectorType() { return this._selectorType; }
-
-  get selector() { return this.selectionChange.observers.length > 0; }
 
   get allSelected() { return this._selectionModel.selected.length === this.dataSource.length; }
 
@@ -102,7 +103,7 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
     } else {
       this._selectionModel.clear();
     }
-    this.selectionChange.emit(this._selectionModel.selected);
+    this.selectedChange.emit(this._selectionModel.selected);
   }
 
   select(item: T) {
@@ -113,7 +114,7 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
       this._selectionModel.select(item);
     }
 
-    this.selectionChange.emit(this._selectionModel.selected);
+    this.selectedChange.emit(this._selectionModel.selected);
   }
 
   checkSelected(item: T) {
@@ -135,7 +136,7 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
         if (!this._multipleSortable) {
           this._clearSort(event);
         }
-        this.sortChanges.emit(event);
+        this.sortChanged.emit(event);
       });
 
     merge(...this._columns.map(option => option.sortChange))

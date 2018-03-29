@@ -114,7 +114,6 @@ export class NtDatePickerYearComponent<D> implements AfterContentInit {
 
   /** Handles when a new month is selected. */
   _monthSelected(month: number) {
-    // console.log(this.activeDate);
     const normalizedDate =
       this._dateAdapter.createDate(this._dateAdapter.getYear(this.activeDate), month, 1);
 

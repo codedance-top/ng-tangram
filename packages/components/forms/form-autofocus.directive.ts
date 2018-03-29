@@ -1,46 +1,38 @@
 import {
-  AfterContentInit, ContentChildren, Directive, ElementRef, HostListener, Input, OnChanges,
-  QueryList, Renderer2, SimpleChanges
+  AfterContentInit, ContentChildren, Directive, Input, OnChanges, QueryList, Optional
 } from '@angular/core';
-import { FormControl, FormGroup, FormGroupName, AbstractControl } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, FormGroupName, NgForm, FormGroupDirective, ControlContainer } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { defer } from 'rxjs/observable/defer';
+import { merge } from 'rxjs/operators/merge';
+
+import { NtFormFieldControl } from './form-field-control';
 import { NtFormFieldComponent } from './form-field.component';
 
 @Directive({
-  selector: '[ntFormAutofocus][formGroup],[ntFormAutofocus][FormGroupName]'
+  selector: 'form[ntFormAutofocus]',
+  host: {
+    '(submit)': 'onSubmit($event)'
+  }
 })
-export class NtFormAutofocusDirective implements AfterContentInit {
+export class NtFormAutofocusDirective {
 
-  @Input('formGroup') form: FormGroup;
+   _form: ControlContainer;
 
-  @Input() emitError: 'ordered' | 'all' = 'all';
-
-  @ContentChildren(NtFormFieldComponent) formFields: QueryList<NtFormFieldComponent>;
+  @ContentChildren(NtFormFieldComponent) fields: QueryList<NtFormFieldComponent>;
 
   constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2) { }
 
-  ngAfterContentInit() {
-
+    @Optional() form: NgForm,
+    @Optional() formGroup: FormGroupDirective) {
+    this._form = form || formGroup;
   }
 
-  @HostListener('submit')
   onSubmit() {
-    if (!this.form.valid) {
-      for (const key in this.form.controls) {
-        if (!this.form.controls[key].valid) {
-          if (this.emitError === 'ordered') {
-            this.form.controls[key].patchValue(this.form.controls[key].value, { emitEvent: true });
-          } else if (this.emitError === 'all') {
-            this.form.patchValue(this.form.value, { emitEvent: true });
-          }
-
-          const element = this.elementRef.nativeElement.querySelector(`[formcontrolname=${key}]`);
-          if (!!element) {
-            element.focus();
-            break;
-          }
-        }
+    if (this._form.invalid) {
+      const field = this.fields.find(field => field.control.ngControl && field.control.ngControl.invalid);
+      if (field && field.control) {
+        field.control.focus();
       }
     }
   }

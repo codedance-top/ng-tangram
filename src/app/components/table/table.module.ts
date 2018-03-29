@@ -10,11 +10,15 @@ import { NtTooltipModule } from '@ng-tangram/components/tooltip';
 import { DemoTableBasicComponent } from './demos/basic';
 import { DemoTableSortComponent } from './demos/sort';
 import { TableDocumentComponent } from './table.component';
+import { NtCalloutModule } from '@ng-tangram/components/callout';
+import { NtButtonModule } from '@ng-tangram/components/button';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    NtButtonModule,
+    NtCalloutModule,
     NtExampleModule,
     NtTooltipModule,
     NtTableModule,

@@ -71,7 +71,7 @@ export class NtColumnComponent implements NtColumn, AfterContentInit {
 
   @ContentChild(NtColumnHeaderDirective) header: NtColumnHeaderDirective;
 
-  @ContentChild(NtColumnCellDefDirective) cellDef: NtColumnCellDefDirective;
+  @ContentChild(NtColumnCellDefDirective) cell: NtColumnCellDefDirective;
 
   readonly sortChange: EventEmitter<NtColumnSortChange> = new EventEmitter<NtColumnSortChange>();
 

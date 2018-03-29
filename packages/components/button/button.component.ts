@@ -1,11 +1,11 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-    Component, EventEmitter, HostListener, Input, Output, ViewEncapsulation
+  Component, EventEmitter, HostListener, Input, Output, ViewEncapsulation
 } from '@angular/core';
 
 export declare type NtButtonStyle = '' | 'hollow' | 'clear';
 export declare type NtButtonColor = '' | 'primary' | 'secondary' | 'success' | 'warning' | 'alert';
-export declare type NtButtonSize =  '' | 'tiny' | 'small' | 'large' | 'medium';
+export declare type NtButtonSize = '' | 'tiny' | 'small' | 'large' | 'medium';
 
 @Component({
   selector: '[nt-button]',
@@ -18,15 +18,31 @@ export declare type NtButtonSize =  '' | 'tiny' | 'small' | 'large' | 'medium';
 })
 export class NtButtonComponent {
 
-  @Input() color: NtButtonColor = '';
-  @Input() style: NtButtonSize = '';
-  @Input() type: NtButtonStyle = '';
+  private _style: NtButtonStyle = '';
 
   private _expanded: boolean = false;
+
+  @Input() color: NtButtonColor = '';
+
+  @Input() size: NtButtonSize = '';
+
+  @Input('nt-button')
+  private set _default(value: NtButtonStyle) {
+    if (value && this._validStyle(value)) {
+      this._style = value;
+    }
+  }
+
+  @Input()
+  set style(value: NtButtonStyle) { this._style = value; }
+  get style() { return this._style; }
 
   @Input()
   set expanded(value: boolean) { this._expanded = coerceBooleanProperty(value); }
   get expanded() { return this._expanded; }
 
-  constructor() { }
+
+  private _validStyle(value: string) {
+    return ['hollow', 'clear'].indexOf(value) > -1;
+  }
 }

@@ -20,8 +20,8 @@ export class DemoModalComponentDialogComponent {
 @Component({
   selector: 'demo-modal-basic',
   template: `
-    <button nt-button (click)="onOpenForTtemplate()">模板模态框</button>
-    <button nt-button (click)="onOpenForComponent()">组件模态框</button>
+    <button nt-button (click)="openForTtemplate()">模板模态框</button>
+    <button nt-button (click)="openForComponent()">组件模态框</button>
     <ng-template>
       <h1>模板模态框</h1>
       <p>{{ content }}</p>
@@ -35,11 +35,11 @@ export class DemoModalBasicComponent {
 
   constructor(private ntModal: NtModal) { }
 
-  onOpenForTtemplate() {
+  openForTtemplate() {
     this.ntModal.open(this.template);
   }
 
-  onOpenForComponent() {
+  openForComponent() {
     const modal = this.ntModal.open(DemoModalComponentDialogComponent);
   }
 }

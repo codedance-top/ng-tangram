@@ -41,5 +41,5 @@
 | color | 属性：颜色 | `primary`、 `secondry`、 `success`、 `warning`、 `alert` | `primary` |
 | size | 属性：提示框大小 | `small`、 `medium`、`large` | `medium` |
 | closable | 属性：是否显示关闭按钮 | `boolean` | - |
-| onClose | 事件：关闭时触发 | `function` | - |
+| closed | 事件：关闭时触发 | `function` | - |
 

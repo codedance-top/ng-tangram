@@ -44,7 +44,7 @@ export class NtPaginationComponent {
   set pageIndex(value: number) { this._pageIndex = value; this._build(); }
   get pageIndex() { return this._pageIndex; }
 
-  @Output() onPageChange = new EventEmitter<number>();
+  @Output() pageChange = new EventEmitter<number>();
 
   constructor(
     @Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig,
@@ -52,9 +52,9 @@ export class NtPaginationComponent {
     this._config = { ...this._config, ...defaultConfig || {} };
   }
 
-
-  pageChange(index: number) {
-    this.onPageChange.emit(index);
+  _pageChange(index: number) {
+    this._pageIndex = index;
+    this.pageChange.emit(index);
   }
 
   private _build() {

@@ -21,7 +21,7 @@ import { Component } from '@angular/core';
     </nt-column>
 
   </nt-table>
-  <nt-pagination [total]="300" [pageIndex]="pageIndex" [pageSize]="20" (onPageChange)="onPageChange($event)"></nt-pagination>
+  <nt-pagination [total]="300" [pageIndex]="pageIndex" [pageSize]="20" (pageChange)="onPageChange($event)"></nt-pagination>
   `
 })
 export class DemoScrimBasciComponent {

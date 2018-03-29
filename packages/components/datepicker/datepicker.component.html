@@ -1,13 +1,13 @@
-<input #input type="text" (focus)="onFocus()" readonly [placeholder]="placeholder" [disabled]="disabled">
-<span class="nt-datepicker-caret" [@fade] *ngIf="!value"></span>
-<span class="nt-datepicker-clear" (click)="clear()" [@fade] *ngIf="value"></span>
+<input #input type="text" (focus)="_onInputFocus()" readonly [placeholder]="placeholder" [disabled]="disabled">
+<span class="nt-datepicker-caret" [@fade] *ngIf="!value || disabled"></span>
+<span class="nt-datepicker-clear" (click)="clear()" [@fade] *ngIf="value && !disabled"></span>
 <nt-overlay
   [origin]="origin"
-  triggerType="click"
+  trigger="click"
   position="bottomLeft"
-  arrowVisibled
-  (onShow)="onShow()"
-  (onClose)="onClose()">
+  arrow
+  (opened)="onOpen()"
+  (closed)="onClose()">
   <nt-datepicker-calendar
     [selected]="value"
     [dateFilter]="dateFilter"
