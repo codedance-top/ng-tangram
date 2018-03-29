@@ -74,10 +74,10 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   @Input() orientation: NtFormFieldOrientation;
 
   /** 表单正确时的样式 */
-  @Input() validClass: string;
+  // @Input() validClass: string;
 
   /** 表单错误时的样式 */
-  @Input() invalidClass: string;
+  // @Input() invalidClass: string;
 
   /** 表单模型 */
   @ContentChild(NtFormFieldControl) control: NtFormFieldControl<any>;

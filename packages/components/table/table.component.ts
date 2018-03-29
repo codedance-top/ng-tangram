@@ -59,7 +59,7 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
 
   @Output() readonly selectedChange: EventEmitter<T | T[]> = new EventEmitter();
 
-  @Output() readonly sortChanged: EventEmitter<NtColumnSortChange | NtColumnSortChange[]> = new EventEmitter();
+  @Output() readonly sortChange: EventEmitter<NtColumnSortChange | NtColumnSortChange[]> = new EventEmitter();
 
   readonly columSortChanges: Observable<NtColumnSortChange> = defer(() => {
     if (this._columns) {
@@ -132,7 +132,7 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
         if (!this._multipleSortable) {
           this._clearSort(event);
         }
-        this.sortChanged.emit(event);
+        this.sortChange.emit(event);
       });
 
     merge(...this._columns.map(option => option.sortChange))
