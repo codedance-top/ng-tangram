@@ -38,8 +38,6 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
 
   @Input() class: string;
 
-  private _selectorType: 'checkbox' | 'select' = 'checkbox';
-
   private _selectionModel: SelectionModel<T> = new SelectionModel(true, null, false);
 
   private _multipleSortable = false;
@@ -73,9 +71,7 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
       .pipe(take(1), switchMap(() => this.columSortChanges));
   });
 
-  get selectorType() { return this._selectorType; }
-
-  get allSelected() { return this._selectionModel.selected.length === this.dataSource.length; }
+  get isAllSelected() { return this._selectionModel.selected.length === this.dataSource.length; }
 
   get selected() { return this._selectionModel.selected; }
 
@@ -98,7 +94,7 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
   }
 
   selectAll() {
-    if (!this.allSelected) {
+    if (!this.isAllSelected) {
       this._selectionModel.select(...this.dataSource);
     } else {
       this._selectionModel.clear();
