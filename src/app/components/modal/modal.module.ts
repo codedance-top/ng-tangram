@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { NtModalModule } from '@ng-tangram/components/modal';
 import { NtButtonModule } from '@ng-tangram/components/button';
-import { NtExampleModule } from '@modules/example';
+import { NtExampleModule } from '@ng-tangram/example';
 
 import { ModalDocumentComponent } from './modal.component';
 import { DemoModalBasicComponent, DemoModalComponentDialogComponent } from './demos/basic';

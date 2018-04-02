@@ -31,5 +31,8 @@ npm-debug.log
 /npm-*
 /package-*
 
+/dist/
+/dist-docs/
+/out-tsc/
 
 /**/*/_TODOS/*

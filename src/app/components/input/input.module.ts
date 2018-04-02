@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NtExampleModule } from '@modules/example';
+import { NtExampleModule } from '@ng-tangram/example';
 import { NtInputModule } from '@ng-tangram/components/input';
 
 import { DemoInputBasicComponent } from './demos/basic';

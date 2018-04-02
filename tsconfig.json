@@ -12,17 +12,12 @@
     "allowJs": true,
     "baseUrl": "./",
     "paths": {
-      "@ng-tangram/*": ["packages/*"],
-      "@modules/*": ["src/modules/*"],
-      "@app/*": ["src/app/*"]
+      "@ng-tangram/*": ["src/libs/*"]
     },
     "typeRoots": [
       "node_modules/@types"
     ],
   },
   "exclude": ["node_modules"],
-  "include": [
-    "src",
-    "packages"
-  ]
+  "include": ["src"]
 }

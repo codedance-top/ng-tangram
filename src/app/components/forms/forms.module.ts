@@ -1,13 +1,13 @@
-import { NtDatePickerModule } from './../../../../packages/components/datepicker/datepicker.module';
-import { NtSelectModule } from './../../../../packages/components/select/select.module';
+import { NtDatePickerModule } from '@ng-tangram/components/datepicker';
+import { NtSelectModule } from '@ng-tangram/components/select';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { NtExampleModule } from '@modules/example';
-import { NtAntIconModule } from '@ng-tangram/components/ant-icon/ant-icon.module';
+import { NtExampleModule } from '@ng-tangram/example';
+import { NtIconModule } from '@ng-tangram/components/icon';
 import { NtFormsModule } from '@ng-tangram/components/forms/forms.module';
 
 import { FormsDocumentComponent } from './forms.component';
@@ -28,7 +28,7 @@ import { NtInputModule } from '@ng-tangram/components/input';
     NtInputModule,
     NtSelectModule,
     NtDatePickerModule,
-    NtAntIconModule,
+    NtIconModule,
     RouterModule.forChild([
       { path: '', component: FormsDocumentComponent }
     ])

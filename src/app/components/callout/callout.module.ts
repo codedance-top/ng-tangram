@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { NtExampleModule } from '@modules/example';
+import { NtExampleModule } from '@ng-tangram/example';
 import { NtCalloutModule } from '@ng-tangram/components/callout';
-import { NtAntIconModule } from '@ng-tangram/components/ant-icon';
+import { NtIconModule } from '@ng-tangram/components/icon';
 
 import { CalloutDocumentComponent } from './callout.component';
 
@@ -15,7 +15,7 @@ import { DemoCalloutEventComponent } from './demos/event';
 
 @NgModule({
   imports: [
-    NtAntIconModule,
+    NtIconModule,
     NtCalloutModule,
     NtExampleModule,
     RouterModule.forChild([

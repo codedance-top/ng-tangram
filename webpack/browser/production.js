@@ -9,7 +9,7 @@ const resolveHtmlPlugin = require('../plugins/html');
 
 module.exports = {
   output: {
-    path: join(process.cwd(), 'dist/browser'),
+    path: join(process.cwd(), 'dist-docs/browser'),
     filename: '[name].[chunkhash:20].bundle.js',
     chunkFilename: '[id].[chunkhash:20].chunk.js',
   },

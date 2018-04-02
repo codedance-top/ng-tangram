@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { NtExampleModule } from '@modules/example';
+import { NtExampleModule } from '@ng-tangram/example';
 import { NtMenuModule } from '@ng-tangram/components/menu';
 
 import { MenuDocumentComponent } from './menu.component';

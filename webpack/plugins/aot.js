@@ -6,7 +6,7 @@ const { AngularCompilerPlugin, PLATFORM } = require('@ngtools/webpack');
 // const commonjs = require('rollup-plugin-commonjs');
 
 const tsconfigs = {
-  browser: path.join(process.cwd(), 'src/tsconfig.app.json'),
+  browser: path.join(process.cwd(), 'src/tsconfig.browser.json'),
   server: path.join(process.cwd(), 'src/tsconfig.server.json')
 };
 

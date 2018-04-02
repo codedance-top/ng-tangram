@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { NtExampleModule } from '@modules/example';
+import { NtExampleModule } from '@ng-tangram/example';
 import { NtButtonModule } from '@ng-tangram/components/button';
-import { NtAntIconModule } from '@ng-tangram/components/ant-icon';
+import { NtIconModule } from '@ng-tangram/components/icon';
 
 import { ButtonDocumentComponent } from './button.component';
 
@@ -14,7 +14,7 @@ import { DemoButtonGroupComponent } from './demos/group';
   imports: [
     NtExampleModule,
     NtButtonModule,
-    NtAntIconModule,
+    NtIconModule,
     RouterModule.forChild([
       { path: '', component: ButtonDocumentComponent }
     ])

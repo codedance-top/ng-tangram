@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { NtDropdownModule } from '@ng-tangram/components/dropdown';
 import { NtButtonModule } from '@ng-tangram/components/button';
-import { NtExampleModule } from '@modules/example';
+import { NtExampleModule } from '@ng-tangram/example';
 
 import { DropdownDocumentComponent } from './dropdown.component';
 import { DemoDropdownBasicComponent } from './demos/basic';

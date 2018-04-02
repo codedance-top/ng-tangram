@@ -3,7 +3,7 @@ import locale from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { NtAntIconModule } from '@ng-tangram/components/ant-icon/ant-icon.module';
+import { NtIconModule } from '@ng-tangram/components/icon';
 import { NT_PAGINATION_CONFIG, NtPaginationConfig } from '@ng-tangram/components/pagination';
 
 import { environment } from '../environments/environment';
@@ -28,7 +28,7 @@ const PAGINATION_CONFIG: NtPaginationConfig = {
   bootstrap: [AppComponent],
   imports: [
     CommonModule,
-    NtAntIconModule.forRoot(),
+    NtIconModule.forRoot(),
     BrowserModule.withServerTransition({
       appId: 'ng-tangram-demo'
     }),

@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { NtExampleModule } from '@modules/example';
-import { NtAntIconModule } from '@ng-tangram/components/ant-icon';
+import { NtExampleModule } from '@ng-tangram/example';
+import { NtIconModule } from '@ng-tangram/components/icon';
 import { NtSelectModule } from '@ng-tangram/components/select';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 import { SelectDocumentComponent } from './select.component';
@@ -16,7 +16,7 @@ import { DemoSelectBasciComponent } from './demos/basic';
     CommonModule,
     NtFormsModule,
     NtExampleModule,
-    NtAntIconModule,
+    NtIconModule,
     NtSelectModule,
     NtFormsModule,
     RouterModule.forChild([

@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { NtExampleModule } from '@modules/example';
+import { NtExampleModule } from '@ng-tangram/example';
 import { NtBadgeModule } from '@ng-tangram/components/badge';
-import { NtAntIconModule } from '@ng-tangram/components/ant-icon';
+import { NtIconModule } from '@ng-tangram/components/icon';
 
 import { BadgeDocumentComponent } from './badge.component';
 import { DemoBadgeBasicComponent } from './demos/basic';
@@ -17,7 +17,7 @@ import { DemoBadgeColorsComponent } from './demos/colors';
     CommonModule,
     NtExampleModule,
     NtBadgeModule,
-    NtAntIconModule,
+    NtIconModule,
     RouterModule.forChild([
       { path: '', component: BadgeDocumentComponent }
     ])],

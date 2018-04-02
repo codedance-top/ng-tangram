@@ -1,6 +1,6 @@
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
-import 'rxjs/Rx';
+// import 'rxjs/Rx';
 
 import { join } from 'path';
 import * as express from 'express';
@@ -16,7 +16,7 @@ const config = require('../config.json');
 
 const app = express();
 
-const STATIC_DIR = join(process.cwd(), 'dist/browser');
+const STATIC_DIR = join(process.cwd(), 'dist-docs/browser');
 
 app.engine('html', ngExpressEngine({
   bootstrap: AppServerModule
