@@ -1,3 +1,8 @@
+/**
+ * @ng-tangram 打包脚本
+ * 打包格式遵循 Angular Package Format (APF) v5
+ * link: https://docs.google.com/document/d/1tdgcvdLKsYPHlgNBppGFrsaA1eINLxJi9C8KkyrH2sI/edit#heading=h.k0mh3o8u5hx
+ */
 'use strict';
 
 const fs = require('fs');
@@ -11,17 +16,23 @@ const sourcemaps = require('rollup-plugin-sourcemaps');
 const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 
-const inlineResources = require('./inline-resources');
+const inlineResources = require('./build-scripts/inline-resources');
 
-const libName = require('./package.json').name;
+const packageName = require('./src/libs/animate/package.json').name;
 const rootFolder = path.join(__dirname);
-const compilationFolder = path.join(rootFolder, 'out-tsc');
 
-const srcFolder = path.join(rootFolder, 'src/lib');
-const distFolder = path.join(rootFolder, 'dist');
-const tempLibFolder = path.join(compilationFolder, 'lib');
+const compilationFolder = path.join(rootFolder, 'out-tsc/@ng-tangram/animate');
+
+const srcFolder = path.join(rootFolder, 'src/libs/animate');
+const distFolder = path.join(rootFolder, 'dist/@ng-tangram/animate');
+
+const tempLibFolder = path.join(compilationFolder, '');
+
 const es5OutputFolder = path.join(compilationFolder, 'esm5');
 const es2015OutputFolder = path.join(compilationFolder, 'esm2015');
+
+// const fes5OutputFolder = path.join(compilationFolder, 'fesm5');
+// const fes2015OutputFolder = path.join(compilationFolder, 'fesm2015');
 
 // Recursively create a dir.
 function _recursiveMkDir(dir) {
@@ -33,7 +44,10 @@ function _recursiveMkDir(dir) {
 
 // Copy files maintaining relative paths.
 async function _relativeCopy(fileGlob, from, to) {
-  const files = glob.sync(fileGlob, { cwd: from, nodir: true });
+  const files = glob.sync(fileGlob, {
+    cwd: from,
+    nodir: true
+  });
   files.forEach(file => {
     const origin = path.join(from, file);
     const dest = path.join(to, file);
@@ -51,31 +65,43 @@ async function _html() {
 
 /** build es2015 */
 async function _es2015() {
-  const exitCode = await ngc({ project: `${tempLibFolder}/tsconfig.lib.json` });
+  const exitCode = ngc([
+    '-p', `${tempLibFolder}/tsconfig-build.json`,
+    '--outDir', es2015OutputFolder,
+    '-d', 'false',
+  ]);
   await exitCode === 0 ? Promise.resolve() : Promise.reject();
 }
 
 /** build es5 */
 async function _es5() {
-  const exitCode = await ngc({ project: `${tempLibFolder}/tsconfig.es5.json` });
+  const exitCode = ngc([
+    '-p', `${tempLibFolder}/tsconfig-build.json`,
+    '--target', 'es5',
+    '--outDir', es5OutputFolder,
+    '-d', 'false',
+  ]);
   await exitCode === 0 ? Promise.resolve() : Promise.reject();
 }
 
 /** build typings */
 async function _typings() {
-  await _relativeCopy('**/*.d.ts', es2015OutputFolder, distFolder);
-  await _relativeCopy('**/*.metadata.json', es2015OutputFolder, distFolder);
+  return [
+    _relativeCopy('**/*.d.ts', es2015OutputFolder, distFolder),
+    _relativeCopy('**/*.metadata.json', es2015OutputFolder, distFolder)
+  ];
 }
 
 /** build libs */
 async function _libs() {
+
+  const libName = packageName.replace('@ng-tangram/', '');
+
   const es5Entry = path.join(es5OutputFolder, `${libName}.js`);
   const es2015Entry = path.join(es2015OutputFolder, `${libName}.js`);
-  const rollupBaseConfig = {
-    moduleName: camelCase(libName),
-    sourceMap: true,
-    globals: { '@angular/core': 'ng.core' },
-    external: ['@angular/core'],
+
+  const inputBaseConfig = {
+    external: id => /^@angular/.test(id),
     plugins: [
       commonjs({ include: ['node_modules/rxjs/**'] }),
       sourcemaps(),
@@ -83,46 +109,88 @@ async function _libs() {
     ]
   };
 
+  const outputBaseConfig = {
+    name: packageName,
+    globals: {
+      '@angular/animations': 'ng.animations',
+      '@angular/core': 'ng.core',
+      '@angular/forms': 'ng.forms',
+      '@angular/common': 'ng.common',
+      '@angular/cdk': 'ng.cdk'
+    },
+    sourcemap: true,
+  };
+
   // UMD bundle.
-  const umdConfig = Object.assign({}, rollupBaseConfig, {
-    entry: es5Entry,
-    dest: path.join(distFolder, `bundles`, `${libName}.umd.js`),
-    format: 'umd',
-  });
+  const umdConfig = {
+    input: {
+      ...inputBaseConfig,
+      input: es5Entry,
+    },
+    output: {
+      ...outputBaseConfig,
+      file: path.join(distFolder, `bundles`, `${libName}.umd.js`),
+      format: 'umd'
+    }
+  };
 
   // Minified UMD bundle.
-  const minifiedUmdConfig = Object.assign({}, rollupBaseConfig, {
-    entry: es5Entry,
-    dest: path.join(distFolder, `bundles`, `${libName}.umd.min.js`),
-    format: 'umd',
-    plugins: rollupBaseConfig.plugins.concat([uglify({})])
-  });
+  const minifiedUmdConfig = {
+    input: {
+      ...inputBaseConfig,
+      input: es5Entry,
+      plugins: inputBaseConfig.plugins.concat([uglify({})])
+    },
+    output: {
+      ...outputBaseConfig,
+      file: path.join(distFolder, `bundles`, `${libName}.umd.min.js`),
+      format: 'umd'
+    }
+  };
+
 
   // ESM+ES5 flat module bundle.
-  const fesm5config = Object.assign({}, rollupBaseConfig, {
-    entry: es5Entry,
-    dest: path.join(distFolder, `${libName}.es5.js`),
-    format: 'es'
-  });
+  const esm5Config = {
+    input: {
+      ...inputBaseConfig,
+      input: es5Entry,
+    },
+    output: {
+      ...outputBaseConfig,
+      file: path.join(distFolder, 'esm5', `${libName}.js`),
+      format: 'es'
+    }
+  };
 
   // ESM+ES2015 flat module bundle.
-  const fesm2015config = Object.assign({}, rollupBaseConfig, {
-    entry: es2015Entry,
-    dest: path.join(distFolder, `${libName}.js`),
-    format: 'es'
-  });
+  const esm2015Config = {
+    input: {
+      ...inputBaseConfig,
+      input: es2015Entry,
+    },
+    output: {
+      ...outputBaseConfig,
+      file: path.join(distFolder, 'esm2015', `${libName}.js`),
+      format: 'es'
+    }
+  };
 
-  return [umdConfig, minifiedUmdConfig, fesm5config, fesm2015config]
-    .map(cfg => (await rollup.rollup(cfg)).write(cfg));
+  return [umdConfig, minifiedUmdConfig, esm5Config, esm2015Config].map(async cfg => {
+    const bundle = await rollup.rollup(cfg.input).catch(e => console.log(e));
+    // const { code, map } = await bundle.generate(cfg.output);
+    await bundle.write(cfg.output).catch(e => console.log(e));
+  });
 }
 
 /**
  *
  */
 async function _package() {
-  await _relativeCopy('LICENSE', rootFolder, distFolder);
-  await _relativeCopy('package.json', rootFolder, distFolder);
-  await _relativeCopy('README.md', rootFolder, distFolder);
+  return [
+    _relativeCopy('LICENSE', srcFolder, distFolder),
+    _relativeCopy('package.json', srcFolder, distFolder),
+    _relativeCopy('README.md', srcFolder, distFolder)
+  ];
 }
 
 async function build() {
@@ -135,7 +203,7 @@ async function build() {
 }
 
 build().catch(e => {
-  console.error('\Build failed. See below for errors.\n');
+  console.error('Build failed. See below for errors.');
   console.error(e);
   process.exit(1)
 });

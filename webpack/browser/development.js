@@ -13,7 +13,7 @@ const genDirNodeModules = join(process.cwd(), 'src', '$$_gendir', 'node_modules'
 
 module.exports = {
   output: {
-    path: join(process.cwd(), 'dist-docs/browser'),
+    path: join(process.cwd(), 'docs/browser'),
     filename: '[name].bundle.js',
     chunkFilename: '[id].chunk.js',
   },

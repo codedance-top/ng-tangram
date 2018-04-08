@@ -18,7 +18,7 @@ const nodeExternals = require('webpack-node-externals');
 module.exports = {
   entry: join(process.cwd(), 'src/main.server.ts'),
   output: {
-    path: join(process.cwd(), 'dist-docs/server'),
+    path: join(process.cwd(), 'docs/server'),
     filename: '[name].bundle.js',
     chunkFilename: '[id].chunk.js',
   },

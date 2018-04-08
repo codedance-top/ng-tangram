@@ -17,22 +17,22 @@ export function throwNtModalContentAlreadyAttachedError() {
   selector: 'nt-modal-container',
   template: `
     <ng-template cdkPortalOutlet></ng-template>
-    <button *ngIf="config.closable" (click)="onExit()" class="close-button" type="button">
+    <button *ngIf="config.closable" (click)="exit()" class="close-button" type="button">
       <span aria-hidden="true">&times;</span>
     </button>
   `,
   encapsulation: ViewEncapsulation.None,
   animations: [
-    trigger('zooming', [
+    trigger('fade', [
       transition('void => *',  fadeInY({ a: '-10%', b: 0 }, .2)),
       transition('* => exit',  fadeOutY({ a: 0, b: '-10%' }, .2))
     ])
   ],
   host: {
     'class': 'reveal',
-    '[@zooming]': 'state',
-    '(@zooming.start)': 'onAnimationStart($event)',
-    '(@zooming.done)': 'onAnimationDone($event)',
+    '[@fade]': 'state',
+    '(@fade.start)': 'onAnimationStart($event)',
+    '(@fade.done)': 'onAnimationDone($event)',
   }
 })
 export class NtModalContainer extends BasePortalOutlet {
@@ -72,7 +72,7 @@ export class NtModalContainer extends BasePortalOutlet {
     this.animationStateChanged.emit(event);
   }
 
-  onExit() {
+  exit() {
     this.state = 'exit';
   }
 }

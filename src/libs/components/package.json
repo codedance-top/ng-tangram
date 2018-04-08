@@ -1,27 +1,15 @@
 {
   "name": "@ng-tangram/components",
   "version": "0.0.0-PLACEHOLDER",
-  "es2015": "./fesm2015/components.js",
-  "esm2015": "./esm2015/components.js",
-  "esm5": "./esm5/components.js",
-  "fesm2015": "./fesm2015/components.js",
-  "fesm5": "./fesm5/components.js",
   "main": "./bundles/components.umd.js",
-  "module": "./fesm5/components.js",
+  "module": "./esm5/components.js",
+  "es2015": "./esm2015/components.js",
   "typings": "./components.d.ts",
   "author": "livebridge",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/livebridge-lab/ng-tangram"
-  },
-  "dependencies": {
-    "@angular/animations": "^5.0.0",
-    "@angular/core": "^5.0.0",
-    "@angular/common": "^5.0.0",
-    "@angular/forms": "^5.0.0",
-    "@angular/cdk": "^5.0.0",
-    "foundation-sites": "^6.0.0"
   },
   "peerDependencies": {
     "@angular/animations": "^5.0.0",
@@ -30,6 +18,5 @@
     "@angular/forms": "^5.0.0",
     "@angular/cdk": "^5.0.0",
     "foundation-sites": "^6.0.0"
-  },
-  "sideEffects": false
+  }
 }

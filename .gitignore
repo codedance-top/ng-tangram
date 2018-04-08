@@ -32,7 +32,7 @@ npm-debug.log
 /package-*
 
 /dist/
-/dist-docs/
+/docs/
 /out-tsc/
 
 /**/*/_TODOS/*

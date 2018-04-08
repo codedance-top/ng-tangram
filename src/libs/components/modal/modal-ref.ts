@@ -77,7 +77,7 @@ export class NtModalRef<T, R = any> {
         this._overlayRef.detachBackdrop();
       });
 
-    this._containerInstance.onExit();
+    this._containerInstance.exit();
   }
 
   /**

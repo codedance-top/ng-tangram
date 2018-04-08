@@ -16,7 +16,7 @@ const config = require('../config.json');
 
 const app = express();
 
-const STATIC_DIR = join(process.cwd(), 'dist-docs/browser');
+const STATIC_DIR = join(process.cwd(), 'docs/browser');
 
 app.engine('html', ngExpressEngine({
   bootstrap: AppServerModuleNgFactory
