@@ -1,2 +1,1 @@
-export * from './popconfirm.module';
-export * from './popconfirm.component';
+export * from './public-api';

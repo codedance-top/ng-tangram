@@ -1,0 +1,8 @@
+{
+  "name": "components",
+  "children": [
+    "core", "forms", "badge", "breadcrumbs", "button", "callout", "icon", "label", "menu", "scrim", "pagination", "table",
+    "dropdown", "popconfirm", "popover", "tooltip", "modal", "select",
+    "input", "datepicker"
+  ]
+}

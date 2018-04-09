@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import {
   NtOverlayComponent, NtOverlayPosition, NtOverlayTriggerType
-} from '@ng-tangram/components/core/overlay';
+} from '@ng-tangram/components/core';
 
 @Component({
   selector: 'nt-dropdown, [nt-dropdown]',

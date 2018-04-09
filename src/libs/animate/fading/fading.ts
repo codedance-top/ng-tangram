@@ -3,12 +3,12 @@
  * (c) 2018 LiveBridge Co., Ltd.
  * License: MIT
  */
-import { animation, style, animate, keyframes } from '@angular/animations';
-import { DEFAULT_TIMING, translate3d } from '../utils';
+import { animation, style, animate, keyframes, AnimationReferenceMetadata } from '@angular/animations';
+import { DEFAULT_TIMING, translate3d } from '@ng-tangram/animate/utils';
 
-declare type FadeAnimationAxis = 'x' | 'y';
-declare type FadeAnimationSteps = { a: any, b: any };
-declare type FadeAnimationOptions = {
+export declare type FadeAnimationAxis = 'x' | 'y';
+export declare type FadeAnimationSteps = { a: any, b: any };
+export declare type FadeAnimationOptions = {
 
   // 起始透明度
   fromOpacity: number,
@@ -33,7 +33,7 @@ declare type FadeAnimationOptions = {
  * 淡入淡出动画
  * @param options 动画配置参数
  */
-export function fade(options: FadeAnimationOptions) {
+export function fade(options: FadeAnimationOptions): AnimationReferenceMetadata {
   return animation(animate(`${options.timing || DEFAULT_TIMING}s ${options.delay || 0}s`,
     keyframes([
       style({ opacity: `${options.fromOpacity}`, transform: translate3d(options.axis, options.steps.a), offset: 0 }),

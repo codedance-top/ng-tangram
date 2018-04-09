@@ -1,10 +1,7 @@
 {
   "name": "@ng-tangram/components",
   "version": "0.0.0-PLACEHOLDER",
-  "main": "./bundles/components.umd.js",
-  "module": "./esm5/components.js",
-  "es2015": "./esm2015/components.js",
-  "typings": "./components.d.ts",
+  "main": "./index.ts",
   "author": "livebridge",
   "license": "MIT",
   "repository": {

@@ -1,2 +1,1 @@
-export * from './label.module';
-export * from './label.component';
+export * from './public-api';

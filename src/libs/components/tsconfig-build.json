@@ -1,5 +1,4 @@
 {
-  "extends": "../../../tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "stripInternal": false,
@@ -12,6 +11,11 @@
     "moduleResolution": "node",
     "outDir": "../../../dist/@ng-tangram/components/",
     "rootDir": ".",
+    "rootDirs": [
+      ".",
+      "../../../dist/@ng-tangram/animate/",
+      "../../../dist/@ng-tangram/components/"
+    ],
     "sourceMap": true,
     "inlineSources": true,
     "target": "es2015",
@@ -20,8 +24,7 @@
     "types": [],
     "baseUrl": ".",
     "paths": {
-      "@ng-tangram/animate/*": ["../../../out-tsc/@ng-tangram/animate/*"],
-      "@ng-tangram/components/*": ["../../../out-tsc/@ng-tangram/components/*"]
+      "@ng-tangram/*": ["../../../dist/@ng-tangram/*"]
     }
   },
   "files": ["public-api.ts"],

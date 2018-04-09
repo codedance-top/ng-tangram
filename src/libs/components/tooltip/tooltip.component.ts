@@ -2,7 +2,7 @@ import { OverlayOrigin } from '@angular/cdk/overlay';
 import {
   Component, ElementRef, Input, Renderer2, ViewChild, ViewEncapsulation
 } from '@angular/core';
-import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core/overlay';
+import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
 
 @Component({
   selector: '[nt-tooltip]',

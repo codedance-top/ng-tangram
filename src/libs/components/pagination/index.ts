@@ -1,3 +1,1 @@
-export * from './pagination.module';
-export * from './pagination.component';
-export * from './pagination-config';
+export * from './public-api';

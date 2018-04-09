@@ -7,7 +7,7 @@ import { NtSelectComponent } from './select.component';
 
 @NgModule({
   imports: [CommonModule, NtOverlayModule, NtOptionModule],
-  exports: [NtSelectComponent, NtOptionModule],
+  exports: [NtOverlayModule, NtSelectComponent, NtOptionModule],
   declarations: [NtSelectComponent]
 })
 export class NtSelectModule { }

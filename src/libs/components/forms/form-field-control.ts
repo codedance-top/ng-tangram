@@ -9,7 +9,6 @@
 import { Observable } from 'rxjs/Observable';
 import { NgControl } from '@angular/forms';
 
-
 /** An interface which allows a control to work inside of a `NtFormField`. */
 export abstract class NtFormFieldControl<T> {
 

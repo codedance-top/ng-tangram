@@ -64,11 +64,11 @@ export class NtModalContainer extends BasePortalOutlet {
     return this._portalOutlet.attachTemplatePortal(portal);
   }
 
-  onAnimationDone(event: AnimationEvent) {
+  onAnimationDone(event: AnimationEvent): void {
     this.animationStateChanged.emit(event);
   }
 
-  onAnimationStart(event: AnimationEvent) {
+  onAnimationStart(event: AnimationEvent): void {
     this.animationStateChanged.emit(event);
   }
 

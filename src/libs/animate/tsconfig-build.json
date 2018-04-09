@@ -1,5 +1,4 @@
 {
-  "extends": "../../../tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "stripInternal": false,
@@ -24,15 +23,15 @@
     "types": [],
     "baseUrl": ".",
     "paths": {
-      "@ng-tangram/animate/*": ["../../../out-tsc/@ng-tangram/animate/*"]
+      "@ng-tangram/animate/*": ["../../../dist/@ng-tangram/animate/*"]
     }
   },
   "files": [
-    "public_api.ts"
+    "./public-api.ts"
   ],
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
-    "strictMetadataEmit": true,
+    "strictMetadataEmit": false,
     "skipTemplateCodegen": true,
     "flatModuleOutFile": "animate.js",
     "flatModuleId": "@ng-tangram/animate",

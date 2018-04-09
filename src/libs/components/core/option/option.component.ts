@@ -28,7 +28,7 @@ export const NT_OPTION_PARENT_COMPONENT = new InjectionToken<NtOptionParentCompo
     'class': 'nt-option',
     '[class.selected]': 'selected',
     '[class.disabled]': 'disabled',
-    '(click)': 'selectViaInteraction($event)'
+    '(click)': 'selectViaInteraction()'
   }
 })
 export class NtOptionComponent implements AfterViewChecked {

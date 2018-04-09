@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NtOverlayModule } from '@ng-tangram/components/core/overlay';
+import { NtOverlayModule } from '@ng-tangram/components/core';
 
 import { NtIconModule } from '../icon';
 import { NtButtonModule } from '../button';
@@ -9,7 +9,7 @@ import { NtPopConfirmComponent } from './popconfirm.component';
 
 @NgModule({
   imports: [CommonModule, NtOverlayModule, NtIconModule, NtButtonModule, NtDropdownModule],
-  exports: [NtPopConfirmComponent],
+  exports: [NtOverlayModule, NtPopConfirmComponent],
   declarations: [NtPopConfirmComponent]
 })
 export class NtPopConfirmModule { }

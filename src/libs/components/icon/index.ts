@@ -1,2 +1,1 @@
-export * from './icon.module';
-export * from './ant-icon.component';
+export * from './public-api';

@@ -11,7 +11,7 @@ import { NtDatePickerYearComponent } from './year.component';
 
 @NgModule({
   imports: [CommonModule, NtOverlayModule, NtTooltipModule, NtNativeDateModule],
-  exports: [NtDatePickerComponent, NtTooltipModule],
+  exports: [NtOverlayModule, NtDatePickerComponent, NtTooltipModule],
   declarations: [
     NtDatePickerComponent,
     NtDatePickerCalendarComponent,

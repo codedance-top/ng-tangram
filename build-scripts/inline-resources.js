@@ -40,6 +40,7 @@ function inlineResources(projectPath) {
   // For each file, inline the templates and styles under it and write the new file.
   return Promise.all(files.map(filePath => {
     const fullFilePath = path.join(projectPath, filePath);
+
     return readFile(fullFilePath, 'utf-8')
       .then(content => inlineResourcesFromString(content, url => {
         // Resolve the template url.

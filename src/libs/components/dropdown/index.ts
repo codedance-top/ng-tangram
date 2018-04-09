@@ -1,3 +1,1 @@
-export * from './dropdown.module';
-export * from './dropdown.component';
-export * from './dropdown-pane.component';
+export * from './public-api';

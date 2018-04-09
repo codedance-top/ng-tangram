@@ -1,2 +1,1 @@
-export { NtBadgeModule } from './badge.module';
-export { NtBadgeComponent } from './badge.component';
+export * from './public-api';

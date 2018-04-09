@@ -11,7 +11,7 @@ function _recursiveMkDir(dir) {
 }
 
 // Copy files maintaining relative paths.
-async function relativeCopy(fileGlob, from, to) {
+module.exports = async function (fileGlob, from, to) {
   const files = glob.sync(fileGlob, { cwd: from, nodir: true });
   files.forEach(file => {
     const origin = path.join(from, file);
@@ -20,7 +20,4 @@ async function relativeCopy(fileGlob, from, to) {
     _recursiveMkDir(path.dirname(dest));
     fs.writeFileSync(dest, data);
   });
-}
-
-// exports
-exports = { relativeCopy };
+};

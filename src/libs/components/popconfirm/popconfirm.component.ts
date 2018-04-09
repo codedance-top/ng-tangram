@@ -4,7 +4,7 @@ import {
   Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
-import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core/overlay';
+import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
 
 @Component({
   selector: '[nt-popconfirm]',

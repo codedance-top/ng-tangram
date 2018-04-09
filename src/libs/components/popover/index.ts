@@ -1,3 +1,1 @@
-export * from './popover.module';
-export * from './popover.component';
-export * from './popover-pane.component';
+export * from './public-api';

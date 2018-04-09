@@ -12,6 +12,7 @@ import { NtTableComponent } from './table.component';
   imports: [CommonModule, NtOverlayModule],
   // entryComponents: [NtColumnComponent],
   exports: [
+    NtOverlayModule,
     CommonModule,
     NtTableComponent,
     NtColumnComponent,
