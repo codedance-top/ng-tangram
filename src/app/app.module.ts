@@ -19,7 +19,7 @@ const ROUTES: Routes = [
   { path: '**', component: PageNotFoundComponent, data: { title: '404 - 找不到此页面' } }
 ];
 
-const PAGINATION_CONFIG: NtPaginationConfig = {
+const PAGINATION_CONFIG = {
   previousLabel: '上一页',
   nextLabel: '下一页'
 };

@@ -1,6 +1,6 @@
 {
   "name": "ng-tangram",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.4",
   "description": "NG-TANGRAM",
   "private": true,
   "license": "MIT",
@@ -12,13 +12,14 @@
     "start": "npm run dev",
     "build": "node build.js",
     "build:docs": "npm run docs:browser && npm run docs:server",
+    "prebuild": "rm -rf dist && rm -rf out-tsc",
     "docs:browser": "webpack --progress --env.aot --env.browser -p",
     "docs:server": "webpack --progress --env.aot --env.server",
     "predocs:browser": "rimraf docs/browser",
     "predocs:server": "rimraf docs/server",
     "dev": "webpack-dev-server",
     "server": "node docs/server/main.bundle",
-    "release": "cd dist && npm publish"
+    "publish": "cd dist/@ng-tangram/animate && npm publish && cd ../components && npm publish && cd ../../../"
   },
   "dependencies": {
     "@angular/animations": "^5.0.0",

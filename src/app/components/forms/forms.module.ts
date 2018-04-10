@@ -20,8 +20,6 @@ import { NtInputModule } from '@ng-tangram/components/input';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     NtExampleModule,
     NtFormsModule,
     NtCalloutModule,

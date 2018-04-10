@@ -1,4 +1,4 @@
-<div class="nt-datepicker-pane" [ngSwitch]="currentView">
+<div class="nt-datepicker-pane" [ngSwitch]="_currentView">
   <table>
     <thead>
       <tr *ngSwitchCase="'month'"><ng-container *ngTemplateOutlet="monthControl"></ng-container></tr>

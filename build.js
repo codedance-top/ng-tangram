@@ -12,35 +12,47 @@ const { relativeCopy, inlineResources, build } = require('./build-scripts');
 const rootFolder = join(__dirname);
 
 const libsFolder = join(rootFolder, 'src/libs');
-const tscFolder = join(rootFolder, 'out-tsc/libs');
+const tscFolder = join(rootFolder, 'out-tsc/@ng-tangram');
 const distFolder = join(rootFolder, 'dist/@ng-tangram');
 
 const version = require('./package.json').version;
 
 // const tempLibFolder = join(compilationFolder, '');
 
-const libs = ['animate', 'components'];
-
-/** build html */
-async function _html(from, to) {
-  await relativeCopy(`**/*`, from, to);
+async function _inline(from, to) {
+  await relativeCopy('**/*', from, to);
   await inlineResources(to);
 }
 
 /** build typings */
 async function _typings(from, to) {
+  relativeCopy('**/*.d.ts', from, to);
+}
+
+async function _metadata(from, to) {
+  relativeCopy('**/*.metadata.json', from, to);
+}
+
+async function _copyright(from, to) {
   return [
-    relativeCopy('**/*.d.ts', from, to),
-    relativeCopy('**/*.metadata.json', from, to)
+    relativeCopy('LICENSE', from, to),
+    relativeCopy('README.md', from, to)
   ];
 }
 
-async function _package(from, to) {
+async function _assets(from, to) {
   return [
-    relativeCopy('LICENSE', from, to),
-    // relativeCopy('package.json', from, to),
-    relativeCopy('README.md', from, to)
+    relativeCopy('**/*.scss', from, to),
+    relativeCopy('**/*.css', from, to),
+    relativeCopy('**/*.eot', from, to),
+    relativeCopy('**/*.svg', from, to),
+    relativeCopy('**/*.ttf', from, to),
+    relativeCopy('**/*.woff', from, to)
   ];
+}
+
+async function _version(lib) {
+
 }
 
 async function _build(lib) {
@@ -49,50 +61,74 @@ async function _build(lib) {
   const libPackage = require(`./src/libs/${lib}/package.json`);
   const children = require(`./src/libs/${lib}/build.config.json`).children;
 
+  const metadata = {
+    __symbolic: 'module',
+    version: 4,
+    exports: children.map(child => ({
+      from: `./${child}`
+    })),
+    metadata: {},
+    origins: {},
+    importAs: libPackage
+  };
+
   // 编译目录
-  const compilationFolder = join(rootFolder, `out-tsc/libs/${lib}`);
+  // const libFolder = join(libsFolder, lib);
+  const compilationFolder = join(tscFolder, lib);
   const outputFolder = join(distFolder, lib);
 
-  // es5 , es2015 编译目录
-  const bundleFolder = join(outputFolder, 'bundles');
-  const es5OutputFolder = join(compilationFolder, 'esm5');
-  const es2015OutputFolder = join(compilationFolder, 'esm2015');
+  await _inline(join(libsFolder, lib), compilationFolder);
 
-  await _html(join(rootFolder, `./src/libs/${lib}`), compilationFolder);
+  // es5 , es2015 编译目录
+  const esm5 = join(compilationFolder, 'esm5');
 
   for (let i = 0; i < children.length; i++) {
 
-    if(typeof children[i] === 'string') {
-      const libName = join(libPackage.name, children[i]);
-      const tsConfig = join(compilationFolder, `${children[i]}/tsconfig-build.json`);
+    const libName = `@ng-tangram/${lib}/${children[i]}`;
+    const childCompileFolder = join(compilationFolder, children[i]);
+    const childOutputFolder = join(outputFolder, children[i]);
 
-      await build.es5(tsConfig, compilationFolder);
-      await build.es2015(tsConfig, compilationFolder);
-      // await build(libName, bundleFolder, compilationFolder, compilationFolder, outputFolder);
-      await _typings(compilationFolder, outputFolder);
-    } else {
-      children[i].map(async child => {
-        const libName = join(libPackage.name, child);
-        const tsConfig = join(compilationFolder, `${child}/tsconfig-build.json`);
+    await build.esm5(join(compilationFolder, `${children[i]}/tsconfig-build.json`), esm5);
+    await build.esm2015(join(compilationFolder, `${children[i]}/tsconfig-build.json`));
+    await build.rollup(children[i], join(esm5, `${children[i]}/index.js`), join(childCompileFolder, `index.js`), outputFolder);
 
-        await build.es5(tsConfig, compilationFolder);
-        await build.es2015(tsConfig, compilationFolder);
-        // await build(libName, bundleFolder, compilationFolder, compilationFolder, outputFolder);
-        await _typings(compilationFolder, outputFolder);
-      })
-    }
+    await _typings(childCompileFolder, childOutputFolder);
+    await _metadata(childCompileFolder, childOutputFolder);
+    await fs.writeFileSync(join(childOutputFolder, `package.json`), `{
+  "name": "${libName}",
+  "typings": "../${children[i]}.d.ts",
+  "main": "../bundles/${children[i]}.umd.js",
+  "module": "../esm5/${children[i]}.js",
+  "es2015": "../esm2015/${children[i]}.js"
+}
+    `);
+
+    console.log('build completed', libName);
   }
-
-  await build.es5(`${compilationFolder}/tsconfig-build.json`, compilationFolder);
-  await build.es2015(`${compilationFolder}/tsconfig-build.json`, compilationFolder);
-  await _typings(compilationFolder, outputFolder);
-  await _package(compilationFolder, outputFolder);
 
   libPackage.version = version;
 
-  fs.writeFileSync(`${outputFolder}/package.json`, JSON.stringify(libPackage));
+  // console.log(compilationFolder);
+
+  await build.esm5(`${compilationFolder}/tsconfig-build.json`, esm5);
+  await build.esm2015(`${compilationFolder}/tsconfig-build.json`);
+  await build.rollup(lib,
+    join(esm5, `${lib}.js`),
+    join(compilationFolder, `${lib}.js`),
+    outputFolder);
+  await _typings(compilationFolder, outputFolder);
+  await _copyright(compilationFolder, outputFolder);
+  await _assets(compilationFolder, outputFolder);
+
+  await fs.writeFileSync(join(outputFolder, `${lib}.metadata.json`), JSON.stringify(metadata));
+  await fs.writeFileSync(join(outputFolder, 'package.json'), JSON.stringify(libPackage));
+
+  console.log('build completed', libPackage.name);
 }
 
-libs.map(lib => _build(lib)).concat(e => {
-  console.log(e);
-});
+async function _start() {
+  await _build('animate');
+  await _build('components');
+}
+
+_start();

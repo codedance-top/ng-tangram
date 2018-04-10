@@ -9,10 +9,8 @@ import {
 import { NtTableComponent } from './table.component';
 
 @NgModule({
-  imports: [CommonModule, NtOverlayModule],
-  // entryComponents: [NtColumnComponent],
+  imports: [CommonModule],
   exports: [
-    NtOverlayModule,
     CommonModule,
     NtTableComponent,
     NtColumnComponent,

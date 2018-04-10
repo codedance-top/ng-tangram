@@ -21,3 +21,5 @@ module.exports = async function (fileGlob, from, to) {
     fs.writeFileSync(dest, data);
   });
 };
+
+module.exports.recursiveMkDir = _recursiveMkDir;

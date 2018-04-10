@@ -19,12 +19,8 @@ export type NtDatePickerViewType = 'month' | 'year' | 'multi-year';
 })
 export class NtDatePickerCalendarComponent<D> implements AfterContentInit, OnChanges, OnDestroy {
 
-  private _viewType: NtDatePickerViewType = 'month';
-  private _currentView: NtDatePickerViewType = 'month';
-
-  get viewType() { return this._viewType; }
-
-  get currentView() { return this._currentView; }
+  _viewType: NtDatePickerViewType = 'month';
+  _currentView: NtDatePickerViewType = 'month';
 
   private _startAt: D | null;
 

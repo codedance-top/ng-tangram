@@ -9,11 +9,10 @@
     "newLine": "lf",
     "module": "es2015",
     "moduleResolution": "node",
-    "outDir": "../../../dist/@ng-tangram/components/",
+    "outDir": "../../../out-tsc/@ng-tangram/components/",
     "rootDir": ".",
     "rootDirs": [
       ".",
-      "../../../dist/@ng-tangram/animate/",
       "../../../dist/@ng-tangram/components/"
     ],
     "sourceMap": true,
@@ -24,7 +23,8 @@
     "types": [],
     "baseUrl": ".",
     "paths": {
-      "@ng-tangram/*": ["../../../dist/@ng-tangram/*"]
+      "@ng-tangram/animate/*": ["../../../dist/@ng-tangram/animate/*"],
+      "@ng-tangram/components/*": ["../../../dist/@ng-tangram/components/*"]
     }
   },
   "files": ["public-api.ts"],

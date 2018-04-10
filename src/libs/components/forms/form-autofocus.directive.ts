@@ -27,7 +27,7 @@ export class NtFormAutofocusDirective {
 
   onSubmit() {
     if (this._form.invalid) {
-      const field = this.fields.find(field => field.control.ngControl && field.control.ngControl.invalid);
+      const field = this.fields.find(field => !!field.ngControl && !!field.ngControl.invalid);
       if (field && field.control) {
         field.control.focus();
       }

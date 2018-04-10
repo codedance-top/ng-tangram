@@ -8,7 +8,7 @@ import { NtPopoverComponent } from './popover.component';
 
 @NgModule({
   imports: [CommonModule, NtOverlayModule,  NtDropdownModule],
-  exports: [NtOverlayModule, NtPopoverComponent, NtPopoverPaneComponent],
+  exports: [NtPopoverComponent, NtPopoverPaneComponent],
   declarations: [NtPopoverComponent, NtPopoverPaneComponent]
 })
 export class NtPopoverModule { }

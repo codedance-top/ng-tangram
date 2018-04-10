@@ -8,7 +8,7 @@ import { NtDropdownComponent } from './dropdown.component';
 @NgModule({
   imports: [CommonModule, NtOverlayModule],
   entryComponents: [NtDropdownComponent],
-  exports: [NtOverlayModule, NtDropdownComponent, NtDropdownPaneComponent],
+  exports: [NtDropdownComponent, NtDropdownPaneComponent],
   declarations: [NtDropdownComponent, NtDropdownPaneComponent]
 })
 export class NtDropdownModule { }

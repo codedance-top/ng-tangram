@@ -9,7 +9,7 @@ import { NtPopConfirmComponent } from './popconfirm.component';
 
 @NgModule({
   imports: [CommonModule, NtOverlayModule, NtIconModule, NtButtonModule, NtDropdownModule],
-  exports: [NtOverlayModule, NtPopConfirmComponent],
+  exports: [NtPopConfirmComponent],
   declarations: [NtPopConfirmComponent]
 })
 export class NtPopConfirmModule { }

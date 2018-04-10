@@ -9,7 +9,7 @@
     "newLine": "lf",
     "module": "es2015",
     "moduleResolution": "node",
-    "outDir": "../../../dist/@ng-tangram/animate/",
+    "outDir": "../../../out-tsc/@ng-tangram/animate/",
     "rootDir": ".",
     "rootDirs": [
       ".",

@@ -12,7 +12,7 @@ export declare type NtButtonSize = '' | 'tiny' | 'small' | 'large' | 'medium';
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
   host: {
-    '[class]': '["button", color, style, type].join(" ")',
+    '[class]': '["button", color, style, size].join(" ")',
     '[class.expanded]': 'expanded'
   }
 })

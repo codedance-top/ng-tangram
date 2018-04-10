@@ -1,5 +1,4 @@
 @import '~foundation-sites/scss/foundation';
-// @import './~/ant-icon/ant-icon.css';
 @import 'button/button';
 @import 'core/overlay/overlay';
 @import 'core/option/option';
@@ -32,7 +31,6 @@
   @include foundation-reveal;
   @include foundation-pagination;
 
-  // @include nt-ant-icon;
   @include nt-button;
   @include nt-dropdown;
   @include nt-datepicker;

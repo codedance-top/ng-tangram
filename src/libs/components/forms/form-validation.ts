@@ -12,13 +12,13 @@ export const DEFAULT_TEMPLATES = {
 };
 
 export interface NtValidationTransformer {
-  transform(value: ValidationErrors, label?: string): string;
+  transform(errors?: ValidationErrors, label?: string): string | null;
 }
 
 @Injectable()
 export class NtFormValidationTransformer implements NtValidationTransformer {
 
-  transform(errors: ValidationErrors, label?: string) {
+  transform(errors?: ValidationErrors, label?: string) {
     if (!errors) {
       return '';
     }
@@ -37,6 +37,8 @@ export class NtFormValidationTransformer implements NtValidationTransformer {
       return this._format(DEFAULT_TEMPLATES['maxlength'], label, errors.maxlength.requiredLength);
     } else if (errors.hasOwnProperty('pattern')) {
       return this._format(DEFAULT_TEMPLATES['pattern'], label);
+    } else {
+      return '';
     }
   }
 

@@ -10,6 +10,9 @@ const sourcemaps = require('rollup-plugin-sourcemaps');
 const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 
+const animates = require('../src/libs/animate/build.config.json');
+const components = require('../src/libs/components/build.config.json');
+
 const config = {
   input: {
     external: id => /^@angular/.test(id),
@@ -30,23 +33,21 @@ const config = {
       '@angular/core': 'ng.core',
       '@angular/forms': 'ng.forms',
       '@angular/common': 'ng.common',
-      '@angular/cdk': 'ng.cdk'
+      '@angular/cdk': 'ng.cdk',
+      'rxjs': 'Rx',
+      'rxjs/operators': 'Rx.operators'
     },
     sourcemap: true,
   }
 };
 
+module.exports = {};
+
 /** build libs */
-module.exports = async function (libName, bundleFolder, es5Folder, es2015Folder, distFolder) {
+module.exports.rollup = async function (libName, es5Entry, es2015Entry, distFolder) {
 
-
-  const es5Entry = join(es5Folder, `${libName}.js`);
-  const es2015Entry = join(es2015Folder, `${libName}.js`);
-
-  console.log(es5Entry);
-  console.log(es2015Entry);
-
-  const inputBaseConfig = { ...config.input };
+  const inputBaseConfig = { ...config.input
+  };
   const outputBaseConfig = {
     name: libName,
     ...config.output
@@ -60,7 +61,7 @@ module.exports = async function (libName, bundleFolder, es5Folder, es2015Folder,
     },
     output: {
       ...outputBaseConfig,
-      file: join(distFolder, `bundler`, `${libName}.umd.js`),
+      file: join(distFolder, `bundles`, `${libName}.umd.js`),
       format: 'umd'
     }
   };
@@ -74,11 +75,10 @@ module.exports = async function (libName, bundleFolder, es5Folder, es2015Folder,
     },
     output: {
       ...outputBaseConfig,
-      file: join(distFolder,`bundler`, `${libName}.umd.min.js`),
+      file: join(distFolder, `bundles`, `${libName}.umd.min.js`),
       format: 'umd'
     }
   };
-
 
   // ESM+ES5 flat module bundle.
   const esm5Config = {
@@ -88,7 +88,7 @@ module.exports = async function (libName, bundleFolder, es5Folder, es2015Folder,
     },
     output: {
       ...outputBaseConfig,
-      file: join(distFolder, `esm5`,  `${libName}.js`),
+      file: join(distFolder, `esm5`, `${libName}.js`),
       format: 'es'
     }
   };
@@ -101,7 +101,7 @@ module.exports = async function (libName, bundleFolder, es5Folder, es2015Folder,
     },
     output: {
       ...outputBaseConfig,
-      file: join(distFolder,  `esm2015`, `${libName}.js`),
+      file: join(distFolder, `esm2015`, `${libName}.js`),
       format: 'es'
     }
   };
@@ -113,20 +113,14 @@ module.exports = async function (libName, bundleFolder, es5Folder, es2015Folder,
   });
 };
 
-
 /** build es2015 */
-module.exports.es2015 = async function (tsconfig, outputFolder) {
-  console.log(outputFolder);
-  const exitCode = ngc(['-p', tsconfig, '--outDir', outputFolder]);
-  await exitCode === 0 ? Promise.resolve() : Promise.reject();
+module.exports.esm2015 = async function (tsConfig) {
+  const exitCode = await ngc(['-p', tsConfig]);
+  exitCode === 0 ? Promise.resolve() : Promise.reject();
 }
 
 /** build es5 */
-module.exports.es5 = async function (tsconfig, outputFolder) {
-  const exitCode = ngc([
-    '-p', tsconfig,
-    '--target', 'es5',
-    '--outDir', outputFolder
-  ]);
-  await exitCode === 0 ? Promise.resolve() : Promise.reject();
+module.exports.esm5 = async function (tsConfig, outDir) {
+  const exitCode = await ngc(['-p', tsConfig, '--target', 'es5', '-d', 'false', '--outDir', outDir]);
+  exitCode === 0 ? Promise.resolve() : Promise.reject();
 }

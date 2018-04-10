@@ -38,7 +38,7 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
 
   @Input() class: string;
 
-  private _selectionModel: SelectionModel<T> = new SelectionModel(true, null, false);
+  private _selectionModel: SelectionModel<T> = new SelectionModel(true, undefined, false);
 
   private _multipleSortable = false;
 
@@ -119,7 +119,7 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
 
   private _clearSort(filter?: NtColumnSortChange) {
     this._columns
-      .filter(column => column.name !== filter.column)
+      .filter(column => column.name !== (filter ? filter.column : ''))
       .forEach(column => column.sort = '');
   }
 

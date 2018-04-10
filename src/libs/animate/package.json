@@ -1,7 +1,10 @@
 {
   "name": "@ng-tangram/animate",
   "version": "0.0.0-PLACEHOLDER",
-  "main": "./index.ts",
+  "main": "./bundles/animate.umd.js",
+  "module": "./esm5/animate.js",
+  "es2015": "./esm2015/animate.js",
+  "typings": "./animate.d.ts",
   "author": "livebridge",
   "license": "MIT",
   "repository": {

@@ -10,6 +10,7 @@ import 'prismjs/components/prism-typescript';
 
 import 'nprogress/nprogress.css';
 import 'themes/main.scss';
+import 'libs/components/icon/iconfonts/ant-icon.css';
 
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';

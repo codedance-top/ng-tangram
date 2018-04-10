@@ -13,7 +13,7 @@ let postcss = {
 module.exports = [
   {
     test: /\.css$/,
-    use: ExtractTextPlugin.extract({ fallback: 'style', use: ['css', postcss] })
+    use: ExtractTextPlugin.extract({ fallback: 'style', use: ['css'] })
   },
   {
     test: /\.less$/,

@@ -6,7 +6,7 @@ import { NtTooltipComponent } from './tooltip.component';
 
 @NgModule({
   imports: [CommonModule, NtOverlayModule],
-  exports: [NtOverlayModule, NtTooltipComponent],
+  exports: [NtTooltipComponent],
   declarations: [NtTooltipComponent]
 })
 export class NtTooltipModule { }

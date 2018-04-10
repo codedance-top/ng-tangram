@@ -1,5 +1,6 @@
-export { NtFormsModule } from './forms.module';
-export { NtFormFieldComponent } from './form-field.component';
-export { NtFormFieldControl } from './form-field-control';
-export { NtFormAutofocusDirective } from './form-autofocus.directive';
-export { NT_VALIDATION_TRANSFOMER, NtValidationTransformer, NtFormValidationTransformer } from './form-validation';
+export * from './forms.module';
+export * from './form-error.pipe';
+export * from './form-field.component';
+export * from './form-field-control';
+export * from './form-autofocus.directive';
+export * from './form-validation';

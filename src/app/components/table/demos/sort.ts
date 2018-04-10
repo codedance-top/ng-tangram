@@ -4,7 +4,7 @@ import { NtColumnSortChange, NtTableComponent } from '@ng-tangram/components/tab
 @Component({
   selector: 'demo-table-sort',
   template: `
-  <button nt-button color="alert" (click)="delete(table.selected)" [disabled]="table.selected.length === 0">删除</button>
+  <button nt-button color="alert" [disabled]="table.selected.length === 0">删除</button>
   <nt-table #table [dataSource]="dataSource" selectable>
 
     <nt-column name="name">
@@ -36,8 +36,4 @@ export class DemoTableSortComponent {
     { id: 3, name: '王五', age: 18, address: '广州' },
     { id: 4, name: '赵六', age: 27, address: '大连' }
   ];
-
-  delete(items: any[]) {
-    // items.map(item => this.dataSource.indexOf(item)).forEach(i => this.dataSource.splice(i, 1));
-  }
 }

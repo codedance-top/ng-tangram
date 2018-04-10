@@ -26,7 +26,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class DemoSelectBasciComponent {
 
   form: FormGroup;
-  alphabets = Array(26).fill(0).map((v, index) => String.fromCharCode(65 + index));
+  alphabets = Array(26).fill(65).map((value, index) => String.fromCharCode(value + index));
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({

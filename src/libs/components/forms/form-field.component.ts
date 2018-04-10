@@ -20,7 +20,11 @@ import { take } from 'rxjs/operators/take';
 import { takeUntil } from 'rxjs/operators/takeUntil';
 import { Subject } from 'rxjs/Subject';
 
+import 'rxjs/add/observable/of';
+
 import { NtFormFieldControl } from './form-field-control';
+import { NgControl } from '@angular/forms/src/directives/ng_control';
+import { EventEmitter } from 'events';
 
 export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
 
@@ -33,7 +37,7 @@ export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
         <ng-content></ng-content>
       </div>
       <span class="form-error is-visible" *ngIf="_invalid" [@fade]="_invalid">
-        {{ errors | ntFormError :label }}
+        {{ (errors || {}) | ntFormError :label }}
       </span>
     </div>
   `,
@@ -70,7 +74,7 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
   get required() { return this.control.required; }
 
-  get errors() { return this.control.ngControl.errors; }
+  get errors() { return this.control.ngControl ? this.control.ngControl.errors : null; }
 
   @Input() orientation: NtFormFieldOrientation;
 
@@ -83,13 +87,18 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   /** 表单模型 */
   @ContentChild(NtFormFieldControl) control: NtFormFieldControl<any>;
 
-  get ngSubmit() { return (this._parentForm || this._parentFormGroup || <any>{}).ngSubmit || null; }
+  get ngSubmit(): Observable<any> {
+    if (this._parentForm || this._parentFormGroup) {
+      return (this._parentForm || this._parentFormGroup || <any>{}).ngSubmit;
+    }
+    return Observable.of(null);
+  }
 
-  get ngControl() { return this.control.ngControl || null; }
+  get ngControl(): NgControl | null { return this.control ? this.control.ngControl : null; }
 
   readonly statusChanges: Observable<any> = defer(() => {
-    if (this.control) {
-      return this.ngControl ? this.ngControl.statusChanges : null;
+    if (this.control && this.ngControl) {
+      return this.ngControl.statusChanges ? this.ngControl.statusChanges : Observable.of(null);
     }
     return this._ngZone.onStable
       .asObservable()
@@ -101,7 +110,6 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() private _parentForm: NgForm,
     @Optional() private _parentFormGroup: FormGroupDirective) {
-
     this.statusChanges.pipe(takeUntil(this._destroy)).subscribe(() => this._validate());
   }
 
@@ -113,7 +121,7 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
   private _validate() {
     if (this.ngControl) {
-      this._invalid = this.ngControl.invalid;
+      this._invalid = !!this.ngControl.invalid;
       this._changeDetectorRef.markForCheck();
     }
   }

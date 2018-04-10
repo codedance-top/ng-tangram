@@ -53,7 +53,7 @@ export class NtModalRef<T, R = any> {
       });
 
     _overlayRef.keydownEvents()
-      .pipe(filter(event => event.keyCode === ESCAPE && this.closable))
+      .pipe(filter(event => event.keyCode === ESCAPE && !!this.closable))
       .subscribe(() => this.close());
 
     if (location) {
