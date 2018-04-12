@@ -5,7 +5,7 @@ import { NtFormAutofocusDirective } from './form-autofocus.directive';
 import { NtFormErrorPipe } from './form-error.pipe';
 import { NtFormFieldComponent } from './form-field.component';
 import { NtFormValidationTransformer, NT_VALIDATION_TRANSFOMER } from './form-validation';
-import { NtValidationTransformer } from '@ng-tangram/components/forms';
+import { NtValidationTransformer } from './form-validation';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule],

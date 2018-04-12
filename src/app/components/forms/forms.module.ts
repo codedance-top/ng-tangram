@@ -8,7 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtIconModule } from '@ng-tangram/components/icon';
-import { NtFormsModule } from '@ng-tangram/components/forms/forms.module';
+import { NtFormsModule } from '@ng-tangram/components/forms';
 
 import { FormsDocumentComponent } from './forms.component';
 
