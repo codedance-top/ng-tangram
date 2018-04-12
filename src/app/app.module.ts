@@ -9,6 +9,7 @@ import { NT_PAGINATION_CONFIG, NtPaginationConfig } from '@ng-tangram/components
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
+import { NtFormsModule } from '@ng-tangram/components/forms';
 
 registerLocaleData(locale);
 
@@ -28,11 +29,12 @@ const PAGINATION_CONFIG = {
   bootstrap: [AppComponent],
   imports: [
     CommonModule,
-    NtIconModule.forRoot(),
+    NtIconModule,
     BrowserModule.withServerTransition({
       appId: 'ng-tangram-demo'
     }),
     BrowserTransferStateModule,
+    NtFormsModule.forRoot(),
     RouterModule.forRoot(ROUTES, {
       initialNavigation: 'enabled',
       useHash: !environment.production

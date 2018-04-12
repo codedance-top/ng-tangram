@@ -45,9 +45,7 @@ export class NtPaginationComponent {
 
   @Output() pageChange = new EventEmitter<number>();
 
-  constructor(
-    @Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig,
-  ) {
+  constructor(@Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig) {
     this._config = { ...this._config, ...defaultConfig || {} };
   }
 

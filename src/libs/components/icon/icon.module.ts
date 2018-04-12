@@ -6,8 +6,4 @@ import { NtAntIconComponent } from './ant-icon.component';
   declarations: [NtAntIconComponent],
   entryComponents: [NtAntIconComponent]
 })
-export class NtIconModule {
-  public static forRoot(): ModuleWithProviders {
-    return { ngModule: NtIconModule };
-  }
-}
+export class NtIconModule { }

@@ -11,6 +11,16 @@ export const DEFAULT_TEMPLATES = {
   "minlength": "{0}长度为最小{1}"
 };
 
+// export class NtValidationTemplate {
+//   required = '请填写{0}';
+//   email = '{0}不是邮箱格式';
+//   min = '{0}必须输入大于{1}的数字';
+//   max = '{0}必须输入小于{1}的数字';
+//   pattern = '{0}不是合法的数据';
+//   maxlength = '{0}长度为最大{1}';
+//   minlength = '{0}长度为最小{1}';
+// }
+
 export interface NtValidationTransformer {
   transform(errors?: ValidationErrors, label?: string): string | null;
 }
@@ -48,5 +58,7 @@ export class NtFormValidationTransformer implements NtValidationTransformer {
     });
   }
 }
+
+// export const NT_VALIDATION_TEMPLATE = new InjectionToken<NtValidationTemplate>('nt-validation-template');
 
 export const NT_VALIDATION_TRANSFOMER = new InjectionToken<NtValidationTransformer>('nt-validation-transformer');

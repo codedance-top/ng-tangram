@@ -1,0 +1,43 @@
+
+$nt-badge-notify-size: rem-calc(10) !default;
+$nt-badge-notify-offset: $nt-badge-notify-size * .5 !default;
+$nt-badge-notify-border: 1px solid $white !default;
+
+$nt-badge-float-size: rem-calc(20) !default;
+$nt-badge-float-offset: $nt-badge-float-size * .6 !default;
+$nt-badge-float-border: 1px solid $white !default;
+
+@mixin nt-badge-notify {
+  position: absolute;
+  top: -$nt-badge-notify-offset;
+  right: -$nt-badge-notify-offset;
+  width: $nt-badge-notify-size;
+  height: $nt-badge-notify-size;
+  font-size: 0;
+  border: $nt-badge-notify-border;
+}
+
+@mixin nt-badge-float {
+  position: absolute;
+  top: -$nt-badge-float-offset;
+  right: -$nt-badge-float-offset;
+  height: $nt-badge-float-size;
+  min-width: $nt-badge-float-size;
+  border: $nt-badge-float-border;
+  font-size: .8em;
+  border-radius: 1rem;
+}
+
+
+@mixin nt-badge {
+
+  .badge {
+    &.badge-float {
+      @include nt-badge-float;
+    }
+    &.badge-notify {
+      @include nt-badge-notify;
+    }
+  }
+}
+
