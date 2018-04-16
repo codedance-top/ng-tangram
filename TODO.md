@@ -1,3 +1,5 @@
+
+
 # 2018-04-12
 bug: 表单模块验证信息适配器不能在根模块注入的问题。
 bug: loading 样式冲突。
@@ -12,7 +14,6 @@ NtRadioComponent
 NtCheckboxComponent
 NtMapComponent
 NtMapInputComponent
-
 
 # 0.2.x 计划
 NtUploader

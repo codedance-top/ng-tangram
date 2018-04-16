@@ -5,9 +5,10 @@ import {
   ContentChildren, ElementRef, Input, NgZone, OnChanges, OnDestroy, OnInit, Optional,
   ViewEncapsulation
 } from '@angular/core';
-import { FormGroupDirective, NgForm } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 
+import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';
@@ -20,18 +21,14 @@ import { take } from 'rxjs/operators/take';
 import { takeUntil } from 'rxjs/operators/takeUntil';
 import { Subject } from 'rxjs/Subject';
 
-import 'rxjs/add/observable/of';
-
 import { NtFormFieldControl } from './form-field-control';
-import { NgControl } from '@angular/forms/src/directives/ng_control';
-import { EventEmitter } from 'events';
 
 export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
 
 @Component({
   selector: 'nt-form-field',
   template: `
-    <label class="nt-form-label" *ngIf="labelVisible">{{label}}</label>
+    <label class="nt-form-label" [class.required]="required" *ngIf="labelVisible">{{label}}</label>
     <div class="nt-form-group">
       <div class="nt-form-control">
         <ng-content></ng-content>
@@ -51,8 +48,8 @@ export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'class': 'nt-form-field',
-    '[class.has-error]': '_invalid',
-    '[class.nt-form-horizontal]': 'horizontal',
+    '[class.nt-form-error]': '_invalid',
+    '[class.nt-form-horizontal]': 'horizontal'
   }
 })
 export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
@@ -72,7 +69,22 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
   get horizontal() { return this.orientation === 'horizontal'; }
 
-  get required() { return this.control.required; }
+  get required() {
+
+    if (this.ngControl &&
+      this.ngControl.control &&
+      this.ngControl.control.validator) {
+      const control = new FormControl();
+      const validateResult = this.ngControl.control.validator(control);
+      return validateResult && validateResult.hasOwnProperty('required');
+    }
+
+    if (this.control) {
+      return !!this.control.required;
+    }
+
+    return false;
+  }
 
   get errors() { return this.control.ngControl ? this.control.ngControl.errors : null; }
 

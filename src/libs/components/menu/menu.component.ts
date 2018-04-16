@@ -11,7 +11,7 @@ export declare type NtMenuOrientation = '' | 'horizontal' | 'vertical';
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None,
   host: {
-    '[class]': '["menu", align ? "align-" + align : "", orientation].join(" ")',
+    '[class]': '["menu", align ? "align-" + align : "", orientation, class].join(" ")',
     '[class.simple]': 'simple',
     '[class.expanded]': 'expanded',
     '[class.nested]': 'nested'
@@ -23,6 +23,8 @@ export class NtMenuComponent implements AfterContentInit {
   private _expanded: boolean = false;
   private _nested: boolean = false;
   private _align: NtMenuAlign = '';
+
+  @Input() class: string = '';
 
   @Input()
   set simple(value: boolean) { this._simple = coerceBooleanProperty(value); }

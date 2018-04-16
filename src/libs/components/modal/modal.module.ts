@@ -3,12 +3,16 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NtModal } from './modal';
-import { NtModalContainer } from './modal-container';
+import { NtModalComponent } from './modal.component';
+import { NtModalHeaderComponent } from './modal-header.component';
+import { NtModalBodyComponent } from './modal-body.component';
+import { NtModalFooterComponent } from './modal-footer.component';
 
 @NgModule({
   imports: [CommonModule, PortalModule, OverlayModule],
-  entryComponents: [NtModalContainer],
-  declarations: [NtModalContainer],
-  providers: [NtModal]
+  entryComponents: [NtModalComponent],
+  declarations: [NtModalComponent, NtModalHeaderComponent, NtModalBodyComponent, NtModalFooterComponent],
+  providers: [NtModal],
+  exports: [NtModalHeaderComponent, NtModalBodyComponent, NtModalFooterComponent]
 })
 export class NtModalModule { }

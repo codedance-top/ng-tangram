@@ -1,49 +1,58 @@
-$input-shadow: none !default;
 $input-placeholder-color: $dark-gray !default;
 $input-transition: background-color .6s, box-shadow .6s !default;
 $input-padding: $form-spacing / 2 $form-spacing;
-$input-invalid-color: get-color(alert) !default;
-$input-invalid-background: lighten($input-invalid-color, 42%) !default;
-$input-valid-color: get-color(success) !default;
-$input-valid-background: ligthen($input-valid-color, 42%) !default;
-$input-warning-color: get-color(warning) !default;
-$input-warning-background: ligthen($input-warning-color, 42%) !default;
 
-$horizontal-label-width: 120px;
+$nt-input-shadow-invalid: inset 0 1px 2px rgba(get-color(alert), .1) !default;
+$nt-input-shadow-valid: inset 0 1px 2px rgba(get-color(success), .1) !default;
+$nt-input-shadow-warning: inset 0 1px 2px rgba(get-color(warning), .1) !default;
 
-@mixin form-extends {
-  .input-group {
-    box-shadow: $input-shadow;
-    border-radius: $input-radius;
-    background-color: $input-background;
-    transition: $input-transition;
-    .input-group-label {
-      color: $input-placeholder-color;
-      border: 0;
-      background-color: transparent;
-      & + {
-        select,
-        textarea,
-        input {
-          padding-left: 0px;
-        }
-      }
-    }
-    select,
-    textarea,
-    input {
-      box-shadow: none;
-      background-color: transparent;
-      & + .input-group-label {
-        padding-right: 0px;
-      }
-    }
-  }
+$nt-input-shadow-invalid-focus: 0 0 5px get-color(alert) !default;
+$nt-input-shadow-valid-focus: 0 0 5px get-color(success) !default;
+$nt-input-shadow-warning-focus: 0 0 5px get-color(warning) !default;
 
-  .nt-form-control {
-    margin: 0 0 $form-spacing;
-  }
-  .nt-form-control input {
+$nt-input-color-invalid: get-color(alert) !default;
+$nt-input-color-valid: get-color(success) !default;
+$nt-input-color-warning: get-color(warning) !default;
+
+$nt-input-background-invalid: $nt-input-color-invalid !default;
+$nt-input-background-valid: $nt-input-color-valid !default;
+$nt-input-background-warning: $nt-input-color-warning !default;
+
+$form-horizontal-label-width: 120px !default;
+
+@mixin nt-form-control {
+
+  // .input-group {
+  //   box-shadow: $input-shadow;
+  //   border-radius: $input-radius;
+  //   background-color: $input-background;
+  //   transition: $input-transition;
+  //   .input-group-label {
+  //     color: $input-placeholder-color;
+  //     border: 0;
+  //     background-color: transparent;
+  //     & + {
+  //       select,
+  //       textarea,
+  //       input {
+  //         padding-left: 0px;
+  //       }
+  //     }
+  //   }
+  //   select,
+  //   textarea,
+  //   input {
+  //     box-shadow: none;
+  //     background-color: transparent;
+  //     & + .input-group-label {
+  //       padding-right: 0px;
+  //     }
+  //   }
+  // }
+
+  margin: 0 0 $form-spacing;
+
+  & > input {
     background-color: $input-background;
     cursor: auto !important;
     padding-right: 2rem;
@@ -51,7 +60,7 @@ $horizontal-label-width: 120px;
     margin: 0;
   }
 
-  .nt-form-control.focus input {
+  &.focus input {
     outline: none;
     border: $input-border-focus;
     background-color: $input-background-focus;
@@ -59,19 +68,28 @@ $horizontal-label-width: 120px;
   }
 }
 
-@mixin nt-form-validate ($color, $background-color) {
 
-  .nt-form-label {
-    color: $color;
-  }
+@mixin nt-form-validate (
+  $color: $nt-input-background-invalid,
+  $input-shadow: $nt-input-shadow-invalid,
+  $input-shadow-focus: $nt-input-shadow-invalid-focus,
+  $color-lighten: 5%) {
+
+  .nt-form-label { color: $color; }
+
   select,
   textarea,
   input,
-  .input-group,
   .nt-form-control input {
     border-color: $color;
-    background-color: $background-color;
-    outline: none;
+    box-shadow: $input-shadow;
+    // background-color: mix($color, $white, $color-lighten);
+  }
+  select:focus,
+  textarea:focus,
+  input:focus,
+  .nt-form-control.focus input {
+    box-shadow: $input-shadow-focus;
   }
 }
 
@@ -91,12 +109,14 @@ $horizontal-label-width: 120px;
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
+  padding-left: .4em;
   &.required {
-    // position: relative;
-    &:after {
-      padding-left: .2em;
+    position: relative;
+    &:before {
+      margin-left: -.6em;
+      position: absolute;
       content: '*';
-      color: $input-invalid-color;
+      color: $nt-input-color-invalid;
     }
   }
 }
@@ -105,14 +125,14 @@ $horizontal-label-width: 120px;
 
   $input-height: ($input-font-size * unitless-calc($input-line-height))+(get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
 
-  padding-left: $horizontal-label-width;
+  padding-left: $form-horizontal-label-width;
   position: relative;
 
   .nt-form-label {
     vertical-align: top;
     position: absolute;
     left: 0;
-    width: $horizontal-label-width;
+    width: $form-horizontal-label-width;
     line-height: $input-height;
     margin-bottom: 0;
     padding-right: 1rem;
@@ -122,7 +142,9 @@ $horizontal-label-width: 120px;
 
 @mixin nt-forms {
 
-  @include form-extends;
+  .nt-form-control {
+    @include nt-form-control;
+  }
 
   .nt-form-field {
     display: block;
@@ -131,13 +153,22 @@ $horizontal-label-width: 120px;
     &.nt-form-horizontal { @include nt-form-horizontal; }
   }
 
-  .has-error {
-    @include nt-form-validate($input-invalid-color, $input-invalid-background);
+  .nt-form-error {
+    @include nt-form-validate;
   }
-  .has-success {
-    @include nt-form-validate($input-valid-color, $input-valid-background);
+  .nt-form-success {
+    @include nt-form-validate(
+      $color: $nt-input-background-valid,
+      $input-shadow: $nt-input-shadow-valid,
+      $input-shadow-focus: $nt-input-shadow-valid-focus
+    );
   }
-  .has-warning {
-    @include nt-form-validate($input-warning-color, $input-warning-background);
+
+  .nt-form-warning {
+    @include nt-form-validate(
+      $color: $nt-input-background-warning,
+      $input-shadow: $nt-input-shadow-warning,
+      $input-shadow-focus: $nt-input-shadow-warning-focus
+    );
   }
 }

@@ -6,9 +6,9 @@
     border-radius: $dropdown-radius;
     background-color: $dropdown-background;
     font-size: $dropdown-font-size;
+    display: block;
   }
-  @each $name,
-  $size in $dropdown-sizes {
+  @each $name, $size in $dropdown-sizes {
     .dropdown-pane.#{$name} {
       width: $size;
     }

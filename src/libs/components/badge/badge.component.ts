@@ -11,7 +11,7 @@ export declare type NtBadgeType = '' | 'static' | 'float' | 'notify';
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
   host: {
-    '[class]': '["badge", color].join(" ")',
+    '[class]': '["badge", color, class].join(" ")',
     '[class.badge-float]': 'type === "float"',
     '[class.badge-notify]': 'type === "notify"'
   }
@@ -21,6 +21,8 @@ export class NtBadgeComponent implements AfterViewInit, OnDestroy {
   private _type: NtBadgeType = 'static';
 
   @Input() color: NtBadgeColor = '';
+
+  @Input() class: string = '';
 
   @Input()
   set type(value: NtBadgeType) {

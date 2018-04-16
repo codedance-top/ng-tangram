@@ -10,7 +10,7 @@ import {
 import { Subject } from 'rxjs/Subject';
 
 import { NtModalConfig } from './modal-config';
-import { NtModalContainer } from './modal-container';
+import { NtModalComponent } from './modal.component';
 import { NtModalRef } from './modal-ref';
 
 export const NT_MODAL_DATA = new InjectionToken<any>('nt-modal-data');
@@ -54,15 +54,15 @@ export class NtModal {
   }
 
   private _attachModalContainer(overlayRef: OverlayRef, config: NtModalConfig) {
-    const containerPortal = new ComponentPortal(NtModalContainer, null);
-    const containerRef: ComponentRef<NtModalContainer> = overlayRef.attach(containerPortal);
+    const containerPortal = new ComponentPortal(NtModalComponent, null);
+    const containerRef: ComponentRef<NtModalComponent> = overlayRef.attach(containerPortal);
     containerRef.instance.config = config;
     return containerRef.instance;
   }
 
   private _attachModalContent<T>(
     content: NtModalContent<T>,
-    modalContainer: NtModalContainer,
+    modalContainer: NtModalComponent,
     overlayRef: OverlayRef,
     config: NtModalConfig): NtModalRef<T> {
 
@@ -103,10 +103,10 @@ export class NtModal {
     }
   }
 
-  private _createInjector<T>(config: NtModalConfig, modalRef: NtModalRef<T>, modalContainer: NtModalContainer): PortalInjector {
+  private _createInjector<T>(config: NtModalConfig, modalRef: NtModalRef<T>, modalContainer: NtModalComponent): PortalInjector {
     const injectionTokens = new WeakMap();
     injectionTokens.set(NtModalRef, modalRef);
-    injectionTokens.set(NtModalContainer, modalContainer);
+    injectionTokens.set(NtModalComponent, modalContainer);
     injectionTokens.set(NT_MODAL_DATA, config.data);
     return new PortalInjector(this._injector, injectionTokens);
   }

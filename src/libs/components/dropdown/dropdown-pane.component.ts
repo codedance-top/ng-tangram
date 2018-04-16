@@ -5,9 +5,14 @@ export declare type NtDropdownPaneSize = '' | 'tiny' | 'small' | 'large';
 
 @Component({
   selector: 'nt-dropdown-pane, [nt-dropdown-pane]',
-  templateUrl: 'dropdown-pane.component.html',
-  encapsulation: ViewEncapsulation.None
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    '[class]': '["dropdown-pane", size, class].join(" ")'
+  }
 })
 export class NtDropdownPaneComponent {
   @Input() size: NtDropdownPaneSize = 'small';
+
+  @Input() class: string = '';
 }

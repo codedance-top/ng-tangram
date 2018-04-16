@@ -12,7 +12,7 @@ export declare type NtButtonSize = '' | 'tiny' | 'small' | 'large' | 'medium';
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
   host: {
-    '[class]': '["button", color, style, size].join(" ")',
+    '[class]': '["button", color, style, size, class].join(" ")',
     '[class.expanded]': 'expanded'
   }
 })
@@ -21,6 +21,8 @@ export class NtButtonComponent {
   private _style: NtButtonStyle = '';
 
   private _expanded: boolean = false;
+
+  @Input() class: string = '';
 
   @Input() color: NtButtonColor = '';
 
@@ -42,6 +44,6 @@ export class NtButtonComponent {
   get expanded() { return this._expanded; }
 
   private _validStyle(value: string) {
-    return ['hollow', 'clear'].indexOf(value) > -1;
+    return ['', 'hollow', 'clear'].indexOf(value) > -1;
   }
 }

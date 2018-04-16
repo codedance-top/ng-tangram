@@ -14,7 +14,7 @@ export function throwNtModalContentAlreadyAttachedError() {
 }
 
 @Component({
-  selector: 'nt-modal-container',
+  selector: 'nt-modal',
   template: `
     <ng-template cdkPortalOutlet></ng-template>
     <button *ngIf="config.closable" (click)="exit()" class="close-button" type="button">
@@ -35,7 +35,7 @@ export function throwNtModalContentAlreadyAttachedError() {
     '(@fade.done)': 'onAnimationDone($event)',
   }
 })
-export class NtModalContainer extends BasePortalOutlet {
+export class NtModalComponent extends BasePortalOutlet {
 
   @ViewChild(CdkPortalOutlet) private _portalOutlet: CdkPortalOutlet;
 

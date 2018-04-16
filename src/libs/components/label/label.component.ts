@@ -8,10 +8,11 @@ export declare type NtLabelColor = '' | 'primary' | 'secondary' | 'success' | 'w
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
   host: {
-    '[class]': '["label", color].join(" ")'
+    '[class]': '["label", color, class].join(" ")'
   }
 })
-
 export class NtLabelComponent {
   @Input() color: NtLabelColor = '';
+
+  @Input() class: string = '';
 }

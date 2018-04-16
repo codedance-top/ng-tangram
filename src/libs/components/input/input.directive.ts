@@ -78,7 +78,10 @@ export class NtInputDirective extends NtFormFieldControl<any> {
   constructor(
     @Optional() @Self() public ngControl: NgControl,
     private _platform: Platform,
-    private _elementRef: ElementRef) { super(); }
+    private _elementRef: ElementRef) { super();
+
+    // console.log(this.ngControl && this.ngControl.validator);
+  }
 
   focus() { this._elementRef.nativeElement.focus(); }
 

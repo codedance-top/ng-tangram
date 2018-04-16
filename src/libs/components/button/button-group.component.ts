@@ -9,13 +9,15 @@ export declare type NtButtonGroupSize = '' | 'tiny' | 'small' | 'large' | 'mediu
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
   host: {
-    '[class]': '["button-group", color, size].join(" ")',
+    '[class]': '["button-group", color, size, class].join(" ")',
     '[class.expanded]': 'expanded'
   }
 })
 export class NtButtonGroupComponent {
 
   private _expanded: boolean = false;
+
+  @Input() class: string = '';
 
   @Input() color: NtButtonGroupColor = '';
 

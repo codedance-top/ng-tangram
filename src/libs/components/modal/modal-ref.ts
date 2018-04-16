@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { OverlayRef, GlobalPositionStrategy } from '@angular/cdk/overlay';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import { Subscription } from 'rxjs/Subscription';
-import { NtModalContainer } from './modal-container';
+import { NtModalComponent } from './modal.component';
 
 import { Subject } from 'rxjs/Subject';
 import { ISubscription } from 'rxjs/Subscription';
@@ -29,7 +29,7 @@ export class NtModalRef<T, R = any> {
 
   constructor(
     private _overlayRef: OverlayRef,
-    private _containerInstance: NtModalContainer,
+    private _containerInstance: NtModalComponent,
     location?: Location,
     readonly id: string = `nt-modal-${uniqueId++}`) {
 

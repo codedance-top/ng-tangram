@@ -1,13 +1,15 @@
 
 
-@import 'global';
-@import 'settings';
+// @import 'global';
+// @import 'settings';
 @import 'navbar';
 @import 'markdown';
 @import '~foundation-sites/scss/foundation';
 @import '../libs/components/styles';
 
-@import 'vaadin';
+$button-color-alt: $white;
+$badge-color-alt: $white;
+$label-color-alt: $white;
 
 @include ng-tangram;
 
