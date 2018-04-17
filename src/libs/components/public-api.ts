@@ -11,6 +11,7 @@ export * from '@ng-tangram/components/forms';
 export * from '@ng-tangram/components/input';
 export * from '@ng-tangram/components/label';
 export * from '@ng-tangram/components/menu';
+export * from '@ng-tangram/components/modal';
 export * from '@ng-tangram/components/pagination';
 export * from '@ng-tangram/components/popconfirm';
 export * from '@ng-tangram/components/popover';

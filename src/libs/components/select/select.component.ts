@@ -74,8 +74,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   private _viewValue: any;
   private _required = false;
 
-  private _scrollTop = 0;
-
   get value() { return this._value; }
   get triggerValue(): string {
     if (this.empty) {
@@ -203,12 +201,11 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   onOpen() {
     this._state = 'folded';
     this.onResize();
-    setTimeout(() => this.pane.nativeElement.scrollTop = this._scrollTop, 0);
+    setTimeout(() => this._scrollActiveOptionIntoView());
   }
 
   onClose() {
     this._state = 'closed';
-    this._scrollTop = this.pane.nativeElement.scrollTop;
     this._onTouched();
   }
 
@@ -249,8 +246,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
     const changedOrDestroyed = merge(this.options.changes, this._destroy);
 
-    this._scrollTop = 0;
-
     this.optionSelectionChanges
       .pipe(takeUntil(changedOrDestroyed), filter(event => event.isUserInput))
       .subscribe(event => {
@@ -273,6 +268,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   private _initializeSelection(): void {
     Promise.resolve().then(() => {
       this._setSelectionByValue(this.ngControl ? this.ngControl.value : this.value);
+      this._scrollActiveOptionIntoView();
     });
   }
 
@@ -373,6 +369,18 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     }
   }
 
+  private _scrollActiveOptionIntoView() {
+    let selected: NtOptionComponent;
+
+    if (this.selected && this.selected instanceof NtOptionComponent) {
+      selected = this.selected;
+    } else if (this.selected && this.selected instanceof Array && this.selected.length > 0) {
+      selected = this.selected[0];
+    }
+    if (selected) {
+      this.pane.nativeElement.scrollTop = selected.getOffsetY();
+    }
+  }
 
   ngOnDestroy() {
     this._destroy.next();

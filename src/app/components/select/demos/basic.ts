@@ -30,7 +30,7 @@ export class DemoSelectBasciComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      single: [null, Validators.required],
+      single: ['Z', Validators.required],
       multiple: [null, Validators.required]
     });
   }

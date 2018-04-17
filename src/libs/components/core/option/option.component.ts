@@ -97,6 +97,10 @@ export class NtOptionComponent implements AfterViewChecked {
     }
   }
 
+  getOffsetY() {
+    return this._element.nativeElement.offsetTop;
+  }
+
   private _emitSelectionChangeEvent(isUserInput = false): void {
     this.selectionChange.emit(new NtOptionSelectionChange(this, isUserInput));
   }

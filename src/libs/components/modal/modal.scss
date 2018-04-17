@@ -4,11 +4,14 @@
 $reveal-padding: 0;
 
 $nt-modal-padding: $global-padding !default;
-$nt-modal-border: 1px solid $medium-gray !default;
+$nt-modal-border: 1px solid $light-gray !default;
+
+$nt-modal-header-font-size: rem-calc(16) !default;
 
 @mixin nt-modal-header {
   padding: $nt-modal-padding;
   display: block;
+  font-size: $nt-modal-header-font-size;
   & + .nt-modal-body {
     border-top: $nt-modal-border;
   }
