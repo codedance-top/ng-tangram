@@ -14,6 +14,7 @@ export * from '@ng-tangram/components/menu';
 export * from '@ng-tangram/components/modal';
 export * from '@ng-tangram/components/pagination';
 export * from '@ng-tangram/components/popconfirm';
+export * from '@ng-tangram/components/progress';
 export * from '@ng-tangram/components/popover';
 export * from '@ng-tangram/components/scrim';
 export * from '@ng-tangram/components/select';

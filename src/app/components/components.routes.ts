@@ -21,6 +21,7 @@ export const COMPONENTS_ROUTES: Routes = [
   { path: 'pagination', loadChildren: './pagination/pagination.module#PaginationDocumentModule', data: { title: 'Pagination 分页' } },
   { path: 'popconfirm', loadChildren: './popconfirm/popconfirm.module#PopconfirmDocumentModule', data: { title: 'Popconfirm 气泡确认框' } },
   { path: 'popover', loadChildren: './popover/popover.module#PopoverDocumentModule', data: { title: 'Popover 气泡卡片' } },
+  { path: 'progress', loadChildren: './progress/progress.module#ProgressDocumentModule', data: { title: 'Progress 进度条' } },
   // { path: 'radio', loadChildren: './radio/radio.module#RadioDocumentModule', data: { title: 'Radio ' } },
   { path: 'scrim', loadChildren: './scrim/scrim.module#ScrimDocumentModule', data: { title: 'Scrim 纱幕' } },
   { path: 'select', loadChildren: './select/select.module#SelectDocumentModule', data: { title: 'Select 下拉选择框' } },

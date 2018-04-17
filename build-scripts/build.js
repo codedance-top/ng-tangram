@@ -1,6 +1,4 @@
-const {
-  join
-} = require('path');
+const { join } = require('path');
 const ngc = require('@angular/compiler-cli/src/main').main;
 const camelCase = require('camelcase');
 
@@ -15,16 +13,11 @@ const components = require('../src/libs/components/build.config.json');
 
 const config = {
   input: {
-    external: id => /^@angular/.test(id),
+    external: id => /^(@angular)/.test(id) || /^(@ng-tangram)/.test(id),
     plugins: [
-      commonjs({
-        include: ['node_modules/rxjs/**']
-      }),
+      commonjs({ include: ['node_modules/rxjs/**'] }),
       sourcemaps(),
-      nodeResolve({
-        jsnext: true,
-        module: true
-      })
+      nodeResolve({ jsnext: true, module: true })
     ]
   },
   output: {
@@ -34,22 +27,31 @@ const config = {
       '@angular/forms': 'ng.forms',
       '@angular/common': 'ng.common',
       '@angular/cdk': 'ng.cdk',
+      '@angular/cdk/coercion': 'ng.cdk.coercion',
+      '@angular/cdk/platform': 'ng.cdk.platform',
+      '@angular/cdk/overlay': 'ng.cdk.overlay',
+      '@angular/cdk/collections': 'ng.cdk.collections',
+      '@angular/cdk/portal': 'ng.cdk.portal',
+      '@angular/cdk/keycodes': 'ng.cdk.keycodes',
       'rxjs': 'Rx',
-      'rxjs/operators': 'Rx.operators'
+      'rxjs/operators': 'Rx.operators',
+      ...animates.globals,
+      ...components.globals
     },
-    sourcemap: true,
+    sourcemap: true
   }
 };
 
 module.exports = {};
 
 /** build libs */
-module.exports.rollup = async function (libName, es5Entry, es2015Entry, distFolder) {
+module.exports.rollup = async function (name, fullName, es5Entry, es2015Entry, distFolder) {
 
-  const inputBaseConfig = { ...config.input
+  const inputBaseConfig = {
+    ...config.input
   };
   const outputBaseConfig = {
-    name: libName,
+    name: fullName,
     ...config.output
   };
 
@@ -61,7 +63,7 @@ module.exports.rollup = async function (libName, es5Entry, es2015Entry, distFold
     },
     output: {
       ...outputBaseConfig,
-      file: join(distFolder, `bundles`, `${libName}.umd.js`),
+      file: join(distFolder, `bundles`, `${name}.umd.js`),
       format: 'umd'
     }
   };
@@ -75,7 +77,7 @@ module.exports.rollup = async function (libName, es5Entry, es2015Entry, distFold
     },
     output: {
       ...outputBaseConfig,
-      file: join(distFolder, `bundles`, `${libName}.umd.min.js`),
+      file: join(distFolder, `bundles`, `${name}.umd.min.js`),
       format: 'umd'
     }
   };
@@ -88,7 +90,7 @@ module.exports.rollup = async function (libName, es5Entry, es2015Entry, distFold
     },
     output: {
       ...outputBaseConfig,
-      file: join(distFolder, `esm5`, `${libName}.js`),
+      file: join(distFolder, `esm5`, `${name}.js`),
       format: 'es'
     }
   };
@@ -101,7 +103,7 @@ module.exports.rollup = async function (libName, es5Entry, es2015Entry, distFold
     },
     output: {
       ...outputBaseConfig,
-      file: join(distFolder, `esm2015`, `${libName}.js`),
+      file: join(distFolder, `esm2015`, `${name}.js`),
       format: 'es'
     }
   };

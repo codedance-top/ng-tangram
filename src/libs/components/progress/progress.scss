@@ -1,0 +1,38 @@
+
+$nt-progress-tiny: .25rem !default;
+$nt-progress-small: .5rem !default;
+$nt-progress-midium: 1rem !default;
+$nt-progress-large: 1.6rem !default;
+
+$nt-progress-meter-transition: width .5s cubic-bezier(.8, .2, .2, .8) !default;
+
+$nt-progress-sizes: (
+  tiny: $nt-progress-tiny,
+  small: $nt-progress-small,
+  midium: $nt-progress-midium,
+  large: $nt-progress-large
+);
+
+@mixin nt-progress-size($size: $nt-progress-midium) {
+  height: $size;
+}
+
+@mixin nt-progress-circle {
+
+}
+
+@mixin nt-progress {
+  .progress {
+    display: block;
+    @include nt-progress-size;
+    .progress-meter {
+      transition: $nt-progress-meter-transition;
+    }
+
+    @each $name, $size in $nt-progress-sizes {
+      &.#{$name} {
+        @include nt-progress-size($size: $size);
+      }
+    }
+  }
+}

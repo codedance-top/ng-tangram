@@ -9,6 +9,10 @@
     color: $tooltip-color;
   }
 
+  .tooltip-trigger {
+    display: inline-block;
+  }
+
   .nt-overlay-container.tootip-overlay {
     .nt-overlay-arrow {
       background-color: $tooltip-background-color;

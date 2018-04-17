@@ -370,11 +370,11 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   }
 
   private _scrollActiveOptionIntoView() {
-    let selected: NtOptionComponent;
+    let selected: NtOptionComponent | null = null;
 
-    if (this.selected && this.selected instanceof NtOptionComponent) {
+    if (this.selected instanceof NtOptionComponent) {
       selected = this.selected;
-    } else if (this.selected && this.selected instanceof Array && this.selected.length > 0) {
+    } else if (this.selected instanceof Array && this.selected.length > 0) {
       selected = this.selected[0];
     }
     if (selected) {

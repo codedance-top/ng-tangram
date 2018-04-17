@@ -90,7 +90,7 @@ async function _build(lib) {
 
     await build.esm5(join(compilationFolder, `${children[i]}/tsconfig-build.json`), esm5);
     await build.esm2015(join(compilationFolder, `${children[i]}/tsconfig-build.json`));
-    await build.rollup(children[i], join(esm5, `${children[i]}/index.js`), join(childCompileFolder, `index.js`), outputFolder);
+    await build.rollup(children[i],`nt.${lib}.${children[i]}`, join(esm5, `${children[i]}/index.js`), join(childCompileFolder, `index.js`), outputFolder);
 
     await _typings(childCompileFolder, childOutputFolder);
     await _metadata(childCompileFolder, childOutputFolder);
@@ -112,7 +112,7 @@ async function _build(lib) {
 
   await build.esm5(`${compilationFolder}/tsconfig-build.json`, esm5);
   await build.esm2015(`${compilationFolder}/tsconfig-build.json`);
-  await build.rollup(lib,
+  await build.rollup(lib, `nt.${lib}`,
     join(esm5, `${lib}.js`),
     join(compilationFolder, `${lib}.js`),
     outputFolder);

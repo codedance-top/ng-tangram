@@ -1,4 +1,9 @@
 {
   "name": "animate",
-  "children": ["utils", "fading"]
+  "children": ["utils", "fading"],
+  "globals": {
+    "@ng-tangram/animate": "nt.animate",
+    "@ng-tangram/animate/utils": "nt.animate.utils",
+    "@ng-tangram/animate/fading": "nt.animate.fading"
+  }
 }
