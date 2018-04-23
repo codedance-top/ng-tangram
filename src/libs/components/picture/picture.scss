@@ -1,0 +1,97 @@
+$nt-picture-size: 5rem !default;
+$nt-picture-margin: $global-margin / 2 !default;
+$nt-picture-radius: $global-radius !default;
+
+$nt-picture-shadow: 0px 0px 2px $medium-gray !default;
+// $nt-picture-border: 0px solid $medium-gray !default;
+$nt-picture-font-size: 1.2rem !default;
+$nt-picture-add-border: 1px dashed $medium-gray !default;
+$nt-picture-add-border-hover: 1px dashed $dark-gray !default;
+
+$nt-picture-backdrop-padding: 0 $global-padding / 2 !default;
+$nt-picture-backdrop-color: $white !default;
+$nt-picture-backdrop-bg: rgba(0,0,0, .4) !default;
+
+@mixin nt-picture-base {
+  width: $nt-picture-size;
+  height: $nt-picture-size;
+  box-shadow: $nt-picture-shadow;
+  border-radius: $nt-picture-radius;
+  margin-right: $nt-picture-margin;
+  margin-bottom: $nt-picture-margin;
+  vertical-align: top;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  font-size: $nt-picture-font-size;
+
+  nt-ant-icon {
+    line-height: $nt-picture-size;
+    cursor: pointer;
+  }
+}
+
+@mixin nt-picture-item {
+  @include nt-picture-base;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  .nt-picture-action,
+  .nt-picture-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    color: $nt-picture-backdrop-color;
+    background: $nt-picture-backdrop-bg;
+    border-radius: $nt-picture-radius;
+    padding: $nt-picture-backdrop-padding;
+  }
+
+  .nt-picture-progress nt-progress {
+    top: 50%;
+    margin-top: -1px;
+    margin-bottom: 0;
+    position: relative;
+  }
+
+  .nt-picture-action {
+    opacity: 0;
+    transition: opacity .3s;
+  }
+
+  &:hover .nt-picture-action {
+    opacity: 1;
+  }
+}
+
+@mixin nt-picture-add {
+  @include nt-picture-base;
+  border: $nt-picture-add-border;
+  cursor: pointer;
+
+  &:hover {
+    border: $nt-picture-add-border-hover;
+  }
+}
+
+@mixin nt-picture {
+  .nt-picture {
+    display: block;
+    .nt-picture-item {
+      @include nt-picture-item;
+    }
+
+    .nt-picture-add {
+      @include nt-picture-add;
+    }
+
+    > input[type="file"] {
+      display: none;
+    }
+  }
+}

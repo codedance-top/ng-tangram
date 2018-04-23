@@ -19,7 +19,6 @@ import { NgControl } from '@angular/forms';
 export class NtInputDirective extends NtFormFieldControl<any> {
 
   private _disabled = false;
-  private _width: number;
   private _value: any;
   private _type = 'text';
   private _readonly = false;
@@ -46,10 +45,6 @@ export class NtInputDirective extends NtFormFieldControl<any> {
   @Input()
   get required(): boolean { return this._required; }
   set required(value: boolean) { this._required = coerceBooleanProperty(value); }
-
-  @Input()
-  set width(value: number) { this._width = value; }
-  get width() { return this._width; }
 
   /** Input type of the element. */
   @Input()
@@ -79,8 +74,6 @@ export class NtInputDirective extends NtFormFieldControl<any> {
     @Optional() @Self() public ngControl: NgControl,
     private _platform: Platform,
     private _elementRef: ElementRef) { super();
-
-    // console.log(this.ngControl && this.ngControl.validator);
   }
 
   focus() { this._elementRef.nativeElement.focus(); }

@@ -17,8 +17,6 @@ const distFolder = join(rootFolder, 'dist/@ng-tangram');
 
 const version = require('./package.json').version;
 
-// const tempLibFolder = join(compilationFolder, '');
-
 async function _inline(from, to) {
   await relativeCopy('**/*', from, to);
   await inlineResources(to);
@@ -49,10 +47,6 @@ async function _assets(from, to) {
     relativeCopy('**/*.ttf', from, to),
     relativeCopy('**/*.woff', from, to)
   ];
-}
-
-async function _version(lib) {
-
 }
 
 async function _build(lib) {
@@ -96,12 +90,10 @@ async function _build(lib) {
     await _metadata(childCompileFolder, childOutputFolder);
     await fs.writeFileSync(join(childOutputFolder, `package.json`), `{
   "name": "${libName}",
-  "typings": "../${children[i]}.d.ts",
+  "typings": "./index.d.ts",
   "main": "../bundles/${children[i]}.umd.js",
   "module": "../esm5/${children[i]}.js",
-  "es2015": "../esm2015/${children[i]}.js"
-}
-    `);
+  "es2015": "../esm2015/${children[i]}.js"}`);
 
     console.log('build completed', libName);
   }
@@ -126,9 +118,6 @@ async function _build(lib) {
   console.log('build completed', libPackage.name);
 }
 
-async function _start() {
-  await _build('animate');
-  await _build('components');
-}
-
-_start();
+Promise.resolve()
+  .then(() => _build('animate'))
+  .then(() => _build('components'));

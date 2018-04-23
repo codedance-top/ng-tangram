@@ -21,6 +21,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
       </nt-form-field>
       <button class="button" type="submit">Submit</button>
     </form>
+
+    <nt-select name="multiple" placeholder="多选" [(ngModel)]="value" multiple required>
+      <nt-option *ngFor="let alphabet of alphabets" [value]="alphabet">
+        <nt-ant-icon type="appstore1"></nt-ant-icon> {{alphabet}}
+      </nt-option>
+    </nt-select>
   `
 })
 export class DemoSelectBasciComponent {
@@ -28,10 +34,12 @@ export class DemoSelectBasciComponent {
   form: FormGroup;
   alphabets = Array(26).fill(65).map((value, index) => String.fromCharCode(value + index));
 
+  value = ['A'];
+
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       single: ['Z', Validators.required],
-      multiple: [null, Validators.required]
+      multiple: [null, [Validators.required, Validators.minLength(3)]]
     });
   }
 

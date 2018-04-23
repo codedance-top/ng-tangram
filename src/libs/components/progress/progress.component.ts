@@ -1,5 +1,6 @@
 
 import { Component, Input } from '@angular/core';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 export declare type NtProgressSize = 'tiny' | 'small' | 'medium' | 'large';
 
@@ -18,9 +19,17 @@ export declare type NtProgressColor = '' | 'primary' | 'medium' | 'large';
 })
 export class NtProgressComponent {
 
-  @Input() max: number = 100;
+  private _max = 100;
 
-  @Input() value: number = 0;
+  private _value = 0;
+
+  @Input()
+  set max(value: number) { this._max = coerceNumberProperty(value, 100); }
+  get max() { return this._max; }
+
+  @Input()
+  set value(value: number) { this._value = coerceNumberProperty(value); }
+  get value() { return this._value; }
 
   @Input() size: NtProgressSize = 'medium';
 

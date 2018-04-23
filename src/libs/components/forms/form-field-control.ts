@@ -34,5 +34,5 @@ export abstract class NtFormFieldControl<T> {
   readonly disabled: boolean;
 
   /**  */
-  abstract focus(): void;
+  focus(): void { }
 }

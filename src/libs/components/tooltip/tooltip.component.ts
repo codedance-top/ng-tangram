@@ -40,6 +40,5 @@ export class NtTooltipComponent {
     private _renderer: Renderer2,
     private _elementRef: ElementRef) {
     this.origin = new OverlayOrigin(_elementRef);
-    console.log(this._isDirective);
   }
 }

@@ -2,6 +2,7 @@ import {
   Component, EventEmitter, Inject, Input, Optional, Output, ViewEncapsulation
 } from '@angular/core';
 import { NT_PAGINATION_CONFIG, NtPaginationConfig } from './pagination-config';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 export const PAGINATION_ELLIPSIS = '...';
 
@@ -24,7 +25,7 @@ export class NtPaginationComponent {
   get pages() { return this._pages; }
 
   @Input()
-  set pageSize(value: number) { this._config.pageSize = value; }
+  set pageSize(value: number) { this._config.pageSize = coerceNumberProperty(value); }
   get pageSize() { return this.config.pageSize; }
 
   @Input()
@@ -36,11 +37,11 @@ export class NtPaginationComponent {
   get nextLabel() { return this.config.nextLabel; }
 
   @Input()
-  set total(value: number) { this._total = value; this._build(); }
+  set total(value: number) { this._total = coerceNumberProperty(value); this._build(); }
   get total() { return this._total; }
 
   @Input()
-  set pageIndex(value: number) { this._pageIndex = value; this._build(); }
+  set pageIndex(value: number) { this._pageIndex = coerceNumberProperty(value, 1); this._build(); }
   get pageIndex() { return this._pageIndex; }
 
   @Output() pageChange = new EventEmitter<number>();
@@ -50,7 +51,7 @@ export class NtPaginationComponent {
   }
 
   _pageChange(index: number) {
-    this._pageIndex = index;
+    this._pageIndex = coerceNumberProperty(index, 1);
     this.pageChange.emit(index);
   }
 

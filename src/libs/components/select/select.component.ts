@@ -130,15 +130,15 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     return this.filter ? this.triggerValue : this._placeholder;
   }
 
-  @ViewChild('input') input: ElementRef;
-  @ViewChild('pane') pane: ElementRef;
+  @ViewChild('inputElement') inputElement: ElementRef;
+  @ViewChild('paneElement') paneElement: ElementRef;
 
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
   @ContentChildren(NtOptionComponent) options: QueryList<NtOptionComponent>;
 
   private _compareWith = (o1: any, o2: any) => o1 === o2;
-  private _onChange: (value: any) => void;
-  private _onTouched: () => void;
+  private _onChange: (value: any) => void = () => { };
+  private _onTouched = () => { };
 
   private readonly _destroy = new Subject<void>();
 
@@ -195,7 +195,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   }
 
   onResize() {
-    this._width = this.input.nativeElement.clientWidth;
+    this._width = this.inputElement.nativeElement.clientWidth;
   }
 
   onOpen() {
@@ -221,7 +221,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   }
 
   focus() {
-    this.input.nativeElement.focus();
+    this.inputElement.nativeElement.focus();
   }
 
   writeValue(value: any) {
@@ -378,7 +378,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       selected = this.selected[0];
     }
     if (selected) {
-      this.pane.nativeElement.scrollTop = selected.getOffsetY();
+      this.paneElement.nativeElement.scrollTop = selected.getOffsetY();
     }
   }
 

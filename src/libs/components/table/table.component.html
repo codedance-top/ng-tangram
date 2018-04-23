@@ -8,7 +8,8 @@
         class="nt-column-h"
         *ngFor="let column of columns"
         [style.width]="column.width"
-        [style.textAlign]="column.align" [class.hidden]="!column.visibled">
+        [style.textAlign]="column.align"
+        [class.hidden]="!column.visibled">
         <ng-container *ngTemplateOutlet="column.template"></ng-container>
       </th>
     </tr>

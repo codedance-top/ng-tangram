@@ -14,7 +14,8 @@ import { DemoSelectBasciComponent } from './demos/basic';
 @NgModule({
   imports: [
     CommonModule,
-    NtFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     NtExampleModule,
     NtIconModule,
     NtSelectModule,

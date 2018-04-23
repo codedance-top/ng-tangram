@@ -8,7 +8,7 @@ import { Request, Response } from 'express';
 import { enableProdMode } from '@angular/core';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
-const { AppServerModuleNgFactory } = require('./app/app.server.module.ngfactory');
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./app/app.server.module.ngfactory');
 
 enableProdMode();
 
@@ -19,7 +19,10 @@ const app = express();
 const STATIC_DIR = join(process.cwd(), 'docs/browser');
 
 app.engine('html', ngExpressEngine({
-  bootstrap: AppServerModuleNgFactory
+  bootstrap: AppServerModuleNgFactory,
+  // providers: [
+  //   provideModuleMap(LAZY_MODULE_MAP)
+  // ]
 }));
 
 app.set('view engine', 'html');

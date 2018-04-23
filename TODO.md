@@ -7,7 +7,6 @@ bug: loading 样式冲突。
 # 0.x.x 计划
 NtCollapseComponent
 NtAudioComponent
-NtImageComponent
 
 # 0.3.x 计划
 NtRadioComponent
@@ -18,6 +17,7 @@ NtMapInputComponent
 # 0.2.x 计划
 NtUploader
 NtFileComponent
+NtImageComponent
 NtTabsComponent
 NtProgressComponent
 Menu Dropdown 指令

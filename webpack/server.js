@@ -27,7 +27,7 @@ module.exports = {
     modules: ["./node_modules"],
     alias: rxPaths()
   },
-  // externals: [nodeExternals()],
+  // externals: [],
   resolve: {
     extensions: ['.ts', '.js', '.json'],
     modules: ['src/', 'node_modules']

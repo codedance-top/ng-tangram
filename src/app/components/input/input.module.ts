@@ -11,8 +11,6 @@ import { InputDocumentComponent } from './input.component';
   imports: [
     NtInputModule,
     NtExampleModule,
-    FormsModule,
-    ReactiveFormsModule,
     RouterModule.forChild([
       { path: '', component: InputDocumentComponent }
     ])

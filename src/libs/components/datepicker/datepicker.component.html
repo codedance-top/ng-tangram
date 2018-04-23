@@ -1,4 +1,4 @@
-<input #input type="text" (focus)="_onInputFocus()" readonly [placeholder]="placeholder" [disabled]="disabled">
+<input #inputElement type="text" (focus)="_onInputFocus()" readonly [placeholder]="placeholder" [disabled]="disabled">
 <span class="nt-datepicker-caret" [@fade] *ngIf="!value || disabled"></span>
 <span class="nt-datepicker-clear" (click)="clear()" [@fade] *ngIf="value && !disabled"></span>
 <nt-overlay

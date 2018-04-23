@@ -8,7 +8,9 @@
 @import 'dropdown/dropdown';
 @import 'datepicker/datepicker';
 @import 'forms/forms';
+@import 'file/file';
 @import 'modal/modal';
+@import 'picture/picture';
 @import 'popconfirm/popconfirm';
 @import 'popover/popover';
 @import 'progress/progress';
@@ -41,9 +43,11 @@
   @include nt-dropdown;
   @include nt-datepicker;
   @include nt-forms;
+  @include nt-file;
   @include nt-modal;
   @include nt-overlay;
   @include nt-option;
+  @include nt-picture;
   @include nt-popconfirm;
   @include nt-popover;
   @include nt-progress;

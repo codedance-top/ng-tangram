@@ -1,17 +1,19 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import locale from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtIconModule } from '@ng-tangram/components/icon';
 import { NT_PAGINATION_CONFIG, NtPaginationConfig } from '@ng-tangram/components/pagination';
 
 import { environment } from '../environments/environment';
+import { ApiInterceptor } from './api.interceptor';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
-import { NtFormsModule } from '@ng-tangram/components/forms';
 
-registerLocaleData(locale);
+// registerLocaleData(locale);
 
 const ROUTES: Routes = [
   { path: '', redirectTo: 'components', pathMatch: 'full' },
@@ -30,6 +32,7 @@ const PAGINATION_CONFIG = {
   imports: [
     CommonModule,
     NtIconModule,
+    HttpClientModule,
     BrowserModule.withServerTransition({
       appId: 'ng-tangram-demo'
     }),
@@ -42,7 +45,8 @@ const PAGINATION_CONFIG = {
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'zh' },
-    { provide: NT_PAGINATION_CONFIG, useValue: PAGINATION_CONFIG }
+    { provide: NT_PAGINATION_CONFIG, useValue: PAGINATION_CONFIG },
+    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
   ],
   declarations: [AppComponent, PageNotFoundComponent],
   exports: [AppComponent]

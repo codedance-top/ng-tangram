@@ -14,6 +14,7 @@ export const COMPONENTS_ROUTES: Routes = [
   //   data: { title: 'DatePickerRange ' } },
   { path: 'dropdown', loadChildren: './dropdown/dropdown.module#DropdownDocumentModule', data: { title: 'Dropdown 下拉菜单' } },
   { path: 'forms', loadChildren: './forms/forms.module#FormsDocumentModule', data: { title: 'Forms 表单' } },
+  { path: 'file', loadChildren: './file/file.module#FileDocumentModule', data: { title: 'File 文件' } },
   { path: 'input', loadChildren: './input/input.module#InputDocumentModule', data: { title: 'Input 输入框' } },
   { path: 'label', loadChildren: './label/label.module#LabelDocumentModule', data: { title: 'Label 标签' } },
   { path: 'menu', loadChildren: './menu/menu.module#MenuDocumentModule', data: { title: 'Menu 导航菜单' } },
@@ -21,6 +22,7 @@ export const COMPONENTS_ROUTES: Routes = [
   { path: 'pagination', loadChildren: './pagination/pagination.module#PaginationDocumentModule', data: { title: 'Pagination 分页' } },
   { path: 'popconfirm', loadChildren: './popconfirm/popconfirm.module#PopconfirmDocumentModule', data: { title: 'Popconfirm 气泡确认框' } },
   { path: 'popover', loadChildren: './popover/popover.module#PopoverDocumentModule', data: { title: 'Popover 气泡卡片' } },
+  { path: 'picture', loadChildren: './picture/picture.module#PictureDocumentModule', data: { title: 'Picture 图片' } },
   { path: 'progress', loadChildren: './progress/progress.module#ProgressDocumentModule', data: { title: 'Progress 进度条' } },
   // { path: 'radio', loadChildren: './radio/radio.module#RadioDocumentModule', data: { title: 'Radio ' } },
   { path: 'scrim', loadChildren: './scrim/scrim.module#ScrimDocumentModule', data: { title: 'Scrim 纱幕' } },
@@ -30,7 +32,4 @@ export const COMPONENTS_ROUTES: Routes = [
   // { path: 'timepicker', loadChildren: './time-picker/time-picker.module#TimePickerDocumentModule', data: { title: 'TimePicker ' } },
   { path: 'table', loadChildren: './table/table.module#TableDocumentModule', data: { title: 'Table 表格' } },
   { path: 'tooltip', loadChildren: './tooltip/tooltip.module#TooltipDocumentModule', data: { title: 'Tooltip 提示' } },
-  // { path: 'uploader', loadChildren: './uploader/uploader.module#UploaderDocumentModule', data: { title: 'Uploader ' } },
 ];
-
-

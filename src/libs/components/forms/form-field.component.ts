@@ -103,7 +103,7 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
     if (this._parentForm || this._parentFormGroup) {
       return (this._parentForm || this._parentFormGroup || <any>{}).ngSubmit;
     }
-    return Observable.of(null);
+    return null;
   }
 
   get ngControl(): NgControl | null { return this.control ? this.control.ngControl : null; }

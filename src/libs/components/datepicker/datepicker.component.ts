@@ -58,7 +58,7 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     value = this._getValidDateOrNull(value);
     const oldDate = this.value;
     this._value = value;
-    this.inputRef.nativeElement.value = value ? this._dateAdapter.format(value, this._dateFormats.display.dateInput) : '';
+    this.inputElement.nativeElement.value = value ? this._dateAdapter.format(value, this._dateFormats.display.dateInput) : '';
   }
 
   @Input() placeholder = '';
@@ -91,15 +91,15 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
 
   @Input() dateFilter: (date: D) => boolean;
 
-  @ViewChild('input') inputRef: ElementRef;
+  @ViewChild('inputElement') inputElement: ElementRef;
 
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
   @ViewChild(NtDatePickerCalendarComponent) calendar: NtDatePickerCalendarComponent<D>;
 
   /** Emits when the value changes (either due to user input or programmatic change). */
   private _valueChange = new EventEmitter<D | null>();
-  private _onChange: (value: any) => void;
-  private _onTouched: () => void;
+  private _onChange: (value: any) => void = () => {};
+  private _onTouched = () => {};
 
   constructor(
     @Optional() private _dateAdapter: DateAdapter<D>,
@@ -145,20 +145,20 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
 
   focus() {
     if (!this.disabled) {
-      this.inputRef.nativeElement.focus();
+      this.inputElement.nativeElement.focus();
     }
   }
 
   select(date: D) {
     this.value = date;
     this.overlay.hide();
-    typeof this._onChange === 'function' && this._onChange(date);
+    this._onChange(date);
   }
 
   clear() {
     if (this.value !== null && !this.disabled) {
       this.value = null;
-      typeof this._onChange === 'function' && this._onChange(this.value);
+      this._onChange(this.value);
     }
   }
 
