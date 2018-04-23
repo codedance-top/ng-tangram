@@ -25,9 +25,6 @@ import { FileUploadInterceptor } from './interceptor';
       { path: '', component: FileDocumentComponent }
     ])
   ],
-  declarations: [FileDocumentComponent, DemoFileBasciComponent],
-  providers: [
-    { provide: NT_UPLOAD_INTERCEPTOR, useClass: FileUploadInterceptor }
-  ]
+  declarations: [FileDocumentComponent, DemoFileBasciComponent]
 })
 export class FileDocumentModule { }

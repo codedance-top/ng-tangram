@@ -17,7 +17,6 @@
     "@angular/common": "^5.0.0",
     "@angular/forms": "^5.0.0",
     "@angular/cdk": "^5.0.0",
-    "foundation-sites": "^6.0.0",
-    "blueimp-load-image": "^2.19.0"
+    "foundation-sites": "^6.0.0"
   }
 }

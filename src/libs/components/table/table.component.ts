@@ -1,3 +1,4 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild,
@@ -9,16 +10,11 @@ import { fadeIn } from '@ng-tangram/animate/fading';
 import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';
 import { merge } from 'rxjs/observable/merge';
-import { filter } from 'rxjs/operators/filter';
-import { startWith } from 'rxjs/operators/startWith';
-import { switchMap } from 'rxjs/operators/switchMap';
-import { take } from 'rxjs/operators/take';
-import { takeUntil } from 'rxjs/operators/takeUntil';
+import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
 
 import { NT_COLUMN_TABLE, NtColumn, NtColumnSortChange, NtColumnTable } from './column';
 import { NtColumnComponent, NtColumnHeaderDirective } from './column.directive';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'nt-table',

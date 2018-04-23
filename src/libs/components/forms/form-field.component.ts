@@ -13,12 +13,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';
 import { merge } from 'rxjs/observable/merge';
-import { filter } from 'rxjs/operators/filter';
-import { map } from 'rxjs/operators/map';
-import { startWith } from 'rxjs/operators/startWith';
-import { switchMap } from 'rxjs/operators/switchMap';
-import { take } from 'rxjs/operators/take';
-import { takeUntil } from 'rxjs/operators/takeUntil';
+import { filter, map, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
 
 import { NtFormFieldControl } from './form-field-control';
@@ -99,7 +94,7 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   /** 表单模型 */
   @ContentChild(NtFormFieldControl) control: NtFormFieldControl<any>;
 
-  get ngSubmit(): Observable<any> {
+  get ngSubmit(): Observable<any> | null {
     if (this._parentForm || this._parentFormGroup) {
       return (this._parentForm || this._parentFormGroup || <any>{}).ngSubmit;
     }

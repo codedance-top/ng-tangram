@@ -1,16 +1,13 @@
-import { Optional } from '@angular/core';
-import { Location } from '@angular/common';
-import { OverlayRef, GlobalPositionStrategy } from '@angular/cdk/overlay';
 import { ESCAPE } from '@angular/cdk/keycodes';
-import { Subscription } from 'rxjs/Subscription';
-import { NtModalComponent } from './modal.component';
-
-import { Subject } from 'rxjs/Subject';
-import { ISubscription } from 'rxjs/Subscription';
+import { GlobalPositionStrategy, OverlayRef } from '@angular/cdk/overlay';
+import { Location } from '@angular/common';
+import { Optional } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { filter, take } from 'rxjs/operators';
+import { Subject } from 'rxjs/Subject';
+import { ISubscription, Subscription } from 'rxjs/Subscription';
 
-import { filter } from 'rxjs/operators/filter';
-import { take } from 'rxjs/operators/take';
+import { NtModalComponent } from './modal.component';
 
 // Counter for unique modal ids.
 let uniqueId = 0;

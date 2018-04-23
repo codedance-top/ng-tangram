@@ -18,12 +18,7 @@ import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';
 import { merge } from 'rxjs/observable/merge';
-import { filter } from 'rxjs/operators/filter';
-import { map } from 'rxjs/operators/map';
-import { startWith } from 'rxjs/operators/startWith';
-import { switchMap } from 'rxjs/operators/switchMap';
-import { take } from 'rxjs/operators/take';
-import { takeUntil } from 'rxjs/operators/takeUntil';
+import { filter, map, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
 
 export function getNtSelectDynamicMultipleError() {

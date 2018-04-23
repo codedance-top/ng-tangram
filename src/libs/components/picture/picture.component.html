@@ -1,7 +1,7 @@
 <input #fileElement type="file" [accept]="accept" (change)="_fileChanged()">
-<div class="nt-picture-item" *ngFor="let file of files; let fileIndex = index;" [style.backgroundImage]="'url(' + file.thumbnail + ')'">
+<div class="nt-picture-item" *ngFor="let file of files" [style.backgroundImage]="'url(' + file.thumbnail + ')'">
   <div class="nt-picture-action" *ngIf="file.status >= 2 && !disabled">
-    <nt-ant-icon type="delete" (click)="removeFile(fileIndex)"></nt-ant-icon>
+    <nt-ant-icon type="delete" (click)="removeFile(file)"></nt-ant-icon>
   </div>
   <div class="nt-picture-progress" *ngIf="file.status === 1" [@fadeOut]>
     <nt-progress *ngIf="file.status === 1" [value]="file.progress" size="tiny" color="success"></nt-progress>

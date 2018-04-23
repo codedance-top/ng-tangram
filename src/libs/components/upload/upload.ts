@@ -6,10 +6,10 @@ import {
   HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpRequest, HttpResponse
 } from '@angular/common/http';
 import { Inject, Injectable, Optional } from '@angular/core';
-import { filter, last, map } from 'rxjs/operators';
 import { NtUploadHandler } from './upload-handler';
 import { NT_UPLOAD_INTERCEPTOR, NtUploadInterceptor, NtUploadResult } from './upload-interceptor';
 import { Observable } from 'rxjs/Observable';
+import { map, filter } from 'rxjs/operators';
 
 @Injectable()
 export class NtUpload {
@@ -21,9 +21,11 @@ export class NtUpload {
   upload<T>(url: string, file: File | FormData, handler: NtUploadHandler = {}): Observable<NtUploadResult<T>> {
 
     return this._http.request(new HttpRequest('POST', url, file, { reportProgress: true } ))
-      .map(event => this._progressHandler(event, handler))
-      .filter(event => event.type === HttpEventType.Response)
-      .map((event : HttpResponse<any>) => this._interceptor.response(event));
+      .pipe(
+        map(event => this._progressHandler(event, handler)),
+        filter(event => event.type === HttpEventType.Response),
+        map((event : HttpResponse<any>) => this._interceptor.response(event))
+      );
   }
 
   private _progressHandler(event: HttpEvent<any>, handler: NtUploadHandler = {}) {

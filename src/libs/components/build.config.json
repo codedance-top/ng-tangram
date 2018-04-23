@@ -1,11 +1,11 @@
 {
   "name": "components",
   "children": [
-    "core", "forms", "icon",
+    "core", "forms", "icon", "upload",
     "badge", "breadcrumbs", "button", "callout", "label",
     "menu", "scrim", "pagination", "table",
     "dropdown", "popconfirm", "popover", "progress", "tooltip",
-    "modal", "select", "input", "datepicker"
+    "modal", "select", "input", "datepicker", "file", "picture"
   ],
   "globals": {
     "@ng-tangram/components": "nt.components",

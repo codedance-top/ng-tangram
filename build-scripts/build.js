@@ -13,12 +13,13 @@ const components = require('../src/libs/components/build.config.json');
 
 const config = {
   input: {
-    external: id => /^(@angular)/.test(id) || /^(@ng-tangram)/.test(id),
+    external: id => /^(@angular)/.test(id) || /^(@ng-tangram)/.test(id) || /^(rxjs)/.test(id),
     plugins: [
-      commonjs({ include: ['node_modules/rxjs/**'] }),
+      commonjs({ include: ['node_modules/blueimp-load-image/**'] }),
       sourcemaps(),
       nodeResolve({ jsnext: true, module: true })
-    ]
+    ],
+    // external : ['blueimp-load-image']
   },
   output: {
     globals: {
@@ -26,6 +27,7 @@ const config = {
       '@angular/core': 'ng.core',
       '@angular/forms': 'ng.forms',
       '@angular/common': 'ng.common',
+      '@angular/common/http': 'ng.common.http',
       '@angular/cdk': 'ng.cdk',
       '@angular/cdk/coercion': 'ng.cdk.coercion',
       '@angular/cdk/platform': 'ng.cdk.platform',
@@ -34,7 +36,13 @@ const config = {
       '@angular/cdk/portal': 'ng.cdk.portal',
       '@angular/cdk/keycodes': 'ng.cdk.keycodes',
       'rxjs': 'Rx',
+      'rxjs/Observable': 'Rx.Observable',
+      'rxjs/Subject': 'Rx.Subject',
+      'rxjs/Subscription': 'Rx.Subscription',
       'rxjs/operators': 'Rx.operators',
+      'rxjs/operators/takeUntil': 'Rx.operators.takeUntil',
+      'rxjs/observable/defer': 'Rx.observable.defer',
+      'rxjs/observable/merge': 'Rx.observable.merge',
       ...animates.globals,
       ...components.globals
     },

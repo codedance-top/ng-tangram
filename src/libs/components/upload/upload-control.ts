@@ -2,7 +2,7 @@ import { EventEmitter } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 
 import { NtUpload } from './upload';
 import { NtUploadControlError } from './upload-errors';

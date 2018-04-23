@@ -11,14 +11,12 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeOut } from '@ng-tangram/animate/fading';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import {
-  NtFileAcceptError, NtFileSizeError, NtUpload, NtUploadControl, NtUploadControlError, NtUploadFile,
-  NtUploadHandler, NtUploadStatus, NtFileUploadError
+  NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUpload, NtUploadControl,
+  NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
 } from '@ng-tangram/components/upload';
 
-import { resolve } from 'path';
-import { Subject } from 'rxjs';
-import { max } from 'rxjs/operators/max';
 import { takeUntil } from 'rxjs/operators/takeUntil';
+import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 
 let uniqueId = 0;
@@ -167,14 +165,17 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
     this.fileElement.nativeElement.value = '';
   }
 
-  removeFile(index: number) {
+  removeFile(file: NtFile) {
     if (this.disabled) {
       return;
     }
-    const file = this.files.splice(index, 1).shift();
     file.uploader && file.uploader.unsubscribe();
-    const valueIndex = this._value.indexOf(file);
-    valueIndex > -1 && this._value.splice(valueIndex, 1);
+    const vindex = this._value.indexOf(file);
+    vindex > -1 && this._value.splice(vindex, 1);
+
+    const findex = this.files.indexOf(file);
+    findex > -1 && this.files.splice(vindex, 1);
+
     this.remove.next(file);
     this._onChange(this._value);
   }
@@ -193,20 +194,27 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
   }
 
   private _fileTypeValid(file: File) {
-    return this.accept.indexOf(file.type) > -1 || this.accept.indexOf('*') > -1;
+    if (file) {
+      return this.accept.indexOf(file.type) > -1 || this.accept.indexOf('*') > -1;
+    }
+    return false;
   }
 
-  private _fileSizeValid(file: NtFile) {
-    return file.size <= this.maxSize * 1024 * 1024;
+  private _fileSizeValid(file: File) {
+    if (file) {
+      return file.size <= this.maxSize * 1024 * 1024;
+    }
+    return false;
   }
 
   private _onUploadBegin(file: NtFile) {
-    file.size = file.size;
     file.status = NtUploadStatus.SENDING;
   }
 
   private _onUploadProgress(event: HttpProgressEvent, file: NtFile) {
-    file.progress = Math.round(event.loaded / event.total * 100);
+    if (event.total && event.total > 0) {
+      file.progress = Math.round(event.loaded / event.total * 100);
+    }
   }
 
   private _onUploadDone(file: NtFile) {

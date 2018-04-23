@@ -15,13 +15,18 @@ import {
   NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
 } from '@ng-tangram/components/upload';
 
-import * as loadImage from 'blueimp-load-image';
-import { resolve } from 'path';
-import { Subject } from 'rxjs';
-import { max } from 'rxjs/operators/max';
-import { takeUntil } from 'rxjs/operators/takeUntil';
+
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 
+import loadImage from 'blueimp-load-image';
+
+// const loadImage = _loadImage;
+
+/**
+ * 压缩图片
+ */
 export function zipToImage(file: File, option: any): Promise<any> {
   return new Promise((resolve, reject) => {
     loadImage(file, (canvas: HTMLCanvasElement) => {
@@ -201,14 +206,17 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
     this.fileElement.nativeElement.value = '';
   }
 
-  removeFile(index: number) {
+  removeFile(file: NtPicture) {
     if (this.disabled) {
       return;
     }
-    const file = this.files.splice(index, 1).shift();
     file.uploader && file.uploader.unsubscribe();
-    const valueIndex = this._value.indexOf(file);
-    valueIndex > -1 && this._value.splice(valueIndex, 1);
+    const vindex = this._value.indexOf(file);
+    vindex > -1 && this._value.splice(vindex, 1);
+
+    const findex = this.files.indexOf(file);
+    findex > -1 && this.files.splice(vindex, 1);
+
     this.remove.next(file);
     this._onChange(this._value);
   }
@@ -227,20 +235,27 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
   }
 
   private _fileTypeValid(file: File) {
-    return this.accept.indexOf(file.type) > -1;
+    if (file) {
+      return this.accept.indexOf(file.type) > -1 || this.accept.indexOf('*') > -1;
+    }
+    return false;
   }
 
   private _fileSizeValid(file: File) {
-    return file.size <= this.maxSize * 1024 * 1024;
+    if (file) {
+      return file.size <= this.maxSize * 1024 * 1024;
+    }
+    return false;
   }
 
   private _onUploadBegin(file: NtPicture) {
-    file.size = file.size;
     file.status = NtUploadStatus.SENDING;
   }
 
   private _onUploadProgress(event: HttpProgressEvent, file: NtPicture) {
-    file.progress = Math.round(event.loaded / event.total * 100);
+    if (event.total && event.total > 0) {
+      file.progress = Math.round(event.loaded / event.total * 100);
+    }
   }
 
   private _onUploadDone(file: NtPicture) {
