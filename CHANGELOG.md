@@ -9,7 +9,7 @@
 * 变更 NtFormFieldControl 的 focus 方法不是必须实现的
 * 变更 NtFormModule 现在不会导出 FormsModule 和 ReactiveFormsModule 
 
-* fix 修复了在没有表单时 表单组件会报错的问题
+* bugfix 修复了在没有表单时 表单组件会报错的问题
 
 # 2018-04-12. 0.1.0-alpha.5
 
