@@ -1,3 +1,16 @@
+# 2018-04-23. 0.2.0-alpha.0
+
+* 新增 Component nt-progress
+* 新增 Component nt-file
+* 新增 Component nt-picture
+* 新增 Service upload
+
+* 变更 NtInput 删除了 width 属性
+* 变更 NtFormFieldControl 的 focus 方法不是必须实现的
+* 变更 NtFormModule 现在不会导出 FormsModule 和 ReactiveFormsModule 
+
+* fix 修复了在没有表单时 表单组件会报错的问题
+
 # 2018-04-12. 0.1.0-alpha.5
 
 * 改进 NtValidationTransformer 注入方式，现在可以支持全局配置默认 Transformer（需要用 NtFormsModule.forRoot() 方式在根模块 import）。
