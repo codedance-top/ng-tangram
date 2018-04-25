@@ -21,6 +21,9 @@ export class NtPopConfirmComponent {
   @Input('nt-popconfirm') title = '';
   @Input() position = 'top';
 
+  @Input() confirmText = '确认';
+  @Input() cancelText = '取消';
+
   @Output() confirm = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();
 

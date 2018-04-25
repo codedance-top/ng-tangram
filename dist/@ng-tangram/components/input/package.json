@@ -1,0 +1,6 @@
+{
+  "name": "@ng-tangram/components/input",
+  "typings": "./index.d.ts",
+  "main": "../bundles/input.umd.js",
+  "module": "../esm5/input.js",
+  "es2015": "../esm2015/input.js"}

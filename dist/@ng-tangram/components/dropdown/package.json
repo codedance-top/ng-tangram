@@ -1,0 +1,6 @@
+{
+  "name": "@ng-tangram/components/dropdown",
+  "typings": "./index.d.ts",
+  "main": "../bundles/dropdown.umd.js",
+  "module": "../esm5/dropdown.js",
+  "es2015": "../esm2015/dropdown.js"}

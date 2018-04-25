@@ -114,8 +114,7 @@ export class NtModal {
   private _getOverlayConfig(config: NtModalConfig): OverlayConfig {
     const positionStrategy = this._overlay.position()
       .global()
-      .centerHorizontally()
-      .top('100px');
+      .centerHorizontally();
 
     const overlayConfig = new OverlayConfig({
       hasBackdrop: config.hasBackdrop,
@@ -126,7 +125,9 @@ export class NtModal {
       minHeight: config.minHeight,
       maxWidth: config.maxWidth,
       maxHeight: config.maxHeight,
-      positionStrategy
+      positionStrategy: config.centerVertically
+        ? positionStrategy.centerVertically()
+        : positionStrategy.top(config.top)
     });
 
     return overlayConfig;

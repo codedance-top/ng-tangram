@@ -9,7 +9,6 @@ import { NtIconModule } from '@ng-tangram/components/icon';
 import { NT_PAGINATION_CONFIG, NtPaginationConfig } from '@ng-tangram/components/pagination';
 
 import { environment } from '../environments/environment';
-import { ApiInterceptor } from './api.interceptor';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 
@@ -45,8 +44,7 @@ const PAGINATION_CONFIG = {
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'zh' },
-    { provide: NT_PAGINATION_CONFIG, useValue: PAGINATION_CONFIG },
-    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+    { provide: NT_PAGINATION_CONFIG, useValue: PAGINATION_CONFIG }
   ],
   declarations: [AppComponent, PageNotFoundComponent],
   exports: [AppComponent]

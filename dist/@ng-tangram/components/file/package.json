@@ -1,0 +1,6 @@
+{
+  "name": "@ng-tangram/components/file",
+  "typings": "./index.d.ts",
+  "main": "../bundles/file.umd.js",
+  "module": "../esm5/file.js",
+  "es2015": "../esm2015/file.js"}

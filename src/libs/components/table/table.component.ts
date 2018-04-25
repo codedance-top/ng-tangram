@@ -20,7 +20,7 @@ import { NtColumnComponent, NtColumnHeaderDirective } from './column.directive';
   selector: 'nt-table',
   templateUrl: 'table.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     { provide: NT_COLUMN_TABLE, useExisting: NtTableComponent }
   ],

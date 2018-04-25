@@ -1,0 +1,6 @@
+{
+  "name": "@ng-tangram/components/popover",
+  "typings": "./index.d.ts",
+  "main": "../bundles/popover.umd.js",
+  "module": "../esm5/popover.js",
+  "es2015": "../esm2015/popover.js"}

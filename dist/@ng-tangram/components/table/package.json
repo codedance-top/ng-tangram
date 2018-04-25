@@ -1,0 +1,6 @@
+{
+  "name": "@ng-tangram/components/table",
+  "typings": "./index.d.ts",
+  "main": "../bundles/table.umd.js",
+  "module": "../esm5/table.js",
+  "es2015": "../esm2015/table.js"}

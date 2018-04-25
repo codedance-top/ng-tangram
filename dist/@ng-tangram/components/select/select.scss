@@ -1,0 +1,42 @@
+$nt-select-radius: $global-radius !default;
+$nt-select-background: $white !default;
+
+@mixin nt-select {
+
+  .nt-select {
+    position: relative;
+    display: block;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .nt-select-caret {
+    position: absolute;
+    right: .6rem;
+    top: .6rem;
+    pointer-events: none;
+    &::after {
+      display: inline-block;
+      color: $select-triangle-color;
+      content: '\25BC';
+    }
+  }
+
+  .nt-select-pane {
+    min-width: 100px;
+    border-radius: $nt-select-radius;
+    background-color: $nt-select-background;
+    max-height: 0px;
+    overflow-y: scroll;
+    transition: max-height .3s;
+    &.folded {
+      max-height: 256px;
+    }
+  }
+
+  .nt-select-pane nt-ant-icon {
+    margin-right: .3rem;
+  }
+}

@@ -1,3 +1,10 @@
+
+# 2018-04-24. 0.2.0-alpha.2
+* 变更 NtPopConfirmComponent 新增了 confirmText，cancelText
+* 变更 NtPictureComponent 新增了 preview 效果
+* 变更 NtColumnComponent 优化了 排序效果
+* bugfix 修复了操作表单数据源时（push） UI 不响应的问题
+
 # 2018-04-23. 0.2.0-alpha.0
 
 * 新增 Component nt-progress

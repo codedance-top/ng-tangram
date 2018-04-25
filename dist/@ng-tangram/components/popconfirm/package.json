@@ -1,0 +1,6 @@
+{
+  "name": "@ng-tangram/components/popconfirm",
+  "typings": "./index.d.ts",
+  "main": "../bundles/popconfirm.umd.js",
+  "module": "../esm5/popconfirm.js",
+  "es2015": "../esm2015/popconfirm.js"}

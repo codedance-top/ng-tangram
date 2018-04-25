@@ -1,0 +1,6 @@
+{
+  "name": "@ng-tangram/components/modal",
+  "typings": "./index.d.ts",
+  "main": "../bundles/modal.umd.js",
+  "module": "../esm5/modal.js",
+  "es2015": "../esm2015/modal.js"}

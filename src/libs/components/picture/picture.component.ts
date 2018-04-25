@@ -5,22 +5,22 @@ import {
 } from '@angular/common/http';
 import {
   ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit,
-  Optional, Output, Self, ViewChild, ViewEncapsulation
+  Optional, Output, Self, TemplateRef, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
+import { NtModal } from '@ng-tangram/components/modal';
 import {
   NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUpload, NtUploadControl,
   NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
 } from '@ng-tangram/components/upload';
 
-
+import loadImage from 'blueimp-load-image';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
-
-import loadImage from 'blueimp-load-image';
+import { VIEWPORT_RULER_PROVIDER } from '@angular/cdk/scrolling';
 
 // const loadImage = _loadImage;
 
@@ -131,11 +131,14 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
 
   @ViewChild('fileElement') fileElement: ElementRef;
 
+  @ViewChild('previewTemplate') previewTemplate: TemplateRef<any>;
+
   @Output() error = new EventEmitter<NtUploadControlError>();
 
   @Output() remove = new EventEmitter<NtPicture>();
 
   constructor(
+    private _modal: NtModal,
     uploader: NtUpload,
     @Self() @Optional() ngControl: NgControl) {
     super(uploader, ngControl);
@@ -219,6 +222,15 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
 
     this.remove.next(file);
     this._onChange(this._value);
+  }
+
+  preview(file: NtPicture) {
+    const modal = this._modal.open(this.previewTemplate, {
+      data: file,
+      centerVertically: true,
+      maxWidth: '90vw',
+      maxHeight: '90vh'
+    });
   }
 
   setDisabledState(isDisabled: boolean) {

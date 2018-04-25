@@ -1,0 +1,6 @@
+{
+  "name": "@ng-tangram/components/menu",
+  "typings": "./index.d.ts",
+  "main": "../bundles/menu.umd.js",
+  "module": "../esm5/menu.js",
+  "es2015": "../esm2015/menu.js"}

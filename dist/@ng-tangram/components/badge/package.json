@@ -1,0 +1,6 @@
+{
+  "name": "@ng-tangram/components/badge",
+  "typings": "./index.d.ts",
+  "main": "../bundles/badge.umd.js",
+  "module": "../esm5/badge.js",
+  "es2015": "../esm2015/badge.js"}

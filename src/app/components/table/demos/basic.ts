@@ -31,4 +31,10 @@ export class DemoTableBasicComponent {
     { id: 3, name: '王五', age: 18, address: '广州' },
     { id: 4, name: '赵六', age: 27, address: '大连' }
   ];
+
+  constructor() {
+    setTimeout(() => {
+      this.dataSource.push({ id: 5, name: '赵六', age: 27, address: '大连' });
+    }, 2000);
+  }
 }

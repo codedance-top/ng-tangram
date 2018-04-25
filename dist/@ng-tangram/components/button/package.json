@@ -1,0 +1,6 @@
+{
+  "name": "@ng-tangram/components/button",
+  "typings": "./index.d.ts",
+  "main": "../bundles/button.umd.js",
+  "module": "../esm5/button.js",
+  "es2015": "../esm2015/button.js"}

@@ -1,0 +1,6 @@
+{
+  "name": "@ng-tangram/components/icon",
+  "typings": "./index.d.ts",
+  "main": "../bundles/icon.umd.js",
+  "module": "../esm5/icon.js",
+  "es2015": "../esm2015/icon.js"}

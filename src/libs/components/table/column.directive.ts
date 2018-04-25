@@ -9,7 +9,7 @@ import { NT_COLUMN, NT_COLUMN_TABLE, NtColumn, NtColumnSortChange, NtColumnTable
   selector: 'nt-column-header',
   host: {
     'class': 'nt-column-header',
-    '[class.nt-column-sort]': 'column.sortable',
+    '[class.nt-column-sortable]': 'column.sortable',
     '[class.asc]': 'column.sort === "asc"',
     '[class.desc]': 'column.sort === "desc"',
     '(click)': 'column.sorting(true)'

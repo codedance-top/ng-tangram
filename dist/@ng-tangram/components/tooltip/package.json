@@ -1,0 +1,6 @@
+{
+  "name": "@ng-tangram/components/tooltip",
+  "typings": "./index.d.ts",
+  "main": "../bundles/tooltip.umd.js",
+  "module": "../esm5/tooltip.js",
+  "es2015": "../esm2015/tooltip.js"}

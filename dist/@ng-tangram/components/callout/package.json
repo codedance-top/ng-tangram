@@ -1,0 +1,6 @@
+{
+  "name": "@ng-tangram/components/callout",
+  "typings": "./index.d.ts",
+  "main": "../bundles/callout.umd.js",
+  "module": "../esm5/callout.js",
+  "es2015": "../esm2015/callout.js"}
