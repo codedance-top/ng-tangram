@@ -1,6 +1,0 @@
-{
-  "name": "@ng-tangram/components/forms",
-  "typings": "./index.d.ts",
-  "main": "../bundles/forms.umd.js",
-  "module": "../esm5/forms.js",
-  "es2015": "../esm2015/forms.js"}

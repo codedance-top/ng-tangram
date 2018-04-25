@@ -1,6 +1,0 @@
-{
-  "name": "@ng-tangram/components/picture",
-  "typings": "./index.d.ts",
-  "main": "../bundles/picture.umd.js",
-  "module": "../esm5/picture.js",
-  "es2015": "../esm2015/picture.js"}

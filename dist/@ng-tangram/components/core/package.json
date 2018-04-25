@@ -1,6 +1,0 @@
-{
-  "name": "@ng-tangram/components/core",
-  "typings": "./index.d.ts",
-  "main": "../bundles/core.umd.js",
-  "module": "../esm5/core.js",
-  "es2015": "../esm2015/core.js"}

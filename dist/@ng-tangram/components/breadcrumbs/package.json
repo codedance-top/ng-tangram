@@ -1,6 +1,0 @@
-{
-  "name": "@ng-tangram/components/breadcrumbs",
-  "typings": "./index.d.ts",
-  "main": "../bundles/breadcrumbs.umd.js",
-  "module": "../esm5/breadcrumbs.js",
-  "es2015": "../esm2015/breadcrumbs.js"}

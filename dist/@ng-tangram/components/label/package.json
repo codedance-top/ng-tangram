@@ -1,6 +1,0 @@
-{
-  "name": "@ng-tangram/components/label",
-  "typings": "./index.d.ts",
-  "main": "../bundles/label.umd.js",
-  "module": "../esm5/label.js",
-  "es2015": "../esm2015/label.js"}

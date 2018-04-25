@@ -1,6 +1,0 @@
-{
-  "name": "@ng-tangram/components/progress",
-  "typings": "./index.d.ts",
-  "main": "../bundles/progress.umd.js",
-  "module": "../esm5/progress.js",
-  "es2015": "../esm2015/progress.js"}

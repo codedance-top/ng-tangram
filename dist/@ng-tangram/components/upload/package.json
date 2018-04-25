@@ -1,6 +1,0 @@
-{
-  "name": "@ng-tangram/components/upload",
-  "typings": "./index.d.ts",
-  "main": "../bundles/upload.umd.js",
-  "module": "../esm5/upload.js",
-  "es2015": "../esm2015/upload.js"}

@@ -1,6 +1,0 @@
-{
-  "name": "@ng-tangram/animate/fading",
-  "typings": "./index.d.ts",
-  "main": "../bundles/fading.umd.js",
-  "module": "../esm5/fading.js",
-  "es2015": "../esm2015/fading.js"}

@@ -1,6 +1,0 @@
-{
-  "name": "@ng-tangram/components/select",
-  "typings": "./index.d.ts",
-  "main": "../bundles/select.umd.js",
-  "module": "../esm5/select.js",
-  "es2015": "../esm2015/select.js"}

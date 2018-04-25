@@ -1,6 +1,0 @@
-{
-  "name": "@ng-tangram/components/pagination",
-  "typings": "./index.d.ts",
-  "main": "../bundles/pagination.umd.js",
-  "module": "../esm5/pagination.js",
-  "es2015": "../esm2015/pagination.js"}

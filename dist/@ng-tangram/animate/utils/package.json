@@ -1,6 +1,0 @@
-{
-  "name": "@ng-tangram/animate/utils",
-  "typings": "./index.d.ts",
-  "main": "../bundles/utils.umd.js",
-  "module": "../esm5/utils.js",
-  "es2015": "../esm2015/utils.js"}

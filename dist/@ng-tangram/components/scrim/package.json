@@ -1,6 +1,0 @@
-{
-  "name": "@ng-tangram/components/scrim",
-  "typings": "./index.d.ts",
-  "main": "../bundles/scrim.umd.js",
-  "module": "../esm5/scrim.js",
-  "es2015": "../esm2015/scrim.js"}
