@@ -179,7 +179,7 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
       let loadImageOptions = { maxWidth: 1080, orientation: true, canvas: true };
       const data = await zipToImage(file, loadImageOptions);
       ntFile.thumbnail = data.thumbnail;
-      this.files.push(ntFile);
+      const count = this.files.push(ntFile);
 
       const handlers = {
         begin: () => this._onUploadBegin(ntFile),
@@ -218,7 +218,7 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
     vindex > -1 && this._value.splice(vindex, 1);
 
     const findex = this.files.indexOf(file);
-    findex > -1 && this.files.splice(vindex, 1);
+    findex > -1 && this.files.splice(findex, 1);
 
     this.remove.next(file);
     this._onChange(this._value);
@@ -229,7 +229,9 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
       data: file,
       centerVertically: true,
       maxWidth: '90vw',
-      maxHeight: '90vh'
+      maxHeight: '90vh',
+      width: 'auto',
+      transparent: true
     });
   }
 

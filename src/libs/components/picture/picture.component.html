@@ -1,6 +1,10 @@
 <input #fileElement type="file" [accept]="accept" (change)="_fileChanged()">
-<div class="nt-picture-item" *ngFor="let file of files" [style.backgroundImage]="'url(' + file.thumbnail + ')'">
-  <div class="nt-picture-action" *ngIf="file.status >= 2 && !disabled">
+<div class="nt-picture-item"
+  *ngFor="let file of files"
+  [style.backgroundImage]="'url(' + file.thumbnail + ')'"
+  [class.nt-upload-error]="file.status === 3"
+  [class.nt-upload-success]="file.status === 2">
+  <div class="nt-picture-action" *ngIf="file.status !== 0 && file.status !== 1 && !disabled">
     <nt-ant-icon type="search1" (click)="preview(file)"></nt-ant-icon>
     <nt-ant-icon type="delete" (click)="removeFile(file)"></nt-ant-icon>
   </div>

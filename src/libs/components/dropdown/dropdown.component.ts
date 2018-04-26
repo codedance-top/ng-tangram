@@ -1,11 +1,12 @@
 import { OverlayOrigin } from '@angular/cdk/overlay';
 import {
-  AfterContentInit, ChangeDetectorRef, Component, ContentChild, ElementRef, EventEmitter, Input,
+  AfterContentInit, Component, ContentChild, ElementRef, Input,
   Renderer2, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import {
   NtOverlayComponent, NtOverlayPosition, NtOverlayTriggerType
 } from '@ng-tangram/components/core';
+import { NtDropdownPaneComponent } from './dropdown-pane.component';
 
 @Component({
   selector: 'nt-dropdown, [nt-dropdown]',
@@ -26,6 +27,8 @@ export class NtDropdownComponent {
   @Input() trigger: NtOverlayTriggerType = 'hover';
 
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
+
+  @ContentChild(NtDropdownPaneComponent) pane: NtDropdownPaneComponent;
 
   constructor(
     private _renderer: Renderer2,

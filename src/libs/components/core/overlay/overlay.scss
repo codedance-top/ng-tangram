@@ -2,8 +2,9 @@
 
 $nt-overlay-container-padding: 3px !default;
 $nt-overlay-container-arrow: 8px !default;
-$nt-overlay-container-arrow-offset: $nt-overlay-container-padding - ($nt-overlay-container-arrow / 2) !default;
+$nt-overlay-container-arrow-cover: $nt-overlay-container-padding - ($nt-overlay-container-arrow / 2) !default;
 $nt-overlay-container-arrow-color: #FFF !default;
+$nt-overlay-container-arrow-offset: $dropdown-padding * 1.5 !default;
 $nt-overlay-radius: $global-radius !default;
 
 @mixin overlay-container-arrow {
@@ -18,21 +19,21 @@ $nt-overlay-radius: $global-radius !default;
     transform: rotate(-135deg);
   }
 
-  &.start-bottom-start-top .nt-overlay-arrow { top: $nt-overlay-container-arrow-offset; left: $dropdown-padding;  }
-  &.center-bottom-center-top .nt-overlay-arrow { top: $nt-overlay-container-arrow-offset; left: 50%; margin-left: -($nt-overlay-container-arrow / 2); }
-  &.end-bottom-end-bottom .nt-overlay-arrow { top: $nt-overlay-container-arrow-offset; right: $dropdown-padding; }
+  &.start-bottom-start-top .nt-overlay-arrow { top: $nt-overlay-container-arrow-cover; left: $nt-overlay-container-arrow-offset;  }
+  &.center-bottom-center-top .nt-overlay-arrow { top: $nt-overlay-container-arrow-cover; left: 50%; margin-left: -($nt-overlay-container-arrow / 2); }
+  &.end-bottom-end-top .nt-overlay-arrow { top: $nt-overlay-container-arrow-cover; right: $nt-overlay-container-arrow-offset; }
 
-  &.start-top-start-bottom .nt-overlay-arrow { bottom: $nt-overlay-container-arrow-offset; left: $dropdown-padding; }
-  &.center-top-center-bottom .nt-overlay-arrow { bottom: $nt-overlay-container-arrow-offset; left: 50%; margin-left: -($nt-overlay-container-arrow / 2); }
-  &.end-top-end-bottom .nt-overlay-arrow { bottom: $nt-overlay-container-arrow-offset; right: $dropdown-padding; }
+  &.start-top-start-bottom .nt-overlay-arrow { bottom: $nt-overlay-container-arrow-cover; left: $nt-overlay-container-arrow-offset; }
+  &.center-top-center-bottom .nt-overlay-arrow { bottom: $nt-overlay-container-arrow-cover; left: 50%; margin-left: -($nt-overlay-container-arrow / 2); }
+  &.end-top-end-bottom .nt-overlay-arrow { bottom: $nt-overlay-container-arrow-cover; right: $nt-overlay-container-arrow-offset; }
 
-  &.end-top-start-top .nt-overlay-arrow { right: $nt-overlay-container-arrow-offset; top: 50%; margin-top: -($nt-overlay-container-arrow / 2);  }
-  &.end-center-start-center .nt-overlay-arrow { right: $nt-overlay-container-arrow-offset; top: $dropdown-padding; }
-  &.end-bottom-start-bottom .nt-overlay-arrow { right: $nt-overlay-container-arrow-offset; bottom: $dropdown-padding; }
+  &.end-top-start-top .nt-overlay-arrow { right: $nt-overlay-container-arrow-cover; top: 50%; margin-top: -($nt-overlay-container-arrow / 2);  }
+  &.end-center-start-center .nt-overlay-arrow { right: $nt-overlay-container-arrow-cover; top: $nt-overlay-container-arrow-offset; }
+  &.end-bottom-start-bottom .nt-overlay-arrow { right: $nt-overlay-container-arrow-cover; bottom: $nt-overlay-container-arrow-offset; }
 
-  &.start-top-end-top .nt-overlay-arrow { left: $nt-overlay-container-arrow-offset; top: $dropdown-padding; }
-  &.start-center-end-center .nt-overlay-arrow { left: $nt-overlay-container-arrow-offset; top: 50%; margin-top: -($nt-overlay-container-arrow / 2); }
-  &.start-bottom-end-bottom .nt-overlay-arrow { left: $nt-overlay-container-arrow-offset; bottom: $dropdown-padding; }
+  &.start-top-end-top .nt-overlay-arrow { left: $nt-overlay-container-arrow-cover; top: $nt-overlay-container-arrow-offset; }
+  &.start-center-end-center .nt-overlay-arrow { left: $nt-overlay-container-arrow-cover; top: 50%; margin-top: -($nt-overlay-container-arrow / 2); }
+  &.start-bottom-end-bottom .nt-overlay-arrow { left: $nt-overlay-container-arrow-cover; bottom: $nt-overlay-container-arrow-offset; }
 }
 
 @mixin overlay-container {

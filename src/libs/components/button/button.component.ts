@@ -13,7 +13,9 @@ export declare type NtButtonSize = '' | 'tiny' | 'small' | 'large' | 'medium';
   encapsulation: ViewEncapsulation.None,
   host: {
     '[class]': '["button", color, style, size, class].join(" ")',
-    '[class.expanded]': 'expanded'
+    '[class.expanded]': 'expanded',
+    // '[class.clicked]': '_clicked',
+    // '(click)': '_ripple()'
   }
 })
 export class NtButtonComponent {
@@ -21,6 +23,8 @@ export class NtButtonComponent {
   private _style: NtButtonStyle = '';
 
   private _expanded: boolean = false;
+
+  _clicked = false;
 
   @Input() class: string = '';
 
@@ -46,4 +50,9 @@ export class NtButtonComponent {
   private _validStyle(value: string) {
     return ['', 'hollow', 'clear'].indexOf(value) > -1;
   }
+
+  // _ripple() {
+  //   this._clicked = true;
+  //   setTimeout(() => this._clicked = false, 500);
+  // }
 }

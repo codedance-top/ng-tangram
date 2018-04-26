@@ -30,6 +30,9 @@ export function throwNtModalContentAlreadyAttachedError() {
   ],
   host: {
     'class': 'reveal',
+    '[class.reveal-transparent]': '_config.transparent',
+    '[style.width]': '_config.width',
+    '[style.height]': '_config.height',
     '[@fade]': 'state',
     '(@fade.start)': 'onAnimationStart($event)',
     '(@fade.done)': 'onAnimationDone($event)',

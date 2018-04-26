@@ -174,7 +174,7 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
     vindex > -1 && this._value.splice(vindex, 1);
 
     const findex = this.files.indexOf(file);
-    findex > -1 && this.files.splice(vindex, 1);
+    findex > -1 && this.files.splice(findex, 1);
 
     this.remove.next(file);
     this._onChange(this._value);

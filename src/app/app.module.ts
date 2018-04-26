@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 
-// registerLocaleData(locale);
+registerLocaleData(locale);
 
 const ROUTES: Routes = [
   { path: '', redirectTo: 'components', pathMatch: 'full' },

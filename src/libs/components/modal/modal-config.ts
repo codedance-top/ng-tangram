@@ -3,9 +3,9 @@ import { ComponentType } from '@angular/cdk/portal';
 
 export class NtModalConfig<T = any> {
   id?: string;
-  // width?: string = '400px';
-  // height?: string = '600px';
   top?: string = '80px';
+  width?: number | string = '600px';
+  height?: number | string = 'auto';
   minWidth?: number | string;
   minHeight?: number | string;
   maxWidth?: number | string = '80vw';
@@ -18,4 +18,6 @@ export class NtModalConfig<T = any> {
   hasBackdrop?: boolean = true;
   backdropClass?: string = 'dark-backdrop';
   centerVertically?: boolean = false;
+  transparent?: boolean = false;
+
 }

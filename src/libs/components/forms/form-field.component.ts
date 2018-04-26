@@ -1,5 +1,5 @@
 import { transition, trigger } from '@angular/animations';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild,
   ContentChildren, ElementRef, Input, NgZone, OnChanges, OnDestroy, OnInit, Optional,
@@ -17,14 +17,15 @@ import { filter, map, startWith, switchMap, take, takeUntil } from 'rxjs/operato
 import { Subject } from 'rxjs/Subject';
 
 import { NtFormFieldControl } from './form-field-control';
+import { ReturnStatement } from '@angular/compiler/src/output/output_ast';
 
 export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
 
 @Component({
   selector: 'nt-form-field',
   template: `
-    <label class="nt-form-label" [class.required]="required" *ngIf="labelVisible">{{label}}</label>
-    <div class="nt-form-group">
+    <label class="nt-form-label" [ngStyle]="_labelStyles" [class.required]="required" *ngIf="labelVisible">{{label}}</label>
+    <div class="nt-form-group" [ngStyle]="_groupStyles">
       <div class="nt-form-control">
         <ng-content></ng-content>
       </div>
@@ -44,15 +45,25 @@ export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
   host: {
     'class': 'nt-form-field',
     '[class.nt-form-error]': '_invalid',
-    '[class.nt-form-horizontal]': 'horizontal'
+    '[class.nt-form-horizontal]': 'horizontal',
+    // '[style.paddingLeft]': '_styles'
   }
 })
 export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
+  private readonly _destroy = new Subject<void>();
+
   /** 表单可见性 */
   private _labelVisible = true;
 
-  private readonly _destroy = new Subject<void>();
+  private _labelWidth;
+
+  private _orientation;
+
+  /** 表单宽度 （只在 horizontal 模式下起作用） */
+  _labelStyles: any = {};
+
+  _groupStyles: any = {};
 
   _invalid = false;
 
@@ -61,6 +72,22 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   @Input()
   set labelVisible(value: boolean) { this._labelVisible = coerceBooleanProperty(value); }
   get labelVisible() { return this._labelVisible; }
+
+  @Input()
+  set labelWidth(value: number) {
+    this._labelWidth = coerceNumberProperty(value, 0);
+    this._setHorizontalStyles();
+
+  }
+  get labelWidth() { return this._labelStyles.width || 120; }
+
+
+  @Input()
+  set orientation(value: NtFormFieldOrientation) {
+    this._orientation = value;
+    this._setHorizontalStyles();
+  }
+  get orientation() { return this._orientation; }
 
   get horizontal() { return this.orientation === 'horizontal'; }
 
@@ -82,14 +109,6 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   }
 
   get errors() { return this.control.ngControl ? this.control.ngControl.errors : null; }
-
-  @Input() orientation: NtFormFieldOrientation;
-
-  /** 表单正确时的样式 */
-  // @Input() validClass: string;
-
-  /** 表单错误时的样式 */
-  // @Input() invalidClass: string;
 
   /** 表单模型 */
   @ContentChild(NtFormFieldControl) control: NtFormFieldControl<any>;
@@ -126,6 +145,11 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
     }
   }
 
+  ngOnDestroy() {
+    this._destroy.next();
+    this._destroy.complete();
+  }
+
   private _validate() {
     if (this.ngControl) {
       this._invalid = !!this.ngControl.invalid;
@@ -133,8 +157,13 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    this._destroy.next();
-    this._destroy.complete();
+  private _setHorizontalStyles() {
+    if (this._labelWidth > 0 && this.horizontal) {
+      this._labelStyles['width.px'] = this._labelWidth;
+      this._groupStyles['margin-left.px'] = this._labelWidth;
+    } else {
+      delete this._labelStyles['width.px'];
+      delete this._groupStyles['margin-left.px'];
+    }
   }
 }

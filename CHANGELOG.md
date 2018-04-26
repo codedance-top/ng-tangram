@@ -1,3 +1,19 @@
+# 2018-04-26. 0.2.0-alpha.4
+
+* 变更 nt-dropdown-pane 增加 arrow 属性，可以设定是否显示箭头
+* 变更 nt-form-field 增加 labelWidth 属性，可以在 横向表单 设定 label 占位宽度
+* 变更 form scss 属性 $form-horizontal-label-width -> $nt-form-horizontal-width
+* 变更 NtModalConfig 增加 width 和 height 属性 并且设定默认宽度（600px）
+* 变更 nt-picture 增加 错误和 成功效果
+
+* bugfix 修复了 nt-overlay 的position 为 bottomRight 时箭头定位错误的问题
+* bugfix 修复了 nt-file 和 nt-picture 删除索引不正确的问题
+
+
+# 2018-04-25. 0.2.0-alpha.3
+
+* 变更 nt-forms-control 的样式不再提供 margin
+* 变更 NtModal 增加 transparent 属性， 可以设置背景色为透明
 
 # 2018-04-24. 0.2.0-alpha.2
 * 变更 NtPopConfirmComponent 新增了 confirmText，cancelText

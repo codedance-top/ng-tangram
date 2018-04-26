@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <a nt-dropdown>
       dropdown
-      <nt-dropdown-pane>
+      <nt-dropdown-pane arrow>
         下拉菜单内容
       </nt-dropdown-pane>
     </a>

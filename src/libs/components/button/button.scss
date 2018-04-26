@@ -1,20 +1,59 @@
 
 
-@keyframes nt-button-click-anim {
-  0% {
-    box-shadow: 0 0 0 2px lighten(get-color(primary), 25%);
-  }
+// $nt-button-ripple-shadow: 0 0 0 2px !default;
+// $nt-button-ripple-shadow-color: get-color(primary) !default;
+// $nt-button-ripple-shadow-lighten: .4 !default;
+// $nt-button-ripple-shadow-end: 0 0 0 6px transparent !default;
 
-  100% {
-    box-shadow: 0 0 0 5px transparent;
-  }
-}
+// @keyframes nt-button-ripple {
+//   0% {
+//     box-shadow: $nt-button-ripple-shadow rgba($nt-button-ripple-shadow-color, $nt-button-ripple-shadow-lighten);
+//   }
+//   100% {
+//     box-shadow: $nt-button-ripple-shadow-end;
+//   }
+// }
+
+// @mixin nt-button-ripple (
+//   $name,
+//   $shadow: $nt-button-ripple-shadow,
+//   $shadow-end: $nt-button-ripple-shadow-end,
+//   $color: $nt-button-ripple-shadow-color,
+//   $lighten: $nt-button-ripple-shadow-lighten) {
+
+//   $anim-name: nt-button-ripple-#{$name};
+
+//   @keyframes #{$anim-name} {
+//     0% {
+//       box-shadow: $shadow rgba($color, $lighten);
+//     }
+//     100% {
+//       box-shadow: $shadow-end;
+//     }
+//   }
+
+//   animation: $anim-name .5s 1;
+// }
 
 @mixin nt-button {
 
-  button:focus {
+  button {
     outline: none;
-    z-index: 1;
-    // animation: nt-button-click-anim .5s 1;
   }
+
+  // .button:not(.clear).clicked {
+  //   animation: nt-button-ripple .5s 1;
+  //   @each $name, $color in $button-palette {
+  //     &.#{$name} {
+  //       @include nt-button-ripple($name: $name, $color: $color);
+  //     }
+  //   }
+  // }
+  // .button-group:not(.clear) {
+  //   @each $name, $color in $button-palette {
+  //     &.#{$name} .button.clicked {
+  //       @include nt-button-ripple($name: $name, $color: $color);
+  //     }
+  //   }
+  // }
 }

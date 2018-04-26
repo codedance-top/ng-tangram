@@ -1,5 +1,6 @@
 import { CdkConnectedOverlay, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import { Component, ElementRef, Host, Input, Renderer2, ViewEncapsulation } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 export declare type NtDropdownPaneSize = '' | 'tiny' | 'small' | 'large';
 
@@ -12,7 +13,14 @@ export declare type NtDropdownPaneSize = '' | 'tiny' | 'small' | 'large';
   }
 })
 export class NtDropdownPaneComponent {
+
+  private _arrow = false;
+
   @Input() size: NtDropdownPaneSize = 'small';
 
   @Input() class: string = '';
+
+  @Input()
+  set arrow(value: boolean) { this._arrow = coerceBooleanProperty(value); }
+  get arrow() { return this._arrow; }
 }

@@ -12,6 +12,7 @@ import 'rxjs/add/operator/filter';
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()" ntFormAutofocus>
         <nt-form-field label="用户名">
           <input ntInput type="text" name="username" formControlName="username" placeholder="用户名">
+          <p class="help-text">232121321321321</p>
         </nt-form-field>
         <nt-form-field label="密码">
           <input ntInput type="password" name="password" formControlName="password" placeholder="密码">

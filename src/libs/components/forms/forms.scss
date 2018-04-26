@@ -1,7 +1,3 @@
-$input-placeholder-color: $dark-gray !default;
-$input-transition: background-color .6s, box-shadow .6s !default;
-$input-padding: $form-spacing / 2 $form-spacing;
-
 $nt-input-shadow-invalid: inset 0 1px 2px rgba(get-color(alert), .1) !default;
 $nt-input-shadow-valid: inset 0 1px 2px rgba(get-color(success), .1) !default;
 $nt-input-shadow-warning: inset 0 1px 2px rgba(get-color(warning), .1) !default;
@@ -18,7 +14,7 @@ $nt-input-background-invalid: $nt-input-color-invalid !default;
 $nt-input-background-valid: $nt-input-color-valid !default;
 $nt-input-background-warning: $nt-input-color-warning !default;
 
-$form-horizontal-label-width: 120px !default;
+$nt-form-horizontal-width: 120px !default;
 
 @mixin nt-form-control {
 
@@ -50,14 +46,14 @@ $form-horizontal-label-width: 120px !default;
   //   }
   // }
 
-  margin: 0 0 $form-spacing;
+  // margin: 0 0 $form-spacing;
 
   & > input {
     background-color: $input-background;
     cursor: auto !important;
     padding-right: 2rem;
     text-overflow: ellipsis;
-    margin: 0;
+    // margin: 0;
   }
 
   &.focus input {
@@ -123,20 +119,19 @@ $form-horizontal-label-width: 120px !default;
 
 @mixin nt-form-horizontal {
 
-  $input-height: ($input-font-size * unitless-calc($input-line-height))+(get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
-
-  padding-left: $form-horizontal-label-width;
   position: relative;
 
   .nt-form-label {
     vertical-align: top;
     position: absolute;
     left: 0;
-    width: $form-horizontal-label-width;
-    line-height: $input-height;
+    width: $nt-form-horizontal-width;
+    padding: $input-padding - rem-calc(1);
     margin-bottom: 0;
-    padding-right: 1rem;
     text-align: right;
+  }
+  .nt-form-group {
+    margin-left: $nt-form-horizontal-width;
   }
 }
 

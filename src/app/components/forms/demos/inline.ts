@@ -7,13 +7,15 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
   <div class="grid-x grid-margin-x">
     <div class="cell medium-6 large-4">
       <form (ngSubmit)="onLogin()">
-        <nt-form-field label="用户名">
+        <nt-form-field label="用户名" labelWidth="100" orientation="horizontal">
           <input ntInput type="text" name="username" placeholder="用户名">
         </nt-form-field>
-        <nt-form-field label="密码">
+        <nt-form-field label="密码" labelWidth="100"  orientation="horizontal">
           <textarea ntInput name="password" [(ngModel)]="textarea" placeholder="密码" required></textarea>
         </nt-form-field>
-        <button type="submit" class="button expanded">Login</button>
+        <nt-form-field labelVisible="false" labelWidth="100"  orientation="horizontal">
+          <button type="submit" class="button expanded">Login</button>
+        </nt-form-field>
       </form>
     </div>
   </div>

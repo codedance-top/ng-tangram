@@ -11,16 +11,18 @@ $button-color-alt: $white;
 $badge-color-alt: $white;
 $label-color-alt: $white;
 
-@include ng-tangram;
+$table-padding: .5rem 1.25rem;
 
-@include foundation-prototype-classes;
 @include foundation-global-styles;
+@include foundation-prototype-classes;
 @include foundation-xy-grid-classes;
 @include foundation-visibility-classes;
 @include foundation-float-classes;
 
 @include foundation-table;
 @include foundation-top-bar;
+
+@include ng-tangram;
 
 body {
   font-family: $body-font-family;
