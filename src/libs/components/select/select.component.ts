@@ -47,7 +47,7 @@ export class NtSelectChange {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'nt-select nt-form-control',
+    'class': 'nt-select nt-form-control nt-has-symbol',
     '(resize)': 'onResize()',
     '[class.focus]': 'overlay.isOpen'
   }

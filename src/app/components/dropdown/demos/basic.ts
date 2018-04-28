@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <a nt-dropdown>
       dropdown
       <nt-dropdown-pane arrow>
-        下拉菜单内容
+        下拉菜单内容下拉菜单内容下拉菜单内容下拉菜单内容下拉菜单内容下拉菜单内容下拉菜单内容下拉菜单内容
       </nt-dropdown-pane>
     </a>
   `

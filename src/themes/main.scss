@@ -4,14 +4,16 @@
 // @import 'settings';
 @import 'navbar';
 @import 'markdown';
-@import '~foundation-sites/scss/foundation';
-@import '../libs/components/styles';
 
 $button-color-alt: $white;
 $badge-color-alt: $white;
 $label-color-alt: $white;
-
 $table-padding: .5rem 1.25rem;
+// $input-font-size: rem-calc(26);
+// $form-label-font-size: rem-calc(20);
+@import '~foundation-sites/scss/foundation';
+@import '../libs/components/styles';
+
 
 @include foundation-global-styles;
 @include foundation-prototype-classes;

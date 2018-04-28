@@ -7,6 +7,6 @@ export class NtFormErrorPipe implements PipeTransform {
   constructor(@Inject(NT_VALIDATION_TRANSFOMER) private _transformer: NtValidationTransformer) { }
 
   transform(value: ValidationErrors, ...args: any[]) {
-    return this._transformer.transform(value, args[0]);
+    return this._transformer.transform(value, ...args);
   }
 }

@@ -1,8 +1,10 @@
 
+# 2018-04-28
+$nt-overlay-container-padding 样式效果使用 js 实现 ，增加相关组件属性
 
 # 2018-04-12
-bug: 表单模块验证信息适配器不能在根模块注入的问题。
-bug: loading 样式冲突。
+bug: 表单模块验证信息适配器不能在根模块注入的问题。 --- clear
+bug: loading 样式冲突。  --- clear
 
 # 0.x.x 计划
 NtCollapseComponent

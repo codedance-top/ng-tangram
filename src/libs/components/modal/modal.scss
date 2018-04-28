@@ -52,6 +52,9 @@ $nt-modal-header-font-size: rem-calc(16) !default;
     &.reveal-transparent {
       background-color: transparent !important;
       border: 0 !important;
+      .close-button {
+        color: $white;
+      }
     }
   }
   .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {

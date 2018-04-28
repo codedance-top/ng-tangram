@@ -7,10 +7,19 @@
     background-color: $dropdown-background;
     font-size: $dropdown-font-size;
     display: block;
+
+    &.autosize {
+      width: auto;
+      min-width: $dropdown-width;
+    }
   }
   @each $name, $size in $dropdown-sizes {
     .dropdown-pane.#{$name} {
       width: $size;
+      &.autosize {
+        width: auto;
+        min-width: $size;
+      }
     }
   }
 }

@@ -14,7 +14,11 @@ $nt-input-background-invalid: $nt-input-color-invalid !default;
 $nt-input-background-valid: $nt-input-color-valid !default;
 $nt-input-background-warning: $nt-input-color-warning !default;
 
-$nt-form-horizontal-width: 120px !default;
+$nt-input-symbol-offset: $input-font-size + $form-spacing !default;
+
+$nt-form-label-width: 120px !default;
+$nt-form-label-line-height: $form-label-font-size + rem-calc(4) !default;
+$nt-form-label-padding-horizontal: $form-spacing !default;
 
 @mixin nt-form-control {
 
@@ -48,12 +52,21 @@ $nt-form-horizontal-width: 120px !default;
 
   // margin: 0 0 $form-spacing;
 
+  font-size: $input-font-size;
+
   & > input {
     background-color: $input-background;
     cursor: auto !important;
-    padding-right: 2rem;
     text-overflow: ellipsis;
-    // margin: 0;
+
+
+    &.nt-has-symbol {
+      padding-right: $nt-input-symbol-offset;
+    }
+
+    [pseudo="-webkit-input-placeholder"] {
+      background-color: greenyellow;
+    }
   }
 
   &.focus input {
@@ -85,6 +98,7 @@ $nt-form-horizontal-width: 120px !default;
   textarea:focus,
   input:focus,
   .nt-form-control.focus input {
+    border-color: $color;
     box-shadow: $input-shadow-focus;
   }
 }
@@ -121,17 +135,20 @@ $nt-form-horizontal-width: 120px !default;
 
   position: relative;
 
+  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
+
   .nt-form-label {
     vertical-align: top;
     position: absolute;
     left: 0;
-    width: $nt-form-horizontal-width;
-    padding: $input-padding - rem-calc(1);
+    width: $nt-form-label-width;
+    line-height: $nt-form-label-line-height;
+    padding: ($height - $nt-form-label-line-height) / 2 $nt-form-label-padding-horizontal;
     margin-bottom: 0;
     text-align: right;
   }
   .nt-form-group {
-    margin-left: $nt-form-horizontal-width;
+    margin-left: $nt-form-label-width;
   }
 }
 
@@ -158,7 +175,6 @@ $nt-form-horizontal-width: 120px !default;
       $input-shadow-focus: $nt-input-shadow-valid-focus
     );
   }
-
   .nt-form-warning {
     @include nt-form-validate(
       $color: $nt-input-background-warning,

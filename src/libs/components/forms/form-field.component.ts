@@ -17,9 +17,8 @@ import { filter, map, startWith, switchMap, take, takeUntil } from 'rxjs/operato
 import { Subject } from 'rxjs/Subject';
 
 import { NtFormFieldControl } from './form-field-control';
-import { ReturnStatement } from '@angular/compiler/src/output/output_ast';
-
-export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
+import { NtFormLabelWidthDirective } from './form-label-width.directive';
+import { NtFormOrientation, NtFormOrientationDirective } from './form-orientation.directive';
 
 @Component({
   selector: 'nt-form-field',
@@ -29,8 +28,8 @@ export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
       <div class="nt-form-control">
         <ng-content></ng-content>
       </div>
-      <span class="form-error is-visible" *ngIf="_invalid" [@fade]="_invalid">
-        {{ (errors || {}) | ntFormError :label }}
+      <span class="form-error is-visible" *ngIf="_invalid && errors" [@fade]="_invalid">
+        {{ errors | ntFormError:label:messages }}
       </span>
     </div>
   `,
@@ -45,8 +44,7 @@ export declare type NtFormFieldOrientation = 'vertical' | 'horizontal';
   host: {
     'class': 'nt-form-field',
     '[class.nt-form-error]': '_invalid',
-    '[class.nt-form-horizontal]': 'horizontal',
-    // '[style.paddingLeft]': '_styles'
+    '[class.nt-form-horizontal]': 'horizontal'
   }
 })
 export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
@@ -59,6 +57,10 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   private _labelWidth;
 
   private _orientation;
+
+  private _selfLabelWidth = false;
+
+  private _selfOrientation = false;
 
   /** 表单宽度 （只在 horizontal 模式下起作用） */
   _labelStyles: any = {};
@@ -76,15 +78,17 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   @Input()
   set labelWidth(value: number) {
     this._labelWidth = coerceNumberProperty(value, 0);
+    this._selfLabelWidth = this._labelWidth > 0;
     this._setHorizontalStyles();
-
   }
-  get labelWidth() { return this._labelStyles.width || 120; }
+  get labelWidth() { return this._labelWidth || 120; }
 
+  @Input() messages: { [key: string]: string };
 
   @Input()
-  set orientation(value: NtFormFieldOrientation) {
+  set orientation(value: NtFormOrientation) {
     this._orientation = value;
+    this._selfOrientation = true;
     this._setHorizontalStyles();
   }
   get orientation() { return this._orientation; }
@@ -135,7 +139,26 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
     private _ngZone: NgZone,
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() private _parentForm: NgForm,
-    @Optional() private _parentFormGroup: FormGroupDirective) {
+    @Optional() private _parentFormGroup: FormGroupDirective,
+    @Optional() private _formLabelWidth: NtFormLabelWidthDirective,
+    @Optional() private _formOrientation: NtFormOrientationDirective) {
+
+    if (_formLabelWidth) {
+      _formLabelWidth.widthChange.pipe(takeUntil(this._destroy), filter(() => !this._selfLabelWidth))
+        .subscribe(width => {
+          this._labelWidth = width;
+          this._setHorizontalStyles();
+        });
+    }
+
+    if (_formOrientation) {
+      _formOrientation.orientationChange.pipe(takeUntil(this._destroy), filter(() => !this._selfOrientation))
+        .subscribe(orientation => {
+          this._orientation = orientation;
+          this._setHorizontalStyles();
+        });
+    }
+
     this.statusChanges.pipe(takeUntil(this._destroy)).subscribe(() => this._validate());
   }
 
@@ -158,9 +181,9 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   }
 
   private _setHorizontalStyles() {
-    if (this._labelWidth > 0 && this.horizontal) {
-      this._labelStyles['width.px'] = this._labelWidth;
-      this._groupStyles['margin-left.px'] = this._labelWidth;
+    if (this.labelWidth > 0 && this.horizontal) {
+      this._labelStyles['width.px'] = this.labelWidth;
+      this._groupStyles['margin-left.px'] = this.labelWidth;
     } else {
       delete this._labelStyles['width.px'];
       delete this._groupStyles['margin-left.px'];

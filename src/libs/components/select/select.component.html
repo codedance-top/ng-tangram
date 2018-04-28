@@ -1,4 +1,4 @@
-<input #inputElement type="text"
+<input #inputElement type="text" class="nt-has-symbol"
   (focus)="onFocus()" (blur)="onBlur()" (window:resize)="onResize()"
   [readonly]="!filter" [placeholder]="placeholder" [disabled]="disabled"
   [value]="filter && focused ? '' : triggerValue">

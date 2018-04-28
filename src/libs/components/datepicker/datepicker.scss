@@ -2,14 +2,20 @@ $nt-datepicker-background-selected: get-color(primary) !default;
 $nt-datepicker-background-active: $light-gray !default;
 $nt-datepicker-block-width: 2.5em !default;
 $nt-datepicker-block-padding: rem-calc(4 5) !default;
+
 $nt-datepicker-color: $black !default;
 $nt-datepicker-color-selected: $white !default;
 $nt-datepicker-color-hover: get-color(primary) !default;
 $nt-datepicker-color-disabled: $medium-gray !default;
+
 $nt-datepicker-font-size: rem-calc(12) !default;
+
 $nt-datepicker-pane-radius: $global-radius !default;
 $nt-datepicker-pane-padding: rem-calc(4) !default;
 $nt-datepicker-pane-background: $white !default;
+
+$nt-datepicker-symbol-padding: $form-spacing / 2 !default;
+$nt-datepicker-symbol-color: $dark-gray !default;
 
 @mixin nt-datepicker-table {
   table {
@@ -92,6 +98,7 @@ $nt-datepicker-pane-background: $white !default;
     background-color: $nt-datepicker-pane-background;
     padding: $nt-datepicker-pane-padding;
     @include nt-datepicker-table;
+
     .nt-datepicker-month {
       td,
       th {
@@ -113,18 +120,21 @@ $nt-datepicker-pane-background: $white !default;
       }
     }
   }
+
+  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
+
   .nt-datepicker-clear,
   .nt-datepicker-caret {
     position: absolute;
-    right: .8rem;
-    top: .8rem;
+    right: $nt-datepicker-symbol-padding;
+    top: ($height - $input-font-size) / 2;
+    font-size: 1em;
+    line-height: 1em;
     &::after {
       font-family: "anticon";
       display: block;
-      color: $select-triangle-color;
-      font-size: 1rem;
+      color: $nt-datepicker-symbol-color;
       left: auto;
-      margin-top: -3px;
     }
   }
   .nt-datepicker-caret {

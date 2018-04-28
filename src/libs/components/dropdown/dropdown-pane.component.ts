@@ -9,16 +9,25 @@ export declare type NtDropdownPaneSize = '' | 'tiny' | 'small' | 'large';
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None,
   host: {
-    '[class]': '["dropdown-pane", size, class].join(" ")'
+    '[class]': '["dropdown-pane", size, class].join(" ")',
+    '[class.autosize]': 'autosize'
   }
 })
 export class NtDropdownPaneComponent {
 
   private _arrow = false;
 
+  private _autosize = false;
+
   @Input() size: NtDropdownPaneSize = 'small';
 
   @Input() class: string = '';
+
+  @Input()
+  set autosize(value: boolean) {
+    this._autosize = coerceBooleanProperty(value);
+  }
+  get autosize() { return this._autosize; }
 
   @Input()
   set arrow(value: boolean) { this._arrow = coerceBooleanProperty(value); }

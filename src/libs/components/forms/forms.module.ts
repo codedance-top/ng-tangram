@@ -1,16 +1,31 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders, Type } from '@angular/core';
+import { ModuleWithProviders, NgModule, Type } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NtFormAutofocusDirective } from './form-autofocus.directive';
 import { NtFormErrorPipe } from './form-error.pipe';
 import { NtFormFieldComponent } from './form-field.component';
-import { NtFormValidationTransformer, NT_VALIDATION_TRANSFOMER } from './form-validation';
-import { NtValidationTransformer } from './form-validation';
+import { NtFormLabelWidthDirective } from './form-label-width.directive';
+import { NtFormOrientationDirective } from './form-orientation.directive';
+import {
+  NT_VALIDATION_TRANSFOMER, NtFormValidationTransformer, NtValidationTransformer
+} from './form-validation';
 
 @NgModule({
   imports: [CommonModule],
-  exports: [NtFormFieldComponent, NtFormAutofocusDirective, NtFormErrorPipe],
-  declarations: [NtFormFieldComponent, NtFormAutofocusDirective, NtFormErrorPipe],
+  exports: [
+    NtFormFieldComponent,
+    NtFormAutofocusDirective,
+    NtFormLabelWidthDirective,
+    NtFormOrientationDirective,
+    NtFormErrorPipe
+  ],
+  declarations: [
+    NtFormFieldComponent,
+    NtFormAutofocusDirective,
+    NtFormLabelWidthDirective,
+    NtFormOrientationDirective,
+    NtFormErrorPipe
+  ]
 })
 export class NtFormsModule {
   public static forRoot(transformer?: Type<NtValidationTransformer>): ModuleWithProviders {

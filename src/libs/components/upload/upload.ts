@@ -20,21 +20,21 @@ export class NtUpload {
 
   upload<T>(url: string, file: File | FormData, handler: NtUploadHandler = {}): Observable<NtUploadResult<T>> {
 
-    return this._http.request(new HttpRequest('POST', url, file, { reportProgress: true } ))
+    return this._http.request(new HttpRequest('POST', url, file, { reportProgress: true }))
       .pipe(
         map(event => this._progressHandler(event, handler)),
         filter(event => event.type === HttpEventType.Response),
-        map((event : HttpResponse<any>) => this._interceptor.response(event))
+        map((event: HttpResponse<any>) => this._interceptor.response(event))
       );
   }
 
   private _progressHandler(event: HttpEvent<any>, handler: NtUploadHandler = {}) {
 
-    if (event.type === HttpEventType.Sent && handler.begin instanceof Function) {
+    if (event.type === HttpEventType.Sent && typeof (handler.begin) === 'function') {
       handler.begin(event);
-    } else if (event.type === HttpEventType.UploadProgress && handler.progress instanceof Function) {
+    } else if (event.type === HttpEventType.UploadProgress && typeof (handler.progress) === 'function') {
       handler.progress(event);
-    } else if (event.type === HttpEventType.Response && handler.done instanceof Function) {
+    } else if (event.type === HttpEventType.Response && typeof (handler.done) === 'function') {
       handler.done();
     }
     return event;

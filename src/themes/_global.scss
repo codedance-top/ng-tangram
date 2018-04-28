@@ -1,7 +1,7 @@
 // 1. Global
 // ---------
 $contrast-warnings: false;
-$global-font-size: 100%;
+$global-font-size: 14px;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
@@ -18,19 +18,9 @@ $black: #0a0a0a;
 $white: #fefefe;
 $body-background: #FFF;
 $body-font-color: $black;
-$body-font-family:
-Helvetica Neue For Number,
--apple-system,
-BlinkMacSystemFont,
-Segoe UI,
-Roboto,
-PingFang SC,
-Hiragino Sans GB,
-Microsoft YaHei,
-Helvetica Neue,
-Helvetica,
-Arial,
-sans-serif;
+$body-font-family: Helvetica Neue For Number, -apple-system,
+  BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei,
+  Helvetica Neue, Helvetica, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;

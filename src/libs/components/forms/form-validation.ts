@@ -28,25 +28,27 @@ export interface NtValidationTransformer {
 @Injectable()
 export class NtFormValidationTransformer implements NtValidationTransformer {
 
-  transform(errors?: ValidationErrors, label?: string) {
+  transform(errors?: ValidationErrors, label?: string, messages?: { [key: string]: string }) {
     if (!errors) {
       return '';
     }
 
+    const templates = { ...DEFAULT_TEMPLATES , ...messages };
+
     if (errors.hasOwnProperty('required')) {
-      return this._format(DEFAULT_TEMPLATES['required'], label);
+      return this._format(templates['required'], label);
     } else if (errors.hasOwnProperty('email')) {
-      return this._format(DEFAULT_TEMPLATES['email'], label);
+      return this._format(templates['email'], label);
     } else if (errors.hasOwnProperty('min')) {
-      return this._format(DEFAULT_TEMPLATES['min'], label, errors.min.min);
+      return this._format(templates['min'], label, errors.min.min);
     } else if (errors.hasOwnProperty('max')) {
-      return this._format(DEFAULT_TEMPLATES['max'], label, errors.max.max);
+      return this._format(templates['max'], label, errors.max.max);
     } else if (errors.hasOwnProperty('minlength')) {
-      return this._format(DEFAULT_TEMPLATES['minlength'], label, errors.minlength.requiredLength);
+      return this._format(templates['minlength'], label, errors.minlength.requiredLength);
     } else if (errors.hasOwnProperty('maxlength')) {
-      return this._format(DEFAULT_TEMPLATES['maxlength'], label, errors.maxlength.requiredLength);
+      return this._format(templates['maxlength'], label, errors.maxlength.requiredLength);
     } else if (errors.hasOwnProperty('pattern')) {
-      return this._format(DEFAULT_TEMPLATES['pattern'], label);
+      return this._format(templates['pattern'], label);
     } else {
       return '';
     }

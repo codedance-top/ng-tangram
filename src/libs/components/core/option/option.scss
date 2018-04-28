@@ -1,5 +1,5 @@
 $nt-option-padding: .5rem 1rem !default;
-$nt-option-font-size: .875rem !default;
+$nt-option-font-size: 1rem !default;
 
 $nt-option-color: $black !default;
 $nt-option-color-hover: $black !default;
@@ -7,7 +7,7 @@ $nt-option-color-selected: $white !default;
 $nt-option-color-disabled: $medium-gray !default;
 
 $nt-option-background: $white !default;
-$nt-option-background-hovered: lighten(get-color(primary), 45%) !default;
+$nt-option-background-hovered: rgba(get-color(primary), .3) !default;
 $nt-option-background-selected: get-color(primary) !default;
 $nt-option-background-disabled: $white !default;
 

@@ -94,6 +94,7 @@ $nt-overlay-radius: $global-radius !default;
 
     .nt-overlay-pane {
       border-radius: inherit;
+      position: relative;
       font-size: $dropdown-font-size;
     }
     .nt-overlay-shadow {
