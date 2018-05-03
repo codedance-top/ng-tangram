@@ -46,7 +46,7 @@ export class NtPaginationComponent {
 
   @Output() pageChange = new EventEmitter<number>();
 
-  constructor(@Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig) {
+  constructor( @Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig) {
     this._config = { ...this._config, ...defaultConfig || {} };
   }
 
@@ -60,18 +60,23 @@ export class NtPaginationComponent {
     this._totalPage = Math.ceil(this.total / this.config.pageSize);
 
     let pages: any = [1];
-    let start = this.pageIndex - this.config.size,
-          end = this.pageIndex + this.config.size;
 
-    start = start < 2 ? 2 : start;
-    end = end > this.totalPage - 1 ? this.totalPage - 1 : end;
+    if (this._totalPage > 1) {
 
-    start - 2 >= 1 && (pages.push(PAGINATION_ELLIPSIS));
-    pages = pages.concat(Array(end - start + 1).fill(start).map((value, index) => value + index));
+      let start = this.pageIndex - this.config.size,
+        end = this.pageIndex + this.config.size;
 
-    end + 2 <= this.totalPage && (pages.push(PAGINATION_ELLIPSIS));
+      start = start < 2 ? 2 : start;
+      end = end > this.totalPage - 1 ? this.totalPage - 1 : end;
 
-    this.totalPage > 1 && pages.push(this.totalPage);
+      start - 2 >= 1 && (pages.push(PAGINATION_ELLIPSIS));
+      pages = pages.concat(Array(end - start + 1).fill(start).map((value, index) => value + index));
+
+      end + 2 <= this.totalPage && (pages.push(PAGINATION_ELLIPSIS));
+
+      this.totalPage > 1 && pages.push(this.totalPage);
+    }
+
     this._pages = pages;
   }
 }

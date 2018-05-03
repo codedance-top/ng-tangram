@@ -1,3 +1,7 @@
+# 2018-05-03. 0.2.0-alpha.9
+
+* bugfix 修复了 `NtPaginationComponent` 当总页数是 1 的时候 出现的长度问题
+
 # 2018-05-03. 0.2.0-alpha.8
 
 * 新增 `NtPictureComponent` type 属性，支持圆形图片框
