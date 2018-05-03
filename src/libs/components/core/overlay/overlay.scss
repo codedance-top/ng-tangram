@@ -39,7 +39,7 @@ $nt-overlay-radius: $global-radius !default;
 @mixin overlay-container {
   &.start-bottom-start-top,
   &.center-bottom-center-top,
-  &.end-bottom-end-bottom {
+  &.end-bottom-end-top {
       padding-top: $nt-overlay-container-padding;
       .nt-overlay-shadow { top: $nt-overlay-container-padding; }
     }

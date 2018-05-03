@@ -1,7 +1,14 @@
+# 2018-05-03. 0.2.0-alpha.8
+
+* 新增 `NtPictureComponent` type 属性，支持圆形图片框
+
+* bugfix 修复了 `NtDropdownComponent` 属性 `position="bottomRight"` 时的定位样式问题
+
 # 2018-04-27. 0.2.0-alpha.7
 
 * 新增 `NtDropdownPaneComponent.autosize`  属性，将窗口宽度设置为 auto
 * 优化 `NtSelectComponent` 选中焦点样式
+* 优化 `NtFileComponent` 文件列表样式
 * 优化 样式结构
 
 # 2018-04-27. 0.2.0-alpha.6

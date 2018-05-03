@@ -93,6 +93,8 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
 
   @Input() name: string = '';
 
+  @Input() type: '' | 'circle' | 'square' = '';
+
   get value() { return this._value; }
 
   @Input()

@@ -43,13 +43,18 @@ $nt-file-font-size: rem-calc(12) !default;
 @mixin nt-file {
   .nt-file {
 
-    .nt-file-trigger {
-      margin-bottom: 0;
+    .nt-file-list {
+      margin-top: ($form-spacing * 0.5) * -1;
     }
 
     .nt-file-item {
       position: relative;
-      margin-top: $nt-file-item-margin;
+      margin-bottom: $nt-file-item-margin;
+
+      &:last-child {
+        margin-bottom: $form-spacing;
+      }
+
       .progress {
         margin-bottom: 0;
         position: absolute;

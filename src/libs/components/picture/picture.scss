@@ -31,6 +31,7 @@ $nt-picture-preview-height: 90vh !default;
   position: relative;
   box-sizing: border-box;
   font-size: $nt-picture-font-size;
+  overflow: hidden;
 
   &:hover {
     border: $nt-picture-border-hover;
@@ -44,6 +45,10 @@ $nt-picture-preview-height: 90vh !default;
   nt-ant-icon {
     line-height: $nt-picture-size;
     cursor: pointer;
+  }
+
+  &.clrcle {
+    border-radius: 50%;
   }
 }
 
@@ -63,7 +68,6 @@ $nt-picture-preview-height: 90vh !default;
     right: 0;
     color: $nt-picture-backdrop-color;
     background: $nt-picture-backdrop-bg;
-    border-radius: $nt-picture-item-radius - 1;
     padding: $nt-picture-backdrop-padding;
   }
 
