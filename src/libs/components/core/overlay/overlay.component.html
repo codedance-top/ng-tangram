@@ -10,7 +10,9 @@
     (mouseenter)="onMouseEnter()"
     (mouseleave)="onMouseLeave()"
     [class.no-spacing]="noSpacing"
-    [@fade]>
+    [@fade]
+    (@fade.start)="onAnimationStart($event)"
+    (@fade.done)="onAnimationDone($event)">
     <div class="nt-overlay-shadow"></div>
     <div class="nt-overlay-arrow" *ngIf="arrow"></div>
     <div class="nt-overlay-pane">

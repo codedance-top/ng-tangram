@@ -1,12 +1,19 @@
 <input #inputElement type="text" class="nt-has-symbol"
   (focus)="onFocus()" (blur)="onBlur()" (window:resize)="onResize()"
+  (keyup)="onSearch($event)"
   [readonly]="!filter" [placeholder]="placeholder" [disabled]="disabled"
   [value]="filter && focused ? '' : triggerValue">
-<span class="nt-select-caret"></span>
+<span class="nt-select-caret" [@fade] *ngIf="!triggerValue || disabled"></span>
+<span class="nt-select-clear" (click)="clear()" [@fade] *ngIf="triggerValue && !disabled"></span>
 <nt-overlay
   [origin]="origin" trigger="click" position="bottomLeft" fixed
-  (opened)="onOpen()" (closed)="onClose()">
+  (afterClosed)="onAfterClosed()"
+  (beforeOpen)="onBeforeOpen()"
+  (beforeClosed)="onBeforeClosed()">
   <div #paneElement class="nt-select-pane" [class.folded]="state === 'folded'" [style.width.px]="width">
-    <ng-content></ng-content>
+    <ng-content select="nt-option"></ng-content>
+    <div class="filter-empty" *ngIf="filter && _filterEmpty" (click)="overlay.hide()">
+      {{ filterNotFound  }}
+    </div>
   </div>
 </nt-overlay>

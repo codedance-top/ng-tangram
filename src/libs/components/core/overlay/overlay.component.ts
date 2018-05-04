@@ -12,6 +12,7 @@ import 'rxjs/add/operator/filter';
 
 import { trigger, transition, AnimationEvent } from '@angular/animations';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
+import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 
 export declare type NtOverlayTriggerType = '' | 'hover' | 'click';
 
@@ -79,9 +80,14 @@ export class NtOverlayComponent {
 
   @ViewChild(CdkConnectedOverlay) cdkConnectedOverlay: CdkConnectedOverlay;
 
-  @Output() opened = new EventEmitter<any>();
-  @Output() closed = new EventEmitter<any>();
+  @Output() afterOpen = new EventEmitter<any>();
+  @Output() afterClosed = new EventEmitter<any>();
+
+  @Output() beforeOpen = new EventEmitter<any>();
+  @Output() beforeClosed = new EventEmitter<any>();
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
+
+  // animationStateChanged = new EventEmitter<AnimationEvent>();
 
   constructor(
     private _renderer: Renderer2,
@@ -117,12 +123,12 @@ export class NtOverlayComponent {
 
   show() {
     this._isOpen = true;
-    this.opened.next();
+    // this.opened.next();
   }
 
   hide() {
     this._isOpen = false;
-    this.closed.next();
+    // this.closed.next();
   }
 
   click() {
@@ -145,6 +151,23 @@ export class NtOverlayComponent {
   onMouseLeave() {
     if (this.trigger === 'hover') {
       this._closeEvent.next(this._isMouseIn = false);
+    }
+  }
+
+  onAnimationStart(event: AnimationEvent): void {
+    if (event.toState === null) {
+      this.beforeOpen.next();
+    } else if (event.toState === 'void') {
+      this.beforeClosed.next();
+    }
+  }
+
+
+  onAnimationDone(event: AnimationEvent): void {
+    if (event.toState === null) {
+      this.afterOpen.next();
+    } else if (event.toState === 'void') {
+      this.afterClosed.next();
     }
   }
 }

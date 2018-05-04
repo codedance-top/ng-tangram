@@ -4,15 +4,16 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { OverlayOrigin } from '@angular/cdk/overlay';
 import {
   AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren,
-  ElementRef, EventEmitter, forwardRef, Inject, InjectionToken, Input, isDevMode, NgZone, OnDestroy,
-  Optional, Output, QueryList, Renderer2, Self, ViewChild, ViewEncapsulation
+  ElementRef, EventEmitter, forwardRef, Inject, InjectionToken, Input, isDevMode, NgZone, OnChanges,
+  OnDestroy, Optional, Output, QueryList, Renderer2, Self, SimpleChanges, ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
+import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 import {
   NT_OPTION_PARENT_COMPONENT, NtOptionComponent, NtOptionParentComponent, NtOptionSelectionChange,
   NtOverlayComponent, NtOverlayPosition
 } from '@ng-tangram/components/core';
-
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { Observable } from 'rxjs/Observable';
@@ -45,7 +46,13 @@ export class NtSelectChange {
     { provide: NtFormFieldControl, useExisting: NtSelectComponent }
   ],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('fade', [
+      transition('* => void', fadeOut(.15)),
+      transition('void => *', fadeIn(.15))
+    ])
+  ],
   host: {
     'class': 'nt-select nt-form-control nt-has-symbol',
     '(resize)': 'onResize()',
@@ -55,11 +62,12 @@ export class NtSelectChange {
 export class NtSelectComponent extends NtFormFieldControl<any>
   implements AfterContentInit, ControlValueAccessor, NtOptionParentComponent, OnDestroy {
 
+  private readonly _destroy = new Subject<void>();
+
   readonly origin: OverlayOrigin;
 
   private _disabled = false;
   private _focused = false;
-  private _filter = false;
   private _selectionModel: SelectionModel<NtOptionComponent>;
   private _state = '';
   private _placeholder = '';
@@ -68,6 +76,13 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   private _value: any;
   private _viewValue: any;
   private _required = false;
+
+  private _compareWith = (o1: any, o2: any) => o1 === o2;
+  private _onChange: (value: any) => void = () => { };
+  private _onTouched = () => { };
+  private _filter: (keyword: string, option: NtOptionComponent) => boolean;
+
+  _filterEmpty = false;
 
   get value() { return this._value; }
   get triggerValue(): string {
@@ -103,13 +118,20 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   set multiple(value: boolean) { this._multiple = coerceBooleanProperty(value); }
   get multiple() { return this._multiple; }
 
-  /**
-   * 选项是否可以过滤
-   * TODO: 计划在 0.2.0 >= 版本中支持
-   */
   @Input()
-  set filter(value: boolean) { this._filter = coerceBooleanProperty(value); }
+  set filter(value: (input: string, option: NtOptionComponent) => boolean) {
+    if (typeof value === 'function') {
+      this._filter = value;
+    } else if (coerceBooleanProperty(value)) {
+      this._filter = (keyword: string, option: NtOptionComponent) => {
+        const regex = new RegExp(keyword.toLowerCase(), 'g');
+        return regex.test(option.label.toLowerCase());
+      };
+    }
+  }
   get filter() { return this._filter; }
+
+  @Input() filterNotFound = 'Not Found';
 
   get selected(): NtOptionComponent | NtOptionComponent[] {
     return this.multiple ? this._selectionModel.selected : this._selectionModel.selected[0];
@@ -130,12 +152,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
   @ContentChildren(NtOptionComponent) options: QueryList<NtOptionComponent>;
-
-  private _compareWith = (o1: any, o2: any) => o1 === o2;
-  private _onChange: (value: any) => void = () => { };
-  private _onTouched = () => { };
-
-  private readonly _destroy = new Subject<void>();
 
   @Output() readonly selectionChange: EventEmitter<NtSelectChange> = new EventEmitter<NtSelectChange>();
 
@@ -193,15 +209,27 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     this._width = this.inputElement.nativeElement.clientWidth;
   }
 
-  onOpen() {
-    this._state = 'folded';
-    this.onResize();
-    setTimeout(() => this._scrollActiveOptionIntoView());
+  onSearch(event: Event) {
+    if (this.focused && this.filter && !this.disabled) {
+      const target: any = event.target;
+      this.options.forEach(option => option._hidden = !this.filter(target.value, option));
+      this._filterEmpty = !this.options.some(option => !option._hidden);
+    }
   }
 
-  onClose() {
+  onBeforeOpen() {
+    this._state = 'folded';
+    this.onResize();
+    this._scrollActiveOptionIntoView();
+  }
+
+  onBeforeClosed() {
     this._state = 'closed';
     this._onTouched();
+  }
+
+  onAfterClosed() {
+    this._resetFilterResult();
   }
 
   onFocus() {
@@ -233,6 +261,14 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     this._onTouched = fn;
   }
 
+  clear() {
+    if (!this.disabled) {
+      this._clearSelection();
+      this._value = null;
+      this._onChange(this.value);
+    }
+  }
+
   setDisabledState(isDisabled: boolean) {
     this._disabled = isDisabled;
   }
@@ -245,7 +281,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       .pipe(takeUntil(changedOrDestroyed), filter(event => event.isUserInput))
       .subscribe(event => {
         this._onSelect(event.source);
-
         if (!this.multiple && this.overlay.isOpen) {
           this.overlay.hide();
         }
@@ -258,6 +293,13 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       .subscribe(() => {
         this._changeDetectorRef.markForCheck();
       });
+
+    this._resetFilterResult();
+  }
+
+  private _resetFilterResult() {
+    this.options.forEach(option => option._hidden = false);
+    this._filterEmpty = false;
   }
 
   private _initializeSelection(): void {

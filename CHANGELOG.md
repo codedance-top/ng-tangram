@@ -1,3 +1,7 @@
+# 2018-05-04. 0.2.0-alpha.10
+* 变更 `NtOverlayComponent` 取消了 `opened`, `closed` 事件，增加了 `afterOpen` , `AfterClosed`, `beforeOpen`, `beforeClosed` 事件
+* 新增 `NtSelectComponent` `filter` 属性，支持过滤选项
+
 # 2018-05-03. 0.2.0-alpha.9
 
 * bugfix 修复了 `NtPaginationComponent` 当总页数是 1 的时候 出现的长度问题

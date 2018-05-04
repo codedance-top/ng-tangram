@@ -28,6 +28,7 @@ export const NT_OPTION_PARENT_COMPONENT = new InjectionToken<NtOptionParentCompo
     'class': 'nt-option',
     '[class.selected]': 'selected',
     '[class.disabled]': 'disabled',
+    '[class.hidden]': '_hidden',
     '(click)': 'selectViaInteraction()'
   }
 })
@@ -37,6 +38,8 @@ export class NtOptionComponent implements AfterViewChecked {
   private _selected = false;
   private _disabled = false;
   private _mostRecentViewValue = '';
+
+  _hidden = false;
 
   get label() { return (this._element.nativeElement.textContent || '').trim(); }
 
