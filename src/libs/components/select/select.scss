@@ -16,17 +16,35 @@ $nt-select-symbol-color: $select-triangle-color !default;
   }
 
   $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
+
+  .nt-select-clear,
   .nt-select-caret {
     position: absolute;
-    right: $nt-select-symbol-padding;
-    top: ($height - $input-font-size) / 2;;
-    pointer-events: none;
+    right: $nt-datepicker-symbol-padding;
+    top: ($height - $input-font-size) / 2;
     font-size: 1em;
     line-height: 1em;
+    &::after {
+      font-family: "anticon";
+      display: block;
+      color: $nt-datepicker-symbol-color;
+      left: auto;
+    }
+  }
+
+  .nt-select-caret {
+    pointer-events: none;
     &::after {
       display: inline-block;
       color: $nt-select-symbol-color;
       content: '\25BC';
+    }
+  }
+
+  .nt-select-clear {
+    cursor: pointer;
+    &::after {
+      content: '\e633';
     }
   }
 
@@ -39,6 +57,13 @@ $nt-select-symbol-color: $select-triangle-color !default;
     transition: max-height .3s;
     &.folded {
       max-height: 256px;
+    }
+
+    .filter-empty {
+      padding: $nt-option-padding;
+      color: $medium-gray;
+      cursor: no-drop;
+      // text-align: center;
     }
   }
 
