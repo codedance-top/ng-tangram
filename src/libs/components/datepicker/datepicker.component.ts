@@ -133,12 +133,12 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     }
   }
 
-  onOpen() {
+  onBeforeOpen() {
     this._focused = true;
     this.calendar._init();
   }
 
-  onClose() {
+  onBeforeClosed() {
     this._focused = false;
     typeof this._onTouched === 'function' && this._onTouched();
   }

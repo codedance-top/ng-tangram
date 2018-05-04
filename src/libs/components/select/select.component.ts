@@ -5,7 +5,7 @@ import { OverlayOrigin } from '@angular/cdk/overlay';
 import {
   AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren,
   ElementRef, EventEmitter, forwardRef, Inject, InjectionToken, Input, isDevMode, NgZone, OnDestroy,
-  Optional, Output, QueryList, Renderer2, Self, ViewChild, ViewEncapsulation
+  Optional, Output, QueryList, Renderer2, Self, ViewChild, ViewEncapsulation, SimpleChanges, OnChanges
 } from '@angular/core';
 import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
 import {
@@ -45,7 +45,7 @@ export class NtSelectChange {
     { provide: NtFormFieldControl, useExisting: NtSelectComponent }
   ],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'class': 'nt-select nt-form-control nt-has-symbol',
     '(resize)': 'onResize()',
@@ -53,7 +53,7 @@ export class NtSelectChange {
   }
 })
 export class NtSelectComponent extends NtFormFieldControl<any>
-  implements AfterContentInit, ControlValueAccessor, NtOptionParentComponent, OnDestroy {
+  implements AfterContentInit, ControlValueAccessor, NtOptionParentComponent, OnDestroy, OnChanges {
 
   readonly origin: OverlayOrigin;
 
@@ -182,6 +182,10 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     this._selectionModel = new SelectionModel(this.multiple, undefined, false);
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+  }
+
   ngAfterContentInit() {
     this.options.changes.pipe(startWith(null), takeUntil(this._destroy)).subscribe(() => {
       this._resetOptions();
@@ -191,15 +195,16 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   onResize() {
     this._width = this.inputElement.nativeElement.clientWidth;
+
   }
 
-  onOpen() {
+  onBeforeOpen() {
     this._state = 'folded';
     this.onResize();
-    setTimeout(() => this._scrollActiveOptionIntoView());
+    this._scrollActiveOptionIntoView();
   }
 
-  onClose() {
+  onBeforeClosed() {
     this._state = 'closed';
     this._onTouched();
   }
@@ -245,7 +250,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       .pipe(takeUntil(changedOrDestroyed), filter(event => event.isUserInput))
       .subscribe(event => {
         this._onSelect(event.source);
-
         if (!this.multiple && this.overlay.isOpen) {
           this.overlay.hide();
         }

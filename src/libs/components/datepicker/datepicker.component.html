@@ -6,8 +6,8 @@
   trigger="click"
   position="bottomLeft"
   arrow
-  (opened)="onOpen()"
-  (closed)="onClose()">
+  (beforeOpen)="onBeforeOpen()"
+  (beforeClosed)="onBeforeClosed()">
   <nt-datepicker-calendar
     [selected]="value"
     [dateFilter]="dateFilter"

@@ -5,7 +5,8 @@
 <span class="nt-select-caret"></span>
 <nt-overlay
   [origin]="origin" trigger="click" position="bottomLeft" fixed
-  (opened)="onOpen()" (closed)="onClose()">
+  (beforeOpen)="onBeforeOpen()"
+  (beforeClosed)="onBeforeClosed()">
   <div #paneElement class="nt-select-pane" [class.folded]="state === 'folded'" [style.width.px]="width">
     <ng-content></ng-content>
   </div>
