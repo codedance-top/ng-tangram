@@ -1,6 +1,6 @@
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { OverlayOrigin } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
   ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Inject, Input,
   NgZone, Optional, Output, Renderer2, Self, ViewChild, ViewEncapsulation
@@ -34,7 +34,7 @@ import { NtDatePickerCalendarComponent } from './calendar.component';
 })
 export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements ControlValueAccessor {
 
-  readonly origin: OverlayOrigin;
+  readonly origin: CdkOverlayOrigin;
 
   private _disabled = false;
   private _lastValueValid = false;
@@ -109,7 +109,7 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     private _renderer: Renderer2,
     @Self() @Optional() public ngControl: NgControl) {
     super();
-    this.origin = new OverlayOrigin(_elementRef);
+    this.origin = new CdkOverlayOrigin(_elementRef);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }

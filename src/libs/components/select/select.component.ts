@@ -1,7 +1,7 @@
 import { animate, group, state, style, transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
-import { OverlayOrigin } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
   AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren,
   ElementRef, EventEmitter, forwardRef, Inject, InjectionToken, Input, isDevMode, NgZone, OnChanges,
@@ -64,7 +64,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   private readonly _destroy = new Subject<void>();
 
-  readonly origin: OverlayOrigin;
+  readonly origin: CdkOverlayOrigin;
 
   private _disabled = false;
   private _focused = false;
@@ -187,7 +187,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     @Self() @Optional() public ngControl: NgControl) {
     super();
 
-    this.origin = new OverlayOrigin(_elementRef);
+    this.origin = new CdkOverlayOrigin(_elementRef);
 
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;

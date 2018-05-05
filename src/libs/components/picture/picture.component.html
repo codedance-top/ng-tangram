@@ -15,7 +15,6 @@
 <div class="nt-picture-add {{ type }}" (click)="onTriggerClick()" *ngIf="this.files.length < maxFiles && !disabled">
   <nt-ant-icon type="plus"></nt-ant-icon>
 </div>
-
 <ng-template #previewTemplate let-data>
   <div class="nt-picture-preview">
     <img [src]="data.link || data.thumbnail">

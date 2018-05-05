@@ -1,5 +1,5 @@
 import { AnimationEvent, transition, trigger } from '@angular/animations';
-import { OverlayOrigin } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
   Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild, ViewEncapsulation
 } from '@angular/core';
@@ -16,7 +16,7 @@ import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/co
 })
 export class NtPopoverComponent {
 
-  readonly origin: OverlayOrigin;
+  readonly origin: CdkOverlayOrigin;
 
   @Input('nt-popover') title = '';
   @Input() position = 'top';
@@ -26,6 +26,6 @@ export class NtPopoverComponent {
   constructor(
     private _renderer: Renderer2,
     private _elementRef: ElementRef) {
-    this.origin = new OverlayOrigin(_elementRef);
+    this.origin = new CdkOverlayOrigin(_elementRef);
   }
 }

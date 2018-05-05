@@ -1,18 +1,24 @@
-
-import { Component, OnInit, Output, Input, EventEmitter, ElementRef, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
-import { CdkConnectedOverlay, ConnectedOverlayPositionChange, Overlay, ConnectionPositionPair, OverlayOrigin } from '@angular/cdk/overlay';
+import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { OVERLAY_POSITIONS, NtOverlayPosition, getPositionClassName } from './overlay-positions';
-
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/filter';
-
-import { trigger, transition, AnimationEvent } from '@angular/animations';
-import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
+import {
+  CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair,
+  Overlay
+} from '@angular/cdk/overlay';
 import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
+import {
+  Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
+import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
+
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
+import { Observable } from 'rxjs/Observable';
+
+import { getPositionClassName, NtOverlayPosition, OVERLAY_POSITIONS } from './overlay-positions';
+
 
 export declare type NtOverlayTriggerType = '' | 'hover' | 'click';
 
@@ -32,7 +38,7 @@ export class NtOverlayComponent {
   private _isOpen = false;
   private _isMouseIn = false;
 
-  private _origin: OverlayOrigin;
+  private _origin: CdkOverlayOrigin;
   private _position: NtOverlayPosition = 'bottomLeft';
   private _positionPairs = OVERLAY_POSITIONS[this._position];
   private _paddingClass = getPositionClassName(this._positionPairs[0]);
@@ -49,7 +55,7 @@ export class NtOverlayComponent {
   get isMouseIn() { return this._isMouseIn; }
 
   @Input()
-  set origin(value: OverlayOrigin) { this._origin = value; }
+  set origin(value: CdkOverlayOrigin) { this._origin = value; }
   get origin() { return this._origin; }
 
   @Input()

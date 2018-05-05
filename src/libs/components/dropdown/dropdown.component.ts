@@ -1,4 +1,4 @@
-import { OverlayOrigin } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
   AfterContentInit, Component, ContentChild, ElementRef, Input,
   Renderer2, ViewChild, ViewEncapsulation
@@ -20,7 +20,7 @@ import { NtDropdownPaneComponent } from './dropdown-pane.component';
 })
 export class NtDropdownComponent {
 
-  readonly origin: OverlayOrigin;
+  readonly origin: CdkOverlayOrigin;
 
   @Input() position: NtOverlayPosition = 'bottomLeft';
 
@@ -33,6 +33,6 @@ export class NtDropdownComponent {
   constructor(
     private _renderer: Renderer2,
     private _elementRef: ElementRef) {
-    this.origin = new OverlayOrigin(_elementRef);
+    this.origin = new CdkOverlayOrigin(_elementRef);
   }
 }

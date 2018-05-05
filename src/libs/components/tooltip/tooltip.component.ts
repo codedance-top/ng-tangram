@@ -1,4 +1,4 @@
-import { OverlayOrigin } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
   Component, ElementRef, Input, Renderer2, ViewChild, ViewEncapsulation
 } from '@angular/core';
@@ -18,7 +18,7 @@ export class NtTooltipComponent {
 
   private _title = '';
 
-  readonly origin: OverlayOrigin;
+  readonly origin: CdkOverlayOrigin;
 
   @Input()
   set title(value: string) { this._title = value; }
@@ -39,6 +39,6 @@ export class NtTooltipComponent {
   constructor(
     private _renderer: Renderer2,
     private _elementRef: ElementRef) {
-    this.origin = new OverlayOrigin(_elementRef);
+    this.origin = new CdkOverlayOrigin(_elementRef);
   }
 }
