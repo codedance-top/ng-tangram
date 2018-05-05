@@ -1,5 +1,7 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
-  AfterViewInit, Component, ElementRef, Input, Renderer2, ViewEncapsulation, OnDestroy, OnChanges
+  AfterViewInit, Component, ElementRef, Inject, Input, OnChanges, OnDestroy, PLATFORM_ID, Renderer2,
+  ViewEncapsulation
 } from '@angular/core';
 
 export declare type NtBadgeColor = '' | 'primary' | 'secondary' | 'success' | 'warning' | 'alert';
@@ -38,6 +40,7 @@ export class NtBadgeComponent implements AfterViewInit, OnDestroy {
   private _originalPosition;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private _elementRef: ElementRef,
     private _renderer: Renderer2) { }
 
@@ -51,17 +54,21 @@ export class NtBadgeComponent implements AfterViewInit, OnDestroy {
 
   // 重置容器的 position 属性
   private _resetPosition() {
-    const style = window.getComputedStyle(this._elementRef.nativeElement.parentElement);
-    if (style.position !== 'absolute' || style.position !== 'absolute') {
-      this._originalPosition = style.position;
-      this._renderer.setStyle(this._elementRef.nativeElement.parentElement, 'position', 'relative');
+    if (isPlatformBrowser(this.platformId)) {
+      const style = window.getComputedStyle(this._elementRef.nativeElement.parentElement);
+      if (style.position !== 'absolute' || style.position !== 'absolute') {
+        this._originalPosition = style.position;
+        this._renderer.setStyle(this._elementRef.nativeElement.parentElement, 'position', 'relative');
+      }
     }
   }
 
   // 清理 position 属性
   private _clearPosition() {
-    if (this._originalPosition) {
-      this._renderer.removeStyle(this._elementRef.nativeElement.parentElement, 'position');
+    if (isPlatformBrowser(this.platformId)) {
+      if (this._originalPosition) {
+        this._renderer.removeStyle(this._elementRef.nativeElement.parentElement, 'position');
+      }
     }
   }
 }

@@ -82,8 +82,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   private _onTouched = () => { };
   private _filter: (keyword: string, option: NtOptionComponent) => boolean;
 
-  _filterEmpty = false;
-
   get value() { return this._value; }
   get triggerValue(): string {
     if (this.empty) {
@@ -99,6 +97,10 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   }
 
   get empty(): boolean { return !this._selectionModel || this._selectionModel.isEmpty(); }
+
+  get optionEmpty(): boolean {
+    return this.options ? this.options.filter(option => !option._hidden).length === 0 : false;
+  }
 
   get focused(): boolean { return this._focused; }
 
@@ -213,7 +215,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     if (this.focused && this.filter && !this.disabled) {
       const target: any = event.target;
       this.options.forEach(option => option._hidden = !this.filter(target.value, option));
-      this._filterEmpty = !this.options.some(option => !option._hidden);
     }
   }
 
@@ -299,7 +300,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   private _resetFilterResult() {
     this.options.forEach(option => option._hidden = false);
-    this._filterEmpty = false;
   }
 
   private _initializeSelection(): void {

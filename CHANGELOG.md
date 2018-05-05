@@ -1,6 +1,7 @@
 # 2018-05-04. 0.2.0-alpha.11
 
 * angular v6兼容优化 `OverlayOrigin` 引用 改为 `CdkOverlayOrigin` 
+* angular universal 兼容优化 增加判断平台的逻辑
 
 # 2018-05-04. 0.2.0-alpha.10
 * 变更 `NtOverlayComponent` 取消了 `opened`, `closed` 事件，增加了 `afterOpen` , `AfterClosed`, `beforeOpen`, `beforeClosed` 事件

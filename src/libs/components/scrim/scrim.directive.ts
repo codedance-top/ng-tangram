@@ -1,7 +1,8 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { isPlatformBrowser } from '@angular/common';
 import {
-  AfterContentInit, ComponentFactoryResolver, ComponentRef, Directive, ElementRef, Input, OnDestroy,
-  OnInit, Renderer2, ViewContainerRef, ComponentFactory
+  AfterContentInit, ComponentFactory, ComponentFactoryResolver, ComponentRef, Directive, ElementRef,
+  Inject, Input, OnDestroy, OnInit, PLATFORM_ID, Renderer2, ViewContainerRef
 } from '@angular/core';
 import { fadeIn } from '@ng-tangram/animate/fading';
 
@@ -21,6 +22,7 @@ export class NtScrimDirective implements OnDestroy {
   set scrim(value: boolean) { this._componentRef.instance.isOpen = coerceBooleanProperty(value); }
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
     private _componentFactoryResolver: ComponentFactoryResolver,
@@ -28,15 +30,19 @@ export class NtScrimDirective implements OnDestroy {
 
     const componentFactory = this._componentFactoryResolver.resolveComponentFactory(NtScrimComponent);
     this._componentRef = this._viewContainerRef.createComponent(componentFactory);
-    const style = window.getComputedStyle(this._elementRef.nativeElement);
-    if (style.position !== 'absolute' || style.position !== 'absolute') {
-      this._renderer.setStyle(this._elementRef.nativeElement, 'position', 'relative');
+    if (isPlatformBrowser(this.platformId)) {
+      const style = window.getComputedStyle(this._elementRef.nativeElement);
+      if (style.position !== 'absolute' || style.position !== 'absolute') {
+        this._renderer.setStyle(this._elementRef.nativeElement, 'position', 'relative');
+      }
+      this._renderer.appendChild(this._elementRef.nativeElement, this._componentRef.location.nativeElement);
     }
-    this._renderer.appendChild(this._elementRef.nativeElement, this._componentRef.location.nativeElement);
   }
 
   ngOnDestroy() {
-    this._renderer.removeChild(this._elementRef.nativeElement, this._componentRef.location.nativeElement);
-    this._componentRef.destroy();
+    if (isPlatformBrowser(this.platformId)) {
+      this._renderer.removeChild(this._elementRef.nativeElement, this._componentRef.location.nativeElement);
+      this._componentRef.destroy();
+    }
   }
 }
