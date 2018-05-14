@@ -1,4 +1,4 @@
-$nt-file-item-margin: $global-margin / 2 !default;
+$nt-file-item-margin: $form-spacing !default;
 
 // $nt-file-info-radius: $global-radius !default;
 $nt-file-info-color: $dark-gray !default;
@@ -43,13 +43,10 @@ $nt-file-font-size: rem-calc(12) !default;
 @mixin nt-file {
   .nt-file {
 
-    .nt-file-list {
-      margin-top: ($form-spacing * 0.5) * -1;
-    }
-
     .nt-file-item {
       position: relative;
       margin-bottom: $nt-file-item-margin;
+      margin-top: ($form-spacing * 0.5) * -1;
 
       &:last-child {
         margin-bottom: $form-spacing;
@@ -68,7 +65,6 @@ $nt-file-font-size: rem-calc(12) !default;
     }
     .nt-close-button {
       float: right;
-      font-size: 16px;
       cursor: pointer;
     }
     .nt-file-info {

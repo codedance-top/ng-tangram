@@ -29,6 +29,7 @@ const config = {
       '@angular/common': 'ng.common',
       '@angular/common/http': 'ng.common.http',
       '@angular/cdk': 'ng.cdk',
+      '@angular/cdk/a11y': 'ng.cdk.a11y',
       '@angular/cdk/coercion': 'ng.cdk.coercion',
       '@angular/cdk/platform': 'ng.cdk.platform',
       '@angular/cdk/overlay': 'ng.cdk.overlay',

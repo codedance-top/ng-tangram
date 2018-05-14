@@ -1,3 +1,9 @@
+# 2018-05-14 0.2.0-alpha.12
+
+* 新增 `NtProgressCircleComponent` 组件
+* 变更 `NtScrim` loading 效果
+* 优化 `NtFileComponent` 样式
+
 # 2018-05-04. 0.2.0-alpha.11
 
 * angular v6兼容优化 `OverlayOrigin` 引用 改为 `CdkOverlayOrigin` 

@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class ProgressDocumentComponent {
   basicCode = require('!!raw-loader!./demos/basic');
+  circleCode = require('!!raw-loader!./demos/circle');
 }

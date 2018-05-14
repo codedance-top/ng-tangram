@@ -6,6 +6,7 @@ import { NtExampleModule } from '@ng-tangram/example';
 
 import { DemoProgressBasciComponent } from './demos/basic';
 import { ProgressDocumentComponent } from './progress.component';
+import { DemoProgressCircleComponent } from './demos/circle';
 
 
 @NgModule({
@@ -17,6 +18,10 @@ import { ProgressDocumentComponent } from './progress.component';
       { path: '', component: ProgressDocumentComponent }
     ])],
   exports: [ProgressDocumentComponent],
-  declarations: [ProgressDocumentComponent, DemoProgressBasciComponent],
+  declarations: [
+    ProgressDocumentComponent,
+    DemoProgressBasciComponent,
+    DemoProgressCircleComponent
+  ],
 })
 export class ProgressDocumentModule { }

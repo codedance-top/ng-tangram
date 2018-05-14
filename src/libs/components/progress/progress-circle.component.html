@@ -1,0 +1,5 @@
+<div class="nt-progress-circle-meter" [class.half]="percent < 50">
+  <div class="nt-circle-half nt-circle-left" [style.transform]="'rotate(' + (percent > 100 ? 100 : percent) * 3.6 + 'deg)'"></div>
+  <div class="nt-circle-half nt-circle-right"></div>
+</div>
+<div class="nt-progress-circle-inner"><ng-content></ng-content></div>

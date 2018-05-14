@@ -1,3 +1,3 @@
-<span class="progress-meter" [style.width.%]="percent">
+<span class="progress-meter" [style.width.%]="percent > 100 ? 100 : percent">
   <p class="progress-meter-text"><ng-content></ng-content></p>
 </span>

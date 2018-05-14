@@ -1,18 +1,16 @@
 
 import { Component, Input } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
-
-export declare type NtProgressSize = 'tiny' | 'small' | 'medium' | 'large';
-export declare type NtProgressColor = '' | 'primary' | 'medium' | 'large';
+import { NtProgressColor, NtProgressSize } from './progress.component';
 
 @Component({
-  selector: 'nt-progress',
-  templateUrl: 'progress.component.html',
+  selector: 'nt-progress-circle',
+  templateUrl: 'progress-circle.component.html',
   host: {
-    '[class]': '["progress", color, size, class].join(" ")'
+    '[class]': '["nt-progress-circle", color, size, class].join(" ")'
   }
 })
-export class NtProgressComponent {
+export class NtProgressCircleComponent {
 
   private _max = 100;
 
@@ -33,7 +31,6 @@ export class NtProgressComponent {
   @Input() class: string = '';
 
   get percent() {
-    const percent = this.value / this.max * 100;
-    return percent > 100 ? 100 : percent;
-   }
+    return this.value / this.max * 100;
+  }
 }

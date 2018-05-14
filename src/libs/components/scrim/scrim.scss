@@ -1,16 +1,27 @@
+$nt-scrim-background: rgba(255, 255, 255, .6) !default;
+$nt-scrim-loading-size: 3rem !default;
+$nt-scrim-loading-color: get-color(primary) !default;
+$nt-scrim-loading-border-size: 3px !default;
+$nt-scrim-loading-border-color: $light-gray !default;
 
-@keyframes sk-circle-bounce-delay {
-  0%,
-  80%,
-  100% {
-    transform: scale(0);
-  }
-  40% {
-    transform: scale(1);
-  }
+@keyframes rotate {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
 }
 
-$nt-scrim-background: rgba(255, 255, 255, .6) !default;
+
+
+@mixin nt-scrim-loading {
+  display: inline-block;
+  width: $nt-scrim-loading-size;
+  height: $nt-scrim-loading-size;
+  border-style: solid;
+  border-width: $nt-scrim-loading-border-size;
+  border-color: $nt-scrim-loading-border-color;
+  border-top-color: $nt-scrim-loading-color;
+  border-radius: 50%;
+  animation: 1s linear infinite rotate;
+}
 
 @mixin nt-scrim {
 
@@ -33,52 +44,9 @@ $nt-scrim-background: rgba(255, 255, 255, .6) !default;
       padding: 1rem;
       text-align: center;
     }
-  }
 
-  .sk-circle {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-  }
-
-  .sk-circle .sk-child {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-
-  .sk-circle .sk-child:before {
-    content: '';
-    display: block;
-    margin: 0 auto;
-    width: 15%;
-    height: 15%;
-    background-color: #333;
-    border-radius: 100%;
-    animation: sk-circle-bounce-delay 1.2s infinite ease-in-out both;
-  }
-
-  .sk-circle {
-    @for $i from 1 through 11 {
-      .sk-circle#{$i + 1} {
-        transform: rotate(30deg * $i);
-        &:before {
-          animation-delay: -1.2s + ($i * 0.1);
-        }
-      }
+    .nt-scrim-loading {
+      @include nt-scrim-loading;
     }
-  }
-  .busy-loading {
-    .sk-circle {
-      top: auto;
-      margin-top: 0;
-      position: relative;
-      margin-bottom: 10px;
-    }
-    text-align: center;
-    padding: 10px;
   }
 }

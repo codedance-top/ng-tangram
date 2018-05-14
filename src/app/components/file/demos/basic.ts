@@ -12,6 +12,7 @@ import { Validators, FormControl } from '@angular/forms';
         (error)="onError($event)" [formControl]="fileControl">
         <nt-ant-icon type="upload"></nt-ant-icon>&nbsp;Select File
       </nt-file>
+      <button class="button">文件列表</button>
     </nt-form-field>
     <br>
     {{ fileControl.value | json }}

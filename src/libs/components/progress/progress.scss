@@ -4,6 +4,11 @@ $nt-progress-small: rem-calc(5) !default;
 $nt-progress-medium: rem-calc(10) !default;
 $nt-progress-large: rem-calc(20) !default;
 
+$nt-progress-circle-tiny: rem-calc(30) !default;
+$nt-progress-circle-small: rem-calc(60) !default;
+$nt-progress-circle-medium: rem-calc(100) !default;
+$nt-progress-circle-large: rem-calc(140) !default;
+
 $nt-progress-meter-transition: width .5s cubic-bezier(.8, .2, .2, .8) !default;
 
 $nt-progress-sizes: (
@@ -11,7 +16,79 @@ $nt-progress-sizes: (
   small: $nt-progress-small,
   medium: $nt-progress-medium,
   large: $nt-progress-large
-);
+) !default;
+
+$nt-progress-circle-sizes: (
+  tiny: $nt-progress-circle-tiny,
+  small: $nt-progress-circle-small,
+  medium: $nt-progress-circle-medium,
+  large: $nt-progress-circle-large
+) !default;
+
+
+@mixin nt-progress-circle() {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+
+  .nt-progress-circle-meter,
+  .nt-progress-circle-inner {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+
+  .nt-progress-circle-meter {
+    position: absolute;
+    &.half .nt-circle-right {
+      display: none;
+    }
+  }
+
+  .nt-circle-half {
+    height: 100%;
+    width: 100%;
+    border-style: solid;
+    border-radius: 50%;
+    left: 0;
+    position: absolute;
+    top: 0;
+
+    &.nt-circle-right {
+      transform: rotate(180deg);
+    }
+  }
+
+  .nt-progress-circle-inner {
+    border-style: solid;
+    border-color: $progress-background;
+    overflow: hidden;
+  }
+}
+
+@mixin nt-progress-circle-size($size: $nt-progress-circle-medium) {
+  width: $size;
+  height: $size;
+
+  .nt-progress-circle-meter.half {
+    clip: rect(0, $size, $size, $size / 2);
+  }
+
+  .nt-circle-half {
+    clip: rect(0, $size / 2, $size, 0);
+    border-width: $size / 20;
+  }
+
+  .nt-progress-circle-inner {
+    border-width: $size / 20;
+  }
+}
+
+@mixin nt-progress-circle-style($color: get-color(primary)) {
+  .nt-circle-half {
+    border-color: $color;
+  }
+}
 
 @mixin nt-progress-size($size: $nt-progress-medium) {
   height: $size;
@@ -28,6 +105,24 @@ $nt-progress-sizes: (
     @each $name, $size in $nt-progress-sizes {
       &.#{$name} {
         @include nt-progress-size($size: $size);
+      }
+    }
+  }
+
+  .nt-progress-circle {
+   @include nt-progress-circle;
+   @include nt-progress-circle-size;
+   @include nt-progress-circle-style;
+
+    @each $name, $color in $foundation-palette {
+      &.#{$name} {
+        @include nt-progress-circle-style($color);
+      }
+    }
+
+    @each $name, $size in $nt-progress-circle-sizes {
+      &.#{$name} {
+        @include nt-progress-circle-size($size);
       }
     }
   }

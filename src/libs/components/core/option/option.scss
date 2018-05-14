@@ -21,7 +21,9 @@ $nt-option-background-disabled: $white !default;
     font-size: $nt-option-font-size;
     padding: $nt-option-padding;
     color: $nt-option-color;
-    &:hover {
+
+    &:hover,
+    &.active {
       color: $nt-option-color-hover;
       background-color: $nt-option-background-hovered;
     }

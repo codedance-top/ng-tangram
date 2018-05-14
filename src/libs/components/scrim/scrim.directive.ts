@@ -2,7 +2,7 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { isPlatformBrowser } from '@angular/common';
 import {
   AfterContentInit, ComponentFactory, ComponentFactoryResolver, ComponentRef, Directive, ElementRef,
-  Inject, Input, OnDestroy, OnInit, PLATFORM_ID, Renderer2, ViewContainerRef
+  Inject, Input, OnDestroy, OnInit, PLATFORM_ID, Renderer2, ViewContainerRef, ContentChild
 } from '@angular/core';
 import { fadeIn } from '@ng-tangram/animate/fading';
 
@@ -14,6 +14,8 @@ import { NtScrimComponent } from './scrim.component';
 export class NtScrimDirective implements OnDestroy {
 
   private _componentRef: ComponentRef<NtScrimComponent>;
+
+  // @ContentChild(NtScrimComponent) component: NtScrimComponent;
 
   @Input('scrimText')
   set text(value: string) { this._componentRef.instance.text = value; }
