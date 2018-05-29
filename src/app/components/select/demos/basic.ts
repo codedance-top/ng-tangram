@@ -6,7 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   template: `
     <form [formGroup]="form" (ngSubmit)="submit()" ntFormAutofocus>
       <nt-form-field label="单选">
-        <nt-select name="single" placeholder="单选" formControlName="single" filter>
+        <nt-select name="single" placeholder="单选" formControlName="single" filter (valueChange)="onChange($event)">
           <nt-option *ngFor="let alphabet of alphabets" [value]="alphabet">
             {{alphabet}}
           </nt-option>
@@ -45,5 +45,9 @@ export class DemoSelectBasciComponent {
 
   submit() {
 
+  }
+
+  onChange(value: any) {
+    console.log(value);
   }
 }

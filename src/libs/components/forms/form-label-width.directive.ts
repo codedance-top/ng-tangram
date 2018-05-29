@@ -1,6 +1,6 @@
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import {
-  ContentChildren, Directive, EventEmitter, Input, QueryList, SimpleChanges, OnDestroy
+  ContentChildren, Directive, EventEmitter, Input, SimpleChanges, OnDestroy
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';

@@ -1,7 +1,8 @@
-# 2018-05-29 0.2.0-alpha.13
+# 2018-05-29 0.2.0
 
 * 优化 `NtFileComponent` 文件大小显示
 * 优化 `NtSelectComponent` 在清空值时会触发 valueChange 事件
+* 新增 `NtOptionComponent` 属性 label 可以自定义选中时显示的label (默认会取内联文字)
 
 # 2018-05-14 0.2.0-alpha.12
 

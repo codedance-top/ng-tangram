@@ -267,6 +267,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       this._clearSelection();
       this._value = null;
       this._onChange(this.value);
+      this.valueChange.next(this.value);
     }
   }
 

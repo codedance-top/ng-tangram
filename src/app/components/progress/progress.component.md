@@ -14,7 +14,7 @@
       <nt-example-code [code]="basicCode"></nt-example-code>
     </nt-example>
   </div>
-  <div class="medium-6 large-6 cell">
+  <!-- <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
         <demo-progress-circle></demo-progress-circle>
@@ -22,7 +22,7 @@
       <nt-example-legend title="circle">最简单的下拉菜单。</nt-example-legend>
       <nt-example-code [code]="circleCode"></nt-example-code>
     </nt-example>
-  </div>
+  </div> -->
 </div>
 
 ## API
