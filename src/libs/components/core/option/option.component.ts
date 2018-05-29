@@ -38,13 +38,21 @@ export class NtOptionComponent implements AfterViewChecked, Highlightable {
   private _value: any;
   private _selected = false;
   private _disabled = false;
+  private _label = '';
 
   private _mostRecentViewValue = '';
 
   _isActive = false;
   _hidden = false;
 
-  get label() { return (this._element.nativeElement.textContent || '').trim(); }
+  @Input()
+  set label(value: string) { this._label = value; }
+  get label() {
+    if (!this._label.trim()) {
+      return (this._element.nativeElement.textContent || '').trim();
+    }
+    return this._label.trim();
+  }
 
   get multiple() { return this._parent && this._parent.multiple; }
 

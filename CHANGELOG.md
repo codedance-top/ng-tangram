@@ -1,3 +1,8 @@
+# 2018-05-29 0.2.0-alpha.13
+
+* 优化 `NtFileComponent` 文件大小显示
+* 优化 `NtSelectComponent` 在清空值时会触发 valueChange 事件
+
 # 2018-05-14 0.2.0-alpha.12
 
 * 新增 `NtProgressCircleComponent` 组件

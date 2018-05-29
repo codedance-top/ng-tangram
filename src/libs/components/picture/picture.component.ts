@@ -27,7 +27,7 @@ import { VIEWPORT_RULER_PROVIDER } from '@angular/cdk/scrolling';
 /**
  * 压缩图片
  */
-export function zipToImage(file: File, option: any): Promise<any> {
+export function zipImage(file: File, option: any): Promise<any> {
   return new Promise((resolve, reject) => {
     loadImage(file, (canvas: HTMLCanvasElement) => {
       if (canvas.toBlob) {
@@ -179,7 +179,7 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
       let ntFile = new NtPicture(file.name, file.size, file.type);
 
       let loadImageOptions = { maxWidth: 1080, orientation: true, canvas: true };
-      const data = await zipToImage(file, loadImageOptions);
+      const data = await zipImage(file, loadImageOptions);
       ntFile.thumbnail = data.thumbnail;
       const count = this.files.push(ntFile);
 

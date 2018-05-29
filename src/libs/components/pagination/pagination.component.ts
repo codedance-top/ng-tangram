@@ -1,8 +1,9 @@
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   Component, EventEmitter, Inject, Input, Optional, Output, ViewEncapsulation
 } from '@angular/core';
+
 import { NT_PAGINATION_CONFIG, NtPaginationConfig } from './pagination-config';
-import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 export const PAGINATION_ELLIPSIS = '...';
 
@@ -46,7 +47,7 @@ export class NtPaginationComponent {
 
   @Output() pageChange = new EventEmitter<number>();
 
-  constructor( @Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig) {
+  constructor(@Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig) {
     this._config = { ...this._config, ...defaultConfig || {} };
   }
 
