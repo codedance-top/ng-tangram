@@ -10,6 +10,7 @@ $nt-progress-circle-medium: rem-calc(100) !default;
 $nt-progress-circle-large: rem-calc(140) !default;
 
 $nt-progress-meter-transition: width .5s cubic-bezier(.8, .2, .2, .8) !default;
+$nt-progress-circle-transition: transform .5s cubic-bezier(.8, .2, .2, .8) !default;
 
 $nt-progress-sizes: (
   tiny: $nt-progress-tiny,
@@ -54,6 +55,10 @@ $nt-progress-circle-sizes: (
     position: absolute;
     top: 0;
 
+    &.nt-circle-left {
+      transform: rotate(0deg);
+    }
+
     &.nt-circle-right {
       transform: rotate(180deg);
     }
@@ -74,13 +79,13 @@ $nt-progress-circle-sizes: (
     clip: rect(0, $size, $size, $size / 2);
   }
 
-  .nt-circle-half {
-    clip: rect(0, $size / 2, $size, 0);
-    border-width: $size / 20;
+  .nt-circle-half,
+  .nt-progress-circle-inner {
+    border-width: $size / 15;
   }
 
-  .nt-progress-circle-inner {
-    border-width: $size / 20;
+  .nt-circle-half {
+    clip: rect(0, $size / 2, $size, 0);
   }
 }
 

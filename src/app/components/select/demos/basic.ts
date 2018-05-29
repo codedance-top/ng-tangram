@@ -44,6 +44,6 @@ export class DemoSelectBasciComponent {
   }
 
   submit() {
-
+    console.log(['', 'hollow', 'clear'].includes('clear'));
   }
 }

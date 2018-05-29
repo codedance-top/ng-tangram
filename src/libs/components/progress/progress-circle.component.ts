@@ -31,6 +31,7 @@ export class NtProgressCircleComponent {
   @Input() class: string = '';
 
   get percent() {
-    return this.value / this.max * 100;
+    const percent = this.value / this.max * 100;
+    return percent > 100 ? 100 : percent;
   }
 }
