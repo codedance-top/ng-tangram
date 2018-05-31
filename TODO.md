@@ -1,3 +1,5 @@
+# 2018-05-31
+增加 dropdown-toggle 类型
 
 # 2018-04-28
 $nt-overlay-container-padding 样式效果使用 js 实现 ，增加相关组件属性
