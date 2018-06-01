@@ -4,7 +4,7 @@ import { setInterval } from 'timers';
 @Component({
   selector: 'demo-progress-circle',
   template: `
-    <nt-progress-circle [value]="value"></nt-progress-circle>
+    <nt-progress-circle [value]="value" size="small" radius="50"></nt-progress-circle>
     <nt-progress-circle [value]="value" color="secondary"></nt-progress-circle>
     <nt-progress-circle [value]="value" color="success"></nt-progress-circle>
     <nt-progress-circle [value]="value" color="alert"></nt-progress-circle>
@@ -22,14 +22,6 @@ export class DemoProgressCircleComponent implements AfterContentInit {
   constructor() { }
 
   ngAfterContentInit() {
-    setTimeout(() => this.value = 80, 1000);
-
-    // let timer = setInterval(() => {
-    //   if (this.value === 100) {
-    //     clearInterval(timer);
-    //     return;
-    //   }
-    //   this.value = this.value + 5;
-    // }, 1000);
+    setTimeout(() => this.value = 80);
   }
 }

@@ -1,5 +1,21 @@
-<div class="nt-progress-circle-meter" [class.half]="percent < 50">
-  <div class="nt-circle-half nt-circle-left" [style.transform]="'rotate(' + (percent > 100 ? 100 : percent) * 3.6 + 'deg)'"></div>
-  <div class="nt-circle-half nt-circle-right"></div>
-</div>
-<div class="nt-progress-circle-inner"><ng-content></ng-content></div>
+<svg attr.viewPort="0 0 {{width / 2}} {{height / 2}}" version="1.1" xmlns="http://www.w3.org/2000/svg"
+  [attr.width]="width" [attr.height]="height">
+  <circle
+    [attr.r]="radius"
+    [attr.cx]="width / 2"
+    [attr.cy]="height / 2"
+    fill="transparent"
+    [attr.stroke-dasharray]="dasharray"
+    [attr.stroke-dashoffset]="0"></circle>
+
+  <circle
+    class="progress-meter-circle"
+    [attr.r]="radius"
+    [attr.cx]="width / 2"
+    [attr.cy]="height / 2"
+    fill="transparent"
+    [attr.stroke-dasharray]="dasharray"
+    [attr.stroke-dashoffset]="dasharray - (dasharray / 100 * percent)"></circle>
+</svg>
+
+<!-- <div class="nt-progress-circle-inner"><ng-content></ng-content></div> -->

@@ -4,13 +4,8 @@ $nt-progress-small: rem-calc(5) !default;
 $nt-progress-medium: rem-calc(10) !default;
 $nt-progress-large: rem-calc(20) !default;
 
-$nt-progress-circle-tiny: rem-calc(30) !default;
-$nt-progress-circle-small: rem-calc(60) !default;
-$nt-progress-circle-medium: rem-calc(100) !default;
-$nt-progress-circle-large: rem-calc(140) !default;
-
 $nt-progress-meter-transition: width .5s cubic-bezier(.8, .2, .2, .8) !default;
-$nt-progress-circle-transition: transform .5s cubic-bezier(.8, .2, .2, .8) !default;
+$nt-progress-circle-transition: stroke-dashoffset .5s cubic-bezier(.8, .2, .2, .8) !default;
 
 $nt-progress-sizes: (
   tiny: $nt-progress-tiny,
@@ -19,48 +14,24 @@ $nt-progress-sizes: (
   large: $nt-progress-large
 ) !default;
 
-$nt-progress-circle-sizes: (
-  tiny: $nt-progress-circle-tiny,
-  small: $nt-progress-circle-small,
-  medium: $nt-progress-circle-medium,
-  large: $nt-progress-circle-large
-) !default;
-
 
 @mixin nt-progress-circle() {
   display: inline-block;
   position: relative;
   text-align: center;
 
-  .nt-progress-circle-meter,
-  .nt-progress-circle-inner {
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
+  svg {
+    transform: rotate(-90deg);
   }
 
-  .nt-progress-circle-meter {
-    position: absolute;
-    &.half .nt-circle-right {
-      display: none;
-    }
-  }
-
-  .nt-circle-half {
-    height: 100%;
-    width: 100%;
-    border-style: solid;
-    border-radius: 50%;
-    left: 0;
-    position: absolute;
-    top: 0;
-
-    &.nt-circle-left {
-      transform: rotate(0deg);
-    }
-
-    &.nt-circle-right {
-      transform: rotate(180deg);
+  svg circle {
+    stroke: $progress-background;
+    box-sizing: border-box;
+    transition: $nt-progress-circle-transition;
+    @if has-value($progress-radius) {
+      &.progress-meter-circle {
+        stroke-linecap: round;
+      }
     }
   }
 
@@ -71,27 +42,16 @@ $nt-progress-circle-sizes: (
   }
 }
 
-@mixin nt-progress-circle-size($size: $nt-progress-circle-medium) {
-  width: $size;
-  height: $size;
+@mixin nt-progress-circle-size($size: $nt-progress-medium) {
 
-  .nt-progress-circle-meter.half {
-    clip: rect(0, $size, $size, $size / 2);
-  }
-
-  .nt-circle-half,
-  .nt-progress-circle-inner {
-    border-width: $size / 15;
-  }
-
-  .nt-circle-half {
-    clip: rect(0, $size / 2, $size, 0);
+  svg circle {
+    stroke-width: $size;
   }
 }
 
 @mixin nt-progress-circle-style($color: get-color(primary)) {
-  .nt-circle-half {
-    border-color: $color;
+  svg circle.progress-meter-circle {
+    stroke: $color;
   }
 }
 
@@ -125,7 +85,7 @@ $nt-progress-circle-sizes: (
       }
     }
 
-    @each $name, $size in $nt-progress-circle-sizes {
+    @each $name, $size in $nt-progress-sizes {
       &.#{$name} {
         @include nt-progress-circle-size($size);
       }
