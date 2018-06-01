@@ -16,6 +16,19 @@ export class NtProgressCircleComponent {
 
   private _value = 0;
 
+  private _radius = 60;
+
+  get dasharray() {
+    return this.radius * 2 * Math.PI;
+  }
+
+  get width() { return this.radius * 2 + 20; }
+  get height() { return this.radius * 2 + 20; }
+
+  @Input()
+  set radius(value: number) { this._radius = coerceNumberProperty(value, 100); }
+  get radius() { return this._radius; }
+
   @Input()
   set max(value: number) { this._max = coerceNumberProperty(value, 100); }
   get max() { return this._max; }
@@ -31,6 +44,7 @@ export class NtProgressCircleComponent {
   @Input() class: string = '';
 
   get percent() {
-    return this.value / this.max * 100;
+    const percent = this.value / this.max * 100;
+    return percent > 100 ? 100 : percent;
   }
 }
