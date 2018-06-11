@@ -1,13 +1,12 @@
 
-import { Component, OnInit, Input, ViewEncapsulation, ComponentRef, EmbeddedViewRef, ViewChild, EventEmitter } from '@angular/core';
+import { Component, ViewEncapsulation, ComponentRef, EmbeddedViewRef, ViewChild, EventEmitter } from '@angular/core';
 import { BasePortalOutlet, CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
-import { ComponentPortal, ComponentType, PortalInjector, PortalHost, DomPortalHost } from '@angular/cdk/portal';
+import { ComponentPortal } from '@angular/cdk/portal';
 
-import { trigger, transition, useAnimation, AnimationEvent } from '@angular/animations';
+import { trigger, transition, AnimationEvent } from '@angular/animations';
 import { fadeInY, fadeOutY } from '@ng-tangram/animate/fading';
 
 import { NtModalConfig } from './modal-config';
-import { NtModalRef } from './modal-ref';
 
 export function throwNtModalContentAlreadyAttachedError() {
   throw Error('Attempting to attach modal content after content is already attached');

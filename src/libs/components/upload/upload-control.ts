@@ -2,12 +2,9 @@ import { EventEmitter } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
-import { Subscription } from 'rxjs/Subscription';
-
 import { NtUpload } from './upload';
 import { NtUploadControlError } from './upload-errors';
 import { NtUploadStatus } from './upload-status';
-import { HttpProgressEvent } from '@angular/common/http';
 
 export class NtUploadFile<T = any> {
   status: NtUploadStatus = NtUploadStatus.BEGIN;

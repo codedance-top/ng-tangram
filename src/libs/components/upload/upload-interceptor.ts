@@ -1,7 +1,6 @@
-import { HttpResponse, HttpRequest, HttpHandler } from "@angular/common/http";
-import { InjectionToken, Optional, Inject } from "@angular/core";
-import { HttpErrorResponse } from "@angular/common/http";
-import { NtUploadStatus } from "./upload-status";
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { InjectionToken } from '@angular/core';
+import { NtUploadStatus } from './upload-status';
 
 export interface NtUploadResult<T> {
   status: NtUploadStatus;

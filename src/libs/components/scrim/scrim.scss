@@ -9,8 +9,6 @@ $nt-scrim-loading-border-color: $light-gray !default;
   to { transform: rotate(360deg); }
 }
 
-
-
 @mixin nt-scrim-loading {
   display: inline-block;
   width: $nt-scrim-loading-size;

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Host, Input, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'nt-popover-pane, [nt-popover-pane]',

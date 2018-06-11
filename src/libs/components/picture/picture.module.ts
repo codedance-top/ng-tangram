@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NtDropdownModule } from '@ng-tangram/components/dropdown';
 import { NtIconModule } from '@ng-tangram/components/icon';
 import { NtModalModule } from '@ng-tangram/components/modal';
 import { NtProgressModule } from '@ng-tangram/components/progress';

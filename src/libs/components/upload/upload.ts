@@ -3,7 +3,7 @@
  */
 
 import {
-  HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpRequest, HttpResponse
+  HttpClient, HttpEvent, HttpEventType, HttpRequest, HttpResponse
 } from '@angular/common/http';
 import { Inject, Injectable, Optional } from '@angular/core';
 import { NtUploadHandler } from './upload-handler';

@@ -2,7 +2,7 @@ import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild,
-  ContentChildren, ElementRef, Input, NgZone, OnChanges, OnDestroy, OnInit, Optional,
+  Input, NgZone, OnDestroy, Optional,
   ViewEncapsulation
 } from '@angular/core';
 import { FormControl, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
@@ -12,8 +12,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';
-import { merge } from 'rxjs/observable/merge';
-import { filter, map, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
+import { filter, switchMap, take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
 
 import { NtFormFieldControl } from './form-field-control';
@@ -143,16 +142,16 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
     @Optional() private _formLabelWidth: NtFormLabelWidthDirective,
     @Optional() private _formOrientation: NtFormOrientationDirective) {
 
-    if (_formLabelWidth) {
-      _formLabelWidth.widthChange.pipe(takeUntil(this._destroy), filter(() => !this._selfLabelWidth))
+    if (this._formLabelWidth) {
+      this._formLabelWidth.widthChange.pipe(takeUntil(this._destroy), filter(() => !this._selfLabelWidth))
         .subscribe(width => {
           this._labelWidth = width;
           this._setHorizontalStyles();
         });
     }
 
-    if (_formOrientation) {
-      _formOrientation.orientationChange.pipe(takeUntil(this._destroy), filter(() => !this._selfOrientation))
+    if (this._formOrientation) {
+      this._formOrientation.orientationChange.pipe(takeUntil(this._destroy), filter(() => !this._selfOrientation))
         .subscribe(orientation => {
           this._orientation = orientation;
           this._setHorizontalStyles();

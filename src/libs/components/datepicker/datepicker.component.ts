@@ -2,8 +2,8 @@ import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Inject, Input,
-  NgZone, Optional, Output, Renderer2, Self, ViewChild, ViewEncapsulation
+  Component, ElementRef, EventEmitter, Inject, Input, NgZone, Optional, Renderer2, Self, ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';

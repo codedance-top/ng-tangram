@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule, Type } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NtFormAutofocusDirective } from './form-autofocus.directive';
 import { NtFormErrorPipe } from './form-error.pipe';
 import { NtFormFieldComponent } from './form-field.component';

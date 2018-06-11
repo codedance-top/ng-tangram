@@ -1,6 +1,6 @@
 import {
   AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject,
-  Input, Optional, Output, ViewChild, ViewEncapsulation
+  Input, Optional, Output, ViewEncapsulation
 } from '@angular/core';
 import { DateAdapter, NT_DATE_FORMATS, NtDateFormats } from '@ng-tangram/components/core';
 

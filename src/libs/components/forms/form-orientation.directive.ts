@@ -1,10 +1,4 @@
-import { coerceNumberProperty } from '@angular/cdk/coercion';
-import {
-  ContentChildren, Directive, EventEmitter, Input, SimpleChanges, OnDestroy
-} from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { defer } from 'rxjs/observable/defer';
-import { merge } from 'rxjs/operators/merge';
+import { Directive, EventEmitter, Input, OnDestroy } from '@angular/core';
 
 export declare type NtFormOrientation = 'vertical' | 'horizontal';
 

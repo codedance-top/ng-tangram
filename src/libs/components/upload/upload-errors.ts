@@ -1,5 +1,3 @@
-import { NumberValueAccessor } from "@angular/forms/src/directives/number_value_accessor";
-
 export declare type NtUploadControlError = NtFileAcceptError | NtFileSizeError | NtFileUploadError;
 
 export class NtFileAcceptError {

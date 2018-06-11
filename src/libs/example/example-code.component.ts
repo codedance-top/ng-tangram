@@ -55,6 +55,8 @@ export class NtExampleCodeComponent implements AfterContentInit {
     private elementRef: ElementRef) { }
 
   ngAfterContentInit() {
-    isPlatformBrowser(this.platformId) && setTimeout(() => highlightAll(this.elementRef.nativeElement), 0);
+    isPlatformBrowser(this.platformId) && Promise
+      .resolve()
+      .then(() => highlightAll(this.elementRef.nativeElement));
   }
 }

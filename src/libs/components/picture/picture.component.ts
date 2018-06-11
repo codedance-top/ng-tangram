@@ -1,10 +1,9 @@
-import { state, transition, trigger } from '@angular/animations';
+import { transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
-  HttpEvent, HttpEventType, HttpProgressEvent, HttpResponse, HttpResponseBase, HttpSentEvent
-} from '@angular/common/http';
+  HttpProgressEvent} from '@angular/common/http';
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit,
+  Component, ElementRef, EventEmitter, Input, OnInit,
   Optional, Output, Self, TemplateRef, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
@@ -13,14 +12,13 @@ import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import { NtModal } from '@ng-tangram/components/modal';
 import {
   NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUpload, NtUploadControl,
-  NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
+  NtUploadControlError, NtUploadFile, NtUploadStatus
 } from '@ng-tangram/components/upload';
 
 import loadImage from 'blueimp-load-image';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
-import { VIEWPORT_RULER_PROVIDER } from '@angular/cdk/scrolling';
 
 // const loadImage = _loadImage;
 
@@ -181,7 +179,6 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
       let loadImageOptions = { maxWidth: 1080, orientation: true, canvas: true };
       const data = await zipImage(file, loadImageOptions);
       ntFile.thumbnail = data.thumbnail;
-      const count = this.files.push(ntFile);
 
       const handlers = {
         begin: () => this._onUploadBegin(ntFile),
@@ -227,7 +224,7 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
   }
 
   preview(file: NtPicture) {
-    const modal = this._modal.open(this.previewTemplate, {
+    this._modal.open(this.previewTemplate, {
       data: file,
       centerVertically: true,
       maxWidth: '90vw',

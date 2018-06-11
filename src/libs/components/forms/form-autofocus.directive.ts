@@ -1,12 +1,6 @@
-import {
-  AfterContentInit, ContentChildren, Directive, Input, OnChanges, QueryList, Optional
-} from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, FormGroupName, NgForm, FormGroupDirective, ControlContainer } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { defer } from 'rxjs/observable/defer';
-import { merge } from 'rxjs/operators/merge';
+import { ContentChildren, Directive, Optional, QueryList } from '@angular/core';
+import { ControlContainer, FormGroupDirective, NgForm } from '@angular/forms';
 
-import { NtFormFieldControl } from './form-field-control';
 import { NtFormFieldComponent } from './form-field.component';
 
 @Directive({

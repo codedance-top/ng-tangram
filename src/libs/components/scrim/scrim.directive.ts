@@ -1,10 +1,8 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { isPlatformBrowser } from '@angular/common';
 import {
-  AfterContentInit, ComponentFactory, ComponentFactoryResolver, ComponentRef, Directive, ElementRef,
-  Inject, Input, OnDestroy, OnInit, PLATFORM_ID, Renderer2, ViewContainerRef, ContentChild
-} from '@angular/core';
-import { fadeIn } from '@ng-tangram/animate/fading';
+  ComponentFactoryResolver, ComponentRef, Directive, ElementRef,
+  Inject, Input, OnDestroy, PLATFORM_ID, Renderer2, ViewContainerRef} from '@angular/core';
 
 import { NtScrimComponent } from './scrim.component';
 

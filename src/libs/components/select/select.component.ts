@@ -1,25 +1,23 @@
-import { animate, group, state, style, transition, trigger } from '@angular/animations';
+import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
-  AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren,
-  ElementRef, EventEmitter, forwardRef, Inject, InjectionToken, Input, isDevMode, NgZone, OnChanges,
-  OnDestroy, Optional, Output, QueryList, Renderer2, Self, SimpleChanges, ViewChild,
+  AfterContentInit, ChangeDetectorRef, Component, ContentChildren,
+  ElementRef, EventEmitter, Input, isDevMode, NgZone, OnDestroy, Optional, Output, QueryList, Renderer2, Self, ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NgControl, Validators } from '@angular/forms';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 import {
   NT_OPTION_PARENT_COMPONENT, NtOptionComponent, NtOptionParentComponent, NtOptionSelectionChange,
-  NtOverlayComponent, NtOverlayPosition
-} from '@ng-tangram/components/core';
+  NtOverlayComponent} from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';
 import { merge } from 'rxjs/observable/merge';
-import { filter, map, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
+import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
 
 export function getNtSelectDynamicMultipleError() {
@@ -74,7 +72,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   private _width: number;
   private _multiple = false;
   private _value: any;
-  private _viewValue: any;
   private _required = false;
 
   private _compareWith = (o1: any, o2: any) => o1 === o2;
@@ -183,13 +180,12 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   constructor(
     private _ngZone: NgZone,
-    private _renderer: Renderer2,
     private _elementRef: ElementRef,
     private _changeDetectorRef: ChangeDetectorRef,
     @Self() @Optional() public ngControl: NgControl) {
     super();
 
-    this.origin = new CdkOverlayOrigin(_elementRef);
+    this.origin = new CdkOverlayOrigin(this._elementRef);
 
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -322,7 +318,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       this._sortValues();
     } else {
       this._clearSelection();
-      const correspondingOption = this._selectValue(value, isUserInput);
     }
 
     this._changeDetectorRef.markForCheck();

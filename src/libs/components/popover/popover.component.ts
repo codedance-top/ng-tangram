@@ -1,10 +1,6 @@
-import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
-import {
-  Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild, ViewEncapsulation
-} from '@angular/core';
-import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
-import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
+import { Component, ElementRef, Input, ViewChild, ViewEncapsulation } from '@angular/core';
+import { NtOverlayComponent } from '@ng-tangram/components/core';
 
 @Component({
   selector: '[nt-popover]',
@@ -24,8 +20,7 @@ export class NtPopoverComponent {
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
 
   constructor(
-    private _renderer: Renderer2,
     private _elementRef: ElementRef) {
-    this.origin = new CdkOverlayOrigin(_elementRef);
+    this.origin = new CdkOverlayOrigin(this._elementRef);
   }
 }

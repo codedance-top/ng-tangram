@@ -1,7 +1,7 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit, Component, ContentChild, Directive, ElementRef, EventEmitter, Inject, Input,
-  Optional, Output, TemplateRef, ViewChild, ViewContainerRef
+  Optional, TemplateRef, ViewChild, ViewContainerRef
 } from '@angular/core';
 import { NT_COLUMN, NT_COLUMN_TABLE, NtColumn, NtColumnSortChange, NtColumnTable } from './column';
 

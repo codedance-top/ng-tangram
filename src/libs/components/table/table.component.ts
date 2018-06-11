@@ -1,11 +1,9 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
-  AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild,
-  ContentChildren, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, OnInit, Output,
-  QueryList, SimpleChanges, TemplateRef, ViewChild, ViewChildren, ViewEncapsulation
+  AfterContentInit, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, Output,
+  QueryList, SimpleChanges, ViewEncapsulation
 } from '@angular/core';
-import { fadeIn } from '@ng-tangram/animate/fading';
 
 import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';
@@ -13,8 +11,8 @@ import { merge } from 'rxjs/observable/merge';
 import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
 
-import { NT_COLUMN_TABLE, NtColumn, NtColumnSortChange, NtColumnTable } from './column';
-import { NtColumnComponent, NtColumnHeaderDirective } from './column.directive';
+import { NT_COLUMN_TABLE, NtColumnSortChange, NtColumnTable } from './column';
+import { NtColumnComponent } from './column.directive';
 
 @Component({
   selector: 'nt-table',
@@ -73,8 +71,7 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
 
   constructor(
     private _ngZone: NgZone,
-    private _changeDetectorRef: ChangeDetectorRef,
-    private _element: ElementRef) { }
+    private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnChanges(change: SimpleChanges) {
     if (change && change.dataSource && !change.dataSource.firstChange) {

@@ -57,6 +57,7 @@
     "autoprefixer": "^7.2.3",
     "camelcase": "^5.0.0",
     "circular-dependency-plugin": "^4.2.1",
+    "codelyzer": "^4.3.0",
     "copy-webpack-plugin": "^4.1.1",
     "css-loader": "^0.28.9",
     "cssnano": "^3.10.0",
