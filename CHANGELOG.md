@@ -1,4 +1,4 @@
-# 2018-06-10 0.3.0
+# 2018-06-10 0.3.0-beta.0
 
 * 新增 `NtPopConfirmComponent` template 属性，标题现在支持 html，template 类型
 * 新增 `NtPopoverComponent` template 属性，标题现在支持 html，template 类型

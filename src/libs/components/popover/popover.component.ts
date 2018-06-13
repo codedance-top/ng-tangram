@@ -14,7 +14,7 @@ export class NtPopoverComponent {
 
   private _title = '';
 
-  private _template: TemplateRef<any>;
+  private _template: TemplateRef<any> | null;
 
   readonly origin: CdkOverlayOrigin;
 
@@ -23,7 +23,7 @@ export class NtPopoverComponent {
   get title() { return this._title; }
 
   @Input()
-  set template(value: TemplateRef<any>) { this._template = value; }
+  set template(value: TemplateRef<any> | null) { this._template = value; }
   get template() { return this._template; }
 
   @Input('nt-popover')

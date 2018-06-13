@@ -1,28 +1,19 @@
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/filter';
-
-import { filter } from 'rxjs/operators/filter';
+import { debounceTime, filter, switchMap, take, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs/Subject';
 
 import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import {
-  CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange
+  CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
 } from '@angular/cdk/overlay';
 import {
-  AfterViewInit, Component, EventEmitter, Input, Output, Renderer2, ViewChild,
-  ViewEncapsulation,
-  OnDestroy
+  AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output, Renderer2, ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 
 import { getPositionClassName, NtOverlayPosition, OVERLAY_POSITIONS } from './overlay-positions';
-import { take } from 'rxjs/operators/take';
-import { switchMap } from 'rxjs/operators/switchMap';
-import { Subject } from 'rxjs/Subject';
-import { takeUntil, debounceTime } from 'rxjs/operators';
 
 export declare type NtOverlayTriggerType = '' | 'hover' | 'click';
 
@@ -46,7 +37,7 @@ export class NtOverlayComponent implements AfterViewInit, OnDestroy {
 
   private _origin: CdkOverlayOrigin;
   private _position: NtOverlayPosition = 'bottomLeft';
-  private _positionPairs = OVERLAY_POSITIONS[this._position];
+  private _positionPairs: ConnectionPositionPair[] = OVERLAY_POSITIONS[this._position];
   private _paddingClass = getPositionClassName(this._positionPairs[0]);
   private _arrow = false;
   private _noSpacing = false;
@@ -65,7 +56,10 @@ export class NtOverlayComponent implements AfterViewInit, OnDestroy {
   get origin() { return this._origin; }
 
   @Input()
-  set position(value: NtOverlayPosition) { this._position = value; this._setPosition(); }
+  set position(value: NtOverlayPosition) {
+    this._position = value;
+    this._setPosition();
+  }
   get positions() { return this._positionPairs; }
 
   get paddingClass() { return this._paddingClass; }

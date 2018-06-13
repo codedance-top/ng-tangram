@@ -18,14 +18,14 @@ export class NtPopConfirmComponent {
 
   private _title: string = '';
 
-  private _template: TemplateRef<any>;
+  private _template: TemplateRef<any> | null;
 
   @Input()
   set title(value: string) { this._title = value; }
   get title() { return this._title; }
 
   @Input()
-  set template(value: TemplateRef<any>) { this._template = value; }
+  set template(value: TemplateRef<any> | null) { this._template = value; }
   get template() { return this._template; }
 
   @Input('nt-popconfirm')
