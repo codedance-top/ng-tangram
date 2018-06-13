@@ -28,6 +28,7 @@ $nt-select-symbol-clear: '\00D7' !default;
     font-size: 1em;
     line-height: 1em;
     &::after {
+      font-family: $nt-select-symbol-font-family;
       display: block;
       color: $nt-select-symbol-color;
       left: auto;

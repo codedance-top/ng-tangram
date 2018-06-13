@@ -5,7 +5,6 @@
 * 新增 `NtTooltipComponent` template 属性，标题现在支持 html，template 类型
 * 新增 `NtOverlayComponent` keydownEvents 事件
 * 新增 `NtSelectComponent`，`NtDatePickerComponent` scss 变量 `*-symbol-font-family`, `*-symbol-font-family`, `*-symbol-font-family`
-* 新增 `NtDropdownComponent` 样式 `nt-dropdown-toggle`
 * 优化 `NtSelectComponent` 支持键盘事件
 * bug 修复 `NtSelectComponent`，`NtDatePickerComponent` 在弹出窗口点击 ESC 健时不能正确移除焦点的问题
 

@@ -13,7 +13,6 @@ import { NtDropdownPaneComponent } from './dropdown-pane.component';
   templateUrl: 'dropdown.component.html',
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'nt-dropdown-toggle',
     '(click)': 'overlay.click()',
     '(mouseenter)': 'overlay.onMouseEnter()',
     '(mouseleave)': 'overlay.onMouseLeave()'
