@@ -7,7 +7,7 @@ export const COMPONENTS_ROUTES: Routes = [
   { path: 'breadcrumbs', loadChildren: './breadcrumbs/breadcrumbs.module#BreadcrumbsDocumentModule', data: { title: 'Breadcrumbs 面包屑' } },
   { path: 'button', loadChildren: './button/button.module#ButtonDocumentModule', data: { title: 'Button 按钮' } },
   { path: 'callout', loadChildren: './callout/callout.module#CalloutDocumentModule', data: { title: 'Callout 提示框' } },
-  // { path: 'checkbox', loadChildren: './checkbox/checkbox.module#CheckboxDocumentModule', data: { title: 'Checkbox 复选框' } },
+  { path: 'checkbox', loadChildren: './checkbox/checkbox.module#CheckboxDocumentModule', data: { title: 'Checkbox 复选框' } },
   // { path: 'collapse', loadChildren: './collapse/collapse.module#CollapseDocumentModule', data: { title: 'Collapse ' } },
   { path: 'datepicker', loadChildren: './datepicker/datepicker.module#DatePickerDocumentModule', data: { title: 'DatePicker 日期选择框' } },
   // { path: 'datepicker-range', loadChildren: './datepicker-range/datepicker-range.module#DatePickerRangeDocumentModule',

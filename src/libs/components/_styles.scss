@@ -5,6 +5,7 @@
 @import 'core/overlay/overlay';
 @import 'core/option/option';
 
+@import 'checkbox/checkbox';
 @import 'dropdown/dropdown';
 @import 'datepicker/datepicker';
 @import 'forms/forms';
@@ -40,6 +41,7 @@
 
   @include nt-badge;
   @include nt-button;
+  @include nt-checkbox;
   @include nt-dropdown;
   @include nt-datepicker;
   @include nt-forms;
