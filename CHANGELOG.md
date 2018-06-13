@@ -1,3 +1,14 @@
+# 2018-06-10 0.3.0
+
+* 新增 `NtPopConfirmComponent` template 属性，标题现在支持 html，template 类型
+* 新增 `NtPopoverComponent` template 属性，标题现在支持 html，template 类型
+* 新增 `NtTooltipComponent` template 属性，标题现在支持 html，template 类型
+* 新增 `NtOverlayComponent` keydownEvents 事件
+* 新增 `NtSelectComponent`，`NtDatePickerComponent` scss 变量 `*-symbol-font-family`, `*-symbol-font-family`, `*-symbol-font-family`
+* 新增 `NtDropdownComponent` 样式 `nt-dropdown-toggle`
+* 优化 `NtSelectComponent` 支持键盘事件
+* bug 修复 `NtSelectComponent`，`NtDatePickerComponent` 在弹出窗口点击 ESC 健时不能正确移除焦点的问题
+
 # 2018-05-29 0.2.0
 
 * 优化 `NtFileComponent` 文件大小显示
@@ -95,10 +106,6 @@
 
 * 改进 `NtValidationTransformer` 注入方式，现在可以支持全局配置默认 `Transformer`（需要用 `NtFormsModule.forRoot()` 方式在根模块 `import`）。
 * 组件 `nt-badge` 增加 `type` 属性， `static`（默认），`float`（右上角浮动），`notify`（小红点）。
-
-# 2018-04-12. 0.1.0-alpha.1 - 4
-
-* bug fix ... 
 
 # 2018-04-10. 0.1.0-alpha.0
 

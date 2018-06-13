@@ -1,7 +1,7 @@
 /**
  * @ng-tangram 打包脚本
  * 打包格式遵循 Angular Package Format (APF) v5
- * link: https://docs.google.com/document/d/1tdgcvdLKsYPHlgNBppGFrsaA1eINLxJi9C8KkyrH2sI/edit#heading=h.k0mh3o8u5hx
+ * @description https://docs.google.com/document/d/1tdgcvdLKsYPHlgNBppGFrsaA1eINLxJi9C8KkyrH2sI/edit#heading=h.k0mh3o8u5hx
  */
 'use strict';
 
@@ -99,8 +99,6 @@ async function _build(lib) {
   }
 
   libPackage.version = version;
-
-  // console.log(compilationFolder);
 
   await build.esm5(`${compilationFolder}/tsconfig-build.json`, esm5);
   await build.esm2015(`${compilationFolder}/tsconfig-build.json`);

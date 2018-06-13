@@ -1,14 +1,14 @@
 <button class="button hollow small nt-file-trigger" type="button" (click)="onTriggerClick()" [disabled]="files.length >= maxFiles || disabled">
   <ng-content></ng-content>
 </button>
-<input #fileElement type="file" [accept]="accept" (change)="_fileChanged()">
+<input #fileElement type="file" [accept]="accept" (change)="_fileChanged()" hidden>
 <div class="nt-file-list">
   <div class="nt-file-item" *ngFor="let file of files" [@fadeOut]>
     <div class="nt-file-info"
     [class.success]="file.status === 2"
     [class.error]="file.status === 3"
     [class.remote]="file.status === 4">
-      <nt-ant-icon type="file1"></nt-ant-icon>&nbsp;
+      <span class="nt-file-symbol nt-file-symbol-icon"></span>&nbsp;
       <a *ngIf="file.link" [href]="file.link" target="_blank">{{file.name}}</a>
       <ng-container *ngIf="!file.link">{{file.name}}</ng-container>
       &nbsp;{{ file.size | ntFileSize }}

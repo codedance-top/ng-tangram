@@ -9,7 +9,7 @@ export declare type NtDropdownPaneSize = '' | 'tiny' | 'small' | 'large';
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None,
   host: {
-    '[class]': '["dropdown-pane", size, class].join(" ")',
+    '[class]': '["nt-dropdown-pane", size, class].join(" ")',
     '[class.autosize]': 'autosize'
   }
 })

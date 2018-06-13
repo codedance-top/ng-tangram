@@ -1,7 +1,4 @@
-import { TemplateRef } from '@angular/core';
-import { ComponentType } from '@angular/cdk/portal';
-
-export class NtModalConfig<T = any> {
+export class NtModalConfig {
   id?: string;
   top?: string = '80px';
   width?: number | string = '600px';
@@ -19,5 +16,4 @@ export class NtModalConfig<T = any> {
   backdropClass?: string = 'dark-backdrop';
   centerVertically?: boolean = false;
   transparent?: boolean = false;
-
 }

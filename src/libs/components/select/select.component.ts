@@ -1,24 +1,29 @@
+import { Observable } from 'rxjs/Observable';
+import { defer } from 'rxjs/observable/defer';
+import { merge } from 'rxjs/observable/merge';
+import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs/Subject';
+
 import { transition, trigger } from '@angular/animations';
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
+import {
+  DOWN_ARROW, END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE, UP_ARROW
+} from '@angular/cdk/keycodes';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
-  AfterContentInit, ChangeDetectorRef, Component, ContentChildren,
-  ElementRef, EventEmitter, Input, isDevMode, NgZone, OnDestroy, Optional, Output, QueryList, Renderer2, Self, ViewChild,
+  AfterContentInit, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, Input,
+  isDevMode, NgZone, OnDestroy, Optional, Output, QueryList, Renderer2, Self, ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 import {
   NT_OPTION_PARENT_COMPONENT, NtOptionComponent, NtOptionParentComponent, NtOptionSelectionChange,
-  NtOverlayComponent} from '@ng-tangram/components/core';
+  NtOverlayComponent
+} from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
-
-import { Observable } from 'rxjs/Observable';
-import { defer } from 'rxjs/observable/defer';
-import { merge } from 'rxjs/observable/merge';
-import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
 
 export function getNtSelectDynamicMultipleError() {
   return Error('Cannot change `multiple` mode of select after initialization.');
@@ -146,6 +151,8 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     return this.filter ? this.triggerValue : this._placeholder;
   }
 
+  _keyManager: ActiveDescendantKeyManager<NtOptionComponent>;
+
   @ViewChild('inputElement') inputElement: ElementRef;
   @ViewChild('paneElement') paneElement: ElementRef;
 
@@ -197,6 +204,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   }
 
   ngAfterContentInit() {
+    this._initKeyManager();
     this.options.changes.pipe(startWith(null), takeUntil(this._destroy)).subscribe(() => {
       this._resetOptions();
       this._initializeSelection();
@@ -218,6 +226,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     this._state = 'folded';
     this.onResize();
     this._scrollActiveOptionIntoView();
+    this._highlightCorrectOption();
   }
 
   onBeforeClosed() {
@@ -227,6 +236,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   onAfterClosed() {
     this._resetFilterResult();
+    this.inputElement.nativeElement.blur();
   }
 
   onFocus() {
@@ -271,6 +281,58 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     this._disabled = isDisabled;
   }
 
+  /** Handles all keydown events on the select. */
+  _handleKeydown(event: KeyboardEvent): void {
+    if (!this.disabled) {
+      this.overlay.isOpen ? this._handleOpenKeydown(event) : this._handleClosedKeydown(event);
+    }
+  }
+
+  /** Handles keyboard events when the selected is open. */
+  private _handleOpenKeydown(event: KeyboardEvent): void {
+    const keyCode = event.keyCode;
+    const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW;
+    const manager = this._keyManager;
+    if (keyCode === HOME || keyCode === END) {
+      event.preventDefault();
+      keyCode === HOME ? manager.setFirstItemActive() : manager.setLastItemActive();
+
+    } else if (isArrowKey && event.altKey) {
+      event.preventDefault();
+      this.overlay.hide();
+    } else if ((keyCode === ENTER || keyCode === SPACE) && manager.activeItem) {
+      event.preventDefault();
+      manager.activeItem.selectViaInteraction();
+      if (keyCode === ENTER && this.multiple) {
+        this.overlay.hide();
+      }
+    } else {
+
+      const previouslyFocusedIndex = manager.activeItemIndex;
+      manager.onKeydown(event);
+
+      if (this._multiple && isArrowKey && event.shiftKey && manager.activeItem &&
+        manager.activeItemIndex !== previouslyFocusedIndex) {
+        manager.activeItem.selectViaInteraction();
+      }
+    }
+  }
+
+  private _handleClosedKeydown(event: KeyboardEvent): void {
+    const keyCode = event.keyCode;
+    const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW ||
+      keyCode === LEFT_ARROW || keyCode === RIGHT_ARROW;
+    const isOpenKey = keyCode === ENTER || keyCode === SPACE;
+
+    // Open the select on ALT + arrow key to match the native <select>
+    if (isOpenKey || ((this.multiple || event.altKey) && isArrowKey)) {
+      event.preventDefault(); // prevents the page from scrolling down when pressing space
+      this.overlay.show();
+    } else if (!this.multiple) {
+      this._keyManager.onKeydown(event);
+    }
+  }
+
   private _resetOptions() {
 
     const changedOrDestroyed = merge(this.options.changes, this._destroy);
@@ -295,6 +357,30 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     this._resetFilterResult();
   }
 
+  /** Sets up a key manager to listen to keyboard events on the overlay panel. */
+  private _initKeyManager() {
+
+    this._keyManager = new ActiveDescendantKeyManager<NtOptionComponent>(this.options)
+      .withTypeAhead()
+      .withVerticalOrientation();
+
+    this._keyManager.tabOut.pipe(takeUntil(this._destroy)).subscribe(() => {
+      // Restore focus to the trigger before closing. Ensures that the focus
+      // position won't be lost if the user got focus into the overlay.
+      this.focus();
+      this.overlay.hide();
+      // this.inputElement.nativeElement.blur();
+    });
+
+    this._keyManager.change.pipe(takeUntil(this._destroy)).subscribe(() => {
+      if (this.overlay.isOpen && this.paneElement) {
+        this._scrollActiveOptionIntoView();
+      } else if (!this.overlay.isOpen && !this.multiple && this._keyManager.activeItem) {
+        this._keyManager.activeItem.selectViaInteraction();
+      }
+    });
+  }
+
   private _resetFilterResult() {
     this.options.forEach(option => option._hidden = false);
   }
@@ -302,12 +388,10 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   private _initializeSelection(): void {
     Promise.resolve().then(() => {
       this._setSelectionByValue(this.ngControl ? this.ngControl.value : this.value);
-      this._scrollActiveOptionIntoView();
     });
   }
 
   private _setSelectionByValue(value: any | any[], isUserInput = false): void {
-
     if (this.multiple && value) {
       if (!Array.isArray(value)) {
         throw getNtSelectNonArrayValueError();
@@ -318,6 +402,13 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       this._sortValues();
     } else {
       this._clearSelection();
+
+      const correspondingOption = this._selectValue(value, isUserInput);
+      // Shift focus to the active item. Note that we shouldn't do this in multiple
+      // mode, because we don't know what option the user interacted with last.
+      if (correspondingOption) {
+        this._keyManager.setActiveItem(this.options.toArray().indexOf(correspondingOption));
+      }
     }
 
     this._changeDetectorRef.markForCheck();
@@ -386,6 +477,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     if (this.multiple) {
       this._selectionModel.toggle(option);
       wasSelected ? option.deselect() : option.select();
+      this._keyManager.setActiveItem(this.options.toArray().indexOf(option));
       this._sortValues();
     } else {
       this._clearSelection(option.value == null ? undefined : option);
@@ -402,16 +494,39 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     }
   }
 
-  private _scrollActiveOptionIntoView() {
-    let selected: NtOptionComponent | null = null;
 
-    if (this.selected instanceof NtOptionComponent) {
-      selected = this.selected;
-    } else if (this.selected instanceof Array && this.selected.length > 0) {
-      selected = this.selected[0];
+  /**
+   * Highlights the selected item. If no option is selected, it will highlight
+   * the first item instead.
+   */
+  private _highlightCorrectOption(): void {
+    if (this._keyManager) {
+      if (this.empty) {
+        this._keyManager.setFirstItemActive();
+      } else {
+        const selectIndex = this.options.toArray().indexOf(this._selectionModel.selected[0]);
+        this._keyManager.setActiveItem(selectIndex);
+      }
     }
-    if (selected) {
-      this.paneElement.nativeElement.scrollTop = selected.getOffsetY();
+  }
+
+  private _scrollActiveOptionIntoView() {
+    const activeOption = this._keyManager.activeItem || this.options.first;
+
+    const panelScrollTop = this.paneElement.nativeElement.scrollTop;
+    const panelScrollBottom = panelScrollTop + this.paneElement.nativeElement.offsetHeight;
+
+    if (panelScrollBottom === 0) {
+      this.paneElement.nativeElement.scrollTop = activeOption.getOffsetTop();
+    } else if (activeOption.getOffsetTop() < panelScrollTop) {
+
+      // 当活动选项超出 panel 的顶部范围时，重新设置 panel 可视区域。
+      this.paneElement.nativeElement.scrollTop = activeOption.getOffsetTop();
+    } else if (activeOption.getOffsetTop() + activeOption.getOffsetHeight() >= panelScrollBottom) {
+
+      // 当活动选项超出 panel 的底部范围时，重新设置 panel 可视区域。
+      const scrollOffset = this.paneElement.nativeElement.offsetHeight - activeOption.getOffsetHeight();
+      this.paneElement.nativeElement.scrollTop = activeOption.getOffsetTop() - scrollOffset;
     }
   }
 

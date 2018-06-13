@@ -1,6 +1,6 @@
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
-  Component, ElementRef, EventEmitter, Input, Output, ViewChild, ViewEncapsulation
+  Component, ElementRef, EventEmitter, Input, Output, ViewChild, ViewEncapsulation, TemplateRef
 } from '@angular/core';
 import { NtOverlayComponent } from '@ng-tangram/components/core';
 
@@ -16,7 +16,28 @@ export class NtPopConfirmComponent {
 
   readonly origin: CdkOverlayOrigin;
 
-  @Input('nt-popconfirm') title = '';
+  private _title: string = '';
+
+  private _template: TemplateRef<any>;
+
+  @Input()
+  set title(value: string) { this._title = value; }
+  get title() { return this._title; }
+
+  @Input()
+  set template(value: TemplateRef<any>) { this._template = value; }
+  get template() { return this._template; }
+
+  @Input('nt-popconfirm')
+  set _default(value: string | TemplateRef<any>) {
+    if (value instanceof TemplateRef) {
+      this._template = value;
+    } else {
+      this._title = value;
+      this._template = null;
+    }
+  }
+
   @Input() position = 'top';
 
   @Input() confirmText = '确认';

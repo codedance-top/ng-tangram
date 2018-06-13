@@ -4,7 +4,7 @@ import {
   Inject, InjectionToken, Output, Optional, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Highlightable } from '@angular/cdk/a11y';
+import { Highlightable, ListKeyManagerOption } from '@angular/cdk/a11y';
 import { Subject } from 'rxjs/Subject';
 
 export interface NtOptionParentComponent {
@@ -28,12 +28,12 @@ export const NT_OPTION_PARENT_COMPONENT = new InjectionToken<NtOptionParentCompo
     'class': 'nt-option',
     '[class.selected]': 'selected',
     '[class.disabled]': 'disabled',
-    '[class.hidden]': '_hidden',
     '[class.active]': '_isActive',
+    '[hidden]': '_hidden',
     '(click)': 'selectViaInteraction()'
   }
 })
-export class NtOptionComponent implements AfterViewChecked, Highlightable {
+export class NtOptionComponent implements AfterViewChecked, Highlightable, ListKeyManagerOption {
 
   private _value: any;
   private _selected = false;
@@ -119,8 +119,16 @@ export class NtOptionComponent implements AfterViewChecked, Highlightable {
     this._isActive = false;
   }
 
-  getOffsetY() {
+  getLabel() {
+    return this.label;
+  }
+
+  getOffsetTop() {
     return this._element.nativeElement.offsetTop;
+  }
+
+  getOffsetHeight() {
+    return this._element.nativeElement.offsetHeight;
   }
 
   private _emitSelectionChangeEvent(isUserInput = false): void {

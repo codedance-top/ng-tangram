@@ -13,7 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
         </nt-select>
       </nt-form-field>
       <nt-form-field label="多选">
-        <nt-select name="multiple" placeholder="多选" formControlName="multiple" multiple>
+        <nt-select name="multiple" placeholder="多选" formControlName="multiple" filter multiple>
           <nt-option *ngFor="let alphabet of alphabets" [value]="alphabet">
             <nt-ant-icon type="appstore1"></nt-ant-icon> {{alphabet}}
           </nt-option>

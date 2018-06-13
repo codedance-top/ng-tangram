@@ -1,5 +1,5 @@
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
-import { Component, ElementRef, Input, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, ViewEncapsulation, TemplateRef } from '@angular/core';
 import { NtOverlayComponent } from '@ng-tangram/components/core';
 
 @Component({
@@ -12,9 +12,30 @@ import { NtOverlayComponent } from '@ng-tangram/components/core';
 })
 export class NtPopoverComponent {
 
+  private _title = '';
+
+  private _template: TemplateRef<any>;
+
   readonly origin: CdkOverlayOrigin;
 
-  @Input('nt-popover') title = '';
+  @Input()
+  set title(value: string) { this._title = value; }
+  get title() { return this._title; }
+
+  @Input()
+  set template(value: TemplateRef<any>) { this._template = value; }
+  get template() { return this._template; }
+
+  @Input('nt-popover')
+  set _default(value: string | TemplateRef<any>) {
+    if (value instanceof TemplateRef) {
+      this._template = value;
+    } else {
+      this._title = value;
+      this._template = null;
+    }
+  }
+
   @Input() position = 'top';
 
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;

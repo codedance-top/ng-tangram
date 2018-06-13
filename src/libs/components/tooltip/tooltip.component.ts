@@ -1,6 +1,6 @@
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
-  Component, ElementRef, Input, Renderer2, ViewChild, ViewEncapsulation
+  Component, ElementRef, Input, Renderer2, ViewChild, ViewEncapsulation, TemplateRef
 } from '@angular/core';
 import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
 
@@ -18,14 +18,27 @@ export class NtTooltipComponent {
 
   private _title = '';
 
+  private _template: TemplateRef<any>;
+
   readonly origin: CdkOverlayOrigin;
 
   @Input()
   set title(value: string) { this._title = value; }
   get title() { return this._title; }
 
+  @Input()
+  set template(value: TemplateRef<any>) { this._template = value; }
+  get template() { return this._template; }
+
   @Input('nt-tooltip')
-  set _default(value: string) { this._title = value; }
+  set _default(value: string | TemplateRef<any>) {
+    if (value instanceof TemplateRef) {
+      this._template = value;
+    } else {
+      this._title = value;
+      this._template = null;
+    }
+  }
 
   get _isDirective() {
     const attributes = this._elementRef.nativeElement.attributes;

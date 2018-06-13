@@ -1,6 +1,15 @@
+$nt-dropdown-toggle-symbol: '\25BC' !default;
+
 
 @mixin nt-dropdown {
-  .dropdown-pane {
+
+  .nt-dropdown-toggle::after {
+    display: inline-block;
+    transform: scale(.9);
+    content: $nt-dropdown-toggle-symbol;
+  }
+
+  .nt-dropdown-pane {
     width: $dropdown-width;
     padding: $dropdown-padding;
     border-radius: $dropdown-radius;
@@ -14,7 +23,7 @@
     }
   }
   @each $name, $size in $dropdown-sizes {
-    .dropdown-pane.#{$name} {
+    .nt-dropdown-pane.#{$name} {
       width: $size;
       &.autosize {
         width: auto;

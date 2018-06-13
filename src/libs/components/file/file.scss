@@ -1,5 +1,4 @@
 $nt-file-item-margin: $form-spacing !default;
-
 // $nt-file-info-radius: $global-radius !default;
 $nt-file-info-color: $dark-gray !default;
 $nt-file-info-color-error: get-color(alert) !default;
@@ -11,27 +10,22 @@ $nt-file-info-background-error: rgba(get-color(alert), .1) !default;
 $nt-file-info-background-trans-transition: background .5s !default;
 
 $nt-file-font-size: rem-calc(12) !default;
+$nt-file-symbol-font-family : 'anticon' !default;
+$nt-file-symbol-icon : '\e664' !default;
 
-@mixin nt-file-info-color (
-  $color: $nt-file-info-color,
-  $background: $nt-file-info-background) {
+@mixin nt-file-info-color ( $color: $nt-file-info-color, $background: $nt-file-info-background) {
   color: $color;
   background-color: $background;
 }
 
 @mixin nt-file-info {
-
   font-size: $nt-file-font-size;
-  padding: $nt-file-info-padding;
-  // border-radius: $nt-file-info-radius;
+  padding: $nt-file-info-padding; // border-radius: $nt-file-info-radius;
   transition: $nt-file-info-background-trans-transition;
-
   @include nt-file-info-color;
-
   &.remote {
     @include nt-file-info-color($background: $nt-file-info-background-remote);
   }
-
   &.success {
     @include nt-file-info-color($background: $nt-file-info-background-success);
   }
@@ -40,25 +34,32 @@ $nt-file-font-size: rem-calc(12) !default;
   }
 }
 
+@mixin nt-file-item {
+  position: relative;
+  margin-bottom: $nt-file-item-margin;
+  margin-top: ($form-spacing * 0.5) * -1;
+  &:last-child {
+    margin-bottom: $form-spacing;
+  }
+  .progress {
+    margin-bottom: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .nt-file-symbol {
+    font-family: $nt-file-symbol-font-family;
+  }
+  .nt-file-symbol-icon::after {
+    content: $nt-file-symbol-icon;
+  }
+}
+
 @mixin nt-file {
   .nt-file {
-
     .nt-file-item {
-      position: relative;
-      margin-bottom: $nt-file-item-margin;
-      margin-top: ($form-spacing * 0.5) * -1;
-
-      &:last-child {
-        margin-bottom: $form-spacing;
-      }
-
-      .progress {
-        margin-bottom: 0;
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-      }
+      @include nt-file-item;
     }
     .nt-file-error {
       color: $nt-file-info-color-error;
@@ -69,9 +70,6 @@ $nt-file-font-size: rem-calc(12) !default;
     }
     .nt-file-info {
       @include nt-file-info;
-    }
-    > input[type="file"] {
-      display: none;
     }
   }
 }

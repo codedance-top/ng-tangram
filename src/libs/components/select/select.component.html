@@ -9,8 +9,12 @@
   [origin]="origin" trigger="click" position="bottomLeft" fixed
   (afterClosed)="onAfterClosed()"
   (beforeOpen)="onBeforeOpen()"
-  (beforeClosed)="onBeforeClosed()">
-  <div #paneElement class="nt-select-pane" [class.folded]="state === 'folded'" [style.width.px]="width">
+  (beforeClosed)="onBeforeClosed()"
+  (keydownEvents)="_handleKeydown($event)">
+  <div #paneElement
+      class="nt-select-pane"
+      [class.folded]="state === 'folded'"
+      [style.width.px]="width">
     <ng-content select="nt-option"></ng-content>
     <div class="filter-empty" *ngIf="optionEmpty" (click)="overlay.hide()">
       {{ filterNotFound }}

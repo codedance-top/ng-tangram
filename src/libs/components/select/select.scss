@@ -3,6 +3,9 @@ $nt-select-background: $white !default;
 
 $nt-select-symbol-padding: $form-spacing / 2 !default;
 $nt-select-symbol-color: $select-triangle-color !default;
+$nt-select-symbol-font-family: '' !default;
+$nt-select-symbol-caret: '\25BC' !default;
+$nt-select-symbol-clear: '\00D7' !default;
 
 @mixin nt-select {
 
@@ -20,14 +23,13 @@ $nt-select-symbol-color: $select-triangle-color !default;
   .nt-select-clear,
   .nt-select-caret {
     position: absolute;
-    right: $nt-datepicker-symbol-padding;
+    right: $nt-select-symbol-padding;
     top: ($height - $input-font-size) / 2;
     font-size: 1em;
     line-height: 1em;
     &::after {
-      font-family: "anticon";
       display: block;
-      color: $nt-datepicker-symbol-color;
+      color: $nt-select-symbol-color;
       left: auto;
     }
   }
@@ -37,14 +39,14 @@ $nt-select-symbol-color: $select-triangle-color !default;
     &::after {
       display: inline-block;
       color: $nt-select-symbol-color;
-      content: '\25BC';
+      content: $nt-select-symbol-caret;
     }
   }
 
   .nt-select-clear {
     cursor: pointer;
     &::after {
-      content: '\e633';
+      content: $nt-select-symbol-clear;
     }
   }
 

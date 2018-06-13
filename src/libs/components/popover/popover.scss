@@ -1,14 +1,14 @@
 
 
 @mixin nt-popover {
-  .dropdown-pane.popover {
+  .nt-popover {
     padding: 0px;
     background-color: #FFF;
-    .popover-title {
+    .nt-popover-title {
       padding: .5rem $dropdown-padding;
       border-bottom: 1px solid #eee;
     }
-    .popover-pane {
+    .nt-popover-pane {
       padding: $dropdown-padding;
     }
   }

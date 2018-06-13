@@ -62,11 +62,6 @@ $nt-table-selector-padding: rem-calc(8 10 10) !default;
     table {
       margin-bottom: 0px;
 
-      td.hidden,
-      th.hidden {
-        display: none;
-      }
-
       @include nt-table-selector;
       @include nt-table-sort;
     }

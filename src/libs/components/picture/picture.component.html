@@ -1,19 +1,19 @@
-<input #fileElement type="file" [accept]="accept" (change)="_fileChanged()">
+<input #fileElement type="file" [accept]="accept" (change)="_fileChanged()" hidden>
 <div class="nt-picture-item {{ type }}"
   *ngFor="let file of files"
   [style.backgroundImage]="'url(' + file.thumbnail + ')'"
   [class.nt-upload-error]="file.status === 3"
   [class.nt-upload-success]="file.status === 2">
   <div class="nt-picture-action" *ngIf="file.status !== 0 && file.status !== 1 && !disabled">
-    <nt-ant-icon type="search1" (click)="preview(file)"></nt-ant-icon>
-    <nt-ant-icon type="delete" (click)="removeFile(file)"></nt-ant-icon>
+    <span class="nt-picture-symbol nt-picture-symbol-preview" (click)="preview(file)"></span>
+    <span class="nt-picture-symbol nt-picture-symbol-remove" (click)="removeFile(file)"></span>
   </div>
   <div class="nt-picture-progress" *ngIf="file.status === 1" [@fadeOut]>
     <nt-progress *ngIf="file.status === 1" [value]="file.progress" size="tiny" color="success"></nt-progress>
   </div>
 </div>
 <div class="nt-picture-add {{ type }}" (click)="onTriggerClick()" *ngIf="this.files.length < maxFiles && !disabled">
-  <nt-ant-icon type="plus"></nt-ant-icon>
+  <span class="nt-picture-symbol nt-picture-symbol-add"></span>
 </div>
 <ng-template #previewTemplate let-data>
   <div class="nt-picture-preview">

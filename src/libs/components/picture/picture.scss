@@ -18,6 +18,11 @@ $nt-picture-preview-width: 90vw !default;
 $nt-picture-preview-width-min: 360px !default;
 $nt-picture-preview-height: 90vh !default;
 
+$nt-picture-symbol-font-family: 'anticon' !default;
+$nt-picture-symbol-add: '\e627' !default;
+$nt-picture-symbol-preview: '\e670' !default;
+$nt-picture-symbol-remove: '\e69f' !default;
+
 @mixin nt-picture-base {
   width: $nt-picture-size;
   height: $nt-picture-size;
@@ -42,7 +47,8 @@ $nt-picture-preview-height: 90vh !default;
     transition: $input-transition;
   }
 
-  nt-ant-icon {
+  .nt-picture-symbol {
+    font-family: $nt-picture-symbol-font-family;
     line-height: $nt-picture-size;
     cursor: pointer;
   }
@@ -81,6 +87,15 @@ $nt-picture-preview-height: 90vh !default;
   .nt-picture-action {
     opacity: 0;
     transition: opacity .3s;
+
+    .nt-picture-symbol-preview::after {
+      content: $nt-picture-symbol-preview;
+    }
+
+    .nt-picture-symbol-remove::after {
+      content: $nt-picture-symbol-remove;
+    }
+
   }
 
   &:hover .nt-picture-action {
@@ -93,6 +108,10 @@ $nt-picture-preview-height: 90vh !default;
   color: $input-placeholder-color;
   border-style: $nt-picture-border-style !important;
   cursor: pointer;
+
+  .nt-picture-symbol-add::after {
+    content: $nt-picture-symbol-add;
+  }
 }
 
 @mixin nt-picture-validate (
@@ -120,10 +139,6 @@ $nt-picture-preview-height: 90vh !default;
 
     .nt-picture-add {
       @include nt-picture-add;
-    }
-
-    > input[type="file"] {
-      display: none;
     }
   }
 

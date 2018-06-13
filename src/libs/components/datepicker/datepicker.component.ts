@@ -141,6 +141,7 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
   onBeforeClosed() {
     this._focused = false;
     typeof this._onTouched === 'function' && this._onTouched();
+    this.inputElement.nativeElement.blur();
   }
 
   focus() {

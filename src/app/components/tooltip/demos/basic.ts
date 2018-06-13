@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'demo-tooltip-basic',
   template: `
-    <a class="button" nt-tooltip="标题">
+    <ng-template #title>标题</ng-template>
+    <a class="button" [nt-tooltip]="title">
       提示
     </a>
     <nt-tooltip title="标题">

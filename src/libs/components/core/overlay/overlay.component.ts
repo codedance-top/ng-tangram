@@ -1,24 +1,28 @@
-import { AnimationEvent, transition, trigger } from '@angular/animations';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import {
-  CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair,
-  Overlay
-} from '@angular/cdk/overlay';
-import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
-import {
-  Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild,
-  ViewEncapsulation
-} from '@angular/core';
-import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
-
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/filter';
-import { Observable } from 'rxjs/Observable';
+
+import { filter } from 'rxjs/operators/filter';
+
+import { AnimationEvent, transition, trigger } from '@angular/animations';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ESCAPE } from '@angular/cdk/keycodes';
+import {
+  CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange
+} from '@angular/cdk/overlay';
+import {
+  AfterViewInit, Component, EventEmitter, Input, Output, Renderer2, ViewChild,
+  ViewEncapsulation,
+  OnDestroy
+} from '@angular/core';
+import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 
 import { getPositionClassName, NtOverlayPosition, OVERLAY_POSITIONS } from './overlay-positions';
-
+import { take } from 'rxjs/operators/take';
+import { switchMap } from 'rxjs/operators/switchMap';
+import { Subject } from 'rxjs/Subject';
+import { takeUntil, debounceTime } from 'rxjs/operators';
 
 export declare type NtOverlayTriggerType = '' | 'hover' | 'click';
 
@@ -33,7 +37,9 @@ export declare type NtOverlayTriggerType = '' | 'hover' | 'click';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class NtOverlayComponent {
+export class NtOverlayComponent implements AfterViewInit, OnDestroy {
+
+  private readonly _destroy = new Subject<void>();
 
   private _isOpen = false;
   private _isMouseIn = false;
@@ -93,26 +99,45 @@ export class NtOverlayComponent {
   @Output() beforeClosed = new EventEmitter<any>();
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
-  // animationStateChanged = new EventEmitter<AnimationEvent>();
+  @Output() keydownEvents = new EventEmitter<KeyboardEvent>();
 
-  constructor(
-    private _renderer: Renderer2,
-    private _elementRef: ElementRef) {
+  constructor(private _renderer: Renderer2) {
 
-    this._closeEvent
-      .debounceTime(100)
-      .filter(_ => this._isMouseIn === false)
-      .subscribe(_ => this.hide());
+    this._closeEvent.pipe(
+      takeUntil(this._destroy),
+      debounceTime(100),
+      filter(_ => this._isMouseIn === false)
+    ).subscribe(_ => this.hide());
 
-    this._positionChange
-      .filter(position => position !== this._paddingClass)
-      .subscribe((position: any) => {
+    this._positionChange.pipe(
+      takeUntil(this._destroy),
+      filter(position => position !== this._paddingClass)
+    ).subscribe((position: any) => {
+      const pane = this.cdkConnectedOverlay.overlayRef.overlayElement.querySelector('.nt-overlay-container');
+      this._paddingClass && this._renderer.removeClass(pane, this._paddingClass);
+      this._paddingClass = position;
+      this._renderer.addClass(pane, this._paddingClass);
+    });
+  }
 
-        const pane = this.cdkConnectedOverlay.overlayRef.overlayElement.querySelector('.nt-overlay-container');
-        this._paddingClass && this._renderer.removeClass(pane, this._paddingClass);
-        this._paddingClass = position;
-        this._renderer.addClass(pane, this._paddingClass);
-      });
+  ngAfterViewInit() {
+    this.cdkConnectedOverlay.attach.pipe(
+      take(1),
+      switchMap(() => this.cdkConnectedOverlay.overlayRef.keydownEvents())
+    ).pipe(
+      takeUntil(this._destroy),
+      // filter(event => event.keyCode === ESCAPE)
+    ).subscribe(event => {
+      if (event.keyCode === ESCAPE) {
+        this.hide();
+      }
+      this.keydownEvents.next(event);
+    });
+  }
+
+  ngOnDestroy() {
+    this._destroy.next();
+    this._destroy.complete();
   }
 
   private _setPosition() {
@@ -123,18 +148,13 @@ export class NtOverlayComponent {
     this._paddingClass = getPositionClassName(this._positionPairs[0]);
   }
 
-  private getPosition(value: NtOverlayPosition) {
-    return this.fixed ? OVERLAY_POSITIONS[value].slice(0, 1) : OVERLAY_POSITIONS[value];
-  }
 
   show() {
     this._isOpen = true;
-    // this.opened.next();
   }
 
   hide() {
     this._isOpen = false;
-    // this.closed.next();
   }
 
   click() {
@@ -167,7 +187,6 @@ export class NtOverlayComponent {
       this.beforeClosed.next();
     }
   }
-
 
   onAnimationDone(event: AnimationEvent): void {
     if (event.toState === null) {
