@@ -38,5 +38,9 @@ $nt-option-background-disabled: $white !default;
       background-color: $nt-option-background-disabled;
       cursor: no-drop;
     }
+
+    &.hidden {
+      display: none;
+    }
   }
 }

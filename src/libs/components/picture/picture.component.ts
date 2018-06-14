@@ -176,6 +176,8 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
 
       let ntFile = new NtPicture(file.name, file.size, file.type);
 
+      this.files.push(ntFile);
+
       let loadImageOptions = { maxWidth: 1080, orientation: true, canvas: true };
       const data = await zipImage(file, loadImageOptions);
       ntFile.thumbnail = data.thumbnail;

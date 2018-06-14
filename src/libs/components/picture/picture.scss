@@ -95,7 +95,6 @@ $nt-picture-symbol-remove: '\e69f' !default;
     .nt-picture-symbol-remove::after {
       content: $nt-picture-symbol-remove;
     }
-
   }
 
   &:hover .nt-picture-action {

@@ -29,7 +29,7 @@ export const NT_OPTION_PARENT_COMPONENT = new InjectionToken<NtOptionParentCompo
     '[class.selected]': 'selected',
     '[class.disabled]': 'disabled',
     '[class.active]': '_isActive',
-    '[hidden]': '_hidden',
+    '[class.hidden]': 'hidden',
     '(click)': 'selectViaInteraction()'
   }
 })
@@ -39,11 +39,11 @@ export class NtOptionComponent implements AfterViewChecked, Highlightable, ListK
   private _selected = false;
   private _disabled = false;
   private _label = '';
+  private _hidden = false;
 
   private _mostRecentViewValue = '';
 
   _isActive = false;
-  _hidden = false;
 
   @Input()
   set label(value: string) { this._label = value; }
@@ -63,6 +63,12 @@ export class NtOptionComponent implements AfterViewChecked, Highlightable, ListK
   @Input()
   set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
   get disabled() { return this._disabled; }
+
+  set hidden(value: boolean) {
+    this._hidden = coerceBooleanProperty(value);
+    this._disabled = this._hidden;
+  }
+  get hidden() { return this._hidden; }
 
   get selected() { return this._selected; }
 

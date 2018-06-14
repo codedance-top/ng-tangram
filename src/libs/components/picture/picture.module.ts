@@ -8,7 +8,7 @@ import { NtUploadModule } from '@ng-tangram/components/upload';
 import { NtPictureComponent } from './picture.component';
 
 @NgModule({
-  imports: [CommonModule, NtModalModule, NtTooltipModule, NtUploadModule, NtProgressModule],
+  imports: [CommonModule, NtModalModule, NtUploadModule, NtProgressModule],
   exports: [NtPictureComponent],
   declarations: [NtPictureComponent],
 })

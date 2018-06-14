@@ -1,4 +1,9 @@
-# 2018-06-10 0.3.0-beta.0
+# 2018-06-14 0.3.0-beta.1
+
+* bug 修复 `NtPictureComponent` 上传之后不显示进度条的问题
+* bug 修复 `NtSelectComponent` 键盘事件在启用过滤模式下不正确执行的问题
+
+# 2018-06-13 0.3.0-beta.0
 
 * 新增 `NtPopConfirmComponent` template 属性，标题现在支持 html，template 类型
 * 新增 `NtPopoverComponent` template 属性，标题现在支持 html，template 类型

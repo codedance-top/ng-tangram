@@ -12,7 +12,7 @@
     <nt-progress *ngIf="file.status === 1" [value]="file.progress" size="tiny" color="success"></nt-progress>
   </div>
 </div>
-<div class="nt-picture-add {{ type }}" (click)="onTriggerClick()" *ngIf="this.files.length < maxFiles && !disabled">
+<div class="nt-picture-add {{ type }}" (click)="onTriggerClick()" *ngIf="files.length < maxFiles && !disabled">
   <span class="nt-picture-symbol nt-picture-symbol-add"></span>
 </div>
 <ng-template #previewTemplate let-data>
@@ -20,3 +20,4 @@
     <img [src]="data.link || data.thumbnail">
   </div>
 </ng-template>
+

@@ -101,7 +101,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   get empty(): boolean { return !this._selectionModel || this._selectionModel.isEmpty(); }
 
   get optionEmpty(): boolean {
-    return this.options ? this.options.filter(option => !option._hidden).length === 0 : false;
+    return this.options ? this.options.filter(option => !option.hidden).length === 0 : false;
   }
 
   get focused(): boolean { return this._focused; }
@@ -215,10 +215,11 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     this._width = this.inputElement.nativeElement.clientWidth;
   }
 
-  onSearch(event: Event) {
+  onSearch(event: KeyboardEvent) {
+
     if (this.focused && this.filter && !this.disabled) {
       const target: any = event.target;
-      this.options.forEach(option => option._hidden = !this.filter(target.value, option));
+      this.options.forEach(option => option.hidden = !this.filter(target.value, option));
     }
   }
 
@@ -382,7 +383,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   }
 
   private _resetFilterResult() {
-    this.options.forEach(option => option._hidden = false);
+    this.options.forEach(option => option.hidden = false);
   }
 
   private _initializeSelection(): void {
