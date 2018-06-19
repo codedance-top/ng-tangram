@@ -1,3 +1,7 @@
+# 2018-06-14 0.3.0-beta.2
+
+* bug 修复 `NtOverlayComponent` position 在 left 和 right 时位置不对的问题
+
 # 2018-06-14 0.3.0-beta.1
 
 * bug 修复 `NtPictureComponent` 上传之后不显示进度条的问题
