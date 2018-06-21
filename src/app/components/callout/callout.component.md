@@ -70,5 +70,3 @@
 | size | 属性：提示框大小 | `small`、 `medium`、`large` | `medium` |
 | closable | 属性：是否显示关闭按钮 | `boolean` | - |
 | closed | 事件：关闭时触发 | `function` | - |
-
-

@@ -10,7 +10,6 @@ import { NtExampleModule } from '@ng-tangram/example';
 
 import { DemoFileBasciComponent } from './demos/basic';
 import { FileDocumentComponent } from './file.component';
-import { FileUploadInterceptor } from './interceptor';
 
 @NgModule({
   imports: [

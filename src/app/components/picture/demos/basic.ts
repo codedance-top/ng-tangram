@@ -9,8 +9,6 @@ import { FormControl, Validators } from '@angular/forms';
       <nt-ant-icon type="plus" style="font-size: 1rem;"></nt-ant-icon>
     </nt-picture>
   </nt-form-field>
-
-  {{fileControl.value| json}}
   `
 })
 export class DemoPictureBasciComponent implements AfterContentInit {

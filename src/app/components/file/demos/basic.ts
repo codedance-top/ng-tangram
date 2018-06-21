@@ -8,14 +8,11 @@ import { Validators, FormControl } from '@angular/forms';
   selector: 'demo-file-basic',
   template: `
     <nt-form-field label="文件列表">
-      <nt-file url="/files/logos" maxFiles="5" name="file"
-        (error)="onError($event)" [formControl]="fileControl">
+      <nt-file url="/files/logos" maxFiles="5" name="file" [formControl]="fileControl">
         <nt-ant-icon type="upload"></nt-ant-icon>&nbsp;Select File
       </nt-file>
       <button class="button">文件列表</button>
     </nt-form-field>
-    <br>
-    {{ fileControl.value | json }}
   `
 })
 export class DemoFileBasciComponent {
@@ -39,10 +36,4 @@ export class DemoFileBasciComponent {
     { id: "nt-file-032132121", name: "microMsg.1430457292873的副本.jpg", },
     { id: "nt-file-1", name: "microMsg.1430457292873的副本.jpg", }
   ];
-
-  constructor() { }
-
-  onError(error: NtUploadControlError) {
-    console.log(error);
-  }
 }

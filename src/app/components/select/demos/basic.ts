@@ -4,9 +4,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'demo-select-basic',
   template: `
-    <form [formGroup]="form" (ngSubmit)="submit()" ntFormAutofocus>
+    <form [formGroup]="form" ntFormAutofocus>
       <nt-form-field label="单选">
-        <nt-select name="single" placeholder="单选" formControlName="single" filter (valueChange)="onChange($event)">
+        <nt-select name="single" placeholder="单选" formControlName="single" filter>
           <nt-option *ngFor="let alphabet of alphabets" [value]="alphabet">
             {{alphabet}}
           </nt-option>
@@ -41,13 +41,5 @@ export class DemoSelectBasciComponent {
       single: ['Z', Validators.required],
       multiple: [null, [Validators.required, Validators.minLength(3)]]
     });
-  }
-
-  submit() {
-    console.log(['', 'hollow', 'clear'].includes('clear'));
-  }
-
-  onChange(value: any) {
-    console.log(value);
   }
 }
