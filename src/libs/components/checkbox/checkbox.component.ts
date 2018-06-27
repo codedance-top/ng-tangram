@@ -39,8 +39,8 @@ export class NtCheckboxComponent<T> implements ControlValueAccessor {
   tabIndex: number;
 
   @Input()
-  set value(value: T) { this._value = value; }
-  get value(): T { return this._value; }
+  set value(value: T | null) { this._value = value; }
+  get value() { return this._value; }
 
   @Input()
   set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
@@ -67,7 +67,7 @@ export class NtCheckboxComponent<T> implements ControlValueAccessor {
       this.ngControl.valueAccessor = this;
     }
 
-    this.tabIndex = parseInt(tabIndex, null) || 0;
+    this.tabIndex = parseInt(tabIndex) || 0;
   }
 
   writeValue(value: T) {
