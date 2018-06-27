@@ -40,7 +40,7 @@ export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>
 
   private readonly _destroy = new Subject<void>();
 
-  private _value: T[] | null;
+  private _value: T[];
   private _disabled = false;
   private _readonly = false;
   private _required = false;
@@ -157,13 +157,19 @@ export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>
         return false;
       }
     });
-    correspondingItem.checked = !!correspondingItem;
+    if (correspondingItem) {
+      correspondingItem.checked = true;
+    }
     return correspondingItem;
   }
 
   private _setValues(): void {
     this._value = [];
-    this.checkboxes.forEach(item => item.checked && this._value.push(item.value));
+    this.checkboxes.forEach(item => {
+      if (item.checked && !!item.value) {
+        this._value.push(item.value);
+      }
+    });
     this._onChange(this._value);
     this._onTouched();
     this._changeDetectorRef.markForCheck();
