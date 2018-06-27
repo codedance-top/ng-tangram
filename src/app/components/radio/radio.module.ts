@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NtCheckboxModule } from '@ng-tangram/components/checkbox';
+import { NtRadioModule } from '@ng-tangram/components/radio';
 import { NtExampleModule } from '@ng-tangram/example';
 
-import { CheckboxDocumentComponent } from './checkbox.component';
-import { DemoCheckboxBasicComponent } from './demos/basic';
+import { RadioDocumentComponent } from './radio.component';
+import { DemoRadioBasicComponent } from './demos/basic';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 
 @NgModule({
@@ -16,11 +16,11 @@ import { NtFormsModule } from '@ng-tangram/components/forms';
     FormsModule,
     NtFormsModule,
     NtExampleModule,
-    NtCheckboxModule,
+    NtRadioModule,
     RouterModule.forChild([
-      { path: '', component: CheckboxDocumentComponent }
+      { path: '', component: RadioDocumentComponent }
     ])
   ],
-  declarations: [CheckboxDocumentComponent, DemoCheckboxBasicComponent]
+  declarations: [RadioDocumentComponent, DemoRadioBasicComponent]
 })
-export class CheckboxDocumentModule { }
+export class RadioDocumentModule { }

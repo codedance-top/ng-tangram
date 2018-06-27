@@ -1,0 +1,16 @@
+<label class="nt-radio-layout">
+  <div class="nt-radio-input-container">
+    <input class="cdk-visually-hidden"
+      type="radio"
+      [name]="name"
+      [tabIndex]="tabIndex"
+      [disabled]="disabled"
+      [checked]="checked"
+      (change)="_onInputChange($event)"
+      (click)="_onInputClick($event)">
+    <div class="nt-radio-input"></div>
+  </div>
+  <span class="nt-radio-label">
+    <ng-content></ng-content>
+  </span>
+</label>

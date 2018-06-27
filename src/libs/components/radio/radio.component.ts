@@ -7,34 +7,34 @@ import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 let uniqueId = 0;
 
-export class NtCheckboxChange<T> {
+export class NtRadioChange<T> {
   constructor(
-    public source: NtCheckboxComponent<T>,
-    public checked: boolean) { }
+    public source: NtRadioComponent<T>,
+    public selected: boolean) { }
 }
 
 @Component({
-  selector: 'nt-checkbox',
+  selector: 'nt-radio',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'checkbox.component.html',
+  templateUrl: 'radio.component.html',
   providers: [
-    { provide: NtFormFieldControl, useExisting: NtCheckboxComponent }
+    { provide: NtFormFieldControl, useExisting: NtRadioComponent }
   ],
   host: {
-    'class': 'nt-checkbox',
+    'class': 'nt-radio',
     '[class.disabled]': 'disabled'
   }
 })
-export class NtCheckboxComponent<T> implements ControlValueAccessor {
+export class NtRadioComponent<T> implements ControlValueAccessor {
 
-  readonly id: string = `nt-checkbox-${uniqueId++}`;
+  readonly id: string = `nt-radio-${uniqueId++}`;
 
   private _value: T | null;
 
   private _disabled = false;
   private _readonly = false;
-
   private _checked = false;
+  private _name: string = this.id;
 
   tabIndex: number;
 
@@ -54,7 +54,11 @@ export class NtCheckboxComponent<T> implements ControlValueAccessor {
   get checked(): boolean { return this._checked; }
   set checked(value: boolean) { this._checked = coerceBooleanProperty(value); }
 
-  @Output() readonly change = new EventEmitter<NtCheckboxChange<T>>();
+  @Input()
+  set name(value: string) { this._name = value; }
+  get name(): string { return this._name; }
+
+  @Output() readonly change = new EventEmitter<NtRadioChange<T>>();
 
   private _onChange: (value: any) => void = () => { };
   private _onTouched = () => { };
@@ -88,16 +92,21 @@ export class NtCheckboxComponent<T> implements ControlValueAccessor {
 
   _onInputClick(event: Event) {
     event.stopPropagation();
-    if (!this.disabled) {
-      this._checked = !this._checked;
-      this._onTouched();
-      this._emitChangeEvent();
-    }
+    // if (!this.disabled) {
+    //   // this._checked = !this._checked;
+    //   this._onTouched();
+    // }
+  }
+
+  _onInputChange() {
+    this._checked = true;
+    this._emitChangeEvent();
   }
 
   private _emitChangeEvent() {
-    const event = new NtCheckboxChange(this, this.checked);
+    const event = new NtRadioChange(this, this.checked);
     this._onChange(this.checked);
+    this._onTouched();
     this.change.emit(event);
   }
 }

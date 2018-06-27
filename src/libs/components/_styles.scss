@@ -15,6 +15,7 @@
 @import 'popconfirm/popconfirm';
 @import 'popover/popover';
 @import 'progress/progress';
+@import 'radio/radio';
 @import 'scrim/scrim';
 @import 'select/select';
 @import 'table/table';
@@ -53,6 +54,7 @@
   @include nt-popconfirm;
   @include nt-popover;
   @include nt-progress;
+  @include nt-radio;
   @include nt-scrim;
   @include nt-select;
   @include nt-table;
