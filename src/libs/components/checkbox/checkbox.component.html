@@ -1,0 +1,14 @@
+<label class="nt-checkbox-layout">
+  <div class="nt-checkbox-input-container">
+    <input class="cdk-visually-hidden"
+      type="checkbox"
+      [tabIndex]="tabIndex"
+      [checked]="checked"
+      [disabled]="disabled"
+      (click)="_onInputClick($event)">
+    <div class="nt-checkbox-input"></div>
+  </div>
+  <span class="nt-checkbox-label">
+    <ng-content></ng-content>
+  </span>
+</label>

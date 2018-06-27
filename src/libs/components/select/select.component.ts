@@ -34,7 +34,7 @@ export function getNtSelectNonArrayValueError() {
 }
 
 export function getNtSelectNonFunctionValueError() {
-  return Error('`ntCompareWith` must be a function.');
+  return Error('`compareWith` must be a function.');
 }
 
 export class NtSelectChange {

@@ -1,0 +1,178 @@
+@import '~@angular/cdk/a11y';
+
+$nt-checkbox-size: rem-calc(16) !default;
+$nt-checkbox-radius: $global-radius !default;
+$nt-checkbox-transition: $input-transition, background-color .3s !default;
+
+$nt-checkbox-check-size: rem-calc(12) !default;
+
+$nt-checkbox-group-padding: $form-spacing / 2 0 !default;
+$nt-checkbox-group-margin: 0 0 $form-spacing !default;
+$nt-checkbox-group-line-height: $nt-checkbox-size !default;
+
+$nt-checkbox-color: get-color(primary) !default;
+$nt-checkbox-color-disabled: $medium-gray !default;
+$nt-checkbox-check-border-width: 2px !default;
+
+$nt-checkbox-border: $input-border !default;
+$nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
+
+@mixin nt-checkbox-input {
+
+  .nt-checkbox-input {
+    display: inline-block;
+    width: $nt-checkbox-size;
+    height: $nt-checkbox-size;
+    border-radius: $nt-checkbox-radius;
+    border: $nt-checkbox-border;
+    position: relative;
+    outline: none;
+    background-color: #FFF;
+
+    @if has-value($input-transition) {
+      transition: $nt-checkbox-transition;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      width: $nt-checkbox-check-size * .5;
+      height: $nt-checkbox-check-size;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      top: 50%;
+      margin-top: -($nt-checkbox-check-size * .55);
+      box-sizing: border-box;
+      border-width: $nt-checkbox-check-border-width;
+      border-top-width: 0;
+      border-left-width: 0;
+      border-style: solid;
+      border-color: transparent;
+      transform: rotate(45deg) scale(0);
+      transition: transform .3s, border-color .3s;
+    }
+  }
+
+  input:checked + .nt-checkbox-input {
+    background-color: $nt-checkbox-color;
+    border-color: $nt-checkbox-color;
+    &::after {
+      border-color: #FFF;
+      transform: rotate(45deg) scale(1);
+    }
+  }
+
+}
+
+@mixin nt-checkbox-disabled {
+  cursor: no-drop;
+  input:disabled + .nt-checkbox-input {
+    border-color: $nt-checkbox-color-disabled;
+  }
+  input:checked:disabled + .nt-checkbox-input {
+    background-color: $nt-checkbox-color-disabled;
+    border-color: $nt-checkbox-color-disabled;
+  }
+  .nt-checkbox-label {
+    color: $nt-checkbox-color-disabled;
+  }
+}
+
+@mixin nt-checkbox-label {
+  margin-left: .2em;
+}
+
+@mixin nt-checkbox-validate(
+  $color: $nt-input-background-invalid,
+  $input-shadow: $nt-input-shadow-invalid,
+  $input-shadow-hover: $nt-input-shadow-invalid-focus,
+  $color-lighten: 5%) {
+
+  .nt-checkbox-input {
+    border-color: $color;
+    box-shadow: $input-shadow;
+  }
+
+  // .nt-checkbox-label {
+  //   color: $color;
+  // }
+
+  &:not(.disabled) {
+
+    input:checked + .nt-checkbox-input {
+      border-color: $color;
+      background-color: $color;
+    }
+    input:focus + .nt-checkbox-input,
+    &:hover .nt-checkbox-input {
+      border-color: $color;
+      box-shadow: $input-shadow-hover;
+    }
+  }
+}
+
+@mixin nt-checkbox-highlight {
+  &:not(.disabled) {
+    input:focus + .nt-checkbox-input,
+    &:hover .nt-checkbox-input {
+      box-shadow: $input-shadow-focus;
+      border-color: $nt-checkbox-color;
+    }
+  }
+}
+
+@mixin nt-checkbox-group {
+  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(2);
+  display: block;
+  line-height: $nt-checkbox-group-line-height;
+  padding: ($height - $nt-checkbox-size) / 2 0;
+  margin: $nt-checkbox-group-margin;
+}
+
+@mixin nt-checkbox {
+  .nt-checkbox {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: $nt-checkbox-size;
+
+    @include nt-checkbox-highlight;
+
+    .nt-checkbox-layout {
+      line-height: $nt-checkbox-group-line-height;
+      cursor: pointer;
+    }
+
+    &.disabled {
+      @include nt-checkbox-disabled;
+    }
+
+    .nt-checkbox-input-container {
+      display: inline-block;
+      vertical-align: top;
+      @include nt-checkbox-input;
+    }
+
+    .nt-checkbox-label {
+      @include nt-checkbox-label;
+    }
+  }
+
+  .nt-checkbox-group {
+    @include nt-checkbox-group;
+  }
+
+  .nt-form-error .nt-checkbox {
+    @include nt-checkbox-validate;
+  }
+
+  .nt-form-success .nt-checkbox {
+    @include nt-checkbox-validate(
+      $color: $nt-input-background-valid,
+      $input-shadow: $nt-input-shadow-valid,
+      $input-shadow-hover: $nt-input-shadow-valid-focus
+    );
+  }
+
+  @include cdk-a11y;
+}
