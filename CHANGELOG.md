@@ -1,4 +1,8 @@
-# 2018-06-14 0.3.0-beta.3
+# 2018-06-28 0.3.1
+
+* bug 修复 `NtCheckboxComponent` 在 aot 编译时 css 形状不正确的问题
+
+# 2018-06-28 0.3.0
 
 * 新增 `NtCheckboxComponent, NtCheckboxGroupComponent` 组件
 * 新增 `NtRadioComponent, NtRadioGroupComponent` 组件
