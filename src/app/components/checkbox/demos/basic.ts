@@ -17,8 +17,6 @@ import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms'
         </nt-checkbox-group>
       </nt-form-field>
     </form>
-
-    {{ form.get('fruits').value }}
   `
 })
 export class DemoCheckboxBasicComponent {
@@ -27,7 +25,14 @@ export class DemoCheckboxBasicComponent {
 
   fruits: any[] = ['apple'];
 
+  checkboxModel = false;
+
+  checkbox: FormControl;
+
   constructor(private formBuilder: FormBuilder) {
+
+    this.checkbox = this.formBuilder.control('');
+
     this.form = this.formBuilder.group({
       fruits: this.formBuilder.control([], [Validators.required, Validators.maxLength(2)])
     });

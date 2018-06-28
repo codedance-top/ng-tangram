@@ -1,3 +1,8 @@
+# 2018-06-14 0.3.0-beta.3
+
+* 新增 `NtCheckboxComponent, NtCheckboxGroupComponent` 组件
+* 新增 `NtRadioComponent, NtRadioGroupComponent` 组件
+
 # 2018-06-14 0.3.0-beta.2
 
 * bug 修复 `NtOverlayComponent` position 在 left 和 right 时位置不对的问题
