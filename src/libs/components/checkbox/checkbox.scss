@@ -6,6 +6,8 @@ $nt-checkbox-transition: $input-transition, background-color .3s !default;
 
 $nt-checkbox-check-size: rem-calc(12) !default;
 
+$nt-checkbox-label-spacing: $form-spacing / 2 !default;
+
 $nt-checkbox-group-padding: $form-spacing / 2 0 !default;
 $nt-checkbox-group-margin: 0 0 $form-spacing !default;
 $nt-checkbox-group-line-height: $nt-checkbox-size !default;
@@ -80,7 +82,7 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
 }
 
 @mixin nt-checkbox-label {
-  margin-left: .2em;
+  margin-left: $nt-checkbox-label-spacing;
 }
 
 @mixin nt-checkbox-validate(
@@ -128,6 +130,14 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
   line-height: $nt-checkbox-group-line-height;
   padding: ($height - $nt-checkbox-size) / 2 0;
   margin: $nt-checkbox-group-margin;
+
+  .nt-checkbox {
+    margin-right: $form-spacing;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 
 @mixin nt-checkbox {

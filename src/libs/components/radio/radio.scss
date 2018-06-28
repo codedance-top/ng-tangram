@@ -5,6 +5,8 @@ $nt-radio-transition: $input-transition, background-color .3s !default;
 
 $nt-radio-circle-size: $nt-radio-size / 2 !default;
 
+$nt-radio-label-spacing: $form-spacing / 2 !default;
+
 $nt-radio-group-padding: $form-spacing / 2 0 !default;
 $nt-radio-group-margin: 0 0 $form-spacing !default;
 $nt-radio-group-line-height: $nt-radio-size !default;
@@ -76,7 +78,7 @@ $nt-radio-border-disabled: 1px solid $nt-radio-color-disabled !default;
 }
 
 @mixin nt-radio-label {
-  margin-left: .2em;
+  margin-left: $nt-radio-label-spacing;
 }
 
 @mixin nt-radio-validate(
@@ -126,6 +128,14 @@ $nt-radio-border-disabled: 1px solid $nt-radio-color-disabled !default;
   line-height: $nt-radio-group-line-height;
   padding: ($height - $nt-radio-size) / 2 0;
   margin: $nt-radio-group-margin;
+
+  .nt-radio {
+    margin-right: $form-spacing;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 
 @mixin nt-radio {
