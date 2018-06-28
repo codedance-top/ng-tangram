@@ -14,7 +14,7 @@ import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { NtRadioChange, NtRadioComponent } from './radio.component';
 
-export function getNtCheckboxGroupNonFunctionValueError() {
+export function getNtRdioGroupNonFunctionValueError() {
   return Error('`compareWith` must be a function.');
 }
 
@@ -74,7 +74,7 @@ export class NtRadioGroupComponent<T> extends NtFormFieldControl<T>
   @Input()
   set compareWith(fn: (o1: any, o2: any) => boolean) {
     if (typeof fn !== 'function') {
-      throw getNtCheckboxGroupNonFunctionValueError();
+      throw getNtRdioGroupNonFunctionValueError();
     } else {
       this._compareWith = fn;
     }
