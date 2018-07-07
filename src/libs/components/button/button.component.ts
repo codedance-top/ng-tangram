@@ -13,9 +13,7 @@ export declare type NtButtonSize = '' | 'tiny' | 'small' | 'large' | 'medium';
   encapsulation: ViewEncapsulation.None,
   host: {
     '[class]': '["button", color, style, size, class].join(" ")',
-    '[class.expanded]': 'expanded',
-    // '[class.clicked]': '_clicked',
-    // '(click)': '_ripple()'
+    '[class.expanded]': 'expanded'
   }
 })
 export class NtButtonComponent {

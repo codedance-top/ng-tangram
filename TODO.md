@@ -1,3 +1,6 @@
+# 2018-07-05 星期四
+升级至 angular v6  发布 0.4 0.5 ？
+
 # 2018-05-31
 增加 dropdown-toggle 类型
 
@@ -15,8 +18,8 @@ NtAudioComponent
 # 0.3.x 计划
 NtRadioComponent
 NtCheckboxComponent
-NtMapComponent
-NtMapInputComponent
+NtMapComponent (暂无实现计划)
+NtMapInputComponent (暂无实现计划)
 
 # 0.2.x 计划
 NtUploader
@@ -34,16 +37,16 @@ Menu Dropdown 指令
 # 将来要增加的 组件/特性 ? 代表未确定是否会开发
 Avatar ?
 Collapse
-Checkbox
-Radio
+Checkbox 已实现
+Radio 已实现
 Map
 Notification
 Menu Dropdown 指令
 Toast
 Rating
 
-ImageUploader + ImagePreviewService
+ImageUploader + ImagePreviewService 部分实现
 AudioUploader + AudioPlayer
-FileUploader FileExpFilter
+FileUploader FileExpFilter 部分实现
 Tabs
 ClockPicker 基于开源库 http://weareoutman.github.io/clockpicker/

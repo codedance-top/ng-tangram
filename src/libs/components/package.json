@@ -12,11 +12,11 @@
     "url": "https://github.com/livebridge-lab/ng-tangram"
   },
   "peerDependencies": {
-    "@angular/animations": ">=5.0.0",
-    "@angular/core": ">=5.0.0",
-    "@angular/common": ">=5.0.0",
-    "@angular/forms": ">=5.0.0",
-    "@angular/cdk": ">=5.0.0",
-    "foundation-sites": "^6.0.0"
+    "@angular/animations": ">=5.0.0 <7.0.0",
+    "@angular/core": ">=5.0.0 <7.0.0",
+    "@angular/common": ">=5.0.0 <7.0.0",
+    "@angular/forms": ">=5.0.0 <7.0.0",
+    "@angular/cdk": ">=5.0.0 <7.0.0",
+    "foundation-sites": "^6.0.0 <7.0.0"
   }
 }

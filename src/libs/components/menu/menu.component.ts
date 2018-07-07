@@ -7,7 +7,7 @@ export declare type NtMenuAlign = '' | 'center' | 'right';
 export declare type NtMenuOrientation = '' | 'horizontal' | 'vertical';
 
 @Component({
-  selector: '[nt-menu]',
+  selector: 'ul[nt-menu], ol[nt-menu]',
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None,
   host: {
