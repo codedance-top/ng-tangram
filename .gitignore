@@ -14,7 +14,7 @@ desktop.ini
 /.idea/
 
 # NPM 模块路径
-/node_modules/*/
+/node_modules/*
 
 # eclipse 工程信息文件
 .project
