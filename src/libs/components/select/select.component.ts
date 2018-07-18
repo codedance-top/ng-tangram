@@ -11,7 +11,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import {
   DOWN_ARROW, END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE, UP_ARROW
 } from '@angular/cdk/keycodes';
-import { CdkOverlayOrigin } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import {
   AfterContentInit, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, Input,
   isDevMode, NgZone, OnDestroy, Optional, Output, QueryList, Renderer2, Self, ViewChild,
@@ -159,6 +159,14 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
   @ContentChildren(NtOptionComponent) options: QueryList<NtOptionComponent>;
 
+  @Output() afterOpen = new EventEmitter<any>();
+  @Output() afterClosed = new EventEmitter<any>();
+
+  @Output() beforeOpen = new EventEmitter<any>();
+  @Output() beforeClosed = new EventEmitter<any>();
+
+  @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
+
   @Output() readonly selectionChange: EventEmitter<NtSelectChange> = new EventEmitter<NtSelectChange>();
 
   @Output() readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
@@ -216,28 +224,38 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   }
 
   onSearch(event: KeyboardEvent) {
-
     if (this.focused && this.filter && !this.disabled) {
       const target: any = event.target;
       this.options.forEach(option => option.hidden = !this.filter(target.value, option));
     }
   }
 
-  onBeforeOpen() {
+  _beforeOpen(event: any) {
     this._state = 'folded';
     this.onResize();
     this._scrollActiveOptionIntoView();
     this._highlightCorrectOption();
+    this.beforeOpen.next(event);
   }
 
-  onBeforeClosed() {
+  _beforeClosed(event: any) {
     this._state = 'closed';
     this._onTouched();
+    this.beforeClosed.next(event);
   }
 
-  onAfterClosed() {
+  _afterOpen(event: any) {
+    this.afterOpen.next(event);
+  }
+
+  _afterClosed(event: any) {
     this._resetFilterResult();
     this.inputElement.nativeElement.blur();
+    this.afterClosed.next(event);
+  }
+
+  _positionChange(change: ConnectedOverlayPositionChange) {
+    this.positionChange.next(change);
   }
 
   onFocus() {

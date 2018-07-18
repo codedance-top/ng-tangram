@@ -6,8 +6,11 @@
   trigger="click"
   position="bottomLeft"
   arrow
-  (beforeOpen)="onBeforeOpen()"
-  (beforeClosed)="onBeforeClosed()">
+  (afterOpen)="_afterOpen($event)"
+  (afterClosed)="_afterClosed($event)"
+  (beforeOpen)="_beforeOpen($event)"
+  (beforeClosed)="_beforeClosed($event)"
+  (positionChange)="_positionChange($event)">
   <nt-datepicker-calendar
     [selected]="value"
     [dateFilter]="dateFilter"

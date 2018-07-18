@@ -1,6 +1,6 @@
-import { CdkOverlayOrigin } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import {
-  Component, ElementRef, Input, Renderer2, ViewChild, ViewEncapsulation, TemplateRef
+  Component, ElementRef, Input, Renderer2, ViewChild, ViewEncapsulation, TemplateRef, EventEmitter, Output
 } from '@angular/core';
 import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
 
@@ -47,11 +47,40 @@ export class NtTooltipComponent {
 
   @Input() position: NtOverlayPosition = 'top';
 
+  @Output() afterOpen = new EventEmitter<any>();
+  @Output() afterClosed = new EventEmitter<any>();
+
+  @Output() beforeOpen = new EventEmitter<any>();
+  @Output() beforeClosed = new EventEmitter<any>();
+
+  @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
+
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
 
   constructor(
     private _renderer: Renderer2,
     private _elementRef: ElementRef) {
     this.origin = new CdkOverlayOrigin(_elementRef);
+  }
+
+
+  _afterOpen(event: any) {
+    this.afterOpen.next(event);
+  }
+
+  _afterClosed(event: any) {
+    this.afterClosed.next(event);
+  }
+
+  _beforeOpen(event: any) {
+    this.beforeOpen.next(event);
+  }
+
+  _beforeClosed(event: any) {
+    this.beforeClosed.next(event);
+  }
+
+  _positionChange(change: ConnectedOverlayPositionChange) {
+    this.positionChange.next(change);
   }
 }

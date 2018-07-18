@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'demo-form-inline',
@@ -26,7 +26,7 @@ export class DemoFormInlineComponent {
   username = '';
   textarea = '';
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor() {
 
   }
 

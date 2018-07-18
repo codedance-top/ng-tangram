@@ -1,9 +1,10 @@
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { CdkOverlayOrigin } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import {
   Component, ElementRef, EventEmitter, Inject, Input, NgZone, Optional, Renderer2, Self, ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  Output
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
@@ -91,6 +92,14 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
 
   @Input() dateFilter: (date: D) => boolean;
 
+  @Output() afterOpen = new EventEmitter<any>();
+  @Output() afterClosed = new EventEmitter<any>();
+
+  @Output() beforeOpen = new EventEmitter<any>();
+  @Output() beforeClosed = new EventEmitter<any>();
+
+  @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
+
   @ViewChild('inputElement') inputElement: ElementRef;
 
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
@@ -133,15 +142,29 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     }
   }
 
-  onBeforeOpen() {
-    this._focused = true;
-    this.calendar._init();
+  _afterOpen(event: any) {
+    this.afterOpen.next(event);
   }
 
-  onBeforeClosed() {
+  _afterClosed(event: any) {
+    this.afterClosed.next(event);
+  }
+
+  _beforeOpen(event: any) {
+    this._focused = true;
+    this.calendar._init();
+    this.beforeOpen.next(event);
+  }
+
+  _beforeClosed(event: any) {
     this._focused = false;
     typeof this._onTouched === 'function' && this._onTouched();
     this.inputElement.nativeElement.blur();
+    this.beforeClosed.next(event);
+  }
+
+  _positionChange(change: ConnectedOverlayPositionChange) {
+    this.positionChange.next(change);
   }
 
   focus() {

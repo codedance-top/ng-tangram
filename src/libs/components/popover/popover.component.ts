@@ -1,5 +1,5 @@
-import { CdkOverlayOrigin } from '@angular/cdk/overlay';
-import { Component, ElementRef, Input, ViewChild, ViewEncapsulation, TemplateRef } from '@angular/core';
+import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import { Component, ElementRef, Input, ViewChild, ViewEncapsulation, TemplateRef, EventEmitter, Output } from '@angular/core';
 import { NtOverlayComponent } from '@ng-tangram/components/core';
 
 @Component({
@@ -38,10 +38,41 @@ export class NtPopoverComponent {
 
   @Input() position = 'top';
 
+  @Output() confirm = new EventEmitter<any>();
+  @Output() cancel = new EventEmitter<any>();
+
+  @Output() afterOpen = new EventEmitter<any>();
+  @Output() afterClosed = new EventEmitter<any>();
+
+  @Output() beforeOpen = new EventEmitter<any>();
+  @Output() beforeClosed = new EventEmitter<any>();
+
+  @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
+
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
 
   constructor(
     private _elementRef: ElementRef) {
     this.origin = new CdkOverlayOrigin(this._elementRef);
+  }
+
+  _afterOpen(event: any) {
+    this.afterOpen.next(event);
+  }
+
+  _afterClosed(event: any) {
+    this.afterClosed.next(event);
+  }
+
+  _beforeOpen(event: any) {
+    this.beforeOpen.next(event);
+  }
+
+  _beforeClosed(event: any) {
+    this.beforeClosed.next(event);
+  }
+
+  _positionChange(change: ConnectedOverlayPositionChange) {
+    this.positionChange.next(change);
   }
 }

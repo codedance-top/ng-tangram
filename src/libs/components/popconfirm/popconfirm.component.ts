@@ -1,4 +1,4 @@
-import { CdkOverlayOrigin } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import {
   Component, ElementRef, EventEmitter, Input, Output, ViewChild, ViewEncapsulation, TemplateRef
 } from '@angular/core';
@@ -46,6 +46,14 @@ export class NtPopConfirmComponent {
   @Output() confirm = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();
 
+  @Output() afterOpen = new EventEmitter<any>();
+  @Output() afterClosed = new EventEmitter<any>();
+
+  @Output() beforeOpen = new EventEmitter<any>();
+  @Output() beforeClosed = new EventEmitter<any>();
+
+  @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
+
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
 
   constructor(
@@ -56,5 +64,25 @@ export class NtPopConfirmComponent {
   _closeOverlay(isConfirm: boolean) {
     (isConfirm ? this.confirm : this.cancel).emit();
     this.overlay.hide();
+  }
+
+  _afterOpen(event: any) {
+    this.afterOpen.next(event);
+  }
+
+  _afterClosed(event: any) {
+    this.afterClosed.next(event);
+  }
+
+  _beforeOpen(event: any) {
+    this.beforeOpen.next(event);
+  }
+
+  _beforeClosed(event: any) {
+    this.beforeClosed.next(event);
+  }
+
+  _positionChange(change: ConnectedOverlayPositionChange) {
+    this.positionChange.next(change);
   }
 }

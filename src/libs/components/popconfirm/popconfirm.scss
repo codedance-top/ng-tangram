@@ -3,14 +3,15 @@ $nt-popconfirm-width: rem-calc(180) !default;
 $nt-popconfirm-padding: $global-padding !default;
 $nt-popconfirm-radius: $global-radius !default;
 $nt-popconfirm-background: $white !default;
-$nt-popconfirm-font-size: 1rem !default;
+$nt-popconfirm-font-size: rem-calc(14) !default;
+$nt-popconfirm-button-margin: 0 0 0 .4em !default;
 
 $nt-popconfirm-margin: 1rem !default;
 
 @mixin nt-popconfirm-action {
   text-align: right;
   .button {
-    margin-bottom: 0px;
+    margin: $nt-popconfirm-button-margin;
   }
 }
 

@@ -1,3 +1,13 @@
+# 2018-07-17 0.3.4 
+
+* 修复 `NtFormFieldComponent` error 类型信息错误的问题
+
+# 2018-07-17 0.3.3
+
+* 新增 `NtOverlayComponent` 系列组件事件，afterOpen、afterClosed、beforeOpen、beforeClosed、positionChange 
+* 新增 `NtPaginationModule` 模块注册方法 withConfig 代替 forRoot，forRoot 方法将会废弃
+* 新增 `NtPopConfirmComponent` 样式 api $nt-popconfirm-button-margin 
+
 # 2018-06-28 0.3.1
 
 * bug 修复 `NtCheckboxComponent` 在 aot 编译时 css 形状不正确的问题

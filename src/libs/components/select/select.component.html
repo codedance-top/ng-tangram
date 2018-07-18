@@ -7,9 +7,11 @@
 <span class="nt-select-clear" (click)="clear()" [@fade] *ngIf="triggerValue && !disabled"></span>
 <nt-overlay
   [origin]="origin" trigger="click" position="bottomLeft" fixed
-  (afterClosed)="onAfterClosed()"
-  (beforeOpen)="onBeforeOpen()"
-  (beforeClosed)="onBeforeClosed()"
+  (afterOpen)="_afterOpen($event)"
+  (afterClosed)="_afterClosed($event)"
+  (beforeOpen)="_beforeOpen($event)"
+  (beforeClosed)="_beforeClosed($event)"
+  (positionChange)="_positionChange($event)"
   (keydownEvents)="_handleKeydown($event)">
   <div #paneElement
       class="nt-select-pane"

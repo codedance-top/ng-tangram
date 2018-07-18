@@ -1,19 +1,21 @@
-import { transition, trigger } from '@angular/animations';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
-import {
-  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild,
-  Input, NgZone, OnDestroy, Optional,
-  ViewEncapsulation
-} from '@angular/core';
-import { FormControl, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
-
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/distinctUntilChanged';
+
 import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';
 import { filter, switchMap, take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
+
+import { transition, trigger } from '@angular/animations';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import {
+  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Input, NgZone,
+  OnDestroy, Optional, ViewEncapsulation
+} from '@angular/core';
+import {
+  FormControl, FormGroupDirective, NgControl, NgForm, ValidationErrors
+} from '@angular/forms';
+import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 
 import { NtFormFieldControl } from './form-field-control';
 import { NtFormLabelWidthDirective } from './form-label-width.directive';
@@ -111,7 +113,9 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
     return false;
   }
 
-  get errors() { return this.control.ngControl ? this.control.ngControl.errors : null; }
+  get errors(): ValidationErrors | null {
+    return this.control.ngControl ? this.control.ngControl.errors : null;
+  }
 
   /** 表单模型 */
   @ContentChild(NtFormFieldControl) control: NtFormFieldControl<any>;
