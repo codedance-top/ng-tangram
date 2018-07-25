@@ -30,11 +30,11 @@ export class NtUpload {
 
   private _progressHandler(event: HttpEvent<any>, handler: NtUploadHandler = {}) {
 
-    if (event.type === HttpEventType.Sent && typeof (handler.begin) === 'function') {
+    if (event.type === HttpEventType.Sent && handler.begin) {
       handler.begin(event);
-    } else if (event.type === HttpEventType.UploadProgress && typeof (handler.progress) === 'function') {
+    } else if (event.type === HttpEventType.UploadProgress && handler.progress) {
       handler.progress(event);
-    } else if (event.type === HttpEventType.Response && typeof (handler.done) === 'function') {
+    } else if (event.type === HttpEventType.Response && handler.done) {
       handler.done();
     }
     return event;

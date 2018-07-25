@@ -1,3 +1,5 @@
+import { ViewContainerRef } from '@angular/core';
+
 export class NtModalConfig {
   id?: string;
   top?: string = '80px';
@@ -16,4 +18,5 @@ export class NtModalConfig {
   backdropClass?: string = 'dark-backdrop';
   centerVertically?: boolean = false;
   transparent?: boolean = false;
+  viewContainerRef?: ViewContainerRef;
 }

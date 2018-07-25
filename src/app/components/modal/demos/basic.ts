@@ -1,4 +1,4 @@
-import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ViewChild, TemplateRef, ViewContainerRef } from '@angular/core';
 import { NtModal, NtModalRef } from '@ng-tangram/components/modal';
 
 const content = `
@@ -44,7 +44,9 @@ export class DemoModalBasicComponent {
   @ViewChild(TemplateRef) template : TemplateRef<any>;
   content = content;
 
-  constructor(private ntModal: NtModal) { }
+  constructor(
+    private viewContainerRef: ViewContainerRef,
+    private ntModal: NtModal) { }
 
   openForTtemplate() {
     this.ntModal.open(this.template);

@@ -532,6 +532,10 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   private _scrollActiveOptionIntoView() {
     const activeOption = this._keyManager.activeItem || this.options.first;
 
+    if (!activeOption) {
+      return;
+    }
+
     const panelScrollTop = this.paneElement.nativeElement.scrollTop;
     const panelScrollBottom = panelScrollTop + this.paneElement.nativeElement.offsetHeight;
 
