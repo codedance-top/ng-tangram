@@ -95,6 +95,13 @@ export class NtCheckboxComponent<T> implements ControlValueAccessor {
     }
   }
 
+  _onInteractionEvent(event: Event) {
+    // We always have to stop propagation on the change event.
+    // Otherwise the change event, from the input element, will bubble up and
+    // emit its event object to the `change` output.
+    event.stopPropagation();
+  }
+
   private _emitChangeEvent() {
     const event = new NtCheckboxChange(this, this.checked);
     this._onChange(this.checked);

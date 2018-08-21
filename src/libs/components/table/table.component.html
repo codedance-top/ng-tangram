@@ -9,7 +9,7 @@
         *ngFor="let column of columns"
         [style.width]="column.width"
         [style.textAlign]="column.align"
-        [hidden]="!column.visibled">
+        [hidden]="!column.visible">
         <ng-container *ngTemplateOutlet="column.template"></ng-container>
       </th>
     </tr>
@@ -25,7 +25,7 @@
   <td class="nt-selector-cell" *ngIf="selectable">
     <input type="checkbox" (click)="select(data)" [checked]="checkSelected(data)">
   </td>
-  <td *ngFor="let column of columns" [style.textAlign]="column.align" [hidden]="!column.visibled">
+  <td *ngFor="let column of columns" [style.textAlign]="column.align" [hidden]="!column.visible">
     <ng-container *ngTemplateOutlet="column.cell.template; context: {$implicit: data};"></ng-container>
   </td>
 </ng-template>

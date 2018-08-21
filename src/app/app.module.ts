@@ -1,12 +1,12 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import locale from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtIconModule } from '@ng-tangram/components/icon';
-import { NT_PAGINATION_CONFIG, NtPaginationConfig } from '@ng-tangram/components/pagination';
+import { NT_PAGINATION_CONFIG } from '@ng-tangram/components/pagination';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';

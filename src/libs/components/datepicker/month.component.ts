@@ -150,6 +150,14 @@ export class NtDatePickerMonthComponent<D> implements AfterContentInit {
     this._changeDetectorRef.markForCheck();
   }
 
+  // _todaySelected() {
+  //   this.selectedChange.emit(this._dateAdapter.today());
+  // }
+
+  // _isTodaySelected() {
+  //   return this._dateAdapter.sameDate(this.selected, this._dateAdapter.today());
+  // }
+
   /** Creates MatCalendarCells for the dates in this month. */
   private _createWeekCells() {
     const daysInMonth = this._dateAdapter.getNumDaysInMonth(this.activeDate);

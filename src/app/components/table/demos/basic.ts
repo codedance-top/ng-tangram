@@ -1,5 +1,4 @@
-import { AfterContentInit, Component, ViewChild } from '@angular/core';
-import { NtColumnSortChange, NtTableComponent } from '@ng-tangram/components/table';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'demo-table-basic',
@@ -24,6 +23,8 @@ import { NtColumnSortChange, NtTableComponent } from '@ng-tangram/components/tab
   `
 })
 export class DemoTableBasicComponent {
+
+  visible = false;
 
   dataSource = [
     { id: 1, name: '张三', age: 20, address: '北京' },

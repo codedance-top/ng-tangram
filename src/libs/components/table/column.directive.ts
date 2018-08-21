@@ -48,14 +48,17 @@ export class NtColumnCellDefDirective {
 export class NtColumnComponent implements NtColumn, AfterContentInit {
 
   private _sortable = false;
+  private _visible = true;
 
   sort: '' | 'asc' | 'desc' = '';
-
-  visibled = true;
 
   @Input()
   set sortable(value: boolean) { this._sortable = coerceBooleanProperty(value); }
   get sortable() { return this._sortable; }
+
+  @Input()
+  set visible(value: boolean) { this._visible = coerceBooleanProperty(value); }
+  get visible() { return this._visible; }
 
   get text () {
     return this.header && this.header.elementRef.nativeElement.textContent;
@@ -93,7 +96,6 @@ export class NtColumnComponent implements NtColumn, AfterContentInit {
         this.sort = 'asc';
       }
 
-      /** 用户操作的操作才会触发事件 */
       this.sortChange.emit(new NtColumnSortChange(isUserInput, this.name, this.sort));
     }
   }

@@ -55,12 +55,15 @@ $nt-select-symbol-clear: '\00D7' !default;
     min-width: 100px;
     border-radius: $nt-select-radius;
     background-color: $nt-select-background;
-    max-height: 0px;
     overflow-y: scroll;
-    transition: max-height .3s;
-    &.folded {
+
+    /* 目前存在 max-height 的初始值为0时 OverlayPosition 判断过早导致窗口边界超出浏览器的现象，在解决这个问题之前暂时注释此代码 */
+
+    // max-height: 0px;
+    // transition: max-height .3s;
+    // &.folded {
       max-height: 256px;
-    }
+    // }
 
     .filter-empty {
       padding: $nt-option-padding;

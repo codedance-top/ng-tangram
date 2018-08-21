@@ -9,7 +9,7 @@ export interface NtColumn {
   sortable: boolean;
   sorting: (isUserInput: boolean) => void;
   sortChange: EventEmitter<NtColumnSortChange>;
-  visibled: boolean;
+  visible: boolean;
 }
 
 export interface NtColumnTable {
