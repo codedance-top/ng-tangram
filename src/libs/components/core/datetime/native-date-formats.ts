@@ -15,7 +15,6 @@ export const NT_NATIVE_DATE_FORMATS: NtDateFormats = {
   display: {
     dateInput: { year: 'numeric', month: 'numeric', day: 'numeric' },
     monthYearLabel: { year: 'numeric', month: 'short' },
-    monthLabel: { month: 'short' },
-    yearLabel: { month: 'numeric' }
+    monthLabel: { month: 'short' }
   }
 };
