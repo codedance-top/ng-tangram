@@ -86,7 +86,7 @@ export class NtDatePickerCalendarComponent<D> implements AfterContentInit, OnCha
   set _activeDate(value: D) { this._clampedActiveDate = this._dateAdapter.clampDate(value, this.minDate, this.maxDate); }
 
   get _monthLabel() {
-    return this._dateAdapter.format(this._activeDate, this._dateFormats.display.monthYearLabel).toLocaleUpperCase();
+    return this._dateAdapter.format(this._activeDate, this._dateFormats.display.monthLabel).toLocaleUpperCase();
   }
 
   get _yearLabel() { return this._dateAdapter.getYearName(this._activeDate); }

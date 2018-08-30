@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, AfterContentInit } from '@angular/core';
+import { NtTableComponent } from '@ng-tangram/components/table';
+import { NtColumnComponent } from 'out-tsc/@ng-tangram/components/table';
 
 @Component({
   selector: 'demo-table-basic',
   template: `
+
   <nt-table #table [dataSource]="dataSource">
     <nt-column name="name">
       <nt-column-header>名称</nt-column-header>
@@ -22,7 +25,7 @@ import { Component } from '@angular/core';
   </nt-table>
   `
 })
-export class DemoTableBasicComponent {
+export class DemoTableBasicComponent implements AfterContentInit {
 
   visible = false;
 
@@ -33,9 +36,19 @@ export class DemoTableBasicComponent {
     { id: 4, name: '赵六', age: 27, address: '大连' }
   ];
 
+  // @ViewChild(NtTableComponent) table: NtTableComponent<any>;
+
+  columns: NtColumnComponent[];
+
   constructor() {
     setTimeout(() => {
       this.dataSource.push({ id: 5, name: '赵六', age: 27, address: '大连' });
     }, 2000);
+  }
+
+  ngAfterContentInit() {
+    // this.table._columns.changes.subscribe((columns) => {
+    //   console.log(columns);
+    // });
   }
 }

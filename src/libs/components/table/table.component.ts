@@ -28,8 +28,6 @@ import { NtColumnComponent } from './column.directive';
 })
 export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnChanges, OnDestroy {
 
-  columnComponent = NtColumnComponent;
-
   @Input() class: string;
 
   private _selectionModel: SelectionModel<T> = new SelectionModel(true, undefined, false);
