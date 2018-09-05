@@ -43,6 +43,10 @@ const DEFAULT_DAY_OF_WEEK_NAMES = {
 const ISO_8601_REGEX =
   /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|(?:(?:\+|-)\d{2}:\d{2}))?)?$/;
 
+// like ISO 8601
+const LIKE_ISO_8601_REGEX =
+  /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:(?:\+|-)\d{4})?)?$/;
+
 
 /** Creates an array and fills it with values. */
 function range<T>(length: number, valueFunction: (index: number) => T): T[] {
@@ -246,6 +250,12 @@ export class NativeDateAdapter extends DateAdapter<Date> {
       if (!value) {
         return null;
       }
+
+      // like ISO 8601 value, 2018-05-30T12:00:00.000+0000 -> 2018-05-30T12:00:00.000+00:00
+      if (LIKE_ISO_8601_REGEX.test(value)) {
+        value = `${value.slice(0, value.length - 2)}:${value.slice(value.length - 2)}`;
+      }
+
       // The `Date` constructor accepts formats other than ISO 8601, so we need to make sure the
       // string is the right format first.
       if (ISO_8601_REGEX.test(value)) {
