@@ -1,19 +1,16 @@
-import { Observable } from 'rxjs/Observable';
-import { defer } from 'rxjs/observable/defer';
-import { merge } from 'rxjs/observable/merge';
-import { switchMap, take, takeUntil, startWith } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
+import { defer, merge, Observable, Subject } from 'rxjs';
+import { startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  AfterViewInit, isDevMode, Component, ContentChildren, EventEmitter, Input, NgZone, OnDestroy, Optional,
-  QueryList, Self, ViewEncapsulation, ChangeDetectorRef, OnInit, ChangeDetectionStrategy
+  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren,
+  Input, isDevMode, NgZone, OnDestroy, Optional, QueryList, Self,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { NtCheckboxChange, NtCheckboxComponent } from './checkbox.component';
-import { SelectionModel } from '@angular/cdk/collections';
 
 export function getNtCheckboxGroupNonFunctionValueError() {
   return Error('`compareWith` must be a function.');

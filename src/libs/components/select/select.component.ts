@@ -1,8 +1,5 @@
-import { Observable } from 'rxjs/Observable';
-import { defer } from 'rxjs/observable/defer';
-import { merge } from 'rxjs/observable/merge';
+import { defer, merge, Observable, Subject } from 'rxjs';
 import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
 
 import { transition, trigger } from '@angular/animations';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';

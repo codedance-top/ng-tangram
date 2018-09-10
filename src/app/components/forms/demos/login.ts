@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/filter';
+import { Subject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'demo-form-login',
@@ -77,7 +77,7 @@ export class DemoFormLoginComponent implements AfterContentInit {
     this.email = new FormControl('', [Validators.required, Validators.email]);
 
     this.loginSubject
-      .filter(form => form.valid)
+      .pipe(filter(form => form.valid))
       .subscribe(form => {
         this.formValues = form.value;
       });

@@ -2,22 +2,24 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NtExampleModule } from '@ng-tangram/example';
+import { NtButtonModule } from '@ng-tangram/components/button';
+import { NtCalloutModule } from '@ng-tangram/components/callout';
+import { NtCheckboxModule } from '@ng-tangram/components/checkbox';
 import { NtScrimModule } from '@ng-tangram/components/scrim';
 import { NtTableModule } from '@ng-tangram/components/table/table.module';
 import { NtTooltipModule } from '@ng-tangram/components/tooltip';
+import { NtExampleModule } from '@ng-tangram/example';
 
 import { DemoTableBasicComponent } from './demos/basic';
 import { DemoTableSortComponent } from './demos/sort';
 import { TableDocumentComponent } from './table.component';
-import { NtCalloutModule } from '@ng-tangram/components/callout';
-import { NtButtonModule } from '@ng-tangram/components/button';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     NtButtonModule,
+    NtCheckboxModule,
     NtCalloutModule,
     NtExampleModule,
     NtTooltipModule,

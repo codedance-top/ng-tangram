@@ -1,34 +1,28 @@
+import { defer, merge, Observable, Subject } from 'rxjs';
+import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
+
+import { Directionality } from '@angular/cdk/bidi';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
+import { CDK_TABLE_TEMPLATE, CdkTable } from '@angular/cdk/table';
 import {
-  AfterContentInit, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, Output,
-  QueryList, SimpleChanges, ViewEncapsulation
+  AfterContentInit, Attribute, ChangeDetectionStrategy, ChangeDetectorRef, Component,
+  ContentChildren, ElementRef, EventEmitter, Input, IterableDiffers, NgZone, OnChanges, OnDestroy,
+  Optional, Output, QueryList, SimpleChanges, ViewEncapsulation
 } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import { defer } from 'rxjs/observable/defer';
-import { merge } from 'rxjs/observable/merge';
-import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
-
-import { NT_COLUMN_TABLE, NtColumnSortChange, NtColumnTable } from './column';
-import { NtColumnComponent } from './column.directive';
+import { NtColumnDirective, NtColumnSortChange } from './cell.directive';
 
 @Component({
-  selector: 'nt-table',
-  templateUrl: 'table.component.html',
+  selector: 'nt-table, table[nt-table]',
+  template: CDK_TABLE_TEMPLATE,
   encapsulation: ViewEncapsulation.None,
-  // changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    { provide: NT_COLUMN_TABLE, useExisting: NtTableComponent }
-  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'class': 'nt-table'
   }
 })
-export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnChanges, OnDestroy {
-
-  @Input() class: string;
+export class NtTableComponent<T> extends CdkTable<T> implements AfterContentInit, OnChanges {
 
   private _selectionModel: SelectionModel<T> = new SelectionModel(true, undefined, false);
 
@@ -38,24 +32,9 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
 
   private readonly _destroy = new Subject<void>();
 
-  @ContentChildren(NtColumnComponent)
-  private _columns: QueryList<NtColumnComponent>;
-
-  get columns() { return this._columns ? this._columns.toArray() : []; }
-
-  @Input() dataSource: Array<T>;
-
-  @Input()
-  set selectable(value: boolean) { this._selectable = coerceBooleanProperty(value); }
-  get selectable() { return this._selectable; }
-
-  @Output() readonly selectedChange: EventEmitter<T | T[]> = new EventEmitter();
-
-  @Output() readonly sortChange: EventEmitter<NtColumnSortChange | NtColumnSortChange[]> = new EventEmitter();
-
   readonly columSortChanges: Observable<NtColumnSortChange> = defer(() => {
-    if (this._columns) {
-      return merge(...this._columns.map(column => column.sortChange));
+    if (this._contentColumns) {
+      return merge(...this._contentColumns.map(column => column._sortChange));
     }
 
     return this._ngZone.onStable
@@ -63,22 +42,32 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
       .pipe(take(1), switchMap(() => this.columSortChanges));
   });
 
-  get isAllSelected() { return this._selectionModel.selected.length === this.dataSource.length; }
+  @Input()
+  set selectable(value: boolean) { this._selectable = coerceBooleanProperty(value); }
+  get selectable() { return this._selectable; }
+
+  get isAllSelected() { return false; }
 
   get selected() { return this._selectionModel.selected; }
 
+  @ContentChildren(NtColumnDirective) _contentColumns: QueryList<NtColumnDirective>;
+
+  @Output() readonly selectedChange: EventEmitter<T | T[]> = new EventEmitter();
+
+  @Output() readonly sortChange: EventEmitter<NtColumnSortChange | NtColumnSortChange[]> = new EventEmitter();
+
   constructor(
     private _ngZone: NgZone,
-    private _changeDetectorRef: ChangeDetectorRef) { }
-
-  ngOnChanges(change: SimpleChanges) {
-    if (change && change.dataSource && !change.dataSource.firstChange) {
-      this._selectionModel.clear();
-    }
+    protected _differs: IterableDiffers,
+    protected _changeDetectorRef: ChangeDetectorRef,
+    protected _elementRef: ElementRef,
+    @Attribute('role') role: string,
+    @Optional() protected readonly _dir: Directionality) {
+    super(_differs, _changeDetectorRef, _elementRef, role, _dir);
   }
 
   ngAfterContentInit() {
-    this._columns.changes.pipe(startWith(null), takeUntil(this._destroy)).subscribe(() => {
+    this._contentColumns.changes.pipe(startWith(null), takeUntil(this._destroy)).subscribe(() => {
       this._resetOptions();
       this._changeDetectorRef.markForCheck();
     });
@@ -86,7 +75,7 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
 
   selectAll() {
     if (!this.isAllSelected) {
-      this._selectionModel.select(...this.dataSource);
+      // this._selectionModel.select(...this.dataSource);
     } else {
       this._selectionModel.clear();
     }
@@ -104,18 +93,25 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
     this.selectedChange.emit(this._selectionModel.selected);
   }
 
+  ngOnChanges(change: SimpleChanges) {
+    if (change && change.dataSource && !change.dataSource.firstChange) {
+      this._selectionModel.clear();
+    }
+  }
+
   checkSelected(item: T) {
     return this._selectionModel.isSelected(item);
   }
 
   private _clearSort(filter?: NtColumnSortChange) {
-    this._columns
+    this._contentColumns
       .filter(column => column.name !== (filter ? filter.column : ''))
       .forEach(column => column.sort = '');
+      this._changeDetectorRef.markForCheck();
   }
 
   private _resetOptions() {
-    const changedOrDestroyed = merge(this._columns.changes, this._destroy);
+    const changedOrDestroyed = merge(this._contentColumns.changes, this._destroy);
 
     this.columSortChanges
       .pipe(takeUntil(changedOrDestroyed), filter(event => event.isUserInput))
@@ -126,7 +122,7 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
         this.sortChange.emit(event);
       });
 
-    merge(...this._columns.map(option => option.sortChange))
+    merge(...this._contentColumns.map(column => column._sortChange))
       .pipe(takeUntil(changedOrDestroyed))
       .subscribe(() => {
         this._changeDetectorRef.markForCheck();
@@ -137,5 +133,6 @@ export class NtTableComponent<T> implements NtColumnTable, AfterContentInit, OnC
   ngOnDestroy() {
     this._destroy.next();
     this._destroy.complete();
+    super.ngOnDestroy();
   }
 }
