@@ -1,6 +1,6 @@
 import { Component, ViewChild, AfterContentInit } from '@angular/core';
 import { NtTableComponent } from '@ng-tangram/components/table';
-import { NtColumnComponent } from 'out-tsc/@ng-tangram/components/table';
+import { NtColumnComponent } from '@ng-tangram/components/table';
 
 @Component({
   selector: 'demo-table-basic',

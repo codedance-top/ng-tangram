@@ -10,6 +10,7 @@
 @import 'datepicker/datepicker';
 @import 'forms/forms';
 @import 'file/file';
+@import 'input/input';
 @import 'modal/modal';
 @import 'picture/picture';
 @import 'popconfirm/popconfirm';
@@ -59,5 +60,6 @@
   @include nt-select;
   @include nt-table;
   @include nt-tooltip;
+  @include nt-input-group;
 }
 

@@ -1,8 +1,73 @@
+@mixin nt-input-group-base {
+  margin: 0 0 $form-spacing;
 
-// @mixin nt-input-group {
+  input {
+    border-radius: 0;
+    z-index: 1;
+    margin-bottom: 0;
+  }
+}
 
-// }
+@mixin nt-input-group-radius {
+  &:first-child {
+    border-top-left-radius: $input-radius;
+    border-bottom-left-radius: $input-radius;
+  }
 
-// @mixin nt-input {
+  &:last-child {
+    border-top-right-radius: $input-radius;
+    border-bottom-right-radius: $input-radius;
+  }
+}
 
-// }
+@mixin nt-input-group {
+  .nt-input-group {
+    @include nt-input-group-base;
+  }
+
+  .nt-input-addon,
+  input {
+    @include nt-input-group-radius;
+  }
+
+  .nt-input-group-transparent {
+    border: $input-border;
+    border-radius: $input-radius;
+
+    .nt-input-addon {
+      background: transparent;
+      color: $dark-gray;
+      border: none;
+    }
+
+    input {
+      border: none;
+    }
+
+    &:focus-within {
+      border: $input-border-focus;
+      box-shadow: $input-shadow-focus;
+      transition: $input-transition;
+
+      input {
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .nt-form-error {
+
+    .nt-input-group,
+    .nt-input-addon {
+      border-color: $nt-input-color-invalid;
+    }
+
+    .nt-input-group-transparent {
+      &:focus-within {
+        box-shadow: $nt-input-shadow-invalid-focus;
+      }
+    }
+  }
+}

@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class InputDocumentComponent {
   basicCode = require('!!raw-loader!./demos/basic');
+  groupCode = require('!!raw-loader!./demos/group');
 }
