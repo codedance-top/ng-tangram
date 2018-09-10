@@ -1,3 +1,8 @@
+# 2018-09-10 0.4.0
+
+* 新增 nt-input-group, nt-input-addon 组件
+* 重写 nt-table 组件，基于 @angular/cdk/table 实现
+
 # 2018-07-17 0.3.4 
 
 * 修复 `NtFormFieldComponent` error 类型信息错误的问题

@@ -4,26 +4,28 @@ import { Component } from '@angular/core';
   selector: 'demo-table-basic',
   template: `
 
-  <nt-checkbox-group [(ngModel)]="displayedColumns">
-    <nt-checkbox *ngFor="let column of columns" [value]="column.field">
-      {{ column.text }}
-    </nt-checkbox>
-  </nt-checkbox-group>
-
-  <nt-table [dataSource]="dataSource">
-    <nt-column [name]="column.field" *ngFor="let column of columns">
-      <nt-column-header *ntColumnHeaderDef>{{ column.text }}</nt-column-header>
-      <nt-column-cell *ntColumnCellDef="let item">{{ item[column.field] }}</nt-column-cell>
+  <table nt-table [dataSource]="dataSource">
+    <nt-column name="name">
+      <th nt-column-header *ntColumnHeaderDef>名称</th>
+      <td nt-column-cell *ntColumnCellDef="let item">{{ item.name }}</td>
     </nt-column>
 
-    <nt-header-row *ntHeaderRowDef="displayedColumns"></nt-header-row>
-    <nt-row *ntRowDef="let row; columns: displayedColumns;"></nt-row>
-  </nt-table>
+    <nt-column name="age">
+      <th nt-column-header *ntColumnHeaderDef>年龄</th>
+      <td nt-column-cell *ntColumnCellDef="let item">{{ item.age }}</td>
+    </nt-column>
+
+    <nt-column name="address">
+      <th nt-column-header *ntColumnHeaderDef>地址</th>
+      <td nt-column-cell *ntColumnCellDef="let item">{{ item.address }}</td>
+    </nt-column>
+
+    <tr nt-header-row *ntHeaderRowDef="displayedColumns"></tr>
+    <tr nt-row *ntRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
   `
 })
 export class DemoTableBasicComponent {
-
-  visible = false;
 
   dataSource = [
     { id: 1, name: '张三', age: 20, address: '北京' },
@@ -32,11 +34,5 @@ export class DemoTableBasicComponent {
     { id: 4, name: '赵六', age: 27, address: '大连' }
   ];
 
-  columns = [
-    { field: 'name', visible: true, text: '名称' },
-    { field: 'age', visible: true, text: '年龄' },
-    { field: 'address', visible: true, text: '地址' }
-  ];
-
-  displayedColumns: string[] = [];
+  displayedColumns = ['name', 'age', 'address'];
 }

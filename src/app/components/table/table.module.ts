@@ -10,7 +10,9 @@ import { NtTableModule } from '@ng-tangram/components/table/table.module';
 import { NtTooltipModule } from '@ng-tangram/components/tooltip';
 import { NtExampleModule } from '@ng-tangram/example';
 
+import { DemoTableAlternateComponent } from './demos/alternate';
 import { DemoTableBasicComponent } from './demos/basic';
+import { DemoTableColumnVisibilityComponent } from './demos/column-visibility';
 import { DemoTableSortComponent } from './demos/sort';
 import { TableDocumentComponent } from './table.component';
 
@@ -28,6 +30,12 @@ import { TableDocumentComponent } from './table.component';
     RouterModule.forChild([
       { path: '', component: TableDocumentComponent }
     ])],
-  declarations: [TableDocumentComponent, DemoTableBasicComponent, DemoTableSortComponent],
+  declarations: [
+    TableDocumentComponent,
+    DemoTableBasicComponent,
+    DemoTableAlternateComponent,
+    DemoTableSortComponent,
+    DemoTableColumnVisibilityComponent,
+  ],
 })
 export class TableDocumentModule { }
