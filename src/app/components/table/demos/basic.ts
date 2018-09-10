@@ -1,31 +1,27 @@
-import { Component, ViewChild, AfterContentInit } from '@angular/core';
-import { NtTableComponent } from '@ng-tangram/components/table';
-import { NtColumnComponent } from 'out-tsc/@ng-tangram/components/table';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'demo-table-basic',
   template: `
 
-  <nt-table #table [dataSource]="dataSource">
-    <nt-column name="name">
-      <nt-column-header>名称</nt-column-header>
-      <nt-column-cell *ntColumnCellDef="let item">{{ item.name }}</nt-column-cell>
+  <nt-checkbox-group [(ngModel)]="displayedColumns">
+    <nt-checkbox *ngFor="let column of columns" [value]="column.field">
+      {{ column.text }}
+    </nt-checkbox>
+  </nt-checkbox-group>
+
+  <nt-table [dataSource]="dataSource">
+    <nt-column [name]="column.field" *ngFor="let column of columns">
+      <nt-column-header *ntColumnHeaderDef>{{ column.text }}</nt-column-header>
+      <nt-column-cell *ntColumnCellDef="let item">{{ item[column.field] }}</nt-column-cell>
     </nt-column>
 
-    <nt-column name="age" align="center">
-      <nt-column-header>年龄</nt-column-header>
-      <nt-column-cell *ntColumnCellDef="let item">{{ item.age }}</nt-column-cell>
-    </nt-column>
-
-    <nt-column name="address" align="right">
-      <nt-column-header>地址</nt-column-header>
-      <nt-column-cell *ntColumnCellDef="let item">{{ item.address }}</nt-column-cell>
-    </nt-column>
-
+    <nt-header-row *ntHeaderRowDef="displayedColumns"></nt-header-row>
+    <nt-row *ntRowDef="let row; columns: displayedColumns;"></nt-row>
   </nt-table>
   `
 })
-export class DemoTableBasicComponent implements AfterContentInit {
+export class DemoTableBasicComponent {
 
   visible = false;
 
@@ -36,19 +32,11 @@ export class DemoTableBasicComponent implements AfterContentInit {
     { id: 4, name: '赵六', age: 27, address: '大连' }
   ];
 
-  // @ViewChild(NtTableComponent) table: NtTableComponent<any>;
+  columns = [
+    { field: 'name', visible: true, text: '名称' },
+    { field: 'age', visible: true, text: '年龄' },
+    { field: 'address', visible: true, text: '地址' }
+  ];
 
-  columns: NtColumnComponent[];
-
-  constructor() {
-    setTimeout(() => {
-      this.dataSource.push({ id: 5, name: '赵六', age: 27, address: '大连' });
-    }, 2000);
-  }
-
-  ngAfterContentInit() {
-    // this.table._columns.changes.subscribe((columns) => {
-    //   console.log(columns);
-    // });
-  }
+  displayedColumns: string[] = [];
 }

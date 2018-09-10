@@ -1,10 +1,6 @@
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/distinctUntilChanged';
 
-import { Observable } from 'rxjs/Observable';
-import { defer } from 'rxjs/observable/defer';
+import { defer, Observable, Subject, of as observableOf } from 'rxjs';
 import { filter, switchMap, take, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
 
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -131,7 +127,7 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
   readonly statusChanges: Observable<any> = defer(() => {
     if (this.control && this.ngControl) {
-      return this.ngControl.statusChanges ? this.ngControl.statusChanges : Observable.of(null);
+      return this.ngControl.statusChanges ? this.ngControl.statusChanges : observableOf(null);
     }
     return this._ngZone.onStable
       .asObservable()

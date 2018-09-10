@@ -1,26 +1,29 @@
-import { AfterContentInit, Component, ViewChild } from '@angular/core';
-import { NtColumnSortChange, NtTableComponent } from '@ng-tangram/components/table';
+import { Component } from '@angular/core';
+import { NtColumnSortChange } from '@ng-tangram/components/table';
 
 @Component({
   selector: 'demo-table-sort',
   template: `
   <button nt-button color="alert" [disabled]="table.selected.length === 0">删除</button>
-  <nt-table #table [dataSource]="dataSource" selectable>
+  <nt-table #table [dataSource]="dataSource" (sortChange)="onSortChange($event)">
 
     <nt-column name="name">
-      <nt-column-header>名称</nt-column-header>
+      <nt-column-header *ntColumnHeaderDef>名称</nt-column-header>
       <nt-column-cell *ntColumnCellDef="let item">{{ item.name }}</nt-column-cell>
     </nt-column>
 
     <nt-column name="age" align="center" sortable>
-      <nt-column-header>年龄</nt-column-header>
+      <nt-column-header *ntColumnHeaderDef>年龄</nt-column-header>
       <nt-column-cell *ntColumnCellDef="let item">{{ item.age }}</nt-column-cell>
     </nt-column>
 
     <nt-column name="address" align="right" sortable>
-      <nt-column-header>地址</nt-column-header>
+      <nt-column-header *ntColumnHeaderDef>地址</nt-column-header>
       <nt-column-cell *ntColumnCellDef="let item">{{ item.address }}</nt-column-cell>
     </nt-column>
+
+    <nt-header-row *ntHeaderRowDef="displayedColumns"></nt-header-row>
+    <nt-row *ntRowDef="let row; columns: displayedColumns;"></nt-row>
   </nt-table>
 
   <nt-callout>
@@ -36,4 +39,10 @@ export class DemoTableSortComponent {
     { id: 3, name: '王五', age: 18, address: '广州' },
     { id: 4, name: '赵六', age: 27, address: '大连' }
   ];
+
+  displayedColumns = ['name', 'age', 'address'];
+
+  onSortChange(change: NtColumnSortChange) {
+    console.log(change);
+  }
 }

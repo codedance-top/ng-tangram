@@ -15,9 +15,8 @@ import {
   NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
 } from '@ng-tangram/components/upload';
 
-import { takeUntil } from 'rxjs/operators/takeUntil';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
+import { takeUntil } from 'rxjs/operators';
+import { Subject, Subscription } from 'rxjs';
 
 let uniqueId = 0;
 

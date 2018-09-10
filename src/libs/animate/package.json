@@ -12,6 +12,6 @@
     "url": "https://github.com/livebridge-lab/ng-tangram"
   },
   "peerDependencies": {
-    "@angular/animations": ">=5.0.0 <7.0.0"
+    "@angular/animations": ">=6.0.0 <7.0.0"
   }
 }

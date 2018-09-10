@@ -1,15 +1,16 @@
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+
 /**
  * 文件上传请求服务
  */
-
 import {
   HttpClient, HttpEvent, HttpEventType, HttpRequest, HttpResponse
 } from '@angular/common/http';
 import { Inject, Injectable, Optional } from '@angular/core';
+
 import { NtUploadHandler } from './upload-handler';
 import { NT_UPLOAD_INTERCEPTOR, NtUploadInterceptor, NtUploadResult } from './upload-interceptor';
-import { Observable } from 'rxjs/Observable';
-import { map, filter } from 'rxjs/operators';
 
 @Injectable()
 export class NtUpload {

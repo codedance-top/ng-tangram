@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Highlightable, ListKeyManagerOption } from '@angular/cdk/a11y';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 export interface NtOptionParentComponent {
   disabled?: boolean;

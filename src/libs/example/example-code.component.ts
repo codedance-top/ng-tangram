@@ -42,11 +42,9 @@ import { highlightAll, highlight } from 'prismjs';
 
 export class NtExampleCodeComponent implements AfterContentInit {
 
-  @Input()
-  code: string;
+  @Input() code: string;
 
-  @Input()
-  lang: string = 'typescript';
+  @Input() lang: string = 'typescript';
 
   shown = false;
 

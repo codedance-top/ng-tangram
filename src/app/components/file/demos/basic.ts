@@ -1,5 +1,5 @@
 import { Component, AfterContentInit } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { NtUploadControlError } from '@ng-tangram/components/upload';
 // import { NtFile } from '@ng-tangram/components/file';
 import { Validators, FormControl } from '@angular/forms';

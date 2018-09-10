@@ -37,13 +37,7 @@ const config = {
       '@angular/cdk/portal': 'ng.cdk.portal',
       '@angular/cdk/keycodes': 'ng.cdk.keycodes',
       'rxjs': 'Rx',
-      'rxjs/Observable': 'Rx.Observable',
-      'rxjs/Subject': 'Rx.Subject',
-      'rxjs/Subscription': 'Rx.Subscription',
       'rxjs/operators': 'Rx.operators',
-      'rxjs/operators/takeUntil': 'Rx.operators.takeUntil',
-      'rxjs/observable/defer': 'Rx.observable.defer',
-      'rxjs/observable/merge': 'Rx.observable.merge',
       ...animates.globals,
       ...components.globals
     },

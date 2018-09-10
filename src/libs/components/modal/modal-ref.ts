@@ -1,11 +1,10 @@
+import { Observable, Subject, Subscription, SubscriptionLike } from 'rxjs';
+import { filter, take } from 'rxjs/operators';
+
 import { ESCAPE } from '@angular/cdk/keycodes';
 import { GlobalPositionStrategy, OverlayRef } from '@angular/cdk/overlay';
 import { Location } from '@angular/common';
 import { Optional } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { filter, take } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
-import { ISubscription, Subscription } from 'rxjs/Subscription';
 
 import { NtModalComponent } from './modal.component';
 
@@ -22,7 +21,7 @@ export class NtModalRef<T, R = any> {
   private _afterClosed = new Subject<R | undefined>();
   private _beforeClose = new Subject<R | undefined>();
   private _result: R | undefined;
-  private _locationChanges: ISubscription = Subscription.EMPTY;
+  private _locationChanges: SubscriptionLike = Subscription.EMPTY;
 
   constructor(
     private _overlayRef: OverlayRef,

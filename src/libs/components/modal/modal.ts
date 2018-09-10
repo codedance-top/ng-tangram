@@ -7,7 +7,7 @@ import {
   ApplicationRef, ComponentFactoryResolver, ComponentRef, Inject, Injectable, InjectionToken,
   Injector, Optional, TemplateRef
 } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 import { NtModalConfig } from './modal-config';
 import { NtModalComponent } from './modal.component';
