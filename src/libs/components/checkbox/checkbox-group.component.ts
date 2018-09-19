@@ -1,5 +1,5 @@
 import { defer, merge, Observable, Subject } from 'rxjs';
-import { startWith, switchMap, take, takeUntil } from 'rxjs/operators';
+import { startWith, switchMap, take, takeUntil, filter } from 'rxjs/operators';
 
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
@@ -56,7 +56,7 @@ export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>
   set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
   get readonly() { return this._readonly; }
 
-  @ContentChildren(NtCheckboxComponent) checkboxes: QueryList<NtCheckboxComponent<any>>;
+  @ContentChildren(NtCheckboxComponent) checkboxes: QueryList<NtCheckboxComponent<T>>;
 
   private _compareWith = (o1: any, o2: any) => o1 === o2;
 
@@ -95,11 +95,8 @@ export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>
 
   ngAfterViewInit() {
     this.checkboxes.changes.pipe(startWith(null), takeUntil(this._destroy)).subscribe(() => {
+      this._resetCheckboxs();
       this._initializeChecked();
-    });
-
-    this.checkedChanges.pipe(takeUntil(this._destroy)).subscribe(() => {
-      this._setValues();
     });
   }
 
@@ -132,6 +129,21 @@ export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>
     Promise.resolve().then(() => {
       this._setCheckedByValue(this.ngControl ? this.ngControl.value : this.value);
     });
+  }
+
+  private _resetCheckboxs() {
+
+    const changedOrDestroyed = merge(this.checkboxes.changes, this._destroy);
+
+    this.checkedChanges.pipe(takeUntil(changedOrDestroyed)).subscribe(() => {
+      this._setValues();
+    });
+
+    merge(...this.checkboxes.map(item => item.change))
+      .pipe(takeUntil(changedOrDestroyed))
+      .subscribe(() => {
+        this._changeDetectorRef.markForCheck();
+      });
   }
 
   private _setCheckedByValue(value: T[]) {

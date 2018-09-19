@@ -1,5 +1,5 @@
-import { debounceTime, filter, switchMap, take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { debounceTime, filter, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -8,8 +8,8 @@ import {
   CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
 } from '@angular/cdk/overlay';
 import {
-  AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output, Renderer2, ViewChild,
-  ViewEncapsulation
+  AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, Output,
+  Renderer2, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 
@@ -26,7 +26,8 @@ export declare type NtOverlayTriggerType = '' | 'hover' | 'click';
       transition('* => void', fadeOut(.15))
     ])
   ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NtOverlayComponent implements AfterViewInit, OnDestroy {
 

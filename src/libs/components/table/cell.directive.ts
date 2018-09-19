@@ -109,7 +109,6 @@ export class NtHeaderCellDirective extends CdkHeaderCell {
     public columnDef: CdkColumnDef,
     elementRef: ElementRef<HTMLElement>) {
     super(columnDef, elementRef);
-    // (columnDef as NtColumnDirective).sortable
     elementRef.nativeElement.classList.add(`nt-column-${columnDef.cssClassFriendlyName}`);
   }
 }

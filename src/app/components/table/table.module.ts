@@ -6,7 +6,7 @@ import { NtButtonModule } from '@ng-tangram/components/button';
 import { NtCalloutModule } from '@ng-tangram/components/callout';
 import { NtCheckboxModule } from '@ng-tangram/components/checkbox';
 import { NtScrimModule } from '@ng-tangram/components/scrim';
-import { NtTableModule } from '@ng-tangram/components/table/table.module';
+import { NtTableModule } from '@ng-tangram/components/table';
 import { NtTooltipModule } from '@ng-tangram/components/tooltip';
 import { NtExampleModule } from '@ng-tangram/example';
 

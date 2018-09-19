@@ -101,13 +101,13 @@ export class NtTableDataSource<T> extends DataSource<T> {
   }
 
   /**
-   * Used by the MatTable. Called when it connects to the data source.
+   * Used by the NtTable. Called when it connects to the data source.
    * @docs-private
    */
   connect() { return this._renderData; }
 
   /**
-   * Used by the MatTable. Called when it is destroyed. No-op.
+   * Used by the NtTable. Called when it is destroyed. No-op.
    * @docs-private
    */
   disconnect() { }

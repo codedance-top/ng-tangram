@@ -6,7 +6,7 @@ import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Input, NgZone,
-  OnDestroy, Optional, ViewEncapsulation
+  OnDestroy, Optional, ViewEncapsulation, ContentChildren, QueryList
 } from '@angular/core';
 import {
   FormControl, FormGroupDirective, NgControl, NgForm, ValidationErrors
@@ -113,8 +113,10 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
     return this.control.ngControl ? this.control.ngControl.errors : null;
   }
 
-  /** 表单模型 */
+  // 表单模型
+  // TODO: 支持多表单控件
   @ContentChild(NtFormFieldControl) control: NtFormFieldControl<any>;
+
 
   get ngSubmit(): Observable<any> | null {
     if (this._parentForm || this._parentFormGroup) {
@@ -162,6 +164,7 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+
     if (this.ngSubmit && this.ngControl) {
       this.ngSubmit.pipe(takeUntil(this._destroy)).subscribe(() => this._validate());
     }

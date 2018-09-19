@@ -1,5 +1,5 @@
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { NtProgressColor, NtProgressSize } from './progress.component';
 

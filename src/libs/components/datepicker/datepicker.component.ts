@@ -111,11 +111,9 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
   private _onTouched = () => {};
 
   constructor(
+    _elementRef: ElementRef,
     @Optional() private _dateAdapter: DateAdapter<D>,
     @Optional() @Inject(NT_DATE_FORMATS) private _dateFormats: NtDateFormats,
-    private _elementRef: ElementRef,
-    private _ngZone: NgZone,
-    private _renderer: Renderer2,
     @Self() @Optional() public ngControl: NgControl) {
     super();
     this.origin = new CdkOverlayOrigin(_elementRef);

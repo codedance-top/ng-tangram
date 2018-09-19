@@ -1,5 +1,5 @@
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 export declare type NtProgressSize = 'tiny' | 'small' | 'medium' | 'large';
@@ -35,5 +35,5 @@ export class NtProgressComponent {
   get percent() {
     const percent = this.value / this.max * 100;
     return percent > 100 ? 100 : percent;
-   }
+  }
 }

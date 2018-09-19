@@ -5,7 +5,7 @@ $nt-table-sortable-color-symbol: $medium-gray !default;
 $nt-table-sortable-color-active: lighten(get-color(primary), 10%) !default;
 $nt-table-selector-padding: rem-calc(8 10 10) !default;
 
-@mixin nt-table-row($stripe: $table-stripe) {
+@mixin nt-table-row($stripe: $table-stripe, $is-striped: $table-is-striped) {
 
   .nt-row,
   .nt-header-row,
@@ -28,44 +28,30 @@ $nt-table-selector-padding: rem-calc(8 10 10) !default;
     background: $table-foot-background;
   }
 
-  .nt-row {
-    @if $stripe==even {
-      &:nth-child(odd) {
-        border-bottom: 0;
-        background-color: $table-striped-background;
-      }
-    }
+  @if $is-striped == true {
+    .nt-row {
+      @if $stripe == even {
+        &:nth-of-type(even) {
+          border-bottom: 0;
+          background-color: $table-striped-background;
+        }
 
-    // If stripe is set to odd, darken the odd rows.
-    @else if $stripe==odd {
-      &:nth-child(even) {
-        background-color: $table-striped-background;
-      }
-    }
-  }
-
-  tr.nt-row {
-    @if $stripe==even {
-      &:nth-child(even) {
-        border-bottom: 0;
-        background-color: $table-striped-background;
+        &:nth-of-type(odd) {
+          border-bottom: $table-border;
+          background-color: transparent;
+        }
       }
 
-      &:nth-child(odd) {
-        border-bottom: $table-border;
-        background-color: transparent;
-      }
-    }
+      // If stripe is set to odd, darken the odd rows.
+      @else if $stripe == odd {
+        &:nth-of-type(even) {
+          border-bottom: $table-border;
+          background-color: transparent;
+        }
 
-    // If stripe is set to odd, darken the odd rows.
-    @else if $stripe==odd {
-      &:nth-child(even) {
-        border-bottom: $table-border;
-        background-color: transparent;
-      }
-
-      &:nth-child(odd) {
-        background-color: $table-striped-background;
+        &:nth-of-type(odd) {
+          background-color: $table-striped-background;
+        }
       }
     }
   }
@@ -195,6 +181,7 @@ $nt-table-selector-padding: rem-calc(8 10 10) !default;
     border: $table-border;
     margin-bottom: $global-margin;
     border-radius: $global-radius;
+    background: $table-background;
 
     @include nt-table-selector;
     @include nt-table-sort;

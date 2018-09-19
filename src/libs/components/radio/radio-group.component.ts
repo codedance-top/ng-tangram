@@ -104,11 +104,8 @@ export class NtRadioGroupComponent<T> extends NtFormFieldControl<T>
 
   ngAfterViewInit() {
     this.radios.changes.pipe(startWith(null), takeUntil(this._destroy)).subscribe(() => {
+      this._resetRadios();
       this._initializeChecked();
-    });
-
-    this.checkedChanges.pipe(takeUntil(this._destroy)).subscribe(change => {
-      this._setValues(change.source);
     });
   }
 
@@ -143,6 +140,22 @@ export class NtRadioGroupComponent<T> extends NtFormFieldControl<T>
       this._setCheckedByValue(this.ngControl ? this.ngControl.value : this.value);
     });
   }
+
+  private _resetRadios() {
+
+    const changedOrDestroyed = merge(this.radios.changes, this._destroy);
+
+    this.checkedChanges.pipe(takeUntil(changedOrDestroyed)).subscribe(change => {
+      this._setValues(change.source);
+    });
+
+    merge(...this.radios.map(item => item.change))
+      .pipe(takeUntil(changedOrDestroyed))
+      .subscribe(() => {
+        this._changeDetectorRef.markForCheck();
+      });
+  }
+
 
   private _setCheckedByValue(value: T) {
       this._value = value;

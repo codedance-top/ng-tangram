@@ -1,8 +1,5 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import {
-  Component, EventEmitter, HostListener, Input, ViewEncapsulation, ElementRef, ContentChild, AfterContentChecked
-} from '@angular/core';
-import { NtFormFieldControl } from '@ng-tangram/components/forms';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'nt-input-group, [nt-input-group]',
@@ -13,19 +10,12 @@ import { NtFormFieldControl } from '@ng-tangram/components/forms';
     '[class.nt-input-group-transparent]': 'transparent'
   }
 })
-export class NtInputGroupComponent<T> implements AfterContentChecked {
-  private _transparent: boolean = false;
+export class NtInputGroupComponent {
 
-  @ContentChild(NtFormFieldControl) field: NtFormFieldControl<T>;
+  private _transparent: boolean = false;
 
   @Input()
   set transparent(value: boolean) { this._transparent = coerceBooleanProperty(value); }
   get transparent() { return this._transparent; }
-
-  constructor() { }
-
-  ngAfterContentChecked() {
-
-  }
 }
 

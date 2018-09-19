@@ -45,6 +45,13 @@ export abstract class DateAdapter<D> {
   abstract getDate(date: D): number;
 
   /**
+   * Gets the milliseconds of the given date.
+   * @param date The date to extract the milliseconds from.
+   * @returns The milliseconds component.
+   */
+  abstract getMilliseconds(date: D): number;
+
+  /**
    * Gets the day of the week component of the given date.
    * @param date The date to extract the day of the week from.
    * @returns The month component (0-indexed, 0 = Sunday).

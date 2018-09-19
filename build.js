@@ -93,7 +93,8 @@ async function _build(lib) {
   "typings": "./index.d.ts",
   "main": "../bundles/${children[i]}.umd.js",
   "module": "../esm5/${children[i]}.js",
-  "es2015": "../esm2015/${children[i]}.js"}`);
+  "es2015": "../esm2015/${children[i]}.js"
+}`);
 
     console.log('build completed', libName);
   }
@@ -111,7 +112,7 @@ async function _build(lib) {
   await _assets(compilationFolder, outputFolder);
 
   fs.writeFileSync(join(outputFolder, `${lib}.metadata.json`), JSON.stringify(metadata));
-  fs.writeFileSync(join(outputFolder, 'package.json'), JSON.stringify(libPackage));
+  fs.writeFileSync(join(outputFolder, 'package.json'), JSON.stringify(libPackage, null, 2));
 
   console.log('build completed', libPackage.name);
 }

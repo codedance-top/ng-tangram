@@ -100,6 +100,10 @@ export class NativeDateAdapter extends DateAdapter<Date> {
     return date.getDate();
   }
 
+  getMilliseconds(date: Date): number {
+    return date.getTime();
+  }
+
   getDayOfWeek(date: Date): number {
     return date.getDay();
   }

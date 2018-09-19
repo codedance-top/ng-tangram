@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'nt-example-showcase',
-  template: `
-    <div class="example-showcase">
-      <ng-content></ng-content>
-    </div>
-  `,
+  template: `<ng-content></ng-content>`,
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'nt-example-showcase'
+  },
   styles: [`
-    .example-showcase {
+    .nt-example-showcase {
+      display: block;
       padding: 20px 20px 30px 20px;
     }
   `]
