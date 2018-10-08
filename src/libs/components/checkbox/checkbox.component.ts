@@ -1,6 +1,7 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  Attribute, Component, EventEmitter, Input, Optional, Output, Self, ViewEncapsulation
+  Attribute, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Optional,
+  Output, Self, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
@@ -16,53 +17,83 @@ export class NtCheckboxChange<T> {
 @Component({
   selector: 'nt-checkbox',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'checkbox.component.html',
   providers: [
     { provide: NtFormFieldControl, useExisting: NtCheckboxComponent }
   ],
   host: {
     'class': 'nt-checkbox',
-    '[class.disabled]': 'disabled'
+    '[class.nt-checkbox-checked]': 'checked',
+    '[class.nt-checkbox-disabled]': 'disabled',
+    '[class.nt-checkbox-indeterminate]': 'indeterminate',
   }
 })
 export class NtCheckboxComponent<T> implements ControlValueAccessor {
 
   readonly id: string = `nt-checkbox-${uniqueId++}`;
 
+  tabIndex: number;
+
   private _value: T | null;
 
+  @Input()
+  get value() { return this._value; }
+  set value(value: T | null) { this._value = value; }
+
   private _disabled = false;
+
+  @Input()
+  get disabled() { return this._disabled; }
+  set disabled(value: boolean) {
+    if (value !== this.disabled) {
+      this._disabled = coerceBooleanProperty(value);
+      this._changeDetectorRef.markForCheck();
+    }
+  }
+
   private _readonly = false;
+
+  @Input()
+  get readonly() { return this._readonly; }
+  set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
 
   private _checked = false;
 
-  tabIndex: number;
-
-  @Input()
-  set value(value: T | null) { this._value = value; }
-  get value() { return this._value; }
-
-  @Input()
-  set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
-  get disabled() { return this._disabled; }
-
-  @Input()
-  set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
-  get readonly() { return this._readonly; }
-
   @Input()
   get checked(): boolean { return this._checked; }
-  set checked(value: boolean) { this._checked = coerceBooleanProperty(value); }
+  set checked(value: boolean) {
+    if (value !== this.checked) {
+      this._checked = coerceBooleanProperty(value);
+      this._changeDetectorRef.markForCheck();
+    }
+  }
+
+  private _indeterminate: boolean = false;
+
+  @Input()
+  get indeterminate(): boolean { return this._indeterminate; }
+  set indeterminate(value: boolean) {
+    const changed = value !== this._indeterminate;
+    this._indeterminate = value;
+
+    if (changed) {
+      this.indeterminateChange.emit(this._indeterminate);
+    }
+  }
 
   @Output() readonly change = new EventEmitter<NtCheckboxChange<T>>();
+
+  // TODO: 考虑合并到 change 事件中
+  @Output() readonly indeterminateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private _onChange: (value: any) => void = () => { };
   private _onTouched = () => { };
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     @Attribute('tabindex') tabIndex: string,
-    @Self() @Optional() public ngControl: NgControl
-  ) {
+    @Self() @Optional() public ngControl: NgControl) {
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }

@@ -23,23 +23,23 @@ $nt-option-background-disabled: $white !default;
     color: $nt-option-color;
 
     &:hover,
-    &.active {
+    &.nt-option-active {
       color: $nt-option-color-hover;
       background-color: $nt-option-background-hovered;
     }
 
-    &.selected {
+    &.nt-option-selected {
       color: $nt-option-color-selected;
       background-color: $nt-option-background-selected;
     }
 
-    &.disabled {
+    &.nt-option-disabled {
       color: $nt-option-color-disabled;
       background-color: $nt-option-background-disabled;
       cursor: no-drop;
     }
 
-    &.hidden {
+    &.nt-option-hidden {
       display: none;
     }
   }

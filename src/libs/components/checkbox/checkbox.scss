@@ -5,6 +5,7 @@ $nt-checkbox-radius: $global-radius !default;
 $nt-checkbox-transition: $input-transition, background-color .3s !default;
 
 $nt-checkbox-check-size: rem-calc(12) !default;
+$nt-checkbox-indeterminate-size: rem-calc(8) !default;
 
 $nt-checkbox-label-spacing: $form-spacing / 2 !default;
 
@@ -49,8 +50,6 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
       border: $nt-checkbox-check-border-width solid transparent;
       border-top-width: 0px;
       border-left-width: 0px;
-      // border-style: solid;
-      // border-color: transparent;
       transform: rotate(45deg) scale(0);
       transition: transform .3s, border-color .3s;
     }
@@ -81,6 +80,40 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
   }
 }
 
+@mixin nt-checkbox-indeterminate() {
+
+  .nt-checkbox-input::before {
+    position: absolute;
+    content: '';
+    width: $nt-checkbox-indeterminate-size;
+    height: $nt-checkbox-indeterminate-size;
+    left: 50%;
+    top: 50%;
+    margin-top: -($nt-checkbox-indeterminate-size / 2);
+    margin-left: -($nt-checkbox-indeterminate-size / 2);
+    border-radius: 1px;
+    transform: scale(0);
+    transition: transform .3s, background-color .3s;
+  }
+
+  &.nt-checkbox-indeterminate {
+
+    .nt-checkbox-input::before {
+      background-color: $nt-checkbox-color;
+      transform: scale(1);
+    }
+
+    &.nt-checkbox-disabled .nt-checkbox-input::before{
+      background-color: $nt-checkbox-color-disabled;
+    }
+
+    &.nt-checkbox-checked .nt-checkbox-input::before {
+      transform: scale(0);
+      background-color: unset;
+    }
+  }
+}
+
 @mixin nt-checkbox-label {
   margin-left: $nt-checkbox-label-spacing;
 }
@@ -96,11 +129,7 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
     box-shadow: $input-shadow;
   }
 
-  // .nt-checkbox-label {
-  //   color: $color;
-  // }
-
-  &:not(.disabled) {
+  &:not(.nt-checkbox-disabled) {
 
     input:checked + .nt-checkbox-input {
       border-color: $color;
@@ -115,7 +144,7 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
 }
 
 @mixin nt-checkbox-highlight {
-  &:not(.disabled) {
+  &:not(.nt-checkbox-disabled) {
     input:focus + .nt-checkbox-input,
     &:hover .nt-checkbox-input {
       box-shadow: $input-shadow-focus;
@@ -147,13 +176,14 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
     font-size: $nt-checkbox-size;
 
     @include nt-checkbox-highlight;
+    @include nt-checkbox-indeterminate;
 
     .nt-checkbox-layout {
       line-height: $nt-checkbox-group-line-height;
       cursor: pointer;
     }
 
-    &.disabled {
+    &.nt-checkbox-disabled {
       @include nt-checkbox-disabled;
     }
 

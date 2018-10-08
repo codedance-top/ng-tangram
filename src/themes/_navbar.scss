@@ -3,20 +3,24 @@
 $wrapper-header-height: 64px;
 $navbar-width: 230px;
 $navbar-background: #1e222a;
+
 .nav-treebar {
   padding-top: 20px;
   padding-bottom: 50px;
   border-right: 0px;
   margin-right: -1px;
+
   .nav-treebar-title {
     padding: 0px 25px;
     color: #333;
   }
+
   .nav-tree {
     list-style: none;
     padding-left: 0;
   }
-  .nav-tree>li>a {
+
+  .nav-tree > li > a {
 
     position: relative;
     display: block;
@@ -28,19 +32,22 @@ $navbar-background: #1e222a;
     overflow: hidden;
     transition: border-right-color .3s, background-color .3s;
   }
-  .nav-tree>li>a:focus,
-  .nav-tree>li>a:hover {
+
+  .nav-tree > li > a:focus,
+  .nav-tree > li > a:hover {
     background-color: #FFF;
     color: get-color(primary);
   }
-  .nav-tree>li.active>a,
-  .nav-tree>li.active>a:hover {
+
+  .nav-tree > li.active > a,
+  .nav-tree > li.active > a:hover {
     background-color: lighten(get-color(primary), 47%);
     border-right-color: lighten(get-color(primary), 10%);
     color: get-color(primary);
   }
-  .nav-tree>li.has-children>a {
+  .nav-tree > li.has-children > a {
     position: relative;
+
     &::before {
       font-size: 0px;
       content: "";
@@ -58,25 +65,30 @@ $navbar-background: #1e222a;
       transform: rotate(135deg);
     }
   }
-  .nav-tree>li.has-children.folded>a::before {
+
+  .nav-tree > li.has-children.folded > a::before {
     transform: rotate(315deg);
   }
-  .nav-tree>li.has-children>a,
-  .nav-tree>li.has-children.active>a {
+
+  .nav-tree > li.has-children > a,
+  .nav-tree > li.has-children.active > a {
     background-color: #FFF;
     color: $dark-gray;
     font-weight: 500;
     border-right-color: transparent;
   }
-  .has-children .nav-tree>li>a {
+
+  .has-children .nav-tree > li > a {
     text-indent: 15px;
   }
+
   .has-children .nav-tree {
     padding: 6px 0px;
     opacity: 1;
     transition: padding .3s, opacity .45s;
   }
-  .nav-tree>li.folded>.nav-tree {
+
+  .nav-tree > li.folded > .nav-tree {
     padding: 0;
     opacity: 0;
     overflow: hidden;

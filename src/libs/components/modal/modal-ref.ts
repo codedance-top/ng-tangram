@@ -4,7 +4,6 @@ import { filter, take } from 'rxjs/operators';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import { GlobalPositionStrategy, OverlayRef } from '@angular/cdk/overlay';
 import { Location } from '@angular/common';
-import { Optional } from '@angular/core';
 
 import { NtModalComponent } from './modal.component';
 

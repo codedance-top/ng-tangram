@@ -26,10 +26,10 @@ export const NT_OPTION_PARENT_COMPONENT = new InjectionToken<NtOptionParentCompo
   encapsulation: ViewEncapsulation.None,
   host: {
     'class': 'nt-option',
-    '[class.selected]': 'selected',
-    '[class.disabled]': 'disabled',
-    '[class.active]': '_isActive',
-    '[class.hidden]': 'hidden',
+    '[class.nt-option-selected]': 'selected',
+    '[class.nt-option-disabled]': 'disabled',
+    '[class.nt-option-active]': '_isActive',
+    '[class.nt-option-hidden]': 'hidden',
     '(click)': 'selectViaInteraction()'
   }
 })

@@ -18,7 +18,7 @@ export class NtScrimComponent {
 
   private _isOpen = false;
 
-  @Input() text = 'Loading...';
+  @Input() text = '';
 
   set isOpen(value: boolean) { this._isOpen = coerceBooleanProperty(value); }
   get isOpen() { return this._isOpen; }

@@ -1,7 +1,5 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import {
-  Component, EventEmitter, HostListener, Input, Output, ViewEncapsulation
-} from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 export declare type NtButtonStyle = '' | 'hollow' | 'clear';
 export declare type NtButtonColor = '' | 'primary' | 'secondary' | 'success' | 'warning' | 'alert';
@@ -32,7 +30,7 @@ export class NtButtonComponent {
 
   @Input('nt-button')
   set _default(value: NtButtonStyle) {
-    if (value && this._validStyle(value)) {
+    if (this._validStyle(value)) {
       this._style = value;
     }
   }
@@ -48,9 +46,4 @@ export class NtButtonComponent {
   private _validStyle(value: string) {
     return ['', 'hollow', 'clear'].indexOf(value) > -1;
   }
-
-  // _ripple() {
-  //   this._clicked = true;
-  //   setTimeout(() => this._clicked = false, 500);
-  // }
 }

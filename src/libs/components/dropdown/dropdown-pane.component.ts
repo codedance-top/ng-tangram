@@ -1,5 +1,4 @@
-import { CdkConnectedOverlay, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
-import { Component, ElementRef, Host, Input, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 export declare type NtDropdownPaneSize = '' | 'tiny' | 'small' | 'large';

@@ -1,17 +1,17 @@
-import { Overlay, OverlayConfig, OverlayContainer, OverlayRef } from '@angular/cdk/overlay';
+import { Subject } from 'rxjs';
+
+import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import {
-  ComponentPortal, ComponentType, DomPortalHost, PortalHost, PortalInjector, TemplatePortal
+  ComponentPortal, ComponentType, PortalInjector, TemplatePortal
 } from '@angular/cdk/portal';
 import { Location } from '@angular/common';
 import {
-  ApplicationRef, ComponentFactoryResolver, ComponentRef, Inject, Injectable, InjectionToken,
-  Injector, Optional, TemplateRef
+  ComponentRef, Inject, Injectable, InjectionToken, Injector, Optional, TemplateRef
 } from '@angular/core';
-import { Subject } from 'rxjs';
 
 import { NtModalConfig } from './modal-config';
-import { NtModalComponent } from './modal.component';
 import { NtModalRef } from './modal-ref';
+import { NtModalComponent } from './modal.component';
 
 export const NT_MODAL_DATA = new InjectionToken<any>('nt-modal-data');
 export const NT_MODAL_DEFAULT_CONFIG = new InjectionToken<NtModalConfig>('nt-model-default-config');
@@ -28,10 +28,7 @@ export class NtModal {
     @Optional() private _location: Location,
     @Optional() @Inject(NT_MODAL_DEFAULT_CONFIG) private _defaultConfig: NtModalConfig,
     private _overlay: Overlay,
-    private _injector: Injector,
-    private _overlayContainer: OverlayContainer,
-    private _componentFactoryResolver: ComponentFactoryResolver,
-    private _applicationRef: ApplicationRef) { }
+    private _injector: Injector) { }
 
   open<T = any>(content: NtModalContent<T>, config: NtModalConfig = {}): NtModalRef<T, any> {
 
