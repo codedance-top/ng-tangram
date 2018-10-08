@@ -2,8 +2,8 @@
 
 [![npm version](https://badge.fury.io/js/%40ng-tangram%2Fcomponents.svg)](https://www.npmjs.com/@ng-tangram/components)
 
-名称 | 完成情况 | 发布版本
---- | :-------: | ------:
+名称 | 完成情况 | 发布版本
+:--- | :-------: | ------:
 Avatar 头像 | | `0.5.0`
 [Badge 徽章](https://livebridge-lab.github.io/ng-tangram-docs#/components/badge) | &radic; | `0.1.0`
 [Breadcrumbs 面包屑](https://livebridge-lab.github.io/ng-tangram-docs#/components/breadcrumbs) | &radic; | `0.1.0`
@@ -35,5 +35,5 @@ Switch 开关 | | `0.5.0`
 [Table 表格](https://livebridge-lab.github.io/ng-tangram-docs#/components/table) | &radic; | `0.1.0`
 Tabs 标签页 | | `0.5.0`
 [Tooltip 提示](https://livebridge-lab.github.io/ng-tangram-docs#/components/tooltip) | &radic; | `0.1.0`
-Toast 提醒框 | | `>= 0.6.0`
+Toast 提醒框 | | `>= 0.6.0` 
 Tree 树 | | `0.5.0`

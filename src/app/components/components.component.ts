@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { COMPONENTS_ROUTES } from './components.routes';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'page-components',
@@ -18,15 +18,14 @@ import { COMPONENTS_ROUTES } from './components.routes';
       </div>
     </div>`
 })
-export class ComponentsComponent implements OnInit {
+export class ComponentsComponent {
 
-  categories = COMPONENTS_ROUTES
-    .filter(route => route.path !== '')
-    .map(route => ({ path: route.path, title: route.data.title }))
-    .sort((a, b) => a.path.localeCompare(b.path));
+  categories: Array<{ path: string, title: string }>;
 
-  constructor() {
+  constructor(route: ActivatedRoute) {
+    this.categories = (route.routeConfig.children || [])
+      .filter(route => route.path !== '')
+      .map(route => ({ path: route.path, title: route.data.title }))
+      .sort((a, b) => a.path.localeCompare(b.path));
   }
-
-  ngOnInit() { }
 }

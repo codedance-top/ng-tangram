@@ -17,7 +17,7 @@ registerLocaleData(locale);
 const ROUTES: Routes = [
   { path: '', redirectTo: 'components', pathMatch: 'full' },
   { path: 'components', loadChildren: './components/components.module#ComponentsModule', data: { title: '组件' } },
-  { path: 'utils', loadChildren: './utils/utils.module#UtilsModule', data: { title: '工具' } },
+  // { path: 'utils', loadChildren: './utils/utils.module#UtilsModule', data: { title: '工具' } },
   { path: '**', component: PageNotFoundComponent, data: { title: '404 - 找不到此页面' } }
 ];
 
