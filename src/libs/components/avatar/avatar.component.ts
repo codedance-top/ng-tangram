@@ -1,7 +1,6 @@
-import { Component, Input, ViewChild, ViewEncapsulation, TemplateRef, Renderer2, ElementRef } from '@angular/core';
-import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { Component, Input, ViewChild, ViewEncapsulation, TemplateRef} from '@angular/core';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { NtModal } from '@ng-tangram/components/modal';
-import { ThrowStmt } from '@angular/compiler';
 
 export declare type NtAvatarShape = '' | 'circle' | 'square';
 
@@ -37,8 +36,6 @@ export class NtAvatarComponent {
   @Input() src: string = '';
 
   @ViewChild('previewTemplate') previewTemplate: TemplateRef<any>;
-
-  @ViewChild('avatarElement') avatarElement: ElementRef;
 
   constructor(
     private _modal: NtModal,
