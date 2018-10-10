@@ -12,7 +12,7 @@
         <demo-avatar-basic></demo-avatar-basic>
       </nt-example-showcase>
       <nt-example-legend title="基本">
-        最简单的用法，适用于简短的警告提示。
+        最简单的用法，适用头像显示。
       </nt-example-legend>
       <nt-example-code [code]="basicCode"></nt-example-code>
     </nt-example>

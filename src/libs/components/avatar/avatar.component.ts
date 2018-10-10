@@ -12,19 +12,19 @@ export declare type NtAvatarShape = '' | 'circle' | 'square';
 })
 export class NtAvatarComponent {
 
-  private _defaultSize = {
+  private sizeMap = {
     'large': 64,
     'default': 40,
     'small': 32,
   }
 
-  private _size: number = this._defaultSize['default'];
+  private _size: number = this.sizeMap['default'];
 
   @Input()
   get size() { return this._size; }
   set size(value: any) {
-    if (value in this._defaultSize) {
-      this._size = this._defaultSize[value];
+    if (value in this.sizeMap) {
+      this._size = this.sizeMap[value];
       return;
     }
     this._size = coerceNumberProperty(value);
