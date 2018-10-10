@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NtAvatarComponent } from './avatar.component';
-import { NtModalModule } from '@ng-tangram/components/modal';
 
 @NgModule({
-  imports: [CommonModule, NtModalModule],
+  imports: [CommonModule],
   declarations: [NtAvatarComponent],
   exports: [NtAvatarComponent]
 })

@@ -28,7 +28,7 @@ export class NtButtonComponent {
 
   @Input() size: NtButtonSize = '';
 
-  @Input('nt-button')
+  @Input('nt-button')r
   set _default(value: NtButtonStyle) {
     if (this._validStyle(value)) {
       this._style = value;

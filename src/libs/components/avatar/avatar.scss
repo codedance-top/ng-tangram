@@ -1,9 +1,25 @@
 // $nt-avatar-margin: rem-calc(16px) rem-calc(16px) 0 0;
+$nt-avatar-small: 32px;
+$nt-avatar-medium: 40px;
+$nt-avatar-large: 60px;
 $nt-avatar-margin: 0 rem-calc(16px) 0 0;
 $nt-avatar-radius: rem-calc(4px);
 $nt-avatar-preview-width: 90vw !default;
 $nt-avatar-preview-width-min: 360px !default;
 $nt-avatar-preview-height: 90vh !default;
+
+
+$nt-avatar-sizes: (
+  small: $nt-avatar-small,
+  medium: $nt-avatar-medium,
+  large: $nt-avatar-large
+) !default;
+
+
+@mixin nt-avatar-size($size: $nt-avatar-medium) {
+  height: $size;
+  width: $size;
+}
 
 @mixin nt-avatar {
   .nt-avatar {
@@ -11,16 +27,24 @@ $nt-avatar-preview-height: 90vh !default;
     vertical-align: middle;
     padding: 0;
     margin: $nt-avatar-margin;
-    background-color: #ccc;
     border-radius: 50%;
     text-align: center;
     overflow: hidden;
     position: relative;
+    border: $input-border;
+    transition: $input-transition;
     cursor: pointer;
+
+    @each $name, $size in $nt-avatar-sizes {
+      &.nt-avatar-#{$name} {
+        @include nt-avatar-size($size: $size);
+      }
+    }
 
     &:hover {
       border-color: $input-border-focus;
       box-shadow: $input-shadow-focus;
+      border: $input-border-focus;
     }
 
     &.nt-avatar-square {

@@ -1,6 +1,5 @@
-import { Component, Input, ViewChild, ViewEncapsulation, TemplateRef} from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
-import { NtModal } from '@ng-tangram/components/modal';
 
 export declare type NtAvatarShape = '' | 'circle' | 'square';
 
@@ -11,44 +10,42 @@ export declare type NtAvatarShape = '' | 'circle' | 'square';
 })
 export class NtAvatarComponent {
 
-  private sizeMap = {
-    'large': 64,
-    'default': 40,
-    'small': 32,
+  private _styleMap = {
+    'large': 'nt-avatar-large',
+    'medium': 'nt-avatar-medium',
+    'small': 'nt-avatar-small',
   }
 
-  private _size: number = this.sizeMap['default'];
+  private _size: number;
+  private _style: string = 'nt-avatar-medium';
+  private _shape: string = 'circle';
 
   @Input()
   get size() { return this._size; }
   set size(value: any) {
-    if (value in this.sizeMap) {
-      this._size = this.sizeMap[value];
-      return;
+    if (coerceNumberProperty(value) > 0) {
+      this._size = coerceNumberProperty(value);
     }
-    this._size = coerceNumberProperty(value);
   }
 
-  @Input() shape: NtAvatarShape = 'circle';
+  @Input()
+  get style() { return this._style; }
+  set style(value: any) {
+    this._style = value in this._styleMap ? this._styleMap[value] : "nt-avatar-medium";
+  }
+
+  @Input()
+  get shape() { return this._shape; }
+  set shape(value: any) {
+    value == 'square' && (this._shape = value);
+  }
 
   @Input() thumbnail: string = '';
 
   @Input() src: string = '';
 
-  @ViewChild('previewTemplate') previewTemplate: TemplateRef<any>;
+  @Input() alt: string = '';
 
-  constructor(
-    private _modal: NtModal,
-  ) { }
+  constructor() { }
 
-  preview() {
-    this._modal.open(this.previewTemplate, {
-      data: this.src || this.thumbnail,
-      centerVertically: true,
-      maxWidth: '90vw',
-      maxHeight: '90vh',
-      width: 'auto',
-      transparent: true
-    });
-  }
 }
