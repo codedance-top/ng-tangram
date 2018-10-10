@@ -1,0 +1,9 @@
+<span #avatarElement class="nt-avatar" [style.width.px]="size" [style.height.px]="size"
+  [class.nt-avatar-square]="shape == 'square'">
+  <img [src]="thumbnail" (click)="preview()">
+</span>
+<ng-template #previewTemplate let-data>
+  <div class="nt-avatar-preview">
+    <img [src]="data">
+  </div>
+</ng-template>

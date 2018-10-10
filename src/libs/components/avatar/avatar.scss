@@ -1,0 +1,50 @@
+$nt-avatar-margin: rem-calc(16px) rem-calc(16px) 0 0;
+$nt-avatar-radius: rem-calc(4px);
+$nt-avatar-preview-width: 90vw !default;
+$nt-avatar-preview-width-min: 360px !default;
+$nt-avatar-preview-height: 90vh !default;
+
+@mixin nt-avatar {
+  .nt-avatar {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+    margin: $nt-avatar-margin;
+    background-color: #ccc;
+    border-radius: 50%;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $input-border-focus;
+      box-shadow: $input-shadow-focus;
+    }
+
+    &.nt-avatar-square {
+      border-radius: $nt-avatar-radius;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .nt-avatar-preview {
+    max-width: $nt-avatar-preview-width;
+    max-height: $nt-avatar-preview-height;
+    min-width: $nt-avatar-preview-width-min;
+    text-align: center;
+
+    img {
+      max-width: $nt-avatar-preview-width;
+      max-height: $nt-avatar-preview-height;
+    }
+  }
+}
