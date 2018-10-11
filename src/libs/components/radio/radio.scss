@@ -8,7 +8,7 @@ $nt-radio-circle-size: $nt-radio-size / 2 !default;
 $nt-radio-label-spacing: $form-spacing / 2 !default;
 
 $nt-radio-group-padding: $form-spacing / 2 0 !default;
-$nt-radio-group-margin: 0 0 $form-spacing !default;
+$nt-radio-group-margin: 0 0 $form-spacing / 2 !default;
 $nt-radio-group-line-height: $nt-radio-size !default;
 
 $nt-radio-color: get-color(primary) !default;
@@ -18,6 +18,8 @@ $nt-radio-border: $input-border !default;
 $nt-radio-border-disabled: 1px solid $nt-radio-color-disabled !default;
 
 @mixin nt-radio-input {
+
+  height: $nt-radio-size;
 
   .nt-radio-input {
     display: inline-block;
@@ -143,6 +145,7 @@ $nt-radio-border-disabled: 1px solid $nt-radio-color-disabled !default;
     display: inline-block;
     white-space: nowrap;
     font-size: $nt-radio-size;
+    margin: 0 0 $form-spacing / 2;
 
     @include nt-radio-highlight;
 

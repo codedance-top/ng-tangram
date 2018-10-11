@@ -4,7 +4,6 @@ import {
   Output, Self, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 let uniqueId = 0;
 
@@ -19,9 +18,6 @@ export class NtCheckboxChange<T> {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'checkbox.component.html',
-  providers: [
-    { provide: NtFormFieldControl, useExisting: NtCheckboxComponent }
-  ],
   host: {
     'class': 'nt-checkbox',
     '[class.nt-checkbox-checked]': 'checked',

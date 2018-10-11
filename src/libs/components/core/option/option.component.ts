@@ -137,7 +137,7 @@ export class NtOptionComponent implements AfterViewChecked, Highlightable, ListK
     return this._element.nativeElement.offsetHeight;
   }
 
-  private _emitSelectionChangeEvent(isUserInput = false): void {
+  protected _emitSelectionChangeEvent(isUserInput = false): void {
     this.selectionChange.emit(new NtOptionSelectionChange(this, isUserInput));
   }
 }

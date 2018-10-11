@@ -216,6 +216,11 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     });
   }
 
+  ngOnDestroy() {
+    this._destroy.next();
+    this._destroy.complete();
+  }
+
   onResize() {
     this._width = this.inputElement.nativeElement.clientWidth;
   }
@@ -548,10 +553,5 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       const scrollOffset = this.paneElement.nativeElement.offsetHeight - activeOption.getOffsetHeight();
       this.paneElement.nativeElement.scrollTop = activeOption.getOffsetTop() - scrollOffset;
     }
-  }
-
-  ngOnDestroy() {
-    this._destroy.next();
-    this._destroy.complete();
   }
 }

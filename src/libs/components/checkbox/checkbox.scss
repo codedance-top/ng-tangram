@@ -10,7 +10,7 @@ $nt-checkbox-indeterminate-size: rem-calc(8) !default;
 $nt-checkbox-label-spacing: $form-spacing / 2 !default;
 
 $nt-checkbox-group-padding: $form-spacing / 2 0 !default;
-$nt-checkbox-group-margin: 0 0 $form-spacing !default;
+$nt-checkbox-group-margin: 0 0 $form-spacing / 2 !default;
 $nt-checkbox-group-line-height: $nt-checkbox-size !default;
 
 $nt-checkbox-color: get-color(primary) !default;
@@ -21,6 +21,8 @@ $nt-checkbox-border: $input-border !default;
 $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
 
 @mixin nt-checkbox-input {
+
+  height: $nt-checkbox-size;
 
   .nt-checkbox-input {
     display: inline-block;
@@ -174,6 +176,7 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
     display: inline-block;
     white-space: nowrap;
     font-size: $nt-checkbox-size;
+    margin: 0 0 $form-spacing / 2;
 
     @include nt-checkbox-highlight;
     @include nt-checkbox-indeterminate;

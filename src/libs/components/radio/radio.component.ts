@@ -3,7 +3,6 @@ import {
   Attribute, Component, EventEmitter, Input, Optional, Output, Self, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 let uniqueId = 0;
 
@@ -17,9 +16,6 @@ export class NtRadioChange<T> {
   selector: 'nt-radio',
   encapsulation: ViewEncapsulation.None,
   templateUrl: 'radio.component.html',
-  providers: [
-    { provide: NtFormFieldControl, useExisting: NtRadioComponent }
-  ],
   host: {
     'class': 'nt-radio',
     '[class.disabled]': 'disabled'
