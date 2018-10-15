@@ -26,7 +26,7 @@ export class NtTableComponent<T> extends CdkTable<T> implements AfterContentInit
 
   private _selectionModel: SelectionModel<T> = new SelectionModel(true, undefined, false);
 
-  private _multipleSortable = false;
+  private _multiSortable = false;
 
   private _selectable = false;
 
@@ -116,7 +116,7 @@ export class NtTableComponent<T> extends CdkTable<T> implements AfterContentInit
     this.columSortChanges
       .pipe(takeUntil(changedOrDestroyed), filter(event => event.isUserInput))
       .subscribe(event => {
-        if (!this._multipleSortable) {
+        if (!this._multiSortable) {
           this._clearSort(event);
         }
         this.sortChange.emit(event);
