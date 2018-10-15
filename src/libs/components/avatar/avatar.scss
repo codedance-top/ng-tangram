@@ -1,19 +1,13 @@
-// $nt-avatar-margin: rem-calc(16px) rem-calc(16px) 0 0;
 $nt-avatar-small: 32px;
 $nt-avatar-medium: 40px;
 $nt-avatar-large: 60px;
 $nt-avatar-margin: 0 rem-calc(16px) 0 0;
 $nt-avatar-radius: rem-calc(4px);
-$nt-avatar-preview-width: 90vw !default;
-$nt-avatar-preview-width-min: 360px !default;
-$nt-avatar-preview-height: 90vh !default;
 
 
-$nt-avatar-sizes: (
-  small: $nt-avatar-small,
-  medium: $nt-avatar-medium,
-  large: $nt-avatar-large
-) !default;
+$nt-avatar-sizes: (small: $nt-avatar-small,
+medium: $nt-avatar-medium,
+large: $nt-avatar-large) !default;
 
 
 @mixin nt-avatar-size($size: $nt-avatar-medium) {
@@ -22,7 +16,7 @@ $nt-avatar-sizes: (
 }
 
 @mixin nt-avatar {
-  .nt-avatar {
+  nt-avatar {
     display: inline-block;
     vertical-align: middle;
     padding: 0;
@@ -35,7 +29,8 @@ $nt-avatar-sizes: (
     transition: $input-transition;
     cursor: pointer;
 
-    @each $name, $size in $nt-avatar-sizes {
+    @each $name,
+    $size in $nt-avatar-sizes {
       &.nt-avatar-#{$name} {
         @include nt-avatar-size($size: $size);
       }
@@ -58,18 +53,6 @@ $nt-avatar-sizes: (
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-    }
-  }
-
-  .nt-avatar-preview {
-    max-width: $nt-avatar-preview-width;
-    max-height: $nt-avatar-preview-height;
-    min-width: $nt-avatar-preview-width-min;
-    text-align: center;
-
-    img {
-      max-width: $nt-avatar-preview-width;
-      max-height: $nt-avatar-preview-height;
     }
   }
 }

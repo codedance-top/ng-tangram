@@ -1,37 +1,40 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 
-export declare type NtAvatarShape = '' | 'circle' | 'square';
-
 @Component({
   selector: 'nt-avatar',
   templateUrl: './avatar.component.html',
   encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'nt-avatar',
+    '[class.nt-avatar-small]': 'size === "small"',
+    '[class.nt-avatar-medium]': 'size === "medium"',
+    '[class.nt-avatar-large]': 'size === "large"',
+    '[class.nt-avatar-square]': 'shape == "square"',
+    '[style.width]': '_size + "px"',
+    '[style.height]': '_size + "px"'
+  }
 })
 export class NtAvatarComponent {
 
-  private _styleMap = {
-    'large': 'nt-avatar-large',
-    'medium': 'nt-avatar-medium',
-    'small': 'nt-avatar-small',
-  }
+  private _styleMap = [
+    'large',
+    'medium',
+    'small',
+  ]
 
   private _size: number;
-  private _style: string = 'nt-avatar-medium';
+  private _style: string = 'medium';
   private _shape: string = 'circle';
 
   @Input()
-  get size() { return this._size; }
+  get size() { return this._style; }
   set size(value: any) {
-    if (coerceNumberProperty(value) > 0) {
+    if (this._styleMap.indexOf(value) !== -1) {
+      this._style = value;
+    } else if (coerceNumberProperty(value) > 0) {
       this._size = coerceNumberProperty(value);
     }
-  }
-
-  @Input()
-  get style() { return this._style; }
-  set style(value: any) {
-    this._style = value in this._styleMap ? this._styleMap[value] : "nt-avatar-medium";
   }
 
   @Input()
@@ -40,11 +43,9 @@ export class NtAvatarComponent {
     value == 'square' && (this._shape = value);
   }
 
-  @Input() thumbnail: string = '';
-
   @Input() src: string = '';
 
-  @Input() alt: string = '';
+  @Input() alt: string = 'avatar';
 
   constructor() { }
 

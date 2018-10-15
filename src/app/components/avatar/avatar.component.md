@@ -26,9 +26,8 @@
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| size | 属性：头像大小 | `number` | 无 |
-| style | 属性：默认头像样式 |  `small`、 `medium`、`large`  | `medium`|
+| size | 属性：头像大小 | number 、 `small`、 `medium`、`large`  | `medium`|
 | shape | 属性：形状（方形、圆形） |  `circle`、 `square` | `circle` |
-| thumbnail | 属性：缩略图地址  | string | 无 |
-| src | 属性：原图地址（用于显示大图）  | string | 无  |
+| src | 属性：图片地址  | string | -  |
+| alt | 属性：替代文本  | string |  `avatar`  |
 
