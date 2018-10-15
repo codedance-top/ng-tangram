@@ -1,6 +1,6 @@
 $nt-avatar-small: 32px;
-$nt-avatar-medium: 40px;
-$nt-avatar-large: 60px;
+$nt-avatar-medium: 64px;
+$nt-avatar-large: 128px;
 $nt-avatar-margin: 0 rem-calc(16px) 0 0;
 $nt-avatar-radius: rem-calc(4px);
 
@@ -21,7 +21,7 @@ large: $nt-avatar-large) !default;
     vertical-align: middle;
     padding: 0;
     margin: $nt-avatar-margin;
-    border-radius: 50%;
+    border-radius: $nt-avatar-radius;
     text-align: center;
     overflow: hidden;
     position: relative;
@@ -42,8 +42,8 @@ large: $nt-avatar-large) !default;
       border: $input-border-focus;
     }
 
-    &.nt-avatar-square {
-      border-radius: $nt-avatar-radius;
+    &.nt-avatar-circle {
+      border-radius: 50%;
     }
 
     img {

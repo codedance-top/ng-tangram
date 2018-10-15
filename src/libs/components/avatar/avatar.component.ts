@@ -1,5 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { Component, Input, ViewEncapsulation, Attribute } from '@angular/core';
 
 @Component({
   selector: 'nt-avatar',
@@ -10,9 +9,7 @@ import { coerceNumberProperty } from '@angular/cdk/coercion';
     '[class.nt-avatar-small]': 'size === "small"',
     '[class.nt-avatar-medium]': 'size === "medium"',
     '[class.nt-avatar-large]': 'size === "large"',
-    '[class.nt-avatar-square]': 'shape == "square"',
-    '[style.width]': '_size + "px"',
-    '[style.height]': '_size + "px"'
+    '[class.nt-avatar-circle]': 'shape == "circle"',
   }
 })
 export class NtAvatarComponent {
@@ -23,30 +20,25 @@ export class NtAvatarComponent {
     'small',
   ]
 
-  private _size: number;
   private _style: string = 'medium';
-  private _shape: string = 'circle';
+  private _shape: string = 'square';
+
+  constructor(@Attribute('alt') public alt: string ) {}
 
   @Input()
   get size() { return this._style; }
   set size(value: any) {
     if (this._styleMap.indexOf(value) !== -1) {
       this._style = value;
-    } else if (coerceNumberProperty(value) > 0) {
-      this._size = coerceNumberProperty(value);
     }
   }
 
   @Input()
   get shape() { return this._shape; }
   set shape(value: any) {
-    value == 'square' && (this._shape = value);
+    value == 'circle' && (this._shape = value);
   }
 
   @Input() src: string = '';
-
-  @Input() alt: string = 'avatar';
-
-  constructor() { }
 
 }

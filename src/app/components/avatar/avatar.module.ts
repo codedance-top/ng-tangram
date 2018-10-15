@@ -8,6 +8,8 @@ import { NtAvatarModule } from '@ng-tangram/components/avatar';
 
 import { AvatarDocumentComponent } from './avatar.component';
 import { DemoAvatarBasicComponent } from './demos/basic';
+import { DemoAvatarSizeComponent } from './demos/size';
+import { DemoAvatarShapeComponent } from './demos/shape';
 
 @NgModule({
   imports: [
@@ -17,6 +19,6 @@ import { DemoAvatarBasicComponent } from './demos/basic';
     RouterModule.forChild([
       { path: '', component: AvatarDocumentComponent }
     ])],
-  declarations: [AvatarDocumentComponent, DemoAvatarBasicComponent],
+  declarations: [AvatarDocumentComponent, DemoAvatarBasicComponent, DemoAvatarSizeComponent, DemoAvatarShapeComponent],
 })
 export class AvatarDocumentModule { }

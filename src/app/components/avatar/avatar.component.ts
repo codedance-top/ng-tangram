@@ -7,4 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AvatarDocumentComponent {
   basicCode = require('!!raw-loader!./demos/basic');
+  sizeCode = require('!!raw-loader!./demos/size');
+  shapeCode = require('!!raw-loader!./demos/shape');
 }
