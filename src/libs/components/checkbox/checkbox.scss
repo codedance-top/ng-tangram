@@ -163,7 +163,7 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
   margin: $nt-checkbox-group-margin;
 
   .nt-checkbox {
-    margin-right: $form-spacing;
+    margin: 0 $form-spacing $form-spacing / 2 0;
 
     &:last-child {
       margin-right: 0;
@@ -176,7 +176,6 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
     display: inline-block;
     white-space: nowrap;
     font-size: $nt-checkbox-size;
-    margin: 0 0 $form-spacing / 2;
 
     @include nt-checkbox-highlight;
     @include nt-checkbox-indeterminate;

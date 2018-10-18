@@ -1,4 +1,4 @@
-<button class="button hollow small nt-file-trigger" type="button" (click)="onTriggerClick()" [disabled]="files.length >= maxFiles || disabled">
+<button class="button hollow nt-file-trigger" type="button" (click)="onTriggerClick()" [disabled]="files.length >= maxFiles || disabled">
   <ng-content></ng-content>
 </button>
 <input #fileElement type="file" [accept]="accept" (change)="_fileChanged()" hidden>
