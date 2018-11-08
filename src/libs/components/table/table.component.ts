@@ -11,7 +11,7 @@ import {
   Optional, Output, QueryList, SimpleChanges, ViewEncapsulation
 } from '@angular/core';
 
-import { NtColumnDirective, NtColumnSortChange } from './cell.directive';
+import { NtColumnDirective, NtColumnSortChange, NtColumnSort } from './cell.directive';
 
 @Component({
   selector: 'nt-table, table[nt-table]',
@@ -106,7 +106,7 @@ export class NtTableComponent<T> extends CdkTable<T> implements AfterContentInit
   private _clearSort(filter?: NtColumnSortChange) {
     this._contentColumns
       .filter(column => column.name !== (filter ? filter.column : ''))
-      .forEach(column => column.sort = '');
+      .forEach(column => column.sort = NtColumnSort.NONE);
       this._changeDetectorRef.markForCheck();
   }
 

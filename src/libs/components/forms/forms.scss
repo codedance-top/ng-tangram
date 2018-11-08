@@ -136,7 +136,7 @@ $nt-form-label-padding-horizontal: $form-spacing !default;
 
   position: relative;
 
-  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
+  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom'));
 
   .nt-form-label {
     vertical-align: top;

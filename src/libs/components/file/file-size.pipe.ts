@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+const FILE_SIZE_UNITS = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+
 @Pipe({ name: 'ntFileSize' })
 export class NtFileSizePipe implements PipeTransform {
-
-  private units = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
 
   transform(bytes: number = 0, precision: number = 2): string {
     if (isNaN(parseFloat(String(bytes))) || !isFinite(bytes)) {
@@ -17,6 +17,6 @@ export class NtFileSizePipe implements PipeTransform {
       unit++;
     }
 
-    return bytes.toFixed(+ precision) + ' ' + this.units[unit];
+    return bytes.toFixed(+ precision) + ' ' + FILE_SIZE_UNITS[unit];
   }
 }

@@ -20,7 +20,6 @@ export class NtUpload {
     @Optional() @Inject(NT_UPLOAD_INTERCEPTOR) private _interceptor: NtUploadInterceptor) { }
 
   upload<T>(url: string, file: File | FormData, handler: NtUploadHandler = {}): Observable<NtUploadResult<T>> {
-
     return this._http.request(new HttpRequest('POST', url, file, { reportProgress: true }))
       .pipe(
         map(event => this._progressHandler(event, handler)),

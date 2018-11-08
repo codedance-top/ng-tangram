@@ -1,22 +1,20 @@
-import { state, transition, trigger } from '@angular/animations';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+import { transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { HttpProgressEvent } from '@angular/common/http';
 import {
-  HttpEvent, HttpEventType, HttpProgressEvent, HttpResponse, HttpResponseBase, HttpSentEvent
-} from '@angular/common/http';
-import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit,
-  Optional, Output, Self, ViewChild, ViewEncapsulation
+  Component, ElementRef, EventEmitter, Input, OnInit, Optional, Output, Self, ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeOut } from '@ng-tangram/animate/fading';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import {
   NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUpload, NtUploadControl,
-  NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
+  NtUploadControlError, NtUploadFile, NtUploadStatus
 } from '@ng-tangram/components/upload';
-
-import { takeUntil } from 'rxjs/operators';
-import { Subject, Subscription } from 'rxjs';
 
 let uniqueId = 0;
 

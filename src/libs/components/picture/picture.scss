@@ -50,6 +50,7 @@ $nt-picture-symbol-remove: '\e69f' !default;
   .nt-picture-symbol {
     font-family: $nt-picture-symbol-font-family;
     line-height: $nt-picture-size;
+    margin: 0 2px;
     cursor: pointer;
   }
 

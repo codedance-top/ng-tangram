@@ -5,13 +5,18 @@ import {
 import { Directive, ElementRef, Input, EventEmitter, Output } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
+export enum NtColumnSort {
+  ASC = 'asc',
+  DESC = 'desc',
+  NONE = ''
+}
+
 export class NtColumnSortChange {
   constructor(
     public isUserInput = false,
     public column: string,
     public sort: string) { }
 }
-
 
 /**
  * table 列单元格定义指令
@@ -54,7 +59,7 @@ export class NtColumnDirective extends CdkColumnDef {
 
   private _sortable = false;
 
-  sort: '' | 'asc' | 'desc' = '';
+  sort: NtColumnSort = NtColumnSort.NONE;
 
   @Input('nt-column')
   set ntColumn(value: string) { this.name = value; }
@@ -76,12 +81,25 @@ export class NtColumnDirective extends CdkColumnDef {
     if (this.sortable) {
 
       /** 按照 升 -> 降 -> 无 的循环改变排序 */
-      if (this.sort === 'asc') {
-        this.sort = 'desc';
-      } else if (this.sort === 'desc') {
-        this.sort = '';
+
+      switch (this.sort) {
+        case NtColumnSort.ASC:
+          this.sort = NtColumnSort.DESC;
+          break;
+        case NtColumnSort.DESC:
+          this.sort = NtColumnSort.NONE;
+          break;
+        default:
+          this.sort = NtColumnSort.ASC;
+          break;
+      }
+
+      if (this.sort === NtColumnSort.ASC) {
+        this.sort = NtColumnSort.DESC;
+      } else if (this.sort === NtColumnSort.DESC) {
+        this.sort = NtColumnSort.NONE;
       } else {
-        this.sort = 'asc';
+        this.sort = NtColumnSort.ASC;
       }
 
       this._sortChange.emit(new NtColumnSortChange(isUserInput, this.name, this.sort));
@@ -105,9 +123,7 @@ export class NtColumnDirective extends CdkColumnDef {
   },
 })
 export class NtHeaderCellDirective extends CdkHeaderCell {
-  constructor(
-    public columnDef: CdkColumnDef,
-    elementRef: ElementRef<HTMLElement>) {
+  constructor(public columnDef: CdkColumnDef, elementRef: ElementRef<HTMLElement>) {
     super(columnDef, elementRef);
     elementRef.nativeElement.classList.add(`nt-column-${columnDef.cssClassFriendlyName}`);
   }
@@ -125,9 +141,7 @@ export class NtHeaderCellDirective extends CdkHeaderCell {
   },
 })
 export class NtFooterCellDirective extends CdkFooterCell {
-  constructor(
-    columnDef: CdkColumnDef,
-    elementRef: ElementRef) {
+  constructor(columnDef: CdkColumnDef, elementRef: ElementRef) {
     super(columnDef, elementRef);
     elementRef.nativeElement.classList.add(`nt-column-${columnDef.cssClassFriendlyName}`);
   }
@@ -145,9 +159,7 @@ export class NtFooterCellDirective extends CdkFooterCell {
   },
 })
 export class NtCellDirective extends CdkCell {
-  constructor(
-    columnDef: CdkColumnDef,
-    elementRef: ElementRef<HTMLElement>) {
+  constructor(columnDef: CdkColumnDef, elementRef: ElementRef<HTMLElement>) {
     super(columnDef, elementRef);
     elementRef.nativeElement.classList.add(`nt-column-${columnDef.cssClassFriendlyName}`);
   }

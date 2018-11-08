@@ -59,6 +59,8 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
   private _selfOrientation = false;
 
+  private _ngForm: NgForm | FormGroupDirective | null = null;
+
   /** 表单宽度 （只在 horizontal 模式下起作用） */
   _labelStyles: any = {};
 
@@ -117,14 +119,6 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   // TODO: 支持多表单控件
   @ContentChild(NtFormFieldControl) control: NtFormFieldControl<any>;
 
-
-  get ngSubmit(): Observable<any> | null {
-    if (this._parentForm || this._parentFormGroup) {
-      return (this._parentForm || this._parentFormGroup || <any>{}).ngSubmit;
-    }
-    return null;
-  }
-
   get ngControl(): NgControl | null { return this.control ? this.control.ngControl : null; }
 
   readonly statusChanges: Observable<any> = defer(() => {
@@ -139,10 +133,12 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   constructor(
     private _ngZone: NgZone,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Optional() private _parentForm: NgForm,
-    @Optional() private _parentFormGroup: FormGroupDirective,
+    @Optional() parentForm: NgForm,
+    @Optional() parentFormGroup: FormGroupDirective,
     @Optional() private _formLabelWidth: NtFormLabelWidthDirective,
     @Optional() private _formOrientation: NtFormOrientationDirective) {
+
+    this._ngForm = parentForm || parentFormGroup;
 
     if (this._formLabelWidth) {
       this._formLabelWidth.widthChange.pipe(takeUntil(this._destroy), filter(() => !this._selfLabelWidth))
@@ -165,8 +161,8 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
 
-    if (this.ngSubmit && this.ngControl) {
-      this.ngSubmit.pipe(takeUntil(this._destroy)).subscribe(() => this._validate());
+    if (this._ngForm && this.ngControl) {
+      this._ngForm.ngSubmit.pipe(takeUntil(this._destroy)).subscribe(() => this._validate());
     }
   }
 
@@ -180,6 +176,10 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
       this._invalid = !!this.ngControl.invalid;
       this._changeDetectorRef.markForCheck();
     }
+  }
+
+  _clearValidateMessage () {
+    this._invalid = false;
   }
 
   private _setHorizontalStyles() {

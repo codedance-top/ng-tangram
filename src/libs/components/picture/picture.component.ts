@@ -45,7 +45,7 @@ let uniqueId = 0;
 
 export const NtPictureAccepts = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
 
-export class NtPicture extends NtUploadFile {
+export class NtPictureFile extends NtUploadFile {
   id: string = `nt-picture-${uniqueId++}`;
   progress?: number;
   uploader?: Subscription;
@@ -72,19 +72,20 @@ export class NtPicture extends NtUploadFile {
     ])
   ]
 })
-export class NtPictureComponent extends NtUploadControl<NtPicture> implements OnInit, ControlValueAccessor {
+export class NtPictureComponent extends NtUploadControl<NtPictureFile> implements OnInit, ControlValueAccessor {
 
   private readonly _destroy = new Subject<void>();
 
   private _disabled = false;
+  private _readonly = false;
   private _required = false;
   private _autoupload = true;
-  private _value: NtPicture[] = [];
+  private _value: NtPictureFile[] = [];
   private _maxFiles = 1;
   private _maxSize = 5;
   private _accept = NtPictureAccepts;
 
-  files: NtPicture[] = [];
+  files: NtPictureFile[] = [];
 
   @Input() url: string = '';
 
@@ -97,6 +98,10 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
   @Input()
   set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
   get disabled() { return this._disabled; }
+
+  @Input()
+  set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
+  get readonly() { return this._readonly; }
 
   @Input()
   get required(): boolean { return this._required; }
@@ -134,7 +139,7 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
 
   @Output() error = new EventEmitter<NtUploadControlError>();
 
-  @Output() remove = new EventEmitter<NtPicture>();
+  @Output() remove = new EventEmitter<NtPictureFile>();
 
   constructor(
     private _modal: NtModal,
@@ -173,34 +178,33 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
         return;
       }
 
-      const ntFile = new NtPicture(file.name, file.size, file.type);
-
-      this.files.push(ntFile);
+      const picture = new NtPictureFile(file.name, file.size, file.type);
+      this.files.push(picture);
 
       const loadImageOptions = { maxWidth: 1080, orientation: true, canvas: true };
       const data = await zipImage(file, loadImageOptions);
-      ntFile.thumbnail = data.thumbnail;
+      picture.thumbnail = data.thumbnail;
 
       const handlers = {
-        begin: () => this._onUploadBegin(ntFile),
-        progress: event => this._onUploadProgress(event, ntFile),
-        done: () => this._onUploadDone(ntFile)
+        begin: () => this._onUploadBegin(picture),
+        progress: event => this._onUploadProgress(event, picture),
+        done: () => this._onUploadDone(picture)
       };
 
       if (this.autoupload) {
 
-        ntFile.uploader = this._uploader.upload(this.url, this._getFormData(file), handlers)
+        picture.uploader = this._uploader.upload(this.url, this._getFormData(file), handlers)
           .pipe(takeUntil(this._destroy))
           .subscribe(result => {
-            if ((ntFile.status = result.status) === NtUploadStatus.SUCCESS) {
-              ntFile.data = result.data;
-              this._value.push(ntFile);
+            if ((picture.status = result.status) === NtUploadStatus.SUCCESS) {
+              picture.data = result.data;
+              this._value.push(picture);
               this._onChange(this._value);
             }
           }, error => {
-            ntFile.status = NtUploadStatus.ERROR;
-            ntFile.error = error.statusText;
-            ntFile.progress = 100;
+            picture.status = NtUploadStatus.ERROR;
+            picture.error = error.statusText;
+            picture.progress = 100;
             this.error.next(new NtFileUploadError(error.status, error.statusText));
           });
       }
@@ -209,7 +213,7 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
     this.fileElement.nativeElement.value = '';
   }
 
-  removeFile(file: NtPicture) {
+  removeFile(file: NtPictureFile) {
     if (this.disabled) {
       return;
     }
@@ -224,7 +228,7 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
     this._onChange(this._value);
   }
 
-  preview(file: NtPicture) {
+  preview(file: NtPictureFile) {
     this._modal.open(this.previewTemplate, {
       data: file,
       centerVertically: true,
@@ -239,7 +243,7 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
     this._disabled = isDisabled;
   }
 
-  setValue(value: NtPicture[]) {
+  setValue(value: NtPictureFile[]) {
     if (value) {
       this._value.length = 0;
       this._value.push(...value);
@@ -262,17 +266,17 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
     return false;
   }
 
-  private _onUploadBegin(file: NtPicture) {
+  private _onUploadBegin(file: NtPictureFile) {
     file.status = NtUploadStatus.SENDING;
   }
 
-  private _onUploadProgress(event: HttpProgressEvent, file: NtPicture) {
+  private _onUploadProgress(event: HttpProgressEvent, file: NtPictureFile) {
     if (event.total && event.total > 0) {
       file.progress = Math.round(event.loaded / event.total * 100);
     }
   }
 
-  private _onUploadDone(file: NtPicture) {
+  private _onUploadDone(file: NtPictureFile) {
     file.status = NtUploadStatus.SUCCESS;
   }
 }
