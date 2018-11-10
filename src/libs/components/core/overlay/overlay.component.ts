@@ -39,7 +39,7 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
   private _isMouseIn = false;
 
   private _origin: CdkOverlayOrigin;
-  private _position: NtOverlayPosition | null = NtOverlayPosition.BottomLeft;
+  private _position: NtOverlayPosition = NtOverlayPosition.BottomLeft;
   private _positionPairs: ConnectionPositionPair[] = NT_OVERLAY_POSITION_PAIRS[this._position];
   private _paddingClass = getPositionClassName(this._positionPairs[0]);
   private _arrow = false;
