@@ -8,7 +8,7 @@ import {
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 import {
-  DateAdapter, NT_DATE_FORMATS, NtDateFormats, NtOverlayComponent
+  BOTTOM_LEFT, DateAdapter, NT_DATE_FORMATS, NtDateFormats, NtOverlayComponent, TOP_LEFT
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
@@ -47,6 +47,8 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
   private _maxDate: D | null;
 
   private _focused = false;
+
+  _positionPairs = [BOTTOM_LEFT, TOP_LEFT];
 
   get empty() { return !this.value; }
   get focused(): boolean { return this._focused; }

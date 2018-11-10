@@ -17,8 +17,8 @@ import {
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 import {
-  NT_OPTION_PARENT_COMPONENT, NtOptionComponent, NtOptionParentComponent, NtOptionSelectionChange,
-  NtOverlayComponent
+  BOTTOM_LEFT, NT_OPTION_PARENT_COMPONENT, NtOptionComponent, NtOptionParentComponent,
+  NtOptionSelectionChange, NtOverlayComponent, TOP_LEFT
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
@@ -75,6 +75,8 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   private _multiple = false;
   private _value: any;
   private _required = false;
+
+  _positionPairs = [BOTTOM_LEFT, TOP_LEFT];
 
   private _compareWith = (o1: any, o2: any) => o1 === o2;
   private _onChange: (value: any) => void = () => { };

@@ -2,18 +2,20 @@ import { Subject } from 'rxjs';
 import { debounceTime, filter, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { AnimationEvent, transition, trigger } from '@angular/animations';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { coerceArray, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import {
   CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
 } from '@angular/cdk/overlay';
 import {
-  AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, Output,
-  Renderer2, ViewChild, ViewEncapsulation
+  AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy,
+  Output, Renderer2, SimpleChange, SimpleChanges, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 
-import { getPositionClassName, NtOverlayPosition, OVERLAY_POSITIONS } from './overlay-positions';
+import {
+  getPositionClassName, NT_OVERLAY_POSITION_PAIRS, NtOverlayPosition
+} from './overlay-positions';
 
 export declare type NtOverlayTriggerType = '' | 'hover' | 'click';
 
@@ -29,7 +31,7 @@ export declare type NtOverlayTriggerType = '' | 'hover' | 'click';
   encapsulation: ViewEncapsulation.None,
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NtOverlayComponent implements AfterViewInit, OnDestroy {
+export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   private readonly _destroy = new Subject<void>();
 
@@ -37,8 +39,8 @@ export class NtOverlayComponent implements AfterViewInit, OnDestroy {
   private _isMouseIn = false;
 
   private _origin: CdkOverlayOrigin;
-  private _position: NtOverlayPosition = 'bottomLeft';
-  private _positionPairs: ConnectionPositionPair[] = OVERLAY_POSITIONS[this._position];
+  private _position: NtOverlayPosition | null = NtOverlayPosition.BottomLeft;
+  private _positionPairs: ConnectionPositionPair[] = NT_OVERLAY_POSITION_PAIRS[this._position];
   private _paddingClass = getPositionClassName(this._positionPairs[0]);
   private _arrow = false;
   private _noSpacing = false;
@@ -58,15 +60,22 @@ export class NtOverlayComponent implements AfterViewInit, OnDestroy {
 
   @Input()
   set position(value: NtOverlayPosition) {
-    this._position = value;
-    this._setPosition();
+    if (value) {
+      this._position = value;
+      this._positionPairs = NT_OVERLAY_POSITION_PAIRS[value];
+    } else {
+      this._position = NtOverlayPosition.BottomLeft;
+    }
   }
-  get positions() { return this._positionPairs; }
+
+  @Input()
+  set positionPairs(value: ConnectionPositionPair[]) { this._positionPairs = coerceArray(value); }
+  get positionPairs() { return this._positionPairs; }
 
   get paddingClass() { return this._paddingClass; }
 
   @Input()
-  set fixed(value: boolean) { this._fixed = coerceBooleanProperty(value); this._setPosition(); }
+  set fixed(value: boolean) { this._fixed = coerceBooleanProperty(value); }
   get fixed() { return this._fixed; }
 
   @Input()
@@ -130,6 +139,13 @@ export class NtOverlayComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    const change = changes.position || changes.fixed || changes.positionPairs;
+    if (change && !change.firstChange) {
+      this._setPosition();
+    }
+  }
+
   ngOnDestroy() {
     this._destroy.next();
     this._destroy.complete();
@@ -137,12 +153,11 @@ export class NtOverlayComponent implements AfterViewInit, OnDestroy {
 
   private _setPosition() {
     this._positionPairs = this.fixed ?
-      OVERLAY_POSITIONS[this._position].slice(0, 1) :
-      OVERLAY_POSITIONS[this._position];
+      this._positionPairs.slice(0, 1) :
+      this._positionPairs;
 
     this._paddingClass = getPositionClassName(this._positionPairs[0]);
   }
-
 
   show() {
     this._isOpen = true;

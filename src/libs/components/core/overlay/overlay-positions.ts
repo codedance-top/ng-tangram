@@ -1,70 +1,27 @@
-import { ConnectionPositionPair, HorizontalConnectionPos, VerticalConnectionPos } from '@angular/cdk/overlay';
+import {
+  ConnectionPositionPair, HorizontalConnectionPos, VerticalConnectionPos
+} from '@angular/cdk/overlay';
 
-export declare type NtOverlayPosition =
-  'bottom' | 'bottomLeft' | 'bottomRight' | 'top' | 'topLeft' | 'topRight' |
-  'left' | 'leftTop' | 'leftBottom' | 'right' | 'rightTop' | 'rightBottom';
 
+export enum NtOverlayPosition {
+  Bottom = 'bottom',
+  BottomLeft = 'bottomLeft',
+  BottomRight = 'bottomRight',
+  Top = 'top',
+  TopLeft = 'topLeft',
+  TopRight = 'topRight',
+  Left = 'left',
+  LeftTop = 'leftTop',
+  LeftBottom = 'leftBottom',
+  Right = 'right',
+  RightTop = 'rightTop',
+  RightBottom = 'rightBottom'
+}
 
 export enum NtOverlayOrientation {
   Vertical = 'vertical',
   Horizontal = 'horizontal'
 }
-
-export const OVERLAY_POSITIONS = {
-
-  bottom: [
-    getConnectionPositionPair('center', 'bottom', 'center', 'top'),
-    getConnectionPositionPair('center', 'top', 'center', 'bottom')
-  ],
-  bottomLeft: [
-    getConnectionPositionPair('start', 'bottom', 'start', 'top'),
-    getConnectionPositionPair('start', 'top', 'start', 'bottom')
-  ],
-  bottomRight: [
-    getConnectionPositionPair('end', 'bottom', 'end', 'top'),
-    getConnectionPositionPair('end', 'top', 'end', 'bottom')
-  ],
-
-  top: [
-    getConnectionPositionPair('center', 'top', 'center', 'bottom'),
-    getConnectionPositionPair('center', 'bottom', 'center', 'top')
-  ],
-  topLeft: [
-    getConnectionPositionPair('start', 'top', 'start', 'bottom'),
-    getConnectionPositionPair('start', 'bottom', 'start', 'top')
-  ],
-  topRight: [
-    getConnectionPositionPair('end', 'top', 'end', 'bottom'),
-    getConnectionPositionPair('end', 'bottom', 'end', 'top')
-  ],
-
-  left: [
-    getConnectionPositionPair('start', 'center', 'end', 'center'),
-    getConnectionPositionPair('end', 'center', 'start', 'center')
-  ],
-  leftTop: [
-    getConnectionPositionPair('start', 'top', 'end', 'top'),
-    getConnectionPositionPair('end', 'top', 'start', 'top')
-  ],
-  leftBottom: [
-    getConnectionPositionPair('start', 'bottom', 'end', 'bottom'),
-    getConnectionPositionPair('end', 'bottom', 'start', 'bottom')
-  ],
-
-  right: [
-    getConnectionPositionPair('end', 'center', 'start', 'center'),
-    getConnectionPositionPair('start', 'center', 'end', 'center')
-  ],
-  rightTop: [
-    getConnectionPositionPair('end', 'top', 'start', 'top'),
-    getConnectionPositionPair('start', 'top', 'end', 'top')
-  ],
-  rightBottom: [
-    getConnectionPositionPair('end', 'bottom', 'start', 'bottom'),
-    getConnectionPositionPair('start', 'bottom', 'end', 'bottom')
-  ]
-};
-
 
 /**
  * 定义并返回一个 overlay 窗体定位
@@ -87,8 +44,125 @@ export function getPositionClassName(pair: ConnectionPositionPair) {
   return `${pair.originX}-${pair.originY}-${pair.overlayX}-${pair.overlayY}`;
 }
 
+/**
+ *
+ * @param position
+ */
 export function getPositionOrientation(position: string): NtOverlayOrientation {
-  return Object.keys(OVERLAY_POSITIONS).indexOf(position) > 5
+  return Object.keys(NT_OVERLAY_POSITION_PAIRS).indexOf(position) > 5
     ? NtOverlayOrientation.Horizontal
     : NtOverlayOrientation.Vertical;
 }
+
+/**
+ * Overley 方向定位常量
+ */
+export const [
+  BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT,
+  TOP_LEFT, TOP_CENTER, TOP_RIGHT,
+  LEFT_TOP, LEFT_CENTER, LEFT_BOTTOM,
+  RIGHT_TOP, RIGHT_CENTER, RIGHT_BOTTOM
+] = [
+  getConnectionPositionPair('start', 'bottom', 'start', 'top'),
+  getConnectionPositionPair('center', 'bottom', 'center', 'top'),
+  getConnectionPositionPair('end', 'bottom', 'end', 'top'),
+  getConnectionPositionPair('start', 'top', 'start', 'bottom'),
+  getConnectionPositionPair('center', 'top', 'center', 'bottom'),
+  getConnectionPositionPair('end', 'top', 'end', 'bottom'),
+  getConnectionPositionPair('start', 'top', 'end', 'top'),
+  getConnectionPositionPair('start', 'center', 'end', 'center'),
+  getConnectionPositionPair('start', 'bottom', 'end', 'bottom'),
+  getConnectionPositionPair('end', 'top', 'start', 'top'),
+  getConnectionPositionPair('end', 'center', 'start', 'center'),
+  getConnectionPositionPair('end', 'bottom', 'start', 'bottom')
+];
+
+/**
+ * 定位策略
+ */
+export const NT_OVERLAY_POSITION_PAIRS = {
+
+  bottom: [
+    BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT,
+    TOP_CENTER, TOP_LEFT, TOP_RIGHT,
+    RIGHT_CENTER, RIGHT_TOP, RIGHT_BOTTOM,
+    LEFT_CENTER, LEFT_TOP, LEFT_BOTTOM
+  ],
+
+  bottomLeft: [
+    BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT,
+    TOP_LEFT, TOP_CENTER, TOP_RIGHT,
+    RIGHT_CENTER, RIGHT_TOP, RIGHT_BOTTOM,
+    LEFT_CENTER, LEFT_TOP, LEFT_BOTTOM
+  ],
+
+  bottomRight: [
+    BOTTOM_RIGHT, BOTTOM_CENTER, BOTTOM_LEFT,
+    TOP_RIGHT, TOP_CENTER, TOP_LEFT,
+    RIGHT_CENTER, RIGHT_TOP, RIGHT_BOTTOM,
+    LEFT_CENTER, LEFT_TOP, LEFT_BOTTOM
+  ],
+
+  top: [
+    TOP_CENTER, TOP_LEFT, TOP_RIGHT,
+    BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT,
+    LEFT_CENTER, LEFT_TOP, LEFT_BOTTOM,
+    RIGHT_CENTER, RIGHT_TOP, RIGHT_BOTTOM
+  ],
+
+  topLeft: [
+    TOP_LEFT, TOP_CENTER, TOP_RIGHT,
+    BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT,
+    LEFT_CENTER, LEFT_TOP, LEFT_BOTTOM,
+    RIGHT_CENTER, RIGHT_TOP, RIGHT_BOTTOM
+  ],
+
+  topRight: [
+    TOP_RIGHT, TOP_CENTER, TOP_LEFT,
+    BOTTOM_RIGHT, BOTTOM_CENTER, BOTTOM_LEFT,
+    LEFT_CENTER, LEFT_TOP, LEFT_BOTTOM,
+    RIGHT_CENTER, RIGHT_TOP, RIGHT_BOTTOM
+  ],
+
+  left: [
+    LEFT_CENTER, LEFT_TOP, LEFT_BOTTOM,
+    TOP_LEFT, TOP_CENTER, TOP_RIGHT,
+    BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT,
+    RIGHT_CENTER, RIGHT_TOP, RIGHT_BOTTOM
+  ],
+
+  leftTop: [
+    LEFT_TOP, LEFT_CENTER, LEFT_BOTTOM,
+    TOP_LEFT, TOP_CENTER, TOP_RIGHT,
+    BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT,
+    RIGHT_TOP, RIGHT_CENTER, RIGHT_BOTTOM
+  ],
+
+  leftBottom: [
+    LEFT_BOTTOM, LEFT_CENTER, LEFT_TOP,
+    TOP_LEFT, TOP_CENTER, TOP_RIGHT,
+    BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT,
+    RIGHT_BOTTOM, RIGHT_CENTER, RIGHT_TOP
+  ],
+
+  right: [
+    RIGHT_CENTER, RIGHT_TOP, RIGHT_BOTTOM,
+    TOP_LEFT, TOP_CENTER, TOP_RIGHT,
+    BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT,
+    LEFT_CENTER, LEFT_TOP, LEFT_BOTTOM
+  ],
+
+  rightTop: [
+    RIGHT_TOP, RIGHT_CENTER, RIGHT_BOTTOM,
+    TOP_LEFT, TOP_CENTER, TOP_RIGHT,
+    BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT,
+    LEFT_TOP, LEFT_CENTER, LEFT_BOTTOM
+  ],
+
+  rightBottom: [
+    RIGHT_BOTTOM, RIGHT_CENTER, RIGHT_TOP,
+    TOP_LEFT, TOP_CENTER, TOP_RIGHT,
+    BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT,
+    LEFT_BOTTOM, LEFT_CENTER, LEFT_TOP
+  ],
+};

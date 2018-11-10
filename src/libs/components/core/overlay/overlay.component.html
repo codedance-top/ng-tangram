@@ -2,7 +2,7 @@
   cdk-connected-overlay
   [cdkConnectedOverlayOpen]="isOpen"
   [cdkConnectedOverlayHasBackdrop]="trigger === 'click'"
-  [cdkConnectedOverlayPositions]="positions"
+  [cdkConnectedOverlayPositions]="positionPairs"
   [cdkConnectedOverlayOrigin]="origin"
   (positionChange)="onOverlayPositionChange($event)"
   (backdropClick)="hide()">

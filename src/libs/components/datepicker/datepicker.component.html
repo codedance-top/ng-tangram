@@ -4,7 +4,7 @@
 <nt-overlay
   [origin]="origin"
   trigger="click"
-  position="bottomLeft"
+  [positionPairs]="_positionPairs"
   arrow
   (afterOpen)="_afterOpen($event)"
   (afterClosed)="_afterClosed($event)"
