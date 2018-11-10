@@ -8,7 +8,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import {
   DOWN_ARROW, END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE, UP_ARROW
 } from '@angular/cdk/keycodes';
-import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import {
   AfterContentInit, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, Input,
   isDevMode, NgZone, OnDestroy, Optional, Output, QueryList, Renderer2, Self, ViewChild,
@@ -76,7 +76,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   private _value: any;
   private _required = false;
 
-  _positionPairs = [BOTTOM_LEFT, TOP_LEFT];
+  _positionPairs: ConnectionPositionPair[] = [BOTTOM_LEFT, TOP_LEFT];
 
   private _compareWith = (o1: any, o2: any) => o1 === o2;
   private _onChange: (value: any) => void = () => { };

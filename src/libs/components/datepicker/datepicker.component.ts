@@ -1,6 +1,6 @@
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import {
   Component, ElementRef, EventEmitter, Inject, Input, Optional, Output, Self, ViewChild,
   ViewEncapsulation
@@ -48,7 +48,7 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
 
   private _focused = false;
 
-  _positionPairs = [BOTTOM_LEFT, TOP_LEFT];
+  _positionPairs: ConnectionPositionPair[] = [BOTTOM_LEFT, TOP_LEFT];
 
   get empty() { return !this.value; }
   get focused(): boolean { return this._focused; }
