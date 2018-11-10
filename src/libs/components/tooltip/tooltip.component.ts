@@ -31,7 +31,7 @@ export class NtTooltipComponent {
   get template() { return this._template; }
 
   @Input('nt-tooltip')
-  set _default(value: string | TemplateRef<any>) {
+  set tooltip(value: string | TemplateRef<any>) {
     if (value instanceof TemplateRef) {
       this._template = value;
     } else {
@@ -45,7 +45,7 @@ export class NtTooltipComponent {
     return attributes && attributes['nt-tooltip'];
   }
 
-  @Input() position: NtOverlayPosition = 'top';
+  @Input() position: NtOverlayPosition = NtOverlayPosition.Top;
 
   @Output() afterOpen = new EventEmitter<any>();
   @Output() afterClosed = new EventEmitter<any>();

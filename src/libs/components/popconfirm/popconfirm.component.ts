@@ -2,7 +2,7 @@ import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/o
 import {
   Component, ElementRef, EventEmitter, Input, Output, ViewChild, ViewEncapsulation, TemplateRef
 } from '@angular/core';
-import { NtOverlayComponent } from '@ng-tangram/components/core';
+import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
 
 @Component({
   selector: '[nt-popconfirm]',
@@ -29,7 +29,7 @@ export class NtPopConfirmComponent {
   get template() { return this._template; }
 
   @Input('nt-popconfirm')
-  set _default(value: string | TemplateRef<any>) {
+  set popconfirm(value: string | TemplateRef<any>) {
     if (value instanceof TemplateRef) {
       this._template = value;
     } else {
@@ -38,7 +38,7 @@ export class NtPopConfirmComponent {
     }
   }
 
-  @Input() position = 'top';
+  @Input() position: NtOverlayPosition = NtOverlayPosition.Top;
 
   @Input() confirmText = '确认';
   @Input() cancelText = '取消';

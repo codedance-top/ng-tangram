@@ -22,7 +22,7 @@ export class NtDropdownComponent {
 
   readonly origin: CdkOverlayOrigin;
 
-  @Input() position: NtOverlayPosition = 'bottomLeft';
+  @Input() position: NtOverlayPosition = NtOverlayPosition.BottomLeft;
 
   @Input() trigger: NtOverlayTriggerType = 'hover';
 

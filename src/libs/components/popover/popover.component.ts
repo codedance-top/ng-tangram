@@ -1,6 +1,6 @@
 import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import { Component, ElementRef, Input, ViewChild, ViewEncapsulation, TemplateRef, EventEmitter, Output } from '@angular/core';
-import { NtOverlayComponent } from '@ng-tangram/components/core';
+import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
 
 @Component({
   selector: '[nt-popover]',
@@ -27,7 +27,7 @@ export class NtPopoverComponent {
   get template() { return this._template; }
 
   @Input('nt-popover')
-  set _default(value: string | TemplateRef<any>) {
+  set popover(value: string | TemplateRef<any>) {
     if (value instanceof TemplateRef) {
       this._template = value;
     } else {
@@ -36,7 +36,7 @@ export class NtPopoverComponent {
     }
   }
 
-  @Input() position = 'top';
+  @Input() position: NtOverlayPosition = NtOverlayPosition.Top;
 
   @Output() confirm = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();
