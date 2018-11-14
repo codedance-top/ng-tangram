@@ -63,8 +63,6 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   /** Whether to clamp the date between 1 and 9999 to avoid IE and Edge errors. */
   private readonly _clampDate: boolean;
 
-  private readonly _strings: { 'MONTH_NAMES': any, 'DAY_OF_WEEK_NAMES': any };
-
   /**
    * Whether to use `timeZone: 'utc'` with `Intl.DateTimeFormat` when formatting dates.
    * Without this `Intl.DateTimeFormat` sometimes chooses the wrong timeZone, which can throw off

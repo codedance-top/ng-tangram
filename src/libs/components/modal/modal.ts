@@ -67,9 +67,9 @@ export class NtModal {
 
     if (config.hasBackdrop) {
       overlayRef.backdropClick().subscribe(() => {
-        // if (modalRef.closable) {
-        modalRef.close();
-        // }
+        if (modalRef.closable) {
+          modalRef.close();
+        }
       });
     }
 

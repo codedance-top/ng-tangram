@@ -1,9 +1,9 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   CdkCell, CdkCellDef, CdkColumnDef, CdkFooterCell, CdkFooterCellDef, CdkHeaderCell,
   CdkHeaderCellDef
 } from '@angular/cdk/table';
-import { Directive, ElementRef, Input, EventEmitter, Output } from '@angular/core';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { Directive, ElementRef, EventEmitter, Input } from '@angular/core';
 
 export enum NtColumnSort {
   ASC = 'asc',
@@ -92,14 +92,6 @@ export class NtColumnDirective extends CdkColumnDef {
         default:
           this.sort = NtColumnSort.ASC;
           break;
-      }
-
-      if (this.sort === NtColumnSort.ASC) {
-        this.sort = NtColumnSort.DESC;
-      } else if (this.sort === NtColumnSort.DESC) {
-        this.sort = NtColumnSort.NONE;
-      } else {
-        this.sort = NtColumnSort.ASC;
       }
 
       this._sortChange.emit(new NtColumnSortChange(isUserInput, this.name, this.sort));
