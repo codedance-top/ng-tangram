@@ -71,9 +71,7 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
 
   @Input()
   get required(): boolean { return this._required; }
-  set required(value: boolean) {
-    this._required = coerceBooleanProperty(value);
-  }
+  set required(value: boolean) { this._required = coerceBooleanProperty(value); }
 
   @Input()
   set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
@@ -113,8 +111,8 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
 
   constructor(
     _elementRef: ElementRef,
-    @Optional() private _dateAdapter: DateAdapter<D>,
-    @Optional() @Inject(NT_DATE_FORMATS) private _dateFormats: NtDateFormats,
+    private _dateAdapter: DateAdapter<D>,
+    @Inject(NT_DATE_FORMATS) private _dateFormats: NtDateFormats,
     @Self() @Optional() public ngControl: NgControl) {
     super();
     this.origin = new CdkOverlayOrigin(_elementRef);

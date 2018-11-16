@@ -10,14 +10,6 @@ import { NtPaginationComponent } from './pagination.component';
 })
 export class NtPaginationModule {
 
-  /**
-   * 此方法将会废弃，请用 NtPaginationModule.withConfig 代替
-   * @deprecated 0.4.x 废弃
-   */
-  public static forRoot(config?: NtPaginationConfig) {
-    return NtPaginationModule.withConfig(config);
-  }
-
   public static withConfig(config?: NtPaginationConfig): ModuleWithProviders {
     return {
       ngModule: NtPaginationModule,

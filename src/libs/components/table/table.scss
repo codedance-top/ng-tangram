@@ -65,6 +65,7 @@ $nt-table-selector-padding: rem-calc(8 10 10) !default;
     display: table-cell;
     padding: $table-padding;
     text-align: #{$global-left};
+    vertical-align: middle;
   }
 
   .nt-header-cell {
