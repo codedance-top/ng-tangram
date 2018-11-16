@@ -21,6 +21,7 @@
 @import 'select/select';
 @import 'table/table';
 @import 'tooltip/tooltip';
+@import 'tree/tree';
 
 @mixin ng-tangram {
 
@@ -60,6 +61,7 @@
   @include nt-select;
   @include nt-table;
   @include nt-tooltip;
+  @include nt-tree;
   @include nt-input-group;
 }
 
