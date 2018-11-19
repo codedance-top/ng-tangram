@@ -22,6 +22,7 @@ export * from '@ng-tangram/components/progress';
 export * from '@ng-tangram/components/radio';
 export * from '@ng-tangram/components/scrim';
 export * from '@ng-tangram/components/select';
+export * from '@ng-tangram/components/switch';
 export * from '@ng-tangram/components/table';
 export * from '@ng-tangram/components/tooltip';
 export * from '@ng-tangram/components/upload';

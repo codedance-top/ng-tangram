@@ -1,3 +1,10 @@
-<p>
-  switch works!
-</p>
+<input class="switch-input" type="checkbox"
+  [attr.id]="id"
+  [tabIndex]="tabIndex"
+  [checked]="checked"
+  [disabled]="disabled"
+  (change)="_onInteractionEvent($event)"
+  (click)="_onInputClick($event)">
+<label class="switch-paddle" [attr.for]="id">
+  <span class="show-for-sr">Download Kittens</span>
+</label>

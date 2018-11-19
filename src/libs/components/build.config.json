@@ -5,7 +5,7 @@
     "badge", "breadcrumbs", "button", "callout", "label",
     "menu", "scrim", "pagination", "table",
     "dropdown", "popconfirm", "popover", "progress", "tooltip",
-    "modal", "select", "input", "datepicker", "file", "picture", "radio", "checkbox"
+    "modal", "select", "switch", "input", "datepicker", "file", "picture", "radio", "checkbox"
   ],
   "globals": {
     "@ng-tangram/components": "nt.components",
@@ -32,6 +32,7 @@
     "@ng-tangram/components/radio": "nt.components.radio",
     "@ng-tangram/components/scrim": "nt.components.scrim",
     "@ng-tangram/components/select": "nt.components.select",
+    "@ng-tangram/components/switch": "nt.components.switch",
     "@ng-tangram/components/table": "nt.components.table",
     "@ng-tangram/components/tooltip": "nt.components.tooltip",
     "@ng-tangram/components/upload": "nt.components.upload"
