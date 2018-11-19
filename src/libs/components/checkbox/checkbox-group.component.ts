@@ -27,7 +27,7 @@ let uniqueId = 0;
     { provide: NtFormFieldControl, useExisting: NtCheckboxGroupComponent }
   ],
   host: {
-    class: 'nt-checkbox-group nt-form-control'
+    'class': 'nt-checkbox-group nt-form-control'
   }
 })
 export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>
@@ -56,7 +56,7 @@ export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>
   set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
   get readonly() { return this._readonly; }
 
-  @ContentChildren(NtCheckboxComponent) checkboxes: QueryList<NtCheckboxComponent<T>>;
+  @ContentChildren(NtCheckboxComponent) checkboxes: QueryList<NtCheckboxComponent>;
 
   private _compareWith = (o1: any, o2: any) => o1 === o2;
 
@@ -69,7 +69,7 @@ export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>
     }
   }
 
-  readonly checkedChanges: Observable<NtCheckboxChange<T>> = defer(() => {
+  readonly checkedChanges: Observable<NtCheckboxChange> = defer(() => {
     if (this.checkboxes) {
       return merge(...this.checkboxes.map(item => item.change));
     }
@@ -155,8 +155,8 @@ export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>
     }
   }
 
-  private _checkedValue(value: any): NtCheckboxComponent<T> | undefined {
-    const correspondingItem = this.checkboxes.find((item: NtCheckboxComponent<T>) => {
+  private _checkedValue(value: any): NtCheckboxComponent | undefined {
+    const correspondingItem = this.checkboxes.find((item: NtCheckboxComponent) => {
       try {
         return item.value != null && this._compareWith(item.value, value);
       } catch (error) {

@@ -2,8 +2,6 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 export declare type NtButtonStyle = '' | 'hollow' | 'clear';
-export declare type NtButtonColor = '' | 'primary' | 'secondary' | 'success' | 'warning' | 'alert';
-export declare type NtButtonSize = '' | 'tiny' | 'small' | 'large' | 'medium';
 
 @Component({
   selector: '[nt-button]',
@@ -24,9 +22,9 @@ export class NtButtonComponent {
 
   @Input() class: string = '';
 
-  @Input() color: NtButtonColor = '';
+  @Input() color: string = '';
 
-  @Input() size: NtButtonSize = '';
+  @Input() size: string = '';
 
   @Input('nt-button')
   set button(value: NtButtonStyle) {

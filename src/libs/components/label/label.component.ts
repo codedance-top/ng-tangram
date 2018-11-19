@@ -1,8 +1,6 @@
 
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
-export declare type NtLabelColor = '' | 'primary' | 'secondary' | 'success' | 'warning' | 'alert';
-
 @Component({
   selector: 'nt-label, [nt-label]',
   template: `<ng-content></ng-content>`,
@@ -12,7 +10,8 @@ export declare type NtLabelColor = '' | 'primary' | 'secondary' | 'success' | 'w
   }
 })
 export class NtLabelComponent {
-  @Input() color: NtLabelColor = '';
+
+  @Input() color: string = '';
 
   @Input() class: string = '';
 }

@@ -6,20 +6,22 @@ import { Component } from '@angular/core';
   <nt-table [ntScrim]="isOpen" scrimText="正在加载中..." [dataSource]="dataSource">
 
     <nt-column name="name">
-      <nt-column-header>Name</nt-column-header>
+      <nt-column-header *ntColumnHeaderDef>Name</nt-column-header>
       <nt-column-cell *ntColumnCellDef="let item">{{ item.name }}</nt-column-cell>
     </nt-column>
 
     <nt-column name="age">
-      <nt-column-header>Age</nt-column-header>
+      <nt-column-header *ntColumnHeaderDef>Age</nt-column-header>
       <nt-column-cell *ntColumnCellDef="let item">{{ item.age }}</nt-column-cell>
     </nt-column>
 
     <nt-column name="address">
-      <nt-column-header>Address</nt-column-header>
+      <nt-column-header *ntColumnHeaderDef>Address</nt-column-header>
       <nt-column-cell *ntColumnCellDef="let item">{{ item.address }}</nt-column-cell>
     </nt-column>
 
+    <nt-header-row *ntHeaderRowDef="['name', 'age', 'address']"></nt-header-row>
+    <nt-row *ntRowDef="let row; columns: ['name', 'age', 'address'];"></nt-row>
   </nt-table>
   <nt-pagination [total]="300" [pageIndex]="pageIndex" [pageSize]="20" (pageChange)="onPageChange($event)"></nt-pagination>
   `

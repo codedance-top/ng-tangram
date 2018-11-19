@@ -50,7 +50,7 @@ export class DemoCheckboxBasicComponent {
 
   }
 
-  onChange(change: NtCheckboxChange<any>) {
+  onChange(change: NtCheckboxChange) {
     if (change.checked) {
       this.form.get('fruits').setValue(['apple', 'melon', 'strawberry', 'mango']);
     } else {

@@ -24,7 +24,13 @@ import { Subject, Subscription } from 'rxjs';
 /**
  * 压缩图片
  */
-export function zipImage(file: File, option: any): Promise<any> {
+export function zipImage(
+  file: File,
+  option: any = {
+    maxWidth: 1080,
+    orientation: true,
+    canvas: true
+  }): Promise<any> {
   return new Promise((resolve, reject) => {
     loadImage(file, (canvas: HTMLCanvasElement) => {
       if (canvas.toBlob) {
@@ -181,8 +187,7 @@ export class NtPictureComponent extends NtUploadControl<NtPictureFile> implement
       const picture = new NtPictureFile(file.name, file.size, file.type);
       this.files.push(picture);
 
-      const loadImageOptions = { maxWidth: 1080, orientation: true, canvas: true };
-      const data = await zipImage(file, loadImageOptions);
+      const data = await zipImage(file);
       picture.thumbnail = data.thumbnail;
 
       const handlers = {

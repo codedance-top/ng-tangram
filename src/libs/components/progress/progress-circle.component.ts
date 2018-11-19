@@ -1,7 +1,6 @@
 
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
-import { NtProgressColor, NtProgressSize } from './progress.component';
 
 @Component({
   selector: 'nt-progress-circle',
@@ -37,9 +36,9 @@ export class NtProgressCircleComponent {
   set value(value: number) { this._value = coerceNumberProperty(value); }
   get value() { return this._value; }
 
-  @Input() size: NtProgressSize = 'medium';
+  @Input() size: string = 'medium';
 
-  @Input() color: NtProgressColor = '';
+  @Input() color: string = '';
 
   @Input() class: string = '';
 

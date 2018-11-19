@@ -27,7 +27,7 @@ let uniqueId = 0;
     { provide: NtFormFieldControl, useExisting: NtRadioGroupComponent }
   ],
   host: {
-    class: 'nt-radio-group nt-form-control'
+    'class': 'nt-radio-group nt-form-control'
   }
 })
 export class NtRadioGroupComponent<T> extends NtFormFieldControl<T>

@@ -2,9 +2,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 
-export declare type NtProgressSize = 'tiny' | 'small' | 'medium' | 'large';
-export declare type NtProgressColor = '' | 'primary' | 'medium' | 'large';
-
 @Component({
   selector: 'nt-progress',
   templateUrl: 'progress.component.html',
@@ -26,9 +23,9 @@ export class NtProgressComponent {
   set value(value: number) { this._value = coerceNumberProperty(value); }
   get value() { return this._value; }
 
-  @Input() size: NtProgressSize = 'medium';
+  @Input() size: string = 'medium';
 
-  @Input() color: NtProgressColor = '';
+  @Input() color: string = '';
 
   @Input() class: string = '';
 

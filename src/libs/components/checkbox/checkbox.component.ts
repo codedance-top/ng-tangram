@@ -7,9 +7,9 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 let uniqueId = 0;
 
-export class NtCheckboxChange<T> {
+export class NtCheckboxChange {
   constructor(
-    public source: NtCheckboxComponent<T>,
+    public source: NtCheckboxComponent,
     public checked: boolean) { }
 }
 
@@ -25,17 +25,17 @@ export class NtCheckboxChange<T> {
     '[class.nt-checkbox-indeterminate]': 'indeterminate',
   }
 })
-export class NtCheckboxComponent<T> implements ControlValueAccessor {
+export class NtCheckboxComponent implements ControlValueAccessor {
 
   readonly id: string = `nt-checkbox-${uniqueId++}`;
 
   tabIndex: number;
 
-  private _value: T | null;
+  private _value: any | null;
 
   @Input()
   get value() { return this._value; }
-  set value(value: T | null) { this._value = value; }
+  set value(value: any | null) { this._value = value; }
 
   private _disabled = false;
 
@@ -78,7 +78,7 @@ export class NtCheckboxComponent<T> implements ControlValueAccessor {
     }
   }
 
-  @Output() readonly change = new EventEmitter<NtCheckboxChange<T>>();
+  @Output() readonly change = new EventEmitter<NtCheckboxChange>();
 
   // TODO: 考虑合并到 change 事件中
   @Output() readonly indeterminateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -97,7 +97,7 @@ export class NtCheckboxComponent<T> implements ControlValueAccessor {
     this.tabIndex = parseInt(tabIndex) || 0;
   }
 
-  writeValue(value: T) {
+  writeValue(value: any) {
     this._checked = !!value;
   }
 

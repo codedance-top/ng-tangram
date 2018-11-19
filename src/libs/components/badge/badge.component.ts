@@ -4,8 +4,6 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-export declare type NtBadgeColor = '' | 'primary' | 'secondary' | 'success' | 'warning' | 'alert';
-
 export declare type NtBadgeType = '' | 'static' | 'float' | 'notify';
 
 @Component({
@@ -22,7 +20,7 @@ export class NtBadgeComponent implements AfterViewInit, OnDestroy {
 
   private _type: NtBadgeType = 'static';
 
-  @Input() color: NtBadgeColor = '';
+  @Input() color: string = '';
 
   @Input() class: string = '';
 
