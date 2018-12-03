@@ -12,6 +12,11 @@ $nt-select-symbol-clear: '\00D7' !default;
   .nt-select {
     position: relative;
     display: block;
+    margin: 0 0 $form-spacing;
+
+    input[type="text"] {
+      margin: 0;
+    }
 
     &:focus {
       outline: none;

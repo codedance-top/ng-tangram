@@ -36,8 +36,7 @@ $nt-file-symbol-icon : '\e664' !default;
 
 @mixin nt-file-item {
   position: relative;
-  margin-bottom: $nt-file-item-margin;
-  margin-top: ($form-spacing * 0.5) * -1;
+  margin-top: $form-spacing * 0.5;
   &:last-child {
     margin-bottom: $form-spacing;
   }
@@ -58,6 +57,14 @@ $nt-file-symbol-icon : '\e664' !default;
 
 @mixin nt-file {
   .nt-file {
+    // position: relative;
+    display: block;
+    margin: 0 0 $form-spacing;
+
+    .nt-file-trigger {
+      margin: 0;
+    }
+
     .nt-file-item {
       @include nt-file-item;
     }

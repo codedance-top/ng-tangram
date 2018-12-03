@@ -89,6 +89,12 @@ $nt-datepicker-symbol-clear: '\00D7' !default;
   .nt-datepicker {
     position: relative;
     display: block;
+    margin: 0 0 $form-spacing;
+
+    input[type="text"] {
+      margin: 0;
+    }
+
 
     &:focus {
       outline: none;
