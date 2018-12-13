@@ -58,7 +58,7 @@ $nt-datepicker-symbol-clear: '\00D7' !default;
     &[colspan="3"] {
       width: $nt-datepicker-block-width * 3;
       span {
-        padding: 0;
+        padding: 0 2px;
       }
     }
     &.active span {
