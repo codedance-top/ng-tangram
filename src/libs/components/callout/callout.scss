@@ -1,0 +1,11 @@
+
+@mixin nt-callout {
+
+  .nt-callout {
+    display: block;
+
+    &.closed {
+      display: none;
+    }
+  }
+}
