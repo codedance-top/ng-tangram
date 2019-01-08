@@ -24,7 +24,7 @@
 
 # 2018-06-14 0.3.0-beta.2
 
-* bug 修复 `NtOverlayComponent` position 在 left 和 right 时位置不对的问题
+* bug 修复 `NtOverlayComponent` position 在 left 和 right 时位置不对的问题
 
 # 2018-06-14 0.3.0-beta.1
 
@@ -103,7 +103,7 @@
 * 变更 `nt-dropdown-pane` 增加 `arrow` 属性，可以设定是否显示箭头
 * 变更 `nt-form-field` 增加 `labelWidth` 属性，可以在 横向表单 设定 label 占位宽度
 * 变更 form scss 属性 `$form-horizontal-label-width` -> `$nt-form-horizontal-width`
-* 变更 `NtModalConfig` 增加 width 和 height 属性 并且设定默认宽度（600px）
+* 变更 `NtModalConfig` 增加 width 和 height 属性 并且设定默认宽度（600px）
 * 变更 `nt-picture` 增加 错误和 成功效果
 
 * bugfix 修复了 `nt-overlay` 的 `position` 为 `bottomRight` 时箭头定位错误的问题
@@ -112,8 +112,8 @@
 
 # 2018-04-25. 0.2.0-alpha.3
 
-* 变更 `nt-forms-control` 的样式不再提供 `margin`
-* 变更 `NtModal` 增加 `transparent` 属性， 可以设置背景色为透明
+* 变更 `nt-forms-control` 的样式不再提供 `margin`
+* 变更 `NtModal` 增加 `transparent` 属性， 可以设置背景色为透明
 
 # 2018-04-24. 0.2.0-alpha.2
 * 变更 `NtPopConfirmComponent` 新增了 `confirmText`，`cancelText`
@@ -136,8 +136,8 @@
 
 # 2018-04-12. 0.1.0-alpha.5
 
-* 改进 `NtValidationTransformer` 注入方式，现在可以支持全局配置默认 `Transformer`（需要用 `NtFormsModule.forRoot()` 方式在根模块 `import`）。
-* 组件 `nt-badge` 增加 `type` 属性， `static`（默认），`float`（右上角浮动），`notify`（小红点）。
+* 改进 `NtValidationTransformer` 注入方式，现在可以支持全局配置默认 `Transformer`（需要用 `NtFormsModule.forRoot()` 方式在根模块 `import`）。
+* 组件 `nt-badge` 增加 `type` 属性， `static`（默认），`float`（右上角浮动），`notify`（小红点）。
 
 # 2018-04-10. 0.1.0-alpha.0
 

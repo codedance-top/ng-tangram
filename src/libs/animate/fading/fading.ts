@@ -55,7 +55,7 @@ export function fadeInDirection(axis: FadeAnimationAxis, steps: FadeAnimationSte
 
 /**
  * 从 X 轴方向淡入
- * @param steps 动画移动距离
+ * @param steps 动画移动距离
  * @param timing 动画执行时间
  * @param delay 延迟执行时间
  */
@@ -65,7 +65,7 @@ export function fadeInX(steps: FadeAnimationSteps, timing?: number, delay?: numb
 
 /**
  * 从 Y 轴方向淡入
- * @param steps 动画移动距离
+ * @param steps 动画移动距离
  * @param timing 动画执行时间
  * @param delay 延迟执行时间
  */

@@ -24,7 +24,7 @@ export enum NtOverlayOrientation {
 }
 
 /**
- * 定义并返回一个 overlay 窗体定位
+ * 定义并返回一个 overlay 窗体定位
  * @param originX 主体的中心x轴，窗体会相对于主体的中心点定位。
  * @param originY 主体的中心y轴，窗体会相对于主体的中心点定位。
  * @param overlayX 窗体的中心x轴。
