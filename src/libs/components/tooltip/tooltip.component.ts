@@ -1,6 +1,7 @@
 import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import {
-  Component, ElementRef, Input, Renderer2, ViewChild, ViewEncapsulation, TemplateRef, EventEmitter, Output
+  Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef,
+  ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
 
@@ -14,7 +15,7 @@ import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/co
     '(mouseleave)': 'overlay.onMouseLeave()'
   }
 })
-export class NtTooltipComponent {
+export class NtTooltipComponent implements OnChanges {
 
   private _title = '';
 
@@ -57,10 +58,19 @@ export class NtTooltipComponent {
 
   @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
 
-  constructor(
-    private _renderer: Renderer2,
-    private _elementRef: ElementRef) {
+  constructor(private _elementRef: ElementRef) {
     this.origin = new CdkOverlayOrigin(_elementRef);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const change = changes.title || changes.template || changes.tooltip;
+    if (change && !change.firstChange) {
+
+      /** 在内容更新之后提示框的位置需要更新，需要延迟执行，因为这时候画面还未渲染 */
+      Promise.resolve().then(() => {
+        this.overlay.cdkConnectedOverlay.overlayRef.updatePosition();
+      });
+    }
   }
 
 

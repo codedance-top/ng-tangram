@@ -1,12 +1,14 @@
 import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import {
-  AfterContentInit, Component, ContentChild, ElementRef, Input,
-  Renderer2, ViewChild, ViewEncapsulation, Output, EventEmitter
+  Component, ContentChild, ElementRef, EventEmitter, Input, Output, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import {
   NtOverlayComponent, NtOverlayPosition, NtOverlayTriggerType
 } from '@ng-tangram/components/core';
-import { NtDropdownPaneComponent } from './dropdown-pane.component';
+
+import {
+  NT_DROPDOWN_PARENT_COMPONENT, NtDropdownPaneComponent, NtDropdownParentComponent
+} from './dropdown-pane.component';
 
 @Component({
   selector: 'nt-dropdown, [nt-dropdown]',
@@ -16,18 +18,18 @@ import { NtDropdownPaneComponent } from './dropdown-pane.component';
     '(click)': 'overlay.click()',
     '(mouseenter)': 'overlay.onMouseEnter()',
     '(mouseleave)': 'overlay.onMouseLeave()'
-  }
+  },
+  providers: [
+    { provide: NT_DROPDOWN_PARENT_COMPONENT, useExisting: NtDropdownComponent }
+  ]
 })
-export class NtDropdownComponent {
+export class NtDropdownComponent implements NtDropdownParentComponent {
 
   readonly origin: CdkOverlayOrigin;
 
   @Input() position: NtOverlayPosition = NtOverlayPosition.BottomLeft;
 
   @Input() trigger: NtOverlayTriggerType = 'hover';
-
-  @Output() confirm = new EventEmitter<any>();
-  @Output() cancel = new EventEmitter<any>();
 
   @Output() afterOpen = new EventEmitter<any>();
   @Output() afterClosed = new EventEmitter<any>();
@@ -42,8 +44,7 @@ export class NtDropdownComponent {
   @ContentChild(NtDropdownPaneComponent) pane: NtDropdownPaneComponent;
 
   constructor(
-    private _renderer: Renderer2,
-    private _elementRef: ElementRef) {
+    _elementRef: ElementRef) {
     this.origin = new CdkOverlayOrigin(_elementRef);
   }
 

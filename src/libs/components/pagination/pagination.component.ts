@@ -14,32 +14,42 @@ export const PAGINATION_ELLIPSIS = '...';
 })
 export class NtPaginationComponent {
 
-  private _config = new NtPaginationConfig();
+  private _options = new NtPaginationConfig();
 
-  private _total = 0;
   private _totalPage = 1;
-  private _pageIndex = 1;
+
   private _pages = [1];
 
-  get config() { return this._config; }
+  @Input()
+  get options() { return this._options; }
+  set options(value: NtPaginationConfig) {
+    if (typeof value === 'object') {
+      this._options = Object.assign(this._options, value);
+    }
+  }
+
   get totalPage() { return this._totalPage; }
   get pages() { return this._pages; }
 
   @Input()
-  set pageSize(value: number) { this._config.pageSize = coerceNumberProperty(value); }
-  get pageSize() { return this.config.pageSize; }
+  set pageSize(value: number) { this._options.pageSize = coerceNumberProperty(value); }
+  get pageSize() { return this.options.pageSize; }
 
   @Input()
-  set previousLabel(value: string) { this._config.previousLabel = value; }
-  get previousLabel() { return this.config.previousLabel; }
+  set previousLabel(value: string) { this._options.previousLabel = value; }
+  get previousLabel() { return this.options.previousLabel; }
 
   @Input()
-  set nextLabel(value: string) { this._config.nextLabel = value; }
-  get nextLabel() { return this.config.nextLabel; }
+  set nextLabel(value: string) { this._options.nextLabel = value; }
+  get nextLabel() { return this.options.nextLabel; }
+
+  private _total = 0;
 
   @Input()
   set total(value: number) { this._total = coerceNumberProperty(value); this._build(); }
   get total() { return this._total; }
+
+  private _pageIndex = 1;
 
   @Input()
   set pageIndex(value: number) { this._pageIndex = coerceNumberProperty(value, 1); this._build(); }
@@ -48,7 +58,7 @@ export class NtPaginationComponent {
   @Output() pageChange = new EventEmitter<number>();
 
   constructor(@Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig) {
-    this._config = { ...this._config, ...defaultConfig || {} };
+    this._options = { ...this._options, ...defaultConfig || {} };
   }
 
   _pageChange(index: number) {
@@ -58,14 +68,14 @@ export class NtPaginationComponent {
 
   private _build() {
 
-    this._totalPage = Math.ceil(this.total / this.config.pageSize);
+    this._totalPage = Math.ceil(this.total / this.options.pageSize);
 
     let pages: any = [1];
 
     if (this._totalPage > 1) {
 
-      let start = this.pageIndex - this.config.size,
-        end = this.pageIndex + this.config.size;
+      let start = this.pageIndex - this.options.size,
+        end = this.pageIndex + this.options.size;
 
       start = start < 2 ? 2 : start;
       end = end > this.totalPage - 1 ? this.totalPage - 1 : end;

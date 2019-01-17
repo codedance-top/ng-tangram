@@ -9,7 +9,7 @@ import {
 } from '@angular/cdk/overlay';
 import {
   AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy,
-  Output, Renderer2, SimpleChange, SimpleChanges, ViewChild, ViewEncapsulation
+  Output, Renderer2, SimpleChange, SimpleChanges, ViewChild, ViewEncapsulation, AfterContentChecked
 } from '@angular/core';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 
@@ -31,7 +31,7 @@ export declare type NtOverlayTriggerType = '' | 'hover' | 'click';
   encapsulation: ViewEncapsulation.None,
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
+export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, OnChanges, OnDestroy {
 
   private readonly _destroy = new Subject<void>();
 
@@ -117,10 +117,7 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
       takeUntil(this._destroy),
       filter(position => position !== this._paddingClass)
     ).subscribe((position: any) => {
-      const pane = this.cdkConnectedOverlay.overlayRef.overlayElement.querySelector('.nt-overlay-container');
-      this._paddingClass && this._renderer.removeClass(pane, this._paddingClass);
-      this._paddingClass = position;
-      this._renderer.addClass(pane, this._paddingClass);
+      this._setContainerStyles(position);
     });
   }
 
@@ -144,6 +141,10 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
     if (change && !change.firstChange) {
       this._setPosition();
     }
+  }
+
+  ngAfterContentChecked() {
+    // this.cdkConnectedOverlay.positionChange.
   }
 
   ngOnDestroy() {
@@ -204,5 +205,12 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
     } else if (event.toState === 'void') {
       this.afterClosed.next();
     }
+  }
+
+  private _setContainerStyles(position: any) {
+    const pane = this.cdkConnectedOverlay.overlayRef.overlayElement.querySelector('.nt-overlay-container');
+    this._paddingClass && this._renderer.removeClass(pane, this._paddingClass);
+    this._paddingClass = position;
+    this._renderer.addClass(pane, this._paddingClass);
   }
 }

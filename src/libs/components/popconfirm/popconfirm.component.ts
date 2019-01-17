@@ -1,6 +1,7 @@
 import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import {
-  Component, ElementRef, EventEmitter, Input, Output, ViewChild, ViewEncapsulation, TemplateRef
+  Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef,
+  ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
 
@@ -12,7 +13,7 @@ import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/co
     '(click)': 'overlay.click()'
   }
 })
-export class NtPopConfirmComponent {
+export class NtPopConfirmComponent implements OnChanges {
 
   readonly origin: CdkOverlayOrigin;
 
@@ -59,6 +60,18 @@ export class NtPopConfirmComponent {
   constructor(
     private _elementRef: ElementRef) {
     this.origin = new CdkOverlayOrigin(this._elementRef);
+  }
+
+
+  ngOnChanges(changes: SimpleChanges) {
+    const change = changes.title || changes.template || changes.popover;
+    if (change && !change.firstChange) {
+
+      /** 在内容更新之后提示框的位置需要更新，需要延迟执行，因为这时候画面还未渲染 */
+      Promise.resolve().then(() => {
+        this.overlay.cdkConnectedOverlay.overlayRef.updatePosition();
+      });
+    }
   }
 
   _closeOverlay(isConfirm: boolean) {

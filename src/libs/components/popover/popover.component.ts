@@ -1,6 +1,11 @@
 import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
-import { Component, ElementRef, Input, ViewChild, ViewEncapsulation, TemplateRef, EventEmitter, Output } from '@angular/core';
+import {
+  Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef,
+  ViewChild, ViewEncapsulation
+} from '@angular/core';
 import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
+
+import { NT_POPOVER_PARENT_COMPONENT, NtPopoverParentComponent } from './popover-pane.component';
 
 @Component({
   selector: '[nt-popover]',
@@ -8,9 +13,12 @@ import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/co
   encapsulation: ViewEncapsulation.None,
   host: {
     '(click)': 'overlay.click()'
-  }
+  },
+  providers: [
+    { provide: NT_POPOVER_PARENT_COMPONENT, useExisting: NtPopoverComponent }
+  ]
 })
-export class NtPopoverComponent {
+export class NtPopoverComponent implements NtPopoverParentComponent {
 
   private _title = '';
 
