@@ -1,11 +1,10 @@
-import { CdkConnectedOverlay } from '@angular/cdk/overlay';
-import { Subject, Subscription } from 'rxjs';
+import { Subject, Subscription, Observable } from 'rxjs';
 
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ContentObserver } from '@angular/cdk/observers';
 import {
-  AfterContentInit, Component, ElementRef, InjectionToken, Input,
-  NgZone, OnDestroy, ViewEncapsulation, Inject
+  AfterContentInit, Component, ElementRef, Inject, InjectionToken, Input, OnDestroy,
+  ViewEncapsulation
 } from '@angular/core';
 import { NtOverlayComponent } from '@ng-tangram/components/core';
 
@@ -51,11 +50,11 @@ export class NtDropdownPaneComponent implements AfterContentInit, OnDestroy {
 
   private _contentChange = new Subject();
 
-  get contentChanged() {
+  get contentChanged(): Observable<any> {
     return this._contentChange.asObservable();
   }
 
-  get textContent() {
+  get textContent(): string {
     return (this._elementRef.nativeElement.textContent || '').trim();
   }
 

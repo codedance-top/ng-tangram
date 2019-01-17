@@ -1,4 +1,4 @@
-import { Subject, Subscription } from 'rxjs';
+import { Subject, Subscription, Observable } from 'rxjs';
 
 import { ContentObserver } from '@angular/cdk/observers';
 import {
@@ -25,11 +25,11 @@ export class NtPopoverPaneComponent implements AfterContentInit {
 
   private _contentChange = new Subject();
 
-  get contentChanged() {
+  get contentChanged(): Observable<any> {
     return this._contentChange.asObservable();
   }
 
-  get textContent() {
+  get textContent(): string {
     return (this._elementRef.nativeElement.textContent || '').trim();
   }
 

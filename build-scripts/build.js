@@ -33,6 +33,7 @@ const config = {
       '@angular/cdk/bidi': 'ng.cdk.bidi',
       '@angular/cdk/coercion': 'ng.cdk.coercion',
       '@angular/cdk/platform': 'ng.cdk.platform',
+      '@angular/cdk/observers': 'ng.cdk.observers',
       '@angular/cdk/overlay': 'ng.cdk.overlay',
       '@angular/cdk/collections': 'ng.cdk.collections',
       '@angular/cdk/portal': 'ng.cdk.portal',
