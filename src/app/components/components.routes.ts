@@ -27,7 +27,7 @@ export const COMPONENTS_ROUTES: Routes = [
   { path: 'radio', loadChildren: './radio/radio.module#RadioDocumentModule', data: { title: 'Radio 单选框' } },
   { path: 'scrim', loadChildren: './scrim/scrim.module#ScrimDocumentModule', data: { title: 'Scrim 纱幕' } },
   { path: 'select', loadChildren: './select/select.module#SelectDocumentModule', data: { title: 'Select 下拉选择框' } },
-  // { path: 'switch', loadChildren: './switch/switch.module#SwitchDocumentModule', data: { title: 'Switch ' } },
+  { path: 'switch', loadChildren: './switch/switch.module#SwitchDocumentModule', data: { title: 'Switch 开关' } },
   // { path: 'tabs', loadChildren: './tabs/tabs.module#TabsDocumentModule', data: { title: 'Tabs ' } },
   // { path: 'timepicker', loadChildren: './time-picker/time-picker.module#TimePickerDocumentModule', data: { title: 'TimePicker ' } },
   { path: 'table', loadChildren: './table/table.module#TableDocumentModule', data: { title: 'Table 表格' } },

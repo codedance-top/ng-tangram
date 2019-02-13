@@ -20,6 +20,7 @@
 @import 'radio/radio';
 @import 'scrim/scrim';
 @import 'select/select';
+@import 'switch/switch';
 @import 'table/table';
 @import 'tooltip/tooltip';
 
@@ -40,6 +41,7 @@
   @include foundation-reveal;
   @include foundation-pagination;
   @include foundation-progress-bar;
+  @include foundation-switch;
   @include foundation-table;
 
   @include nt-badge;
@@ -60,6 +62,7 @@
   @include nt-radio;
   @include nt-scrim;
   @include nt-select;
+  @include nt-switch;
   @include nt-table;
   @include nt-tooltip;
   @include nt-input-group;

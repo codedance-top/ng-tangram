@@ -1,0 +1,48 @@
+
+$nt-switch-color-disabled: $medium-gray !default;
+$nt-switch-opacity-disabled: .5 !default;
+
+$nt-switch-sizes: (
+  tiny: $switch-height-tiny,
+  small: $switch-height-small,
+  medium: $switch-height,
+  large: $switch-height-large
+) !default;
+
+@mixin nt-switch-circle(
+  $switch-height: $switch-height,
+  $paddle-offset: $switch-paddle-offset
+) {
+
+  $paddle-height: $switch-height - ($paddle-offset * 2);
+
+  .switch-paddle {
+    border-radius: $switch-height !important;
+  }
+
+  .switch-paddle::after {
+    border-radius: $paddle-height  !important;
+  }
+}
+
+@mixin nt-switch {
+  .nt-switch {
+    display: inline-block;
+    &.nt-switch-circle {
+      @include nt-switch-circle();
+      @each $name, $size in $nt-switch-sizes {
+        &.#{$name} {
+          @include nt-switch-circle($size);
+        }
+      }
+    }
+
+    &.nt-switch-disabled {
+      opacity: $nt-switch-opacity-disabled;
+
+      .switch-paddle {
+        cursor: no-drop;
+      }
+    }
+  }
+}
