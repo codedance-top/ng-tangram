@@ -18,7 +18,7 @@ export class NtSwitchChange<T> {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class]': '["switch nt-switch", color, size, class].join(" ")',
+    'class': 'switch nt-switch',
     '[class.nt-switch-checked]': 'checked',
     '[class.nt-switch-disabled]': 'disabled',
     '[class.nt-switch-circle]': 'circle'
@@ -29,12 +29,6 @@ export class NtSwitchComponent<T> implements ControlValueAccessor {
   readonly id: string = `nt-switch-${uniqueId++}`;
 
   tabIndex: number;
-
-  @Input() color: string = '';
-
-  @Input() size: string = '';
-
-  @Input() class: string = '';
 
   private _disabled = false;
 

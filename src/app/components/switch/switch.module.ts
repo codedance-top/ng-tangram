@@ -8,7 +8,6 @@ import { DemoSwitchBasciComponent } from './demos/basic';
 import { DemoSwitchCircleComponent } from './demos/circle';
 import { SwitchDocumentComponent } from './switch.component';
 
-
 @NgModule({
   imports: [
     CommonModule,

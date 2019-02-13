@@ -1,4 +1,7 @@
 
+$nt-switch-color-disabled: $medium-gray !default;
+$nt-switch-opacity-disabled: .5 !default;
+
 $nt-switch-sizes: (
   tiny: $switch-height-tiny,
   small: $switch-height-small,
@@ -31,6 +34,14 @@ $nt-switch-sizes: (
         &.#{$name} {
           @include nt-switch-circle($size);
         }
+      }
+    }
+
+    &.nt-switch-disabled {
+      opacity: $nt-switch-opacity-disabled;
+
+      .switch-paddle {
+        cursor: no-drop;
       }
     }
   }
