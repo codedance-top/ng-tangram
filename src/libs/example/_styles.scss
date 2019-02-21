@@ -1,0 +1,163 @@
+@import '~foundation-sites/scss/foundation';
+
+$nt-example-code-border: 1px solid $medium-gray !default;
+$nt-example-radius: $global-radius !default;
+
+$nt-example-tabs-min-width: 100px !default;
+$nt-example-tabs-active-color: get-color(primary) !default;
+
+@mixin nt-example-showcase {
+  display: block;
+  padding: 20px 20px 30px 20px;
+}
+
+@mixin nt-example-legend {
+
+  padding: 20px 20px 32px 20px;
+  position: relative;
+  border-top: $nt-example-code-border;
+  display: block;
+
+  .nt-example-legend-title {
+    position: absolute;
+    top: -16px;
+    padding: 5px 5px;
+    background-color: $white;
+  }
+
+  .nt-example-legend-content {
+    line-height: 1.8;
+  }
+}
+
+@mixin nt-example-code {
+
+  position: relative;
+  display: block;
+
+  pre {
+    display: none;
+    border-top: $nt-example-code-border;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-bottom-left-radius: $nt-example-radius;
+    border-bottom-right-radius: $nt-example-radius;
+  }
+
+  &.shown pre {
+    display: block;
+  }
+
+  .nt-example-code-shown {
+    position: absolute;
+    top: -30px;
+    right: 20px;
+    cursor: pointer;
+    color: $dark-gray;
+  }
+
+  .nt-example-code-shown nt-ant-icon {
+    margin-right: 3px;
+  }
+}
+
+@mixin nt-example-code-tabs {
+
+  .nt-example-code-tabs {
+    @include clearfix;
+    margin: 0;
+    border-top: $nt-example-code-border;
+    list-style-type: none;
+
+    .nt-example-tabs-title {
+      float: left;
+      position: relative;
+      > a {
+        display: block;
+        padding: 1.25em 0;
+        font-size: 1em;
+        text-transform: uppercase;
+        line-height: 1;
+        color: $dark-gray;
+        min-width: $nt-example-tabs-min-width;
+        text-align: center;
+        transition: color .2s;
+
+        &::after {
+          content: '';
+          background-color: $nt-example-tabs-active-color;
+          height: 2px;
+          font-size: 0;
+          position: absolute;
+          bottom: -1px;
+          left: 50%;
+          right: 50%;
+          transition: left .3s, right .3s;
+        }
+
+        &:hover {
+          color: $nt-example-tabs-active-color;
+        }
+      }
+
+      &.is-active > a {
+        color: $nt-example-tabs-active-color;
+        &::after {
+          left: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  .nt-example-code-tabs-panel {
+    @include tabs-panel;
+    padding: 0;
+    display: none;
+
+    &.is-active {
+      display: block;
+    }
+  }
+
+  .nt-example-code-tabs,
+  .nt-example-code-tabs-content {
+    display: none;
+  }
+
+  &.shown {
+
+    .nt-example-code-tabs,
+    .nt-example-code-tabs-content {
+      display: block;
+    }
+  }
+}
+
+@mixin ng-tangram-example {
+
+  .nt-example {
+    border: $nt-example-code-border;
+    display: block;
+    background-color: $white;
+    border-radius: 5px;
+    margin-bottom: 1.875rem;
+  }
+
+  .nt-example-showcase {
+    @include nt-example-showcase;
+  }
+
+  .nt-example-legend {
+    @include nt-example-legend;
+  }
+
+  .nt-example-code {
+    @include nt-example-code;
+  }
+
+  .nt-example-code-tabs {
+    @include nt-example-code;
+    @include nt-example-code-tabs;
+  }
+}

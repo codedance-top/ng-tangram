@@ -23,6 +23,7 @@
 @import 'switch/switch';
 @import 'table/table';
 @import 'tooltip/tooltip';
+@import 'tree/tree';
 
 @mixin ng-tangram {
 
@@ -65,6 +66,7 @@
   @include nt-switch;
   @include nt-table;
   @include nt-tooltip;
+  @include nt-tree;
   @include nt-input-group;
 }
 

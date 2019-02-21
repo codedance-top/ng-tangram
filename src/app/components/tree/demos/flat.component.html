@@ -1,0 +1,22 @@
+<nt-tree class="example-tree"
+  [dataSource]="dataSource"
+  [treeControl]="treeControl">
+  <nt-tree-node class="example-tree-node"
+    *ntTreeNodeDef="let node"
+    ntTreeNodePadding
+    ntTreeNodePaddingIndent="20">
+    {{ node.name }}
+  </nt-tree-node>
+
+  <nt-tree-node class="example-tree-node"
+    *ntTreeNodeDef="let node; when: hasChild"
+    ntTreeNodePadding
+    ntTreeNodePaddingIndent="20">
+    <a class="tree-toggle">
+      <span class="tree-caret"
+        [class.expanded]="isExpanded(node)"
+        ntTreeNodeToggle></span>
+    </a>
+    {{ node.name }}
+  </nt-tree-node>
+</nt-tree>

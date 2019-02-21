@@ -122,18 +122,18 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
   }
 
   ngAfterViewInit() {
-    this.cdkConnectedOverlay.attach.pipe(
-      take(1),
-      switchMap(() => this.cdkConnectedOverlay.overlayRef.keydownEvents())
-    ).pipe(
-      takeUntil(this._destroy),
-      // filter(event => event.keyCode === ESCAPE)
-    ).subscribe(event => {
-      if (event.keyCode === ESCAPE) {
-        this.hide();
-      }
-      this.keydownEvents.next(event);
-    });
+    this.cdkConnectedOverlay.attach
+      .pipe(
+        take(1),
+        switchMap(() => this.cdkConnectedOverlay.overlayRef.keydownEvents()),
+        takeUntil(this._destroy),
+        // filter(event => event.keyCode === ESCAPE)
+      ).subscribe(event => {
+        if (event.keyCode === ESCAPE) {
+          this.hide();
+        }
+        this.keydownEvents.next(event);
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {
