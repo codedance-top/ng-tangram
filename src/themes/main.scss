@@ -30,6 +30,7 @@ $nt-input-shadow-warning-focus: 0 0 0 2px rgba(get-color(warning), .2);
 // $form-label-font-size: rem-calc(20);
 @import '~foundation-sites/scss/foundation';
 @import '../libs/components/styles';
+@import '../libs/example/styles';
 
 
 @include foundation-global-styles;
@@ -42,6 +43,7 @@ $nt-input-shadow-warning-focus: 0 0 0 2px rgba(get-color(warning), .2);
 @include foundation-top-bar;
 
 @include ng-tangram;
+@include ng-tangram-example;
 
 body {
   font-family: $body-font-family;

@@ -2,34 +2,42 @@ import { highlightAll } from 'prismjs';
 
 import { isPlatformBrowser } from '@angular/common';
 import {
-  AfterContentInit, Component, ElementRef, Inject, Input, OnChanges, PLATFORM_ID, SimpleChanges,
+  Component, ElementRef, Inject, InjectionToken, Input, PLATFORM_ID, SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
 
+export interface NtExampleCodeTabPaneParent {
+  activeTab: string;
+}
+
+export const NT_EXAMPLE_CODE_PANEL_PARENT = new InjectionToken<NtExampleCodeTabPaneParent>('nt-example-code-panel-parent');
+
 @Component({
-  selector: 'nt-example-code',
+  selector: 'nt-example-code-tabs-panel',
   template: `
-    <span class="nt-example-code-shown"
-      (click)="shown=!shown"
-      [nt-tooltip]="shown ? '收起代码' : '展开代码'"><nt-ant-icon [type]="!shown ? 'eyeo' : 'eye'"></nt-ant-icon>代码</span>
     <pre class="language-{{lang}}"><code class="language-{{lang}}">{{code}}</code></pre>
   `,
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'nt-example-code',
-    '[class.shown]': 'shown'
-  }
+    'class': 'nt-example-code-tabs-panel',
+    '[class.is-active]': 'parent.activeTab === title'
+  },
 })
-export class NtExampleCodeComponent implements AfterContentInit, OnChanges {
+export class NtExampleCodeTabsPanelComponent {
+
+  private _title: string;
 
   @Input() code: string;
 
-  @Input() lang: string = 'typescript';
+  @Input() lang: string;
 
-  shown = false;
+  @Input()
+  get title() { return this._title || this.lang; }
+  set title(value: string) { this._title = value; }
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(NT_EXAMPLE_CODE_PANEL_PARENT) public parent: NtExampleCodeTabPaneParent,
     private elementRef: ElementRef) { }
 
   ngAfterContentInit() {

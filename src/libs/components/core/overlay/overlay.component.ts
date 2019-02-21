@@ -8,8 +8,8 @@ import {
   CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
 } from '@angular/cdk/overlay';
 import {
-  AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy,
-  Output, Renderer2, SimpleChange, SimpleChanges, ViewChild, ViewEncapsulation
+  AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, Output, Renderer2,
+  SimpleChanges, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 
@@ -125,18 +125,18 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.cdkConnectedOverlay.attach.pipe(
-      take(1),
-      switchMap(() => this.cdkConnectedOverlay.overlayRef.keydownEvents())
-    ).pipe(
-      takeUntil(this._destroy),
-      // filter(event => event.keyCode === ESCAPE)
-    ).subscribe(event => {
-      if (event.keyCode === ESCAPE) {
-        this.hide();
-      }
-      this.keydownEvents.next(event);
-    });
+    this.cdkConnectedOverlay.attach
+      .pipe(
+        take(1),
+        switchMap(() => this.cdkConnectedOverlay.overlayRef.keydownEvents()),
+        takeUntil(this._destroy),
+        // filter(event => event.keyCode === ESCAPE)
+      ).subscribe(event => {
+        if (event.keyCode === ESCAPE) {
+          this.hide();
+        }
+        this.keydownEvents.next(event);
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {

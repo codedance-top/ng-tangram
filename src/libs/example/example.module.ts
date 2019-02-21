@@ -1,19 +1,22 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
 import { NtIconModule } from '@ng-tangram/components/icon';
 import { NtTooltipModule } from '@ng-tangram/components/tooltip';
 
-import { NtExampleComponent } from './example.component';
-import { NtExampleShowcaseComponent } from './example-showcase.component';
-import { NtExampleLegendComponent } from './example-legend.component';
+import { NtExampleCodeTabsPanelComponent } from './example-code-tabs-panel.component';
+import { NtExampleCodeTabsComponent } from './example-code-tabs.component';
 import { NtExampleCodeComponent } from './example-code.component';
+import { NtExampleLegendComponent } from './example-legend.component';
+import { NtExampleShowcaseComponent } from './example-showcase.component';
+import { NtExampleComponent } from './example.component';
 
 export const NT_EXAMPLE_COMPONENTS = [
   NtExampleComponent,
   NtExampleShowcaseComponent,
   NtExampleLegendComponent,
-  NtExampleCodeComponent
+  NtExampleCodeComponent,
+  NtExampleCodeTabsComponent,
+  NtExampleCodeTabsPanelComponent
 ];
 
 @NgModule({

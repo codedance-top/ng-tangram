@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-tree-table',
+  selector: 'demo-tree-async',
   template: ``
 })
-export class DemoTreeTableComponent {
+export class DemoTreeAsyncComponent {
 }

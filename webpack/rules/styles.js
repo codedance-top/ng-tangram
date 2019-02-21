@@ -19,10 +19,6 @@ module.exports = [
     test: /\.less$/,
     use: ExtractTextPlugin.extract({ fallback: 'style', use: ['css', postcss, 'less'] })
   },
-  // {
-  //   test: /\.component\.less$/,
-  //   use: [ 'raw', postcss, 'less' ]
-  // },
   {
     test: /\.(scss|sass)$/,
     exclude: [/\.component\.(scss|sass)$/],

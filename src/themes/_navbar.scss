@@ -4,6 +4,8 @@ $wrapper-header-height: 64px;
 $navbar-width: 230px;
 $navbar-background: #1e222a;
 
+$navbar-active-color: get-color(primary);
+
 .nav-treebar {
   padding-top: 20px;
   padding-bottom: 50px;
@@ -36,14 +38,14 @@ $navbar-background: #1e222a;
   .nav-tree > li > a:focus,
   .nav-tree > li > a:hover {
     background-color: #FFF;
-    color: get-color(primary);
+    color: $navbar-active-color;
   }
 
   .nav-tree > li.active > a,
   .nav-tree > li.active > a:hover {
-    background-color: lighten(get-color(primary), 47%);
-    border-right-color: lighten(get-color(primary), 10%);
-    color: get-color(primary);
+    background-color: rgba($navbar-active-color, .1);
+    border-right-color: $navbar-active-color;
+    color: $navbar-active-color;
   }
   .nav-tree > li.has-children > a {
     position: relative;
