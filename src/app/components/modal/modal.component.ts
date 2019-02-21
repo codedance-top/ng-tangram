@@ -6,5 +6,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'modal.component.md'
 })
 export class ModalDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
+  basicCode = require('!!raw-loader!./examples/basic');
 }

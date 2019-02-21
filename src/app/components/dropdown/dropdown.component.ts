@@ -6,5 +6,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'dropdown.component.md'
 })
 export class DropdownDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
+  basicCode = require('!!raw-loader!./examples/basic');
 }

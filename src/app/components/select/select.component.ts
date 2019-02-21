@@ -6,5 +6,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'select.component.md'
 })
 export class SelectDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
+  basicCode = require('!!raw-loader!./examples/basic');
 }

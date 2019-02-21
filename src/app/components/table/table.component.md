@@ -9,14 +9,14 @@
   <div class="medium-12 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-table-basic></demo-table-basic>
+        <example-table-basic></example-table-basic>
       </nt-example-showcase>
       <nt-example-legend title="基本">默认表格</nt-example-legend>
       <nt-example-code [code]="basicCode"></nt-example-code>
     </nt-example>
     <nt-example>
       <nt-example-showcase>
-        <demo-table-sort></demo-table-sort>
+        <example-table-sort></example-table-sort>
       </nt-example-showcase>
       <nt-example-legend title="可排序表格">
         如果想对列进行排序操作，可以使用 sortable 属性将列设置为可拍序列，
@@ -28,14 +28,14 @@
   <div class="medium-12 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-table-alternate></demo-table-alternate>
+        <example-table-alternate></example-table-alternate>
       </nt-example-showcase>
       <nt-example-legend title="自定义表格">对于不想用 原生 table 的时候可以用自定义表格。</nt-example-legend>
       <nt-example-code [code]="alternateCode"></nt-example-code>
     </nt-example>
     <nt-example>
       <nt-example-showcase>
-        <demo-table-column-visibility></demo-table-column-visibility>
+        <example-table-column-visibility></example-table-column-visibility>
       </nt-example-showcase>
       <nt-example-legend title="列可见性">
         通过 `nt-row` columns 可以设置需要显示的列

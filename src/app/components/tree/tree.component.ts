@@ -7,13 +7,13 @@ import { Component } from '@angular/core';
 })
 export class TreeDocumentComponent {
 
-  asyncCode = require('!!raw-loader!./demos/async');
-  checkboxCode = require('!!raw-loader!./demos/checkbox');
+  asyncCode = require('!!raw-loader!./examples/async');
+  checkboxCode = require('!!raw-loader!./examples/checkbox');
 
-  flatCode = require('!!raw-loader!./demos/flat.component.ts');
-  flatTemplate = require('!!raw-loader!./demos/flat.component.html');
-  flatStyle = require('!!raw-loader!./demos/flat.component.scss');
+  flatCode = require('!!raw-loader!./examples/flat.component.ts');
+  flatTemplate = require('!!raw-loader!./examples/flat.component.html');
+  flatStyle = require('!!raw-loader!./examples/flat.component.scss');
 
-  nestedCode = require('!!raw-loader!./demos/nested');
-  tableCode = require('!!raw-loader!./demos/table');
+  nestedCode = require('!!raw-loader!./examples/nested');
+  tableCode = require('!!raw-loader!./examples/table');
  }

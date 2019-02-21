@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: 'forms.component.md'
 })
 export class FormsDocumentComponent {
-  loginCode = require('!!raw-loader!./demos/login');
-  inlineCode = require('!!raw-loader!./demos/inline');
+  loginCode = require('!!raw-loader!./examples/login');
+  inlineCode = require('!!raw-loader!./examples/inline');
 }

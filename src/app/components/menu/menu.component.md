@@ -13,7 +13,7 @@
 
 <nt-example>
   <nt-example-showcase>
-    <demo-menu-basic></demo-menu-basic>
+    <example-menu-basic></example-menu-basic>
   </nt-example-showcase>
   <nt-example-legend title="基本">最简单的下拉菜单。</nt-example-legend>
   <nt-example-code [code]="basicCode"></nt-example-code>
@@ -21,7 +21,7 @@
 
 <nt-example>
   <nt-example-showcase>
-    <demo-menu-align></demo-menu-align>
+    <example-menu-align></example-menu-align>
   </nt-example-showcase>
   <nt-example-legend title="基本">最简单的下拉菜单。</nt-example-legend>
   <nt-example-code [code]="alignCode"></nt-example-code>
@@ -29,7 +29,7 @@
 
 <nt-example>
   <nt-example-showcase>
-    <demo-menu-nested></demo-menu-nested>
+    <example-menu-nested></example-menu-nested>
   </nt-example-showcase>
   <nt-example-legend title="基本">最简单的下拉菜单。</nt-example-legend>
   <nt-example-code [code]="nestedCode"></nt-example-code>

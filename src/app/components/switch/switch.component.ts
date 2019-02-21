@@ -6,6 +6,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'switch.component.md'
 })
 export class SwitchDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
-  circleCode = require('!!raw-loader!./demos/circle');
+  basicCode = require('!!raw-loader!./examples/basic');
+  circleCode = require('!!raw-loader!./examples/circle');
  }

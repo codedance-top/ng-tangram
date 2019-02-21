@@ -8,7 +8,7 @@ import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtIconModule } from '@ng-tangram/components/icon';
 import { NtExampleModule } from '@ng-tangram/example';
 
-import { DemoFileBasciComponent } from './demos/basic';
+import { ExampleFileBasciComponent } from './examples/basic';
 import { FileDocumentComponent } from './file.component';
 
 @NgModule({
@@ -24,6 +24,6 @@ import { FileDocumentComponent } from './file.component';
       { path: '', component: FileDocumentComponent }
     ])
   ],
-  declarations: [FileDocumentComponent, DemoFileBasciComponent]
+  declarations: [FileDocumentComponent, ExampleFileBasciComponent]
 })
 export class FileDocumentModule { }

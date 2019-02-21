@@ -7,7 +7,7 @@ import { NtExampleModule } from '@ng-tangram/example';
 import { NtTooltipModule } from '@ng-tangram/components/tooltip';
 import { TooltipDocumentComponent } from './tooltip.component';
 
-import { DemoTooltipBasciComponent } from './demos/basic';
+import { ExampleTooltipBasciComponent } from './examples/basic';
 
 @NgModule({
   imports: [
@@ -18,6 +18,6 @@ import { DemoTooltipBasciComponent } from './demos/basic';
       { path: '', component: TooltipDocumentComponent }
     ])],
   exports: [TooltipDocumentComponent],
-  declarations: [TooltipDocumentComponent, DemoTooltipBasciComponent],
+  declarations: [TooltipDocumentComponent, ExampleTooltipBasciComponent],
 })
 export class TooltipDocumentModule { }

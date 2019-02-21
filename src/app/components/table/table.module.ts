@@ -10,10 +10,10 @@ import { NtTableModule } from '@ng-tangram/components/table';
 import { NtTooltipModule } from '@ng-tangram/components/tooltip';
 import { NtExampleModule } from '@ng-tangram/example';
 
-import { DemoTableAlternateComponent } from './demos/alternate';
-import { DemoTableBasicComponent } from './demos/basic';
-import { DemoTableColumnVisibilityComponent } from './demos/column-visibility';
-import { DemoTableSortComponent } from './demos/sort';
+import { ExampleTableAlternateComponent } from './examples/alternate';
+import { ExampleTableBasicComponent } from './examples/basic';
+import { ExampleTableColumnVisibilityComponent } from './examples/column-visibility';
+import { ExampleTableSortComponent } from './examples/sort';
 import { TableDocumentComponent } from './table.component';
 
 @NgModule({
@@ -32,10 +32,10 @@ import { TableDocumentComponent } from './table.component';
     ])],
   declarations: [
     TableDocumentComponent,
-    DemoTableBasicComponent,
-    DemoTableAlternateComponent,
-    DemoTableSortComponent,
-    DemoTableColumnVisibilityComponent,
+    ExampleTableBasicComponent,
+    ExampleTableAlternateComponent,
+    ExampleTableSortComponent,
+    ExampleTableColumnVisibilityComponent,
   ],
 })
 export class TableDocumentModule { }

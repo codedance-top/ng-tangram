@@ -9,9 +9,9 @@ import { RouterModule } from '@angular/router';
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtInputModule } from '@ng-tangram/components/input';
 
-import { DemoInputBasicComponent } from './demos/basic';
+import { ExampleInputBasicComponent } from './examples/basic';
 import { InputDocumentComponent } from './input.component';
-import { DemoInputGroupComponent } from './demos/group';
+import { ExampleInputGroupComponent } from './examples/group';
 import { NtSelectModule } from '@ng-tangram/components/select';
 
 @NgModule({
@@ -29,6 +29,6 @@ import { NtSelectModule } from '@ng-tangram/components/select';
       { path: '', component: InputDocumentComponent },
     ])
   ],
-  declarations: [InputDocumentComponent, DemoInputBasicComponent, DemoInputGroupComponent]
+  declarations: [InputDocumentComponent, ExampleInputBasicComponent, ExampleInputGroupComponent]
 })
 export class InputDocumentModule { }

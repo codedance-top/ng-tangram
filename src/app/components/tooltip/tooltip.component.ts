@@ -6,5 +6,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'tooltip.component.md'
 })
 export class TooltipDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
+  basicCode = require('!!raw-loader!./examples/basic');
  }

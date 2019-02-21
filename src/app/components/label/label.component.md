@@ -9,7 +9,7 @@
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-label-basic></demo-label-basic>
+        <example-label-basic></example-label-basic>
       </nt-example-showcase>
       <nt-example-legend title="基本">
         最简单的用法，适用于简短的警告提示。
@@ -18,7 +18,7 @@
     </nt-example>
     <nt-example>
       <nt-example-showcase>
-        <demo-label-colors></demo-label-colors>
+        <example-label-colors></example-label-colors>
       </nt-example-showcase>
       <nt-example-legend title="基本">
         最简单的用法，适用于简短的警告提示。
@@ -29,7 +29,7 @@
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-label-icon></demo-label-icon>
+        <example-label-icon></example-label-icon>
       </nt-example-showcase>
       <nt-example-legend title="按钮组">
         多个按钮

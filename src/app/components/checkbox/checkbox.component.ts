@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: 'checkbox.component.md'
 })
 export class CheckboxDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
+  basicCode = require('!!raw-loader!./examples/basic');
 }

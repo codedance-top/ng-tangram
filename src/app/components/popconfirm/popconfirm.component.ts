@@ -6,5 +6,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'popconfirm.component.md'
 })
 export class PopconfirmDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
+  basicCode = require('!!raw-loader!./examples/basic');
 }

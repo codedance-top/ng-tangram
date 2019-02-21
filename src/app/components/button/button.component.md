@@ -12,7 +12,7 @@
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-button-basic></demo-button-basic>
+        <example-button-basic></example-button-basic>
       </nt-example-showcase>
       <nt-example-legend title="基本">
         最简单的用法，适用于简短的警告提示。
@@ -24,7 +24,7 @@
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-button-group></demo-button-group>
+        <example-button-group></example-button-group>
       </nt-example-showcase>
       <nt-example-legend title="按钮组">
         多个按钮

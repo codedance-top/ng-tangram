@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'label.component.md'
 })
 export class LabelDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
-  iconCode = require('!!raw-loader!./demos/icon');
-  colorsCode = require('!!raw-loader!./demos/colors');
+  basicCode = require('!!raw-loader!./examples/basic');
+  iconCode = require('!!raw-loader!./examples/icon');
+  colorsCode = require('!!raw-loader!./examples/colors');
 }

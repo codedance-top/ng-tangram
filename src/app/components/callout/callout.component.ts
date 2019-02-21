@@ -5,9 +5,9 @@ import { Component, OnInit, ViewContainerRef, ComponentFactoryResolver, Injectab
   templateUrl: 'callout.component.md'
 })
 export class CalloutDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
-  colorCode = require('!!raw-loader!./demos/color');
-  reactivesCode = require('!!raw-loader!./demos/reactives');
-  sizeCode = require('!!raw-loader!./demos/size');
-  eventCode = require('!!raw-loader!./demos/event');
+  basicCode = require('!!raw-loader!./examples/basic');
+  colorCode = require('!!raw-loader!./examples/color');
+  reactivesCode = require('!!raw-loader!./examples/reactives');
+  sizeCode = require('!!raw-loader!./examples/size');
+  eventCode = require('!!raw-loader!./examples/event');
 }

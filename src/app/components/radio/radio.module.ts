@@ -6,7 +6,7 @@ import { NtRadioModule } from '@ng-tangram/components/radio';
 import { NtExampleModule } from '@ng-tangram/example';
 
 import { RadioDocumentComponent } from './radio.component';
-import { DemoRadioBasicComponent } from './demos/basic';
+import { ExampleRadioBasicComponent } from './examples/basic';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 
 @NgModule({
@@ -21,6 +21,6 @@ import { NtFormsModule } from '@ng-tangram/components/forms';
       { path: '', component: RadioDocumentComponent }
     ])
   ],
-  declarations: [RadioDocumentComponent, DemoRadioBasicComponent]
+  declarations: [RadioDocumentComponent, ExampleRadioBasicComponent]
 })
 export class RadioDocumentModule { }

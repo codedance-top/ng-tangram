@@ -7,8 +7,8 @@ import { NtIconModule } from '@ng-tangram/components/icon';
 
 import { ButtonDocumentComponent } from './button.component';
 
-import { DemoButtonBasicComponent } from './demos/basic';
-import { DemoButtonGroupComponent } from './demos/group';
+import { ExampleButtonBasicComponent } from './examples/basic';
+import { ExampleButtonGroupComponent } from './examples/group';
 
 @NgModule({
   imports: [
@@ -19,6 +19,6 @@ import { DemoButtonGroupComponent } from './demos/group';
       { path: '', component: ButtonDocumentComponent }
     ])
   ],
-  declarations: [ButtonDocumentComponent, DemoButtonBasicComponent, DemoButtonGroupComponent]
+  declarations: [ButtonDocumentComponent, ExampleButtonBasicComponent, ExampleButtonGroupComponent]
 })
 export class ButtonDocumentModule { }

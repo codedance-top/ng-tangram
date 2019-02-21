@@ -33,7 +33,7 @@ const PAGINATION_CONFIG = {
     NtIconModule,
     HttpClientModule,
     BrowserModule.withServerTransition({
-      appId: 'ng-tangram-demo'
+      appId: 'ng-tangram-examples'
     }),
     BrowserTransferStateModule,
     NtFormsModule.forRoot(),

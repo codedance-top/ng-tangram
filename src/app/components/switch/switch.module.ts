@@ -4,8 +4,8 @@ import { RouterModule } from '@angular/router';
 import { NtCheckboxModule, NtSwitchModule } from '@ng-tangram/components';
 import { NtExampleModule } from '@ng-tangram/example';
 
-import { DemoSwitchBasciComponent } from './demos/basic';
-import { DemoSwitchCircleComponent } from './demos/circle';
+import { ExampleSwitchBasciComponent } from './examples/basic';
+import { ExampleSwitchCircleComponent } from './examples/circle';
 import { SwitchDocumentComponent } from './switch.component';
 
 @NgModule({
@@ -18,6 +18,6 @@ import { SwitchDocumentComponent } from './switch.component';
       { path: '', component: SwitchDocumentComponent }
     ])],
   exports: [SwitchDocumentComponent],
-  declarations: [SwitchDocumentComponent, DemoSwitchBasciComponent, DemoSwitchCircleComponent],
+  declarations: [SwitchDocumentComponent, ExampleSwitchBasciComponent, ExampleSwitchCircleComponent],
 })
 export class SwitchDocumentModule { }

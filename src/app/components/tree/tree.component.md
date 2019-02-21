@@ -9,7 +9,7 @@
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-tree-flat></demo-tree-flat>
+        <example-tree-flat></example-tree-flat>
       </nt-example-showcase>
       <nt-example-legend title="扁平结构的树">
         渲染的DOM树是扁平结构。
@@ -22,7 +22,7 @@
     </nt-example>
     <nt-example>
       <nt-example-showcase>
-        <demo-tree-async></demo-tree-async>
+        <example-tree-async></example-tree-async>
       </nt-example-showcase>
       <nt-example-legend title="异步数据源">
         可以异步加载树的数据源。
@@ -35,7 +35,7 @@
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-tree-nested></demo-tree-nested>
+        <example-tree-nested></example-tree-nested>
       </nt-example-showcase>
       <nt-example-legend title="嵌套结构的树">
         渲染的DOM树是嵌套式的，这种方式不需要 `ntTreeNodePadding`和`ntTreeNodePaddingIndent` 处理缩进，用样式就可以。
@@ -46,7 +46,7 @@
     </nt-example>
     <nt-example>
       <nt-example-showcase>
-        <demo-tree-checkbox></demo-tree-checkbox>
+        <example-tree-checkbox></example-tree-checkbox>
       </nt-example-showcase>
       <nt-example-legend title="Checkbox 选择">
         树结构的选择框。
@@ -59,7 +59,7 @@
   <div class="medium-12 large-12 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-tree-table></demo-tree-table>
+        <example-tree-table></example-tree-table>
       </nt-example-showcase>
       <nt-example-legend title="表格形式的树">
         表格形式的树结构UI。

@@ -6,7 +6,7 @@ import { NtCheckboxModule } from '@ng-tangram/components/checkbox';
 import { NtExampleModule } from '@ng-tangram/example';
 
 import { CheckboxDocumentComponent } from './checkbox.component';
-import { DemoCheckboxBasicComponent } from './demos/basic';
+import { ExampleCheckboxBasicComponent } from './examples/basic';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 
 @NgModule({
@@ -21,6 +21,6 @@ import { NtFormsModule } from '@ng-tangram/components/forms';
       { path: '', component: CheckboxDocumentComponent }
     ])
   ],
-  declarations: [CheckboxDocumentComponent, DemoCheckboxBasicComponent]
+  declarations: [CheckboxDocumentComponent, ExampleCheckboxBasicComponent]
 })
 export class CheckboxDocumentModule { }

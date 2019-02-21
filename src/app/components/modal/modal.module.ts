@@ -8,7 +8,7 @@ import { NtButtonModule } from '@ng-tangram/components/button';
 import { NtExampleModule } from '@ng-tangram/example';
 
 import { ModalDocumentComponent } from './modal.component';
-import { DemoModalBasicComponent, DemoModalComponentDialogComponent } from './demos/basic';
+import { ExampleModalBasicComponent, ExampleModalComponentDialogComponent } from './examples/basic';
 
 @NgModule({
   imports: [
@@ -19,7 +19,7 @@ import { DemoModalBasicComponent, DemoModalComponentDialogComponent } from './de
     RouterModule.forChild([
       { path: '', component: ModalDocumentComponent }
     ])],
-  declarations: [ModalDocumentComponent, DemoModalBasicComponent, DemoModalComponentDialogComponent],
-  entryComponents: [DemoModalComponentDialogComponent]
+  declarations: [ModalDocumentComponent, ExampleModalBasicComponent, ExampleModalComponentDialogComponent],
+  entryComponents: [ExampleModalComponentDialogComponent]
 })
 export class ModalDocumentModule { }

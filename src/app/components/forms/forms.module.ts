@@ -12,8 +12,8 @@ import { NtFormsModule } from '@ng-tangram/components/forms';
 
 import { FormsDocumentComponent } from './forms.component';
 
-import { DemoFormLoginComponent } from './demos/login';
-import { DemoFormInlineComponent } from './demos/inline';
+import { ExampleFormLoginComponent } from './examples/login';
+import { ExampleFormInlineComponent } from './examples/inline';
 import { NtCalloutModule } from '@ng-tangram/components/callout';
 import { NtInputModule } from '@ng-tangram/components/input';
 
@@ -33,6 +33,6 @@ import { NtInputModule } from '@ng-tangram/components/input';
       { path: '', component: FormsDocumentComponent }
     ])
   ],
-  declarations: [FormsDocumentComponent, DemoFormLoginComponent, DemoFormInlineComponent]
+  declarations: [FormsDocumentComponent, ExampleFormLoginComponent, ExampleFormInlineComponent]
 })
 export class FormsDocumentModule { }

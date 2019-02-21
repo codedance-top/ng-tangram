@@ -8,7 +8,7 @@ import { NtBreadcrumbsModule } from '@ng-tangram/components/breadcrumbs';
 import { NtIconModule } from '@ng-tangram/components/icon';
 
 import { BreadcrumbsDocumentComponent } from './breadcrumbs.component';
-import { DemoBreadcrumbsBasicComponent } from './demos/basic';
+import { ExampleBreadcrumbsBasicComponent } from './examples/basic';
 
 @NgModule({
   imports: [
@@ -19,6 +19,6 @@ import { DemoBreadcrumbsBasicComponent } from './demos/basic';
     RouterModule.forChild([
       { path: '', component: BreadcrumbsDocumentComponent }
     ])],
-  declarations: [BreadcrumbsDocumentComponent, DemoBreadcrumbsBasicComponent],
+  declarations: [BreadcrumbsDocumentComponent, ExampleBreadcrumbsBasicComponent],
 })
 export class BreadcrumbsDocumentModule { }

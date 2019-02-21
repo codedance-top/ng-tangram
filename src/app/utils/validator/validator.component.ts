@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'pro-validator-demo',
+  selector: 'pro-validator-Example',
   template: ''
 })
 export class ValidatorDocumentComponent implements OnInit {

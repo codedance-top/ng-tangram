@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: 'scrim.component.md'
 })
 export class ScrimDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
+  basicCode = require('!!raw-loader!./examples/basic');
 }

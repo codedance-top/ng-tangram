@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: 'button.component.md'
 })
 export class ButtonDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
-  groupCode = require('!!raw-loader!./demos/group');
+  basicCode = require('!!raw-loader!./examples/basic');
+  groupCode = require('!!raw-loader!./examples/group');
 }

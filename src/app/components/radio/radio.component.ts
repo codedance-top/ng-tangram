@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: 'radio.component.md'
 })
 export class RadioDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
+  basicCode = require('!!raw-loader!./examples/basic');
 }

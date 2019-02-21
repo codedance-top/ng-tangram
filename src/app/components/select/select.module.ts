@@ -9,7 +9,7 @@ import { NtIconModule } from '@ng-tangram/components/icon';
 import { NtSelectModule } from '@ng-tangram/components/select';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 import { SelectDocumentComponent } from './select.component';
-import { DemoSelectBasciComponent } from './demos/basic';
+import { ExampleSelectBasciComponent } from './examples/basic';
 
 @NgModule({
   imports: [
@@ -24,6 +24,6 @@ import { DemoSelectBasciComponent } from './demos/basic';
       { path: '', component: SelectDocumentComponent }
     ])],
   exports: [SelectDocumentComponent],
-  declarations: [SelectDocumentComponent, DemoSelectBasciComponent],
+  declarations: [SelectDocumentComponent, ExampleSelectBasciComponent],
 })
 export class SelectDocumentModule { }

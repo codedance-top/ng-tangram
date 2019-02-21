@@ -6,6 +6,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'datepicker.component.md'
 })
 export class DatePickerDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
-  formsCode = require('!!raw-loader!./demos/forms');
+  basicCode = require('!!raw-loader!./examples/basic');
+  formsCode = require('!!raw-loader!./examples/forms');
  }

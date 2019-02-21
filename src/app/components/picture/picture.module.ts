@@ -7,7 +7,7 @@ import { NtIconModule } from '@ng-tangram/components/icon';
 import { NtPictureModule } from '@ng-tangram/components/picture';
 import { NtExampleModule } from '@ng-tangram/example';
 
-import { DemoPictureBasciComponent } from './demos/basic';
+import { ExamplePictureBasciComponent } from './examples/basic';
 import { PictureDocumentComponent } from './picture.component';
 
 @NgModule({
@@ -23,6 +23,6 @@ import { PictureDocumentComponent } from './picture.component';
       { path: '', component: PictureDocumentComponent }
     ])
   ],
-  declarations: [PictureDocumentComponent, DemoPictureBasciComponent]
+  declarations: [PictureDocumentComponent, ExamplePictureBasciComponent]
 })
 export class PictureDocumentModule { }

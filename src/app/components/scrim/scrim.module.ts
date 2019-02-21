@@ -8,7 +8,7 @@ import { NtScrimModule } from '@ng-tangram/components/scrim';
 import { NtPaginationModule } from '@ng-tangram/components/pagination';
 import { ScrimDocumentComponent } from './scrim.component';
 
-import { DemoScrimBasciComponent } from './demos/basic';
+import { ExampleScrimBasciComponent } from './examples/basic';
 import { NtTableModule } from '@ng-tangram/components/table';
 
 @NgModule({
@@ -22,6 +22,6 @@ import { NtTableModule } from '@ng-tangram/components/table';
       { path: '', component: ScrimDocumentComponent }
     ])],
   exports: [ScrimDocumentComponent],
-  declarations: [ScrimDocumentComponent, DemoScrimBasciComponent],
+  declarations: [ScrimDocumentComponent, ExampleScrimBasciComponent],
 })
 export class ScrimDocumentModule { }

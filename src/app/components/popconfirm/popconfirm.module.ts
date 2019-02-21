@@ -7,7 +7,7 @@ import { NtExampleModule } from '@ng-tangram/example';
 import { NtPopConfirmModule } from '@ng-tangram/components/popconfirm';
 import { PopconfirmDocumentComponent } from './popconfirm.component';
 
-import { DemoPopConfirmBasciComponent } from './demos/basic';
+import { ExamplePopConfirmBasciComponent } from './examples/basic';
 import { NtIconModule } from '@ng-tangram/components/icon';
 
 @NgModule({
@@ -19,6 +19,6 @@ import { NtIconModule } from '@ng-tangram/components/icon';
     RouterModule.forChild([
       { path: '', component: PopconfirmDocumentComponent }
     ])],
-  declarations: [PopconfirmDocumentComponent, DemoPopConfirmBasciComponent],
+  declarations: [PopconfirmDocumentComponent, ExamplePopConfirmBasciComponent],
 })
 export class PopconfirmDocumentModule { }

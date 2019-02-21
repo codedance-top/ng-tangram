@@ -8,7 +8,7 @@ import { NtButtonModule } from '@ng-tangram/components/button';
 import { NtExampleModule } from '@ng-tangram/example';
 
 import { DropdownDocumentComponent } from './dropdown.component';
-import { DemoDropdownBasicComponent } from './demos/basic';
+import { ExampleDropdownBasicComponent } from './examples/basic';
 
 @NgModule({
   imports: [
@@ -19,6 +19,6 @@ import { DemoDropdownBasicComponent } from './demos/basic';
     RouterModule.forChild([
       { path: '', component: DropdownDocumentComponent }
     ])],
-  declarations: [DropdownDocumentComponent, DemoDropdownBasicComponent]
+  declarations: [DropdownDocumentComponent, ExampleDropdownBasicComponent]
 })
 export class DropdownDocumentModule { }

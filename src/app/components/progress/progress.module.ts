@@ -4,9 +4,9 @@ import { RouterModule } from '@angular/router';
 import { NtProgressModule } from '@ng-tangram/components/progress';
 import { NtExampleModule } from '@ng-tangram/example';
 
-import { DemoProgressBasciComponent } from './demos/basic';
+import { ExampleProgressBasciComponent } from './examples/basic';
 import { ProgressDocumentComponent } from './progress.component';
-import { DemoProgressCircleComponent } from './demos/circle';
+import { ExampleProgressCircleComponent } from './examples/circle';
 
 
 @NgModule({
@@ -20,8 +20,8 @@ import { DemoProgressCircleComponent } from './demos/circle';
   exports: [ProgressDocumentComponent],
   declarations: [
     ProgressDocumentComponent,
-    DemoProgressBasciComponent,
-    DemoProgressCircleComponent
+    ExampleProgressBasciComponent,
+    ExampleProgressCircleComponent
   ],
 })
 export class ProgressDocumentModule { }

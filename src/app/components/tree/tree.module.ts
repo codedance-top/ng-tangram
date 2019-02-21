@@ -4,11 +4,11 @@ import { RouterModule } from '@angular/router';
 import { NtTreeModule } from '@ng-tangram/components/tree';
 import { NtExampleModule } from '@ng-tangram/example';
 
-import { DemoTreeAsyncComponent } from './demos/async';
-import { DemoTreeCheckboxComponent } from './demos/checkbox';
-import { DemoTreeFlatComponent } from './demos/flat.component';
-import { DemoTreeNestedComponent } from './demos/nested';
-import { DemoTreeTableComponent } from './demos/table';
+import { ExampleTreeAsyncComponent } from './examples/async';
+import { ExampleTreeCheckboxComponent } from './examples/checkbox';
+import { ExampleTreeFlatComponent } from './examples/flat.component';
+import { ExampleTreeNestedComponent } from './examples/nested';
+import { ExampleTreeTableComponent } from './examples/table';
 import { TreeDocumentComponent } from './tree.component';
 
 @NgModule({
@@ -22,11 +22,11 @@ import { TreeDocumentComponent } from './tree.component';
   exports: [TreeDocumentComponent],
   declarations: [
     TreeDocumentComponent,
-    DemoTreeAsyncComponent,
-    DemoTreeCheckboxComponent,
-    DemoTreeFlatComponent,
-    DemoTreeNestedComponent,
-    DemoTreeTableComponent
+    ExampleTreeAsyncComponent,
+    ExampleTreeCheckboxComponent,
+    ExampleTreeFlatComponent,
+    ExampleTreeNestedComponent,
+    ExampleTreeTableComponent
   ]
 })
 export class TreeDocumentModule { }

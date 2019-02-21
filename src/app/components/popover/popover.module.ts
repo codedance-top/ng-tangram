@@ -7,7 +7,7 @@ import { NtExampleModule } from '@ng-tangram/example';
 import { NtPopoverModule } from '@ng-tangram/components/popover';
 import { PopoverDocumentComponent } from './popover.component';
 
-import { DemoPopoverBasciComponent } from './demos/basic';
+import { ExamplePopoverBasciComponent } from './examples/basic';
 
 @NgModule({
   imports: [
@@ -18,6 +18,6 @@ import { DemoPopoverBasciComponent } from './demos/basic';
       { path: '', component: PopoverDocumentComponent }
     ])],
   exports: [PopoverDocumentComponent],
-  declarations: [PopoverDocumentComponent, DemoPopoverBasciComponent],
+  declarations: [PopoverDocumentComponent, ExamplePopoverBasciComponent],
 })
 export class PopoverDocumentModule { }

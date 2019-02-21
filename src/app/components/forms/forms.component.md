@@ -13,7 +13,7 @@
 ## 代码演示
 <nt-example>
   <nt-example-showcase>
-    <demo-form-login></demo-form-login>
+    <example-form-login></example-form-login>
   </nt-example-showcase>
   <nt-example-legend title="登录框">普通的登录框。</nt-example-legend>
   <nt-example-code [code]="loginCode"></nt-example-code>
@@ -21,7 +21,7 @@
 
 <nt-example>
   <nt-example-showcase>
-    <demo-form-inline></demo-form-inline>
+    <example-form-inline></example-form-inline>
   </nt-example-showcase>
   <nt-example-legend title="登录框">普通的登录框。</nt-example-legend>
   <nt-example-code [code]="inlineCode"></nt-example-code>

@@ -18,7 +18,7 @@
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-modal-basic></demo-modal-basic>
+        <example-modal-basic></example-modal-basic>
       </nt-example-showcase>
       <nt-example-legend title="基本">
         最简单的用法，适用于简短的警告提示。

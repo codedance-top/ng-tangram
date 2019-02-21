@@ -13,7 +13,7 @@
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-callout-basic></demo-callout-basic>
+        <example-callout-basic></example-callout-basic>
       </nt-example-showcase>
       <nt-example-legend title="基本提示框">
         最简单的用法，适用于简短的警告提示。
@@ -22,7 +22,7 @@
     </nt-example>
     <nt-example>
       <nt-example-showcase>
-        <demo-callout-reactives></demo-callout-reactives>
+        <example-callout-reactives></example-callout-reactives>
       </nt-example-showcase>
       <nt-example-legend title="动态提示框">
         可以动态控制样式类型
@@ -31,7 +31,7 @@
     </nt-example>
     <nt-example>
       <nt-example-showcase>
-        <demo-callout-event></demo-callout-event>
+        <example-callout-event></example-callout-event>
       </nt-example-showcase>
       <nt-example-legend title="可关闭的警告提示">
         显示关闭按钮，点击可关闭警告提示。
@@ -42,7 +42,7 @@
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-callout-color></demo-callout-color>
+        <example-callout-color></example-callout-color>
       </nt-example-showcase>
       <nt-example-legend title="多种样式">
         共有5种样式 `primary`、`secondry`、`success`、`warning`、`alert`。
@@ -51,7 +51,7 @@
     </nt-example>
     <nt-example>
       <nt-example-showcase>
-        <demo-callout-size></demo-callout-size>
+        <example-callout-size></example-callout-size>
       </nt-example-showcase>
       <nt-example-legend title="尺寸控制">
         共有3种尺寸 `small`、 `medium`、`large`

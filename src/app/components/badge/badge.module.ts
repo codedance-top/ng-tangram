@@ -8,9 +8,9 @@ import { NtBadgeModule } from '@ng-tangram/components/badge';
 import { NtIconModule } from '@ng-tangram/components/icon';
 
 import { BadgeDocumentComponent } from './badge.component';
-import { DemoBadgeBasicComponent } from './demos/basic';
-import { DemoBadgeIconComponent } from './demos/icon';
-import { DemoBadgeColorsComponent } from './demos/colors';
+import { ExampleBadgeBasicComponent } from './examples/basic';
+import { ExampleBadgeIconComponent } from './examples/icon';
+import { ExampleBadgeColorsComponent } from './examples/colors';
 
 @NgModule({
   imports: [
@@ -21,6 +21,6 @@ import { DemoBadgeColorsComponent } from './demos/colors';
     RouterModule.forChild([
       { path: '', component: BadgeDocumentComponent }
     ])],
-  declarations: [BadgeDocumentComponent, DemoBadgeBasicComponent, DemoBadgeIconComponent, DemoBadgeColorsComponent],
+  declarations: [BadgeDocumentComponent, ExampleBadgeBasicComponent, ExampleBadgeIconComponent, ExampleBadgeColorsComponent],
 })
 export class BadgeDocumentModule { }

@@ -7,11 +7,11 @@ import { NtIconModule } from '@ng-tangram/components/icon';
 
 import { CalloutDocumentComponent } from './callout.component';
 
-import { DemoBasicCalloutComponent } from './demos/basic';
-import { DemoCalloutColorComponent } from './demos/color';
-import { DemoCalloutReactivesComponent } from './demos/reactives';
-import { DemoCalloutSizeComponent } from './demos/size';
-import { DemoCalloutEventComponent } from './demos/event';
+import { ExampleBasicCalloutComponent } from './examples/basic';
+import { ExampleCalloutColorComponent } from './examples/color';
+import { ExampleCalloutReactivesComponent } from './examples/reactives';
+import { ExampleCalloutSizeComponent } from './examples/size';
+import { ExampleCalloutEventComponent } from './examples/event';
 
 @NgModule({
   imports: [
@@ -24,11 +24,11 @@ import { DemoCalloutEventComponent } from './demos/event';
   ],
   declarations: [
     CalloutDocumentComponent,
-    DemoBasicCalloutComponent,
-    DemoCalloutColorComponent,
-    DemoCalloutReactivesComponent,
-    DemoCalloutSizeComponent,
-    DemoCalloutEventComponent
+    ExampleBasicCalloutComponent,
+    ExampleCalloutColorComponent,
+    ExampleCalloutReactivesComponent,
+    ExampleCalloutSizeComponent,
+    ExampleCalloutEventComponent
   ]
 })
 export class CalloutDocumentModule { }

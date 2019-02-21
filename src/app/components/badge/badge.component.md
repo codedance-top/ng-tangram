@@ -9,7 +9,7 @@
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-badge-basic></demo-badge-basic>
+        <example-badge-basic></example-badge-basic>
       </nt-example-showcase>
       <nt-example-legend title="基本">
         最简单的用法，适用于简短的警告提示。
@@ -18,7 +18,7 @@
     </nt-example>
     <nt-example>
       <nt-example-showcase>
-        <demo-badge-colors></demo-badge-colors>
+        <example-badge-colors></example-badge-colors>
       </nt-example-showcase>
       <nt-example-legend title="颜色">
         最简单的用法，适用于简短的警告提示。
@@ -29,7 +29,7 @@
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <demo-badge-icon></demo-badge-icon>
+        <example-badge-icon></example-badge-icon>
       </nt-example-showcase>
       <nt-example-legend title="图标">
         也可以跟图标配合使用

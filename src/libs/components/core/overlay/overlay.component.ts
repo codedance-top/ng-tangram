@@ -8,8 +8,8 @@ import {
   CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
 } from '@angular/cdk/overlay';
 import {
-  AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy,
-  Output, Renderer2, SimpleChange, SimpleChanges, ViewChild, ViewEncapsulation, AfterContentChecked
+  AfterContentChecked, AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, Output,
+  Renderer2, SimpleChanges, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 

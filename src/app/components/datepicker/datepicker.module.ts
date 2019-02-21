@@ -7,8 +7,8 @@ import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtExampleModule } from '@ng-tangram/example';
 
 import { DatePickerDocumentComponent } from './datepicker.component';
-import { DemoDatePickerBasicComponent } from './demos/basic';
-import { DemoDatePickerFormsComponent } from './demos/forms';
+import { ExampleDatePickerBasicComponent } from './examples/basic';
+import { ExampleDatePickerFormsComponent } from './examples/forms';
 
 @NgModule({
   imports: [
@@ -22,6 +22,6 @@ import { DemoDatePickerFormsComponent } from './demos/forms';
       { path: '', component: DatePickerDocumentComponent }
     ])
   ],
-  declarations: [DatePickerDocumentComponent, DemoDatePickerBasicComponent, DemoDatePickerFormsComponent]
+  declarations: [DatePickerDocumentComponent, ExampleDatePickerBasicComponent, ExampleDatePickerFormsComponent]
 })
 export class DatePickerDocumentModule { }
