@@ -1,5 +1,5 @@
 import { defer, merge, Observable, Subject } from 'rxjs';
-import { startWith, switchMap, take, takeUntil, filter } from 'rxjs/operators';
+import { startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
@@ -71,7 +71,7 @@ export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>
 
   readonly checkedChanges: Observable<NtCheckboxChange> = defer(() => {
     if (this.checkboxes) {
-      return merge(...this.checkboxes.map(item => item.change));
+      return merge<NtCheckboxChange>(...this.checkboxes.map(item => item.change));
     }
 
     return this._ngZone.onStable

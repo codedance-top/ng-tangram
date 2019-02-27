@@ -28,3 +28,5 @@
 //     this.ntModal.open(ExampleModalComponentDialogComponent);
 //   }
 // }
+
+export class ExampleModalDataComponent { }

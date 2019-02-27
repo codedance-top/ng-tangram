@@ -12,11 +12,18 @@
     "url": "https://github.com/livebridge-lab/ng-tangram"
   },
   "peerDependencies": {
-    "@angular/animations": ">=6.0.0 <7.0.0",
-    "@angular/core": ">=6.0.0 <7.0.0",
-    "@angular/common": ">=6.0.0 <7.0.0",
-    "@angular/forms": ">=6.0.0 <7.0.0",
-    "@angular/cdk": ">=6.0.0 <7.0.0",
-    "foundation-sites": "^6.0.0 <7.0.0"
+    "@angular/animations": ">=6.0.0 <8.0.0",
+    "@angular/core": ">=6.0.0 <8.0.0",
+    "@angular/common": ">=6.0.0 <8.0.0",
+    "@angular/forms": ">=6.0.0 <8.0.0",
+    "@angular/cdk": ">=6.0.0 <8.0.0",
+    "foundation-sites": "^6.0.0 <8.0.0"
+  },
+  "ngPackage": {
+    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+    "lib": {
+      "entryFile": "public-api.ts"
+    },
+    "dest": "../../../dist/@ng-tangram/components"
   }
 }

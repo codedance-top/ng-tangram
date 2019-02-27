@@ -34,7 +34,7 @@ export class NtTableComponent<T> extends CdkTable<T> implements AfterContentInit
 
   readonly columSortChanges: Observable<NtColumnSortChange> = defer(() => {
     if (this._contentColumns) {
-      return merge(...this._contentColumns.map(column => column._sortChange));
+      return merge<NtColumnSortChange>(...this._contentColumns.map(column => column._sortChange));
     }
 
     return this._ngZone.onStable

@@ -1,3 +1,3 @@
 
-export * from '@ng-tangram/animate/utils';
-export * from '@ng-tangram/animate/fading';
+export * from './utils';
+export * from './fading';

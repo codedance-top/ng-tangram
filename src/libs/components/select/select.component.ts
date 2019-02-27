@@ -184,7 +184,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   readonly optionSelectionChanges: Observable<NtOptionSelectionChange> = defer(() => {
     if (this.options) {
-      return merge(...this.options.map(option => option.selectionChange));
+      return merge<NtOptionSelectionChange>(...this.options.map(option => option.selectionChange));
     }
 
     return this._ngZone.onStable

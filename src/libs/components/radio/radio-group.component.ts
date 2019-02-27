@@ -80,7 +80,7 @@ export class NtRadioGroupComponent<T> extends NtFormFieldControl<T>
 
   readonly checkedChanges: Observable<NtRadioChange<T>> = defer(() => {
     if (this.radios) {
-      return merge(...this.radios.map(item => item.change));
+      return merge<NtRadioChange<T>>(...this.radios.map(item => item.change));
     }
 
     return this._ngZone.onStable
