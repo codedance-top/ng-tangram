@@ -3,7 +3,7 @@
   "children": [
     "core", "forms", "icon", "upload",
     "badge", "breadcrumbs", "button", "callout", "label",
-    "menu", "scrim", "pagination", "table",
+    "menu", "scrim", "pagination", "table", "tree",
     "dropdown", "popconfirm", "popover", "progress", "tooltip",
     "modal", "select", "switch", "input", "datepicker", "file", "picture", "radio", "checkbox"
   ],
@@ -34,6 +34,7 @@
     "@ng-tangram/components/select": "nt.components.select",
     "@ng-tangram/components/switch": "nt.components.switch",
     "@ng-tangram/components/table": "nt.components.table",
+    "@ng-tangram/components/tree": "nt.components.tree",
     "@ng-tangram/components/tooltip": "nt.components.tooltip",
     "@ng-tangram/components/upload": "nt.components.upload"
   }

@@ -97,20 +97,6 @@
             }
           }
         },
-        "udk": {
-          "builder": "udk:udk-builder",
-          "options": {
-            "browserTarget": "angular:build",
-            "serverTarget": "angular:server"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "angular:build:production",
-              "serverTarget": "angular:server:production",
-              "verbose": true
-            }
-          }
-        },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {

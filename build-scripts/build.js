@@ -39,6 +39,7 @@ const config = {
       '@angular/cdk/portal': 'ng.cdk.portal',
       '@angular/cdk/keycodes': 'ng.cdk.keycodes',
       '@angular/cdk/table': 'ng.cdk.table',
+      '@angular/cdk/tree': 'ng.cdk.tree',
       'rxjs': 'Rx',
       'rxjs/operators': 'Rx.operators',
       ...animates.globals,

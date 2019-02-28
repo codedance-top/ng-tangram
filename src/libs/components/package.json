@@ -18,12 +18,5 @@
     "@angular/forms": ">=6.0.0 <8.0.0",
     "@angular/cdk": ">=6.0.0 <8.0.0",
     "foundation-sites": "^6.0.0 <8.0.0"
-  },
-  "ngPackage": {
-    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
-    "lib": {
-      "entryFile": "public-api.ts"
-    },
-    "dest": "../../../dist/@ng-tangram/components"
   }
 }

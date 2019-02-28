@@ -13,12 +13,5 @@
   },
   "peerDependencies": {
     "@angular/animations": ">=6.0.0 <7.0.0"
-  },
-  "ngPackage": {
-    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
-    "lib": {
-      "entryFile": "public-api.ts"
-    },
-    "dest": "../../../dist/@ng-tangram/animate"
   }
 }
