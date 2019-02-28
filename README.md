@@ -1,4 +1,4 @@
-# Angular 6+ Components
+# Angular 7+ Components
 
 [![npm version](https://badge.fury.io/js/%40ng-tangram%2Fcomponents.svg)](https://www.npmjs.com/@ng-tangram/components)
 
@@ -33,7 +33,7 @@ Notification 通知框 | | `>= 0.6.0`
 Slider 滚动条 | | `>= 0.6.0`
 [Switch 开关](https://livebridge-lab.github.io/ng-tangram-docs#/components/switch) | &radic; | `0.5.0`
 [Table 表格](https://livebridge-lab.github.io/ng-tangram-docs#/components/table) | &radic; | `0.1.0`
-Tabs 标签页 | | `0.5.0`
+Tabs 标签页 | | `>= 0.6.0`
 [Tooltip 提示](https://livebridge-lab.github.io/ng-tangram-docs#/components/tooltip) | &radic; | `0.1.0`
 Toast 提醒框 | | `>= 0.6.0` 
 [Tree 树](https://livebridge-lab.github.io/ng-tangram-docs#/components/tree) | &radic; | `0.5.0`
