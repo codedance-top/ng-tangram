@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 export const COMPONENTS_ROUTES: Routes = [
   { path: '', redirectTo: 'badge', pathMatch: 'full' },
-  // { path: 'avatar', loadChildren: './avatar/avatar.module#AvatarDocumentModule', data: { title: 'Avatar ' } },
+  { path: 'avatar', loadChildren: './avatar/avatar.module#AvatarDocumentModule', data: { title: 'Avatar ' } },
   { path: 'badge', loadChildren: './badge/badge.module#BadgeDocumentModule', data: { title: 'Badge 徽章' } },
   { path: 'breadcrumbs', loadChildren: './breadcrumbs/breadcrumbs.module#BreadcrumbsDocumentModule', data: { title: 'Breadcrumbs 面包屑' } },
   { path: 'button', loadChildren: './button/button.module#ButtonDocumentModule', data: { title: 'Button 按钮' } },

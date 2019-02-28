@@ -1,0 +1,58 @@
+$nt-avatar-small: 32px;
+$nt-avatar-medium: 64px;
+$nt-avatar-large: 128px;
+$nt-avatar-margin: 0 rem-calc(16px) 0 0;
+$nt-avatar-radius: rem-calc(4px);
+
+
+$nt-avatar-sizes: (small: $nt-avatar-small,
+medium: $nt-avatar-medium,
+large: $nt-avatar-large) !default;
+
+
+@mixin nt-avatar-size($size: $nt-avatar-medium) {
+  height: $size;
+  width: $size;
+}
+
+@mixin nt-avatar {
+  nt-avatar {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+    margin: $nt-avatar-margin;
+    border-radius: $nt-avatar-radius;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    border: $input-border;
+    transition: $input-transition;
+    cursor: pointer;
+
+    @each $name,
+    $size in $nt-avatar-sizes {
+      &.nt-avatar-#{$name} {
+        @include nt-avatar-size($size: $size);
+      }
+    }
+
+    &:hover {
+      border-color: $input-border-focus;
+      box-shadow: $input-shadow-focus;
+      border: $input-border-focus;
+    }
+
+    &.nt-avatar-circle {
+      border-radius: 50%;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

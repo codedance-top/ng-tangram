@@ -1,5 +1,7 @@
 @import '~foundation-sites/scss/foundation';
 
+
+@import 'avatar/avatar';
 @import 'badge/badge';
 @import 'button/button';
 @import 'core/overlay/overlay';
@@ -45,6 +47,7 @@
   @include foundation-switch;
   @include foundation-table;
 
+  @include nt-avatar;
   @include nt-badge;
   @include nt-button;
   @include nt-callout;
