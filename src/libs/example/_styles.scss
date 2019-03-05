@@ -56,8 +56,12 @@ $nt-example-tabs-active-color: get-color(primary) !default;
     color: $dark-gray;
   }
 
-  .nt-example-code-shown nt-ant-icon {
+  .nt-example-code-shown .icon {
     margin-right: 3px;
+
+    &.visible {
+      color: #da0b36;
+    }
   }
 }
 

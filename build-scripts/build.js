@@ -10,6 +10,7 @@ const commonjs = require('rollup-plugin-commonjs');
 
 const animates = require('../src/libs/animate/build.config.json');
 const components = require('../src/libs/components/build.config.json');
+const pro = require('../src/libs/pro/build.config.json');
 
 const config = {
   input: {
@@ -40,10 +41,14 @@ const config = {
       '@angular/cdk/keycodes': 'ng.cdk.keycodes',
       '@angular/cdk/table': 'ng.cdk.table',
       '@angular/cdk/tree': 'ng.cdk.tree',
+      'marked': 'marked',
+      'prismjs': 'Prism',
+      'codemirror': 'CodeMirror',
       'rxjs': 'Rx',
       'rxjs/operators': 'Rx.operators',
       ...animates.globals,
-      ...components.globals
+      ...components.globals,
+      ...pro.globals
     },
     sourcemap: true
   }

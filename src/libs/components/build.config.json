@@ -1,14 +1,15 @@
 {
   "name": "components",
   "children": [
-    "core", "forms", "icon", "upload",
-    "badge", "breadcrumbs", "button", "callout", "label",
+    "core", "forms", "upload",
+    "avatar", "badge", "breadcrumbs", "button", "callout", "label",
     "menu", "scrim", "pagination", "table", "tree",
     "dropdown", "popconfirm", "popover", "progress", "tooltip",
     "modal", "select", "switch", "input", "datepicker", "file", "picture", "radio", "checkbox"
   ],
   "globals": {
     "@ng-tangram/components": "nt.components",
+    "@ng-tangram/components/avatar": "nt.components.avatar",
     "@ng-tangram/components/badge": "nt.components.badge",
     "@ng-tangram/components/breadcrumbs": "nt.components.breadcrumbs",
     "@ng-tangram/components/button": "nt.components.button",
@@ -19,7 +20,6 @@
     "@ng-tangram/components/dropdown": "nt.components.dropdown",
     "@ng-tangram/components/file": "nt.components.file",
     "@ng-tangram/components/forms": "nt.components.forms",
-    "@ng-tangram/components/icon": "nt.components.icon",
     "@ng-tangram/components/input": "nt.components.input",
     "@ng-tangram/components/label": "nt.components.label",
     "@ng-tangram/components/menu": "nt.components.menu",

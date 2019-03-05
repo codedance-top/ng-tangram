@@ -11,7 +11,9 @@ import {
   template: `
     <span class="nt-example-code-shown"
       (click)="shown=!shown"
-      [nt-tooltip]="shown ? '收起代码' : '展开代码'"><nt-ant-icon [type]="!shown ? 'eyeo' : 'eye'"></nt-ant-icon>代码</span>
+      [nt-tooltip]="shown ? '收起代码' : '展开代码'">
+      <i class="icon fab fa-angular" [class.visible]="shown"></i>代码
+    </span>
     <pre class="language-{{lang}}"><code class="language-{{lang}}">{{code}}</code></pre>
   `,
   encapsulation: ViewEncapsulation.None,

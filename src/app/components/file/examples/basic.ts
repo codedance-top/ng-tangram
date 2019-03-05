@@ -9,7 +9,7 @@ import { Validators, FormControl } from '@angular/forms';
   template: `
     <nt-form-field label="文件列表">
       <nt-file url="/files/logos" maxFiles="5" name="file" [formControl]="fileControl">
-        <nt-ant-icon type="upload"></nt-ant-icon>&nbsp;Select File
+        <i class="fa fa-upload"></i>&nbsp;Select File
       </nt-file>
     </nt-form-field>
   `

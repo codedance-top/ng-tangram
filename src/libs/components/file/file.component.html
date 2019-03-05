@@ -8,7 +8,7 @@
     [class.success]="file.status === 2"
     [class.error]="file.status === 3"
     [class.remote]="file.status === 4">
-      <span class="nt-file-symbol nt-file-symbol-icon"></span>&nbsp;
+      <span class="nt-file-symbol {{ getFileIcon(file) }}"></span>&nbsp;
       <a *ngIf="file.link" [href]="file.link" target="_blank">{{file.name}}</a>
       <ng-container *ngIf="!file.link">{{file.name}}</ng-container>
       &nbsp;{{ file.size | ntFileSize }}

@@ -6,7 +6,7 @@ import { FormControl, Validators } from '@angular/forms';
   template: `
   <nt-form-field label="图片">
     <nt-picture url="/files/logos" maxFiles="5" name="file" [formControl]="fileControl">
-      <nt-ant-icon type="plus" style="font-size: 1rem;"></nt-ant-icon>
+      <i class="fa fa-upload"></i>
     </nt-picture>
   </nt-form-field>
   `

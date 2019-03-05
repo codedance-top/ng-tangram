@@ -1,0 +1,9 @@
+{
+  "name": "pro",
+  "children": ["markdown", "markdown-editor"],
+  "globals": {
+    "@ng-tangram/pro": "nt.pro",
+    "@ng-tangram/pro/markdown": "nt.pro.markdown",
+    "@ng-tangram/pro/markdown-editor": "nt.pro.markdownEditor"
+  }
+}

@@ -1,11 +1,12 @@
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+// import { getExtension } from 'mime';
 
 import { transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { HttpProgressEvent } from '@angular/common/http';
 import {
-  Component, ElementRef, EventEmitter, Input, OnInit, Optional, Output, Self, ViewChild,
+  Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, Self, ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
@@ -15,6 +16,11 @@ import {
   NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUpload, NtUploadControl,
   NtUploadControlError, NtUploadFile, NtUploadStatus
 } from '@ng-tangram/components/upload';
+
+import { NT_FILE_ICONS, NtFileIcons, NT_FILE_EXTENSIONS, DEFAULT_FILE_ICONS } from './file-icons';
+
+const Mime = require('mime/Mime');
+const mime = new Mime(require('mime/types/standard.json'), require('mime/types/other.json'));
 
 let uniqueId = 0;
 
@@ -96,7 +102,10 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
 
   @Output() remove = new EventEmitter<NtFile>();
 
-  constructor(uploader: NtUpload, @Self() @Optional() ngControl: NgControl) {
+  constructor(
+    uploader: NtUpload,
+    @Self() @Optional() ngControl: NgControl,
+    @Inject(NT_FILE_ICONS) public icons: NtFileIcons) {
     super(uploader, ngControl);
   }
 
@@ -131,6 +140,9 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
       }
 
       let ntFile = new NtFile(file.name, file.size, file.type);
+
+      console.log(file.type);
+      console.log(mime.getExtension(file.type));
 
       this.files.push(ntFile);
 
@@ -188,6 +200,12 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
       this.files.length = 0;
       this.files.push(...this._value);
     }
+  }
+
+  getFileIcon(file: NtFile) {
+    const extension = file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length);
+    const icon = NT_FILE_EXTENSIONS[extension] || 'default';
+    return this.icons[icon];
   }
 
   private _fileTypeValid(file: File) {

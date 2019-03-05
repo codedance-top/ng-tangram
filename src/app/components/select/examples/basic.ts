@@ -15,7 +15,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
       <nt-form-field label="多选">
         <nt-select name="multiple" placeholder="多选" formControlName="multiple" filter multiple>
           <nt-option *ngFor="let alphabet of alphabets" [value]="alphabet">
-            <nt-ant-icon type="appstore1"></nt-ant-icon> {{alphabet}}
+            {{alphabet}}
           </nt-option>
         </nt-select>
       </nt-form-field>
@@ -24,7 +24,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
     <nt-select name="multiple" placeholder="多选" [(ngModel)]="value" multiple required>
       <nt-option *ngFor="let alphabet of alphabets" [value]="alphabet">
-        <nt-ant-icon type="appstore1"></nt-ant-icon> {{alphabet}}
+        {{alphabet}}
       </nt-option>
     </nt-select>
   `

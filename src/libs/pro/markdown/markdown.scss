@@ -1,0 +1,109 @@
+
+$nt-markdown-code-font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !default;
+$nt-markdown-code-color: #c7254e !default;
+$nt-markdown-code-bg: #f9f2f4 !default;
+$nt-markdown-code-radius: $global-radius !default;
+
+@mixin nt-markdown-code {
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css
+  .token.string,
+  .style .token.string {
+      background: none;
+  }
+
+  // Inline code
+  pre, code {
+    text-shadow: 0 1px $white;
+    font-family: $nt-markdown-code-font-family;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  }
+
+  code {
+    color: $nt-markdown-code-color;
+    padding: 2px 4px;
+    font-size: 90%;
+    background-color: $nt-markdown-code-bg;
+    border-radius: $global-radius;
+    border: 0;
+  }
+
+  pre {
+    color: black;
+    background: #f5f2f0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+    padding: 1em;
+    margin: .5em 0;
+    overflow: auto;
+  }
+
+  pre {
+    code {
+      padding: 0px;
+      font-size: inherit;
+      color: inherit;
+      white-space: pre-wrap;
+      background-color: transparent;
+      border-radius: 0;
+    }
+  }
+
+  blockquote {
+    font-size: 12px;
+    color: $medium-gray;
+    border-left-width: 3px;
+  }
+}
+
+@mixin nt-markdown {
+  .nt-markdown {
+    line-height: 2em;
+    h1, h2, h3 {
+      margin-top: $global-margin * 1.5;
+      margin-bottom: $global-margin;
+    }
+    h4, h5, h6 {
+      margin-top: $global-margin;
+      margin-bottom: ($global-margin / 2);
+    }
+    h1, h2, h3, h4, hr {
+      clear: both;
+    }
+    ul > li {
+      list-style-type: circle;
+      margin-left: 1.6em;
+      padding-left: 4px;
+    }
+    ol > li {
+      list-style-type: decimal;
+      margin-left: 1.6em;
+      padding-left: 4px;
+    }
+    img {
+      max-width: 100%;
+    }
+
+    blockquote {
+      padding: 5px 18px;
+      margin: 0 0 15px;
+      // background-color: lighten(@gray-lighter, 5%);
+      // margin-bottom: 10px;
+    }
+
+    // @include nt-markdown-code;
+  }
+}

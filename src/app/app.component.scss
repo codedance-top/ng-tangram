@@ -1,5 +1,4 @@
-@import '~foundation-sites/scss/util/util';
-@import '../styles/global';
+@import 'src/styles/core/foundation';
 
 @include add-foundation-colors;
 
@@ -17,6 +16,20 @@ $navbar-background: #1e222a;
   padding: 0;
   .menu {
     background: transparent;
+
+    > li {
+
+      > a {
+        border-bottom: 2px solid transparent;
+        transition: border-bottom-color .2s;
+      }
+
+      &.active > a {
+        background-color: unset;
+        color: get-color(primary);
+        border-bottom-color: get-color(primary);
+      }
+    }
   }
   .logo {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;

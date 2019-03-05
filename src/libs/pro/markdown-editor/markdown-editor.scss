@@ -1,0 +1,121 @@
+
+$nt-markdown-editor-tools-shadow: 0px 1px 2px $light-gray !default;
+$nt-markdown-editor-tools-padding: $global-padding / 2 !default;
+$nt-markdown-editor-tools-spacing: $global-padding / 2 !default;
+$nt-markdown-editor-tools-size: 30px !default;
+$nt-markdown-editor-tools-background: $white !default;
+$nt-markdown-editor-tools-active-color: #f5f5f5 !default;
+// $nt-markdown-editor-tools-border: 1px solid #fff;
+
+@mixin nt-markdown-editor-container {
+  border: $input-border;
+  background: $input-background;
+  border-radius: $input-radius;
+  display: block;
+  margin-bottom: $form-spacing;
+  overflow: hidden;
+
+  &.focus {
+    border: $input-border-focus;
+    box-shadow: $input-shadow-focus;
+  }
+
+  @if has-value($input-transition) {
+    transition: $input-transition;
+  }
+}
+
+@mixin nt-markdown-editor-tools {
+  padding: $nt-markdown-editor-tools-padding 0;
+  box-shadow: $nt-markdown-editor-tools-shadow;
+  background-color: $nt-markdown-editor-tools-background;
+  position: relative;
+  z-index: 1;
+  user-select: none;
+  .tools-group {
+    border-right: 1px solid #eee;
+    display: inline-block;
+    padding: 0 $nt-markdown-editor-tools-spacing;
+  }
+
+  .tools-item {
+    padding: $nt-markdown-editor-tools-spacing;
+    display: inline-block;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: $nt-markdown-editor-tools-size;
+    height: $nt-markdown-editor-tools-size;
+    line-height: $nt-markdown-editor-tools-size / 2;
+    text-align: center;
+    border-radius: $global-radius;
+    border: 1px solid transparent;
+    margin: 0 2px;
+    &:not(.disabled):hover {
+      background-color: $nt-markdown-editor-tools-active-color;
+    }
+
+    &.disabled {
+      cursor: no-drop;
+      color: $medium-gray;
+    }
+
+    &.active {
+      border-color: $medium-gray;
+    }
+  }
+
+  .fa-heading-x {
+    margin-left: -1px;
+    &::after {
+      font-size: 65%;
+      vertical-align: text-bottom;
+      position: relative;
+      top: 2px;
+    }
+  }
+
+  .fa-heading-1::after { content: '1'; }
+  .fa-heading-2::after { content: '2'; }
+  .fa-heading-3::after { content: '3'; }
+  .fa-heading-4::after { content: '4'; }
+  .fa-heading-5::after { content: '5'; }
+  .fa-heading-6::after { content: '6'; }
+}
+
+@mixin nt-markdown-editor-content {
+  z-index: 0;
+  textarea {
+    border: none;
+    box-shadow: none;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+  .CodeMirror {
+    font-family: $body-font-family;
+    color: $input-color;
+    height: auto;
+    min-height: 500px;
+    padding: $input-padding;
+  }
+}
+
+@mixin nt-markdown-editor {
+  .nt-markdown-editor {
+    @include nt-markdown-editor-container;
+  }
+
+  .nt-markdown-editor-tools {
+    @include nt-markdown-editor-tools;
+  }
+
+  .nt-markdown-editor-content {
+    @include nt-markdown-editor-content;
+  }
+
+  .nt-markdown-editor-preview {
+    padding: $input-padding;
+  }
+}

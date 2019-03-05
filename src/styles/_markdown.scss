@@ -1,5 +1,4 @@
-@import 'global';
-@import '~foundation-sites/scss/util/util';
+@import 'core/foundation';
 
 @mixin blockquote-variant ($color, $boder-color, $bg-percent: 45%) {
   // color: @color;

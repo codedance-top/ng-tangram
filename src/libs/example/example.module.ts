@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NtIconModule } from '@ng-tangram/components/icon';
 import { NtTooltipModule } from '@ng-tangram/components/tooltip';
 
 import { NtExampleCodeTabsPanelComponent } from './example-code-tabs-panel.component';
@@ -20,7 +19,7 @@ export const NT_EXAMPLE_COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [CommonModule, NtIconModule, NtTooltipModule],
+  imports: [CommonModule, NtTooltipModule],
   exports: NT_EXAMPLE_COMPONENTS,
   declarations: NT_EXAMPLE_COMPONENTS
 })

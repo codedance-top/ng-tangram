@@ -1,10 +1,14 @@
 <input #inputElement type="text" class="nt-has-symbol"
-  (focus)="onFocus()" (blur)="onBlur()" (window:resize)="onResize()"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+  (window:resize)="onResize()"
   (keyup)="onSearch($event)"
-  [readonly]="!filter" [placeholder]="placeholder" [disabled]="disabled"
+  [readonly]="!filter"
+  [placeholder]="placeholder"
+  [disabled]="disabled"
   [value]="filter && focused ? '' : triggerValue">
-<span class="nt-select-caret" [@fade] *ngIf="!triggerValue || disabled"></span>
-<span class="nt-select-clear" (click)="clear()" [@fade] *ngIf="triggerValue && !disabled"></span>
+<span class="nt-select-caret {{ icons.caret }}" [@fade] *ngIf="!triggerValue || disabled"></span>
+<span class="nt-select-clear {{ icons.clear }}" [@fade] *ngIf="triggerValue && !disabled" (click)="clear()"></span>
 <nt-overlay
   [origin]="origin" trigger="click"
   [positionPairs]="_positionPairs"

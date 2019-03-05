@@ -8,12 +8,10 @@ import { NtPopConfirmModule } from '@ng-tangram/components/popconfirm';
 import { PopconfirmDocumentComponent } from './popconfirm.component';
 
 import { ExamplePopConfirmBasciComponent } from './examples/basic';
-import { NtIconModule } from '@ng-tangram/components/icon';
 
 @NgModule({
   imports: [
     CommonModule,
-    NtIconModule,
     NtExampleModule,
     NtPopConfirmModule,
     RouterModule.forChild([

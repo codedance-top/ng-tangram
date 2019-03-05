@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtBreadcrumbsModule } from '@ng-tangram/components/breadcrumbs';
-import { NtIconModule } from '@ng-tangram/components/icon';
 
 import { BreadcrumbsDocumentComponent } from './breadcrumbs.component';
 import { ExampleBreadcrumbsBasicComponent } from './examples/basic';
@@ -15,7 +14,6 @@ import { ExampleBreadcrumbsBasicComponent } from './examples/basic';
     CommonModule,
     NtExampleModule,
     NtBreadcrumbsModule,
-    NtIconModule,
     RouterModule.forChild([
       { path: '', component: BreadcrumbsDocumentComponent }
     ])],

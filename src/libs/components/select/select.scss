@@ -3,9 +3,6 @@ $nt-select-background: $white !default;
 
 $nt-select-symbol-padding: $form-spacing / 2 !default;
 $nt-select-symbol-color: $select-triangle-color !default;
-$nt-select-symbol-font-family: '' !default;
-$nt-select-symbol-caret: '\25BC' !default;
-$nt-select-symbol-clear: '\00D7' !default;
 
 @mixin nt-select {
 
@@ -32,28 +29,22 @@ $nt-select-symbol-clear: '\00D7' !default;
     top: ($height - $input-font-size) / 2;
     font-size: 1em;
     line-height: 1em;
+    color: $nt-select-symbol-color;
     &::after {
-      font-family: $nt-select-symbol-font-family;
       display: block;
-      color: $nt-select-symbol-color;
       left: auto;
     }
   }
 
   .nt-select-caret {
     pointer-events: none;
-    &::after {
-      display: inline-block;
-      color: $nt-select-symbol-color;
-      content: $nt-select-symbol-caret;
-    }
+    // &::after {
+    //   display: inline-block;
+    // }
   }
 
   .nt-select-clear {
     cursor: pointer;
-    &::after {
-      content: $nt-select-symbol-clear;
-    }
   }
 
   .nt-select-pane {
@@ -76,9 +67,5 @@ $nt-select-symbol-clear: '\00D7' !default;
       cursor: no-drop;
       // text-align: center;
     }
-  }
-
-  .nt-select-pane nt-ant-icon {
-    margin-right: .3rem;
   }
 }

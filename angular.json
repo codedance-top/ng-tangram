@@ -31,7 +31,9 @@
             "styles": [
               "./node_modules/prismjs/themes/prism.css",
               "./node_modules/nprogress/nprogress.css",
-              "src/libs/components/icon/iconfonts/ant-icon.css",
+              "./node_modules/codemirror/lib/codemirror.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/brands.css",
               "src/styles/main.scss"
             ],
             "es5BrowserSupport": true

@@ -16,7 +16,8 @@ import { ActivatedRoute } from '@angular/router';
       <div class="large-10 medium-9 cell nav-content markdown">
         <router-outlet></router-outlet>
       </div>
-    </div>`
+    </div>`,
+    styleUrls: ['../../styles/_markdown.scss']
 })
 export class ComponentsComponent {
 

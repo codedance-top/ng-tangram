@@ -8,11 +8,14 @@ import { SelectionModel } from '@angular/cdk/collections';
 import {
   DOWN_ARROW, END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE, UP_ARROW
 } from '@angular/cdk/keycodes';
-import { CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import {
-  AfterContentInit, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, Input,
-  isDevMode, NgZone, OnDestroy, Optional, Output, QueryList, Renderer2, Self, ViewChild,
-  ViewEncapsulation
+  CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
+} from '@angular/cdk/overlay';
+import {
+  AfterContentInit, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, Inject,
+  Input, isDevMode, NgZone, OnDestroy, Optional, Output, QueryList, Renderer2, Self, ViewChild,
+  ViewEncapsulation,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
@@ -21,6 +24,8 @@ import {
   NtOptionSelectionChange, NtOverlayComponent, TOP_LEFT
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
+
+import { NT_SELECT_ICONS, NtSelectIcons } from './select-icons';
 
 export function getNtSelectDynamicMultipleError() {
   return Error('Cannot change `multiple` mode of select after initialization.');
@@ -46,7 +51,7 @@ export class NtSelectChange {
     { provide: NtFormFieldControl, useExisting: NtSelectComponent }
   ],
   encapsulation: ViewEncapsulation.None,
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('fade', [
       transition('* => void', fadeOut(.15)),
@@ -66,15 +71,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   readonly origin: CdkOverlayOrigin;
 
-  private _disabled = false;
-  private _focused = false;
   private _selectionModel: SelectionModel<NtOptionComponent>;
-  private _state = '';
-  private _placeholder = '';
-  private _width: number;
-  private _multiple = false;
-  private _value: any;
-  private _required = false;
 
   _positionPairs: ConnectionPositionPair[] = [BOTTOM_LEFT, TOP_LEFT];
 
@@ -82,6 +79,8 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   private _onChange: (value: any) => void = () => { };
   private _onTouched = () => { };
   private _filter: (keyword: string, option: NtOptionComponent) => boolean;
+
+  private _value: any;
 
   get value() { return this._value; }
   get triggerValue(): string {
@@ -103,19 +102,31 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     return this.options ? this.options.filter(option => !option.hidden).length === 0 : false;
   }
 
+  private _focused = false;
+
   get focused(): boolean { return this._focused; }
+
+  private _disabled = false;
 
   @Input()
   set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
   get disabled() { return this._disabled; }
 
+  private _required = false;
+
   @Input()
   get required(): boolean { return this._required; }
   set required(value: boolean) { this._required = coerceBooleanProperty(value); }
 
+  private _state = '';
+
   get state() { return this._state; }
 
+  private _width: number;
+
   get width() { return this._width; }
+
+  private _multiple = false;
 
   @Input()
   set multiple(value: boolean) { this._multiple = coerceBooleanProperty(value); }
@@ -139,6 +150,8 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   get selected(): NtOptionComponent | NtOptionComponent[] {
     return this.multiple ? this._selectionModel.selected : this._selectionModel.selected[0];
   }
+
+  private _placeholder = '';
 
   @Input()
   set placeholder(value: string) { this._placeholder = value; }
@@ -196,7 +209,8 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     private _ngZone: NgZone,
     private _elementRef: ElementRef,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Self() @Optional() public ngControl: NgControl) {
+    @Self() @Optional() public ngControl: NgControl,
+    @Inject(NT_SELECT_ICONS) public icons: NtSelectIcons) {
     super();
 
     this.origin = new CdkOverlayOrigin(this._elementRef);

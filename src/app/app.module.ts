@@ -5,7 +5,6 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { NtFormsModule } from '@ng-tangram/components/forms';
-import { NtIconModule } from '@ng-tangram/components/icon';
 import { NT_PAGINATION_CONFIG } from '@ng-tangram/components/pagination';
 
 import { environment } from '../environments/environment';
@@ -17,6 +16,7 @@ registerLocaleData(locale);
 const ROUTES: Routes = [
   { path: '', redirectTo: 'components', pathMatch: 'full' },
   { path: 'components', loadChildren: './components/components.module#ComponentsModule', data: { title: '组件' } },
+  { path: 'pro', loadChildren: './pro/pro.module#ProModule', data: { title: 'PRO' } },
   // { path: 'utils', loadChildren: './utils/utils.module#UtilsModule', data: { title: '工具' } },
   { path: '**', component: PageNotFoundComponent, data: { title: '404 - 找不到此页面' } }
 ];
@@ -30,7 +30,6 @@ const PAGINATION_CONFIG = {
   bootstrap: [AppComponent],
   imports: [
     CommonModule,
-    NtIconModule,
     HttpClientModule,
     BrowserModule.withServerTransition({
       appId: 'ng-tangram-docs'

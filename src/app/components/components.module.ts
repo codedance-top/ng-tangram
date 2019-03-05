@@ -1,11 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CommonModule } from '@angular/common';
-
 import { NtExampleModule } from '@ng-tangram/example';
 
-import { COMPONENTS_ROUTES } from './components.routes';
 import { ComponentsComponent } from './components.component';
+import { COMPONENTS_ROUTES } from './components.routes';
 
 const routes: Routes = [
   { path: '', component: ComponentsComponent, children: COMPONENTS_ROUTES }

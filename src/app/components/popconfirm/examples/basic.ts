@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'example-popconfirm-basic',
   template: `
-    <ng-template #title><nt-ant-icon class="text-orange" type="infocirlce"></nt-ant-icon> 确定要删除吗？</ng-template>
+    <ng-template #title><i class="text-orange fa fa-exclamation-triangle"></i> 确定要删除吗？</ng-template>
     <a class="button"
       [nt-popconfirm]="title"
       (confirm)="onConfirm()"

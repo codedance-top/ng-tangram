@@ -6,9 +6,9 @@ import { Component, Input, ViewEncapsulation, Attribute } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
   host: {
     'class': 'nt-avatar',
-    '[class.nt-avatar-small]': 'size === "small"',
-    '[class.nt-avatar-medium]': 'size === "medium"',
-    '[class.nt-avatar-large]': 'size === "large"',
+    '[class.small]': 'size === "small"',
+    '[class.medium]': 'size === "medium"',
+    '[class.large]': 'size === "large"',
     '[class.nt-avatar-circle]': 'shape == "circle"',
   }
 })
@@ -18,12 +18,11 @@ export class NtAvatarComponent {
     'large',
     'medium',
     'small',
-  ]
+  ];
 
   private _style: string = 'medium';
-  private _shape: string = 'square';
 
-  constructor(@Attribute('alt') public alt: string ) {}
+  constructor(@Attribute('alt') public alt: string ) { }
 
   @Input()
   get size() { return this._style; }
@@ -33,10 +32,12 @@ export class NtAvatarComponent {
     }
   }
 
+  private _shape: string = 'square';
+
   @Input()
   get shape() { return this._shape; }
   set shape(value: any) {
-    value == 'circle' && (this._shape = value);
+    value === 'circle' && (this._shape = value);
   }
 
   @Input() src: string = '';

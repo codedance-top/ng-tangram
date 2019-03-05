@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 
-// Recursively create a dir.
+
 function _recursiveMkDir(dir) {
   if (!fs.existsSync(dir)) {
     _recursiveMkDir(path.dirname(dir));

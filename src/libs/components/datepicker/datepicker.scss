@@ -16,9 +16,6 @@ $nt-datepicker-pane-background: $white !default;
 
 $nt-datepicker-symbol-padding: $form-spacing / 2 !default;
 $nt-datepicker-symbol-color: $dark-gray !default;
-$nt-datepicker-symbol-font-family: '' !default;
-$nt-datepicker-symbol-caret: '\25BC' !default;
-$nt-datepicker-symbol-clear: '\00D7' !default;
 
 @mixin nt-datepicker-table {
   table {
@@ -139,23 +136,12 @@ $nt-datepicker-symbol-clear: '\00D7' !default;
     top: ($height - $input-font-size) / 2;
     font-size: 1em;
     line-height: 1em;
-    &::after {
-      font-family: $nt-datepicker-symbol-font-family;
-      display: block;
-      color: $nt-datepicker-symbol-color;
-      left: auto;
-    }
+    color: $nt-datepicker-symbol-color;
   }
   .nt-datepicker-caret {
     pointer-events: none;
-    &::after {
-      content: $nt-datepicker-symbol-caret;
-    }
   }
   .nt-datepicker-clear {
     cursor: pointer;
-    &::after {
-      content: $nt-datepicker-symbol-clear;
-    }
   }
 }

@@ -5,7 +5,7 @@
 
 ## 代码演示
 
-<!-- <div class="grid-x grid-margin-x">
+<div class="grid-x grid-margin-x">
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
@@ -24,7 +24,7 @@
       <nt-example-code [code]="formsCode"></nt-example-code>
     </nt-example>
   </div>
-</div> -->
+</div>
 
 ## API
 

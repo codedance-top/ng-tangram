@@ -1,4 +1,3 @@
-export * from '@ng-tangram/components/icon';
 export * from '@ng-tangram/components/avatar';
 export * from '@ng-tangram/components/badge';
 export * from '@ng-tangram/components/breadcrumbs';

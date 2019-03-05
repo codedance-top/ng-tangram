@@ -17,6 +17,7 @@
     "@angular/common": ">=6.0.0 <8.0.0",
     "@angular/forms": ">=6.0.0 <8.0.0",
     "@angular/cdk": ">=6.0.0 <8.0.0",
-    "foundation-sites": "^6.0.0 <8.0.0"
+    "foundation-sites": "^6.0.0 <8.0.0",
+    "foundation-icon-fonts": "^0.1.0"
   }
 }

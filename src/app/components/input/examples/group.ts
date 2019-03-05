@@ -14,13 +14,9 @@ import { Component } from '@angular/core';
     </nt-input-addon>
   </nt-input-group>
   <nt-input-group transparent="true">
-    <nt-input-addon>
-      https://
-    </nt-input-addon>
+    <nt-input-addon>https://</nt-input-addon>
     <input ntInput type="text"/>
-    <nt-input-addon>
-      .com
-    </nt-input-addon>
+    <nt-input-addon>.com</nt-input-addon>
   </nt-input-group>
   `
 })

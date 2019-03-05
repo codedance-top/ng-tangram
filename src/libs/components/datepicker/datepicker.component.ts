@@ -13,6 +13,7 @@ import {
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { NtDatePickerCalendarComponent } from './calendar.component';
+import { NT_DATEPICKER_ICONS, NtDatePickerIcons } from './datepicker-icons';
 
 @Component({
   selector: 'nt-datepicker',
@@ -113,7 +114,8 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     _elementRef: ElementRef,
     private _dateAdapter: DateAdapter<D>,
     @Inject(NT_DATE_FORMATS) private _dateFormats: NtDateFormats,
-    @Self() @Optional() public ngControl: NgControl) {
+    @Self() @Optional() public ngControl: NgControl,
+    @Inject(NT_DATEPICKER_ICONS) public icons: NtDatePickerIcons) {
     super();
     this.origin = new CdkOverlayOrigin(_elementRef);
     if (this.ngControl) {

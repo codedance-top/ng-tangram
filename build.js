@@ -33,7 +33,7 @@ async function _metadata(from, to) {
 
 async function _copyright(from, to) {
   return [
-    relativeCopy('LICENSE', from, to),
+    relativeCopy('LICENSE', './', to),
     relativeCopy('README.md', from, to)
   ];
 }
@@ -119,4 +119,5 @@ async function _build(lib) {
 
 Promise.resolve()
   .then(() => _build('animate'))
-  .then(() => _build('components'));
+  .then(() => _build('components'))
+  .then(() => _build('pro'));

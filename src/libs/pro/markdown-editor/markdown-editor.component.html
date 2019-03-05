@@ -1,0 +1,20 @@
+<div class="nt-markdown-editor-tools" [class.tools-disable]="previewMode">
+  <div class="tools-group" *ngFor="let group of config.actions">
+    <div class="tools-item" *ngFor="let action of group"
+    [class.active]="activeActions.indexOf(action) > -1"
+    [class.disabled]="action !== 'preview' && action !== 'help' && previewMode"
+    (click)="execCommand(action)">
+      <span [class]="config.getActionIcon(action)"></span>
+    </div>
+  </div>
+  <div class="tools-group">
+    <div class="tools-item" [class.disabled]="previewMode || history.undo === 0" (click)="undo()"><span class="fa fa-reply"></span></div>
+    <div class="tools-item" [class.disabled]="previewMode || history.redo === 0" (click)="redo()"><span class="fa fa-share"></span></div>
+  </div>
+</div>
+<div class="nt-markdown-editor-preview" *ngIf="previewMode" [@fade]>
+  <nt-markdown [data]="value"></nt-markdown>
+</div>
+<div class="nt-markdown-editor-content" [hidden]="previewMode">
+  <textarea #editor></textarea>
+</div>

@@ -10,8 +10,6 @@ $nt-file-info-background-error: rgba(get-color(alert), .1) !default;
 $nt-file-info-background-trans-transition: background .5s !default;
 
 $nt-file-font-size: rem-calc(12) !default;
-$nt-file-symbol-font-family : 'anticon' !default;
-$nt-file-symbol-icon : '\e664' !default;
 
 @mixin nt-file-info-color ( $color: $nt-file-info-color, $background: $nt-file-info-background) {
   color: $color;
@@ -46,12 +44,6 @@ $nt-file-symbol-icon : '\e664' !default;
     left: 0;
     right: 0;
     bottom: 0;
-  }
-  .nt-file-symbol {
-    font-family: $nt-file-symbol-font-family;
-  }
-  .nt-file-symbol-icon::after {
-    content: $nt-file-symbol-icon;
   }
 }
 

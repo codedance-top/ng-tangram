@@ -1,0 +1,25 @@
+{
+  "name": "@ng-tangram/pro",
+  "version": "0.0.0-PLACEHOLDER",
+  "main": "./bundles/pro.umd.js",
+  "module": "./esm5/pro.js",
+  "es2015": "./esm2015/pro.js",
+  "typings": "./pro.d.ts",
+  "author": "livebridge",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/livebridge-lab/ng-tangram"
+  },
+  "peerDependencies": {
+    "@angular/animations": ">=6.0.0 <8.0.0",
+    "@angular/core": ">=6.0.0 <8.0.0",
+    "@angular/common": ">=6.0.0 <8.0.0",
+    "@angular/forms": ">=6.0.0 <8.0.0",
+    "@angular/cdk": ">=6.0.0 <8.0.0",
+    "@ng-tangram/animate": ">=0.6.0",
+    "@ng-tangram/components": ">=0.6.0",
+    "marked": "^0.3.19",
+    "codemirror": "^5.38.0"
+  }
+}

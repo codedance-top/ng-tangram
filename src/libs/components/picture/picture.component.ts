@@ -1,10 +1,13 @@
+import loadImage from 'blueimp-load-image';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 import { transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { HttpProgressEvent } from '@angular/common/http';
 import {
-  HttpProgressEvent} from '@angular/common/http';
-import {
-  Component, ElementRef, EventEmitter, Input, OnInit,
-  Optional, Output, Self, TemplateRef, ViewChild, ViewEncapsulation
+  Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, Self, TemplateRef,
+  ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
@@ -15,9 +18,7 @@ import {
   NtUploadControlError, NtUploadFile, NtUploadStatus
 } from '@ng-tangram/components/upload';
 
-import loadImage from 'blueimp-load-image';
-import { takeUntil } from 'rxjs/operators';
-import { Subject, Subscription } from 'rxjs';
+import { NT_PICTURE_ICONS, NtPictureIcons } from './picture-icons';
 
 // const loadImage = _loadImage;
 
@@ -150,7 +151,8 @@ export class NtPictureComponent extends NtUploadControl<NtPictureFile> implement
   constructor(
     private _modal: NtModal,
     uploader: NtUpload,
-    @Self() @Optional() ngControl: NgControl) {
+    @Self() @Optional() ngControl: NgControl,
+    @Inject(NT_PICTURE_ICONS) public icons: NtPictureIcons) {
     super(uploader, ngControl);
   }
 

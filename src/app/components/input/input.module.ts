@@ -1,7 +1,6 @@
 import { NtMenuModule } from '@ng-tangram/components/menu';
 import { CommonModule } from '@angular/common';
 import { NtDropdownModule } from '@ng-tangram/components/dropdown';
-import { NtIconModule } from '@ng-tangram/components/icon';
 import { NtButtonModule } from '@ng-tangram/components/button';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +22,6 @@ import { NtSelectModule } from '@ng-tangram/components/select';
     NtDropdownModule,
     NtMenuModule,
     NtSelectModule,
-    NtIconModule,
     FormsModule,
     RouterModule.forChild([
       { path: '', component: InputDocumentComponent },

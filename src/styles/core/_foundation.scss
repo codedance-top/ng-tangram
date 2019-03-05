@@ -1,0 +1,29 @@
+@import 'global';
+@import '~foundation-sites/scss/foundation';
+
+$button-color-alt: $white;
+
+$badge-color-alt: $white;
+
+$label-color-alt: $white;
+$table-padding: .5rem 1.25rem;
+$table-is-striped: false;
+
+$switch-height: 20px;
+$switch-height-tiny: 16px;
+$switch-height-small: 18px;
+$switch-height-large: 24px;
+$switch-paddle-offset: 2px;
+
+$form-label-font-size: 1rem;
+$input-font-size: 1rem;
+
+$input-border-focus: 1px solid get-color(primary);
+$input-placeholder-color: $dark-gray;
+
+$input-shadow: 0 0 0 0px rgba($black, 0.1);
+$input-shadow-focus: 0 0 0px 2px rgba(get-color(primary), .2);
+$input-transition: background-color .3s, box-shadow .3s;
+
+$helptext-color: $dark-gray;
+$helptext-font-style: inherit;
