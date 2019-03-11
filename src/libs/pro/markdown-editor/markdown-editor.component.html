@@ -4,7 +4,7 @@
     [class.active]="activeActions.indexOf(action) > -1"
     [class.disabled]="action !== 'preview' && action !== 'help' && previewMode"
     (click)="execCommand(action)">
-      <span [class]="config.getActionIcon(action)"></span>
+      <span [class]="icons[action]"></span>
     </div>
   </div>
   <div class="tools-group">
@@ -16,5 +16,5 @@
   <nt-markdown [data]="value"></nt-markdown>
 </div>
 <div class="nt-markdown-editor-content" [hidden]="previewMode">
-  <textarea #editor></textarea>
+  <textarea #editor [style.height.px]="500"></textarea>
 </div>

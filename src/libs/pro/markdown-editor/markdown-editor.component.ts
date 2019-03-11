@@ -1,16 +1,15 @@
 import 'codemirror/mode/gfm/gfm';
 import 'codemirror/addon/edit/continuelist';
-import 'codemirror';
 
-// const { fromTextArea, EditorFromTextArea } = require('codemirror');
-
-import * as CodeMirror from 'codemirror';
+import { EditorFromTextArea, fromTextArea } from 'codemirror';
 import { Subject } from 'rxjs';
 
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { isPlatformBrowser } from '@angular/common';
 import {
-  Component, ElementRef, Input, OnDestroy, Optional, Self, ViewChild, ViewEncapsulation
+  Component, ElementRef, Inject, Input, OnChanges, OnDestroy, Optional, PLATFORM_ID, Renderer2,
+  Self, SimpleChanges, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn } from '@ng-tangram/animate/fading';
@@ -18,6 +17,10 @@ import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { commands } from './commands';
 import { NtMarkdownEditorConfig } from './markdown-editor-config';
+import { NT_MARKDOWN_EDITOR_ICONS, NtMarkdownEditorIcons } from './markdown-editor-icons';
+
+const DEFAULT_MIN_ROWS = 10, DEFAULT_MAX_ROWS = 20,
+  MIN_ROWS_VALUE = 1, MAX_ROWS_VALUE = 100;
 
 @Component({
   selector: 'nt-markdown-editor',
@@ -36,7 +39,7 @@ import { NtMarkdownEditorConfig } from './markdown-editor-config';
     '[class.focus]': 'focused'
   }
 })
-export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implements ControlValueAccessor, OnDestroy {
+export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implements ControlValueAccessor, OnChanges, OnDestroy {
 
   private readonly _destroy = new Subject<void>();
 
@@ -44,7 +47,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
 
   previewMode = false;
 
-  instance: CodeMirror.EditorFromTextArea;
+  instance: EditorFromTextArea;
 
   config: NtMarkdownEditorConfig = new NtMarkdownEditorConfig();
 
@@ -83,26 +86,22 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
   get required(): boolean { return this._required; }
   set required(value: boolean) { this._required = coerceBooleanProperty(value); }
 
-  private _width: number;
+  private _minRows: number = DEFAULT_MIN_ROWS;
 
   @Input()
-  get width(): number { return this._width; }
-  set width(value: number) {
-    this._width = coerceNumberProperty(value) || 0;
-    if (this.instance) {
-      this.instance.setSize(this.width, this.height);
-    }
+  get minRows(): number { return this._minRows; }
+  set minRows(value: number) {
+    const newValue = coerceNumberProperty(value) || 0;
+    this._minRows = newValue < MIN_ROWS_VALUE ? MIN_ROWS_VALUE : newValue;
   }
 
-  private _height: number;
+  private _maxRows: number = DEFAULT_MAX_ROWS;
 
   @Input()
-  get height(): number { return this._height; }
-  set height(value: number) {
-    this._height = coerceNumberProperty(value) || 0;
-    if (this.instance) {
-      this.instance.setSize(this.width, this.height);
-    }
+  get maxRows(): number { return this._maxRows; }
+  set maxRows(value: number) {
+    const newValue = coerceNumberProperty(value) || 0;
+    this._maxRows = newValue < MAX_ROWS_VALUE ? MAX_ROWS_VALUE : newValue;
   }
 
   get history() {
@@ -116,7 +115,11 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
   private _onChange: (value: any) => void = () => { };
   private _onTouched = () => { };
 
-  constructor(@Self() @Optional() public ngControl: NgControl) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private _renderer: Renderer2,
+    @Self() @Optional() public ngControl: NgControl,
+    @Inject(NT_MARKDOWN_EDITOR_ICONS) public icons: NtMarkdownEditorIcons) {
     super();
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -125,6 +128,14 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
 
   ngAfterViewInit() {
     this._codeMirrorInit();
+  }
+
+
+  ngOnChanges(changes: SimpleChanges) {
+    const change = changes.minRows || changes.maxRows;
+    if (change && !change.firstChange) {
+      this._setEditorHeightRange();
+    }
   }
 
   ngOnDestroy() {
@@ -195,7 +206,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
 
   private _codeMirrorInit() {
     this.editor.nativeElement.value = this.value;
-    this.instance = CodeMirror.fromTextArea(this.editor.nativeElement, {
+    this.instance = fromTextArea(this.editor.nativeElement, {
       mode: 'gfm',
       lineWrapping: true,
       theme: "default",
@@ -203,7 +214,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
       extraKeys: { "Enter": "newlineAndIndentContinueMarkdownList" }
     });
 
-    this.instance.setSize(this.width, this.height);
+    this._setEditorHeightRange();
 
     this.instance.on('change', this._onCodeMirrorChange.bind(this));
     this.instance.on('cursorActivity', this._onCodeMirrorCursorActivity.bind(this));
@@ -216,7 +227,6 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
       this.instance.off('focus', this._onCodeMirrorFocus);
       this.instance.off('blur', this._onCodeMirrorBlur);
       this.instance.toTextArea();
-      // this.instance = null;
     });
 
     Promise.resolve().then(() => this.instance.refresh());
@@ -257,5 +267,20 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
     if (range.match(/^#{6}\s/gm)) { this.activeActions.push('h6'); }
     if (range.match(/^[*\-+]\s/gm)) { this.activeActions.push('ul'); }
     if (range.match(/^\d+\.\s+/gm)) { this.activeActions.push('ol'); }
+  }
+
+  /**
+   * 以文本行数来计算输入窗口的高度。
+   */
+  private _setEditorHeightRange() {
+    if (isPlatformBrowser(this.platformId) && !!this.instance) {
+      const scrollElement = this.instance.getScrollerElement();
+      const style = window.getComputedStyle(scrollElement);
+      if (style && style.lineHeight) {
+        const lineHeight = parseFloat(style.lineHeight.replace('px', ''));
+        this._renderer.setStyle(scrollElement, 'min-height', `${this.minRows * lineHeight}px`);
+        this._renderer.setStyle(scrollElement, 'max-height', `${this.maxRows * lineHeight}px`);
+      }
+    }
   }
 }

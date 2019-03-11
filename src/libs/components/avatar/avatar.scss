@@ -1,6 +1,6 @@
-$nt-avatar-small: 32px !default;
-$nt-avatar-medium: 64px !default;
-$nt-avatar-large: 128px !default;
+$nt-avatar-small: rem-calc(32) !default;
+$nt-avatar-medium: $nt-avatar-small * 2 !default;
+$nt-avatar-large: $nt-avatar-medium * 2 !default;
 $nt-avatar-margin: 0 $global-margin $global-margin 0 !default;
 $nt-avatar-radius: $global-radius !default;
 
@@ -9,7 +9,6 @@ $nt-avatar-sizes: (
   medium: $nt-avatar-medium,
   large: $nt-avatar-large
 ) !default;
-
 
 @mixin nt-avatar-size($size: $nt-avatar-medium) {
   height: $size;

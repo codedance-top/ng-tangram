@@ -2,35 +2,25 @@ import { Component, Input, ViewEncapsulation, Attribute } from '@angular/core';
 
 @Component({
   selector: 'nt-avatar',
-  templateUrl: './avatar.component.html',
+  template: '<img [src]="src" [alt]="alt">',
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'nt-avatar',
-    '[class.small]': 'size === "small"',
-    '[class.medium]': 'size === "medium"',
-    '[class.large]': 'size === "large"',
+    '[class]': '["nt-avatar", size, shape, class].join(" ")',
     '[class.nt-avatar-circle]': 'shape == "circle"',
   }
 })
 export class NtAvatarComponent {
 
-  private _styleMap = [
-    'large',
-    'medium',
-    'small',
-  ];
+  /**
+   * 定义此属性是为了避免内部的动态样式 class 和外部设置的值起冲突，所以用此属性接收外部的值并且合并 class 来避免这个问题。
+   *
+   * TODO: 官方会在 Ivy Renderer 中修复这个问题，预计会在 Angular 9.0。
+   * 有关此问题的Issue: https://github.com/angular/angular/issues/7289
+   * @deprecated > 0.6.0
+   */
+  @Input() class: string = '';
 
-  private _style: string = 'medium';
-
-  constructor(@Attribute('alt') public alt: string ) { }
-
-  @Input()
-  get size() { return this._style; }
-  set size(value: any) {
-    if (this._styleMap.indexOf(value) !== -1) {
-      this._style = value;
-    }
-  }
+  @Input() size: string = '';
 
   private _shape: string = 'square';
 
@@ -42,4 +32,5 @@ export class NtAvatarComponent {
 
   @Input() src: string = '';
 
+  @Input() alt: string = '';
 }

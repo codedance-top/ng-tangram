@@ -2,8 +2,13 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NtOptionModule, NtOverlayModule } from '@ng-tangram/components/core';
 
-import { DEFAULT_SELECT_ICONS, NT_SELECT_ICONS, NtSelectIcons } from './select-icons';
+import { NT_SELECT_ICONS, NtSelectIcons } from './select-icons';
 import { NtSelectComponent } from './select.component';
+
+const DEFAULT_SELECT_ICONS: NtSelectIcons = {
+  caret: 'fa fa-chevron-down',
+  clear: 'fa fa-times'
+};
 
 @NgModule({
   imports: [CommonModule, NtOverlayModule, NtOptionModule],

@@ -4,8 +4,14 @@ import { NtModalModule } from '@ng-tangram/components/modal';
 import { NtProgressModule } from '@ng-tangram/components/progress';
 import { NtUploadModule } from '@ng-tangram/components/upload';
 
-import { DEFAULT_PICTURE_ICONS, NT_PICTURE_ICONS, NtPictureIcons } from './picture-icons';
+import { NT_PICTURE_ICONS, NtPictureIcons } from './picture-icons';
 import { NtPictureComponent } from './picture.component';
+
+const DEFAULT_PICTURE_ICONS: NtPictureIcons = {
+  add: 'fa fa-plus',
+  preview: 'fa fa-search',
+  remove: 'fa fa-trash-alt'
+};
 
 @NgModule({
   imports: [CommonModule, NtModalModule, NtUploadModule, NtProgressModule],

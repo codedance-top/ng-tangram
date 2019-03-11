@@ -1,6 +1,4 @@
-@import 'src/styles/core/foundation';
-
-@include add-foundation-colors;
+@import 'src/styles/variables';
 
 $wrapper-header-height: 64px;
 $navbar-width: 230px;
@@ -26,8 +24,8 @@ $navbar-background: #1e222a;
 
       &.active > a {
         background-color: unset;
-        color: get-color(primary);
-        border-bottom-color: get-color(primary);
+        color: $primary-color;
+        border-bottom-color: $primary-color;
       }
     }
   }

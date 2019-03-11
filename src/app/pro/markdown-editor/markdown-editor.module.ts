@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtMarkdownEditorModule } from '@ng-tangram/pro';
 
+import { ExampleMarkdownEditorBasciComponent } from './examples/basic';
 import { MarkdownEditorDocumentComponent } from './markdown-editor.component';
 
 @NgModule({
@@ -15,6 +16,6 @@ import { MarkdownEditorDocumentComponent } from './markdown-editor.component';
       { path: '', component: MarkdownEditorDocumentComponent }
     ])
   ],
-  declarations: [MarkdownEditorDocumentComponent]
+  declarations: [MarkdownEditorDocumentComponent, ExampleMarkdownEditorBasciComponent]
 })
 export class MarkdownEditorDocumentModule { }

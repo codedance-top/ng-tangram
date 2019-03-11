@@ -1,0 +1,107 @@
+
+@import '~foundation-sites/scss/util/util';
+
+// Common Global
+// ---------
+
+$contrast-warnings: false;
+$global-font-size: 14px;
+$global-width: rem-calc(1200);
+$global-lineheight: 1.5;
+
+
+$light-gray: #e6e6e6;
+$medium-gray: #cacaca;
+$dark-gray: #8a8a8a;
+$black: #0a0a0a;
+$white: #fefefe;
+
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$success-color: #28a745;
+$warning-color: #fd7e14;
+$alert-color: #dc3545;
+
+$foundation-palette: (
+  primary: $primary-color,
+  secondary: $secondary-color,
+  success: $success-color,
+  warning: $warning-color,
+  alert: $alert-color
+);
+
+$body-background: #FFF;
+$body-font-color: $black;
+$body-font-family: "open sans", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+$body-antialiased: true;
+
+$global-margin: 1rem;
+$global-padding: 1rem;
+$global-position: 1rem;
+$global-weight-normal: normal;
+$global-weight-bold: bold;
+$global-radius: 3px;
+$global-menu-padding: 0.7rem 1rem;
+$global-menu-nested-margin: 1rem;
+$global-text-direction: ltr;
+$global-flexbox: true;
+$global-prototype-breakpoints: true;
+$global-button-cursor: auto;
+$global-color-pick-contrast-tolerance: 0;
+
+// Grid
+$grid-columns: 12;
+
+// Code
+$code-color: #c7254e;
+$code-background: #f9f2f4;
+
+// Forms Global
+$form-spacing: 1rem;
+
+// Prints
+$print-transparent-backgrounds: true;
+
+// Button
+$button-color-alt: $white;
+
+// Badge
+$badge-color-alt: $white;
+
+// Label
+$label-color-alt: $white;
+
+// Table
+$table-padding: .5rem 1.25rem;
+$table-is-striped: false;
+
+// Switch
+$switch-height: rem-calc(20);
+$switch-height-tiny: rem-calc(16);
+$switch-height-small: rem-calc(18);
+$switch-height-large: rem-calc(24);
+$switch-paddle-offset: rem-calc(2);
+
+// Forms
+$form-label-font-size: 1rem;
+// $form-spacing: 1rem;
+// $input-line-height: 1;
+
+$input-font-size: 1rem;
+$input-border-focus: 1px solid $primary-color;
+$input-placeholder-color: $dark-gray;
+
+$input-shadow: 0 0 0 0px rgba($black, 0.1);
+$input-shadow-focus: 0 0 0px 2px rgba($primary-color, .2);
+$input-transition: background-color .3s, box-shadow .3s;
+
+$helptext-color: $dark-gray;
+$helptext-font-style: inherit;
+
+$nt-input-shadow-invalid: 0 0 0 0px rgba($alert-color, .1);
+$nt-input-shadow-valid: 0 0 0 0px rgba($success-color, .1);
+$nt-input-shadow-warning: 0 0 0 0px rgba($warning-color, .1);
+
+$nt-input-shadow-invalid-focus: 0 0 0 2px rgba($alert-color, .2);
+$nt-input-shadow-valid-focus: 0 0 0 2px rgba($success-color, .2);
+$nt-input-shadow-warning-focus: 0 0 0 2px rgba($warning-color, .2);

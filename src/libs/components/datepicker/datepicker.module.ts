@@ -4,12 +4,17 @@ import { NtNativeDateModule, NtOverlayModule } from '@ng-tangram/components/core
 
 import { NtDatePickerCalendarComponent } from './calendar.component';
 import {
-  DEFAULT_DATEPICKER_ICONS, NT_DATEPICKER_ICONS, NtDatePickerIcons
+  NT_DATEPICKER_ICONS, NtDatePickerIcons
 } from './datepicker-icons';
 import { NtDatePickerComponent } from './datepicker.component';
 import { NtDatePickerMonthComponent } from './month.component';
 import { NtDatePickerMultiYearComponent } from './multi-year.component';
 import { NtDatePickerYearComponent } from './year.component';
+
+const DEFAULT_DATEPICKER_ICONS: NtDatePickerIcons = {
+  caret: 'far fa-calendar-alt',
+  clear: 'fa fa-times'
+};
 
 @NgModule({
   imports: [CommonModule, NtOverlayModule, NtNativeDateModule],

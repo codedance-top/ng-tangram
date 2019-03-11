@@ -1,17 +1,13 @@
 
-
-
-// @import 'markdown';
-
-@import 'core/foundation';
-@import 'core/ng-tangram';
-
+@import 'variables';
 @import '~foundation-sites/scss/foundation';
+
 @import '../libs/components/styles';
 @import '../libs/pro/styles';
 @import '../libs/example/styles';
 
 @import 'navbar';
+@import 'markdown';
 
 @include foundation-global-styles;
 @include foundation-prototype-classes;
@@ -27,7 +23,6 @@
 
 body {
   font-family: $body-font-family;
-  font-size: rem-calc(14);
   background-color: #f5f5f5;
 }
 
@@ -41,10 +36,10 @@ ol, ul {
 }
 
 a {
-  color: get-color(primary);
+  color: $primary-color;
   text-decoration: none;
   cursor: pointer;
   &:hover {
-    color: darken(get-color(primary), 10%);
+    color: darken($primary-color, 10%);
   }
 }

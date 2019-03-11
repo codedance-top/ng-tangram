@@ -19,9 +19,6 @@ import {
 
 import { NT_FILE_ICONS, NtFileIcons, NT_FILE_EXTENSIONS, DEFAULT_FILE_ICONS } from './file-icons';
 
-const Mime = require('mime/Mime');
-const mime = new Mime(require('mime/types/standard.json'), require('mime/types/other.json'));
-
 let uniqueId = 0;
 
 export class NtFile extends NtUploadFile {
@@ -140,9 +137,6 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
       }
 
       let ntFile = new NtFile(file.name, file.size, file.type);
-
-      console.log(file.type);
-      console.log(mime.getExtension(file.type));
 
       this.files.push(ntFile);
 

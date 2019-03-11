@@ -14,13 +14,23 @@ const pro = require('../src/libs/pro/build.config.json');
 
 const config = {
   input: {
-    external: id => /^(@angular)/.test(id) || /^(@ng-tangram)/.test(id) || /^(rxjs)/.test(id),
+    external: id =>
+      /^(@angular)/.test(id) ||
+      /^(@ng-tangram)/.test(id) ||
+      /^(rxjs)/.test(id) ||
+      /^(marked)/.test(id) ||
+      /^(codemirror)/.test(id) ||
+      /^(prismjs)/.test(id),
     plugins: [
-      commonjs({ include: ['node_modules/blueimp-load-image/**'] }),
+      commonjs({
+        include: [
+          'node_modules/blueimp-load-image/**'
+        ]
+      }),
       sourcemaps(),
       nodeResolve({ jsnext: true, module: true })
     ],
-    // external : ['blueimp-load-image']
+    // external : ['marked', 'codemirror', 'prismjs']
   },
   output: {
     globals: {
@@ -29,6 +39,7 @@ const config = {
       '@angular/forms': 'ng.forms',
       '@angular/common': 'ng.common',
       '@angular/common/http': 'ng.common.http',
+      '@angular/http': 'ng.http',
       '@angular/cdk': 'ng.cdk',
       '@angular/cdk/a11y': 'ng.cdk.a11y',
       '@angular/cdk/bidi': 'ng.cdk.bidi',

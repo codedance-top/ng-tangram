@@ -2,6 +2,8 @@
 
 # MarkdownEditor Markdown 编辑器
 
+基于 CodeMirror 的编辑器组件
+
 ## 何时使用
 
   显示用户头像
@@ -12,10 +14,10 @@
   <div class="medium-12 large-12 cell">
     <nt-example>
       <nt-example-showcase>
-        <nt-markdown-editor></nt-markdown-editor>
+        <example-markdown-editor></example-markdown-editor>
       </nt-example-showcase>
       <nt-example-legend title="基本设置">
-        最简单的用法，设置 "src" 设置用户头像图片路径。
+        默认
       </nt-example-legend>
       <nt-example-code [code]="basicCode"></nt-example-code>
     </nt-example>

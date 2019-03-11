@@ -343,11 +343,30 @@ function italic(doc: CodeMirror.Doc, _erase: boolean, _multiple: boolean = false
   doc.setSelection(from, to, { scroll: false });
 }
 
+/**
+ * 删除线
+ * @param doc CodeMirror.Doc 对象
+ * @param erase 是否要抹掉
+ * @param multiple 是否是多行状态
+ */
+function strikethrough(doc: CodeMirror.Doc, _erase: boolean, _multiple: boolean = false) {
+
+  const start = doc.getCursor('start');
+  const end = doc.getCursor('end');
+
+  const selection = doc.getSelection() || '',
+    from = { line: start.line, ch: start.ch + 2 },
+    to = { line: end.line, ch: end.ch + (start.line === end.line ? 2 : 0) };
+  doc.replaceRange(`~~${selection}~~`, start, end, selection);
+  doc.setSelection(from, to, { scroll: false });
+}
+
+
 
 export const commands: { [key: string]: NtMarkdownEditorCommand } = {
 
   // 字体样式
-  bold, italic,
+  bold, italic, strikethrough,
 
   // header
   h1, h2, h3, h4, h5, h6,

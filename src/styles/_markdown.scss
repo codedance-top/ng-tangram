@@ -1,20 +1,7 @@
-@import 'core/foundation';
-
-@mixin blockquote-variant ($color, $boder-color, $bg-percent: 45%) {
-  // color: @color;
-  border-left-color: $boder-color; // background-color: lighten(@color, @bg-percent);
-}
-
-@mixin img-box-variant ($color) {
-  p {
-    border-top-color: $color;
-  }
-}
-
 pre,
 code {
   text-shadow: 0 1px white;
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+  font-family: $font-family-monospace;
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
@@ -24,7 +11,7 @@ code {
   color: $code-color;
   padding: 2px 4px;
   font-size: 90%;
-  background-color: $code-bg;
+  background-color: $code-background;
   border-radius: $global-radius;
 }
 
@@ -62,6 +49,7 @@ blockquote {
   color: $dark-gray;
   border-left-width: 3px;
 }
+
 
 .markdown {
   color: #333;

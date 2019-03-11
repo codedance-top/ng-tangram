@@ -1,15 +1,13 @@
-import * as marked from 'marked';
+import marked from 'marked';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
-// const marked = require('');
-
-function clearHTML(text: string) {
-  return text.replace('', '');
-}
+// function clearHTML(text: string) {
+//   return text.replace('', '');
+// }
 
 @Injectable()
 export class NtMarkdownService {

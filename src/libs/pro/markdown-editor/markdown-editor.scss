@@ -4,8 +4,13 @@ $nt-markdown-editor-tools-padding: $global-padding / 2 !default;
 $nt-markdown-editor-tools-spacing: $global-padding / 2 !default;
 $nt-markdown-editor-tools-size: 30px !default;
 $nt-markdown-editor-tools-background: $white !default;
-$nt-markdown-editor-tools-active-color: #f5f5f5 !default;
-// $nt-markdown-editor-tools-border: 1px solid #fff;
+$nt-markdown-editor-tools-active-color: lighten($light-gray, 5%) !default;
+
+$nt-markdown-editor-tools-border: 1px solid $light-gray !default;
+$nt-markdown-editor-padding: $input-padding $input-padding * 1.25 !default;
+
+$nt-markdown-editor-font-family: inherit !default;
+$nt-markdown-editor-font-size: rem-calc(12) !default;
 
 @mixin nt-markdown-editor-container {
   border: $input-border;
@@ -33,19 +38,22 @@ $nt-markdown-editor-tools-active-color: #f5f5f5 !default;
   z-index: 1;
   user-select: none;
   .tools-group {
-    border-right: 1px solid #eee;
+    border-right: $nt-markdown-editor-tools-border;
     display: inline-block;
     padding: 0 $nt-markdown-editor-tools-spacing;
+
+    &:last-child {
+      border-right: 0;
+    }
   }
 
   .tools-item {
-    padding: $nt-markdown-editor-tools-spacing;
     display: inline-block;
     cursor: pointer;
     box-sizing: border-box;
     width: $nt-markdown-editor-tools-size;
     height: $nt-markdown-editor-tools-size;
-    line-height: $nt-markdown-editor-tools-size / 2;
+    line-height: $nt-markdown-editor-tools-size;
     text-align: center;
     border-radius: $global-radius;
     border: 1px solid transparent;
@@ -84,6 +92,8 @@ $nt-markdown-editor-tools-active-color: #f5f5f5 !default;
 
 @mixin nt-markdown-editor-content {
   z-index: 0;
+  padding: $nt-markdown-editor-padding;
+  cursor: text;
   textarea {
     border: none;
     box-shadow: none;
@@ -94,11 +104,15 @@ $nt-markdown-editor-tools-active-color: #f5f5f5 !default;
   }
 
   .CodeMirror {
-    font-family: $body-font-family;
+    font-size: $nt-markdown-editor-font-size;
+    font-family: $nt-markdown-editor-font-family;
     color: $input-color;
     height: auto;
-    min-height: 500px;
-    padding: $input-padding;
+
+    .CodeMirror-lines,
+    .CodeMirror-line {
+      padding: 0px !important;
+    }
   }
 }
 
@@ -116,6 +130,6 @@ $nt-markdown-editor-tools-active-color: #f5f5f5 !default;
   }
 
   .nt-markdown-editor-preview {
-    padding: $input-padding;
+    padding: $nt-markdown-editor-padding;
   }
 }

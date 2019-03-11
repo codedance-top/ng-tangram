@@ -1,5 +1,4 @@
 import { highlightAll } from 'prismjs';
-
 import { isPlatformBrowser } from '@angular/common';
 import {
   Component, ElementRef, Inject, Input, OnChanges, OnInit, PLATFORM_ID, Renderer2, ViewEncapsulation
@@ -16,6 +15,7 @@ import { NtMarkdownService } from './markdown.service';
   }
 })
 export class NtMarkdownComponent implements OnInit, OnChanges {
+
   private _path: string;
   private _data: string;
   private _md: any;

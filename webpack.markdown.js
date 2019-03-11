@@ -5,7 +5,7 @@
  *
  * 依赖库：
  *  marked
- *  markdown-loader
+ *  markdown-loader 2.x (大于 2.x 版本在处理 html 内部的markdown语法时会以文本形式处理，与预期想法不同)
  */
 
 const marked = require('marked');
@@ -53,10 +53,8 @@ module.exports = {
   module: {
     rules: [
       { test: /\.md$/, use: ['raw-loader'] },
-
-      /** 在 angular 组件模板中引用的 markdown 模板文件以 *.component.md 的方式命名，所以仅对这个格式的文件进行预解析处理 */
+      /* 在 angular 组件模板中引用的 markdown 模板文件以 *.component.md 的方式命名，所以仅对这个格式的文件进行预解析处理 */
       { test: /\.component\.md$/, use: [markdownLoader] },
-      { test: /\.md$/, exclude: [/\.component\.md$/], use: ['raw-loader'] },
     ]
   }
 };

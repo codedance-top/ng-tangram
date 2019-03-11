@@ -3,7 +3,7 @@ $wrapper-header-height: 64px;
 $navbar-width: 230px;
 $navbar-background: #1e222a;
 
-$navbar-active-color: get-color(primary);
+$navbar-active-color: $primary-color;
 
 .nav-treebar {
   padding-top: 20px;
