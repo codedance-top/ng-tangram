@@ -4,11 +4,6 @@ import { Component, OnInit } from '@angular/core';
   selector: 'nt-markdown-document',
   templateUrl: 'markdown.component.md',
 })
-export class MarkdownDocumentComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class MarkdownDocumentComponent {
+  basicCode = require('!!raw-loader!./examples/basic');
 }

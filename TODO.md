@@ -7,7 +7,6 @@ $nt-overlay-container-padding 样式效果使用 js 实现 ，增加相关组件
 
 ### 将来要增加的 组件/特性 ? 代表未确定是否会开发
 
-* Avatar ?
 * Collapse
 * Map
 * Notification

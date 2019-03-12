@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -17,6 +17,8 @@ import { ActivatedRoute } from '@angular/router';
         <router-outlet></router-outlet>
       </div>
     </div>`
+  ,
+  styleUrls: ['components.component.scss']
 })
 export class ComponentsComponent {
 
