@@ -52,8 +52,9 @@ const markdownLoader = {
 module.exports = {
   module: {
     rules: [
+      { test: /\.md$/, use: ['raw-loader'] },
       /* 在 angular 组件模板中引用的 markdown 模板文件以 *.component.md 的方式命名，所以仅对这个格式的文件进行预解析处理 */
-      { test: /\.component\.md$/, use: ['raw-loader', markdownLoader] }
+      { test: /\.component\.md$/, use: [markdownLoader] },
     ]
   }
 };

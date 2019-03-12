@@ -1,3 +1,4 @@
+
 $nt-switch-color-disabled: $medium-gray !default;
 $nt-switch-opacity-disabled: .5 !default;
 
@@ -8,9 +9,10 @@ $nt-switch-sizes: (
   large: $switch-height-large
 ) !default;
 
-@mixin nt-switch-circle (
+@mixin nt-switch-circle(
   $switch-height: $switch-height,
-  $paddle-offset: $switch-paddle-offset) {
+  $paddle-offset: $switch-paddle-offset
+) {
 
   $paddle-height: $switch-height - ($paddle-offset * 2);
 
@@ -19,15 +21,13 @@ $nt-switch-sizes: (
   }
 
   .switch-paddle::after {
-    border-radius: $paddle-height !important;
+    border-radius: $paddle-height  !important;
   }
 }
-
 
 @mixin nt-switch {
   .nt-switch {
     display: inline-block;
-
     &.nt-switch-circle {
       @include nt-switch-circle();
       @each $name, $size in $nt-switch-sizes {
@@ -42,13 +42,6 @@ $nt-switch-sizes: (
 
       .switch-paddle {
         cursor: no-drop;
-      }
-    }
-
-    &:not(.nt-switch-disabled) {
-      .switch-paddle:hover,
-      .switch-input:focus + .switch-paddle {
-        box-shadow: $input-shadow-focus;
       }
     }
   }

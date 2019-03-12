@@ -7,5 +7,7 @@ export class NtTableResizable {
 
   private _isNativeTable: boolean;
 
-  constructor() { }
+  constructor() {
+
+  }
 }

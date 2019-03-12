@@ -116,22 +116,14 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
   private _onTouched = () => { };
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private _renderer: Renderer2,
     @Self() @Optional() public ngControl: NgControl,
-    @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(NT_MARKDOWN_EDITOR_ICONS) public icons: NtMarkdownEditorIcons) {
     super();
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
-
-    /** codemirror 在服务器环境下不支持以 es6 模块的方式导入，因此需要以动态加载的方式来处理。 */
-    // if (isPlatformBrowser(this.platformId) && !codeMirrorLoaded) {
-    //   fromTextArea = require('codemirror').fromTextArea;
-    //   require('codemirror/mode/gfm/gfm');
-    //   require('codemirror/addon/edit/continuelist');
-    //   codeMirrorLoaded = true;
-    // }
   }
 
   ngAfterViewInit() {
@@ -213,36 +205,34 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
   }
 
   private _codeMirrorInit() {
-    if (typeof fromTextArea === 'function') {
-      this.editor.nativeElement.value = this.value;
-      this.instance = fromTextArea(this.editor.nativeElement, {
-        mode: 'gfm',
-        lineWrapping: true,
-        theme: "default",
-        placeholder: this.placeholder,
-        extraKeys: { "Enter": "newlineAndIndentContinueMarkdownList" }
-      });
+    this.editor.nativeElement.value = this.value;
+    this.instance = fromTextArea(this.editor.nativeElement, {
+      mode: 'gfm',
+      lineWrapping: true,
+      theme: "default",
+      placeholder: this.placeholder,
+      extraKeys: { "Enter": "newlineAndIndentContinueMarkdownList" }
+    });
 
-      this._setEditorHeightRange();
+    this._setEditorHeightRange();
 
-      this.instance.on('change', this._onCodeMirrorChange.bind(this));
-      this.instance.on('cursorActivity', this._onCodeMirrorCursorActivity.bind(this));
-      this.instance.on('focus', this._onCodeMirrorFocus.bind(this));
-      this.instance.on('blur', this._onCodeMirrorBlur.bind(this));
+    this.instance.on('change', this._onCodeMirrorChange.bind(this));
+    this.instance.on('cursorActivity', this._onCodeMirrorCursorActivity.bind(this));
+    this.instance.on('focus', this._onCodeMirrorFocus.bind(this));
+    this.instance.on('blur', this._onCodeMirrorBlur.bind(this));
 
-      this._destroy.subscribe(() => {
-        this.instance.off('change', this._onCodeMirrorChange);
-        this.instance.off('cursorActivity', this._onCodeMirrorCursorActivity);
-        this.instance.off('focus', this._onCodeMirrorFocus);
-        this.instance.off('blur', this._onCodeMirrorBlur);
-        this.instance.toTextArea();
-      });
+    this._destroy.subscribe(() => {
+      this.instance.off('change', this._onCodeMirrorChange);
+      this.instance.off('cursorActivity', this._onCodeMirrorCursorActivity);
+      this.instance.off('focus', this._onCodeMirrorFocus);
+      this.instance.off('blur', this._onCodeMirrorBlur);
+      this.instance.toTextArea();
+    });
 
-      Promise.resolve().then(() => this.instance.refresh());
-    }
+    Promise.resolve().then(() => this.instance.refresh());
   }
 
-  private _onCodeMirrorChange(instance: EditorFromTextArea) {
+  private _onCodeMirrorChange(instance: CodeMirror.EditorFromTextArea) {
     this._actionMatches();
     this._value = instance.getValue();
     this._onChange(this._value);

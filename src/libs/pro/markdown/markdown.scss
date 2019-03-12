@@ -1,39 +1,8 @@
 
-$nt-markdown-font-family: inherit !default;
-$nt-markdown-line-height: $global-lineheight !default;
-
-$nt-markdown-heading-margin: 1em 0 !default;
-
-$nt-markdown-ol-style: decimal !default;
-$nt-markdown-ul-style: circle !default;
-
-$nt-markdown-blockquote-margin: $global-margin / 2 0 !default;
-$nt-markdown-blockquote-padding: rem-calc(8 16) !default;
-$nt-markdown-blockquote-color: $dark-gray !default;
-$nt-markdown-blockquote-background: #f3f3f3 !default;
-
-$nt-markdown-paragraph-margin: 0 0 $global-margin 0 !default;
-
-$nt-markdown-code-font-family: $font-family-monospace !default;
+$nt-markdown-code-font-family: $font-family-monospace;
 $nt-markdown-code-color: #c7254e !default;
 $nt-markdown-code-bg: #f9f2f4 !default;
 $nt-markdown-code-radius: $global-radius !default;
-
-@mixin nt-markdown-base {
-  line-height: $nt-markdown-line-height;
-
-  * {
-    word-break: break-all;
-  }
-
-  img {
-    max-width: 100%;
-  }
-
-  p {
-    margin: $nt-markdown-paragraph-margin;
-  }
-}
 
 @mixin nt-markdown-code {
 
@@ -73,58 +42,62 @@ $nt-markdown-code-radius: $global-radius !default;
     overflow: auto;
   }
 
-  pre code {
-    padding: 0px;
-    font-size: inherit;
-    color: inherit;
-    white-space: pre-wrap;
-    background-color: transparent;
-    border-radius: 0;
+  pre {
+    code {
+      padding: 0px;
+      font-size: inherit;
+      color: inherit;
+      white-space: pre-wrap;
+      background-color: transparent;
+      border-radius: 0;
+    }
   }
 
   blockquote {
-    margin: $nt-markdown-blockquote-margin;
-    padding: $nt-markdown-blockquote-padding;
-    color: $nt-markdown-blockquote-color;
-    background: $nt-markdown-blockquote-background;
-
-    > :first-child {
-      margin-top: 0;
-    }
-
-    > :last-child {
-      margin-top: 0;
-    }
-  }
-}
-
-@mixin nt-markdown-heading {
-  h1, h2, h3, h4, h5, h6, hr {
-    clear: both;
-    margin: $nt-markdown-heading-margin;
-  }
-}
-
-@mixin nt-markdown-list {
-  ul {
-    list-style-type: $nt-markdown-ul-style;
-  }
-  ol {
-    list-style-type: $nt-markdown-ol-style;
-  }
-
-  ul > li,
-  ol > li {
-    margin-left: 1.6em;
-    // margin-left: 1.6em;
+    font-size: 12px;
+    color: $medium-gray;
+    border-left-width: 3px;
   }
 }
 
 @mixin nt-markdown {
   .nt-markdown {
-    @include nt-markdown-base;
-    @include nt-markdown-heading;
-    @include nt-markdown-list;
+    line-height: 2em;
+
+    * {
+      word-break: break-all;
+    }
+
+    h1, h2, h3 {
+      margin-top: $global-margin * 1.5;
+      margin-bottom: $global-margin;
+    }
+    h4, h5, h6 {
+      margin-top: $global-margin;
+      margin-bottom: ($global-margin / 2);
+    }
+    h1, h2, h3, h4, hr {
+      clear: both;
+    }
+    ul > li {
+      list-style-type: circle;
+      margin-left: 1.6em;
+      padding-left: 4px;
+    }
+    ol > li {
+      list-style-type: decimal;
+      margin-left: 1.6em;
+      padding-left: 4px;
+    }
+    img {
+      max-width: 100%;
+    }
+
+    blockquote {
+      padding: 5px 18px;
+      margin: 0 0 15px;
+    }
+
     @include nt-markdown-code;
   }
 }
