@@ -18,6 +18,15 @@
       </nt-example-legend>
       <nt-example-code [code]="basicCode"></nt-example-code>
     </nt-example>
+    <nt-example>
+      <nt-example-showcase>
+        <demo-avatar-size></demo-avatar-size>
+      </nt-example-showcase>
+      <nt-example-legend title="大小设置">
+        通过设置 `size` 改变用户头像大小。<br> 可选字段 `small`、 `medium`、`large`, 也可以通过样式自定义大小。
+      </nt-example-legend>
+      <nt-example-code [code]="sizeCode"></nt-example-code>
+    </nt-example>
   </div>
   <div class="medium-6 large-6 cell">
       <nt-example>
@@ -29,17 +38,6 @@
         </nt-example-legend>
         <nt-example-code [code]="shapeCode"></nt-example-code>
       </nt-example>
-  </div>
-  <div class="medium-6 large-6 cell">
-    <nt-example>
-      <nt-example-showcase>
-        <demo-avatar-size></demo-avatar-size>
-      </nt-example-showcase>
-      <nt-example-legend title="大小设置">
-        通过设置 `size` 改变用户头像大小。<br> 可选字段 `small`、 `medium`、`large`, 也可以通过样式自定义大小。
-      </nt-example-legend>
-      <nt-example-code [code]="sizeCode"></nt-example-code>
-    </nt-example>
   </div>
 </div>
 

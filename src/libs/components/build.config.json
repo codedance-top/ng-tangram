@@ -2,10 +2,10 @@
   "name": "components",
   "children": [
     "core", "forms", "upload",
-    "avatar", "badge", "breadcrumbs", "button", "callout", "label",
+    "avatar", "badge", "breadcrumbs", "button", "callout", "label", "modal",
     "menu", "scrim", "pagination", "table", "tree",
     "dropdown", "popconfirm", "popover", "progress", "tooltip",
-    "modal", "select", "switch", "input", "datepicker", "file", "picture", "radio", "checkbox"
+    "select", "switch", "input", "datepicker", "file", "picture", "radio", "checkbox"
   ],
   "globals": {
     "@ng-tangram/components": "nt.components",

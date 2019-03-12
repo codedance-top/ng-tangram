@@ -1,13 +1,12 @@
 
 @import 'variables';
-@import '~foundation-sites/scss/foundation';
+// @import '~foundation-sites/scss/foundation';
 
 @import '../libs/components/styles';
 @import '../libs/pro/styles';
 @import '../libs/example/styles';
 
 @import 'navbar';
-@import 'markdown';
 
 @include foundation-global-styles;
 @include foundation-prototype-classes;

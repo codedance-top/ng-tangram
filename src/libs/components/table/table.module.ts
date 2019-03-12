@@ -11,6 +11,7 @@ import {
 } from './row.directive';
 import { NtTableComponent } from './table.component';
 import { CdkTableModule } from '@angular/cdk/table';
+import { NtTableResizable } from './resizable.directive';
 
 const NT_CELL_DECLARATIONS = [
   NtCellDefDirective,
@@ -35,11 +36,13 @@ const NT_ROW_DECLARATIONS = [
   imports: [CommonModule, CdkTableModule],
   exports: [
     NtTableComponent,
+    NtTableResizable,
     ...NT_CELL_DECLARATIONS,
     ...NT_ROW_DECLARATIONS
   ],
   declarations: [
     NtTableComponent,
+    NtTableResizable,
     ...NT_CELL_DECLARATIONS,
     ...NT_ROW_DECLARATIONS
   ]
