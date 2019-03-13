@@ -8,7 +8,7 @@ $input-border-focus: 0px;
 $input-shadow: none;
 $input-placeholder-color: $dark-gray;
 $input-transition: background-color .6s, box-shadow .6s;
-$input-padding: $form-spacing / 2 $form-spacing;
+$input-padding: $form-spacing / 2;
 
 $button-sizes: (
   tiny: 0.5rem,
@@ -16,3 +16,8 @@ $button-sizes: (
   default: 0.8rem,
   large: 1rem,
 );
+
+$callout-border: 0px;
+
+$nt-checkbox-border: 0px;
+$nt-checkbox-border-disabled: 0px;

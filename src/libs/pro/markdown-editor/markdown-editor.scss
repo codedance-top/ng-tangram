@@ -64,7 +64,7 @@ $nt-markdown-editor-font-size: rem-calc(12) !default;
     }
 
     &.disabled {
-      cursor: no-drop;
+      cursor: $input-cursor-disabled;
       color: $medium-gray;
     }
 

@@ -4,18 +4,19 @@ $nt-radio-size: rem-calc(16) !default;
 $nt-radio-transition: $input-transition, background-color .3s !default;
 
 $nt-radio-circle-size: $nt-radio-size / 2 !default;
-
 $nt-radio-label-spacing: $form-spacing / 2 !default;
 
-$nt-radio-group-padding: $form-spacing / 2 0 !default;
+$nt-radio-group-padding: $form-spacing / 2 !default;
 $nt-radio-group-margin: 0 0 $form-spacing / 2 !default;
 $nt-radio-group-line-height: $nt-radio-size !default;
 
-$nt-radio-color: get-color(primary) !default;
-$nt-radio-color-disabled: $medium-gray !default;
+$nt-radio-background: $input-background !default;
+$nt-radio-background-checked: get-color(primary) !default;
+$nt-radio-background-disabled: $medium-gray !default;
 
 $nt-radio-border: $input-border !default;
-$nt-radio-border-disabled: 1px solid $nt-radio-color-disabled !default;
+$nt-radio-border-focus: $input-border-focus !default;
+$nt-radio-border-disabled: 1px solid $medium-gray !default;
 
 @mixin nt-radio-input {
 
@@ -29,7 +30,7 @@ $nt-radio-border-disabled: 1px solid $nt-radio-color-disabled !default;
     border: $nt-radio-border;
     position: relative;
     outline: none;
-    background-color: #FFF;
+    background: $nt-checkbox-background;
 
     @if has-value($input-transition) {
       transition: $nt-radio-transition;
@@ -53,29 +54,32 @@ $nt-radio-border-disabled: 1px solid $nt-radio-color-disabled !default;
   }
 
   input:checked + .nt-radio-input {
-
-    border-color: $nt-radio-color;
+    // background: $nt-radio-background-checked;
+    border: $nt-radio-border-focus;
     &::after {
-      background-color: $nt-radio-color;
+      background: $nt-radio-background-checked;
       transform: scale(1);
     }
   }
-
 }
 
 @mixin nt-radio-disabled {
-  cursor: no-drop;
   input:disabled + .nt-radio-input {
-    border-color: $nt-radio-color-disabled;
+    border: $nt-radio-border-disabled;
   }
   input:checked:disabled + .nt-radio-input {
-    border-color: $nt-radio-color-disabled;
+    border: $nt-radio-border-disabled;
     &::after {
-      background-color: $nt-radio-color-disabled;
+      background: $nt-radio-background-disabled;
     }
   }
+
+  .nt-radio-layout {
+    cursor: $input-cursor-disabled;
+  }
+
   .nt-radio-label {
-    color: $nt-radio-color-disabled;
+    color: $nt-radio-background-disabled;
   }
 }
 
@@ -94,11 +98,7 @@ $nt-radio-border-disabled: 1px solid $nt-radio-color-disabled !default;
     box-shadow: $input-shadow;
   }
 
-  // .nt-radio-label {
-  //   color: $color;
-  // }
-
-  &:not(.disabled) {
+  &:not(.nt-radio-disabled) {
 
     input:checked + .nt-radio-input {
       border-color: $color;
@@ -115,24 +115,28 @@ $nt-radio-border-disabled: 1px solid $nt-radio-color-disabled !default;
 }
 
 @mixin nt-radio-highlight {
-  &:not(.disabled) {
+  &:not(.nt-radio-disabled) {
     input:focus + .nt-radio-input,
     &:hover .nt-radio-input {
       box-shadow: $input-shadow-focus;
-      border-color: $nt-radio-color;
+      border: $nt-radio-border-focus;
     }
   }
 }
 
 @mixin nt-radio-group {
-  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(2);
+  $form-element-height: ($input-font-size * unitless-calc($input-line-height)) +
+    (get-side($input-padding, 'top') + get-side($input-padding, 'bottom'))  - rem-calc(1);
+
+  $padding: ($form-element-height - $nt-radio-group-line-height) / 2 $nt-radio-group-padding;
+
   display: block;
   line-height: $nt-radio-group-line-height;
-  padding: ($height - $nt-radio-size) / 2 0;
+  padding: $padding;
   margin: $nt-radio-group-margin;
 
   .nt-radio {
-    margin-right: $form-spacing;
+    margin: 0 $form-spacing $form-spacing / 2 0;
 
     &:last-child {
       margin-right: 0;
@@ -145,7 +149,7 @@ $nt-radio-border-disabled: 1px solid $nt-radio-color-disabled !default;
     display: inline-block;
     white-space: nowrap;
     font-size: $nt-radio-size;
-    margin: 0 0 $form-spacing / 2;
+    // margin: 0 0 $form-spacing / 2;
 
     @include nt-radio-highlight;
 
@@ -154,7 +158,7 @@ $nt-radio-border-disabled: 1px solid $nt-radio-color-disabled !default;
       cursor: pointer;
     }
 
-    &.disabled {
+    &.nt-radio-disabled {
       @include nt-radio-disabled;
     }
 

@@ -1,8 +1,8 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
-
 import { Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
+
+import { AfterContentInit, Component } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'example-form-login',
@@ -12,7 +12,7 @@ import { filter } from 'rxjs/operators';
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()" ntFormAutofocus>
         <nt-form-field label="用户名">
           <input ntInput type="text" name="username" formControlName="username" placeholder="用户名">
-          <p class="help-text">232121321321321</p>
+          <p class="help-text">请输入小于20个字符的文字</p>
         </nt-form-field>
         <nt-form-field label="密码">
           <input ntInput type="password" name="password" formControlName="password" placeholder="密码">

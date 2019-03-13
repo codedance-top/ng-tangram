@@ -160,7 +160,6 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-
     if (this._ngForm && this.ngControl) {
       this._ngForm.ngSubmit.pipe(takeUntil(this._destroy)).subscribe(() => this._validate());
     }

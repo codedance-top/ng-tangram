@@ -25,35 +25,32 @@
     @include nt-input-group-base;
   }
 
-  .nt-input-addon,
-  input {
+  .nt-input-addon, input {
     @include nt-input-group-radius;
   }
 
   .nt-input-group-transparent {
     border: $input-border;
     border-radius: $input-radius;
+    transition: $input-transition;
+    background: $input-background;
 
     .nt-input-addon {
-      background: transparent;
       color: $dark-gray;
-      border: none;
+      border: none !important;
+      background: transparent !important;
     }
 
     input {
-      border: none;
+      border: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
     }
 
     &:focus-within {
       border: $input-border-focus;
       box-shadow: $input-shadow-focus;
-      transition: $input-transition;
-
-      input {
-        border: none;
-        box-shadow: none;
-        background-color: transparent;
-      }
+      background: $input-background-focus;
     }
   }
 

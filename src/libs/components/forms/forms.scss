@@ -17,8 +17,8 @@ $nt-input-background-warning: $nt-input-color-warning !default;
 $nt-input-symbol-offset: $input-font-size + $form-spacing !default;
 
 $nt-form-label-width: 120px !default;
-$nt-form-label-line-height: $form-label-font-size + rem-calc(4) !default;
-$nt-form-label-padding-horizontal: $form-spacing !default;
+// $nt-form-label-line-height: $form-label-font-size !default;
+// $nt-form-label-padding-horizontal: $form-spacing !default;
 
 @mixin nt-form-control {
 
@@ -136,15 +136,18 @@ $nt-form-label-padding-horizontal: $form-spacing !default;
 
   position: relative;
 
-  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom'));
+  $form-element-height: ($input-font-size * unitless-calc($input-line-height))
+    + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom'))
+    - rem-calc(1);
+  $padding: ($form-element-height - $form-label-font-size) / 2 $form-spacing;
 
   .nt-form-label {
     vertical-align: top;
     position: absolute;
     left: 0;
     width: $nt-form-label-width;
-    line-height: $nt-form-label-line-height;
-    padding: ($height - $nt-form-label-line-height) / 2 $nt-form-label-padding-horizontal;
+    line-height: $form-label-font-size;
+    padding: $padding;
     margin-bottom: 0;
     text-align: right;
   }

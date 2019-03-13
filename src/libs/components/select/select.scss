@@ -64,7 +64,7 @@ $nt-select-symbol-color: $select-triangle-color !default;
     .filter-empty {
       padding: $nt-option-padding;
       color: $medium-gray;
-      cursor: no-drop;
+      cursor: $input-cursor-disabled;
       // text-align: center;
     }
   }

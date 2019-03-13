@@ -9,16 +9,19 @@ $nt-checkbox-indeterminate-size: rem-calc(8) !default;
 
 $nt-checkbox-label-spacing: $form-spacing / 2 !default;
 
-$nt-checkbox-group-padding: $form-spacing / 2 0 !default;
+$nt-checkbox-group-padding: $form-spacing / 2 !default;
 $nt-checkbox-group-margin: 0 0 $form-spacing / 2 !default;
 $nt-checkbox-group-line-height: $nt-checkbox-size !default;
 
-$nt-checkbox-color: get-color(primary) !default;
-$nt-checkbox-color-disabled: $medium-gray !default;
 $nt-checkbox-check-border-width: 2px !default;
 
+$nt-checkbox-background: $input-background !default;
+$nt-checkbox-background-checked: get-color(primary) !default;
+$nt-checkbox-background-disabled: $medium-gray !default;
+
 $nt-checkbox-border: $input-border !default;
-$nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
+$nt-checkbox-border-focus: $input-border-focus !default;
+$nt-checkbox-border-disabled: 1px solid $medium-gray !default;
 
 @mixin nt-checkbox-input {
 
@@ -32,22 +35,26 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
     border: $nt-checkbox-border;
     position: relative;
     outline: none;
-    background-color: #FFF;
+    background: $nt-checkbox-background;
+    text-align: center;
+    line-height: $nt-checkbox-size;
 
     @if has-value($input-transition) {
       transition: $nt-checkbox-transition;
     }
 
+    @if has-value($nt-checkbox-border) {
+      line-height: 100%;
+    }
+
     &::after {
-      position: absolute;
+      display: inline-block;
       content: '';
       width: $nt-checkbox-check-size * .5;
       height: $nt-checkbox-check-size;
       left: 0;
       right: 0;
       margin: 0 auto;
-      top: 50%;
-      margin-top: -($nt-checkbox-check-size * .55);
       box-sizing: border-box;
       border: $nt-checkbox-check-border-width solid transparent;
       border-top-width: 0px;
@@ -58,8 +65,8 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
   }
 
   input:checked + .nt-checkbox-input {
-    background-color: $nt-checkbox-color;
-    border-color: $nt-checkbox-color;
+    background: $nt-checkbox-background-checked;
+    border: $nt-checkbox-border-focus;
     &::after {
       border-color: #FFF;
       transform: rotate(45deg) scale(1);
@@ -69,16 +76,22 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
 }
 
 @mixin nt-checkbox-disabled {
-  cursor: no-drop;
+
   input:disabled + .nt-checkbox-input {
-    border-color: $nt-checkbox-color-disabled;
+    border: $nt-checkbox-border-disabled;
   }
+
   input:checked:disabled + .nt-checkbox-input {
-    background-color: $nt-checkbox-color-disabled;
-    border-color: $nt-checkbox-color-disabled;
+    background: $nt-checkbox-background-disabled;
+    border: $nt-checkbox-border-disabled;
   }
+
+  .nt-checkbox-layout {
+    cursor: $input-cursor-disabled;
+  }
+
   .nt-checkbox-label {
-    color: $nt-checkbox-color-disabled;
+    color: $nt-checkbox-background-disabled;
   }
 }
 
@@ -101,17 +114,17 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
   &.nt-checkbox-indeterminate {
 
     .nt-checkbox-input::before {
-      background-color: $nt-checkbox-color;
+      background: $nt-checkbox-background-checked;
       transform: scale(1);
     }
 
     &.nt-checkbox-disabled .nt-checkbox-input::before{
-      background-color: $nt-checkbox-color-disabled;
+      background: $nt-checkbox-background-disabled;
     }
 
     &.nt-checkbox-checked .nt-checkbox-input::before {
       transform: scale(0);
-      background-color: unset;
+      background: unset;
     }
   }
 }
@@ -150,16 +163,19 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
     input:focus + .nt-checkbox-input,
     &:hover .nt-checkbox-input {
       box-shadow: $input-shadow-focus;
-      border-color: $nt-checkbox-color;
+      border: $nt-checkbox-border-focus;
     }
   }
 }
 
 @mixin nt-checkbox-group {
-  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(2);
+  $form-element-height: ($input-font-size * unitless-calc($input-line-height)) +
+    (get-side($input-padding, 'top') + get-side($input-padding, 'bottom'))  - rem-calc(1);
+  $padding: ($form-element-height - $nt-checkbox-group-line-height) / 2 $nt-checkbox-group-padding;
+
   display: block;
   line-height: $nt-checkbox-group-line-height;
-  padding: ($height - $nt-checkbox-size) / 2 0;
+  padding: $padding;
   margin: $nt-checkbox-group-margin;
 
   .nt-checkbox {
@@ -191,7 +207,7 @@ $nt-checkbox-border-disabled: 1px solid $nt-checkbox-color-disabled !default;
 
     .nt-checkbox-input-container {
       display: inline-block;
-      vertical-align: top;
+      cursor: inherit;
       @include nt-checkbox-input;
     }
 

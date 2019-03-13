@@ -41,7 +41,7 @@ $nt-switch-sizes: (
       opacity: $nt-switch-opacity-disabled;
 
       .switch-paddle {
-        cursor: no-drop;
+        cursor: $input-cursor-disabled;
       }
     }
 

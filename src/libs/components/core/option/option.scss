@@ -36,7 +36,7 @@ $nt-option-background-disabled: $white !default;
     &.nt-option-disabled {
       color: $nt-option-color-disabled;
       background-color: $nt-option-background-disabled;
-      cursor: no-drop;
+      cursor: $input-cursor-disabled;
     }
 
     &.nt-option-hidden {

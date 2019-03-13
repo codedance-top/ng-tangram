@@ -18,7 +18,7 @@ export class NtRadioChange<T> {
   templateUrl: 'radio.component.html',
   host: {
     'class': 'nt-radio',
-    '[class.disabled]': 'disabled'
+    '[class.nt-radio-disabled]': 'disabled'
   }
 })
 export class NtRadioComponent<T> implements ControlValueAccessor {

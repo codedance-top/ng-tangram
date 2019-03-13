@@ -68,7 +68,7 @@ $nt-datepicker-symbol-color: $dark-gray !default;
     }
     &.disabled span {
       color: $nt-datepicker-color-disabled;
-      cursor: no-drop;
+      cursor: $input-cursor-disabled;
     }
   } // tbody td span {
   //   display: block;
