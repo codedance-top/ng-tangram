@@ -118,6 +118,6 @@ async function _build(lib) {
 }
 
 Promise.resolve()
-  // .then(() => _build('animate'))
+  .then(() => _build('animate'))
   .then(() => _build('components'))
-  // .then(() => _build('pro'));
+  .then(() => _build('pro'));
