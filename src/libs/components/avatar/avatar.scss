@@ -1,8 +1,13 @@
 $nt-avatar-small: rem-calc(32) !default;
 $nt-avatar-medium: $nt-avatar-small * 2 !default;
 $nt-avatar-large: $nt-avatar-medium * 2 !default;
-$nt-avatar-margin: 0 $global-margin $global-margin 0 !default;
+// $nt-avatar-margin: 0 $global-margin $global-margin 0 !default;
 $nt-avatar-radius: $global-radius !default;
+$nt-avatar-border: $input-border !default;
+$nt-avatar-border-focus: $input-border-focus !default;
+
+$nt-avatar-shadow: $input-shadow !default;
+$nt-avatar-shadow-focus: $input-shadow-focus !default;
 
 $nt-avatar-sizes: (
   small: $nt-avatar-small,
@@ -19,19 +24,19 @@ $nt-avatar-sizes: (
   display: inline-block;
   vertical-align: middle;
   padding: 0;
-  margin: $nt-avatar-margin;
+  margin: 0;
   border-radius: $nt-avatar-radius;
   text-align: center;
   overflow: hidden;
   position: relative;
-  border: $input-border;
+  border: $nt-avatar-border;
+  box-shadow: $nt-avatar-shadow;
   transition: $input-transition;
   cursor: pointer;
 
   &:hover {
-    border-color: $input-border-focus;
-    box-shadow: $input-shadow-focus;
-    border: $input-border-focus;
+    border: $nt-avatar-border-focus;
+    box-shadow: $nt-avatar-shadow-focus;
   }
 
   img {

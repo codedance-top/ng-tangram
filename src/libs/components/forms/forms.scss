@@ -120,12 +120,9 @@ $nt-form-label-width: 120px !default;
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
-  padding-left: .4em;
   &.required {
     position: relative;
     &:before {
-      margin-left: -.6em;
-      position: absolute;
       content: '*';
       color: $nt-input-color-invalid;
     }

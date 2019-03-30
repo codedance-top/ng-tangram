@@ -20,7 +20,12 @@ import { NtFormOrientation, NtFormOrientationDirective } from './form-orientatio
 @Component({
   selector: 'nt-form-field',
   template: `
-    <label class="nt-form-label" [ngStyle]="_labelStyles" [class.required]="required" *ngIf="labelVisible">{{label}}</label>
+    <label class="nt-form-label"
+      *ngIf="labelVisible"
+      [ngStyle]="_labelStyles"
+      [class.required]="markVisible && required">
+      {{label}}
+    </label>
     <div class="nt-form-group" [ngStyle]="_groupStyles">
       <div class="nt-form-control">
         <ng-content></ng-content>
@@ -59,6 +64,8 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
   private _selfOrientation = false;
 
+  private _markVisible = true;
+
   private _ngForm: NgForm | FormGroupDirective | null = null;
 
   /** 表单宽度 （只在 horizontal 模式下起作用） */
@@ -93,6 +100,12 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   get orientation() { return this._orientation; }
 
   get horizontal() { return this.orientation === 'horizontal'; }
+
+  @Input()
+  get markVisible() { return this._markVisible; }
+  set markVisible(value: boolean) {
+    this._markVisible = coerceBooleanProperty(value);
+  }
 
   get required() {
 
@@ -177,7 +190,7 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  _clearValidateMessage () {
+  _clearValidateMessage() {
     this._invalid = false;
   }
 
