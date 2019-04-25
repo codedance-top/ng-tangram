@@ -27,9 +27,7 @@ import { NtFormOrientation, NtFormOrientationDirective } from './form-orientatio
       {{label}}
     </label>
     <div class="nt-form-group" [ngStyle]="_groupStyles">
-      <div class="nt-form-control">
-        <ng-content></ng-content>
-      </div>
+      <ng-content></ng-content>
       <span class="form-error is-visible" *ngIf="_invalid && errors" [@fade]="_invalid">
         {{ errors | ntFormError:label:messages }}
       </span>

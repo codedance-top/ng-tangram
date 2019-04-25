@@ -1,7 +1,12 @@
 import 'zone.js/dist/zone-node';
-
+import * as domino from 'domino';
 import * as express from 'express';
 import { join } from 'path';
+
+const win = domino.createWindow();
+global['window'] = win;
+global['document'] = win.document;
+global['navigator'] = win.navigator;
 
 import { enableProdMode } from '@angular/core';
 import { ngExpressEngine } from '@nguniversal/express-engine';

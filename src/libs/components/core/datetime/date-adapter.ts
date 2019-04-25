@@ -5,14 +5,19 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { InjectionToken, LOCALE_ID } from '@angular/core';
+import { InjectionToken, LOCALE_ID, inject } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 /** InjectionToken for datepicker that can be used to override default locale code. */
-export const NT_DATE_LOCALE = new InjectionToken<string>('nt-date-locale');
+export const NT_DATE_LOCALE = new InjectionToken<string>('nt-date-locale', {
+  providedIn: 'root',
+  factory: NT_DATE_LOCALE_FACTORY
+});
 
-/** Provider for NT_DATE_LOCALE injection token. */
-export const NT_DATE_LOCALE_PROVIDER = { provide: NT_DATE_LOCALE, useExisting: LOCALE_ID };
+/** @docs-private */
+export function NT_DATE_LOCALE_FACTORY(): string {
+  return inject(LOCALE_ID);
+}
 
 /** Adapts type `D` to be usable as a date by cdk-based components that work with dates. */
 export abstract class DateAdapter<D> {

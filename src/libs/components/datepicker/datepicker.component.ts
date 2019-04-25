@@ -20,7 +20,7 @@ import { NT_DATEPICKER_ICONS, NtDatePickerIcons } from './datepicker-icons';
   templateUrl: 'datepicker.component.html',
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'nt-datepicker nt-form-control',
+    'class': 'nt-datepicker',
     '[class.focus]': 'overlay.isOpen'
   },
   animations: [

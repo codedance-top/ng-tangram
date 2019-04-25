@@ -11,6 +11,7 @@ const commonjs = require('rollup-plugin-commonjs');
 const animates = require('../src/libs/animate/build.config.json');
 const components = require('../src/libs/components/build.config.json');
 const pro = require('../src/libs/pro/build.config.json');
+const momentDateAdapter = require('../src/libs/moment-adapter/build.config.json');
 
 const config = {
   input: {
@@ -19,6 +20,7 @@ const config = {
       /^(@ng-tangram)/.test(id) ||
       /^(rxjs)/.test(id) ||
       /^(marked)/.test(id) ||
+      /^(moment)/.test(id) ||
       /^(codemirror)/.test(id) ||
       /^(prismjs)/.test(id),
     plugins: [
@@ -55,11 +57,13 @@ const config = {
       'marked': 'marked',
       'prismjs': 'Prism',
       'codemirror': 'CodeMirror',
+      'moment': 'moment',
       'rxjs': 'Rx',
       'rxjs/operators': 'Rx.operators',
       ...animates.globals,
       ...components.globals,
-      ...pro.globals
+      ...pro.globals,
+      ...momentDateAdapter.globals
     },
     sourcemap: true
   }

@@ -1,0 +1,19 @@
+{
+  "name": "@ng-tangram/moment-adapter",
+  "version": "0.1.0",
+  "main": "./bundles/moment-adapter.umd.js",
+  "module": "./esm5/moment-adapter.js",
+  "es2015": "./esm2015/moment-adapter.js",
+  "typings": "./moment-adapter.d.ts",
+  "author": "livebridge",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/livebridge-lab/ng-tangram"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=6.0.0 <8.0.0",
+    "@ng-tangram/components": ">=0.6.0",
+    "moment": "~2.24.0"
+  }
+}

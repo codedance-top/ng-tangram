@@ -99,17 +99,17 @@ $nt-picture-preview-height: 90vh !default;
 
 @mixin nt-picture-validate (
   $color: $nt-input-background-invalid,
-  $input-shadow: $nt-input-shadow-invalid,
-  $input-shadow-hover: $nt-input-shadow-invalid-focus,
+  $shadow: $nt-input-shadow-invalid,
+  $shadow-hover: $nt-input-shadow-invalid-focus,
   $color-lighten: 5%) {
 
   color: $color;
   border-color: $color;
-  box-shadow: $input-shadow;
+  box-shadow: $shadow;
 
   &:hover {
     border-color: $color;
-    box-shadow: $input-shadow-hover;
+    box-shadow: $shadow-hover;
   }
 }
 
@@ -134,8 +134,8 @@ $nt-picture-preview-height: 90vh !default;
   .nt-picture-item.nt-upload-success {
     @include nt-picture-validate(
       $color: $nt-input-background-valid,
-      $input-shadow: $nt-input-shadow-valid,
-      $input-shadow-hover: $nt-input-shadow-valid-focus
+      $shadow: $nt-input-shadow-valid,
+      $shadow-hover: $nt-input-shadow-valid-focus
     );
   }
 

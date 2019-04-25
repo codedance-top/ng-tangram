@@ -1,4 +1,5 @@
 import 'codemirror/mode/gfm/gfm';
+import 'codemirror/addon/display/placeholder';
 import 'codemirror/addon/edit/continuelist';
 
 import { EditorFromTextArea, fromTextArea } from 'codemirror';
@@ -35,7 +36,7 @@ const DEFAULT_MIN_ROWS = 10, DEFAULT_MAX_ROWS = 20,
     ])
   ],
   host: {
-    'class': 'nt-markdown-editor',
+    'class': 'nt-markdown-editor nt-form-control',
     '[class.focus]': 'focused'
   }
 })

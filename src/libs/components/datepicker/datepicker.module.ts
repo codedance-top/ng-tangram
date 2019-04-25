@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { NtNativeDateModule, NtOverlayModule } from '@ng-tangram/components/core';
+import { NtOverlayModule } from '@ng-tangram/components/core';
 
 import { NtDatePickerCalendarComponent } from './calendar.component';
 import {
@@ -17,7 +17,7 @@ const DEFAULT_DATEPICKER_ICONS: NtDatePickerIcons = {
 };
 
 @NgModule({
-  imports: [CommonModule, NtOverlayModule, NtNativeDateModule],
+  imports: [CommonModule, NtOverlayModule],
   exports: [NtDatePickerComponent],
   declarations: [
     NtDatePickerComponent,

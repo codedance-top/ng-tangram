@@ -59,7 +59,7 @@ export class NtSelectChange {
     ])
   ],
   host: {
-    'class': 'nt-select nt-form-control nt-has-symbol',
+    'class': 'nt-select',
     '(resize)': 'onResize()',
     '[class.focus]': 'overlay.isOpen'
   }

@@ -1,34 +1,68 @@
-import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, filter, map } from 'rxjs/operators';
 
 /**
  * 文件上传请求服务
  */
 import {
-  HttpClient, HttpEvent, HttpEventType, HttpRequest, HttpResponse
+    HttpClient, HttpEvent, HttpEventType, HttpProgressEvent, HttpRequest, HttpResponse,
+    HttpSentEvent
 } from '@angular/common/http';
-import { Inject, Injectable, Optional } from '@angular/core';
+import { InjectionToken, Injectable } from '@angular/core';
 
-import { NtUploadHandler } from './upload-handler';
-import { NT_UPLOAD_INTERCEPTOR, NtUploadInterceptor, NtUploadResult } from './upload-interceptor';
+import { NtUploadStatus } from './upload-status';
+
+export interface NtUploadResult<T> {
+  status: NtUploadStatus;
+  error?: string;
+  data?: T;
+}
+
+/**
+ * 上传进度处理
+ */
+export interface NtUploadProgressHandler {
+
+  begin?(event: HttpSentEvent): void;
+
+  progress?(event: HttpProgressEvent): void;
+
+  done?(file?: File): void;
+}
+
+export interface NtUploadHandler {
+  upload<T>(url: string, file: File, filename: string, handler: NtUploadProgressHandler): Observable<NtUploadResult<T>>;
+}
 
 @Injectable()
-export class NtUpload {
+export class NtUpload implements NtUploadHandler {
 
-  constructor(
-    private _http: HttpClient,
-    @Optional() @Inject(NT_UPLOAD_INTERCEPTOR) private _interceptor: NtUploadInterceptor) { }
+  constructor(private _http: HttpClient) { }
 
-  upload<T>(url: string, file: File | FormData, handler: NtUploadHandler = {}): Observable<NtUploadResult<T>> {
-    return this._http.request(new HttpRequest('POST', url, file, { reportProgress: true }))
+  upload<T>(url: string, file: File, filename: string, handler: NtUploadProgressHandler = {}): Observable<NtUploadResult<T>> {
+
+    const formData = this._getFormData(file, filename);
+
+    return this._http.request(new HttpRequest('POST', url, formData, { reportProgress: true }))
       .pipe(
         map(event => this._progressHandler(event, handler)),
         filter(event => event.type === HttpEventType.Response),
-        map((event: HttpResponse<any>) => this._interceptor.response(event))
+        map((event: HttpResponse<any>) => {
+          return {
+            status: event.status >= 200 && event.status < 400
+              ? NtUploadStatus.SUCCESS
+              : NtUploadStatus.ERROR,
+            data: event.body
+          };
+        }),
+        catchError(error => of({
+          status: NtUploadStatus.ERROR,
+          error: error.statusText
+        }))
       );
   }
 
-  private _progressHandler(event: HttpEvent<any>, handler: NtUploadHandler = {}) {
+  private _progressHandler(event: HttpEvent<any>, handler: NtUploadProgressHandler = {}) {
 
     if (event.type === HttpEventType.Sent && handler.begin) {
       handler.begin(event);
@@ -39,4 +73,16 @@ export class NtUpload {
     }
     return event;
   }
+
+  private _getFormData(file: File, filename: string): File | FormData {
+
+    if (filename) {
+      const formData = new FormData();
+      formData.append(filename, file);
+      return formData;
+    }
+    return file;
+  }
 }
+
+export const NT_UPLOAD_HANDLER = new InjectionToken<NtUploadHandler>('nt-upload-handler');

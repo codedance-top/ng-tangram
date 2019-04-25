@@ -1,11 +1,17 @@
 <div class="wrapper">
-  <div class="top-bar wrapper-header">
-    <div class="top-bar-left">
-      <ul class="menu">
-        <li class="menu-text logo"><b>NG-TANGRAM</b></li>
-        <li routerLinkActive="active"><a [routerLink]="['/', 'components']">组件</a></li>
-        <li routerLinkActive="active"><a [routerLink]="['/', 'pro']">PRO</a></li>
-      </ul>
+  <div class="wrapper-header">
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <li class="logo"><a [routerLink]="['/']"><img src="/assets/logo.svg"><b>NG-TANGRAM</b></a></li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <li routerLinkActive="active"><a [routerLink]="['/', 'components']">组件</a></li>
+          <li routerLinkActive="active"><a [routerLink]="['/', 'pro']">PRO</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="wrapper-body">

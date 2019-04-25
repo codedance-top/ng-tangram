@@ -13,10 +13,24 @@ $nt-select-symbol-color: $select-triangle-color !default;
 
     input[type="text"] {
       margin: 0;
+      padding-right: $input-font-size + $form-spacing;
+      background-color: $input-background;
+      cursor: auto !important;
+      text-overflow: ellipsis;
+
+      [pseudo="-webkit-input-placeholder"] {
+        background-color: greenyellow;
+      }
     }
 
     &:focus {
       outline: none;
+      input {
+        outline: none;
+        border: $input-border-focus;
+        background-color: $input-background-focus;
+        box-shadow: $input-shadow-focus;
+      }
     }
   }
 

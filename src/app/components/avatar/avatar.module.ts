@@ -7,9 +7,9 @@ import { NtExampleModule } from '@ng-tangram/example';
 import { NtAvatarModule } from '@ng-tangram/components/avatar';
 
 import { AvatarDocumentComponent } from './avatar.component';
-import { DemoAvatarBasicComponent } from './demos/basic';
-import { DemoAvatarSizeComponent } from './demos/size';
-import { DemoAvatarShapeComponent } from './demos/shape';
+import { DemoAvatarBasicComponent } from './examples/basic';
+import { DemoAvatarSizeComponent } from './examples/size';
+import { DemoAvatarShapeComponent } from './examples/shape';
 
 @NgModule({
   imports: [

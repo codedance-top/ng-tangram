@@ -9,6 +9,9 @@ import {
   ActivatedRoute, NavigationEnd, NavigationStart, Router, RoutesRecognized
 } from '@angular/router';
 
+// 关闭 NProgress 的 loading 效果
+NProgress.configure({ showSpinner: false });
+
 @Component({
   selector: 'app',
   templateUrl: 'app.component.html',

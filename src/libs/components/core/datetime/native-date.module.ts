@@ -7,7 +7,7 @@
  */
 import { PlatformModule } from '@angular/cdk/platform';
 import { NgModule } from '@angular/core';
-import { DateAdapter, NT_DATE_LOCALE_PROVIDER } from './date-adapter';
+import { DateAdapter } from './date-adapter';
 import { NT_DATE_FORMATS } from './date-formats';
 import { NativeDateAdapter } from './native-date-adapter';
 import { NT_NATIVE_DATE_FORMATS } from './native-date-formats';
@@ -15,8 +15,7 @@ import { NT_NATIVE_DATE_FORMATS } from './native-date-formats';
 @NgModule({
   imports: [PlatformModule],
   providers: [
-    { provide: DateAdapter, useClass: NativeDateAdapter },
-    NT_DATE_LOCALE_PROVIDER
+    { provide: DateAdapter, useClass: NativeDateAdapter }
   ],
 })
 export class NativeDateModule { }

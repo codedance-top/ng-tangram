@@ -1,6 +1,0 @@
-<img [src]="(images[index].path || images[index].thumbnail) | proxy">
-<div class="preview-control preview-previous" *ngIf="images.length > 1" (click)="previous()"></div>
-<div class="preview-control preview-next" *ngIf="images.length > 1" (click)="next()"></div>
-<div class="preview-pagination" *ngIf="images.length > 1">
-  {{ index + 1 }}&nbsp;/&nbsp;{{images.length}}
-</div>

@@ -6,21 +6,19 @@ import { transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { HttpProgressEvent } from '@angular/common/http';
 import {
-  Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, Self, TemplateRef,
-  ViewChild, ViewEncapsulation
+    Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, Self, TemplateRef,
+    ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import { NtModal } from '@ng-tangram/components/modal';
 import {
-  NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUpload, NtUploadControl,
-  NtUploadControlError, NtUploadFile, NtUploadStatus
+    NT_UPLOAD_HANDLER, NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUpload,
+    NtUploadControl, NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
 } from '@ng-tangram/components/upload';
 
 import { NT_PICTURE_ICONS, NtPictureIcons } from './picture-icons';
-
-// const loadImage = _loadImage;
 
 /**
  * 压缩图片
@@ -63,7 +61,7 @@ export class NtPictureFile extends NtUploadFile {
   selector: 'nt-picture',
   templateUrl: 'picture.component.html',
   host: {
-    'class': 'nt-form-control nt-picture'
+    'class': 'nt-picture'
   },
   encapsulation: ViewEncapsulation.None,
   providers: [
@@ -150,7 +148,7 @@ export class NtPictureComponent extends NtUploadControl<NtPictureFile> implement
 
   constructor(
     private _modal: NtModal,
-    uploader: NtUpload,
+    @Inject(NT_UPLOAD_HANDLER) uploader: NtUploadHandler,
     @Self() @Optional() ngControl: NgControl,
     @Inject(NT_PICTURE_ICONS) public icons: NtPictureIcons) {
     super(uploader, ngControl);
@@ -200,7 +198,8 @@ export class NtPictureComponent extends NtUploadControl<NtPictureFile> implement
 
       if (this.autoupload) {
 
-        picture.uploader = this._uploader.upload(this.url, this._getFormData(file), handlers)
+        picture.uploader = this._uploader
+          .upload(this.url, file, this.name, handlers)
           .pipe(takeUntil(this._destroy))
           .subscribe(result => {
             if ((picture.status = result.status) === NtUploadStatus.SUCCESS) {

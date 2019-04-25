@@ -27,7 +27,7 @@ let uniqueId = 0;
     { provide: NtFormFieldControl, useExisting: NtCheckboxGroupComponent }
   ],
   host: {
-    'class': 'nt-checkbox-group nt-form-control'
+    'class': 'nt-checkbox-group'
   }
 })
 export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>

@@ -1,13 +1,19 @@
+import { ModuleWithProviders, NgModule, Type } from '@angular/core';
 
-
-import { NgModule } from '@angular/core';
-import { NtUpload } from './upload';
-import { NT_UPLOAD_INTERCEPTOR, NtUploadInterceptor } from './upload-interceptor';
+import { NT_UPLOAD_HANDLER, NtUpload, NtUploadHandler } from './upload';
 
 @NgModule({
   providers: [
-    { provide: NT_UPLOAD_INTERCEPTOR, useClass: NtUploadInterceptor },
-    NtUpload
+    { provide: NT_UPLOAD_HANDLER, useClass: NtUpload  }
   ],
 })
-export class NtUploadModule { }
+export class NtUploadModule {
+  public static forRoot(handler?: Type<NtUploadHandler>): ModuleWithProviders {
+    return {
+      ngModule: NtUploadModule,
+      providers: [
+        { provide: NT_UPLOAD_HANDLER, useClass: handler || NtUpload }
+      ]
+    };
+  }
+}

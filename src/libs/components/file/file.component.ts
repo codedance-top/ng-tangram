@@ -1,23 +1,23 @@
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-// import { getExtension } from 'mime';
 
+// import { getExtension } from 'mime';
 import { transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { HttpProgressEvent } from '@angular/common/http';
 import {
-  Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, Self, ViewChild,
-  ViewEncapsulation
+    Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, Self, ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeOut } from '@ng-tangram/animate/fading';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import {
-  NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUpload, NtUploadControl,
-  NtUploadControlError, NtUploadFile, NtUploadStatus
+    NT_UPLOAD_HANDLER, NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUpload,
+    NtUploadControl, NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
 } from '@ng-tangram/components/upload';
 
-import { NT_FILE_ICONS, NtFileIcons, NT_FILE_EXTENSIONS, DEFAULT_FILE_ICONS } from './file-icons';
+import { NT_FILE_EXTENSIONS, NT_FILE_ICONS, NtFileIcons } from './file-icons';
 
 let uniqueId = 0;
 
@@ -31,7 +31,7 @@ export class NtFile extends NtUploadFile {
   selector: 'nt-file',
   templateUrl: 'file.component.html',
   host: {
-    'class': 'nt-form-control nt-file'
+    'class': 'nt-file'
   },
   encapsulation: ViewEncapsulation.None,
   providers: [
@@ -100,7 +100,7 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
   @Output() remove = new EventEmitter<NtFile>();
 
   constructor(
-    uploader: NtUpload,
+    @Inject(NT_UPLOAD_HANDLER) uploader: NtUploadHandler,
     @Self() @Optional() ngControl: NgControl,
     @Inject(NT_FILE_ICONS) public icons: NtFileIcons) {
     super(uploader, ngControl);
@@ -148,7 +148,8 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
 
       if (this.autoupload) {
 
-        ntFile.uploader = this._uploader.upload(this.url, this._getFormData(file), handlers)
+        ntFile.uploader = this._uploader
+          .upload(this.url, file, this.name, handlers)
           .pipe(takeUntil(this._destroy))
           .subscribe(result => {
             if ((ntFile.status = result.status) === NtUploadStatus.SUCCESS) {

@@ -2,7 +2,7 @@ import { EventEmitter } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
-import { NtUpload } from './upload';
+import { NtUploadHandler } from './upload';
 import { NtUploadControlError } from './upload-errors';
 import { NtUploadStatus } from './upload-status';
 
@@ -42,7 +42,7 @@ export abstract class NtUploadControl<T extends NtUploadFile> extends NtFormFiel
 
   protected _onTouched = () => {};
 
-  constructor(protected _uploader: NtUpload, public ngControl: NgControl) {
+  constructor(protected _uploader: NtUploadHandler, public ngControl: NgControl) {
     super();
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -61,16 +61,6 @@ export abstract class NtUploadControl<T extends NtUploadFile> extends NtFormFiel
 
   registerOnTouched(fn: () => {}) {
     this._onTouched = fn;
-  }
-
-  protected _getFormData(file: File): File | FormData {
-
-    if (this.name) {
-      const formData = new FormData();
-      formData.append(this.name, file);
-      return formData;
-    }
-    return file;
   }
 
   abstract setValue(value: T[]): void;

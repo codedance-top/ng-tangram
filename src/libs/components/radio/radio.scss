@@ -89,13 +89,13 @@ $nt-radio-border-disabled: 1px solid $medium-gray !default;
 
 @mixin nt-radio-validate(
   $color: $nt-input-background-invalid,
-  $input-shadow: $nt-input-shadow-invalid,
-  $input-shadow-hover: $nt-input-shadow-invalid-focus,
+  $shadow: $nt-input-shadow-invalid,
+  $shadow-hover: $nt-input-shadow-invalid-focus,
   $color-lighten: 5%) {
 
   .nt-radio-input {
     border-color: $color;
-    box-shadow: $input-shadow;
+    box-shadow: $shadow;
   }
 
   &:not(.nt-radio-disabled) {
@@ -109,7 +109,7 @@ $nt-radio-border-disabled: 1px solid $medium-gray !default;
     input:focus + .nt-radio-input,
     &:hover .nt-radio-input {
       border-color: $color;
-      box-shadow: $input-shadow-hover;
+      box-shadow: $shadow-hover;
     }
   }
 }
@@ -184,8 +184,8 @@ $nt-radio-border-disabled: 1px solid $medium-gray !default;
   .nt-form-success .nt-radio {
     @include nt-radio-validate(
       $color: $nt-input-background-valid,
-      $input-shadow: $nt-input-shadow-valid,
-      $input-shadow-hover: $nt-input-shadow-valid-focus
+      $shadow: $nt-input-shadow-valid,
+      $shadow-hover: $nt-input-shadow-valid-focus
     );
   }
 

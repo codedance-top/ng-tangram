@@ -114,6 +114,23 @@ $nt-markdown-editor-font-size: rem-calc(12) !default;
     .CodeMirror-line {
       padding: 0px !important;
     }
+    .CodeMirror-placeholder {
+      color: $input-placeholder-color;
+    }
+  }
+}
+
+@mixin nt-markdown-editor-validate(
+  $color: $nt-input-background-invalid,
+  $shadow: $nt-input-shadow-invalid,
+  $shadow-focus: $nt-input-shadow-invalid-focus) {
+
+  border-color: $color;
+  box-shadow: $shadow;
+
+  &.focus {
+    border-color: $color;
+    box-shadow: $shadow-focus;
   }
 }
 
@@ -132,5 +149,17 @@ $nt-markdown-editor-font-size: rem-calc(12) !default;
 
   .nt-markdown-editor-preview {
     padding: $nt-markdown-editor-padding;
+  }
+
+  .nt-form-error .nt-markdown-editor {
+    @include nt-markdown-editor-validate;
+  }
+
+  .nt-form-success .nt-markdown-editor {
+    @include nt-markdown-editor-validate(
+      $color: $nt-input-background-valid,
+      $shadow: $nt-input-shadow-valid,
+      $shadow-focus: $nt-input-shadow-valid-focus
+    );
   }
 }

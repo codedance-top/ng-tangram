@@ -96,10 +96,13 @@ async function _build(lib) {
   "es2015": "../esm2015/${children[i]}.js"
 }`);
 
-    console.log('build completed', libName);
+    console.log('build completed', `\u001b[32m ${libName} \u001b[39m`);
   }
 
-  libPackage.version = version;
+  /** 当版本号存在时不以统一版本号发布 */
+  if(libPackage.version === '0.0.0-PLACEHOLDER') {
+    libPackage.version = version;
+  }
 
   await build.esm5(`${compilationFolder}/tsconfig-build.json`, esm5);
   await build.esm2015(`${compilationFolder}/tsconfig-build.json`);
@@ -114,10 +117,12 @@ async function _build(lib) {
   fs.writeFileSync(join(outputFolder, `${lib}.metadata.json`), JSON.stringify(metadata));
   fs.writeFileSync(join(outputFolder, 'package.json'), JSON.stringify(libPackage, null, 2));
 
-  console.log('build completed', libPackage.name);
+  console.log('build completed', `\u001b[32m ${libPackage.name} \u001b[39m`);
 }
 
 Promise.resolve()
   .then(() => _build('animate'))
   .then(() => _build('components'))
-  .then(() => _build('pro'));
+  .then(() => _build('moment-adapter'))
+  .then(() => _build('pro'))
+  .catch(error => console.error(error));
