@@ -93,18 +93,3 @@ $logo-color: #f0352f;
     max-width: 1200px;
   }
 }
-
-
-
-.box {
-  display: flex;
-  justify-content: space-between;
-  width: 200px;
-}
-
-.box > div {
-  min-width: 0;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-}
-
