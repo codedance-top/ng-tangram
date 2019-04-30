@@ -13,11 +13,12 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { HomeComponent } from './home.component';
+import { NtButtonModule } from 'out-tsc/@ng-tangram/components/button';
 
 registerLocaleData(locale);
 
 const ROUTES: Routes = [
-  { path: '', component: HomeComponent, data: { title: '首页' } },
+  { path: '', component: HomeComponent, data: { title: '基于 Angular 的桌面端组件库' } },
   { path: 'components', loadChildren: './components/components.module#ComponentsModule', data: { title: '组件' } },
   { path: 'pro', loadChildren: './pro/pro.module#ProModule', data: { title: 'PRO' } },
   // { path: 'utils', loadChildren: './utils/utils.module#UtilsModule', data: { title: '工具' } },
@@ -38,6 +39,7 @@ const PAGINATION_CONFIG = {
       appId: 'ng-tangram-docs'
     }),
     BrowserTransferStateModule,
+    NtButtonModule,
     NtFormsModule.forRoot(),
     NtNativeDateModule,
     // NtMomentDateModule,

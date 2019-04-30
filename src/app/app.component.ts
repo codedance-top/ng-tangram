@@ -15,7 +15,7 @@ NProgress.configure({ showSpinner: false });
 @Component({
   selector: 'app',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
 
@@ -58,7 +58,7 @@ export class AppComponent implements OnInit, OnDestroy {
           return route;
         })
       )
-      .subscribe(route => this.title.setTitle(`${route.snapshot.data.title} - NG-TANGRAM`))
+      .subscribe(route => this.title.setTitle(`NG-TANGRAM · ${route.snapshot.data.title} `))
     );
   }
 

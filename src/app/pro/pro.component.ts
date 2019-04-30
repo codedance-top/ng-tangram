@@ -18,7 +18,10 @@ import { ActivatedRoute } from '@angular/router';
       </div>
     </div>`
   ,
-  styleUrls: ['pro.component.scss']
+  styleUrls: ['pro.component.scss'],
+  host: {
+    'class': 'wrapper'
+  }
 })
 export class ProComponent {
 

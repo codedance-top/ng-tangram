@@ -2,6 +2,16 @@
 
 [![npm version](https://badge.fury.io/js/%40ng-tangram%2Fcomponents.svg)](https://www.npmjs.com/@ng-tangram/components)
 
+## 安装
+
+### npm
+`npm install @ng-tangram/{animate, components} --save` 
+
+### yarn
+`yarn add @ng-tangram/{animate, components}`
+
+## 组件列表
+
 名称 | 完成情况 | 发布版本
 :--- | :-------: | ------:
 Avatar 头像 | | `0.5.0`

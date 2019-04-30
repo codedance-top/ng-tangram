@@ -22,13 +22,11 @@ $navbar-active-color: $primary-color;
   }
 
   .nav-tree > li > a {
-
     position: relative;
     display: block;
     box-sizing: border-box;
-    padding: 10px 30px;
+    padding: 8px 20px;
     color: $dark-gray;
-    border-right: 3px solid transparent;
     white-space: nowrap;
     overflow: hidden;
     transition: border-right-color .3s, background-color .3s;
@@ -42,8 +40,7 @@ $navbar-active-color: $primary-color;
 
   .nav-tree > li.active > a,
   .nav-tree > li.active > a:hover {
-    background-color: rgba($navbar-active-color, .1);
-    border-right-color: $navbar-active-color;
+    font-weight: 500;
     color: $navbar-active-color;
   }
   .nav-tree > li.has-children > a {
@@ -107,6 +104,6 @@ $navbar-active-color: $primary-color;
   }
   .nav-treebar {
     padding-right: 0px;
-    border-right: 1px solid lighten(#ccc, 5%);
+    // border-right: 1px solid lighten(#ccc, 5%);
   }
 }

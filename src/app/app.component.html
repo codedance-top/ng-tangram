@@ -1,20 +1,64 @@
-<div class="wrapper">
-  <div class="wrapper-header">
-    <div class="top-bar">
-      <div class="top-bar-left">
-        <ul class="menu">
-          <li class="logo"><a [routerLink]="['/']"><img src="/assets/logo.svg"><b>NG-TANGRAM</b></a></li>
-        </ul>
-      </div>
-      <div class="top-bar-right">
-        <ul class="menu">
-          <li routerLinkActive="active"><a [routerLink]="['/', 'components']">组件</a></li>
-          <li routerLinkActive="active"><a [routerLink]="['/', 'pro']">PRO</a></li>
-        </ul>
-      </div>
+
+<header class="wrapper-header">
+  <div class="top-bar wrapper">
+    <div class="top-bar-left">
+      <ul class="menu">
+        <li class="logo"><a [routerLink]="['/']"><img src="/assets/logo.svg"><b>NG-TANGRAM</b></a></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <li routerLinkActive="active"><a [routerLink]="['/', 'components']">组件</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['/', 'pro']">PRO</a></li>
+      </ul>
     </div>
   </div>
+</header>
+<div class="wrapper-pusher">
   <div class="wrapper-body">
     <router-outlet></router-outlet>
   </div>
+  <footer class="wrapper-footer">
+    <section class="wrapper sitemap">
+      <div>
+        <h4>链接</h4>
+        <a href="https://github.com/livebridge-lab/ng-tangram"
+          target="_blank">
+          代码仓库
+        </a>
+        <a
+          href="https://codingex.proding.net/"
+          target="_blank">
+          常见问题
+        </a>
+        <a href="https://github.com/livebridge-lab/ng-tangram/issues"
+          target="_blank">
+          Issues
+        </a>
+      </div>
+      <div>
+        <h4>更多产品</h4>
+        <a href="https://codelet.proding.net" target="_blank">
+            Codelet - 快速开发框架
+        </a>
+        <a href="https://codingex.proding.net/" target="_blank">
+          CodingEX - 开发规范与最佳实践
+        </a>
+        <a>
+          Softeaming - 软件团队协作工具
+        </a>
+        <a href="https://menuet.proding.net/" target="_blank">
+          Menuet - Node.js 后台轻量级框架
+        </a>
+      </div>
+      <div class="company-logo">
+        <a class="code-dance">
+          <img src="/assets/code-dance.png">
+        </a>
+      </div>
+    </section>
+    <section class="copyright">
+      ©2019 CodeDance 辽ICP备8888888号-1
+    </section>
+  </footer>
 </div>

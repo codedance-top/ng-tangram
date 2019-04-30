@@ -3,6 +3,7 @@ import * as domino from 'domino';
 import * as express from 'express';
 import { join } from 'path';
 
+/** 用来在服务器渲染时欺骗 codemirror */
 const win = domino.createWindow();
 global['window'] = win;
 global['document'] = win.document;

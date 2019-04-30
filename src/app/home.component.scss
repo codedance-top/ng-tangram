@@ -1,5 +1,110 @@
 
+$logo-color: #f0352f;
+
+.home-wrapper {
+  min-height: 500px;
+  padding: 0 20px;
+  position: relative;
+}
 
 .home-splash {
-
+  align-items: center;
+  vertical-align: baseline;
+  display: flex;
+  justify-content: flex-end;
+  left: 0;
+  padding: 2em 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
+
+.home-splash img {
+  height: 400px;
+}
+
+.inner {
+  font-size: 16px;
+}
+
+.inner .home-title {
+  font-size: 300%;
+  margin: 0.3em 0;
+  padding: 2.5em 0 1em;
+  font-weight: 300;
+  line-height: 1.25;
+}
+
+.inner .home-title > small {
+  display: block;
+  font-weight: 300;
+  font-size: 50%;
+  line-height: 1em;
+  margin: 0.7em 0 1.3em;
+  color: #888;
+}
+
+.home-button {
+  padding: 0em 1.6em;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid transparent;
+  position: relative;
+  background-color: #fff;
+  background-clip: padding-box;
+  transition: background .3s,box-shadow .3s;
+  text-transform: unset;
+  color: $logo-color;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none!important;
+  border-radius: 37px;
+  line-height: 35px;
+  margin: 0 6px;
+  &::after {
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: -1px;
+    right: -1px;
+    z-index: -1;
+    content: "";
+    background: $logo-color;
+    border-radius: inherit;
+  }
+
+  &:hover {
+    background: #fff;
+    color: $logo-color;
+    background-clip: padding-box;
+    box-shadow: 3px 4px 8px $logo-color;
+  }
+
+  &.button-full {
+    background: $logo-color;
+    color: #fff;
+    transition: box-shadow .3s;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .home-wrapper {
+    max-width: 1200px;
+  }
+}
+
+
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.box > div {
+  min-width: 0;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+

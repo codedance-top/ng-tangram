@@ -16,11 +16,11 @@ $dark-gray: #8a8a8a;
 $black: #0a0a0a;
 $white: #fefefe;
 
-$primary-color: #007bff;
-$secondary-color: #6c757d;
-$success-color: #28a745;
-$warning-color: #fd7e14;
-$alert-color: #dc3545;
+$primary-color: #1890ff;
+$secondary-color: #8c8c8c;
+$success-color: #53c41a;
+$warning-color: #faad13;
+$alert-color: #f5212d;
 
 $foundation-palette: (
   primary: $primary-color,
@@ -32,7 +32,8 @@ $foundation-palette: (
 
 $body-background: #FFF;
 $body-font-color: $black;
-$body-font-family: "open sans", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+$body-font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+// "open sans", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
 $body-antialiased: true;
 
 $global-margin: 1rem;
@@ -74,6 +75,9 @@ $label-color-alt: $white;
 // Table
 $table-padding: .5rem 1.25rem;
 $table-is-striped: false;
+
+// TopBar
+$topbar-unstack-breakpoint: small;
 
 // Switch
 $switch-height: rem-calc(20);
