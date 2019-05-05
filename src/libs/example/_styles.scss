@@ -36,7 +36,7 @@ $nt-example-tabs-active-color: get-color(primary) !default;
   position: relative;
   display: block;
 
-  pre {
+  .code-container {
     display: none;
     border-top: $nt-example-code-border;
     margin-top: 0;
@@ -45,7 +45,7 @@ $nt-example-tabs-active-color: get-color(primary) !default;
     border-bottom-right-radius: $nt-example-radius;
   }
 
-  &.shown pre {
+  &.shown .code-container {
     display: block;
   }
 

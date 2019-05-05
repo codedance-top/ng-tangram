@@ -8,7 +8,7 @@ import {
 import { NtMarkdownService } from './markdown.service';
 
 @Component({
-  selector: 'nt-markdown-block,[nt-markdown-block]',
+  selector: 'nt-markdown-block, [nt-markdown-block]',
   template: '<div [innerHtml]="markdown"></div>',
   encapsulation: ViewEncapsulation.None,
   host: {

@@ -1,15 +1,13 @@
 
 $wrapper-header-height: 64px;
 $navbar-width: 230px;
-$navbar-background: #1e222a;
 
 $navbar-active-color: $primary-color;
 
 .nav-treebar {
-  padding-top: 20px;
-  padding-bottom: 50px;
+  padding-top: 3em;
+  padding-bottom: 3em;
   border-right: 0px;
-  margin-right: -1px;
 
   .nav-treebar-title {
     padding: 0px 25px;

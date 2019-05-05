@@ -14,7 +14,7 @@ export const DOCS_TEMPLATE = `
     </li>
   </ul>
 </div>
-<div class="large-10 medium-9 cell nav-content markdown">
+<div class="large-10 medium-9 cell nav-content nt-markdown-block">
   <h1>{{ title }}</h1>
   <router-outlet></router-outlet>
 </div>

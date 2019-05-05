@@ -4,13 +4,3 @@
 :host {
   display: block;
 }
-
-.markdown {
-  color: #333;
-  line-height: 1.6em;
-  font-size: rem-calc(12);
-  @include nt-markdown-base;
-  @include nt-markdown-heading;
-  @include nt-markdown-list;
-  @include nt-markdown-code;
-}

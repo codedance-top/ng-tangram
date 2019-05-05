@@ -22,10 +22,6 @@ $nt-markdown-code-radius: $global-radius !default;
 @mixin nt-markdown-base {
   line-height: $nt-markdown-line-height;
 
-  * {
-    word-break: break-all;
-  }
-
   img {
     max-width: 100%;
   }
@@ -106,15 +102,13 @@ $nt-markdown-code-radius: $global-radius !default;
 }
 
 @mixin nt-markdown-list {
-  ul {
-    list-style-type: $nt-markdown-ul-style;
-  }
-  ol {
-    list-style-type: $nt-markdown-ol-style;
-  }
 
-  ul > li,
-  ol > li {
+  ul:not(.breadcrumbs):not(.menu):not(.tabs):not(.pagination) > li {
+    list-style-type: $nt-markdown-ul-style;
+    margin-left: 1.6em;
+  }
+  ol:not(.breadcrumbs):not(.menu):not(.tabs):not(.pagination) > li {
+    list-style-type: $nt-markdown-ol-style;
     margin-left: 1.6em;
   }
 }
