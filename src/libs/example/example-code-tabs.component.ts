@@ -12,11 +12,11 @@ import {
       [nt-tooltip]="shown ? '收起代码' : '展开代码'">
       <i class="icon fab fa-angular" [class.visible]="shown"></i>代码
     </span>
-    <ul class="nt-example-code-tabs">
-      <li class="nt-example-tabs-title" *ngFor="let pane of panes" [class.is-active]="activeTab === pane.title">
+    <div class="nt-example-code-tabs">
+      <span class="nt-example-tabs-title" *ngFor="let pane of panes" [class.is-active]="activeTab === pane.title">
         <a (click)="activeTab = pane.title">{{pane?.title}}</a>
-      </li>
-    </ul>
+      </span>
+    </div>
     <div class="nt-example-code-tabs-content">
       <ng-content select="nt-example-code-tabs-panel"></ng-content>
     </div>
