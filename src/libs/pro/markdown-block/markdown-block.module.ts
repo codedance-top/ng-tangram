@@ -2,20 +2,20 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
-import { NtMarkdownComponent } from './markdown.component';
+import { NtMarkdownBlockComponent } from './markdown-block.component';
 import { NtMarkdownService } from './markdown.service';
 
 @NgModule({
   imports: [CommonModule, HttpModule],
-  declarations: [NtMarkdownComponent],
+  declarations: [NtMarkdownBlockComponent],
   providers: [NtMarkdownService],
-  exports: [NtMarkdownComponent],
-  entryComponents: [NtMarkdownComponent]
+  exports: [NtMarkdownBlockComponent],
+  entryComponents: [NtMarkdownBlockComponent]
 })
-export class NtMarkdownModule {
+export class NtMarkdownBlockModule {
   public static forRoot(): ModuleWithProviders {
     return {
-      ngModule: NtMarkdownModule
+      ngModule: NtMarkdownBlockModule
     };
   }
 }

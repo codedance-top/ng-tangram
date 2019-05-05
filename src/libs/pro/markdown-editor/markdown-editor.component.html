@@ -13,7 +13,7 @@
   </div>
 </div>
 <div class="nt-markdown-editor-preview" *ngIf="previewMode" [@fade]>
-  <nt-markdown [data]="value"></nt-markdown>
+  <nt-markdown-block [data]="value"></nt-markdown-block>
 </div>
 <div class="nt-markdown-editor-content" [hidden]="previewMode">
   <textarea #editor [style.height.px]="500"></textarea>

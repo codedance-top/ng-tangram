@@ -116,12 +116,11 @@ $nt-markdown-code-radius: $global-radius !default;
   ul > li,
   ol > li {
     margin-left: 1.6em;
-    // margin-left: 1.6em;
   }
 }
 
-@mixin nt-markdown {
-  .nt-markdown {
+@mixin nt-markdown-block {
+  .nt-markdown-block {
     @include nt-markdown-base;
     @include nt-markdown-heading;
     @include nt-markdown-list;

@@ -1,7 +1,7 @@
-@import 'markdown/markdown';
+@import 'markdown-block/markdown-block';
 @import 'markdown-editor/markdown-editor';
 
 @mixin ng-tangram-pro {
-  @include nt-markdown;
+  @include nt-markdown-block;
   @include nt-markdown-editor;
 }

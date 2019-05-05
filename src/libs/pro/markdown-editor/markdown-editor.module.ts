@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { NtMarkdownModule } from '@ng-tangram/pro/markdown';
+import { NtMarkdownBlockModule } from '@ng-tangram/pro/markdown-block';
 
 import { NT_MARKDOWN_EDITOR_ICONS, NtMarkdownEditorIcons } from './markdown-editor-icons';
 import { NtMarkdownEditorComponent } from './markdown-editor.component';
@@ -32,7 +32,7 @@ const DEFAULT_MARKDOWN_EDITOR_ICONS: NtMarkdownEditorIcons = {
 };
 
 @NgModule({
-  imports: [CommonModule, NtMarkdownModule],
+  imports: [CommonModule, NtMarkdownBlockModule],
   exports: [NtMarkdownEditorComponent],
   declarations: [NtMarkdownEditorComponent],
   providers: [

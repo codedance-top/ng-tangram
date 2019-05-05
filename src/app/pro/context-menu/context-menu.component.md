@@ -1,3 +1,0 @@
-<p>
-  context-menu works!
-</p>

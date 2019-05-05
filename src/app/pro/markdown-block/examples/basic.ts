@@ -26,11 +26,11 @@ const markdown = `
 `;
 
 @Component({
-  selector: 'example-markdown',
+  selector: 'example-markdown-block',
   template: `
-    <nt-markdown [data]="markdown"></nt-markdown>
+    <nt-markdown-block [data]="markdown"></nt-markdown-block>
   `
 })
-export class ExampleMarkdownBasciComponent {
+export class ExampleMarkdownBlockComponent {
   markdown = markdown;
 }

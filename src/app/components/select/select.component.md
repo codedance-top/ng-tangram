@@ -1,7 +1,5 @@
 
-# Select
-
-## 何时使用
+## 代码演示
 
 <div class="grid-x grid-margin-x">
   <div class="medium-6 large-6 cell">
@@ -14,8 +12,6 @@
     </nt-example>
   </div>
 </div>
-
-## 代码演示
 
 ## API
 

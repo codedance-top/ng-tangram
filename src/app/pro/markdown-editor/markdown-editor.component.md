@@ -1,7 +1,4 @@
 
-
-# MarkdownEditor Markdown 编辑器
-
 基于 CodeMirror 的编辑器组件
 
 ## 何时使用

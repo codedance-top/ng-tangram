@@ -8,14 +8,14 @@ import {
 import { NtMarkdownService } from './markdown.service';
 
 @Component({
-  selector: 'nt-markdown,[nt-markdown]',
+  selector: 'nt-markdown-block,[nt-markdown-block]',
   template: '<div [innerHtml]="markdown"></div>',
   encapsulation: ViewEncapsulation.None,
   host: {
-    class: 'nt-markdown'
+    class: 'nt-markdown-block'
   }
 })
-export class NtMarkdownComponent implements OnInit, OnChanges {
+export class NtMarkdownBlockComponent implements OnInit, OnChanges {
 
   private _path: string;
   private _data: string;

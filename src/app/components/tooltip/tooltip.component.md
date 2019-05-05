@@ -1,8 +1,4 @@
 
-# Tooltip
-
-## 何时使用
-
 ## 代码演示
 
 <div class="grid-x grid-margin-x">
