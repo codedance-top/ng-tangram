@@ -5,10 +5,10 @@
 ## 安装
 
 ### npm
-`npm install @ng-tangram/{animate, components} --save` 
+`npm install @ng-tangram/components --save` 
 
 ### yarn
-`yarn add @ng-tangram/{animate, components}`
+`yarn add @ng-tangram/components`
 
 ## 组件列表
 
