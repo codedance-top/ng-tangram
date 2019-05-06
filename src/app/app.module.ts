@@ -4,17 +4,16 @@ import locale from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { NtNativeDateModule } from '@ng-tangram/components';
-import { NtFormsModule } from '@ng-tangram/components/forms';
-import { NT_PAGINATION_CONFIG } from '@ng-tangram/components/pagination';
-import { NtMomentDateModule } from '@ng-tangram/moment-adapter';
+import {
+    NT_PAGINATION_CONFIG, NtButtonModule, NtFormsModule, NtNativeDateModule
+} from '@ng-tangram/components';
+// import { NtMomentDateModule } from '@ng-tangram/moment-adapter';
+import { NtMarkdownBlockModule } from '@ng-tangram/pro';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { PageNotFoundComponent } from './page-not-found.component';
 import { HomeComponent } from './home.component';
-import { NtButtonModule } from 'out-tsc/@ng-tangram/components/button';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 registerLocaleData(locale);
 
