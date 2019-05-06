@@ -9,11 +9,11 @@ import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { isPlatformBrowser } from '@angular/common';
 import {
-  Component, ElementRef, Inject, Input, OnChanges, OnDestroy, Optional, PLATFORM_ID, Renderer2,
-  Self, SimpleChanges, ViewChild, ViewEncapsulation
+    Component, ElementRef, Inject, Input, OnChanges, OnDestroy, Optional, PLATFORM_ID, Renderer2,
+    Self, SimpleChanges, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { fadeIn } from '@ng-tangram/animate/fading';
+import { fadeIn } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { commands } from './commands';

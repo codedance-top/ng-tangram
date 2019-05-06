@@ -5,16 +5,16 @@ import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import {
-  CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
+    CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
 } from '@angular/cdk/overlay';
 import {
-  AfterContentChecked, AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, Output,
-  Renderer2, SimpleChanges, ViewChild, ViewEncapsulation
+    AfterContentChecked, AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy,
+    Output, Renderer2, SimpleChanges, ViewChild, ViewEncapsulation
 } from '@angular/core';
-import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 
+import { fadeIn, fadeOut } from '../animate/fading';
 import {
-  getPositionClassName, NT_OVERLAY_POSITION_PAIRS, NtOverlayPosition
+    getPositionClassName, NT_OVERLAY_POSITION_PAIRS, NtOverlayPosition
 } from './overlay-positions';
 
 export declare type NtOverlayTriggerType = '' | 'hover' | 'click';

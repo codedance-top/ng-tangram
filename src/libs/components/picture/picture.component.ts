@@ -10,7 +10,7 @@ import {
     ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
+import { fadeIn, fadeOut } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import { NtModal } from '@ng-tangram/components/modal';
 import {

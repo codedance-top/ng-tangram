@@ -1,7 +1,7 @@
 import { transition, trigger, AnimationEvent } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Component, EventEmitter, Input, Output, ViewEncapsulation, HostBinding, HostListener } from '@angular/core';
-import { fadeOut } from '@ng-tangram/animate/fading';
+import { fadeOut } from '@ng-tangram/components/core';
 
 export declare type NtCalloutColor = 'primary' | 'secondary' | 'success' | 'warning' | 'alert';
 export declare type NtCalloutSize = 'small' | 'large' | 'medium';

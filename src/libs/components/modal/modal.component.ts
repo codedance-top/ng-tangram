@@ -4,7 +4,7 @@ import { BasePortalOutlet, CdkPortalOutlet, TemplatePortal } from '@angular/cdk/
 import { ComponentPortal } from '@angular/cdk/portal';
 
 import { trigger, transition, AnimationEvent } from '@angular/animations';
-import { fadeInY, fadeOutY } from '@ng-tangram/animate/fading';
+import { fadeInY, fadeOutY } from '@ng-tangram/components/core';
 
 import { NtModalConfig } from './modal-config';
 

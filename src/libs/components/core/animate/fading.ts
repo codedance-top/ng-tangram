@@ -4,7 +4,7 @@
  * License: MIT
  */
 import { animation, style, animate, keyframes, AnimationReferenceMetadata } from '@angular/animations';
-import { DEFAULT_TIMING, translate3d } from '@ng-tangram/animate/utils';
+import { DEFAULT_TIMING, translate3d } from './utils';
 
 export declare type FadeAnimationAxis = 'x' | 'y';
 export declare type FadeAnimationSteps = { a: any, b: any };

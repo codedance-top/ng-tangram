@@ -10,7 +10,7 @@
         <example-tree-flat></example-tree-flat>
       </nt-example-showcase>
       <nt-example-legend title="扁平结构的树">
-        渲染的DOM树是扁平结构。
+        扁平化的DOM结构树，配合 `ntTreeNodePadding` 和 `ntTreeNodePaddingIndent` 指令可以控制缩紧距离。
       </nt-example-legend>
       <nt-example-code-tabs>
         <nt-example-code-tabs-panel lang="ts" [code]="flatCode"></nt-example-code-tabs-panel>

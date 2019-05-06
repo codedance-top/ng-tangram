@@ -6,7 +6,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
+import { fadeIn, fadeOut } from '@ng-tangram/components/core';
 import {
   BOTTOM_LEFT, DateAdapter, NT_DATE_FORMATS, NtDateFormats, NtOverlayComponent, TOP_LEFT
 } from '@ng-tangram/components/core';

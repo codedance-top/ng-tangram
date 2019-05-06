@@ -8,7 +8,6 @@ const sourcemaps = require('rollup-plugin-sourcemaps');
 const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 
-const animates = require('../src/libs/animate/build.config.json');
 const components = require('../src/libs/components/build.config.json');
 const pro = require('../src/libs/pro/build.config.json');
 const momentDateAdapter = require('../src/libs/moment-adapter/build.config.json');
@@ -60,7 +59,6 @@ const config = {
       'moment': 'moment',
       'rxjs': 'Rx',
       'rxjs/operators': 'Rx.operators',
-      ...animates.globals,
       ...components.globals,
       ...pro.globals,
       ...momentDateAdapter.globals

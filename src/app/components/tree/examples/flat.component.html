@@ -13,9 +13,11 @@
     ntTreeNodePadding
     ntTreeNodePaddingIndent="20">
     <a class="tree-toggle">
+      <!-- 展开的箭头 -->
       <span class="tree-caret"
         [class.expanded]="isExpanded(node)"
-        ntTreeNodeToggle></span>
+        ntTreeNodeToggle>
+      </span>
     </a>
     {{ node.name }}
   </nt-tree-node>

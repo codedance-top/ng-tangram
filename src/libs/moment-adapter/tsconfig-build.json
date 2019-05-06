@@ -24,7 +24,6 @@
     "types": [],
     "baseUrl": ".",
     "paths": {
-      "@ng-tangram/animate/*": ["../../../dist/@ng-tangram/animate/*"],
       "@ng-tangram/components/*": ["../../../dist/@ng-tangram/components/*"],
     }
   },

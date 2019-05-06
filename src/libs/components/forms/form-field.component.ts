@@ -11,7 +11,7 @@ import {
 import {
   FormControl, FormGroupDirective, NgControl, NgForm, ValidationErrors
 } from '@angular/forms';
-import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
+import { fadeIn, fadeOut } from '@ng-tangram/components/core';
 
 import { NtFormFieldControl } from './form-field-control';
 import { NtFormLabelWidthDirective } from './form-label-width.directive';

@@ -45,6 +45,7 @@ const TREE_DATA: ExampleFlatNode[] = [
 })
 export class ExampleTreeFlatComponent {
 
+  // 树组件的控制器，负责管理树的各种状态
   treeControl = new FlatTreeControl<ExampleFlatNode>(
     node => node.level,
     node => node.expandable

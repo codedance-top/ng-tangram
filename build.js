@@ -121,7 +121,6 @@ async function _build(lib) {
 }
 
 Promise.resolve()
-  .then(() => _build('animate'))
   .then(() => _build('components'))
   .then(() => _build('moment-adapter'))
   .then(() => _build('pro'))

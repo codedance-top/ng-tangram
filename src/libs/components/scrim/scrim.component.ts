@@ -1,7 +1,7 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { transition, trigger } from '@angular/animations';
-import { Component, ElementRef, Input, ViewEncapsulation } from '@angular/core';
-import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { fadeIn, fadeOut } from '@ng-tangram/components/core';
 
 @Component({
   selector: '[nt-scrim], nt-scrim',
