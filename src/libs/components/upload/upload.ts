@@ -8,7 +8,7 @@ import {
     HttpClient, HttpEvent, HttpEventType, HttpProgressEvent, HttpRequest, HttpResponse,
     HttpSentEvent
 } from '@angular/common/http';
-import { InjectionToken, Injectable } from '@angular/core';
+import { InjectionToken, Injectable, Provider } from '@angular/core';
 
 import { NtUploadStatus } from './upload-status';
 
@@ -35,7 +35,7 @@ export interface NtUploadHandler {
 }
 
 @Injectable()
-export class NtUpload implements NtUploadHandler {
+export class NtFormDataUploadHandler implements NtUploadHandler {
 
   constructor(private _http: HttpClient) { }
 

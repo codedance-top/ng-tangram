@@ -13,8 +13,8 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeOut } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import {
-    NT_UPLOAD_HANDLER, NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUpload,
-    NtUploadControl, NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
+    NT_UPLOAD_HANDLER, NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUploadControl,
+    NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
 } from '@ng-tangram/components/upload';
 
 import { NT_FILE_EXTENSIONS, NT_FILE_ICONS, NtFileIcons } from './file-icons';

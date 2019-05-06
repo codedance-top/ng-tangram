@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'example-tree-table',
   template: ``
 })
-export class ExampleTreeTableComponent {
-}
+export class ExampleTreeTableComponent { }

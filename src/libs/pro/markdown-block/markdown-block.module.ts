@@ -12,10 +12,4 @@ import { NtMarkdownService } from './markdown.service';
   exports: [NtMarkdownBlockComponent],
   entryComponents: [NtMarkdownBlockComponent]
 })
-export class NtMarkdownBlockModule {
-  public static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: NtMarkdownBlockModule
-    };
-  }
-}
+export class NtMarkdownBlockModule { }

@@ -14,8 +14,8 @@ import { fadeIn, fadeOut } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import { NtModal } from '@ng-tangram/components/modal';
 import {
-    NT_UPLOAD_HANDLER, NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUpload,
-    NtUploadControl, NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
+    NT_UPLOAD_HANDLER, NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUploadControl,
+    NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
 } from '@ng-tangram/components/upload';
 
 import { NT_PICTURE_ICONS, NtPictureIcons } from './picture-icons';
