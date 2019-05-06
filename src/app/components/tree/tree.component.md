@@ -4,7 +4,7 @@
 ## 代码演示
 
 <div class="grid-x grid-margin-x">
-  <div class="medium-6 large-6 cell">
+  <div class="medium-12 cell">
     <nt-example>
       <nt-example-showcase>
         <example-tree-flat></example-tree-flat>
@@ -30,7 +30,7 @@
       </nt-example-code-tabs>
     </nt-example>
   </div>
-  <div class="medium-6 large-6 cell">
+  <div class="medium-12 cell">
     <nt-example>
       <nt-example-showcase>
         <example-tree-nested></example-tree-nested>
@@ -71,7 +71,4 @@
   </div>
 </div>
 
-## API
-
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
+<nt-markdown-block [data]="api"></nt-markdown-block>

@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { HomeComponent } from './home.component';
 import { NtButtonModule } from 'out-tsc/@ng-tangram/components/button';
+import { NtMarkdownBlockModule } from '@ng-tangram/pro';
 
 registerLocaleData(locale);
 
@@ -41,6 +42,7 @@ const PAGINATION_CONFIG = {
     BrowserTransferStateModule,
     NtButtonModule,
     NtFormsModule.forRoot(),
+    NtMarkdownBlockModule.forRoot(),
     NtNativeDateModule,
     // NtMomentDateModule,
     RouterModule.forRoot(ROUTES, {

@@ -6,15 +6,17 @@ $nt-example-radius: $global-radius !default;
 
 $nt-example-tabs-min-width: 100px !default;
 $nt-example-tabs-active-color: get-color(primary) !default;
+$nt-example-padding: $global-padding * 1.5;
 
 @mixin nt-example-showcase {
   display: block;
-  padding: 20px 20px 30px 20px;
+  padding: $nt-example-padding;
+  min-height: 100px;
 }
 
 @mixin nt-example-legend {
 
-  padding: 20px 20px 32px 20px;
+  padding: $nt-example-padding;
   position: relative;
   border-top: $nt-example-code-border;
   display: block;
@@ -23,6 +25,7 @@ $nt-example-tabs-active-color: get-color(primary) !default;
     position: absolute;
     top: -16px;
     padding: 5px 5px;
+    font-weight: 500;
     background-color: $white;
   }
 
@@ -35,6 +38,7 @@ $nt-example-tabs-active-color: get-color(primary) !default;
 
   position: relative;
   display: block;
+  margin-top: 1em;
 
   .code-container {
     display: none;
@@ -47,6 +51,10 @@ $nt-example-tabs-active-color: get-color(primary) !default;
 
   &.shown .code-container {
     display: block;
+    word-break: break-all;
+    * {
+      word-break: break-all;
+    }
   }
 
   .nt-example-code-shown {

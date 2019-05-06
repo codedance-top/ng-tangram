@@ -1,8 +1,9 @@
+用于显示数据行
 
 ## 代码演示
 
 <div class="grid-x grid-margin-x">
-  <div class="medium-12 large-6 cell">
+  <div class="medium-12 cell">
     <nt-example>
       <nt-example-showcase>
         <example-table-basic></example-table-basic>
@@ -21,7 +22,7 @@
       <nt-example-code [code]="sortCode"></nt-example-code>
     </nt-example>
   </div>
-  <div class="medium-12 large-6 cell">
+  <div class="medium-12 cell">
     <nt-example>
       <nt-example-showcase>
         <example-table-alternate></example-table-alternate>

@@ -19,6 +19,11 @@ import { DemoAvatarSizeComponent } from './examples/size';
     RouterModule.forChild([
       { path: '', component: AvatarDocumentComponent }
     ])],
-  declarations: [AvatarDocumentComponent, DemoAvatarBasicComponent, DemoAvatarSizeComponent, DemoAvatarShapeComponent],
+  declarations: [
+    AvatarDocumentComponent,
+    DemoAvatarBasicComponent,
+    DemoAvatarSizeComponent,
+    DemoAvatarShapeComponent
+  ],
 })
 export class AvatarDocumentModule { }

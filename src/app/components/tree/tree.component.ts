@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class TreeDocumentComponent {
 
+  api = require('!!raw-loader!src/libs/pro/markdown-block/README.md');
+
   asyncCode = require('!!raw-loader!./examples/async');
   checkboxCode = require('!!raw-loader!./examples/checkbox');
 
