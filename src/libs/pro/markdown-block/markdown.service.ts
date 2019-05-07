@@ -11,7 +11,7 @@ import { Http, Response } from '@angular/http';
 
 @Injectable()
 export class NtMarkdownService {
-  private _renderer: any = new marked.Renderer();
+  private _renderer: marked.Renderer = new marked.Renderer();
   constructor(private http: Http) {
     this.extendRenderer();
     this.setMarkedOptions({});
@@ -26,17 +26,17 @@ export class NtMarkdownService {
       );
   }
 
-  public get renderer() {
+  get renderer() {
     return this._renderer;
   }
 
   // handle data
-  public extractData(res: Response): string {
+  extractData(res: Response): string {
     return res.text() || '';
   }
 
 
-  public setMarkedOptions(options: any) {
+  setMarkedOptions(options: any) {
     options = Object.assign({
       gfm: true,
       tables: true,
@@ -51,7 +51,7 @@ export class NtMarkdownService {
   }
 
   // comple markdown to html
-  public compile(data: string) {
+  compile(data: string) {
     return marked(data);
   }
 
