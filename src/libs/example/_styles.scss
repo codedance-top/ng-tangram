@@ -1,7 +1,7 @@
 @import '~prismjs/themes/prism.css';
 @import '~foundation-sites/scss/foundation';
 
-$nt-example-code-border: 1px solid $medium-gray !default;
+$nt-example-code-border: 1px solid $light-gray !default;
 $nt-example-radius: $global-radius !default;
 
 $nt-example-tabs-min-width: 100px !default;
@@ -150,11 +150,13 @@ $nt-example-padding: $global-padding * 1.5;
 @mixin ng-tangram-example {
 
   .nt-example {
-    border: $nt-example-code-border;
+    // border: $nt-example-code-border;
     display: block;
+    box-sizing: border-box;
     background-color: $white;
     border-radius: 5px;
     margin-bottom: 1.875rem;
+    overflow: auto;
   }
 
   .nt-example-showcase {

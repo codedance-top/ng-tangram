@@ -1,0 +1,44 @@
+.example-tree {
+  display: block;
+  padding:0 20px;
+  font-size: 14px;
+}
+
+.example-tree-node {
+  display: flex;
+  align-items: center;
+  line-height: 1.6;
+}
+
+.tree-toggle {
+  position: relative;
+  cursor: pointer;
+  color: #888;
+
+  .tree-caret {
+    cursor: pointer;
+    height: 1em;
+    width: 1em;
+    margin-left: -8px;
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+
+    &::before {
+      font-size: 0px;
+      content: "";
+      border-left: 4px solid #888;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      width: 0px;
+      height: 0px;
+      transition: transform .3s;
+      position: absolute;
+      top: 0;
+    }
+
+    &.expanded::before {
+      transform: rotate(90deg);
+    }
+  }
+}

@@ -5,11 +5,11 @@ import { NtTreeModule } from '@ng-tangram/components/tree';
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtMarkdownBlockModule } from '@ng-tangram/pro';
 
-import { ExampleTreeAsyncComponent } from './examples/async';
-import { ExampleTreeCheckboxComponent } from './examples/checkbox';
+import { ExampleTreeAsyncComponent } from './examples/async.component';
+import { ExampleTreeCheckboxComponent } from './examples/checkbox.component';
 import { ExampleTreeFlatComponent } from './examples/flat.component';
-import { ExampleTreeNestedComponent } from './examples/nested';
-import { ExampleTreeTableComponent } from './examples/table';
+import { ExampleTreeNestedComponent } from './examples/nested.component';
+import { ExampleTreeTableComponent } from './examples/table.component';
 import { TreeDocumentComponent } from './tree.component';
 
 @NgModule({
