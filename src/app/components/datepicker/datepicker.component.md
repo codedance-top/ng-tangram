@@ -27,19 +27,7 @@
       <nt-example-legend title="选择面板事件">可用 `afterOpen`、`afterClosed`、`beforeOpen`、`beforeClosed` 监听日期选择面板打开前后、关闭前后事件。</nt-example-legend>
       <nt-example-code [code]="changeCode"></nt-example-code>
     </nt-example>
-    <nt-example>
-      <nt-example-showcase>
-        <example-datepicker-moment></example-datepicker-moment>
-      </nt-example-showcase>
-      <nt-example-legend title="Moment">
-      使用 `NtMomentDateModule` 模块。<br>
-      注意：此案例加入Module只用于演示，推荐的导入方式是在 `app.module.ts` 预先导入日期模块。
-      </nt-example-legend>
-      <nt-example-code-tabs>
-        <nt-example-code-tabs-panel title="Module" lang="ts" [code]="momentCode"></nt-example-code-tabs-panel>
-        <nt-example-code-tabs-panel title="Component" lang="ts" [code]="momentModuleCode"></nt-example-code-tabs-panel>
-      </nt-example-code-tabs>
-    </nt-example>
+    
   </div>
   <div class="medium-6 large-6 cell">
     <nt-example>
@@ -58,17 +46,19 @@
     </nt-example>
     <nt-example>
       <nt-example-showcase>
-        <example-datepicker-forms></example-datepicker-forms>
+        <example-datepicker-moment></example-datepicker-moment>
       </nt-example-showcase>
-      <nt-example-legend title="Date">
-      `NtNativeDateModule` 基于 `JavaScript` 的原生 `Date` 对象提供的功能。
+      <nt-example-legend title="Moment">
+      使用 `NtMomentDateModule` 模块。<br>
+      注意：此案例加入Module只用于演示，推荐的导入方式是在 `app.module.ts` 预先导入日期模块。
       </nt-example-legend>
-      <nt-example-code [code]="formsCode"></nt-example-code>
+      <nt-example-code-tabs>
+        <nt-example-code-tabs-panel title="Component" lang="ts" [code]="momentCode"></nt-example-code-tabs-panel>
+        <nt-example-code-tabs-panel title="Module" lang="ts" [code]="momentModuleCode"></nt-example-code-tabs-panel>
+      </nt-example-code-tabs>
     </nt-example>
   </div>
 </div>
-
-<nt-markdown-block [data]="api"></nt-markdown-block> 
 
 ## 选择日期模块
 
@@ -78,4 +68,6 @@
 | --- | --- | --- | --- |
 | `NtNativeDateModule` | `Date` | 不需要 | `@ng-tangram/components` |
 | `NtMomentDateModule` | `Moment` | Moment.js | `@ng-tangram/moment-adapter` |
+
+<nt-markdown-block [data]="api"></nt-markdown-block> 
 

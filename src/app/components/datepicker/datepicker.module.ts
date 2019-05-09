@@ -6,6 +6,7 @@ import { NtDatePickerModule } from '@ng-tangram/components/datepicker';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtRadioModule } from '@ng-tangram/components/radio';
 
 import { DatePickerDocumentComponent } from './datepicker.component';
 import { ExampleDatePickerBasicComponent } from './examples/basic';
@@ -28,6 +29,7 @@ import { NtNativeDateModule, DateAdapter, NativeDateAdapter, NT_DATE_FORMATS, NT
     NtExampleModule,
     NtFormsModule,
     ExampleDatePickerMomentModule,
+    NtRadioModule,
     RouterModule.forChild([
       { path: '', component: DatePickerDocumentComponent }
     ])

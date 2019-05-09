@@ -1,20 +1,17 @@
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ExampleDatePickerMomentComponent } from "./moment";
 import { NgModule } from "@angular/core";
 import { NtMomentDateModule } from "@ng-tangram/moment-adapter";
 import { NtDatePickerModule } from "@ng-tangram/components";
-import { NtFormsModule } from '@ng-tangram/components/forms';
+// import { NtNativeDateModule } from "@ng-tangram/components";
 
 
 @NgModule({
   imports: [
-    CommonModule,
     FormsModule,
-    ReactiveFormsModule,
-    NtMomentDateModule, // 引入MomentDate模块
+    // NtNativeDateModule, // 引入NativeDate模块
+    NtMomentDateModule,   // 引入MomentDate模块
     NtDatePickerModule,
-    NtFormsModule,
   ],
   declarations: [ExampleDatePickerMomentComponent],
   exports: [ExampleDatePickerMomentComponent]
