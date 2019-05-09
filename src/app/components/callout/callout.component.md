@@ -1,3 +1,5 @@
+## 何时使用
+
 警告提示，展现需要关注的信息。
 
 ## 代码演示
@@ -37,7 +39,7 @@
       <nt-example-showcase>
         <example-callout-color></example-callout-color>
       </nt-example-showcase>
-      <nt-example-legend title="多种样式">
+      <nt-example-legend title="样式设置">
         共有5种样式 `primary`、`secondry`、`success`、`warning`、`alert`。
       </nt-example-legend>
       <nt-example-code [code]="colorCode"></nt-example-code>
