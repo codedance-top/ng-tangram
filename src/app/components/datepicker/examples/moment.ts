@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Moment } from 'moment';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MomentDateAdapter, NT_MOMENT_DATE_FORMATS } from '@ng-tangram/moment-adapter';
 import { DateAdapter, NT_DATE_FORMATS } from '@ng-tangram/components';
 
@@ -17,15 +16,8 @@ import { DateAdapter, NT_DATE_FORMATS } from '@ng-tangram/components';
     `
   ],
   template: `
-    <form [formGroup]="form" (ngSubmit)="submit()" ntFormAutofocus>
-      <nt-form-field label="日期">
-        <nt-datepicker placeholder="日期"  formControlName="momentDate" [dateFilter]="myFilter"></nt-datepicker>
-      </nt-form-field>
-      <button class="button" type="submit">Submit</button>
-    </form>
-    <div class="example-values">
-      <div *ngFor="let val of values">{{val}}</div>
-    </div>
+    <nt-datepicker placeholder="日期" [(ngModel)]="momentDate"></nt-datepicker>
+    <div>{{momentDate}}</div>
   `,
   providers: [
     { provide: DateAdapter, useClass: MomentDateAdapter },
@@ -33,24 +25,5 @@ import { DateAdapter, NT_DATE_FORMATS } from '@ng-tangram/components';
   ],
 })
 export class ExampleDatePickerMomentComponent {
-
-  form: FormGroup;
-  values: Array<Moment> = [];
-
-  constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      momentDate: [null, Validators.required],
-    });
-  }
-
-  submit() {
-    this.values.push(this.form.value.momentDate);
-  }
-
-  myFilter = (d: Moment): boolean => {
-    const day = d.isoWeekday();
-    // 过滤星期六和星期日。
-    return day !== 7 && day !== 6;
-  }
-
+  momentDate: Moment;
 }
