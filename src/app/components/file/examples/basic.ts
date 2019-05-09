@@ -7,8 +7,13 @@ import { Validators, FormControl } from '@angular/forms';
 @Component({
   selector: 'example-file-basic',
   template: `
-    <nt-form-field label="文件列表">
-      <nt-file url="/files/logos" maxFiles="5" name="file" [formControl]="fileControl">
+    <nt-radio-group [(ngModel)]="status">
+      <nt-radio value="normal">正常</nt-radio>
+      <nt-radio value="disabled">禁用</nt-radio>
+    </nt-radio-group>
+    <nt-form-field label="文件列表" [messages]="{ required: '请上传文件' }">
+      <nt-file url="/files/logos" maxFiles="5" name="file" [formControl]="fileControl"
+      disabled="{{status === 'disabled'}}">
         <i class="fa fa-upload"></i>&nbsp;Select File
       </nt-file>
     </nt-form-field>
@@ -31,8 +36,5 @@ export class ExampleFileBasciComponent {
     }
   ], [Validators.required]);
 
-  files = [
-    { id: "nt-file-032132121", name: "microMsg.1430457292873的副本.jpg", },
-    { id: "nt-file-1", name: "microMsg.1430457292873的副本.jpg", }
-  ];
+  status: string = 'normal';
 }
