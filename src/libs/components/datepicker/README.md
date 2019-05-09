@@ -14,3 +14,11 @@
 | afterClosed | 事件：日期选择面板关闭后触发 | `function` | - |
 | beforeOpen | 事件：日期选择面板打开前触发 | `function` | - |
 | beforeClosed | 事件：日期选择面板关闭前触发 | `function` | - |
+
+## 方法
+| 参数 | 说明 | 参数 |
+| --- | --- | --- |
+| focus | 获取焦点 | - |
+| select | 设置日期 | `date: Date` |
+| clear | 置空日期 | - |
+| setDisabledState | 设置禁用状态 | `isDisabled: boolean` |
