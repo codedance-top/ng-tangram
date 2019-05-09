@@ -27,6 +27,7 @@
     "no-duplicate-variable": true,
     "no-empty": false,
     "no-eval": true,
+    "no-non-null-assertion": false,
     "no-shadowed-variable": false,
     "no-string-literal": false,
     "no-trailing-whitespace": true,

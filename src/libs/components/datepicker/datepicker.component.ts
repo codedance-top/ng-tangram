@@ -1,14 +1,16 @@
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import {
-  Component, ElementRef, EventEmitter, Inject, Input, Optional, Output, Self, ViewChild,
-  ViewEncapsulation
+    CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
+} from '@angular/cdk/overlay';
+import {
+    Component, ElementRef, EventEmitter, Inject, Input, Optional, Output, Self, ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { fadeIn, fadeOut } from '@ng-tangram/components/core';
 import {
-  BOTTOM_LEFT, DateAdapter, NT_DATE_FORMATS, NtDateFormats, NtOverlayComponent, TOP_LEFT
+    BOTTOM_LEFT, DateAdapter, fadeIn, fadeOut, NT_DATE_FORMATS, NtDateFormats, NtOverlayComponent,
+    TOP_LEFT
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 

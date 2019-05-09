@@ -9,13 +9,23 @@ export class TreeDocumentComponent {
 
   api = require('!!raw-loader!src/libs/pro/markdown-block/README.md');
 
-  asyncCode = require('!!raw-loader!./examples/async');
-  checkboxCode = require('!!raw-loader!./examples/checkbox');
-
   flatCode = require('!!raw-loader!./examples/flat.component.ts');
   flatTemplate = require('!!raw-loader!./examples/flat.component.html');
   flatStyle = require('!!raw-loader!./examples/flat.component.scss');
 
-  nestedCode = require('!!raw-loader!./examples/nested');
-  tableCode = require('!!raw-loader!./examples/table');
+  asyncCode = require('!!raw-loader!./examples/async.component.ts');
+  asyncTemplate = require('!!raw-loader!./examples/async.component.html');
+  asyncStyle = require('!!raw-loader!./examples/async.component.scss');
+
+  checkboxCode = require('!!raw-loader!./examples/checkbox.component.ts');
+  checkboxTemplate = require('!!raw-loader!./examples/checkbox.component.html');
+  checkboxStyle = require('!!raw-loader!./examples/checkbox.component.scss');
+
+  nestedCode = require('!!raw-loader!./examples/nested.component.ts');
+  nestedTemplate = require('!!raw-loader!./examples/nested.component.html');
+  nestedStyle = require('!!raw-loader!./examples/nested.component.scss');
+
+  tableCode = require('!!raw-loader!./examples/table.component.ts');
+  tableTemplate = require('!!raw-loader!./examples/table.component.html');
+  tableStyle = require('!!raw-loader!./examples/table.component.scss');
  }

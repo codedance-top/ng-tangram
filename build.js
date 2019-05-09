@@ -55,17 +55,6 @@ async function _build(lib) {
   const libPackage = require(`./src/libs/${lib}/package.json`);
   const children = require(`./src/libs/${lib}/build.config.json`).children;
 
-  const metadata = {
-    __symbolic: 'module',
-    version: 4,
-    exports: children.map(child => ({
-      from: `./${child}`
-    })),
-    metadata: {},
-    origins: {},
-    importAs: libPackage
-  };
-
   // 编译目录
   // const libFolder = join(libsFolder, lib);
   const compilationFolder = join(tscFolder, lib);
