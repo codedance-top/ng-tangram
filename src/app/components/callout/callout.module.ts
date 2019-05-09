@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NtCalloutModule } from '@ng-tangram/components/callout';
 import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownBlockModule } from '@ng-tangram/pro';
 
 import { CalloutDocumentComponent } from './callout.component';
 import { ExampleBasicCalloutComponent } from './examples/basic';
@@ -14,6 +15,7 @@ import { ExampleCalloutSizeComponent } from './examples/size';
   imports: [
     NtCalloutModule,
     NtExampleModule,
+    NtMarkdownBlockModule,
     RouterModule.forChild([
       { path: '', component: CalloutDocumentComponent }
     ])

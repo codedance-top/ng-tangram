@@ -5,6 +5,7 @@ import { Component, OnInit, ViewContainerRef, ComponentFactoryResolver, Injectab
   templateUrl: 'callout.component.md'
 })
 export class CalloutDocumentComponent {
+  api = require('!!raw-loader!src/libs/components/callout/README.md');
   basicCode = require('!!raw-loader!./examples/basic');
   colorCode = require('!!raw-loader!./examples/color');
   reactivesCode = require('!!raw-loader!./examples/reactives');
