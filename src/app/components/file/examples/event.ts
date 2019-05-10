@@ -8,7 +8,7 @@ import { Validators, FormControl } from '@angular/forms';
   template: `
     <nt-form-field label="文件列表" [messages]="{ required: '请上传文件' }">
       <nt-file url="/files/logos"
-      maxFiles="2" maxSize="1" name="file" [formControl]="fileControl" (error)="onError($event)">
+      maxFiles="2" maxSize="0.5" name="file" [formControl]="fileControl" (error)="onError($event)">
         <i class="fa fa-upload"></i>&nbsp;Select File
       </nt-file>
     </nt-form-field>

@@ -21,7 +21,7 @@
       <nt-example-showcase>
         <example-file-event></example-file-event>
       </nt-example-showcase>
-      <nt-example-legend title="错误处理">当文件过大时进行提示。例：文件超过1MB时提示。</nt-example-legend>
+      <nt-example-legend title="错误处理">当文件过大时进行提示。例：文件超过0.5MB时提示。</nt-example-legend>
       <nt-example-code [code]="eventCode"></nt-example-code>
     </nt-example>
   </div>
