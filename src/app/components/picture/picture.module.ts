@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtPictureModule } from '@ng-tangram/components/picture';
 import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtRadioModule } from '@ng-tangram/components/radio';
 
 import { ExamplePictureBasciComponent } from './examples/basic';
 import { PictureDocumentComponent } from './picture.component';
@@ -15,6 +17,8 @@ import { PictureDocumentComponent } from './picture.component';
     FormsModule,
     ReactiveFormsModule,
     NtExampleModule,
+    NtMarkdownBlockModule,
+    NtRadioModule,
     NtPictureModule,
     NtFormsModule,
     RouterModule.forChild([

@@ -2,7 +2,6 @@ import { Component, AfterContentInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { NtUploadControlError, NtFileSizeError } from '@ng-tangram/components/upload';
 import { Validators, FormControl } from '@angular/forms';
-
 @Component({
   selector: 'example-file-event',
   template: `
