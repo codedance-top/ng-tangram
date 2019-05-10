@@ -108,6 +108,22 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
 
   ngOnInit() { }
 
+  drag() { }
+
+  dragover(e: any) {
+    e.preventDefault();
+  }
+
+  drop(e: any) {
+      e.stopPropagation();
+      e.preventDefault();
+      let fileList: any = e.dataTransfer.files; // 获取文件对象
+      if (fileList.length === 0 || fileList.length > 1) {
+        return;
+      }
+      this._fileChanged(fileList[0]);
+  }
+
   ngOnDestroy() {
     this._destroy.next();
     this._destroy.complete();
@@ -121,9 +137,9 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
     }
   }
 
-  _fileChanged() {
+  _fileChanged(dropFile: any) {
 
-    const file = this.fileElement.nativeElement.files[0];
+    const file = this.fileElement.nativeElement.files[0] || dropFile;
     if (file && this.files.length < this.maxFiles) {
 
       if (!this._fileSizeValid(file)) {
