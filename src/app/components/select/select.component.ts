@@ -15,4 +15,5 @@ export class SelectDocumentComponent {
   placeholderCode = require('!!raw-loader!./examples/placeholder');
   eventCode = require('!!raw-loader!./examples/event');
   filterCode = require('!!raw-loader!./examples/filter');
+  coordinatCode = require('!!raw-loader!./examples/coordinat');
 }

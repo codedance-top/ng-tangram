@@ -15,6 +15,7 @@ import { ExampleSelectCompareWithComponent } from './examples/compareWith';
 import { ExampleSelectPlaceholderComponent } from  './examples/placeholder';
 import { ExampleSelectEventComponent } from './examples/event';
 import { ExampleSelectFilterComponent } from './examples/filter';
+import { ExampleSelectCoordinatComponent } from './examples/coordinat';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ExampleSelectFilterComponent } from './examples/filter';
     ExampleSelectCompareWithComponent,
     ExampleSelectPlaceholderComponent,
     ExampleSelectEventComponent,
-    ExampleSelectFilterComponent
+    ExampleSelectFilterComponent,
+    ExampleSelectCoordinatComponent
   ],
 })
 export class SelectDocumentModule { }

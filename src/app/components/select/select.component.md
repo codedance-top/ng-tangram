@@ -78,6 +78,15 @@
       <nt-example-code [code]="eventCode"></nt-example-code>
     </nt-example>
   </div>
+   <div class="medium-12 large-12 cell">
+    <nt-example>
+      <nt-example-showcase>
+        <example-select-coordinat></example-select-coordinat>
+      </nt-example-showcase>
+      <nt-example-legend title="联动">下拉联动选择</nt-example-legend>
+      <nt-example-code [code]="coordinatCode"></nt-example-code>
+    </nt-example>
+  </div>
 </div>
 
 <nt-markdown-block [data]="api"></nt-markdown-block>
