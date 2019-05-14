@@ -8,4 +8,5 @@
 | maxSize | 属性：图片最大容量 | `number` | 5(MB)
 | readonly | 属性：是否只读 | `boolean` | false
 | disabled | 属性：是否禁用 | `boolean` | false
+| accept | 属性：支持图片类型 | `image/jpeg`、`image/jpg`、`image/png`、`image/gif`、`image/bmp` | *
 | error | 事件：错误时触发 | `function` | -

@@ -10,6 +10,7 @@ import { NtRadioModule } from '@ng-tangram/components/radio';
 
 import { ExampleFileBasciComponent } from './examples/basic';
 import { ExampleFileEventComponent } from './examples/event';
+import { ExampleFileAcceptComponent } from './examples/accept';
 import { FileDocumentComponent } from './file.component';
 
 @NgModule({
@@ -26,6 +27,6 @@ import { FileDocumentComponent } from './file.component';
       { path: '', component: FileDocumentComponent }
     ])
   ],
-  declarations: [FileDocumentComponent, ExampleFileBasciComponent, ExampleFileEventComponent]
+  declarations: [FileDocumentComponent, ExampleFileBasciComponent, ExampleFileEventComponent, ExampleFileAcceptComponent]
 })
 export class FileDocumentModule { }

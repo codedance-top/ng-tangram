@@ -9,7 +9,8 @@ import { NtMarkdownBlockModule } from '@ng-tangram/pro';
 import { NtRadioModule } from '@ng-tangram/components/radio';
 
 import { ExamplePictureBasciComponent } from './examples/basic';
-import { ExampleFileEventComponent } from './examples/event';
+import { ExamplePictureEventComponent } from './examples/event';
+import { ExamplePictureAcceptComponent } from './examples/accept';
 import { PictureDocumentComponent } from './picture.component';
 
 @NgModule({
@@ -26,6 +27,6 @@ import { PictureDocumentComponent } from './picture.component';
       { path: '', component: PictureDocumentComponent }
     ])
   ],
-  declarations: [PictureDocumentComponent, ExamplePictureBasciComponent, ExampleFileEventComponent]
+  declarations: [PictureDocumentComponent, ExamplePictureBasciComponent, ExamplePictureEventComponent, ExamplePictureAcceptComponent]
 })
 export class PictureDocumentModule { }

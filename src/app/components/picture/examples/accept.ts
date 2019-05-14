@@ -3,17 +3,17 @@ import { Subject } from 'rxjs';
 import { NtUploadControlError, NtFileSizeError } from '@ng-tangram/components/upload';
 import { Validators, FormControl } from '@angular/forms';
 @Component({
-  selector: 'example-picture-event',
+  selector: 'example-picture-accept',
   template: `
     <nt-form-field label="图片" [messages]="{ required: '请上传图片' }">
-      <nt-picture url="/files/logos" maxFiles="2" maxSize="0.5" name="picture" [formControl]="pictureControl"
-        disabled="{{status === 'disabled'}}" readonly="{{status === 'readonly'}}" (error)="onError($event)">
-        <i class="fa fa-upload"></i>
-      </nt-picture>
+      <nt-picture  url="/files/logos"
+      maxFiles="5" name="file" [formControl]="pictureControl" accept="image/jpeg, image/gif" (error)="onError($event)">
+        <i class="fa fa-upload"></i>&nbsp;Select File
+      </nt-picture >
     </nt-form-field>
   `
 })
-export class ExamplePictureEventComponent {
+export class ExamplePictureAcceptComponent {
 
   pictureControl = new FormControl([
     {

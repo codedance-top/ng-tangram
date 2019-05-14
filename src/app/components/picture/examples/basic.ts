@@ -38,6 +38,5 @@ export class ExamplePictureBasciComponent implements AfterContentInit {
 
   constructor() { }
 
-  ngAfterContentInit() {
-  }
+  ngAfterContentInit() { }
 }

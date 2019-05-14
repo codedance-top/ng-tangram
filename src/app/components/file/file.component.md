@@ -15,6 +15,13 @@
       <nt-example-legend title="基本">上传文件。注：支持点击或拖拽上传。</nt-example-legend>
       <nt-example-code [code]="basicCode"></nt-example-code>
     </nt-example>
+    <nt-example>
+      <nt-example-showcase>
+        <example-file-accept></example-file-accept>
+      </nt-example-showcase>
+      <nt-example-legend title="控制上传文件类型">例：控制上传文件为png格式图片或css文件。</nt-example-legend>
+      <nt-example-code [code]="acceptCode"></nt-example-code>
+    </nt-example>
   </div>
   <div class="medium-6 large-6 cell">
     <nt-example>
