@@ -1,13 +1,13 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { NtUploadControlError, NtFileSizeError } from '@ng-tangram/components/upload';
+import { NtUploadControlError, NtFileSizeError, NtFileAcceptError, NtFileUploadError } from '@ng-tangram/components/upload';
 import { Validators, FormControl } from '@angular/forms';
 @Component({
   selector: 'example-file-event',
   template: `
     <nt-form-field label="文件列表" [messages]="{ required: '请上传文件' }">
       <nt-file url="/files/logos"
-      maxFiles="2" maxSize="0.5" name="file" [formControl]="fileControl" (error)="onError($event)">
+        maxFiles="2" maxSize="0.5" name="file" [formControl]="fileControl" (error)="onError($event)">
         <i class="fa fa-upload"></i>&nbsp;Select File
       </nt-file>
     </nt-form-field>
@@ -30,6 +30,12 @@ export class ExampleFileEventComponent {
   onError(error: NtUploadControlError) {
     if (error instanceof NtFileSizeError) {
       alert(`文件不能超过${error.maxSizeString}`);
+    }
+    if (error instanceof NtFileAcceptError) {
+      alert(`不支持文件类型${error.fileAccept}`);
+    }
+    if (error instanceof NtFileUploadError) {
+      alert(`${error.statusText}`);
     }
   }
 }

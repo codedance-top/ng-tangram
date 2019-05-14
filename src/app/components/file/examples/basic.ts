@@ -13,7 +13,7 @@ import { Validators, FormControl } from '@angular/forms';
     </nt-radio-group>
     <nt-form-field label="文件列表" [messages]="{ required: '请上传文件' }">
       <nt-file url="/files/logos" maxFiles="5" name="file" [formControl]="fileControl"
-      disabled="{{status === 'disabled'}}">
+        disabled="{{status === 'disabled'}}">
         <i class="fa fa-upload"></i>&nbsp;Select File
       </nt-file>
     </nt-form-field>

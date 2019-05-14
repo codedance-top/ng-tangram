@@ -1,6 +1,6 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { NtUploadControlError, NtFileSizeError } from '@ng-tangram/components/upload';
+import { NtUploadControlError, NtFileSizeError, NtFileAcceptError, NtFileUploadError } from '@ng-tangram/components/upload';
 import { Validators, FormControl } from '@angular/forms';
 @Component({
   selector: 'example-picture-event',
@@ -30,6 +30,12 @@ export class ExamplePictureEventComponent {
   onError(error: NtUploadControlError) {
     if (error instanceof NtFileSizeError) {
       alert(`图片不能超过${error.maxSizeString}`);
+    }
+    if (error instanceof NtFileAcceptError) {
+      alert(`不支持图片类型${error.fileAccept}`);
+    }
+    if (error instanceof NtFileUploadError) {
+      alert(`${error.statusText}`);
     }
   }
 }
