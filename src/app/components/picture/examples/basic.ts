@@ -10,7 +10,7 @@ import { FormControl, Validators } from '@angular/forms';
     <nt-radio value="disabled">disabled</nt-radio>
   </nt-radio-group>
   <nt-form-field label="图片" [messages]="{ required: '请上传图片' }">
-    <nt-picture url="/files/logos" maxFiles="5" name="file" [formControl]="fileControl"
+    <nt-picture url="/files/logos" maxFiles="5" name="picture" [formControl]="pictureControl"
     disabled="{{status === 'disabled'}}" readonly="{{status === 'readonly'}}">
       <i class="fa fa-upload"></i>
     </nt-picture>
@@ -19,7 +19,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class ExamplePictureBasciComponent implements AfterContentInit {
 
-  fileControl = new FormControl([
+  pictureControl = new FormControl([
     {
       id: '1',
       name: '',
