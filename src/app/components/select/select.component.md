@@ -45,7 +45,9 @@
       <nt-example-showcase>
         <example-select-compareWith></example-select-compareWith>
       </nt-example-showcase>
-      <nt-example-legend title="compareWith">通过compareWith设置值</nt-example-legend>
+      <nt-example-legend title="compareWith">
+        当所选取的值也是一个对象，可使用compareWith 来设置匹配方法.
+      </nt-example-legend>
       <nt-example-code [code]="compareWithCode"></nt-example-code>
     </nt-example>
   </div>
