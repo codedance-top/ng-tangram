@@ -1,32 +1,59 @@
-// import { Component, ViewChild, TemplateRef } from '@angular/core';
-// import { NtModal, NtModalRef } from '@ng-tangram/components/modal';
+import { Component, ViewChild, TemplateRef, Inject } from '@angular/core';
+import { NtModal, NtModalRef, NT_MODAL_DATA } from '@ng-tangram/components/modal';
 
-// @Component({
-//   selector: 'example-modal-component-dialog',
-//   template: `
-//     <h1>模态框标题</h1>
-//     <p>{{ content }}</p>
-//   `
-// })
-// export class ExampleModalComponentDialogComponent {
-//   content = `
-//     Modal dialogs, or pop-up windows, are handy for prototyping and production.
-//     Foundation includes Reveal, our jQuery modal plugin, to make this easy for you.
-//   `;
-// }
+@Component({
+  selector: 'example-modal-component-dialog',
+  template: `
+    <nt-modal-header>
+      组件模态框
+    </nt-modal-header>
+    <nt-modal-body>
+     <p>次数：{{ count }}</p>
+    </nt-modal-body>
+    <nt-modal-footer>
+      <button class="button small float-right">确定</button>
+    </nt-modal-footer>
+  `
+})
+export class ExampleModalComponentDataComponent {
+  public count: number;
+  constructor(
+    private ntModalRef: NtModalRef<any>,
+    @Inject(NT_MODAL_DATA) data: any
+  ) {
+    this.count = data.count || 0;
+  }
 
-// @Component({
-//   selector: 'example-modal-com',
-//   template: `
-//     <nt-button (click)="onOpen()">弹出</nt-button>
-//   `
-// })
-// export class ExampleModalComponentComponent {
-//   constructor(private ntModal: NtModal) { }
+  close() {
+    this.ntModalRef.close('关闭');
+  }
+}
 
-//   onOpen() {
-//     this.ntModal.open(ExampleModalComponentDialogComponent);
-//   }
-// }
+@Component({
+  selector: 'example-modal-data',
+  template: `
+    <button class="button" (click)="onOpen()">打开模态框</button>
+  `
+})
+export class ExampleModalDataComponent {
 
-export class ExampleModalDataComponent { }
+  constructor(private ntModal: NtModal) {}
+  onOpen() {
+
+    let modal: NtModalRef <ExampleModalComponentDataComponent> = this.ntModal.open(ExampleModalComponentDataComponent , {
+      data: {
+        count: 0
+      }
+    });
+
+    modal.afterOpen().subscribe(() => {
+      let count = 1;
+      let timer: any =  setInterval(() => {
+        if (count === 10) {
+          clearInterval(timer);
+        }
+        modal.componentInstance.count = count ++;
+      }, 1000);
+    });
+  }
+}
