@@ -139,7 +139,7 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
 
   _fileChanged(dropFile: any) {
 
-    const file = this.fileElement.nativeElement.files[0] || dropFile;
+    const file = dropFile ? dropFile : this.fileElement.nativeElement.files[0];
     if (file && this.files.length < this.maxFiles) {
 
       if (!this._fileSizeValid(file)) {
