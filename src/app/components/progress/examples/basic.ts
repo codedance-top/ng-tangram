@@ -3,11 +3,11 @@ import { Component, AfterContentInit } from '@angular/core';
 @Component({
   selector: 'example-progress-basic',
   template: `
-    <nt-progress [value]="value"></nt-progress>
-    <nt-progress [value]="value" color="secondary"></nt-progress>
-    <nt-progress [value]="value" color="success"></nt-progress>
-    <nt-progress [value]="value" color="alert"></nt-progress>
-    <nt-progress [value]="value" color="warning"></nt-progress>
+    <nt-progress [value]="value" color="primary"></nt-progress>
+    <nt-progress [value]="value" color="secondary" size="tiny"></nt-progress>
+    <nt-progress [value]="value" color="success" size="small"></nt-progress>
+    <nt-progress [value]="value" color="alert" size="medium"></nt-progress>
+    <nt-progress [value]="value" color="warning" size="large">80%</nt-progress>
   `
 })
 export class ExampleProgressBasciComponent implements AfterContentInit {

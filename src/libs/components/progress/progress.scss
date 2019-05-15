@@ -19,22 +19,36 @@ $nt-progress-sizes: (
   display: inline-block;
   position: relative;
   text-align: center;
+  div{
+    position: relative;
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      line-height: 0;
+      img {
+        max-width: 25px;
+        max-height: 25px;
+      }
+    }
 
-  svg {
-    transform: rotate(-90deg);
-  }
+    svg {
+      transform: rotate(-90deg);
+      position: relative;
+    }
 
-  svg circle {
-    stroke: $progress-background;
-    box-sizing: border-box;
-    transition: $nt-progress-circle-transition;
-    @if has-value($progress-radius) {
-      &.progress-meter-circle {
-        stroke-linecap: round;
+    svg circle {
+      stroke: $progress-background;
+      box-sizing: border-box;
+      transition: $nt-progress-circle-transition;
+      @if has-value($progress-radius) {
+        &.progress-meter-circle {
+          stroke-linecap: round;
+        }
       }
     }
   }
-
   .nt-progress-circle-inner {
     border-style: solid;
     border-color: $progress-background;

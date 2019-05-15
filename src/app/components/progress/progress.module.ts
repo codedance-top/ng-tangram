@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NtProgressModule } from '@ng-tangram/components/progress';
 import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownBlockModule } from '@ng-tangram/pro';
 
 import { ExampleProgressBasciComponent } from './examples/basic';
 import { ProgressDocumentComponent } from './progress.component';
@@ -13,6 +14,7 @@ import { ExampleProgressCircleComponent } from './examples/circle';
   imports: [
     CommonModule,
     NtExampleModule,
+    NtMarkdownBlockModule,
     NtProgressModule,
     RouterModule.forChild([
       { path: '', component: ProgressDocumentComponent }
