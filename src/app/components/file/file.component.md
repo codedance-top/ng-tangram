@@ -12,7 +12,7 @@
       <nt-example-showcase>
         <example-file-basic></example-file-basic>
       </nt-example-showcase>
-      <nt-example-legend title="基本">上传文件。注：支持点击或拖拽上传。</nt-example-legend>
+      <nt-example-legend title="基本">上传文件。</nt-example-legend>
       <nt-example-code [code]="basicCode"></nt-example-code>
     </nt-example>
     <nt-example>

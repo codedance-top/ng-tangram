@@ -11,7 +11,7 @@
       <nt-example-showcase>
         <example-picture-basic></example-picture-basic>
       </nt-example-showcase>
-      <nt-example-legend title="基本">上传图片。注：支持点击或拖拽上传。</nt-example-legend>
+      <nt-example-legend title="基本">上传图片。</nt-example-legend>
       <nt-example-code [code]="basicCode"></nt-example-code>
     </nt-example>
     <nt-example>
