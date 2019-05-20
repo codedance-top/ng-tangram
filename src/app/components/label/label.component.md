@@ -1,4 +1,8 @@
-进行标记和分类的小标签
+进行标记和分类的小标签，起到提示或者分类的作用。
+
+## 何时使用
+
+需要按照种类、等级或性质等分别归类时，可以使用。
 
 ## 代码演示
 
@@ -9,7 +13,7 @@
         <example-label-basic></example-label-basic>
       </nt-example-showcase>
       <nt-example-legend title="基本用法">
-        直接使用标签
+        直接使用标签。
       </nt-example-legend>
       <nt-example-code [code]="basicCode"></nt-example-code>
     </nt-example>
@@ -29,7 +33,7 @@
         <example-label-icon></example-label-icon>
       </nt-example-showcase>
       <nt-example-legend title="使用图标">
-        跟图标配合使用
+        跟图标配合使用。
       </nt-example-legend>
       <nt-example-code [code]="iconCode"></nt-example-code>
     </nt-example>
