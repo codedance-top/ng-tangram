@@ -3,10 +3,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NtCheckboxModule, NtSwitchModule } from '@ng-tangram/components';
 import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownBlockModule } from '@ng-tangram/pro';
 
+import { SwitchDocumentComponent } from './switch.component';
 import { ExampleSwitchBasciComponent } from './examples/basic';
 import { ExampleSwitchCircleComponent } from './examples/circle';
-import { SwitchDocumentComponent } from './switch.component';
+import { ExampleSwitchSizeComponent } from './examples/size';
+import { ExampleSwitchDisabledComponent } from './examples/disabled';
+import { ExampleSwitchCheckedComponent } from './examples/checked';
+import { ExampleSwitchChangeComponent } from './examples/change';
 
 @NgModule({
   imports: [
@@ -14,10 +19,19 @@ import { SwitchDocumentComponent } from './switch.component';
     NtExampleModule,
     NtSwitchModule,
     NtCheckboxModule,
+    NtMarkdownBlockModule,
     RouterModule.forChild([
       { path: '', component: SwitchDocumentComponent }
     ])],
   exports: [SwitchDocumentComponent],
-  declarations: [SwitchDocumentComponent, ExampleSwitchBasciComponent, ExampleSwitchCircleComponent],
+  declarations: [
+    SwitchDocumentComponent,
+    ExampleSwitchBasciComponent,
+    ExampleSwitchCircleComponent,
+    ExampleSwitchSizeComponent,
+    ExampleSwitchDisabledComponent,
+    ExampleSwitchCheckedComponent,
+    ExampleSwitchChangeComponent
+  ],
 })
 export class SwitchDocumentModule { }
