@@ -11,6 +11,8 @@ import { ScrimDocumentComponent } from './scrim.component';
 import { ExampleScrimBasciComponent } from './examples/basic';
 import { NtTableModule } from '@ng-tangram/components/table';
 
+import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -18,6 +20,7 @@ import { NtTableModule } from '@ng-tangram/components/table';
     NtScrimModule,
     NtTableModule,
     NtPaginationModule,
+    NtMarkdownBlockModule,
     RouterModule.forChild([
       { path: '', component: ScrimDocumentComponent }
     ])],
