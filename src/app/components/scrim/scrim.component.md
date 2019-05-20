@@ -11,7 +11,4 @@
 </nt-example>
 
 
-## API
-
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
+<nt-markdown-block [data]="api"></nt-markdown-block>
