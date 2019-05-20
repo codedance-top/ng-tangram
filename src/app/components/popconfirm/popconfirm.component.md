@@ -21,7 +21,7 @@
       <nt-example-showcase>
         <example-popconfirm-position></example-popconfirm-position>
       </nt-example-showcase>
-      <nt-example-legend title="位置">位置有十二个方向。如需箭头指向目标元素中心，通过 `position` 设置</nt-example-legend>
+      <nt-example-legend title="位置">位置有十二个方向。通过 `position` 设置</nt-example-legend>
       <nt-example-code [code]="positionCode"></nt-example-code>
     </nt-example>
   </div>
