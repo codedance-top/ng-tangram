@@ -18,11 +18,13 @@
     </nt-example>
     <nt-example>
       <nt-example-showcase>
-        <example-dropdown-change></example-dropdown-change>
+        <example-dropdown-position></example-dropdown-position>
       </nt-example-showcase>
-      <nt-example-legend title="弹出层事件">可用 `afterOpen`、`afterClosed`、`beforeOpen`、`beforeClosed` 监听弹出层显示前后、消失前后事件。</nt-example-legend>
-      <nt-example-code [code]="changeCode"></nt-example-code>
+      <nt-example-legend title="弹出位置">支持12个弹出位置</nt-example-legend>
+      <nt-example-code [code]="positionCode"></nt-example-code>
     </nt-example>
+  </div>
+  <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
         <example-dropdown-trigger></example-dropdown-trigger>
@@ -30,16 +32,13 @@
       <nt-example-legend title="触发方式">默认是移入触发弹出，可以点击触发。</nt-example-legend>
       <nt-example-code [code]="triggerCode"></nt-example-code>
     </nt-example>
-  </div>
-  <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <example-dropdown-position></example-dropdown-position>
+        <example-dropdown-change></example-dropdown-change>
       </nt-example-showcase>
-      <nt-example-legend title="弹出位置">支持12个弹出位置</nt-example-legend>
-      <nt-example-code [code]="positionCode"></nt-example-code>
+      <nt-example-legend title="弹出层事件">可用 `afterOpen`、`afterClosed`、`beforeOpen`、`beforeClosed` 监听弹出层显示前后、消失前后事件。</nt-example-legend>
+      <nt-example-code [code]="changeCode"></nt-example-code>
     </nt-example>
-    
   </div>
 </div>
 

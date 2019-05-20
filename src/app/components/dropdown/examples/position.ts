@@ -3,68 +3,79 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'example-dropdown-position',
   styles: [
+    `
+    .text-orange { color: orange; }
+    .demo { overflow: auto; }
+
+    .button {
+      margin-right: 8px;
+      margin-bottom: 8px;
+      width: 70px;
+      text-align: center;
+    }
+
+    div {
+      display: block;
+    }
+    `
   ],
   template: `
 
-  <a nt-dropdown position="bottom">
-    bottom
-    <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
-  </a><br>
+  <div style="margin-left: 70px; white-space: nowrap;">
+    <a nt-dropdown class="button" position="topLeft"> TL
+      <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
+    </a>
 
-  <a nt-dropdown position="bottomLeft">
-    bottomLeft
-    <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
-  </a><br>
+    <a nt-dropdown class="button" position="top"> top
+      <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
+    </a>
 
-  <a nt-dropdown position="bottomRight">
-    bottomRight
-    <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
-  </a><br>
+    <a nt-dropdown class="button" position="topRight"> TR
+      <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
+    </a>
+  </div>
 
-  <a nt-dropdown position="left">
-    left
-    <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
-  </a><br>
+  <div style="width: 70px; float: left;">
+    <a nt-dropdown class="button" position="leftTop"> LT
+      <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
+    </a>
 
-  <a nt-dropdown position="leftTop">
-    leftTop
-    <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
-  </a><br>
+    <a nt-dropdown class="button" position="left"> left
+      <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
+    </a>
 
-  <a nt-dropdown position="leftBottom">
-    leftBottom
-    <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
-  </a><br>
+    <a nt-dropdown class="button" position="leftBottom"> LB
+      <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
+    </a>
+  </div>
 
-  <a nt-dropdown position="top">
-    top
-    <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
-  </a><br>
+  <div style="width: 70px; margin-left: 304px;">
+    <a nt-dropdown class="button" position="rightTop"> RT
+      <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
+    </a>
 
-  <a nt-dropdown position="topLeft">
-    topLeft
-    <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
-  </a><br>
+    <a nt-dropdown class="button" position="right"> right
+      <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
+    </a>
 
-  <a nt-dropdown position="topRight">
-    topRight
-    <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
-  </a><br>
+    <a nt-dropdown class="button" position="rightBottom"> RB
+      <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
+    </a>
+  </div>
 
-  <a nt-dropdown position="right">
-    right
-    <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
-  </a><br>
+  <div style="margin-left: 70px; clear: both; white-space: nowrap;">
+    <a nt-dropdown class="button" position="bottomLeft"> BL
+      <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
+    </a>
 
-  <a nt-dropdown position="rightTop">
-    rightTop
-    <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
-  </a><br>
+    <a nt-dropdown class="button" position="bottom"> bottom
+      <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
+    </a>
 
-  <a nt-dropdown position="rightBottom">
-    rightBottom
-    <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
-  </a>
+    <a nt-dropdown class="button" position="bottomRight"> BR
+      <nt-dropdown-pane arrow autosize>弹出层</nt-dropdown-pane>
+    </a>
+  </div>
 
   `
 })
