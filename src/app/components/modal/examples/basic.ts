@@ -27,7 +27,7 @@ export class ExampleModalComponentDialogComponent {
 @Component({
   selector: 'example-modal-basic',
   template: `
-    <button nt-button (click)="openForTtemplate()">模板模态框</button>
+    <button class="margin-right-1" nt-button (click)="openForTtemplate()">模板模态框</button>
     <button nt-button (click)="openForComponent()">组件模态框</button>
     <ng-template>
       <nt-modal-header>
