@@ -5,9 +5,17 @@ import { RouterModule } from '@angular/router';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtSelectModule } from '@ng-tangram/components/select';
 import { NtExampleModule } from '@ng-tangram/example';
-
-import { ExampleSelectBasciComponent } from './examples/basic';
 import { SelectDocumentComponent } from './select.component';
+import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { ExampleSelectSingleComponent } from './examples/single';
+import { ExampleSelectMultipleComponent } from  './examples/multiple';
+import { ExampleSelectDisabledComponent } from './examples/disabled';
+import { ExampleSelectRequiredComponent } from './examples/required';
+import { ExampleSelectCompareWithComponent } from './examples/compareWith';
+import { ExampleSelectPlaceholderComponent } from  './examples/placeholder';
+import { ExampleSelectEventComponent } from './examples/event';
+import { ExampleSelectFilterComponent } from './examples/filter';
+import { ExampleSelectCoordinatComponent } from './examples/coordinat';
 
 
 @NgModule({
@@ -18,10 +26,22 @@ import { SelectDocumentComponent } from './select.component';
     NtExampleModule,
     NtSelectModule,
     NtFormsModule,
+    NtMarkdownBlockModule,
     RouterModule.forChild([
       { path: '', component: SelectDocumentComponent }
     ])],
   exports: [SelectDocumentComponent],
-  declarations: [SelectDocumentComponent, ExampleSelectBasciComponent],
+  declarations: [
+    SelectDocumentComponent,
+    ExampleSelectSingleComponent,
+    ExampleSelectMultipleComponent,
+    ExampleSelectDisabledComponent,
+    ExampleSelectRequiredComponent,
+    ExampleSelectCompareWithComponent,
+    ExampleSelectPlaceholderComponent,
+    ExampleSelectEventComponent,
+    ExampleSelectFilterComponent,
+    ExampleSelectCoordinatComponent
+  ],
 })
 export class SelectDocumentModule { }
