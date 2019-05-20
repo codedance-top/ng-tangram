@@ -25,12 +25,14 @@
   <nt-example-code [code]="inlineCode"></nt-example-code>
 </nt-example>
 
-## API
+<nt-example>
+  <nt-example-showcase>
+    <example-form-width></example-form-width>
+  </nt-example-showcase>
+  <nt-example-legend title="设置标签宽度">设置标签宽度</nt-example-legend>
+  <nt-example-code [code]="widthCode"></nt-example-code>
+</nt-example>
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| color | 属性：颜色 | `primary`、 `secondry`、 `success`、 `warning`、 `alert` | `primary` |
-| size | 属性：提示框大小 | `small`、 `medium`、`large` | `medium` |
-| closable | 属性：是否显示关闭按钮 | `boolean` | - |
-| closed | 事件：关闭时触发 | `function` | - |
+
+<nt-markdown-block [data]="api"></nt-markdown-block>
 

@@ -1,3 +1,4 @@
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -9,12 +10,15 @@ import { NtScrimModule } from '@ng-tangram/components/scrim';
 import { NtTableModule } from '@ng-tangram/components/table';
 import { NtTooltipModule } from '@ng-tangram/components/tooltip';
 import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownBlockModule } from '@ng-tangram/pro';
 
 import { ExampleTableAlternateComponent } from './examples/alternate';
 import { ExampleTableBasicComponent } from './examples/basic';
 import { ExampleTableColumnVisibilityComponent } from './examples/column-visibility';
 import { ExampleTableSortComponent } from './examples/sort';
 import { TableDocumentComponent } from './table.component';
+import { ExampleTableSelectableComponent } from './examples/selectable';
+
 
 @NgModule({
   imports: [
@@ -27,6 +31,8 @@ import { TableDocumentComponent } from './table.component';
     NtTooltipModule,
     NtTableModule,
     NtScrimModule,
+    NtMarkdownBlockModule,
+    NtCheckboxModule,
     RouterModule.forChild([
       { path: '', component: TableDocumentComponent }
     ])],
@@ -36,6 +42,7 @@ import { TableDocumentComponent } from './table.component';
     ExampleTableAlternateComponent,
     ExampleTableSortComponent,
     ExampleTableColumnVisibilityComponent,
+    ExampleTableSelectableComponent
   ],
 })
 export class TableDocumentModule { }

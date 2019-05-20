@@ -40,21 +40,19 @@
       <nt-example-code [code]="columnVisibilityCode"></nt-example-code>
     </nt-example>
   </div>
+  <div class="medium-12 cell">
+   <nt-example>
+      <nt-example-showcase>
+        <example-table-selectable></example-table-selectable>
+      </nt-example-showcase>
+      <nt-example-legend title="可选择列表">
+        通过 引入 `SelectionModel` 配合 `NtCheckboxModule` 实现列表选中效果
+      </nt-example-legend>
+      <nt-example-code [code]="selectableCode"></nt-example-code>
+    </nt-example>
+  </div>
 </div>
 
+
 ## API
-
-### NtTableComponent `nt-table`
-
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| dataSource | 数据源 | `Array<T>`、`DataSource<T>`、`Observable<T[]>` | - |
-| trackBy | 数据源变化跟踪属性，类似 ngFor 的 trackBy | `function` | - |
-| sortChange | 事件：排序时触发，列要设置成可排序列（sortable） | `($event: NtColumnSortChange) => void` | - |
-
-### NtColumnDirective `nt-column`
-
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| name | 列名称 | `string` | - |
-| sortable | 是否可排序，会触发 `NtTableComponent` 的 `sortChange` 事件 | `boolean` | `false` |
+<nt-markdown-block [data]="api"></nt-markdown-block>
