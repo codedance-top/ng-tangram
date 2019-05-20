@@ -19,14 +19,13 @@ $nt-progress-sizes: (
   display: inline-block;
   position: relative;
   text-align: center;
-  div{
+  .progress-container {
     position: relative;
-    span {
+    .progress-inner {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%,-50%);
-      line-height: 0;
       img {
         max-width: 25px;
         max-height: 25px;
