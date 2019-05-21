@@ -13,4 +13,5 @@ export class TableDocumentComponent {
   sortCode = require('!!raw-loader!./examples/sort');
   selectableCode = require('!!raw-loader!./examples/selectable');
   dataCode = require('!!raw-loader!./examples/data');
+  observableDataCode = require('!!raw-loader!./examples/observable-data');
 }
