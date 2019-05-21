@@ -20,7 +20,6 @@ export class AsyncDataSource extends DataSource<ExampleAsyncNode> {
   }
 
   connect(collectionViewer: CollectionViewer): Observable<ExampleAsyncNode[]> {
-// tslint:disable-next-line: no-non-null-assertion
     this.treeControl.expansionModel.changed!.subscribe(change => {
       if ((change as SelectionChange<ExampleAsyncNode>).added || (change as SelectionChange<ExampleAsyncNode>).removed) {
         this.handleTreeControl(change as SelectionChange<ExampleAsyncNode>);

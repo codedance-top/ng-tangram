@@ -1,0 +1,24 @@
+<nt-tree class="example-tree"
+  [dataSource]="dataSource"
+  [treeControl]="treeControl">
+
+  <nt-nested-tree-node class="example-tree-node"
+    *ntTreeNodeDef="let node">
+    {{ node.name }}
+  </nt-nested-tree-node>
+
+  <nt-nested-tree-node class="example-tree-node"
+    *ntTreeNodeDef="let node; when: hasChild">
+    <a class="tree-toggle">
+      <!-- 展开的箭头 -->
+      <span class="tree-caret"
+        [class.expanded]="isExpanded(node)"
+        ntTreeNodeToggle>
+      </span>
+    </a>
+    {{ node.name }}
+    <div class="example-nested-node" [class.expanded]="isExpanded(node)">
+      <ng-container ntTreeNodeOutlet></ng-container>
+    </div>
+  </nt-nested-tree-node>
+</nt-tree>

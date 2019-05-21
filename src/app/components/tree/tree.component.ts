@@ -9,6 +9,8 @@ export class TreeDocumentComponent {
 
   api = require('!!raw-loader!src/libs/pro/markdown-block/README.md');
 
+  dataCode = require('!!raw-loader!./examples/data.ts');
+
   flatCode = require('!!raw-loader!./examples/flat.component.ts');
   flatTemplate = require('!!raw-loader!./examples/flat.component.html');
   flatStyle = require('!!raw-loader!./examples/flat.component.scss');

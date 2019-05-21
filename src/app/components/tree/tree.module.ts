@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NtTreeModule } from '@ng-tangram/components/tree';
+import { NtMenuModule, NtTreeModule } from '@ng-tangram/components';
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtMarkdownBlockModule } from '@ng-tangram/pro';
 
@@ -16,6 +16,7 @@ import { TreeDocumentComponent } from './tree.component';
   imports: [
     CommonModule,
     NtExampleModule,
+    NtMenuModule,
     NtTreeModule,
     NtMarkdownBlockModule,
     RouterModule.forChild([

@@ -1,42 +1,7 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component } from '@angular/core';
 import { NtTreeFlatDataSource, NtTreeFlattener } from '@ng-tangram/components/tree';
-
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-  isExpanded?: boolean;
-  children?: ExampleFlatNode[];
-}
-
-const TREE_DATA: ExampleFlatNode[] = [
-  {
-    name: '北京', expandable: true, level: 0, children: [
-      { name: '东城区', expandable: false, level: 1 },
-      { name: '西城区', expandable: false, level: 1 },
-      { name: '朝阳区', expandable: false, level: 1 },
-    ]
-  },
-  {
-    name: '辽宁', expandable: true, level: 0, children: [
-      {
-        name: '沈阳', expandable: true, level: 1, children: [
-          { name: '和平区', expandable: false, level: 2 },
-          { name: '沈河区', expandable: false, level: 2 }
-        ]
-      },
-      {
-        name: '大连', expandable: true, level: 1, children: [
-          { name: '中山区', expandable: false, level: 2 },
-          { name: '西岗区', expandable: false, level: 2 },
-          { name: '沙河口区', expandable: false, level: 2 },
-          { name: '甘井子区', expandable: false, level: 2 }
-        ]
-      }
-    ]
-  }
-];
+import { ExampleTreeNode, TREE_DATA } from './data';
 
 @Component({
   selector: 'example-tree-flat',
@@ -46,13 +11,13 @@ const TREE_DATA: ExampleFlatNode[] = [
 export class ExampleTreeFlatComponent {
 
   // 树组件的控制器，负责管理树的各种状态
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
+  treeControl = new FlatTreeControl<ExampleTreeNode>(
     node => node.level,
     node => node.expandable
   );
 
-  treeFlattener = new NtTreeFlattener(
-    this.transformer,
+  treeFlattener = new NtTreeFlattener<ExampleTreeNode, ExampleTreeNode>(
+    node => node,
     node => node.level,
     node => node.expandable,
     node => node.children
@@ -60,21 +25,15 @@ export class ExampleTreeFlatComponent {
 
   dataSource = new NtTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
-
   constructor() {
     this.dataSource.data = TREE_DATA;
   }
 
-  isExpanded(node: ExampleFlatNode) {
-    return this.treeControl.isExpanded(node);
+  hasChild(_: number, node: ExampleTreeNode) {
+    return node.expandable;
   }
 
-  private transformer(node: ExampleFlatNode, level: number) {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      level: level,
-    };
+  isExpanded(node: ExampleTreeNode) {
+    return this.treeControl.isExpanded(node);
   }
 }
