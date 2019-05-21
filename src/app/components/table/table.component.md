@@ -55,6 +55,17 @@
       <nt-example-code [code]="dataCode"></nt-example-code>
     </nt-example>
   </div>
+  <div class="medium-12 cell">
+   <nt-example>
+      <nt-example-showcase>
+        <example-table-observable-data></example-table-observable-data>
+      </nt-example-showcase>
+      <nt-example-legend title="数据源">
+       添加 `Observable` 类型数据作为数据源，可以更好兼容异步加载
+      </nt-example-legend>
+      <nt-example-code [code]="observableDataCode"></nt-example-code>
+    </nt-example>
+  </div>
 </div>
 
 
