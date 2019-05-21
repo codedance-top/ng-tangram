@@ -18,6 +18,8 @@ import { ExampleTableColumnVisibilityComponent } from './examples/column-visibil
 import { ExampleTableSortComponent } from './examples/sort';
 import { TableDocumentComponent } from './table.component';
 import { ExampleTableSelectableComponent } from './examples/selectable';
+import { ExampleTableDataComponent } from './examples/data';
+import { NtInputModule } from 'out-tsc/@ng-tangram/components/input';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { ExampleTableSelectableComponent } from './examples/selectable';
     NtScrimModule,
     NtMarkdownBlockModule,
     NtCheckboxModule,
+    NtInputModule,
     RouterModule.forChild([
       { path: '', component: TableDocumentComponent }
     ])],
@@ -42,7 +45,8 @@ import { ExampleTableSelectableComponent } from './examples/selectable';
     ExampleTableAlternateComponent,
     ExampleTableSortComponent,
     ExampleTableColumnVisibilityComponent,
-    ExampleTableSelectableComponent
+    ExampleTableSelectableComponent,
+    ExampleTableDataComponent
   ],
 })
 export class TableDocumentModule { }

@@ -25,13 +25,6 @@
   <div class="medium-12 cell">
     <nt-example>
       <nt-example-showcase>
-        <example-table-alternate></example-table-alternate>
-      </nt-example-showcase>
-      <nt-example-legend title="自定义表格">对于不想用 原生 table 的时候可以用自定义表格。</nt-example-legend>
-      <nt-example-code [code]="alternateCode"></nt-example-code>
-    </nt-example>
-    <nt-example>
-      <nt-example-showcase>
         <example-table-column-visibility></example-table-column-visibility>
       </nt-example-showcase>
       <nt-example-legend title="列可见性">
@@ -49,6 +42,17 @@
         通过 引入 `SelectionModel` 配合 `NtCheckboxModule` 实现列表选中效果
       </nt-example-legend>
       <nt-example-code [code]="selectableCode"></nt-example-code>
+    </nt-example>
+  </div>
+  <div class="medium-12 cell">
+   <nt-example>
+      <nt-example-showcase>
+        <example-table-data></example-table-data>
+      </nt-example-showcase>
+      <nt-example-legend title="数据源">
+       添加 `NtTableDataSource` 类型数据作为数据源, 可以更好的实现前端筛选
+      </nt-example-legend>
+      <nt-example-code [code]="dataCode"></nt-example-code>
     </nt-example>
   </div>
 </div>

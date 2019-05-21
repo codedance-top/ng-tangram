@@ -12,4 +12,5 @@ export class TableDocumentComponent {
   columnVisibilityCode = require('!!raw-loader!./examples/column-visibility');
   sortCode = require('!!raw-loader!./examples/sort');
   selectableCode = require('!!raw-loader!./examples/selectable');
+  dataCode = require('!!raw-loader!./examples/data');
 }
