@@ -25,14 +25,5 @@
   <nt-example-code [code]="inlineCode"></nt-example-code>
 </nt-example>
 
-<nt-example>
-  <nt-example-showcase>
-    <example-form-width></example-form-width>
-  </nt-example-showcase>
-  <nt-example-legend title="设置标签宽度">设置标签宽度</nt-example-legend>
-  <nt-example-code [code]="widthCode"></nt-example-code>
-</nt-example>
-
-
 <nt-markdown-block [data]="api"></nt-markdown-block>
 

@@ -17,11 +17,10 @@ import { Component } from '@angular/core';
       <div *ngFor="let e of events">{{e}}</div>
     </div>
     <nt-datepicker placeholder="日期"
-      (afterOpen)="afterOpen($event)"
-      (afterClosed)="afterClosed($event)"
-      (beforeOpen)="beforeOpen($event)"
-      (beforeClosed)="beforeClosed($event)"
-      (positionChange)="positionChange()"
+      (afterOpen)="afterOpen()"
+      (afterClosed)="afterClosed()"
+      (beforeOpen)="beforeOpen()"
+      (beforeClosed)="beforeClosed()"
     ></nt-datepicker>
 
   `

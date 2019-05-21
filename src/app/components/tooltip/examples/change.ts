@@ -15,10 +15,10 @@ import { Component } from '@angular/core';
   template: `
 
     <nt-tooltip title="标题"
-      (afterOpen)="afterOpen($event)"
-      (afterClosed)="afterClosed($event)"
-      (beforeOpen)="beforeOpen($event)"
-      (beforeClosed)="beforeClosed($event)">
+      (afterOpen)="afterOpen()"
+      (afterClosed)="afterClosed()"
+      (beforeOpen)="beforeOpen()"
+      (beforeClosed)="beforeClosed()">
       <a class="button">提示</a>
     </nt-tooltip>
     <div class="example-events">

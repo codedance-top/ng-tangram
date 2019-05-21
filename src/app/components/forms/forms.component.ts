@@ -9,5 +9,4 @@ export class FormsDocumentComponent {
   api = require('!!raw-loader!src/libs/components/forms/README.md');
   loginCode = require('!!raw-loader!./examples/login');
   inlineCode = require('!!raw-loader!./examples/inline');
-  widthCode = require('!!raw-loader!./examples/width');
 }

@@ -18,10 +18,10 @@ import { Component } from '@angular/core';
       [nt-popconfirm]="title"
       [confirmText]="'Yes'"
       [cancelText]="'No'"
-      (afterOpen)="afterOpen($event)"
-      (afterClosed)="afterClosed($event)"
-      (beforeOpen)="beforeOpen($event)"
-      (beforeClosed)="beforeClosed($event)">
+      (afterOpen)="afterOpen()"
+      (afterClosed)="afterClosed()"
+      (beforeOpen)="beforeOpen()"
+      (beforeClosed)="beforeClosed()">
       Delete
     </a>
     <div class="example-events">

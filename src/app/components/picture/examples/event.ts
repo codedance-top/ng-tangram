@@ -7,13 +7,15 @@ import { Validators, FormControl } from '@angular/forms';
   template: `
     <nt-form-field label="图片" [messages]="{ required: '请上传图片' }">
       <nt-picture url="/files/logos" maxFiles="2" maxSize="0.5" name="picture" [formControl]="pictureControl"
-        disabled="{{status === 'disabled'}}" readonly="{{status === 'readonly'}}" (error)="onError($event)">
+      (error)="onError($event)">
         <i class="fa fa-upload"></i>
       </nt-picture>
     </nt-form-field>
   `
 })
 export class ExamplePictureEventComponent {
+
+
 
   pictureControl = new FormControl([
     {

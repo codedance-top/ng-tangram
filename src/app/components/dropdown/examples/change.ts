@@ -18,11 +18,10 @@ import { Component } from '@angular/core';
     </div>
 
     <a nt-dropdown position="bottom"
-      (afterOpen)="afterOpen($event)"
-      (afterClosed)="afterClosed($event)"
-      (beforeOpen)="beforeOpen($event)"
-      (beforeClosed)="beforeClosed($event)"
-      (positionChange)="positionChange()"
+      (afterOpen)="afterOpen()"
+      (afterClosed)="afterClosed()"
+      (beforeOpen)="beforeOpen()"
+      (beforeClosed)="beforeClosed()"
     >
     下拉菜单
     <nt-dropdown-pane arrow autosize>基本下拉菜单弹出层</nt-dropdown-pane>
@@ -53,8 +52,4 @@ export class ExampleDropdownChangeComponent {
     this.events.push('触发弹出层消失前事件回调');
   }
 
-  // 定位策略改变
-  positionChange() {
-    this.events.push('定位策略改变事件回调');
-  }
 }

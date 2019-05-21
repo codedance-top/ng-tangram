@@ -15,10 +15,10 @@ import { Component } from '@angular/core';
   template: `
 
     <a class="button" nt-popover="标题"
-      (afterOpen)="afterOpen($event)"
-      (afterClosed)="afterClosed($event)"
-      (beforeOpen)="beforeOpen($event)"
-      (beforeClosed)="beforeClosed($event)">
+      (afterOpen)="afterOpen()"
+      (afterClosed)="afterClosed()"
+      (beforeOpen)="beforeOpen()"
+      (beforeClosed)="beforeClosed()">
       Click me
       <nt-popover-pane>弹出层内容</nt-popover-pane>
     </a>

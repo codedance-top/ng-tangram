@@ -13,7 +13,6 @@ import { NtMarkdownBlockModule } from '@ng-tangram/pro';
 import { ExampleFormInlineComponent } from './examples/inline';
 import { ExampleFormLoginComponent } from './examples/login';
 import { FormsDocumentComponent } from './forms.component';
-import { ExampleFormWidthComponent } from './examples/width';
 
 
 @NgModule({
@@ -35,8 +34,7 @@ import { ExampleFormWidthComponent } from './examples/width';
   declarations: [
     FormsDocumentComponent,
     ExampleFormLoginComponent,
-    ExampleFormInlineComponent,
-    ExampleFormWidthComponent
+    ExampleFormInlineComponent
   ]
 })
 export class FormsDocumentModule { }
