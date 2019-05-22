@@ -19,7 +19,7 @@ import { ExampleTableSortComponent } from './examples/sort';
 import { TableDocumentComponent } from './table.component';
 import { ExampleTableSelectableComponent } from './examples/selectable';
 import { ExampleTableDataComponent } from './examples/data';
-import { NtInputModule } from 'out-tsc/@ng-tangram/components/input';
+import { NtInputModule } from '@ng-tangram/components/input';
 import { ExampleTableObservableDataComponent } from './examples/observable-data';
 import { ObservableDataService } from './examples/data.service';
 
