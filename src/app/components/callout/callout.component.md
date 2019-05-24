@@ -20,7 +20,7 @@
         <example-callout-reactives></example-callout-reactives>
       </nt-example-showcase>
       <nt-example-legend title="动态提示框">
-        可以动态控制样式类型
+        可以动态控制样式类型。
       </nt-example-legend>
       <nt-example-code [code]="reactivesCode"></nt-example-code>
     </nt-example>
@@ -28,8 +28,8 @@
       <nt-example-showcase>
         <example-callout-event></example-callout-event>
       </nt-example-showcase>
-      <nt-example-legend title="可关闭的警告提示">
-        显示关闭按钮，点击可关闭警告提示。
+      <nt-example-legend title="可关闭的提示框">
+        显示关闭按钮，关闭后触发后提示。
       </nt-example-legend>
       <nt-example-code [code]="eventCode"></nt-example-code>
     </nt-example>
@@ -40,7 +40,7 @@
         <example-callout-color></example-callout-color>
       </nt-example-showcase>
       <nt-example-legend title="样式设置">
-        共有5种样式 `primary`、`secondry`、`success`、`warning`、`alert`。
+        共有5种样式：`primary`、`secondry`、`success`、`warning`、`alert`。
       </nt-example-legend>
       <nt-example-code [code]="colorCode"></nt-example-code>
     </nt-example>
@@ -48,8 +48,8 @@
       <nt-example-showcase>
         <example-callout-size></example-callout-size>
       </nt-example-showcase>
-      <nt-example-legend title="尺寸控制">
-        共有3种尺寸 `small`、 `medium`、`large`
+      <nt-example-legend title="尺寸设置">
+        共有3种尺寸：`small`、 `medium`、`large`。
       </nt-example-legend>
       <nt-example-code [code]="sizeCode"></nt-example-code>
     </nt-example>

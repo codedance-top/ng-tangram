@@ -1,7 +1,9 @@
 
+图片上传控件
+
 ## 何时使用
 
-将图片等上传到远程服务器上的时候。
+将图片上传到远程服务器的时候使用。
 
 ## 代码演示
 
@@ -18,7 +20,7 @@
       <nt-example-showcase>
         <example-picture-accept></example-picture-accept>
       </nt-example-showcase>
-      <nt-example-legend title="控制上传图片格式">例：控制上传图片为jpeg格式或gif格式。</nt-example-legend>
+      <nt-example-legend title="控制上传图片格式">通过属性accept控制上传图片为jpeg格式或gif格式。</nt-example-legend>
       <nt-example-code [code]="acceptCode"></nt-example-code>
     </nt-example>
   </div>

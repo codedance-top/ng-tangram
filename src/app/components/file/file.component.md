@@ -2,7 +2,7 @@
 
 ## 何时使用
 
-将文件、图片等上传到远程服务器上的时候。
+将文件、图片、音频等上传到远程服务器的时候使用。
 
 ## 代码演示
 
@@ -19,7 +19,7 @@
       <nt-example-showcase>
         <example-file-accept></example-file-accept>
       </nt-example-showcase>
-      <nt-example-legend title="控制上传文件类型">例：控制上传文件为png格式图片或css文件。</nt-example-legend>
+      <nt-example-legend title="控制上传文件类型">通过属性accept控制上传文件为png格式图片或css文件。</nt-example-legend>
       <nt-example-code [code]="acceptCode"></nt-example-code>
     </nt-example>
   </div>

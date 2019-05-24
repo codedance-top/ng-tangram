@@ -4,6 +4,12 @@ import { NtUploadControlError, NtFileSizeError, NtFileAcceptError, NtFileUploadE
 import { Validators, FormControl } from '@angular/forms';
 @Component({
   selector: 'example-file-accept',
+  styles: [`
+      span {
+        color: #f5212d;
+      }
+    `
+  ],
   template: `
     <nt-form-field label="文件列表" [messages]="{ required: '请上传文件' }">
       <nt-file url="/files/logos"
@@ -11,6 +17,7 @@ import { Validators, FormControl } from '@angular/forms';
         <i class="fa fa-upload"></i>&nbsp;Select File
       </nt-file>
     </nt-form-field>
+    <span>{{message}}</span>
   `
 })
 export class ExampleFileAcceptComponent {
@@ -24,18 +31,23 @@ export class ExampleFileAcceptComponent {
     }
   ], [Validators.required]);
 
+  message = '';
+
   /**
    * 错误提示
   */
   onError(error: NtUploadControlError) {
     if (error instanceof NtFileSizeError) {
-      alert(`文件不能超过${error.maxSizeString}`);
+      this.message = `文件不能超过${error.maxSizeString}`;
     }
     if (error instanceof NtFileAcceptError) {
-      alert(`不支持文件类型${error.fileAccept}`);
+      this.message = `不支持文件类型${error.fileAccept}`;
     }
     if (error instanceof NtFileUploadError) {
-      alert(`${error.statusText}`);
+      this.message = `${error.statusText}`;
     }
+    setTimeout(() => {
+      this.message = '';
+    }, 3000);
   }
 }
