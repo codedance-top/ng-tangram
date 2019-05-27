@@ -7,6 +7,7 @@ import { NtExampleModule } from '@ng-tangram/example';
 import { NtPaginationModule } from '@ng-tangram/components/pagination';
 import { PaginationDocumentComponent } from './pagination.component';
 import { ExamplePaginationBasicComponent } from './examples/basic';
+import { ExamplePaginationMoreComponent } from './examples/more';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { ExamplePaginationBasicComponent } from './examples/basic';
     ])
   ],
   exports: [PaginationDocumentComponent],
-  declarations: [PaginationDocumentComponent, ExamplePaginationBasicComponent],
+  declarations: [PaginationDocumentComponent, ExamplePaginationBasicComponent, ExamplePaginationMoreComponent],
 })
 export class PaginationDocumentModule { }

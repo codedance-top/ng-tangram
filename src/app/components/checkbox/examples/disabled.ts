@@ -3,11 +3,9 @@ import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms'
 import { NtCheckboxChange } from '@ng-tangram/components';
 
 @Component({
-  selector: 'example-checkbox-basic',
+  selector: 'example-checkbox-disabled',
   template: `
-    <nt-checkbox checked="checked">basic</nt-checkbox>
+    <nt-checkbox checked="true" disabled>Disabled</nt-checkbox>
   `
 })
-export class ExampleCheckboxBasicComponent {
-  checked: boolean = true;
-}
+export class ExampleCheckboxDisabledComponent { }
