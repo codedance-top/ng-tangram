@@ -8,16 +8,10 @@ import { OnInit } from '@angular/core';
   `
 })
 export class ExamplePaginationBasicComponent implements OnInit {
-  // pageIndex = 1;
-  total = 0;
-  // pageSize = 10;
 
+  total = 16;
   no = 1;
   size = 10;
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.total = 16;
-    }, 500);
-  }
+  ngOnInit() { }
 }

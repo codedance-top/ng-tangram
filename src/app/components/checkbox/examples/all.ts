@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NtCheckboxChange } from '@ng-tangram/components';
 
 @Component({
@@ -7,14 +7,12 @@ import { NtCheckboxChange } from '@ng-tangram/components';
   template: `
     <nt-checkbox [indeterminate]="indeterminate" [checked]="isAll" (change)="onChange($event)">测试</nt-checkbox>
     <form [formGroup]="form" ntFormOrientation="horizontal">
-      <nt-form-field label="水果" [messages]="{ required: '请至少选择一个{0}', maxlength: '{0}最多只能选择{1}个' }">
-        <nt-checkbox-group formControlName="fruits">
-          <nt-checkbox value="apple">苹果</nt-checkbox>
-          <nt-checkbox value="melon">哈密瓜</nt-checkbox>
-          <nt-checkbox value="strawberry">草莓</nt-checkbox>
-          <nt-checkbox value="mango">芒果</nt-checkbox>
-        </nt-checkbox-group>
-      </nt-form-field>
+      <nt-checkbox-group formControlName="fruits">
+        <nt-checkbox value="apple">苹果</nt-checkbox>
+        <nt-checkbox value="melon">哈密瓜</nt-checkbox>
+        <nt-checkbox value="strawberry">草莓</nt-checkbox>
+        <nt-checkbox value="mango">芒果</nt-checkbox>
+      </nt-checkbox-group>
     </form>
   `
 })
@@ -35,7 +33,7 @@ export class ExampleCheckboxAllComponent {
     this.checkbox = this.formBuilder.control('');
 
     this.form = this.formBuilder.group({
-      fruits: this.formBuilder.control(['apple'], [Validators.required])
+      fruits: this.formBuilder.control(['apple'])
     });
 
     this.indeterminate = this.form.get('fruits').value.length > 0;

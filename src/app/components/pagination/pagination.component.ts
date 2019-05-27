@@ -7,4 +7,5 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaginationDocumentComponent {
   basicCode = require('!!raw-loader!./examples/basic');
+  moreCode = require('!!raw-loader!./examples/more');
 }

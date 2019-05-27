@@ -5,7 +5,9 @@ import { NtCheckboxChange } from '@ng-tangram/components';
 @Component({
   selector: 'example-checkbox-basic',
   template: `
-    <nt-checkbox checked="true">basic</nt-checkbox>
+    <nt-checkbox checked="checked">basic</nt-checkbox>
   `
 })
-export class ExampleCheckboxBasicComponent { }
+export class ExampleCheckboxBasicComponent {
+  checked: boolean = true;
+}

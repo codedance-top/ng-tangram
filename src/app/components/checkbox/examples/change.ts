@@ -1,16 +1,29 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
-import { NtCheckboxChange } from '@ng-tangram/components';
 
 @Component({
   selector: 'example-checkbox-change',
+  styles: [
+    `
+      .example-events {
+        margin: 10px 0;
+      }
+    `
+  ],
   template: `
-    <nt-checkbox (change)="_change($event)">change</nt-checkbox>
+    <nt-checkbox (change)="change($event)">change</nt-checkbox>
+    <div class="example-events">
+      {{status}}
+    </div>
   `
 })
 export class ExampleCheckboxChangeComponent {
 
-  _change(event: Event) {
-    console.log(event);
+  status: string = '';
+
+  constructor() {}
+
+  change(event: any) {
+    event.checked && (this.status = '当前为选中状态');
+    !event.checked && (this.status = '当前为选非中状态');
   }
 }
