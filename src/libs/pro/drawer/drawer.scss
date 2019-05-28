@@ -1,0 +1,10 @@
+
+// $nt-drawer-shadow:
+
+@mixin nt-drawer {
+  .nt-drawer {
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+}
