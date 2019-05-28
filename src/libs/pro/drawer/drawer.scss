@@ -1,10 +1,71 @@
 
-// $nt-drawer-shadow:
+$nt-drawer-zindex: 1001 !default;
+$nt-drawer-backdrop-opacity: .3 !default;
+$nt-drawer-overlay-background: $white !default;
+$nt-drawer-overlay-transtransition: left .3s, right .3s, bottom .3s, top .3s !default;
+$nt-drawer-overlay-min-size: 200px !default;
+
+@mixin nt-drawer-overlay {
+  position: fixed;
+  overflow: auto;
+  z-index: $nt-drawer-zindex;
+  background: $nt-drawer-overlay-background;
+  transition: $nt-drawer-overlay-transtransition;
+
+  &.left,
+  &.right {
+    top: 0;
+    bottom: 0;
+    min-width: $nt-drawer-overlay-min-size;
+  }
+
+  &.top,
+  &.bottom {
+    left: 0;
+    right: 0;
+    min-height: $nt-drawer-overlay-min-size;
+  }
+
+  &.right {
+    right: -100%;
+    &.is-expanded { right: 0; }
+  }
+
+  &.left {
+    left: -100%;
+    &.is-expanded { left: 0; }
+  }
+
+  &.top {
+    top: -100%;
+    &.is-expanded { top: 0; }
+  }
+
+  &.bottom {
+    bottom: -100%;
+    &.is-expanded { bottom: 0; }
+  }
+}
+
+@mixin nt-drawer-backdrop {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: $nt-drawer-zindex - 1;
+  background-color: #000;
+  opacity: $nt-drawer-backdrop-opacity;
+}
 
 @mixin nt-drawer {
   .nt-drawer {
-    position: fixed;
-    height: 100%;
-    overflow: auto;
+    .nt-drawer-overlay {
+      @include nt-drawer-overlay;
+    }
+
+    .nt-drawer-backdrop {
+      @include nt-drawer-backdrop;
+    }
   }
 }

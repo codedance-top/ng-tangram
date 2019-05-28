@@ -1,8 +1,9 @@
 {
   "name": "pro",
-  "children": ["markdown-block", "markdown-editor"],
+  "children": ["drawer", "markdown-block", "markdown-editor"],
   "globals": {
     "@ng-tangram/pro": "nt.pro",
+    "@ng-tangram/pro/drawer": "nt.pro.drawer",
     "@ng-tangram/pro/markdown-block": "nt.pro.markdownBlock",
     "@ng-tangram/pro/markdown-editor": "nt.pro.markdownEditor"
   }
