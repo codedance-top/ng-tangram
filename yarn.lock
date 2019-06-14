@@ -192,13 +192,6 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/http@~7.2.14":
-  version "7.2.14"
-  resolved "https://registry.yarnpkg.com/@angular/http/-/http-7.2.14.tgz#13a0e71133296e2bb1c0b68d48281a70a5f233b5"
-  integrity sha512-rSdH2JojApDU83qVm7RabIlNo3Ni3yr2gwsmQWs4XZ7SC8jLNnDkzdUbQ6T0vfuVX3v/FtAuMJl0yaVcG3EUJg==
-  dependencies:
-    tslib "^1.9.0"
-
 "@angular/platform-browser-dynamic@~7.2.14":
   version "7.2.14"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-7.2.14.tgz#ae055ab0d3246c0f2d27d40a46cd99c012aa199d"

@@ -16,7 +16,6 @@
     "@angular/core": ">=6.0.0 <8.0.0",
     "@angular/common": ">=6.0.0 <8.0.0",
     "@angular/forms": ">=6.0.0 <8.0.0",
-    "@angular/http": ">=6.0.0 <8.0.0",
     "@angular/cdk": ">=6.0.0 <8.0.0",
     "@fortawesome/fontawesome-free": "~5.7.0",
     "@ng-tangram/components": ">=0.6.0",

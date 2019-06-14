@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 // function clearHTML(text: string) {
 //   return text.replace('', '');
@@ -12,7 +12,7 @@ import { Http, Response } from '@angular/http';
 @Injectable()
 export class NtMarkdownService {
   private _renderer: marked.Renderer = new marked.Renderer();
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
     this.extendRenderer();
     this.setMarkedOptions({});
   }
@@ -31,8 +31,8 @@ export class NtMarkdownService {
   }
 
   // handle data
-  extractData(res: Response): string {
-    return res.text() || '';
+  extractData(res: HttpResponse<any>): string {
+    return res.body || '';
   }
 
 
@@ -56,10 +56,10 @@ export class NtMarkdownService {
   }
 
   // handle error
-  private handleError(error: Response | any): any {
+  private handleError(error: HttpErrorResponse): any {
     let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
+    if (error instanceof HttpResponse) {
+      const body = error.body || '';
       const err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
     } else {

@@ -17,7 +17,7 @@
     "server": "node docs/server",
     "publish": "cd dist/@ng-tangram/components && npm publish && cd ../pro && npm publish && cd ../moment-adapter && npm publish && cd ../../../",
     "prepublish:docs": "tar -cvf ng-tangram-docs.tar.gz docs/* package.json",
-    "publish:docs": "scp -r ./ng-tangram-docs.tar.gz root@39.106.49.60:/var/www"
+    "publish:docs": "scp -r ./ng-tangram-docs.tar.gz root@39.105.124.168:/var/www"
   },
   "dependencies": {
     "@angular/animations": "~7.2.14",
@@ -26,7 +26,6 @@
     "@angular/compiler": "~7.2.14",
     "@angular/core": "~7.2.14",
     "@angular/forms": "~7.2.14",
-    "@angular/http": "~7.2.14",
     "@angular/platform-browser": "~7.2.14",
     "@angular/platform-browser-dynamic": "~7.2.14",
     "@angular/platform-server": "~7.2.14",
