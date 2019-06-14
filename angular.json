@@ -10,7 +10,7 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
       "architect": {
@@ -18,7 +18,8 @@
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "customWebpackConfig": {
-              "path": "./webpack.markdown.js"
+              "path": "./webpack.markdown.js",
+              "mergeStrategies": { "externals": "replace" }
             },
             "outputPath": "docs/browser",
             "index": "src/index.html",
@@ -63,7 +64,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-builders/dev-server:generic",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "ng-tangram-docs:build",
             "port": 8080
@@ -78,7 +79,8 @@
           "builder": "@angular-builders/custom-webpack:server",
           "options": {
             "customWebpackConfig": {
-              "path": "./webpack.markdown.js"
+              "path": "./webpack.markdown.js",
+              "mergeStrategies": { "externals": "replace" }
             },
             "outputPath": "docs/server",
             "main": "src/main.server.ts",

@@ -21,7 +21,7 @@ import { ExampleModalHeightComponent } from './examples/height';
 import { ExampleModalTopComponent } from './examples/top';
 import { ExampleModalClosableComponent } from './examples/closable';
 import { ExampleModalHasBackdropComponent } from './examples/hasBackdrop';
-import { ExampleModalCenterVerticallyComponent } from './examples/centerVertically';
+import { ExampleModalCenterVerticallyComponent } from './examples/center-vertically';
 import { ExampleModalTransparentComponent } from './examples/transparent';
 import { ExampleModalClassComponent } from './examples/class';
 

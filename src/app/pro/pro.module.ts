@@ -1,21 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { NtExampleModule } from '@ng-tangram/example';
-
+import { PRO_ROUTES } from './pro-routes';
 import { ProComponent } from './pro.component';
-import { PRO_ROUTES } from './pro.routes';
-
-const routes: Routes = [
-  { path: '', component: ProComponent, children: PRO_ROUTES }
-];
-
 
 @NgModule({
   imports: [
     CommonModule,
     NtExampleModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild([
+      { path: '', component: ProComponent, children: PRO_ROUTES
+      }
+    ])
   ],
   declarations: [ProComponent]
 })

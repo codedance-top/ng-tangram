@@ -17,7 +17,8 @@ import { NtDatePickerComponent } from '@ng-tangram/components/datepicker';
   `
 })
 export class ExampleDatePickerBasicComponent {
-  @ViewChild('datepicker') datepicker: NtDatePickerComponent<Date>;
+
+  @ViewChild('datepicker', { static: true }) datepicker: NtDatePickerComponent<Date>;
 
   startDate = new Date(2012, 5, 20);
   status: string = 'normal'

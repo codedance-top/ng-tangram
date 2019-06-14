@@ -1,5 +1,5 @@
-import { Component, ViewChild, TemplateRef, ViewContainerRef } from '@angular/core';
-import { NtModal, NtModalRef } from '@ng-tangram/components/modal';
+import { Component, TemplateRef } from '@angular/core';
+import { NtModal } from '@ng-tangram/components/modal';
 
 const content = `
 Modal dialogs, or pop-up windows, are handy for prototyping and production.
@@ -27,9 +27,9 @@ export class ExampleModalComponentDialogComponent {
 @Component({
   selector: 'example-modal-basic',
   template: `
-    <button class="margin-right-1" nt-button (click)="openForTtemplate()">模板模态框</button>
+    <button class="margin-right-1" nt-button (click)="openForTemplate(template)">模板模态框</button>
     <button nt-button (click)="openForComponent()">组件模态框</button>
-    <ng-template>
+    <ng-template #template>
       <nt-modal-header>
       模板模态框
       </nt-modal-header>
@@ -41,18 +41,15 @@ export class ExampleModalComponentDialogComponent {
 })
 export class ExampleModalBasicComponent {
 
-  @ViewChild(TemplateRef) template : TemplateRef<any>;
   content = content;
 
-  constructor(
-    private viewContainerRef: ViewContainerRef,
-    private ntModal: NtModal) { }
+  constructor(private modal: NtModal) { }
 
-  openForTtemplate() {
-    this.ntModal.open(this.template);
+  openForTemplate(template: TemplateRef<any>) {
+    this.modal.open(template);
   }
 
   openForComponent() {
-    const modal = this.ntModal.open(ExampleModalComponentDialogComponent);
+    this.modal.open(ExampleModalComponentDialogComponent);
   }
 }

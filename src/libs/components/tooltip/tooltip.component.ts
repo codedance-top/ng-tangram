@@ -56,7 +56,7 @@ export class NtTooltipComponent implements OnChanges {
 
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
-  @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
+  @ViewChild(NtOverlayComponent, { static: true }) overlay: NtOverlayComponent;
 
   constructor(private _elementRef: ElementRef) {
     this.origin = new CdkOverlayOrigin(_elementRef);

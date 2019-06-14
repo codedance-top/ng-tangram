@@ -55,7 +55,7 @@ export class NtPopConfirmComponent implements OnChanges {
 
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
-  @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
+  @ViewChild(NtOverlayComponent, { static: true }) overlay: NtOverlayComponent;
 
   constructor(
     private _elementRef: ElementRef) {

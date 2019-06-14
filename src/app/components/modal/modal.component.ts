@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'nt-modal-document',
@@ -16,7 +16,7 @@ export class ModalDocumentComponent {
   topCode = require('!!raw-loader!./examples/top');
   closableCode = require('!!raw-loader!./examples/closable');
   hasBackdropCode = require('!!raw-loader!./examples/hasBackdrop');
-  centerVerticallyCode = require('!!raw-loader!./examples/centerVertically');
+  centerVerticallyCode = require('!!raw-loader!./examples/center-vertically');
   transparentCode = require('!!raw-loader!./examples/transparent');
   classCode = require('!!raw-loader!./examples/class');
 }

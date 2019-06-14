@@ -39,7 +39,7 @@ export function throwNtModalContentAlreadyAttachedError() {
 })
 export class NtModalComponent extends BasePortalOutlet {
 
-  @ViewChild(CdkPortalOutlet) private _portalOutlet: CdkPortalOutlet;
+  @ViewChild(CdkPortalOutlet, { static: true }) private _portalOutlet: CdkPortalOutlet;
 
   _config: NtModalConfig;
 
