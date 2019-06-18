@@ -17,6 +17,8 @@ const distFolder = join(rootFolder, 'dist/@ng-tangram');
 
 const version = require('./package.json').version;
 
+const VERSION_PLACEHOLDER = '0.0.0-PLACEHOLDER';
+
 async function _inline(from, to) {
   await relativeCopy('**/*', from, to);
   await inlineResources(to);
@@ -89,7 +91,7 @@ async function _build(lib) {
   }
 
   /** 当版本号存在时不以统一版本号发布 */
-  if(libPackage.version === '0.0.0-PLACEHOLDER') {
+  if(libPackage.version === VERSION_PLACEHOLDER) {
     libPackage.version = version;
   }
 

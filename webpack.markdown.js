@@ -49,8 +49,6 @@ const markdownLoader = {
   }
 };
 
-console.log('2222222222222');
-
 module.exports = {
   module: {
     rules: [
