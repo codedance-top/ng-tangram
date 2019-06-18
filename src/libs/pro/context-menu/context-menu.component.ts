@@ -35,7 +35,7 @@ import { fadeIn, fadeOut } from '@ng-tangram/components/core';
 })
 export class NtContextMenuComponent extends BasePortalOutlet {
 
-  @ViewChild(CdkPortalOutlet) private _portalOutlet: CdkPortalOutlet;
+  @ViewChild(CdkPortalOutlet, { static: true }) private _portalOutlet: CdkPortalOutlet;
 
   state: 'void' | 'enter' | 'exit' = 'enter';
 

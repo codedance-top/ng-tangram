@@ -163,10 +163,10 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   _keyManager: ActiveDescendantKeyManager<NtOptionComponent>;
 
-  @ViewChild('inputElement') inputElement: ElementRef;
-  @ViewChild('paneElement') paneElement: ElementRef;
+  @ViewChild('inputElement', { static: true }) inputElement: ElementRef;
+  @ViewChild('paneElement', { static: true }) paneElement: ElementRef;
 
-  @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
+  @ViewChild(NtOverlayComponent, { static: true }) overlay: NtOverlayComponent;
   @ContentChildren(NtOptionComponent) options: QueryList<NtOptionComponent>;
 
   @Output() afterOpen = new EventEmitter<any>();

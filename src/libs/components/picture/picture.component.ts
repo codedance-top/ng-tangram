@@ -138,9 +138,9 @@ export class NtPictureComponent extends NtUploadControl<NtPictureFile> implement
   set autoupload(value: boolean) { this._autoupload = coerceBooleanProperty(value); }
   get autoupload() { return this._autoupload; }
 
-  @ViewChild('fileElement') fileElement: ElementRef;
+  @ViewChild('fileElement', { static: true }) fileElement: ElementRef;
 
-  @ViewChild('previewTemplate') previewTemplate: TemplateRef<any>;
+  @ViewChild('previewTemplate', { static: true }) previewTemplate: TemplateRef<any>;
 
   @Output() error = new EventEmitter<NtUploadControlError>();
 

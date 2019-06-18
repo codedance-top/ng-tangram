@@ -93,7 +93,7 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
   set autoupload(value: boolean) { this._autoupload = coerceBooleanProperty(value); }
   get autoupload() { return this._autoupload; }
 
-  @ViewChild('fileElement') fileElement: ElementRef;
+  @ViewChild('fileElement', { static: true }) fileElement: ElementRef;
 
   @Output() error = new EventEmitter<NtUploadControlError>();
 

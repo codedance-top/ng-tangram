@@ -102,10 +102,10 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
 
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
-  @ViewChild('inputElement') inputElement: ElementRef;
+  @ViewChild('inputElement', { static: true }) inputElement: ElementRef;
 
-  @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
-  @ViewChild(NtDatePickerCalendarComponent) calendar: NtDatePickerCalendarComponent<D>;
+  @ViewChild(NtOverlayComponent, { static: true }) overlay: NtOverlayComponent;
+  @ViewChild(NtDatePickerCalendarComponent, { static: true }) calendar: NtDatePickerCalendarComponent<D>;
 
   /** Emits when the value changes (either due to user input or programmatic change). */
   private _valueChange = new EventEmitter<D | null>();

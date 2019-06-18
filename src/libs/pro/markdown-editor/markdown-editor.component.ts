@@ -56,7 +56,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
 
   activeActionsSnapshot: string[] = [];
 
-  @ViewChild('editor') editor: ElementRef;
+  @ViewChild('editor', { static: true }) editor: ElementRef;
 
   @Input()
   set value(value: string) {

@@ -39,9 +39,9 @@ export class NtDropdownComponent implements NtDropdownParentComponent {
 
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
-  @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
+  @ViewChild(NtOverlayComponent, { static: true }) overlay: NtOverlayComponent;
 
-  @ContentChild(NtDropdownPaneComponent) pane: NtDropdownPaneComponent;
+  @ContentChild(NtDropdownPaneComponent, { static: false }) pane: NtDropdownPaneComponent;
 
   constructor(
     _elementRef: ElementRef) {

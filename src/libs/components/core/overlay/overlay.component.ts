@@ -94,7 +94,7 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
   set overlayClass(value: string) { this._overlayClass = value; }
   get overlayClass() { return this._overlayClass; }
 
-  @ViewChild(CdkConnectedOverlay) cdkConnectedOverlay: CdkConnectedOverlay;
+  @ViewChild(CdkConnectedOverlay, { static: true }) cdkConnectedOverlay: CdkConnectedOverlay;
 
   @Output() afterOpen = new EventEmitter<any>();
   @Output() afterClosed = new EventEmitter<any>();

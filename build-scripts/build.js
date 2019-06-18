@@ -40,7 +40,6 @@ const config = {
       '@angular/forms': 'ng.forms',
       '@angular/common': 'ng.common',
       '@angular/common/http': 'ng.common.http',
-      '@angular/http': 'ng.http',
       '@angular/cdk': 'ng.cdk',
       '@angular/cdk/a11y': 'ng.cdk.a11y',
       '@angular/cdk/bidi': 'ng.cdk.bidi',

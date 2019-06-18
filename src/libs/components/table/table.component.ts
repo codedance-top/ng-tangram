@@ -8,10 +8,12 @@ import { CDK_TABLE_TEMPLATE, CdkTable } from '@angular/cdk/table';
 import {
   AfterContentInit, Attribute, ChangeDetectionStrategy, ChangeDetectorRef, Component,
   ContentChildren, ElementRef, EventEmitter, Input, IterableDiffers, NgZone, OnChanges, OnDestroy,
-  Optional, Output, QueryList, SimpleChanges, ViewEncapsulation
+  Optional, Output, QueryList, SimpleChanges, ViewEncapsulation, Inject
 } from '@angular/core';
 
 import { NtColumnDirective, NtColumnSortChange, NtColumnSort } from './cell.directive';
+import { Platform } from '@angular/cdk/platform';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'nt-table, table[nt-table]',
@@ -62,8 +64,9 @@ export class NtTableComponent<T> extends CdkTable<T> implements AfterContentInit
     protected _changeDetectorRef: ChangeDetectorRef,
     protected _elementRef: ElementRef,
     @Attribute('role') role: string,
-    @Optional() protected readonly _dir: Directionality) {
-    super(_differs, _changeDetectorRef, _elementRef, role, _dir);
+    @Optional() protected readonly _dir: Directionality,
+    @Inject(DOCUMENT) _document: any, _platform: Platform) {
+    super(_differs, _changeDetectorRef, _elementRef, role, _dir, _document, _platform);
   }
 
   ngAfterContentInit() {
@@ -107,7 +110,7 @@ export class NtTableComponent<T> extends CdkTable<T> implements AfterContentInit
     this._contentColumns
       .filter(column => column.name !== (filter ? filter.column : ''))
       .forEach(column => column.sort = NtColumnSort.NONE);
-      this._changeDetectorRef.markForCheck();
+    this._changeDetectorRef.markForCheck();
   }
 
   private _resetOptions() {

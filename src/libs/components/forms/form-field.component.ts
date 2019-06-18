@@ -128,7 +128,7 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
   // 表单模型
   // TODO: 支持多表单控件
-  @ContentChild(NtFormFieldControl) control: NtFormFieldControl<any>;
+  @ContentChild(NtFormFieldControl, { static: false }) control: NtFormFieldControl<any>;
 
   get ngControl(): NgControl | null { return this.control ? this.control.ngControl : null; }
 
