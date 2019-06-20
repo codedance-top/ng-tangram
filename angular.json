@@ -19,7 +19,7 @@
           "options": {
             "customWebpackConfig": {
               "path": "./webpack.markdown.js",
-              "mergeStrategies": { "externals": "replace" }
+              "mergeStrategies": { "module.rules": "prepend" }
             },
             "outputPath": "docs/browser",
             "index": "src/index.html",
@@ -80,7 +80,7 @@
           "options": {
             "customWebpackConfig": {
               "path": "./webpack.markdown.js",
-              "mergeStrategies": { "externals": "replace" }
+              "mergeStrategies": { "module.rules": "prepend" }
             },
             "outputPath": "docs/server",
             "main": "src/main.server.ts",

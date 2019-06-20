@@ -16,10 +16,7 @@
     "baseUrl": "./",
     "paths": {
       "@ng-tangram/*": ["src/libs/*"]
-    },
-    "typeRoots": [
-      "node_modules/@types"
-    ]
+    }
   },
   "exclude": [
     "node_modules"
