@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NtProgressModule } from '@ng-tangram/components/progress';
-import { NtUploadModule } from '@ng-tangram/components/upload';
 
 import { DEFAULT_FILE_ICONS, NT_FILE_ICONS, NtFileIcons } from './file-icons';
 import { NtFileSizePipe } from './file-size.pipe';
 import { NtFileComponent } from './file.component';
 
 @NgModule({
-  imports: [CommonModule, NtUploadModule, NtProgressModule],
+  imports: [CommonModule, NtProgressModule],
   exports: [NtFileComponent, NtFileSizePipe],
   declarations: [NtFileComponent, NtFileSizePipe],
   providers: [

@@ -1,7 +1,7 @@
 {
   "name": "components",
   "children": [
-    "core", "forms", "upload",
+    "core", "forms",
     "avatar", "badge", "breadcrumbs", "button", "callout", "label", "modal",
     "menu", "scrim", "pagination", "table", "tree",
     "dropdown", "popconfirm", "popover", "progress", "tooltip",
@@ -35,7 +35,6 @@
     "@ng-tangram/components/switch": "nt.components.switch",
     "@ng-tangram/components/table": "nt.components.table",
     "@ng-tangram/components/tree": "nt.components.tree",
-    "@ng-tangram/components/tooltip": "nt.components.tooltip",
-    "@ng-tangram/components/upload": "nt.components.upload"
+    "@ng-tangram/components/tooltip": "nt.components.tooltip"
   }
 }

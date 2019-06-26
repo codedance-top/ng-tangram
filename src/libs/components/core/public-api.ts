@@ -15,4 +15,8 @@ export * from './overlay/overlay.module';
 export * from './overlay/overlay.component';
 export * from './overlay/overlay-positions';
 
+export * from './upload/upload.module';
+export * from './upload/upload-handler';
+export * from './upload/upload-models';
 
+export * from './upload/form-data-handler';
