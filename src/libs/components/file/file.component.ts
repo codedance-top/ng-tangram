@@ -1,7 +1,6 @@
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-// import { getExtension } from 'mime';
 import { transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { HttpProgressEvent } from '@angular/common/http';
@@ -10,13 +9,12 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { fadeOut } from '@ng-tangram/components/core';
-import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import {
-    NT_UPLOAD_HANDLER, NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUploadControl,
-    NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
-} from '@ng-tangram/components/upload';
+    fadeOut, NT_UPLOAD_HANDLER, NtUploadFile, NtUploadHandler, NtUploadStatus
+} from '@ng-tangram/components/core';
+import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
+import { NtFileAcceptError, NtFileError, NtFileSizeError, NtFileUploadError } from './file-errors';
 import { NT_FILE_EXTENSIONS, NT_FILE_ICONS, NtFileIcons } from './file-icons';
 
 let uniqueId = 0;
@@ -43,33 +41,29 @@ export class NtFile extends NtUploadFile {
     ])
   ]
 })
-export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, ControlValueAccessor {
+export class NtFileComponent extends NtFormFieldControl<NtFile[]> implements OnInit, ControlValueAccessor {
 
   private readonly _destroy = new Subject<void>();
 
-  private _disabled = false;
-  private _required = false;
-  private _autoupload = true;
-  private _value: NtFile[] = [];
-  private _maxFiles = 1;
-  private _maxSize = 5;
-  private _accept = ['*'];
-
   files: NtFile[] = [];
 
-  @Input() url: string = '';
-
-  @Input() name: string = '';
+  private _value: NtFile[] = [];
 
   get value() { return this._value; }
+
+  private _disabled = false;
 
   @Input()
   set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
   get disabled() { return this._disabled; }
 
+  private _required = false;
+
   @Input()
   get required(): boolean { return this._required; }
   set required(value: boolean) { this._required = coerceBooleanProperty(value); }
+
+  private _accept = ['*'];
 
   @Input()
   set accept(value: string | Array<string>) {
@@ -81,29 +75,46 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
   }
   get accept() { return this._accept; }
 
+  private _maxSize = 5;
+
   @Input()
   set maxSize(value: number) { this._maxSize = coerceNumberProperty(value, 5); }
   get maxSize() { return this._maxSize; }
+
+  private _maxFiles = 1;
 
   @Input()
   set maxFiles(value: number) { this._maxFiles = coerceNumberProperty(value, 1); }
   get maxFiles() { return this._maxFiles; }
 
+  private _autoupload = true;
+
   @Input()
   set autoupload(value: boolean) { this._autoupload = coerceBooleanProperty(value); }
   get autoupload() { return this._autoupload; }
 
+  @Input() url: string = '';
+
+  @Input() name: string = '';
+
   @ViewChild('fileElement', { static: true }) fileElement: ElementRef;
 
-  @Output() error = new EventEmitter<NtUploadControlError>();
+  @Output() error = new EventEmitter<NtFileError>();
 
   @Output() remove = new EventEmitter<NtFile>();
 
+  private _onChange: (value: any) => void = () => {};
+
+  private _onTouched = () => {};
+
   constructor(
-    @Inject(NT_UPLOAD_HANDLER) uploader: NtUploadHandler,
-    @Self() @Optional() ngControl: NgControl,
+    @Self() @Optional() public ngControl: NgControl,
+    @Inject(NT_UPLOAD_HANDLER) private _uploader: NtUploadHandler,
     @Inject(NT_FILE_ICONS) public icons: NtFileIcons) {
-    super(uploader, ngControl);
+    super();
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
   }
 
   ngOnInit() { }
@@ -119,6 +130,23 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
     if (this.files.length < this.maxFiles) {
       this.fileElement.nativeElement.click();
     }
+  }
+
+  writeValue(value: NtFile[]) {
+    if (value) {
+      this._value.length = 0;
+      this._value.push(...value);
+      this.files.length = 0;
+      this.files.push(...this._value);
+    }
+  }
+
+  registerOnChange(fn: (_: any) => {}) {
+    this._onChange = fn;
+  }
+
+  registerOnTouched(fn: () => {}) {
+    this._onTouched = fn;
   }
 
   _fileChanged() {
@@ -142,12 +170,11 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
 
       const handlers = {
         begin: () => this._onUploadBegin(ntFile),
-        progress: event => this._onUploadProgress(event, ntFile),
+        progress: percent => this._onUploadProgress(percent, ntFile),
         done: () => this._onUploadDone(ntFile)
       };
 
       if (this.autoupload) {
-
         ntFile.uploader = this._uploader
           .upload(this.url, file, this.name, handlers)
           .pipe(takeUntil(this._destroy))
@@ -188,15 +215,6 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
     this._disabled = isDisabled;
   }
 
-  setValue(value: NtFile[]) {
-    if (value) {
-      this._value.length = 0;
-      this._value.push(...value);
-      this.files.length = 0;
-      this.files.push(...this._value);
-    }
-  }
-
   getFileIcon(file: NtFile) {
     const extension = file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length);
     const icon = NT_FILE_EXTENSIONS[extension] || 'default';
@@ -221,10 +239,8 @@ export class NtFileComponent extends NtUploadControl<NtFile> implements OnInit, 
     file.status = NtUploadStatus.SENDING;
   }
 
-  private _onUploadProgress(event: HttpProgressEvent, file: NtFile) {
-    if (event.total && event.total > 0) {
-      file.progress = Math.round(event.loaded / event.total * 100);
-    }
+  private _onUploadProgress(percent: number, file: NtFile) {
+    file.progress = percent ;
   }
 
   private _onUploadDone(file: NtFile) {

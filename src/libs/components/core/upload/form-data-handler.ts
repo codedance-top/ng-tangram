@@ -1,38 +1,13 @@
 import { Observable, of } from 'rxjs';
 import { catchError, filter, map } from 'rxjs/operators';
 
-/**
- * 文件上传请求服务
- */
 import {
-    HttpClient, HttpEvent, HttpEventType, HttpProgressEvent, HttpRequest, HttpResponse,
-    HttpSentEvent
+    HttpClient, HttpEvent, HttpEventType, HttpRequest, HttpResponse
 } from '@angular/common/http';
-import { InjectionToken, Injectable, Provider } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import { NtUploadStatus } from './upload-status';
-
-export interface NtUploadResult<T> {
-  status: NtUploadStatus;
-  error?: string;
-  data?: T;
-}
-
-/**
- * 上传进度处理
- */
-export interface NtUploadProgressHandler {
-
-  begin?(event: HttpSentEvent): void;
-
-  progress?(event: HttpProgressEvent): void;
-
-  done?(file?: File): void;
-}
-
-export interface NtUploadHandler {
-  upload<T>(url: string, file: File, filename: string, handler: NtUploadProgressHandler): Observable<NtUploadResult<T>>;
-}
+import { NtUploadHandler, NtUploadProgressHandler } from './upload-handler';
+import { NtUploadResult, NtUploadStatus } from './upload-models';
 
 @Injectable()
 export class NtFormDataUploadHandler implements NtUploadHandler {
@@ -65,9 +40,11 @@ export class NtFormDataUploadHandler implements NtUploadHandler {
   private _progressHandler(event: HttpEvent<any>, handler: NtUploadProgressHandler = {}) {
 
     if (event.type === HttpEventType.Sent && handler.begin) {
-      handler.begin(event);
+      handler.begin();
     } else if (event.type === HttpEventType.UploadProgress && handler.progress) {
-      handler.progress(event);
+      if (event.total && event.total > 0) {
+        handler.progress(Math.round(event.loaded / event.total * 100));
+      }
     } else if (event.type === HttpEventType.Response && handler.done) {
       handler.done();
     }
@@ -84,5 +61,3 @@ export class NtFormDataUploadHandler implements NtUploadHandler {
     return file;
   }
 }
-
-export const NT_UPLOAD_HANDLER = new InjectionToken<NtUploadHandler>('nt-upload-handler');

@@ -7,8 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {
     NT_PAGINATION_CONFIG, NtButtonModule, NtFormsModule, NtNativeDateModule, NtUploadModule
 } from '@ng-tangram/components';
-// import { NtMomentDateModule } from '@ng-tangram/moment-adapter';
 
+// import { NtMomentDateModule } from '@ng-tangram/moment-adapter';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
@@ -40,8 +40,14 @@ const PAGINATION_CONFIG = {
     NtButtonModule,
     NtFormsModule.forRoot(),
     NtNativeDateModule,
-    NtUploadModule.forRoot(),
+    NtUploadModule,
     // NtMomentDateModule,
+    // NtAliyunOssModule.forRoot({
+    //   accessKeyId: 'LTAIcTRBkp276nWu',
+    //   accessKeySecret: 'oQhoNOCihZ9uogbkV38UTMBC0QtM6Y',
+    //   bucket: 'k12contest',
+    //   region: 'oss-cn-hangzhou'
+    // }),
     RouterModule.forRoot(ROUTES, {
       initialNavigation: 'enabled',
       useHash: !environment.production,

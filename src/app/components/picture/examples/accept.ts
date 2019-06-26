@@ -1,7 +1,9 @@
-import { Component, AfterContentInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { NtUploadControlError, NtFileSizeError, NtFileAcceptError, NtFileUploadError } from '@ng-tangram/components/upload';
-import { Validators, FormControl } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import {
+  NtPictureAcceptError, NtPictureSizeError, NtPictureUploadError, NtPictureError
+} from '@ng-tangram/components/picture';
+
 @Component({
   selector: 'example-picture-accept',
   styles: [`
@@ -36,14 +38,14 @@ export class ExamplePictureAcceptComponent {
   /**
    * 错误提示
   */
-  onError(error: NtUploadControlError) {
-    if (error instanceof NtFileSizeError) {
+  onError(error: NtPictureError) {
+    if (error instanceof NtPictureSizeError) {
       this.message = `图片不能超过${error.maxSizeString}`;
     }
-    if (error instanceof NtFileAcceptError) {
+    if (error instanceof NtPictureAcceptError) {
       this.message = `不支持图片类型${error.fileAccept}`;
     }
-    if (error instanceof NtFileUploadError) {
+    if (error instanceof NtPictureUploadError) {
       this.message = `${error.statusText}`;
     }
     setTimeout(() => {
