@@ -1,6 +1,6 @@
 {
   "name": "ng-tangram",
-  "version": "0.5.0-beta.1",
+  "version": "0.5.0-beta.2",
   "description": "NG-TANGRAM",
   "private": true,
   "repository": {
@@ -15,7 +15,10 @@
     "docs:browser": "ng build --prod",
     "docs:server": "ng run ng-tangram-docs:server:production",
     "server": "node docs/server",
-    "publish": "cd dist/@ng-tangram/components && npm publish && cd ../pro && npm publish && cd ../moment-adapter && npm publish && cd ../../../",
+    "publish": "npm run publish:components && npm run publish:pro && npm run publish:moment-adapter",
+    "publish:components": "cd dist/@ng-tangram/components && npm publish && cd ../../../",
+    "publish:pro": "cd dist/@ng-tangram/pro && npm publish && cd ../../../",
+    "publish:moment-adapter": "cd dist/@ng-tangram/moment-adapter && npm publish && cd ../../../",
     "prepublish:docs": "tar -cvf ng-tangram-docs.tar.gz docs/* package.json",
     "publish:docs": "scp -r ./ng-tangram-docs.tar.gz root@39.105.124.168:/var/www"
   },
