@@ -1,11 +1,16 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders, Type } from '@angular/core';
 
 import { NtFormDataUploadHandler } from './form-data-handler';
-import { NT_UPLOAD_HANDLER } from './upload-handler';
+import { NT_UPLOAD_HANDLER, NtUploadHandler } from './upload-handler';
 
-@NgModule({
-  providers: [
-    { provide: NT_UPLOAD_HANDLER, useClass: NtFormDataUploadHandler }
-  ]
-})
-export class NtUploadModule { }
+@NgModule()
+export class NtUploadModule {
+  public static forRoot(handler?: Type<NtUploadHandler>) : ModuleWithProviders {
+    return {
+      ngModule: NtUploadModule,
+      providers: [
+        { provide: NT_UPLOAD_HANDLER, useClass: handler || NtFormDataUploadHandler }
+      ]
+    };
+  }
+}

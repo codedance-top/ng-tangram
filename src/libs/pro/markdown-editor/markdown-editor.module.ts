@@ -40,11 +40,11 @@ const DEFAULT_MARKDOWN_EDITOR_ICONS: NtMarkdownEditorIcons = {
   ]
 })
 export class NtMarkdownEditorModule {
-  public static forRoot(icons?: NtMarkdownEditorIcons): ModuleWithProviders {
+  public static forRoot(icons: NtMarkdownEditorIcons = DEFAULT_MARKDOWN_EDITOR_ICONS): ModuleWithProviders {
     return {
       ngModule: NtMarkdownEditorModule,
       providers: [
-        { provide: NT_MARKDOWN_EDITOR_ICONS, useValue: icons || DEFAULT_MARKDOWN_EDITOR_ICONS }
+        { provide: NT_MARKDOWN_EDITOR_ICONS, useValue: icons }
       ]
     };
   }

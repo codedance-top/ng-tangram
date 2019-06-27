@@ -21,11 +21,11 @@ const DEFAULT_PICTURE_ICONS: NtPictureIcons = {
   ]
 })
 export class NtPictureModule {
-  public static forRoot(icons?: NtPictureIcons): ModuleWithProviders {
+  public static forRoot(icons: NtPictureIcons = DEFAULT_PICTURE_ICONS): ModuleWithProviders {
     return {
       ngModule: NtPictureModule,
       providers: [
-        { provide: NT_PICTURE_ICONS, useValue: icons || DEFAULT_PICTURE_ICONS }
+        { provide: NT_PICTURE_ICONS, useValue: icons }
       ]
     };
   }

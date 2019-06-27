@@ -42,12 +42,6 @@ const PAGINATION_CONFIG = {
     NtNativeDateModule,
     NtUploadModule,
     // NtMomentDateModule,
-    // NtAliyunOssModule.forRoot({
-    //   accessKeyId: '***REMOVED***',
-    //   accessKeySecret: '***REMOVED***',
-    //   bucket: '***REMOVED***',
-    //   region: '***REMOVED***'
-    // }),
     RouterModule.forRoot(ROUTES, {
       initialNavigation: 'enabled',
       useHash: !environment.production,
