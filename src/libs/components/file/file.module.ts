@@ -15,11 +15,11 @@ import { NtFileComponent } from './file.component';
   ]
 })
 export class NtFileModule {
-  public static forRoot(icons?: NtFileIcons): ModuleWithProviders {
+  public static forRoot(icons: NtFileIcons = DEFAULT_FILE_ICONS): ModuleWithProviders {
     return {
       ngModule: NtFileModule,
       providers: [
-        { provide: NT_FILE_ICONS, useValue: icons || DEFAULT_FILE_ICONS }
+        { provide: NT_FILE_ICONS, useValue: icons }
       ]
     };
   }

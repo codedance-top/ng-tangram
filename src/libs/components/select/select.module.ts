@@ -19,11 +19,11 @@ const DEFAULT_SELECT_ICONS: NtSelectIcons = {
   ]
 })
 export class NtSelectModule {
-  public static forRoot(icons?: NtSelectIcons): ModuleWithProviders {
+  public static forRoot(icons: NtSelectIcons = DEFAULT_SELECT_ICONS): ModuleWithProviders {
     return {
       ngModule: NtSelectModule,
       providers: [
-        { provide: NT_SELECT_ICONS, useValue: icons || DEFAULT_SELECT_ICONS }
+        { provide: NT_SELECT_ICONS, useValue: icons }
       ]
     };
   }

@@ -42,12 +42,6 @@ const PAGINATION_CONFIG = {
     NtNativeDateModule,
     NtUploadModule,
     // NtMomentDateModule,
-    // NtAliyunOssModule.forRoot({
-    //   accessKeyId: 'LTAIcTRBkp276nWu',
-    //   accessKeySecret: 'oQhoNOCihZ9uogbkV38UTMBC0QtM6Y',
-    //   bucket: 'k12contest',
-    //   region: 'oss-cn-hangzhou'
-    // }),
     RouterModule.forRoot(ROUTES, {
       initialNavigation: 'enabled',
       useHash: !environment.production,

@@ -31,11 +31,11 @@ const DEFAULT_DATEPICKER_ICONS: NtDatePickerIcons = {
   ]
 })
 export class NtDatePickerModule {
-  public static forRoot(icons?: NtDatePickerIcons): ModuleWithProviders {
+  public static forRoot(icons: NtDatePickerIcons = DEFAULT_DATEPICKER_ICONS): ModuleWithProviders {
     return {
       ngModule: NtDatePickerModule,
       providers: [
-        { provide: NT_DATEPICKER_ICONS, useValue: icons || DEFAULT_DATEPICKER_ICONS }
+        { provide: NT_DATEPICKER_ICONS, useValue: icons }
       ]
     };
   }
