@@ -40,7 +40,7 @@ const PAGINATION_CONFIG = {
     NtButtonModule,
     NtFormsModule.forRoot(),
     NtNativeDateModule,
-    NtUploadModule,
+    NtUploadModule.forRoot(),
     // NtMomentDateModule,
     RouterModule.forRoot(ROUTES, {
       initialNavigation: 'enabled',
