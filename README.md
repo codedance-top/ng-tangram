@@ -1,4 +1,4 @@
-# Angular 7+ Components
+# Angular 8+ Components
 
 [![npm version](https://badge.fury.io/js/%40ng-tangram%2Fcomponents.svg)](https://www.npmjs.com/@ng-tangram/components)
 

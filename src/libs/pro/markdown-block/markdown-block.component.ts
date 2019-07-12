@@ -32,7 +32,7 @@ export class NtMarkdownBlockComponent implements OnInit, OnChanges {
     private _elementRef: ElementRef) { }
 
   ngOnInit() {
-    this.markdown = this._markdownService.compile(this._data);
+    this.markdown = this._markdownService.compile(this._data || '');
   }
 
   ngOnChanges() {
@@ -48,9 +48,7 @@ export class NtMarkdownBlockComponent implements OnInit, OnChanges {
 
   @Input()
   set data(value: string) {
-    if (this._data = value || '') {
-      this.onDataChange(value);
-    }
+    this.onDataChange(value || '');
   }
 
   // on input
