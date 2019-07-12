@@ -2,19 +2,28 @@
   <div class="tools-group" *ngFor="let group of config.actions">
     <div class="tools-item" *ngFor="let action of group"
     [class.active]="activeActions.indexOf(action) > -1"
-    [class.disabled]="action !== 'preview' && action !== 'help' && previewMode"
     (click)="execCommand(action)">
       <span [class]="icons[action]"></span>
     </div>
   </div>
   <div class="tools-group">
-    <div class="tools-item" [class.disabled]="previewMode || history.undo === 0" (click)="undo()"><span class="fa fa-reply"></span></div>
-    <div class="tools-item" [class.disabled]="previewMode || history.redo === 0" (click)="redo()"><span class="fa fa-share"></span></div>
+    <div class="tools-item" [class.disabled]="history.undo === 0" (click)="undo()">
+      <span class="fa fa-reply"></span>
+    </div>
+    <div class="tools-item" [class.disabled]="history.redo === 0" (click)="redo()">
+      <span class="fa fa-share"></span>
+    </div>
   </div>
 </div>
-<div class="nt-markdown-editor-preview" *ngIf="previewMode" [@fade]>
-  <nt-markdown-block [data]="value"></nt-markdown-block>
-</div>
-<div class="nt-markdown-editor-content" [hidden]="previewMode">
-  <textarea #editor [style.height.px]="500"></textarea>
+<div class="nt-markdown-editor-container">
+  <div class="nt-markdown-editor-content">
+    <textarea #editor></textarea>
+  </div>
+  <div class="nt-markdown-editor-preview"
+    *ngIf="previewMode"
+    [style.minHeight.px]="_minHeight"
+    [style.maxHeight.px]="_maxHeight"
+    [@fade]>
+    <nt-markdown-block #markdown [data]="value"></nt-markdown-block>
+  </div>
 </div>

@@ -6,29 +6,29 @@ import { NT_MARKDOWN_EDITOR_ICONS, NtMarkdownEditorIcons } from './markdown-edit
 import { NtMarkdownEditorComponent } from './markdown-editor.component';
 
 const DEFAULT_MARKDOWN_EDITOR_ICONS: NtMarkdownEditorIcons = {
-  'bold': 'fa fa-bold',
-  'italic': 'fa fa-italic',
-  'strikethrough': 'fa fa-strikethrough',
+  bold: 'fa fa-bold',
+  italic: 'fa fa-italic',
+  strikethrough: 'fa fa-strikethrough',
 
-  'h1': 'fa fa-heading fa-heading-x fa-heading-1',
-  'h2': 'fa fa-heading fa-heading-x fa-heading-2',
-  'h3': 'fa fa-heading fa-heading-x fa-heading-3',
-  'h4': 'fa fa-heading fa-heading-x fa-heading-4',
-  'h5': 'fa fa-heading fa-heading-x fa-heading-5',
-  'h6': 'fa fa-heading fa-heading-x fa-heading-6',
+  h1: 'fa fa-heading fa-heading-x fa-heading-1',
+  h2: 'fa fa-heading fa-heading-x fa-heading-2',
+  h3: 'fa fa-heading fa-heading-x fa-heading-3',
+  h4: 'fa fa-heading fa-heading-x fa-heading-4',
+  h5: 'fa fa-heading fa-heading-x fa-heading-5',
+  h6: 'fa fa-heading fa-heading-x fa-heading-6',
 
-  'code': 'fa fa-code',
-  'quote': 'fa fa-quote-left',
+  code: 'fa fa-code',
+  quote: 'fa fa-quote-left',
 
-  'ul': 'fa fa-list-ul',
-  'ol': 'fa fa-list-ol',
+  ul: 'fa fa-list-ul',
+  ol: 'fa fa-list-ol',
 
-  'link': 'fa fa-link',
-  'image': 'fa fa-image',
-  'table': 'fa fa-table',
-  'line': 'fa fa-minus',
-  'preview': 'fa fa-eye',
-  'help': 'fa fa-question',
+  link: 'fa fa-link',
+  image: 'fa fa-image',
+  table: 'fa fa-table',
+  line: 'fa fa-minus',
+  preview: 'fas fa-columns',
+  help: 'fab fa-markdown',
 };
 
 @NgModule({
