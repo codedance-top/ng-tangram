@@ -9,9 +9,21 @@ import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/htt
 //   return text.replace('', '');
 // }
 
+const DEFAULT_OPTION = {
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false
+}
+
 @Injectable()
 export class NtMarkdownService {
+
   private _renderer: marked.Renderer = new marked.Renderer();
+
   constructor(private http: HttpClient) {
     this.extendRenderer();
     this.setMarkedOptions({});
@@ -37,15 +49,7 @@ export class NtMarkdownService {
 
 
   setMarkedOptions(options: any) {
-    options = Object.assign({
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false
-    }, options);
+    options = { ...DEFAULT_OPTION, ...options };
     options.renderer = this._renderer;
     marked.setOptions(options);
   }
@@ -85,11 +89,10 @@ export class NtMarkdownService {
     this._renderer.listitem = function (text: string) {
 
       if (/^\s*\[[x ]\]\s*/.test(text)) {
+        const checkedStyle = 'vertical-align: middle; margin: 0 0.2em 0.25em -1.6em; font-size: 16px;';
         text = text
-          .replace(/^\s*\[ \]\s*/,
-            '<input type="checkbox" style=" vertical-align: middle; margin: 0 0.2em 0.25em -1.6em; font-size: 16px; " disabled> ')
-          .replace(/^\s*\[x\]\s*/,
-            '<input type="checkbox" style=" vertical-align: middle; margin: 0 0.2em 0.25em -1.6em; font-size: 16px; " checked disabled> ');
+          .replace(/^\s*\[ \]\s*/, `<input type="checkbox" style="${checkedStyle}" disabled>`)
+          .replace(/^\s*\[x\]\s*/, `<input type="checkbox" style="${checkedStyle}" checked disabled>`);
         return `<li style="list-style: none">${text}</li>`;
       } else {
         return `<li>${text}</li>`;

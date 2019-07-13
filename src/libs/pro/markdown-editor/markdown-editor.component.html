@@ -19,11 +19,11 @@
   <div class="nt-markdown-editor-content">
     <textarea #editor></textarea>
   </div>
-  <div class="nt-markdown-editor-preview"
+  <div #markdown class="nt-markdown-editor-preview"
     *ngIf="previewMode"
     [style.minHeight.px]="_minHeight"
     [style.maxHeight.px]="_maxHeight"
     [@fade]>
-    <nt-markdown-block #markdown [data]="value"></nt-markdown-block>
+    <nt-markdown-block [data]="value"></nt-markdown-block>
   </div>
 </div>
