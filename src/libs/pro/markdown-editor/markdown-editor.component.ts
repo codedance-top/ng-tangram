@@ -3,16 +3,16 @@ import 'codemirror/addon/edit/continuelist';
 import 'codemirror/mode/gfm/gfm';
 
 import { EditorFromTextArea, fromTextArea } from 'codemirror';
-import { NtMarkdownBlockComponent } from 'dist/@ng-tangram/pro/markdown-block';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { isPlatformBrowser } from '@angular/common';
 import {
-    AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject,
-    Input, OnChanges, OnDestroy, OnInit, Optional, PLATFORM_ID, Renderer2, Self, SimpleChanges,
-    ViewChild, ViewEncapsulation
+  ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject, Input, OnChanges,
+  OnDestroy, OnInit, Optional, PLATFORM_ID, Renderer2, Self, SimpleChanges, ViewChild,
+  ViewEncapsulation,
+  AfterViewInit
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn } from '@ng-tangram/components/core';
@@ -31,7 +31,6 @@ interface SyncScrollElement extends HTMLElement {
 // TODO: 将来会在 components/core 支持
 interface SyncScrollEvent {
   scrollY: number;
-  scrollYUpdated: boolean;
   rateY: number;
   owner: SyncScrollElement;
 }
@@ -58,9 +57,15 @@ const DEFAULT_MIN_ROWS = 10, DEFAULT_MAX_ROWS = 20,
   }
 })
 export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
-  implements ControlValueAccessor, OnInit, AfterViewChecked, OnChanges, OnDestroy {
+  implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
 
   private readonly _destroy = new Subject<void>();
+
+  private _syncScrollElements: SyncScrollElement[] = [];
+
+  private _syncScrollEvent = new Subject<SyncScrollEvent>();
+
+  private _syncScrollSubscription: Subscription = null;
 
   private _value = '';
 
@@ -80,7 +85,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
 
   @ViewChild('editor', { static: true }) editor: ElementRef;
 
-  @ViewChild('markdown', { static: false }) markdown: NtMarkdownBlockComponent;
+  @ViewChild('markdown', { static: false, read: ElementRef }) markdown: ElementRef;
 
   @Input()
   set value(value: string) {
@@ -126,7 +131,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
   get maxRows(): number { return this._maxRows; }
   set maxRows(value: number) {
     const newValue = coerceNumberProperty(value) || 0;
-    this._maxRows = newValue < MAX_ROWS_VALUE ? MAX_ROWS_VALUE : newValue;
+    this._maxRows = newValue > MAX_ROWS_VALUE ? MAX_ROWS_VALUE : newValue;
   }
 
   private _theme: string = 'default';
@@ -167,7 +172,9 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
   }
 
   ngOnInit() {
-    this._codeMirrorInit();
+    if (isPlatformBrowser(this.platformId)) {
+      this._codeMirrorInit();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -175,19 +182,12 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
     if (rowChanges && !rowChanges.firstChange) {
       this._setEditorHeightRange();
     }
-
-    if (changes.theme && changes.theme.firstChange) {
-      // this.instance.getOption
-    }
-  }
-
-  ngAfterViewChecked() {
-
   }
 
   ngOnDestroy() {
     this._destroy.next();
     this._destroy.complete();
+    this._unsubscribeScrolls();
   }
 
   writeValue(value: any) {
@@ -216,7 +216,10 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
     if (type === 'preview') {
       this.previewMode = !this.previewMode;
       this._actionMatches();
-      this._asyncRefreshEditor();
+      setTimeout(() => {
+        this.instance.refresh();
+        this.previewMode ? this._subscribeScrolls() : this._unsubscribeScrolls();
+      });
 
     } else if (type === 'help') {
       window.open('https://guides.github.com/features/mastering-markdown/', '_blank');
@@ -242,8 +245,57 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
     this.instance.getDoc().redo();
   }
 
-  private _asyncRefreshEditor() {
-    setTimeout(() => this.instance.refresh(), 0);
+  // 开始订阅滚动条同步事件
+  private _subscribeScrolls() {
+
+    const callback = (event: Event) => {
+      const element = event.target as SyncScrollElement;
+      const scrollYUpdated = element.scrollTop !== element.previousScrollY;
+      if (scrollYUpdated) {
+        this._scrollTo(element);
+      }
+      element.previousScrollY = element.scrollTop;
+    };
+
+    const editorScrollElement = this.instance.getScrollerElement() as SyncScrollElement;
+    this._syncScrollElements.push(editorScrollElement, this.markdown.nativeElement);
+    this._syncScrollElements.forEach(element =>
+      element.addEventListener('scroll', element.callback = callback)
+    );
+
+    // 订阅同步滚动事件
+    this._syncScrollSubscription = this._syncScrollEvent.subscribe((event: SyncScrollEvent) => {
+      this._syncScrollElements
+        .filter(element => event.owner !== element)
+        .forEach(element => {
+          scrollY = element.previousScrollY = Math.round(event.rateY * (element.scrollHeight - element.clientHeight));
+          if (Math.round(element.scrollTop - scrollY)) {
+            element.scrollTop = scrollY;
+          }
+        });
+    });
+
+    this._scrollTo(editorScrollElement);
+  }
+
+  // 取消订阅滚动条同步事件
+  private _unsubscribeScrolls() {
+    this._syncScrollSubscription && this._syncScrollSubscription.unsubscribe();
+    this._syncScrollSubscription = null;
+    if (this._syncScrollElements) {
+      this._syncScrollElements.forEach(element =>
+        element.removeEventListener('scroll', element.callback)
+      );
+      this._syncScrollElements = [];
+    }
+  }
+
+  private _scrollTo(element: SyncScrollElement) {
+    this._syncScrollEvent.next({
+      scrollY: element.scrollTop,
+      rateY: element.scrollTop / (element.scrollHeight - element.clientHeight),
+      owner: element
+    });
   }
 
   private _codeMirrorInit() {
@@ -273,7 +325,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
         this._changeDetectorRef.markForCheck();
       });
 
-      this._asyncRefreshEditor();
+      Promise.resolve().then(() => this.instance.refresh());
     }
   }
 

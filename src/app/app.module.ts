@@ -9,7 +9,6 @@ import {
 } from '@ng-tangram/components';
 
 // import { NtMomentDateModule } from '@ng-tangram/moment-adapter';
-import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './page-not-found.component';
@@ -44,7 +43,6 @@ const PAGINATION_CONFIG = {
     // NtMomentDateModule,
     RouterModule.forRoot(ROUTES, {
       initialNavigation: 'enabled',
-      useHash: !environment.production,
       paramsInheritanceStrategy: 'always'
     })
   ],
