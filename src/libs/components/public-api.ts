@@ -25,4 +25,3 @@ export * from '@ng-tangram/components/switch';
 export * from '@ng-tangram/components/table';
 export * from '@ng-tangram/components/tooltip';
 export * from '@ng-tangram/components/tree';
-export * from '@ng-tangram/components/upload';

@@ -2,7 +2,7 @@
 $nt-markdown-font-family: inherit !default;
 $nt-markdown-line-height: $global-lineheight !default;
 
-$nt-markdown-heading-margin: 1em 0 !default;
+$nt-markdown-heading-margin: 1em 0 .5em !default;
 
 $nt-markdown-ol-style: decimal !default;
 $nt-markdown-ul-style: circle !default;
@@ -20,8 +20,9 @@ $nt-markdown-code-bg: #f9f2f4 !default;
 $nt-markdown-code-radius: $global-radius !default;
 
 @mixin nt-markdown-base {
+  display: block;
+  word-break: break-all;
   line-height: $nt-markdown-line-height;
-
   img {
     max-width: 100%;
   }

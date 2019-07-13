@@ -2,7 +2,7 @@ import { highlightAll } from 'prismjs';
 
 import { isPlatformBrowser } from '@angular/common';
 import {
-  Component, ElementRef, Inject, Input, OnChanges, OnInit, PLATFORM_ID, Renderer2, ViewEncapsulation
+    Component, ElementRef, Inject, Input, OnChanges, PLATFORM_ID, SimpleChanges, ViewEncapsulation
 } from '@angular/core';
 
 import { NtMarkdownService } from './markdown.service';
@@ -15,7 +15,7 @@ import { NtMarkdownService } from './markdown.service';
     class: 'nt-markdown-block'
   }
 })
-export class NtMarkdownBlockComponent implements OnInit, OnChanges {
+export class NtMarkdownBlockComponent implements OnChanges {
 
   private _path: string;
   private _data: string;
@@ -31,32 +31,29 @@ export class NtMarkdownBlockComponent implements OnInit, OnChanges {
     private _markdownService: NtMarkdownService,
     private _elementRef: ElementRef) { }
 
-  ngOnInit() {
-    this.markdown = this._markdownService.compile(this._data);
-  }
-
-  ngOnChanges() {
-
-  }
-
-  @Input()
-  set path(value: string) {
-    if (this._path = value || '') {
+  ngOnChanges(changes: SimpleChanges) {
+    const pathChange = changes.path;
+    const dataChange = changes.data;
+    if (pathChange && !pathChange.firstChange) {
       this.onPathChange();
     }
-  }
-
-  @Input()
-  set data(value: string) {
-    if (this._data = value || '') {
-      this.onDataChange(value);
+    if (dataChange && !dataChange.firstChange) {
+      this.onDataChange();
     }
   }
 
+  @Input()
+  get path() { return this._path; }
+  set path(value: string) { this._path = value || ''; }
+
+  @Input()
+  get data() { return this._data; }
+  set data(value: string) { this._data = value; }
+
   // on input
-  onDataChange(data: string) {
-    if (data) {
-      this._elementRef.nativeElement.innerHTML = this._markdownService.compile(data);
+  onDataChange() {
+    if (this.data) {
+      this._elementRef.nativeElement.innerHTML = this._markdownService.compile(this.data);
     } else {
       this._elementRef.nativeElement.innerHTML = '';
     }
@@ -67,31 +64,29 @@ export class NtMarkdownBlockComponent implements OnInit, OnChanges {
    *  After view init
    */
   ngAfterViewInit() {
-    if (this._path) {
+    if (this.path) {
       this.onPathChange();
-    } else if (!this._data) {
-      this.processRaw();
+    } else {
+      this.onDataChange();
     }
-  }
-
-  processRaw() {
-    this._md = this.prepare(this._elementRef.nativeElement.innerHTML);
-    this._elementRef.nativeElement.innerHTML = this._markdownService.compile(this._md);
-    this.postpare();
   }
 
   /**
    * get remote conent;
    */
   onPathChange() {
-    this._ext = this._path && this._path.split('.').splice(-1).join();
-    this._markdownService.getContent(this._path)
-      .subscribe(data => {
-        this._md = this._ext !== 'md' ? '```' + this._ext + '\n' + data + '\n```' : data;
-        this._elementRef.nativeElement.innerHTML = this._markdownService.compile(this.prepare(this._md));
-        this.postpare();
-      },
-      () => this._handleError);
+    if (this.path) {
+      this._ext = this.path && this.path.split('.').splice(-1).join();
+      this._markdownService.getContent(this.path)
+        .subscribe(
+          data => {
+            this._md = this._ext !== 'md' ? '```' + this._ext + '\n' + data + '\n```' : data;
+            this._elementRef.nativeElement.innerHTML = this._markdownService.compile(this.prepare(this._md));
+            this.postpare();
+          },
+          error => this._handleError(error)
+        );
+    }
   }
 
   /**

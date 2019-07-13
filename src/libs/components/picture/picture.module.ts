@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NtModalModule } from '@ng-tangram/components/modal';
 import { NtProgressModule } from '@ng-tangram/components/progress';
-import { NtUploadModule } from '@ng-tangram/components/upload';
 
 import { NT_PICTURE_ICONS, NtPictureIcons } from './picture-icons';
 import { NtPictureComponent } from './picture.component';
@@ -14,7 +13,7 @@ const DEFAULT_PICTURE_ICONS: NtPictureIcons = {
 };
 
 @NgModule({
-  imports: [CommonModule, NtModalModule, NtUploadModule, NtProgressModule],
+  imports: [CommonModule, NtModalModule, NtProgressModule],
   exports: [NtPictureComponent],
   declarations: [NtPictureComponent],
   providers: [
@@ -22,11 +21,11 @@ const DEFAULT_PICTURE_ICONS: NtPictureIcons = {
   ]
 })
 export class NtPictureModule {
-  public static forRoot(icons?: NtPictureIcons): ModuleWithProviders {
+  public static forRoot(icons: NtPictureIcons = DEFAULT_PICTURE_ICONS): ModuleWithProviders {
     return {
       ngModule: NtPictureModule,
       providers: [
-        { provide: NT_PICTURE_ICONS, useValue: icons || DEFAULT_PICTURE_ICONS }
+        { provide: NT_PICTURE_ICONS, useValue: icons }
       ]
     };
   }

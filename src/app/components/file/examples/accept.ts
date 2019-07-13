@@ -1,7 +1,9 @@
-import { Component, AfterContentInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { NtUploadControlError, NtFileSizeError, NtFileAcceptError, NtFileUploadError } from '@ng-tangram/components/upload';
-import { Validators, FormControl } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import {
+    NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtFileError
+} from '@ng-tangram/components/file';
+
 @Component({
   selector: 'example-file-accept',
   styles: [`
@@ -36,7 +38,7 @@ export class ExampleFileAcceptComponent {
   /**
    * 错误提示
   */
-  onError(error: NtUploadControlError) {
+  onError(error: NtFileError) {
     if (error instanceof NtFileSizeError) {
       this.message = `文件不能超过${error.maxSizeString}`;
     }

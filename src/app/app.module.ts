@@ -7,9 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {
     NT_PAGINATION_CONFIG, NtButtonModule, NtFormsModule, NtNativeDateModule, NtUploadModule
 } from '@ng-tangram/components';
-// import { NtMomentDateModule } from '@ng-tangram/moment-adapter';
 
-import { environment } from '../environments/environment';
+// import { NtMomentDateModule } from '@ng-tangram/moment-adapter';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './page-not-found.component';
@@ -44,7 +43,6 @@ const PAGINATION_CONFIG = {
     // NtMomentDateModule,
     RouterModule.forRoot(ROUTES, {
       initialNavigation: 'enabled',
-      useHash: !environment.production,
       paramsInheritanceStrategy: 'always'
     })
   ],
