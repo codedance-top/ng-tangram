@@ -1,7 +1,6 @@
-import { Component, AfterContentInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { NtUploadControlError } from '@ng-tangram/components/upload';
-import { Validators, FormControl } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+
 @Component({
   selector: 'example-file-basic',
   template: `

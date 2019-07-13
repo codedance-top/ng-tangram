@@ -1,16 +1,18 @@
-import 'codemirror/mode/gfm/gfm';
 import 'codemirror/addon/display/placeholder';
 import 'codemirror/addon/edit/continuelist';
+import 'codemirror/mode/gfm/gfm';
 
 import { EditorFromTextArea, fromTextArea } from 'codemirror';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { isPlatformBrowser } from '@angular/common';
 import {
-    Component, ElementRef, Inject, Input, OnChanges, OnDestroy, Optional, PLATFORM_ID, Renderer2,
-    Self, SimpleChanges, ViewChild, ViewEncapsulation
+  ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject, Input, OnChanges,
+  OnDestroy, OnInit, Optional, PLATFORM_ID, Renderer2, Self, SimpleChanges, ViewChild,
+  ViewEncapsulation,
+  AfterViewInit
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn } from '@ng-tangram/components/core';
@@ -20,6 +22,19 @@ import { commands } from './commands';
 import { NtMarkdownEditorConfig } from './markdown-editor-config';
 import { NT_MARKDOWN_EDITOR_ICONS, NtMarkdownEditorIcons } from './markdown-editor-icons';
 
+// TODO: 将来会在 components/core 支持
+interface SyncScrollElement extends HTMLElement {
+  previousScrollY: number;
+  callback: (event: Event) => void;
+}
+
+// TODO: 将来会在 components/core 支持
+interface SyncScrollEvent {
+  scrollY: number;
+  rateY: number;
+  owner: SyncScrollElement;
+}
+
 const DEFAULT_MIN_ROWS = 10, DEFAULT_MAX_ROWS = 20,
   MIN_ROWS_VALUE = 1, MAX_ROWS_VALUE = 100;
 
@@ -27,6 +42,7 @@ const DEFAULT_MIN_ROWS = 10, DEFAULT_MAX_ROWS = 20,
   selector: 'nt-markdown-editor',
   templateUrl: 'markdown-editor.component.html',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     { provide: NtFormFieldControl, useExisting: NtMarkdownEditorComponent }
   ],
@@ -40,9 +56,16 @@ const DEFAULT_MIN_ROWS = 10, DEFAULT_MAX_ROWS = 20,
     '[class.focus]': 'focused'
   }
 })
-export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implements ControlValueAccessor, OnChanges, OnDestroy {
+export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
+  implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
 
   private readonly _destroy = new Subject<void>();
+
+  private _syncScrollElements: SyncScrollElement[] = [];
+
+  private _syncScrollEvent = new Subject<SyncScrollEvent>();
+
+  private _syncScrollSubscription: Subscription = null;
 
   private _value = '';
 
@@ -56,7 +79,13 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
 
   activeActionsSnapshot: string[] = [];
 
+  _minHeight: number = 100;
+
+  _maxHeight: number = 100;
+
   @ViewChild('editor', { static: true }) editor: ElementRef;
+
+  @ViewChild('markdown', { static: false, read: ElementRef }) markdown: ElementRef;
 
   @Input()
   set value(value: string) {
@@ -102,8 +131,14 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
   get maxRows(): number { return this._maxRows; }
   set maxRows(value: number) {
     const newValue = coerceNumberProperty(value) || 0;
-    this._maxRows = newValue < MAX_ROWS_VALUE ? MAX_ROWS_VALUE : newValue;
+    this._maxRows = newValue > MAX_ROWS_VALUE ? MAX_ROWS_VALUE : newValue;
   }
+
+  private _theme: string = 'default';
+
+  @Input()
+  get theme(): string { return this._theme; }
+  set theme(value: string) { this._theme = value; }
 
   get history() {
     if (this.instance) {
@@ -118,6 +153,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
 
   constructor(
     private _renderer: Renderer2,
+    private _changeDetectorRef: ChangeDetectorRef,
     @Self() @Optional() public ngControl: NgControl,
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(NT_MARKDOWN_EDITOR_ICONS) public icons: NtMarkdownEditorIcons) {
@@ -135,14 +171,15 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
     // }
   }
 
-  ngAfterViewInit() {
-    this._codeMirrorInit();
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this._codeMirrorInit();
+    }
   }
 
-
   ngOnChanges(changes: SimpleChanges) {
-    const change = changes.minRows || changes.maxRows;
-    if (change && !change.firstChange) {
+    const rowChanges = changes.minRows || changes.maxRows;
+    if (rowChanges && !rowChanges.firstChange) {
       this._setEditorHeightRange();
     }
   }
@@ -150,6 +187,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
   ngOnDestroy() {
     this._destroy.next();
     this._destroy.complete();
+    this._unsubscribeScrolls();
   }
 
   writeValue(value: any) {
@@ -177,15 +215,15 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
   execCommand(type: string) {
     if (type === 'preview') {
       this.previewMode = !this.previewMode;
-      if (this.previewMode) {
-        this.activeActionsSnapshot = this.activeActions;
-        this.activeActions = ['preview'];
-      } else {
-        this.activeActions = this.activeActionsSnapshot;
-      }
+      this._actionMatches();
+      setTimeout(() => {
+        this.instance.refresh();
+        this.previewMode ? this._subscribeScrolls() : this._unsubscribeScrolls();
+      });
+
     } else if (type === 'help') {
       window.open('https://guides.github.com/features/mastering-markdown/', '_blank');
-    } else if (!this.previewMode) {
+    } else {
       const activeted = this.activeActions.indexOf(type) > -1;
       const doc = this.instance.getDoc();
       const start = doc.getCursor('start');
@@ -200,17 +238,64 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
   }
 
   undo() {
-    if (!this.previewMode) {
-      const doc = this.instance.getDoc();
-      doc.undo();
-    }
+    this.instance.getDoc().undo();
   }
 
   redo() {
-    if (!this.previewMode) {
-      const doc = this.instance.getDoc();
-      doc.redo();
+    this.instance.getDoc().redo();
+  }
+
+  // 开始订阅滚动条同步事件
+  private _subscribeScrolls() {
+
+    const callback = (event: Event) => {
+      const element = event.target as SyncScrollElement;
+      const scrollYUpdated = element.scrollTop !== element.previousScrollY;
+      if (scrollYUpdated) {
+        this._scrollTo(element);
+      }
+      element.previousScrollY = element.scrollTop;
+    };
+
+    const editorScrollElement = this.instance.getScrollerElement() as SyncScrollElement;
+    this._syncScrollElements.push(editorScrollElement, this.markdown.nativeElement);
+    this._syncScrollElements.forEach(element =>
+      element.addEventListener('scroll', element.callback = callback)
+    );
+
+    // 订阅同步滚动事件
+    this._syncScrollSubscription = this._syncScrollEvent.subscribe((event: SyncScrollEvent) => {
+      this._syncScrollElements
+        .filter(element => event.owner !== element)
+        .forEach(element => {
+          scrollY = element.previousScrollY = Math.round(event.rateY * (element.scrollHeight - element.clientHeight));
+          if (Math.round(element.scrollTop - scrollY)) {
+            element.scrollTop = scrollY;
+          }
+        });
+    });
+
+    this._scrollTo(editorScrollElement);
+  }
+
+  // 取消订阅滚动条同步事件
+  private _unsubscribeScrolls() {
+    this._syncScrollSubscription && this._syncScrollSubscription.unsubscribe();
+    this._syncScrollSubscription = null;
+    if (this._syncScrollElements) {
+      this._syncScrollElements.forEach(element =>
+        element.removeEventListener('scroll', element.callback)
+      );
+      this._syncScrollElements = [];
     }
+  }
+
+  private _scrollTo(element: SyncScrollElement) {
+    this._syncScrollEvent.next({
+      scrollY: element.scrollTop,
+      rateY: element.scrollTop / (element.scrollHeight - element.clientHeight),
+      owner: element
+    });
   }
 
   private _codeMirrorInit() {
@@ -219,9 +304,9 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
       this.instance = fromTextArea(this.editor.nativeElement, {
         mode: 'gfm',
         lineWrapping: true,
-        theme: "default",
+        theme: this.theme || 'default',
         placeholder: this.placeholder,
-        extraKeys: { "Enter": "newlineAndIndentContinueMarkdownList" }
+        extraKeys: { Enter: 'newlineAndIndentContinueMarkdownList' }
       });
 
       this._setEditorHeightRange();
@@ -237,6 +322,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
         this.instance.off('focus', this._onCodeMirrorFocus);
         this.instance.off('blur', this._onCodeMirrorBlur);
         this.instance.toTextArea();
+        this._changeDetectorRef.markForCheck();
       });
 
       Promise.resolve().then(() => this.instance.refresh());
@@ -248,18 +334,22 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
     this._value = instance.getValue();
     this._onChange(this._value);
     this._onTouched();
+    this._changeDetectorRef.markForCheck();
   }
 
   private _onCodeMirrorCursorActivity() {
     this._actionMatches();
+    this._changeDetectorRef.markForCheck();
   }
 
   private _onCodeMirrorFocus() {
     this._focused = true;
+    this._changeDetectorRef.markForCheck();
   }
 
   private _onCodeMirrorBlur() {
     this._focused = false;
+    this._changeDetectorRef.markForCheck();
   }
 
   private _actionMatches() {
@@ -278,6 +368,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
     if (range.match(/^#{6}\s/gm)) { this.activeActions.push('h6'); }
     if (range.match(/^[*\-+]\s/gm)) { this.activeActions.push('ul'); }
     if (range.match(/^\d+\.\s+/gm)) { this.activeActions.push('ol'); }
+    if (this.previewMode) { this.activeActions.push('preview'); }
   }
 
   /**
@@ -289,8 +380,10 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string> implem
       const style = window.getComputedStyle(scrollElement);
       if (style && style.lineHeight) {
         const lineHeight = parseFloat(style.lineHeight.replace('px', ''));
-        this._renderer.setStyle(scrollElement, 'min-height', `${this.minRows * lineHeight}px`);
-        this._renderer.setStyle(scrollElement, 'max-height', `${this.maxRows * lineHeight}px`);
+        this._minHeight = this.minRows * lineHeight;
+        this._maxHeight = this.maxRows * lineHeight;
+        this._renderer.setStyle(scrollElement, 'min-height', `${this._minHeight}px`);
+        this._renderer.setStyle(scrollElement, 'max-height', `${this._maxHeight}px`);
       }
     }
   }
