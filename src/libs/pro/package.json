@@ -1,6 +1,6 @@
 {
   "name": "@ng-tangram/pro",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0",
   "main": "./bundles/pro.umd.js",
   "module": "./esm5/pro.js",
   "es2015": "./esm2015/pro.js",
@@ -12,11 +12,11 @@
     "url": "https://github.com/livebridge-lab/ng-tangram"
   },
   "peerDependencies": {
-    "@angular/animations": ">=7.0.0 <9.0.0",
-    "@angular/core": ">=7.0.0 <9.0.0",
-    "@angular/common": ">=7.0.0 <9.0.0",
-    "@angular/forms": ">=7.0.0 <9.0.0",
-    "@angular/cdk": ">=7.0.0 <9.0.0",
+    "@angular/animations": ">=8.0.0 <9.0.0",
+    "@angular/core": ">=8.0.0 <9.0.0",
+    "@angular/common": ">=8.0.0 <9.0.0",
+    "@angular/forms": ">=8.0.0 <9.0.0",
+    "@angular/cdk": ">=8.0.0 <9.0.0",
     "@fortawesome/fontawesome-free": "^5.9.0",
     "@ng-tangram/components": ">=0.5.0",
     "codemirror": "^5.44.0",
