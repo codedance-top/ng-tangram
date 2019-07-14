@@ -65,7 +65,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
 
   private _syncScrollEvent = new Subject<SyncScrollEvent>();
 
-  private _syncScrollSubscription: Subscription = null;
+  private _syncScrollSubscription: Subscription;
 
   private _value = '';
 
@@ -280,8 +280,9 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
 
   // 取消订阅滚动条同步事件
   private _unsubscribeScrolls() {
-    this._syncScrollSubscription && this._syncScrollSubscription.unsubscribe();
-    this._syncScrollSubscription = null;
+    if (this._syncScrollSubscription && !this._syncScrollSubscription.closed) {
+      this._syncScrollSubscription.unsubscribe();
+    }
     if (this._syncScrollElements) {
       this._syncScrollElements.forEach(element =>
         element.removeEventListener('scroll', element.callback)
