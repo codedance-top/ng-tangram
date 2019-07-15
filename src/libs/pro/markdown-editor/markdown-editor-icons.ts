@@ -26,4 +26,30 @@ export interface NtMarkdownEditorIcons {
   help: string;
 }
 
+export const DEFAULT_MARKDOWN_EDITOR_ICONS: NtMarkdownEditorIcons = {
+  bold: 'fa fa-bold',
+  italic: 'fa fa-italic',
+  strikethrough: 'fa fa-strikethrough',
+
+  h1: 'fa fa-heading fa-heading-x fa-heading-1',
+  h2: 'fa fa-heading fa-heading-x fa-heading-2',
+  h3: 'fa fa-heading fa-heading-x fa-heading-3',
+  h4: 'fa fa-heading fa-heading-x fa-heading-4',
+  h5: 'fa fa-heading fa-heading-x fa-heading-5',
+  h6: 'fa fa-heading fa-heading-x fa-heading-6',
+
+  code: 'fa fa-code',
+  quote: 'fa fa-quote-left',
+
+  ul: 'fa fa-list-ul',
+  ol: 'fa fa-list-ol',
+
+  link: 'fa fa-link',
+  image: 'fa fa-image',
+  table: 'fa fa-table',
+  line: 'fa fa-minus',
+  preview: 'fas fa-columns',
+  help: 'fab fa-markdown',
+};
+
 export const NT_MARKDOWN_EDITOR_ICONS = new InjectionToken<NtMarkdownEditorIcons>('nt-markdown-editor-icons');

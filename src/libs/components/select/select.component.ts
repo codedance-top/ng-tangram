@@ -6,24 +6,24 @@ import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
-    DOWN_ARROW, END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE, UP_ARROW
+  DOWN_ARROW, END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE, UP_ARROW
 } from '@angular/cdk/keycodes';
 import {
-    CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
+  CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
 } from '@angular/cdk/overlay';
 import {
-    AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren,
-    ElementRef, EventEmitter, Inject, Input, isDevMode, NgZone, OnDestroy, Optional, Output,
-    QueryList, Renderer2, Self, ViewChild, ViewEncapsulation
+  AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren,
+  ElementRef, EventEmitter, Inject, Input, isDevMode, NgZone, OnDestroy, Optional, Output,
+  QueryList, Self, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
-    BOTTOM_LEFT, fadeIn, fadeOut, NT_OPTION_PARENT_COMPONENT, NtOptionComponent,
-    NtOptionParentComponent, NtOptionSelectionChange, NtOverlayComponent, TOP_LEFT
+  BOTTOM_LEFT, fadeIn, fadeOut, NT_OPTION_PARENT_COMPONENT, NtOptionComponent,
+  NtOptionParentComponent, NtOptionSelectionChange, NtOverlayComponent, TOP_LEFT
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
-import { NT_SELECT_ICONS, NtSelectIcons } from './select-icons';
+import { DEFAULT_SELECT_ICONS, NT_SELECT_ICONS, NtSelectIcons } from './select-icons';
 
 export function getNtSelectDynamicMultipleError() {
   return Error('Cannot change `multiple` mode of select after initialization.');
@@ -207,15 +207,17 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     private _ngZone: NgZone,
     private _elementRef: ElementRef,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Self() @Optional() public ngControl: NgControl,
-    @Inject(NT_SELECT_ICONS) public icons: NtSelectIcons) {
+    @Optional() @Self() public ngControl: NgControl,
+    @Optional() @Inject(NT_SELECT_ICONS) public icons: NtSelectIcons) {
     super();
 
-    this.origin = new CdkOverlayOrigin(this._elementRef);
 
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
+
+    this.origin = new CdkOverlayOrigin(this._elementRef);
+    this.icons = { ...DEFAULT_SELECT_ICONS, ...icons };
   }
 
   ngOnInit() {

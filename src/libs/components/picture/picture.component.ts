@@ -4,27 +4,26 @@ import { takeUntil } from 'rxjs/operators';
 
 import { transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
-import { HttpProgressEvent } from '@angular/common/http';
 import {
-    Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, Self, TemplateRef,
-    ViewChild, ViewEncapsulation
+  Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, Self, TemplateRef,
+  ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
-    fadeIn, fadeOut, NT_UPLOAD_HANDLER, NtUploadFile, NtUploadHandler, NtUploadStatus
+  fadeIn, fadeOut, NT_UPLOAD_HANDLER, NtUploadFile, NtUploadHandler, NtUploadStatus
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import { NtModal } from '@ng-tangram/components/modal';
 
 import {
-    NtPictureAcceptError, NtPictureError, NtPictureSizeError, NtPictureUploadError
+  NtPictureAcceptError, NtPictureError, NtPictureSizeError, NtPictureUploadError
 } from './picture-errors';
-import { NT_PICTURE_ICONS, NtPictureIcons } from './picture-icons';
+import { DEFAULT_PICTURE_ICONS, NT_PICTURE_ICONS, NtPictureIcons } from './picture-icons';
 
 /**
  * 压缩图片
  */
-export function zipImage( file: File, option: any = { maxWidth: 1080, orientation: true, canvas: true }): Promise<any> {
+export function zipImage(file: File, option: any = { maxWidth: 1080, orientation: true, canvas: true }): Promise<any> {
   return new Promise((resolve, reject) => {
     loadImage(file, (canvas: HTMLCanvasElement) => {
       if (canvas.toBlob) {
@@ -148,19 +147,20 @@ export class NtPictureComponent extends NtFormFieldControl<NtPicture[]> implemen
 
   @Output() remove = new EventEmitter<NtPicture>();
 
-  private _onChange: (value: any) => void = () => {};
+  private _onChange: (value: any) => void = () => { };
 
-  private _onTouched = () => {};
+  private _onTouched = () => { };
 
   constructor(
     private _modal: NtModal,
-    @Self() @Optional() public ngControl: NgControl,
+    @Optional() @Self() public ngControl: NgControl,
     @Inject(NT_UPLOAD_HANDLER) private _uploader: NtUploadHandler,
-    @Inject(NT_PICTURE_ICONS) public icons: NtPictureIcons) {
-      super();
-      if (this.ngControl) {
-        this.ngControl.valueAccessor = this;
-      }
+    @Optional() @Inject(NT_PICTURE_ICONS) public icons: NtPictureIcons) {
+    super();
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
+    this.icons = { ...DEFAULT_PICTURE_ICONS, ...icons };
   }
 
   ngOnInit() { }
@@ -294,7 +294,7 @@ export class NtPictureComponent extends NtFormFieldControl<NtPicture[]> implemen
   }
 
   private _onUploadProgress(percent: number, file: NtPicture) {
-    file.progress = percent ;
+    file.progress = percent;
   }
 
   private _onUploadDone(file: NtPicture) {

@@ -3,19 +3,18 @@ import { takeUntil } from 'rxjs/operators';
 
 import { transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
-import { HttpProgressEvent } from '@angular/common/http';
 import {
-    Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, Self, ViewChild,
-    ViewEncapsulation
+  Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, Self, ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
-    fadeOut, NT_UPLOAD_HANDLER, NtUploadFile, NtUploadHandler, NtUploadStatus
+  fadeOut, NT_UPLOAD_HANDLER, NtUploadFile, NtUploadHandler, NtUploadStatus
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { NtFileAcceptError, NtFileError, NtFileSizeError, NtFileUploadError } from './file-errors';
-import { NT_FILE_EXTENSIONS, NT_FILE_ICONS, NtFileIcons } from './file-icons';
+import { DEFAULT_FILE_ICONS, NT_FILE_EXTENSIONS, NT_FILE_ICONS, NtFileIcons } from './file-icons';
 
 let uniqueId = 0;
 
@@ -103,18 +102,20 @@ export class NtFileComponent extends NtFormFieldControl<NtFile[]> implements OnI
 
   @Output() remove = new EventEmitter<NtFile>();
 
-  private _onChange: (value: any) => void = () => {};
+  private _onChange: (value: any) => void = () => { };
 
-  private _onTouched = () => {};
+  private _onTouched = () => { };
 
   constructor(
-    @Self() @Optional() public ngControl: NgControl,
+    @Optional() @Self() public ngControl: NgControl,
     @Inject(NT_UPLOAD_HANDLER) private _uploader: NtUploadHandler,
-    @Inject(NT_FILE_ICONS) public icons: NtFileIcons) {
+    @Optional() @Inject(NT_FILE_ICONS) public icons: NtFileIcons) {
     super();
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
+
+    this.icons = { ...DEFAULT_FILE_ICONS, ...icons };
   }
 
   ngOnInit() { }
@@ -240,7 +241,7 @@ export class NtFileComponent extends NtFormFieldControl<NtFile[]> implements OnI
   }
 
   private _onUploadProgress(percent: number, file: NtFile) {
-    file.progress = percent ;
+    file.progress = percent;
   }
 
   private _onUploadDone(file: NtFile) {

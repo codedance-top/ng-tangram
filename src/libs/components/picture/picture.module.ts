@@ -6,27 +6,11 @@ import { NtProgressModule } from '@ng-tangram/components/progress';
 import { NT_PICTURE_ICONS, NtPictureIcons } from './picture-icons';
 import { NtPictureComponent } from './picture.component';
 
-const DEFAULT_PICTURE_ICONS: NtPictureIcons = {
-  add: 'fa fa-plus',
-  preview: 'fa fa-search',
-  remove: 'fa fa-trash-alt'
-};
+
 
 @NgModule({
   imports: [CommonModule, NtModalModule, NtProgressModule],
   exports: [NtPictureComponent],
-  declarations: [NtPictureComponent],
-  providers: [
-    { provide: NT_PICTURE_ICONS, useValue: DEFAULT_PICTURE_ICONS }
-  ]
+  declarations: [NtPictureComponent]
 })
-export class NtPictureModule {
-  public static forRoot(icons: NtPictureIcons = DEFAULT_PICTURE_ICONS): ModuleWithProviders {
-    return {
-      ngModule: NtPictureModule,
-      providers: [
-        { provide: NT_PICTURE_ICONS, useValue: icons }
-      ]
-    };
-  }
-}
+export class NtPictureModule { }
