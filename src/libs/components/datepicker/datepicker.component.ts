@@ -1,21 +1,23 @@
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-    CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
+  CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
 } from '@angular/cdk/overlay';
 import {
-    Component, ElementRef, EventEmitter, Inject, Input, Optional, Output, Self, ViewChild,
-    ViewEncapsulation
+  Component, ElementRef, EventEmitter, Inject, Input, Optional, Output, Self, ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
-    BOTTOM_LEFT, DateAdapter, fadeIn, fadeOut, NT_DATE_FORMATS, NtDateFormats, NtOverlayComponent,
-    TOP_LEFT
+  BOTTOM_LEFT, DateAdapter, fadeIn, fadeOut, NT_DATE_FORMATS, NtDateFormats, NtOverlayComponent,
+  TOP_LEFT
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { NtDatePickerCalendarComponent } from './calendar.component';
-import { NT_DATEPICKER_ICONS, NtDatePickerIcons } from './datepicker-icons';
+import {
+  DEFAULT_DATEPICKER_ICONS, NT_DATEPICKER_ICONS, NtDatePickerIcons
+} from './datepicker-icons';
 
 @Component({
   selector: 'nt-datepicker',
@@ -116,13 +118,15 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     _elementRef: ElementRef,
     private _dateAdapter: DateAdapter<D>,
     @Inject(NT_DATE_FORMATS) private _dateFormats: NtDateFormats,
-    @Self() @Optional() public ngControl: NgControl,
-    @Inject(NT_DATEPICKER_ICONS) public icons: NtDatePickerIcons) {
+    @Optional() @Self() public ngControl: NgControl,
+    @Optional() @Inject(NT_DATEPICKER_ICONS) public icons: NtDatePickerIcons) {
     super();
     this.origin = new CdkOverlayOrigin(_elementRef);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
+
+    this.icons = { ...DEFAULT_DATEPICKER_ICONS, ...icons };
   }
 
   writeValue(value: D) {

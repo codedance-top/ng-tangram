@@ -12,7 +12,6 @@ import {
   ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject, Input, OnChanges,
   OnDestroy, OnInit, Optional, PLATFORM_ID, Renderer2, Self, SimpleChanges, ViewChild,
   ViewEncapsulation,
-  AfterViewInit
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn } from '@ng-tangram/components/core';
@@ -20,7 +19,7 @@ import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { commands } from './commands';
 import { NtMarkdownEditorConfig } from './markdown-editor-config';
-import { NT_MARKDOWN_EDITOR_ICONS, NtMarkdownEditorIcons } from './markdown-editor-icons';
+import { NT_MARKDOWN_EDITOR_ICONS, NtMarkdownEditorIcons, DEFAULT_MARKDOWN_EDITOR_ICONS } from './markdown-editor-icons';
 
 // TODO: 将来会在 components/core 支持
 interface SyncScrollElement extends HTMLElement {
@@ -154,13 +153,16 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
   constructor(
     private _renderer: Renderer2,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Self() @Optional() public ngControl: NgControl,
     @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject(NT_MARKDOWN_EDITOR_ICONS) public icons: NtMarkdownEditorIcons) {
+    @Optional() @Self() public ngControl: NgControl,
+    @Optional() @Inject(NT_MARKDOWN_EDITOR_ICONS) public icons: NtMarkdownEditorIcons) {
+
     super();
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
+
+    this.icons = { ...DEFAULT_MARKDOWN_EDITOR_ICONS, ...icons };
 
     /** codemirror 在服务器环境下不支持以 es6 模块的方式导入，因此需要以动态加载的方式来处理。 */
     // if (isPlatformBrowser(this.platformId) && !codeMirrorLoaded) {
