@@ -1,20 +1,22 @@
-import { Subject } from 'rxjs';
+import { Subject, SubscriptionLike, Subscription } from 'rxjs';
 import { debounceTime, filter, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import {
-    CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
+  CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
 } from '@angular/cdk/overlay';
 import {
-    AfterContentChecked, AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy,
-    Output, Renderer2, SimpleChanges, ViewChild, ViewEncapsulation
+  AfterContentChecked, AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy,
+  Output, Renderer2, SimpleChanges, ViewChild, ViewEncapsulation, Optional
 } from '@angular/core';
+
+import { Location } from '@angular/common';
 
 import { fadeIn, fadeOut } from '../animate/fading';
 import {
-    getPositionClassName, NT_OVERLAY_POSITION_PAIRS, NtOverlayPosition
+  getPositionClassName, NT_OVERLAY_POSITION_PAIRS, NtOverlayPosition
 } from './overlay-positions';
 
 export declare type NtOverlayTriggerType = '' | 'hover' | 'click';
@@ -50,6 +52,7 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
 
   private _closeEvent = new EventEmitter<any>();
   private _positionChange = new EventEmitter<string>();
+  private _locationChanges: SubscriptionLike = Subscription.EMPTY;
 
   get isOpen() { return this._isOpen; }
   get isMouseIn() { return this._isMouseIn; }
@@ -105,7 +108,9 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
 
   @Output() keydownEvents = new EventEmitter<KeyboardEvent>();
 
-  constructor(private _renderer: Renderer2) {
+  constructor(
+    private _renderer: Renderer2,
+    @Optional() location: Location) {
 
     this._closeEvent.pipe(
       takeUntil(this._destroy),
@@ -119,6 +124,10 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
     ).subscribe((position: any) => {
       this._setContainerStyles(position);
     });
+
+    if (location) {
+      this._locationChanges = location.subscribe(() => this.hide());
+    }
   }
 
   ngAfterViewInit() {
@@ -126,8 +135,7 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
       .pipe(
         take(1),
         switchMap(() => this.cdkConnectedOverlay.overlayRef.keydownEvents()),
-        takeUntil(this._destroy),
-        // filter(event => event.keyCode === ESCAPE)
+        takeUntil(this._destroy)
       ).subscribe(event => {
         if (event.keyCode === ESCAPE) {
           this.hide();
@@ -150,6 +158,7 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
   ngOnDestroy() {
     this._destroy.next();
     this._destroy.complete();
+    this._locationChanges.unsubscribe();
   }
 
   private _setPosition() {

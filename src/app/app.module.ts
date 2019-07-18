@@ -35,7 +35,6 @@ const PAGINATION_CONFIG = {
     BrowserModule.withServerTransition({
       appId: 'ng-tangram-docs'
     }),
-    BrowserTransferStateModule,
     NtButtonModule,
     NtFormsModule.forRoot(),
     NtNativeDateModule,
