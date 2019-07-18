@@ -34,7 +34,8 @@ export declare type FadeAnimationOptions = {
  * @param options 动画配置参数
  */
 export function fade(options: FadeAnimationOptions): AnimationReferenceMetadata {
-  return animation(animate(`${options.timing || DEFAULT_TIMING}s ${options.delay || 0}s`,
+  return animation(
+    animate(`${options.timing || DEFAULT_TIMING}s ${options.delay || 0}s`,
     keyframes([
       style({ opacity: `${options.fromOpacity}`, transform: translate3d(options.axis, options.steps.a), offset: 0 }),
       style({ opacity: `${options.toOpacity}`, transform: translate3d(options.axis, options.steps.b), offset: 1 }),

@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation, Attribute } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'nt-avatar',
