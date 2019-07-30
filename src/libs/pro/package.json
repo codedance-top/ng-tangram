@@ -1,6 +1,6 @@
 {
   "name": "@ng-tangram/pro",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./bundles/pro.umd.js",
   "module": "./esm5/pro.js",
   "es2015": "./esm2015/pro.js",

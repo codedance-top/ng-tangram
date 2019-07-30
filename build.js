@@ -79,7 +79,8 @@ async function _build(lib) {
 
     await _typings(childCompileFolder, childOutputFolder);
     await _metadata(childCompileFolder, childOutputFolder);
-    await fs.writeFileSync(join(childOutputFolder, `package.json`), `{
+    await fs.writeFileSync(join(childOutputFolder, `package.json`),
+`{
   "name": "${libName}",
   "typings": "./index.d.ts",
   "main": "../bundles/${children[i]}.umd.js",

@@ -20,6 +20,27 @@
   }
 }
 
+@mixin nt-input-group-validate(
+  $color: $nt-input-background-invalid,
+  $shadow: $nt-input-shadow-invalid,
+  $shadow-hover: $nt-input-shadow-invalid-focus,
+  $color-lighten: 5%) {
+    .nt-input-group,
+    .nt-input-addon {
+      border-color: $color;
+    }
+
+    .nt-input-addon {
+      color: $color;
+    }
+
+    .nt-input-group-transparent {
+      &:focus-within {
+        box-shadow: $shadow-hover;
+      }
+    }
+}
+
 @mixin nt-input-group {
   .nt-input-group {
     @include nt-input-group-base;
@@ -43,7 +64,7 @@
 
     input {
       border: none !important;
-      box-shadow: none !important;
+      box-shadow: unset !important;
       background: transparent !important;
     }
 
@@ -55,16 +76,14 @@
   }
 
   .nt-form-error {
+    @include nt-input-group-validate;
+  }
 
-    .nt-input-group,
-    .nt-input-addon {
-      border-color: $nt-input-color-invalid;
-    }
-
-    .nt-input-group-transparent {
-      &:focus-within {
-        box-shadow: $nt-input-shadow-invalid-focus;
-      }
-    }
+  .nt-form-success {
+    @include nt-input-group-validate(
+      $color: $nt-input-background-valid,
+      $shadow: $nt-input-shadow-valid,
+      $shadow-hover: $nt-input-shadow-valid-focus
+    );
   }
 }
