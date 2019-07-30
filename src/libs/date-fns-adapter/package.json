@@ -1,0 +1,19 @@
+{
+  "name": "@ng-tangram/date-fns-adapter",
+  "version": "0.1.0",
+  "main": "./bundles/date-fns-adapter.umd.js",
+  "module": "./esm5/date-fns-adapter.js",
+  "es2015": "./esm2015/date-fns-adapter.js",
+  "typings": "./date-fns-adapter.d.ts",
+  "author": "livebridge",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/livebridge-lab/ng-tangram"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=8.0.0 <9.0.0",
+    "@ng-tangram/components": ">=0.5.0",
+    "date-fns": "^1.30.0"
+  }
+}

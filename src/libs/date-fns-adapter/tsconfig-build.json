@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "stripInternal": false,
+    "experimentalDecorators": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "newLine": "lf",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "outDir": "../../../out-tsc/@ng-tangram/date-fns-adapter/",
+    "rootDir": ".",
+    "rootDirs": [
+      ".",
+      "../../../dist/@ng-tangram/date-fns-adapter/"
+    ],
+    "sourceMap": true,
+    "inlineSources": true,
+    "target": "es2015",
+    "lib": ["es2015", "dom"],
+    "skipLibCheck": true,
+    "types": [],
+    "baseUrl": ".",
+    "paths": {
+      "@ng-tangram/components/*": ["../../../dist/@ng-tangram/components/*"],
+    }
+  },
+  "files": ["./public-api.ts"],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": true,
+    "skipTemplateCodegen": true,
+    "flatModuleOutFile": "date-fns-adapter.js",
+    "flatModuleId": "@ng-tangram/date-fns-adapter",
+    "fullTemplateTypeCheck": true
+  }
+}
