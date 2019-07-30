@@ -36,7 +36,6 @@ $nt-markdown-code-radius: $global-radius !default;
 
   // Inline code
   pre, code {
-    text-shadow: 0 1px $white;
     font-family: $font-family-monospace;
     -moz-tab-size: 4;
     -o-tab-size: 4;
@@ -53,8 +52,6 @@ $nt-markdown-code-radius: $global-radius !default;
   }
 
   pre {
-    color: black;
-    background: #f5f2f0;
     text-align: left;
     white-space: pre;
     word-spacing: normal;

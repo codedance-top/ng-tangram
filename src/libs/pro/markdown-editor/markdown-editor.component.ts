@@ -163,14 +163,6 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
     }
 
     this.icons = { ...DEFAULT_MARKDOWN_EDITOR_ICONS, ...icons };
-
-    /** codemirror 在服务器环境下不支持以 es6 模块的方式导入，因此需要以动态加载的方式来处理。 */
-    // if (isPlatformBrowser(this.platformId) && !codeMirrorLoaded) {
-    //   fromTextArea = require('codemirror').fromTextArea;
-    //   require('codemirror/mode/gfm/gfm');
-    //   require('codemirror/addon/edit/continuelist');
-    //   codeMirrorLoaded = true;
-    // }
   }
 
   ngOnInit() {

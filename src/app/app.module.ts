@@ -2,10 +2,10 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import locale from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import {
-    NT_PAGINATION_CONFIG, NtButtonModule, NtFormsModule, NtNativeDateModule, NtUploadModule
+  NT_PAGINATION_CONFIG, NtButtonModule, NtFormsModule, NtNativeDateModule, NtUploadModule
 } from '@ng-tangram/components';
 
 // import { NtMomentDateModule } from '@ng-tangram/moment-adapter';
