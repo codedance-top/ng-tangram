@@ -14,6 +14,14 @@
       <span [class]="icons['redo']"></span>
     </div>
   </div>
+  <div class="tools-group">
+    <div class="tools-item" (click)="changeScreenFilled(true)" *ngIf="!fillScreen">
+      <span [class]="icons['fill']"></span>
+    </div>
+    <div class="tools-item" (click)="changeScreenFilled(false)" *ngIf="fillScreen">
+      <span [class]="icons['compress']"></span>
+    </div>
+  </div>
 </div>
 <div class="nt-markdown-editor-container">
   <div class="nt-markdown-editor-content">
@@ -21,8 +29,8 @@
   </div>
   <div #markdown class="nt-markdown-editor-preview"
     *ngIf="previewMode"
-    [style.minHeight.px]="_minHeight"
-    [style.maxHeight.px]="_maxHeight"
+    [style.minHeight]="_minHeight"
+    [style.maxHeight]="_maxHeight"
     [@fade]>
     <nt-markdown-block [data]="value"></nt-markdown-block>
   </div>
