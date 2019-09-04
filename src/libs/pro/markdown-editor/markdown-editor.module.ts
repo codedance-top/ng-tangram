@@ -6,7 +6,7 @@ import { NtMarkdownEditorComponent } from './markdown-editor.component';
 
 @NgModule({
   imports: [CommonModule, NtMarkdownBlockModule],
-  exports: [NtMarkdownEditorComponent],
+  exports: [NtMarkdownBlockModule, NtMarkdownEditorComponent],
   declarations: [NtMarkdownEditorComponent],
 })
 export class NtMarkdownEditorModule { }

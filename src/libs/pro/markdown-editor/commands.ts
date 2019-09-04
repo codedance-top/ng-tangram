@@ -6,9 +6,9 @@
 export const LINE_REGEXP = /^([^\n]*)(\n|$)/gm;
 
 // text-style regexp
-export const BOLD_REGEXP = /^#\s+/;
-export const ITALIC_REGEXP = /^#\s+/;
-export const STRIKETHROUGH_REGEXP = /^#\s+/;
+// export const BOLD_REGEXP = /^#\s+/;
+// export const ITALIC_REGEXP = /^#\s+/;
+// export const STRIKETHROUGH_REGEXP = /^#\s+/;
 
 // header regexp
 export const H1_REGEXP = /^#\s/;
@@ -36,7 +36,9 @@ export const OL_REGEXP = /^\d+\.\s+/;
 export const OL_REGEXP_MULTIPLE = /^(\d+\.\s)([^\n]*)(\n|$)/gm;
 
 // code regexp
-// export const CODE_REGEXP = /^``````/;
+export const CODE_REGEXP = /^``````/;
+export const QUOTE_REGEXP = /^\>\s|\>/;
+export const QUOTE_REGEXP_MULTIPLE = /^(\>\s|\>)([^\n]*)(\n|$)/gm;
 
 /** 命令 */
 export declare type NtMarkdownEditorCommand = (doc: CodeMirror.Doc, erase: boolean, multiple: boolean) => void;
@@ -361,7 +363,76 @@ function strikethrough(doc: CodeMirror.Doc, _erase: boolean, _multiple: boolean 
   doc.setSelection(from, to, { scroll: false });
 }
 
+/**
+ * 代码
+ * @param doc CodeMirror.Doc 对象
+ * @param erase 是否要抹掉
+ * @param multiple 是否是多行状态
+ */
+function code(doc: CodeMirror.Doc, _erase: boolean, _multiple: boolean = false) {
 
+  const start = doc.getCursor('start');
+  const end = doc.getCursor('end');
+  const endLine = doc.getLine(end.line);
+
+  const from = { ...start, ch: 0 };
+  const to = { ...end, ch: endLine.length  };
+
+  const selection = doc.getRange(from, to);
+
+  doc.replaceRange(`\`\`\`
+${selection}
+\`\`\`
+`, from, to, selection);
+  doc.setCursor(start.line, 3);
+}
+
+/**
+ * 引用
+ * @param doc CodeMirror.Doc 对象
+ * @param erase 是否要抹掉
+ * @param multiple 是否是多行状态
+ */
+function quote(doc: CodeMirror.Doc, erase: boolean, multiple: boolean = false) {
+
+  /** 输入光标位置 */
+  let start = doc.getCursor('start');
+  let end = doc.getCursor('end');
+
+  /** 原文内容和替换的内容 */
+  let origin = doc.getRange({ line: start.line, ch: 0 }, end);
+  let replacement = '';
+
+  let startOffset = 0, endOffset = 0;
+
+  if (erase) {
+    replacement = origin.replace(QUOTE_REGEXP_MULTIPLE, (_match, $1, $2, $3) => {
+      endOffset = $1.length;
+      return `${$2}${$3}`;
+    });
+
+    // 计算字符的移位数
+    startOffset = doc.getLine(start.line).match(QUOTE_REGEXP) ? -2 : 0;
+    endOffset = doc.getLine(end.line).match(QUOTE_REGEXP) ? -endOffset : 0;
+
+  } else {
+    replacement = origin.replace(LINE_REGEXP, match => !match.trim() && multiple ? match : `> ${match}`);
+
+    // 计算字符的移位数
+    startOffset = doc.getLine(start.line).match(QUOTE_REGEXP) ? 0 : 2;
+    endOffset = doc.getLine(end.line).match(QUOTE_REGEXP) ? 0 : 2;
+  }
+
+  // 替换选中的文本
+  doc.replaceRange(replacement, { line: start.line, ch: 0 }, end);
+
+  // 重新选中内容, 如果是多行模式尾行的偏移独立计算
+  doc.setSelection(
+    { line: start.line, ch: start.ch + startOffset },
+    { line: end.line, ch: end.ch + (multiple ? endOffset : startOffset) },
+    { scroll: false }
+  );
+}
 
 export const commands: { [key: string]: NtMarkdownEditorCommand } = {
 
@@ -373,6 +444,9 @@ export const commands: { [key: string]: NtMarkdownEditorCommand } = {
 
   // list
   ul, ol,
+
+  // code
+  code, quote,
 
   // midia
   link, image, table

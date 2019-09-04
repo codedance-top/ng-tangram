@@ -52,7 +52,8 @@ const DEFAULT_MIN_ROWS = 10, DEFAULT_MAX_ROWS = 20,
   ],
   host: {
     'class': 'nt-markdown-editor nt-form-control',
-    '[class.focus]': 'focused'
+    '[class.focus]': 'focused',
+    '[class.fill-screen]': 'fillScreen'
   }
 })
 export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
@@ -68,6 +69,8 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
 
   private _value = '';
 
+  fillScreen = false;
+
   previewMode = false;
 
   instance: EditorFromTextArea;
@@ -78,9 +81,9 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
 
   activeActionsSnapshot: string[] = [];
 
-  _minHeight: number = 100;
+  _minHeight: string = `100px`;
 
-  _maxHeight: number = 100;
+  _maxHeight: string = `100px`;
 
   @ViewChild('editor', { static: true }) editor: ElementRef;
 
@@ -239,6 +242,11 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
     this.instance.getDoc().redo();
   }
 
+  changeScreenFilled(fillScreen: boolean) { 
+    this.fillScreen = fillScreen;
+    this._setEditorHeightRange();
+  }
+
   // 开始订阅滚动条同步事件
   private _subscribeScrolls() {
 
@@ -363,6 +371,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
     if (range.match(/^#{6}\s/gm)) { this.activeActions.push('h6'); }
     if (range.match(/^[*\-+]\s/gm)) { this.activeActions.push('ul'); }
     if (range.match(/^\d+\.\s+/gm)) { this.activeActions.push('ol'); }
+    if (range.match(/^\>+/gm)) { this.activeActions.push('quote'); }
     if (this.previewMode) { this.activeActions.push('preview'); }
   }
 
@@ -373,12 +382,17 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
     if (isPlatformBrowser(this.platformId) && !!this.instance) {
       const scrollElement = this.instance.getScrollerElement();
       const style = window.getComputedStyle(scrollElement);
-      if (style && style.lineHeight) {
+      if (this.fillScreen) { 
+        this._minHeight = `100%`;
+        this._maxHeight = `100%`;
+        this._renderer.setStyle(scrollElement, 'min-height', this._minHeight);
+        this._renderer.setStyle(scrollElement, 'max-height', this._maxHeight);
+      } else if (style && style.lineHeight) {
         const lineHeight = parseFloat(style.lineHeight.replace('px', ''));
-        this._minHeight = this.minRows * lineHeight;
-        this._maxHeight = this.maxRows * lineHeight;
-        this._renderer.setStyle(scrollElement, 'min-height', `${this._minHeight}px`);
-        this._renderer.setStyle(scrollElement, 'max-height', `${this._maxHeight}px`);
+        this._minHeight = `${this.minRows * lineHeight}px`;
+        this._maxHeight = `${this.maxRows * lineHeight}px`;
+        this._renderer.setStyle(scrollElement, 'min-height', this._minHeight);
+        this._renderer.setStyle(scrollElement, 'max-height', this._maxHeight);
       }
     }
   }

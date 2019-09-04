@@ -27,6 +27,9 @@ export interface NtMarkdownEditorIcons {
 
   undo: string;
   redo: string;
+
+  fill: string;
+  compress: string;
 }
 
 export const DEFAULT_MARKDOWN_EDITOR_ICONS: NtMarkdownEditorIcons = {
@@ -55,7 +58,10 @@ export const DEFAULT_MARKDOWN_EDITOR_ICONS: NtMarkdownEditorIcons = {
   help: 'fab fa-markdown',
 
   undo: 'fa fa-reply',
-  redo: 'fa fa-share'
+  redo: 'fa fa-share',
+
+  fill: 'fa fa-arrows-alt',
+  compress: 'fa fa-compress'
 };
 
 export const NT_MARKDOWN_EDITOR_ICONS = new InjectionToken<NtMarkdownEditorIcons>('nt-markdown-editor-icons');

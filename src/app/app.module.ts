@@ -5,7 +5,11 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import {
-  NT_PAGINATION_CONFIG, NtButtonModule, NtFormsModule, NtNativeDateModule, NtUploadModule
+  NT_PAGINATION_CONFIG,
+  NtButtonModule,
+  NtFormsModule,
+  NtNativeDateModule,
+  NtUploadModule
 } from '@ng-tangram/components';
 
 // import { NtMomentDateModule } from '@ng-tangram/moment-adapter';

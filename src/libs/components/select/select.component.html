@@ -10,7 +10,8 @@
 <span class="nt-select-caret {{ icons.caret }}" [@fade] *ngIf="!triggerValue || disabled"></span>
 <span class="nt-select-clear {{ icons.clear }}" [@fade] *ngIf="triggerValue && !disabled" (click)="clear()"></span>
 <nt-overlay
-  [origin]="origin" trigger="click"
+  [origin]="origin"
+  trigger="click"
   [positionPairs]="_positionPairs"
   (afterOpen)="_afterOpen($event)"
   (afterClosed)="_afterClosed($event)"
