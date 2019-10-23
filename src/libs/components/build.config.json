@@ -3,7 +3,7 @@
   "children": [
     "core", "forms",
     "avatar", "badge", "breadcrumbs", "button", "callout", "label", "modal",
-    "menu", "scrim", "pagination", "table", "tree",
+    "menu", "scrim", "pagination", "table", "tree", "drawer",
     "dropdown", "popconfirm", "popover", "progress", "tooltip",
     "select", "switch", "input", "datepicker", "file", "picture", "radio", "checkbox"
   ],
@@ -17,6 +17,7 @@
     "@ng-tangram/components/checkbox": "nt.components.checkbox",
     "@ng-tangram/components/core": "nt.components.core",
     "@ng-tangram/components/datepicker": "nt.components.datepicker",
+    "@ng-tangram/components/drawer": "nt.components.drawer",
     "@ng-tangram/components/dropdown": "nt.components.dropdown",
     "@ng-tangram/components/file": "nt.components.file",
     "@ng-tangram/components/forms": "nt.components.forms",

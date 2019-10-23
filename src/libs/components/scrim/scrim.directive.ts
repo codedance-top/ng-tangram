@@ -1,8 +1,17 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { isPlatformBrowser } from '@angular/common';
 import {
-  ComponentFactoryResolver, ComponentRef, Directive, ElementRef,
-  Inject, Input, OnDestroy, PLATFORM_ID, Renderer2, ViewContainerRef} from '@angular/core';
+  ComponentFactoryResolver,
+  ComponentRef,
+  Directive,
+  ElementRef,
+  Inject,
+  Input,
+  OnDestroy,
+  PLATFORM_ID,
+  Renderer2,
+  ViewContainerRef
+} from '@angular/core';
 
 import { NtScrimComponent } from './scrim.component';
 

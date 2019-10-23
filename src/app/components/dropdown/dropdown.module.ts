@@ -1,10 +1,9 @@
 
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-import { NtDropdownModule } from '@ng-tangram/components/dropdown';
 import { NtButtonModule } from '@ng-tangram/components/button';
+import { NtDropdownModule } from '@ng-tangram/components/dropdown';
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtMarkdownBlockModule } from '@ng-tangram/pro';
 

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+
 import { NT_PAGINATION_CONFIG, NtPaginationConfig } from './pagination-config';
 import { NtPaginationComponent } from './pagination.component';
 

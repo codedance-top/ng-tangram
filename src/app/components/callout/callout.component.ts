@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef, ComponentFactoryResolver, Injectable } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'nt-callout-document',

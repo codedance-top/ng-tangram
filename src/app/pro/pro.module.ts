@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NtExampleModule } from '@ng-tangram/example';
+
 import { PRO_ROUTES } from './pro-routes';
 import { ProComponent } from './pro.component';
 

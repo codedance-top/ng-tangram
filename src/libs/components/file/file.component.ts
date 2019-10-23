@@ -4,12 +4,25 @@ import { takeUntil } from 'rxjs/operators';
 import { transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
-  Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, Self, ViewChild,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  OnInit,
+  Optional,
+  Output,
+  Self,
+  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
-  fadeOut, NT_UPLOAD_HANDLER, NtUploadFile, NtUploadHandler, NtUploadStatus
+  fadeOut,
+  NT_UPLOAD_HANDLER,
+  NtUploadFile,
+  NtUploadHandler,
+  NtUploadStatus
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 

@@ -1,5 +1,4 @@
-import { Routes } from "@angular/router";
-
+import { Routes } from '@angular/router';
 
 export const COMPONENTS_ROUTES: Routes = [
   {
@@ -39,6 +38,11 @@ export const COMPONENTS_ROUTES: Routes = [
     path: 'datepicker',
     loadChildren: () => import('./datepicker/datepicker.module').then(mod => mod.DatePickerDocumentModule),
     data: { title: 'DatePicker 日期选择框' }
+  },
+  {
+    path: 'drawer',
+    data: { title: 'Drawer 抽屉式弹出框' },
+    loadChildren: () => import('./drawer/drawer.module').then(mod => mod.DrawerDocumentModule)
   },
   {
     path: 'dropdown',

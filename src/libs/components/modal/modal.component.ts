@@ -1,9 +1,19 @@
 
-import { Component, ViewEncapsulation, ComponentRef, EmbeddedViewRef, ViewChild, EventEmitter } from '@angular/core';
-import { BasePortalOutlet, CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
-import { ComponentPortal } from '@angular/cdk/portal';
-
-import { trigger, transition, AnimationEvent } from '@angular/animations';
+import { AnimationEvent, transition, trigger } from '@angular/animations';
+import {
+  BasePortalOutlet,
+  CdkPortalOutlet,
+  ComponentPortal,
+  TemplatePortal
+} from '@angular/cdk/portal';
+import {
+  Component,
+  ComponentRef,
+  EmbeddedViewRef,
+  EventEmitter,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import { fadeInY, fadeOutY } from '@ng-tangram/components/core';
 
 import { NtModalConfig } from './modal-config';

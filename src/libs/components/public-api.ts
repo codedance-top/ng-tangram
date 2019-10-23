@@ -6,6 +6,7 @@ export * from '@ng-tangram/components/callout';
 export * from '@ng-tangram/components/checkbox';
 export * from '@ng-tangram/components/core';
 export * from '@ng-tangram/components/datepicker';
+export * from '@ng-tangram/components/drawer';
 export * from '@ng-tangram/components/dropdown';
 export * from '@ng-tangram/components/file';
 export * from '@ng-tangram/components/forms';

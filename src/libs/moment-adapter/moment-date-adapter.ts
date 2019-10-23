@@ -6,20 +6,18 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { Inject, Injectable, Optional, InjectionToken } from '@angular/core';
-import { DateAdapter, NT_DATE_LOCALE } from '@ng-tangram/components/core';
 // Depending on whether rollup is used, moment needs to be imported differently.
 // Since Moment.js doesn't have a default export, we normally need to import using the `* as`
 // syntax. However, rollup creates a synthetic default module and we thus need to import it using
 // the `default as` syntax.
 // TODO(mmalerba): See if we can clean this up at some point.
 // import moment from 'moment';
-
 // import { Moment } from 'moment';
-
 import * as _moment from 'moment';
-// tslint:disable-next-line:no-duplicate-imports
+
 import { default as _rollupMoment, Moment } from 'moment';
+import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
+import { DateAdapter, NT_DATE_LOCALE } from '@ng-tangram/components/core';
 
 const moment = _rollupMoment || _moment;
 

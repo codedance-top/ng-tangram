@@ -1,5 +1,6 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { NtModal } from '@ng-tangram/components/modal';
+
 import { ExampleModalComponentContentComponent } from '../examples/content';
 
 @Component({

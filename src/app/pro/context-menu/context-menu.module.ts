@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContextMenuDocumentComponent } from './context-menu.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
+import { ContextMenuDocumentComponent } from './context-menu.component';
 
 @NgModule({
   imports: [

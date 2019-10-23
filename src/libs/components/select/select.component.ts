@@ -6,20 +6,51 @@ import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
-  DOWN_ARROW, END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE, UP_ARROW
+  DOWN_ARROW,
+  END,
+  ENTER,
+  HOME,
+  LEFT_ARROW,
+  RIGHT_ARROW,
+  SPACE,
+  UP_ARROW
 } from '@angular/cdk/keycodes';
 import {
-  CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
+  CdkOverlayOrigin,
+  ConnectedOverlayPositionChange,
+  ConnectionPositionPair
 } from '@angular/cdk/overlay';
 import {
-  AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren,
-  ElementRef, EventEmitter, Inject, Input, isDevMode, NgZone, OnDestroy, Optional, Output,
-  QueryList, Self, ViewChild, ViewEncapsulation
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  isDevMode,
+  NgZone,
+  OnDestroy,
+  Optional,
+  Output,
+  QueryList,
+  Self,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
-  BOTTOM_LEFT, fadeIn, fadeOut, NT_OPTION_PARENT_COMPONENT, NtOptionComponent,
-  NtOptionParentComponent, NtOptionSelectionChange, NtOverlayComponent, TOP_LEFT
+  BOTTOM_LEFT,
+  fadeIn,
+  fadeOut,
+  NT_OPTION_PARENT_COMPONENT,
+  NtOptionComponent,
+  NtOptionParentComponent,
+  NtOptionSelectionChange,
+  NtOverlayComponent,
+  TOP_LEFT
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 

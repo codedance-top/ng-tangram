@@ -3,7 +3,14 @@
  * (c) 2018 LiveBridge Co., Ltd.
  * License: MIT
  */
-import { animation, style, animate, keyframes, AnimationReferenceMetadata } from '@angular/animations';
+import {
+  animate,
+  animation,
+  AnimationReferenceMetadata,
+  keyframes,
+  style
+} from '@angular/animations';
+
 import { DEFAULT_TIMING, translate3d } from './utils';
 
 export declare type FadeAnimationAxis = 'x' | 'y';

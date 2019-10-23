@@ -1,5 +1,5 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { transition, trigger } from '@angular/animations';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { fadeIn, fadeOut } from '@ng-tangram/components/core';
 

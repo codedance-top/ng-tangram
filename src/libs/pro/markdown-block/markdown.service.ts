@@ -2,8 +2,8 @@ import marked from 'marked';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 // function clearHTML(text: string) {
 //   return text.replace('', '');

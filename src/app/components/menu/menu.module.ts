@@ -1,15 +1,14 @@
 
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-import { NtExampleModule } from '@ng-tangram/example';
 import { NtMenuModule } from '@ng-tangram/components/menu';
+import { NtExampleModule } from '@ng-tangram/example';
 
-import { MenuDocumentComponent } from './menu.component';
-import { ExampleMenuBasicComponent } from './examples/basic';
 import { ExampleMenuAlignComponent } from './examples/align';
+import { ExampleMenuBasicComponent } from './examples/basic';
 import { ExampleMenuNestedComponent } from './examples/nested';
+import { MenuDocumentComponent } from './menu.component';
 
 @NgModule({
   imports: [

@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NtCheckboxModule } from '@ng-tangram/components/checkbox';
+import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtExampleModule } from '@ng-tangram/example';
 
 import { CheckboxDocumentComponent } from './checkbox.component';
-import { ExampleCheckboxBasicComponent } from './examples/basic';
-import { ExampleCheckboxDisabledComponent } from './examples/disabled';
 import { ExampleCheckboxAllComponent } from './examples/all';
+import { ExampleCheckboxBasicComponent } from './examples/basic';
 import { ExampleCheckboxChangeComponent } from './examples/change';
-import { NtFormsModule } from '@ng-tangram/components/forms';
+import { ExampleCheckboxDisabledComponent } from './examples/disabled';
 
 @NgModule({
   imports: [

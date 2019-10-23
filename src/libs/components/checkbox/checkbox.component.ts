@@ -1,7 +1,15 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  Attribute, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Optional,
-  Output, Self, ViewEncapsulation
+  Attribute,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  Optional,
+  Output,
+  Self,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 

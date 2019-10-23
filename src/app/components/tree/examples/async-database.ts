@@ -1,6 +1,8 @@
-import { Injectable } from "@angular/core";
-import { Observable, of as observableOf } from "rxjs";
-import { ExampleAsyncNode } from "./async-models";
+import { Observable, of as observableOf } from 'rxjs';
+
+import { Injectable } from '@angular/core';
+
+import { ExampleAsyncNode } from './async-models';
 
 @Injectable()
 export class AsyncDatabase {

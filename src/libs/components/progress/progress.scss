@@ -7,6 +7,8 @@ $nt-progress-large: rem-calc(20) !default;
 $nt-progress-meter-transition: width .5s cubic-bezier(.8, .2, .2, .8) !default;
 $nt-progress-circle-transition: stroke-dashoffset .5s cubic-bezier(.8, .2, .2, .8) !default;
 
+$nt-progress-circle-font-size: 1rem !default;
+
 $nt-progress-sizes: (
   tiny: $nt-progress-tiny,
   small: $nt-progress-small,
@@ -21,11 +23,14 @@ $nt-progress-sizes: (
   text-align: center;
   .progress-container {
     position: relative;
+    line-height: 1;
+    font-size: 0;
     .progress-inner {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%,-50%);
+      font-size: $nt-progress-circle-font-size;
     }
 
     svg {
@@ -71,6 +76,7 @@ $nt-progress-sizes: (
 @mixin nt-progress {
   .progress {
     display: block;
+    position: relative;
     @include nt-progress-size;
     .progress-meter {
       transition: $nt-progress-meter-transition;

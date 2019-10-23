@@ -1,11 +1,21 @@
 
-import {
-  AfterViewChecked, Component, ChangeDetectorRef, ElementRef, EventEmitter, Input,
-  Inject, InjectionToken, Output, Optional, ViewChild, ViewEncapsulation
-} from '@angular/core';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Highlightable, ListKeyManagerOption } from '@angular/cdk/a11y';
 import { Subject } from 'rxjs';
+
+import { Highlightable, ListKeyManagerOption } from '@angular/cdk/a11y';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  InjectionToken,
+  Input,
+  Optional,
+  Output,
+  ViewEncapsulation
+} from '@angular/core';
 
 export interface NtOptionParentComponent {
   disabled?: boolean;

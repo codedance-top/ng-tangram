@@ -5,18 +5,18 @@ import { RouterModule } from '@angular/router';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtSelectModule } from '@ng-tangram/components/select';
 import { NtExampleModule } from '@ng-tangram/example';
-import { SelectDocumentComponent } from './select.component';
 import { NtMarkdownBlockModule } from '@ng-tangram/pro';
-import { ExampleSelectSingleComponent } from './examples/single';
-import { ExampleSelectMultipleComponent } from  './examples/multiple';
-import { ExampleSelectDisabledComponent } from './examples/disabled';
-import { ExampleSelectRequiredComponent } from './examples/required';
+
 import { ExampleSelectCompareWithComponent } from './examples/compareWith';
-import { ExampleSelectPlaceholderComponent } from  './examples/placeholder';
+import { ExampleSelectCoordinatComponent } from './examples/coordinat';
+import { ExampleSelectDisabledComponent } from './examples/disabled';
 import { ExampleSelectEventComponent } from './examples/event';
 import { ExampleSelectFilterComponent } from './examples/filter';
-import { ExampleSelectCoordinatComponent } from './examples/coordinat';
-
+import { ExampleSelectMultipleComponent } from './examples/multiple';
+import { ExampleSelectPlaceholderComponent } from './examples/placeholder';
+import { ExampleSelectRequiredComponent } from './examples/required';
+import { ExampleSelectSingleComponent } from './examples/single';
+import { SelectDocumentComponent } from './select.component';
 
 @NgModule({
   imports: [

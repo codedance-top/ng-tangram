@@ -1,7 +1,6 @@
 import { BehaviorSubject, combineLatest, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { _isNumberValue } from '@angular/cdk/coercion';
 import { DataSource } from '@angular/cdk/table';
 
 export class NtTableDataSource<T> extends DataSource<T> {

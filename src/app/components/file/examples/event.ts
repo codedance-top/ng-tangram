@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {
-    NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtFileError
+  NtFileAcceptError,
+  NtFileError,
+  NtFileSizeError,
+  NtFileUploadError
 } from '@ng-tangram/components/file';
 
 @Component({

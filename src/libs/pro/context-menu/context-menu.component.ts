@@ -1,9 +1,17 @@
 import { AnimationEvent, transition, trigger } from '@angular/animations';
 import {
-    BasePortalOutlet, CdkPortalOutlet, ComponentPortal, TemplatePortal
+  BasePortalOutlet,
+  CdkPortalOutlet,
+  ComponentPortal,
+  TemplatePortal
 } from '@angular/cdk/portal';
 import {
-    Component, ComponentRef, EmbeddedViewRef, EventEmitter, ViewChild, ViewEncapsulation
+  Component,
+  ComponentRef,
+  EmbeddedViewRef,
+  EventEmitter,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { fadeIn, fadeOut } from '@ng-tangram/components/core';
 

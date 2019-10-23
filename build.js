@@ -106,7 +106,7 @@ async function _build(lib) {
   await _copyright(compilationFolder, outputFolder);
   await _assets(compilationFolder, outputFolder);
   await _metadata(compilationFolder, outputFolder);
-  // fs.writeFileSync(join(outputFolder, `${lib}.metadata.json`), JSON.stringify(metadata));
+  fs.writeFileSync(join(outputFolder, `${lib}.metadata.json`), JSON.stringify(metadata));
   fs.writeFileSync(join(outputFolder, 'package.json'), JSON.stringify(libPackage, null, 2));
 
   console.log('build completed', `\u001b[32m ${libPackage.name} \u001b[39m`);

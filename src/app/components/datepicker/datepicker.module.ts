@@ -1,22 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import {
+  DateAdapter,
+  NativeDateAdapter,
+  NT_DATE_FORMATS,
+  NT_NATIVE_DATE_FORMATS,
+  NtNativeDateModule
+} from '@ng-tangram/components';
 import { NtDatePickerModule } from '@ng-tangram/components/datepicker';
 import { NtFormsModule } from '@ng-tangram/components/forms';
+import { NtRadioModule } from '@ng-tangram/components/radio';
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtMarkdownBlockModule } from '@ng-tangram/pro';
-import { NtRadioModule } from '@ng-tangram/components/radio';
 
 import { DatePickerDocumentComponent } from './datepicker.component';
 import { ExampleDatePickerBasicComponent } from './examples/basic';
-import { ExampleDatePickerStartComponent } from './examples/start';
 import { ExampleDatePickerBoundaryComponent } from './examples/boundary';
-import { ExampleDatePickerFilterComponent } from './examples/filter';
 import { ExampleDatePickerChangeComponent } from './examples/change';
+import { ExampleDatePickerFilterComponent } from './examples/filter';
 import { ExampleDatePickerFormsComponent } from './examples/forms';
 import { ExampleDatePickerMomentModule } from './examples/moment.module';
-import { NtNativeDateModule, DateAdapter, NativeDateAdapter, NT_DATE_FORMATS, NT_NATIVE_DATE_FORMATS } from '@ng-tangram/components';
+import { ExampleDatePickerStartComponent } from './examples/start';
 
 @NgModule({
   imports: [

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
 import { NestedTreeControl } from '@angular/cdk/tree';
+import { Component } from '@angular/core';
+
 import { ExampleTreeNode, TREE_DATA } from './data';
 
 @Component({

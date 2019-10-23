@@ -1,4 +1,4 @@
-import { Component, AfterContentInit } from '@angular/core';
+import { AfterContentInit, Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({

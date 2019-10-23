@@ -1,5 +1,5 @@
-import { Component, Inject} from '@angular/core';
-import { NtModalRef, NT_MODAL_DATA } from '@ng-tangram/components/modal';
+import { Component, Inject } from '@angular/core';
+import { NT_MODAL_DATA, NtModalRef } from '@ng-tangram/components/modal';
 
 const content = `
 Modal dialogs, or pop-up windows, are handy for prototyping and production.

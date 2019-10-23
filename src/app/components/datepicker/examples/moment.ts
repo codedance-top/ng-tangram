@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
 import { Moment } from 'moment';
-import { MomentDateAdapter, NT_MOMENT_DATE_FORMATS } from '@ng-tangram/moment-adapter';
+
+import { Component } from '@angular/core';
 import { DateAdapter, NT_DATE_FORMATS } from '@ng-tangram/components';
+import { MomentDateAdapter, NT_MOMENT_DATE_FORMATS } from '@ng-tangram/moment-adapter';
 
 @Component({
   selector: 'example-datepicker-moment',

@@ -1,8 +1,17 @@
-import {
-  ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation, ChangeDetectorRef, Attribute, Self, Optional, Output, EventEmitter
-} from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { NgControl, ControlValueAccessor } from '@angular/forms';
+import {
+  Attribute,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  Optional,
+  Output,
+  Self,
+  ViewEncapsulation
+} from '@angular/core';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 let uniqueId = 0;
 

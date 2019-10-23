@@ -1,29 +1,27 @@
 
 
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-import { NtModalModule } from '@ng-tangram/components/modal';
 import { NtButtonModule } from '@ng-tangram/components';
+import { NtModalModule } from '@ng-tangram/components/modal';
 import { NtExampleModule } from '@ng-tangram/example';
-
-import { ExampleModalComponentContentComponent } from './examples/content';
-
-import { ModalDocumentComponent } from './modal.component';
-import { ExampleModalBasicComponent, ExampleModalComponentDialogComponent } from './examples/basic';
-import { ExampleModalEventComponent } from './examples/event';
-import { ExampleModalConfigComponent } from './examples/config';
 import { NtMarkdownBlockModule } from '@ng-tangram/pro';
-import { ExampleModalDataComponent, ExampleModalComponentDataComponent } from './examples/data';
-import { ExampleModalWidthComponent } from './examples/width';
+
+import { ExampleModalBasicComponent, ExampleModalComponentDialogComponent } from './examples/basic';
+import { ExampleModalCenterVerticallyComponent } from './examples/center-vertically';
+import { ExampleModalClassComponent } from './examples/class';
+import { ExampleModalClosableComponent } from './examples/closable';
+import { ExampleModalConfigComponent } from './examples/config';
+import { ExampleModalComponentContentComponent } from './examples/content';
+import { ExampleModalComponentDataComponent, ExampleModalDataComponent } from './examples/data';
+import { ExampleModalEventComponent } from './examples/event';
+import { ExampleModalHasBackdropComponent } from './examples/hasBackdrop';
 import { ExampleModalHeightComponent } from './examples/height';
 import { ExampleModalTopComponent } from './examples/top';
-import { ExampleModalClosableComponent } from './examples/closable';
-import { ExampleModalHasBackdropComponent } from './examples/hasBackdrop';
-import { ExampleModalCenterVerticallyComponent } from './examples/center-vertically';
 import { ExampleModalTransparentComponent } from './examples/transparent';
-import { ExampleModalClassComponent } from './examples/class';
+import { ExampleModalWidthComponent } from './examples/width';
+import { ModalDocumentComponent } from './modal.component';
 
 @NgModule({
   imports: [

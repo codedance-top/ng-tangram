@@ -1,6 +1,6 @@
 
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'nt-progress',

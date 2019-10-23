@@ -7,7 +7,7 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": false,
     "flatModuleOutFile": "index.js",
-    "flatModuleId": "@ng-tangram/pro/drawer",
+    "flatModuleId": "@ng-tangram/components/drawer",
     "skipTemplateCodegen": true,
     "fullTemplateTypeCheck": true
   }

@@ -1,7 +1,8 @@
 import {
-  ConnectionPositionPair, HorizontalConnectionPos, VerticalConnectionPos
+  ConnectionPositionPair,
+  HorizontalConnectionPos,
+  VerticalConnectionPos
 } from '@angular/cdk/overlay';
-
 
 export enum NtOverlayPosition {
   Bottom = 'bottom',

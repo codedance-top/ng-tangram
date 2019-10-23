@@ -1,3 +1,5 @@
+import { Observable, Subject } from 'rxjs';
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -5,8 +7,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { InjectionToken, LOCALE_ID, inject } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { inject, InjectionToken, LOCALE_ID } from '@angular/core';
 
 /** InjectionToken for datepicker that can be used to override default locale code. */
 export const NT_DATE_LOCALE = new InjectionToken<string>('nt-date-locale', {

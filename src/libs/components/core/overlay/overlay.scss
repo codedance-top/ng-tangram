@@ -4,7 +4,7 @@ $nt-overlay-container-padding: 3px !default;
 $nt-overlay-container-arrow: 8px !default;
 $nt-overlay-container-arrow-cover: $nt-overlay-container-padding - ($nt-overlay-container-arrow / 2) !default;
 $nt-overlay-container-arrow-color: #FFF !default;
-$nt-overlay-container-arrow-offset: $dropdown-padding !default;
+$nt-overlay-container-arrow-offset: $global-padding !default;
 $nt-overlay-radius: $global-radius !default;
 
 @mixin overlay-container-arrow {

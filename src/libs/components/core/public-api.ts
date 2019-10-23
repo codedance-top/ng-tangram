@@ -8,6 +8,8 @@ export * from './datetime/native-date-adapter';
 export * from './datetime/native-date-formats';
 export * from './datetime/native-date.module';
 
+export * from './events/click';
+
 export * from './option/option.module';
 export * from './option/option.component';
 

@@ -4,16 +4,31 @@ import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 import { Directionality } from '@angular/cdk/bidi';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Platform } from '@angular/cdk/platform';
 import { CDK_TABLE_TEMPLATE, CdkTable } from '@angular/cdk/table';
+import { DOCUMENT } from '@angular/common';
 import {
-  AfterContentInit, Attribute, ChangeDetectionStrategy, ChangeDetectorRef, Component,
-  ContentChildren, ElementRef, EventEmitter, Input, IterableDiffers, NgZone, OnChanges, OnDestroy,
-  Optional, Output, QueryList, SimpleChanges, ViewEncapsulation, Inject
+  AfterContentInit,
+  Attribute,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  IterableDiffers,
+  NgZone,
+  OnChanges,
+  Optional,
+  Output,
+  QueryList,
+  SimpleChanges,
+  ViewEncapsulation
 } from '@angular/core';
 
-import { NtColumnDirective, NtColumnSortChange, NtColumnSort } from './cell.directive';
-import { Platform } from '@angular/cdk/platform';
-import { DOCUMENT } from '@angular/common';
+import { NtColumnDirective, NtColumnSort, NtColumnSortChange } from './cell.directive';
 
 @Component({
   selector: 'nt-table, table[nt-table]',

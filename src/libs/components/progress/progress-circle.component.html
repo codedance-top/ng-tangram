@@ -18,6 +18,8 @@
       [attr.stroke-dasharray]="dasharray"
       [attr.stroke-dashoffset]="dasharray - (dasharray / 100 * percent)"></circle>
   </svg>
-  <span class="progress-inner"><ng-content></ng-content></span>
+  <div class="progress-inner">
+    <ng-content></ng-content>
+  </div>
 </div>
 <!-- <div class="nt-progress-circle-inner"><ng-content></ng-content></div> -->

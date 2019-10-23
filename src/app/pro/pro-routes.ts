@@ -1,4 +1,4 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
 
 export const PRO_ROUTES: Routes = [
   {
@@ -10,11 +10,6 @@ export const PRO_ROUTES: Routes = [
     path: 'context-menu',
     data: { title: 'ContextMenu 右键菜单' },
     loadChildren: () => import('./context-menu/context-menu.module').then(mod => mod.ContextMenuDocumentModule)
-  },
-  {
-    path: 'drawer',
-    data: { title: 'Drawer 抽屉式弹出框' },
-    loadChildren: () => import('./drawer/drawer.module').then(mod => mod.DrawerDocumentModule)
   },
   {
     path: 'markdown-block',

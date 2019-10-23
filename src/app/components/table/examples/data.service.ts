@@ -1,6 +1,7 @@
-import { Component, OnInit, Injectable } from '@angular/core';
 import { of, pipe } from 'rxjs';
-import { mapTo, delay } from 'rxjs/operators';
+import { delay } from 'rxjs/operators';
+
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',

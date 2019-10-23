@@ -1,5 +1,6 @@
 const { join } = require('path');
 const ngc = require('@angular/compiler-cli/src/main').main;
+const ngFsUtils = require('@angular/compiler-cli/src/ngtsc/file_system');
 const camelCase = require('camelcase');
 
 const rollup = require('rollup');
@@ -147,6 +148,7 @@ module.exports.esm2015 = async function (tsConfig) {
 
 /** build es5 */
 module.exports.esm5 = async function (tsConfig, outDir) {
+  ngFsUtils.setFileSystem(new ngFsUtils.NodeJSFileSystem());
   const exitCode = await ngc(['-p', tsConfig, '--target', 'es5', '-d', 'false', '--outDir', outDir]);
   exitCode === 0 ? Promise.resolve() : Promise.reject();
 }

@@ -1,6 +1,11 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  CdkCell, CdkCellDef, CdkColumnDef, CdkFooterCell, CdkFooterCellDef, CdkHeaderCell,
+  CdkCell,
+  CdkCellDef,
+  CdkColumnDef,
+  CdkFooterCell,
+  CdkFooterCellDef,
+  CdkHeaderCell,
   CdkHeaderCellDef
 } from '@angular/cdk/table';
 import { Directive, ElementRef, EventEmitter, Input } from '@angular/core';

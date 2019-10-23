@@ -26,6 +26,13 @@ $wrapper-border: 1px solid #e6e6e6;
     height: 100%;
     background: transparent;
   }
+
+  .top-bar-left,
+  .top-bar-right {
+    display: flex;
+    height: 100%;
+  }
+
   .menu {
     background: transparent;
 

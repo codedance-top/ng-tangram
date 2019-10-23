@@ -1,8 +1,10 @@
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ExampleDatePickerMomentComponent } from "./moment";
-import { NgModule } from "@angular/core";
-import { NtMomentDateModule } from "@ng-tangram/moment-adapter";
-import { NtDatePickerModule } from "@ng-tangram/components";
+import { NtDatePickerModule } from '@ng-tangram/components';
+import { NtMomentDateModule } from '@ng-tangram/moment-adapter';
+
+import { ExampleDatePickerMomentComponent } from './moment';
+
 // import { NtNativeDateModule } from "@ng-tangram/components";
 
 

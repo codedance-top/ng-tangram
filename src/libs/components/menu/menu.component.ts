@@ -1,6 +1,11 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  AfterContentInit, Component, ContentChildren, Input, QueryList, ViewEncapsulation
+  AfterContentInit,
+  Component,
+  ContentChildren,
+  Input,
+  QueryList,
+  ViewEncapsulation
 } from '@angular/core';
 
 export declare type NtMenuAlign = '' | 'center' | 'right';

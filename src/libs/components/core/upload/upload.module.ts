@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, Type } from '@angular/core';
+import { ModuleWithProviders, NgModule, Type } from '@angular/core';
 
 import { NtFormDataUploadHandler } from './form-data-handler';
 import { NT_UPLOAD_HANDLER, NtUploadHandler } from './upload-handler';

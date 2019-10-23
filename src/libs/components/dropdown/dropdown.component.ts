@@ -1,13 +1,24 @@
 import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import {
-  Component, ContentChild, ElementRef, EventEmitter, Input, Output, ViewChild, ViewEncapsulation
+  Component,
+  ContentChild,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import {
-  NtOverlayComponent, NtOverlayPosition, NtOverlayTriggerType
+  NtOverlayComponent,
+  NtOverlayPosition,
+  NtOverlayTriggerType
 } from '@ng-tangram/components/core';
 
 import {
-  NT_DROPDOWN_PARENT_COMPONENT, NtDropdownPaneComponent, NtDropdownParentComponent
+  NT_DROPDOWN_PARENT_COMPONENT,
+  NtDropdownPaneComponent,
+  NtDropdownParentComponent
 } from './dropdown-pane.component';
 
 @Component({

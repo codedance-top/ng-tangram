@@ -1,9 +1,15 @@
-import { Subject, Subscription, Observable } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ContentObserver } from '@angular/cdk/observers';
 import {
-  AfterContentInit, Component, ElementRef, Inject, InjectionToken, Input, OnDestroy,
+  AfterContentInit,
+  Component,
+  ElementRef,
+  Inject,
+  InjectionToken,
+  Input,
+  OnDestroy,
   ViewEncapsulation
 } from '@angular/core';
 import { NtOverlayComponent } from '@ng-tangram/components/core';

@@ -1,17 +1,26 @@
+import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import {
-  NtCellDirective, NtFooterCellDirective, NtHeaderCellDirective, NtCellDefDirective,
-  NtColumnDirective, NtFooterCellDefDirective, NtHeaderCellDefDirective
+  NtCellDefDirective,
+  NtCellDirective,
+  NtColumnDirective,
+  NtFooterCellDefDirective,
+  NtFooterCellDirective,
+  NtHeaderCellDefDirective,
+  NtHeaderCellDirective
 } from './cell.directive';
+import { NtTableResizable } from './resizable.directive';
 import {
-  NtFooterRowComponent, NtFooterRowDefDirective, NtHeaderRowComponent, NtHeaderRowDefDirective,
-  NtRowComponent, NtRowDefDirective
+  NtFooterRowComponent,
+  NtFooterRowDefDirective,
+  NtHeaderRowComponent,
+  NtHeaderRowDefDirective,
+  NtRowComponent,
+  NtRowDefDirective
 } from './row.directive';
 import { NtTableComponent } from './table.component';
-import { CdkTableModule } from '@angular/cdk/table';
-import { NtTableResizable } from './resizable.directive';
 
 const NT_CELL_DECLARATIONS = [
   NtCellDefDirective,

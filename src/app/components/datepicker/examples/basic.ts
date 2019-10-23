@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NtDatePickerComponent } from '@ng-tangram/components/datepicker';
 
 @Component({
