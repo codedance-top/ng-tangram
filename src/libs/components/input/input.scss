@@ -1,3 +1,5 @@
+$input-border-width: get-border-value($input-border, 'width');
+
 @mixin nt-input-group-base {
   margin: 0 0 $form-spacing;
 
@@ -66,6 +68,7 @@
       border: none !important;
       box-shadow: unset !important;
       background: transparent !important;
+      height: ($input-font-size * unitless-calc($input-line-height))+(get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1) - (rem-calc($input-border-width) * 2);
     }
 
     &:focus-within {
@@ -87,3 +90,5 @@
     );
   }
 }
+
+
