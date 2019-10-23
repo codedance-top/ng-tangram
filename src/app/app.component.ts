@@ -6,7 +6,11 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import {
-  ActivatedRoute, NavigationEnd, NavigationStart, Router, RoutesRecognized
+  ActivatedRoute,
+  NavigationEnd,
+  NavigationStart,
+  Router,
+  RoutesRecognized
 } from '@angular/router';
 
 // 关闭 NProgress 的 loading 效果

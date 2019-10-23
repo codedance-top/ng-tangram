@@ -14,7 +14,6 @@ import { ExampleFormInlineComponent } from './examples/inline';
 import { ExampleFormLoginComponent } from './examples/login';
 import { FormsDocumentComponent } from './forms.component';
 
-
 @NgModule({
   imports: [
     CommonModule,

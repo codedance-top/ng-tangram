@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+
 import { DOCS_TEMPLATE, DocsComponent } from '../docs-component';
 
 @Component({

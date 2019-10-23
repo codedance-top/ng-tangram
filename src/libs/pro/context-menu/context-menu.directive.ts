@@ -1,5 +1,9 @@
 import {
-  ConnectedPosition, Overlay, OverlayConfig, OverlayContainer, OverlayRef
+  ConnectedPosition,
+  Overlay,
+  OverlayConfig,
+  OverlayContainer,
+  OverlayRef
 } from '@angular/cdk/overlay';
 import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import { Location } from '@angular/common';

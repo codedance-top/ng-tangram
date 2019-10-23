@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {
-  NtPictureAcceptError, NtPictureSizeError, NtPictureUploadError, NtPictureError
+  NtPictureAcceptError,
+  NtPictureError,
+  NtPictureSizeError,
+  NtPictureUploadError
 } from '@ng-tangram/components/picture';
 
 @Component({

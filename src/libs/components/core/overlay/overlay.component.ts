@@ -1,22 +1,37 @@
-import { Subject, SubscriptionLike, Subscription } from 'rxjs';
+import { Subject, Subscription, SubscriptionLike } from 'rxjs';
 import { debounceTime, filter, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import {
-  CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
+  CdkConnectedOverlay,
+  CdkOverlayOrigin,
+  ConnectedOverlayPositionChange,
+  ConnectionPositionPair
 } from '@angular/cdk/overlay';
-import {
-  AfterContentChecked, AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy,
-  Output, Renderer2, SimpleChanges, ViewChild, ViewEncapsulation, Optional
-} from '@angular/core';
-
 import { Location } from '@angular/common';
+import {
+  AfterContentChecked,
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Optional,
+  Output,
+  Renderer2,
+  SimpleChanges,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 
 import { fadeIn, fadeOut } from '../animate/fading';
 import {
-  getPositionClassName, NT_OVERLAY_POSITION_PAIRS, NtOverlayPosition
+  getPositionClassName,
+  NT_OVERLAY_POSITION_PAIRS,
+  NtOverlayPosition
 } from './overlay-positions';
 
 export declare type NtOverlayTriggerType = '' | 'hover' | 'click';
@@ -136,7 +151,8 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
         take(1),
         switchMap(() => this.cdkConnectedOverlay.overlayRef.keydownEvents()),
         takeUntil(this._destroy)
-      ).subscribe(event => {
+      )
+      .subscribe(event => {
         if (event.keyCode === ESCAPE) {
           this.hide();
         }

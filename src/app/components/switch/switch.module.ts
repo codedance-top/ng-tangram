@@ -5,13 +5,13 @@ import { NtCheckboxModule, NtSwitchModule } from '@ng-tangram/components';
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtMarkdownBlockModule } from '@ng-tangram/pro';
 
-import { SwitchDocumentComponent } from './switch.component';
 import { ExampleSwitchBasciComponent } from './examples/basic';
-import { ExampleSwitchCircleComponent } from './examples/circle';
-import { ExampleSwitchSizeComponent } from './examples/size';
-import { ExampleSwitchDisabledComponent } from './examples/disabled';
-import { ExampleSwitchCheckedComponent } from './examples/checked';
 import { ExampleSwitchChangeComponent } from './examples/change';
+import { ExampleSwitchCheckedComponent } from './examples/checked';
+import { ExampleSwitchCircleComponent } from './examples/circle';
+import { ExampleSwitchDisabledComponent } from './examples/disabled';
+import { ExampleSwitchSizeComponent } from './examples/size';
+import { SwitchDocumentComponent } from './switch.component';
 
 @NgModule({
   imports: [

@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import {
-  NtNestedTreeNodeDirective, NtTreeNodeDefDirective, NtTreeNodeDirective
+  NtNestedTreeNodeDirective,
+  NtTreeNodeDefDirective,
+  NtTreeNodeDirective
 } from './node.directive';
 import { NtTreeNodeOutletDirective } from './outlet.directive';
 import { NtTreeNodePaddingDirective } from './padding.directive';

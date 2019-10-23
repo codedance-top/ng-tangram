@@ -1,5 +1,5 @@
-import { Component, ViewChild, TemplateRef, Inject } from '@angular/core';
-import { NtModal, NtModalRef, NT_MODAL_DATA } from '@ng-tangram/components/modal';
+import { Component, Inject } from '@angular/core';
+import { NT_MODAL_DATA, NtModal, NtModalRef } from '@ng-tangram/components/modal';
 
 @Component({
   selector: 'example-modal-component-dialog',

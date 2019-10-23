@@ -4,13 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NtFileModule } from '@ng-tangram/components/file';
 import { NtFormsModule } from '@ng-tangram/components/forms';
+import { NtRadioModule } from '@ng-tangram/components/radio';
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtMarkdownBlockModule } from '@ng-tangram/pro';
-import { NtRadioModule } from '@ng-tangram/components/radio';
 
+import { ExampleFileAcceptComponent } from './examples/accept';
 import { ExampleFileBasciComponent } from './examples/basic';
 import { ExampleFileEventComponent } from './examples/event';
-import { ExampleFileAcceptComponent } from './examples/accept';
 import { FileDocumentComponent } from './file.component';
 
 @NgModule({

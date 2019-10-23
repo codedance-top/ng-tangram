@@ -2,11 +2,20 @@ import { Subject } from 'rxjs';
 
 import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import {
-  ComponentPortal, ComponentType, PortalInjector, TemplatePortal
+  ComponentPortal,
+  ComponentType,
+  PortalInjector,
+  TemplatePortal
 } from '@angular/cdk/portal';
 import { Location } from '@angular/common';
 import {
-  ComponentRef, Inject, Injectable, InjectionToken, Injector, Optional, TemplateRef
+  ComponentRef,
+  Inject,
+  Injectable,
+  InjectionToken,
+  Injector,
+  Optional,
+  TemplateRef
 } from '@angular/core';
 
 import { NtModalConfig } from './modal-config';

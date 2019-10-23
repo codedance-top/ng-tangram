@@ -1,13 +1,13 @@
 
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-import { NtExampleModule } from '@ng-tangram/example';
 import { NtPaginationModule } from '@ng-tangram/components/pagination';
-import { PaginationDocumentComponent } from './pagination.component';
+import { NtExampleModule } from '@ng-tangram/example';
+
 import { ExamplePaginationBasicComponent } from './examples/basic';
 import { ExamplePaginationMoreComponent } from './examples/more';
+import { PaginationDocumentComponent } from './pagination.component';
 
 @NgModule({
   imports: [

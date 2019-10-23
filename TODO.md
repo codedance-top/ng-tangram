@@ -15,3 +15,9 @@ $nt-overlay-container-padding 样式效果使用 js 实现 ，增加相关组件
 * Rating
 * Tabs
 * ClockPicker 基于开源库 http://weareoutman.github.io/clockpicker/
+
+
+## 2019-09-10
+
+* 重写 markdown editor 的工具栏
+* 

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ObservableDataService } from './data.service';
 import { Observable } from 'rxjs/internal/Observable';
+
+import { Component, OnInit } from '@angular/core';
+
+import { ObservableDataService } from './data.service';
 
 @Component({
   selector: 'example-table-observable-data',

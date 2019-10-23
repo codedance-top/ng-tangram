@@ -1,7 +1,7 @@
 
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { NtOverlayComponent } from './overlay.component';
 

@@ -1,6 +1,7 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component } from '@angular/core';
 import { NtTreeFlatDataSource, NtTreeFlattener } from '@ng-tangram/components/tree';
+
 import { ExampleTreeNode, TREE_DATA } from './data';
 
 @Component({

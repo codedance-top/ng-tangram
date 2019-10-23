@@ -1,8 +1,10 @@
-import { DataSource, CollectionViewer, SelectionChange } from "@angular/cdk/collections";
-import { FlatTreeControl } from "@angular/cdk/tree";
-import { Observable, merge, BehaviorSubject } from "rxjs";
-import { map } from "rxjs/operators";
-import { ExampleAsyncNode } from "./async-models";
+import { BehaviorSubject, merge, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { CollectionViewer, DataSource, SelectionChange } from '@angular/cdk/collections';
+import { FlatTreeControl } from '@angular/cdk/tree';
+
+import { ExampleAsyncNode } from './async-models';
 
 //
 export class AsyncDataSource extends DataSource<ExampleAsyncNode> {

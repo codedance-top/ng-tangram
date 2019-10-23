@@ -2,7 +2,11 @@ import { Observable, of } from 'rxjs';
 import { catchError, filter, map } from 'rxjs/operators';
 
 import {
-    HttpClient, HttpEvent, HttpEventType, HttpRequest, HttpResponse
+  HttpClient,
+  HttpEvent,
+  HttpEventType,
+  HttpRequest,
+  HttpResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

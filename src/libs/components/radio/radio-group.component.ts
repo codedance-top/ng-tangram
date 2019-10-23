@@ -3,8 +3,18 @@ import { startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren,
-  Input, isDevMode, NgZone, OnDestroy, Optional, QueryList, Self,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  Input,
+  isDevMode,
+  NgZone,
+  OnDestroy,
+  Optional,
+  QueryList,
+  Self,
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';

@@ -1,6 +1,13 @@
 import { isPlatformBrowser } from '@angular/common';
 import {
-  AfterViewInit, Component, ElementRef, Inject, Input, OnChanges, OnDestroy, PLATFORM_ID, Renderer2,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnDestroy,
+  PLATFORM_ID,
+  Renderer2,
   ViewEncapsulation
 } from '@angular/core';
 

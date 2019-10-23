@@ -1,7 +1,7 @@
-import { Component, ViewChild, TemplateRef, ViewContainerRef, Inject } from '@angular/core';
-import { NtModal, NtModalRef, NT_MODAL_DATA } from '@ng-tangram/components/modal';
+import { Component } from '@angular/core';
+import { NtModal } from '@ng-tangram/components/modal';
 
-import { ExampleModalComponentContentComponent } from '../examples/content';
+
 
 @Component({
   selector: 'example-modal-config',

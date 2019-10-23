@@ -6,9 +6,8 @@ import { NtExampleModule } from '@ng-tangram/example';
 import { NtMarkdownBlockModule } from '@ng-tangram/pro';
 
 import { ExampleProgressBasciComponent } from './examples/basic';
-import { ProgressDocumentComponent } from './progress.component';
 import { ExampleProgressCircleComponent } from './examples/circle';
-
+import { ProgressDocumentComponent } from './progress.component';
 
 @NgModule({
   imports: [

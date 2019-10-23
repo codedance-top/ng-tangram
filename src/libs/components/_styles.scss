@@ -8,8 +8,9 @@
 
 @import 'callout/callout';
 @import 'checkbox/checkbox';
-@import 'dropdown/dropdown';
 @import 'datepicker/datepicker';
+@import 'drawer/drawer';
+@import 'dropdown/dropdown';
 @import 'forms/forms';
 @import 'file/file';
 @import 'input/input';
@@ -51,8 +52,9 @@
   @include nt-button;
   @include nt-callout;
   @include nt-checkbox;
-  @include nt-dropdown;
   @include nt-datepicker;
+  @include nt-drawer;
+  @include nt-dropdown;
   @include nt-forms;
   @include nt-file;
   @include nt-modal;

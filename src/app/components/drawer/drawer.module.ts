@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NtExampleModule } from '@ng-tangram/example';
-import { NtDrawerModule } from '@ng-tangram/pro';
-
-import { ExampleDrawerBasciComponent } from './examples/basic';
-import { DrawerDocumentComponent } from './drawer.component';
 import { NtButtonModule } from '@ng-tangram/components/button';
+import { NtDrawerModule } from '@ng-tangram/components/drawer';
+import { NtExampleModule } from '@ng-tangram/example';
+
+import { DrawerDocumentComponent } from './drawer.component';
+import { ExampleDrawerBasciComponent } from './examples/basic';
 
 @NgModule({
   imports: [

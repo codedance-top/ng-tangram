@@ -2,7 +2,14 @@ import { highlightAll } from 'prismjs';
 
 import { isPlatformBrowser } from '@angular/common';
 import {
-    Component, ElementRef, Inject, Input, OnChanges, PLATFORM_ID, SimpleChanges, ViewEncapsulation
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnChanges,
+  PLATFORM_ID,
+  SimpleChanges,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { NtMarkdownService } from './markdown.service';

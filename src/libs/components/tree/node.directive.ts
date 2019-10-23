@@ -1,8 +1,15 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CdkNestedTreeNode, CdkTree, CdkTreeNode, CdkTreeNodeDef } from '@angular/cdk/tree';
 import {
-  AfterContentInit, Attribute, ContentChildren, Directive, ElementRef, Input, IterableDiffers,
-  OnDestroy, QueryList
+  AfterContentInit,
+  Attribute,
+  ContentChildren,
+  Directive,
+  ElementRef,
+  Input,
+  IterableDiffers,
+  OnDestroy,
+  QueryList
 } from '@angular/core';
 
 import { NtTreeNodeOutletDirective } from './outlet.directive';

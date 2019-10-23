@@ -1,7 +1,15 @@
-import { Component, ContentChildren, QueryList, ViewEncapsulation, AfterContentInit } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChildren,
+  QueryList,
+  ViewEncapsulation
+} from '@angular/core';
 
 import {
-  NT_EXAMPLE_CODE_PANEL_PARENT, NtExampleCodeTabsPanelComponent, NtExampleCodeTabPaneParent
+  NT_EXAMPLE_CODE_PANEL_PARENT,
+  NtExampleCodeTabPaneParent,
+  NtExampleCodeTabsPanelComponent
 } from './example-code-tabs-panel.component';
 
 @Component({

@@ -1,10 +1,10 @@
 
 
-import { Component, OnInit, Directive, Input, ElementRef, Optional, Self } from '@angular/core';
-import { getSupportedInputTypes, Platform } from '@angular/cdk/platform';
-import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { getSupportedInputTypes, Platform } from '@angular/cdk/platform';
+import { Directive, ElementRef, Input, Optional, Self } from '@angular/core';
 import { NgControl } from '@angular/forms';
+import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 @Directive({
   selector: 'input[ntInput], textarea[ntInput]',

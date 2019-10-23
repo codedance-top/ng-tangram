@@ -1,22 +1,40 @@
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair
+  CdkOverlayOrigin,
+  ConnectedOverlayPositionChange,
+  ConnectionPositionPair
 } from '@angular/cdk/overlay';
 import {
-  Component, ElementRef, EventEmitter, Inject, Input, Optional, Output, Self, ViewChild,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  Optional,
+  Output,
+  Self,
+  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
-  BOTTOM_LEFT, DateAdapter, fadeIn, fadeOut, NT_DATE_FORMATS, NtDateFormats, NtOverlayComponent,
+  BOTTOM_LEFT,
+  DateAdapter,
+  fadeIn,
+  fadeOut,
+  NT_DATE_FORMATS,
+  NtDateFormats,
+  NtOverlayComponent,
   TOP_LEFT
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { NtDatePickerCalendarComponent } from './calendar.component';
 import {
-  DEFAULT_DATEPICKER_ICONS, NT_DATEPICKER_ICONS, NtDatePickerIcons
+  DEFAULT_DATEPICKER_ICONS,
+  NT_DATEPICKER_ICONS,
+  NtDatePickerIcons
 } from './datepicker-icons';
 
 @Component({

@@ -1,6 +1,12 @@
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import {
-  Component, EventEmitter, Inject, Input, Optional, Output, ViewEncapsulation
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  Optional,
+  Output,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { NT_PAGINATION_CONFIG, NtPaginationConfig } from './pagination-config';

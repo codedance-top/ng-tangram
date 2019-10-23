@@ -5,18 +5,36 @@ import { takeUntil } from 'rxjs/operators';
 import { transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
-  Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, Self, TemplateRef,
-  ViewChild, ViewEncapsulation
+  Component,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  OnInit,
+  Optional,
+  Output,
+  Self,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
-  fadeIn, fadeOut, NT_UPLOAD_HANDLER, NtUploadFile, NtUploadHandler, NtUploadStatus
+  fadeIn,
+  fadeOut,
+  NT_UPLOAD_HANDLER,
+  NtUploadFile,
+  NtUploadHandler,
+  NtUploadStatus
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import { NtModal } from '@ng-tangram/components/modal';
 
 import {
-  NtPictureAcceptError, NtPictureError, NtPictureSizeError, NtPictureUploadError
+  NtPictureAcceptError,
+  NtPictureError,
+  NtPictureSizeError,
+  NtPictureUploadError
 } from './picture-errors';
 import { DEFAULT_PICTURE_ICONS, NT_PICTURE_ICONS, NtPictureIcons } from './picture-icons';
 

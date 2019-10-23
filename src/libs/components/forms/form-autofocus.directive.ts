@@ -1,9 +1,17 @@
-import { AfterContentInit, ContentChildren, Directive, Optional, QueryList, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+import {
+  AfterContentInit,
+  ContentChildren,
+  Directive,
+  OnDestroy,
+  Optional,
+  QueryList
+} from '@angular/core';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 
 import { NtFormFieldComponent } from './form-field.component';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Directive({
   selector: 'form[ntFormAutofocus]'

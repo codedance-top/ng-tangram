@@ -1,8 +1,13 @@
-import { Subject, Subscription, Observable } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 
 import { ContentObserver } from '@angular/cdk/observers';
 import {
-  AfterContentInit, Component, ElementRef, Inject, InjectionToken, ViewEncapsulation
+  AfterContentInit,
+  Component,
+  ElementRef,
+  Inject,
+  InjectionToken,
+  ViewEncapsulation
 } from '@angular/core';
 import { NtOverlayComponent } from '@ng-tangram/components/core';
 

@@ -2,7 +2,14 @@ import { highlightAll } from 'prismjs';
 
 import { isPlatformBrowser } from '@angular/common';
 import {
-  AfterContentInit, Component, ElementRef, Inject, Input, OnChanges, PLATFORM_ID, SimpleChanges,
+  AfterContentInit,
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnChanges,
+  PLATFORM_ID,
+  SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
 

@@ -1,17 +1,17 @@
-import { NtMenuModule } from '@ng-tangram/components/menu';
 import { CommonModule } from '@angular/common';
-import { NtDropdownModule } from '@ng-tangram/components/dropdown';
-import { NtButtonModule } from '@ng-tangram/components/button';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NtExampleModule } from '@ng-tangram/example';
+import { NtButtonModule } from '@ng-tangram/components/button';
+import { NtDropdownModule } from '@ng-tangram/components/dropdown';
 import { NtInputModule } from '@ng-tangram/components/input';
+import { NtMenuModule } from '@ng-tangram/components/menu';
+import { NtSelectModule } from '@ng-tangram/components/select';
+import { NtExampleModule } from '@ng-tangram/example';
 
 import { ExampleInputBasicComponent } from './examples/basic';
-import { InputDocumentComponent } from './input.component';
 import { ExampleInputGroupComponent } from './examples/group';
-import { NtSelectModule } from '@ng-tangram/components/select';
+import { InputDocumentComponent } from './input.component';
 
 @NgModule({
   imports: [

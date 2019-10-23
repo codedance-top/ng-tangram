@@ -1,5 +1,6 @@
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 
 export class NtTreeNestedDataSource<T> extends DataSource<T> {

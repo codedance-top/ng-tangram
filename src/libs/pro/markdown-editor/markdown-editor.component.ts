@@ -9,9 +9,22 @@ import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { isPlatformBrowser } from '@angular/common';
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject, Input, OnChanges,
-  OnDestroy, OnInit, Optional, PLATFORM_ID, Renderer2, Self, SimpleChanges, ViewChild,
-  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Optional,
+  PLATFORM_ID,
+  Renderer2,
+  Self,
+  SimpleChanges,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fadeIn } from '@ng-tangram/components/core';
@@ -19,7 +32,11 @@ import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { commands } from './commands';
 import { NtMarkdownEditorConfig } from './markdown-editor-config';
-import { NT_MARKDOWN_EDITOR_ICONS, NtMarkdownEditorIcons, DEFAULT_MARKDOWN_EDITOR_ICONS } from './markdown-editor-icons';
+import {
+  DEFAULT_MARKDOWN_EDITOR_ICONS,
+  NT_MARKDOWN_EDITOR_ICONS,
+  NtMarkdownEditorIcons
+} from './markdown-editor-icons';
 
 // TODO: 将来会在 components/core 支持
 interface SyncScrollElement extends HTMLElement {
@@ -242,7 +259,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
     this.instance.getDoc().redo();
   }
 
-  changeScreenFilled(fillScreen: boolean) { 
+  changeScreenFilled(fillScreen: boolean) {
     this.fillScreen = fillScreen;
     this._setEditorHeightRange();
   }
@@ -382,7 +399,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
     if (isPlatformBrowser(this.platformId) && !!this.instance) {
       const scrollElement = this.instance.getScrollerElement();
       const style = window.getComputedStyle(scrollElement);
-      if (this.fillScreen) { 
+      if (this.fillScreen) {
         this._minHeight = `100%`;
         this._maxHeight = `100%`;
         this._renderer.setStyle(scrollElement, 'min-height', this._minHeight);
