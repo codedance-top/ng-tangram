@@ -1,3 +1,7 @@
+# [0.6.0](https://github.com/livebridge-lab/ng-tangram/compare/0.4.0...0.6.0) (2019-11-06)
+
+
+
 # 2018-09-10 0.4.0
 
 * 新增 nt-input-group, nt-input-addon 组件
