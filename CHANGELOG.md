@@ -1,7 +1,15 @@
 # [0.6.0](https://github.com/livebridge-lab/ng-tangram/compare/0.4.0...0.6.0) (2019-11-06)
 
 
+### Bug Fixes
 
+* **overlay:** 改进在backdrop模式下需要点击两次才可以点击其他元素的问题 ([3e96032](https://github.com/livebridge-lab/ng-tangram/commit/3e960329824c0b6bf3c14f69b1df199311906356))
+
+
+
+# [0.6.0](https://github.com/livebridge-lab/ng-tangram/compare/0.4.0...0.6.0) (2019-11-06)
+
+<!-- 
 # 2018-09-10 0.4.0
 
 * 新增 nt-input-group, nt-input-addon 组件
@@ -165,4 +173,4 @@
 * 新增 Component `table`
 * 新增 Component `tooltip`
 * 新增 Service `modal`
-
+ -->
