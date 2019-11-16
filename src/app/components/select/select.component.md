@@ -43,7 +43,7 @@
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <example-select-compareWith></example-select-compareWith>
+        <example-select-compare-with></example-select-compare-with>
       </nt-example-showcase>
       <nt-example-legend title="compareWith">
         当所选取的值也是一个对象，可使用compareWith 来设置匹配方法.
@@ -89,4 +89,6 @@
   </div>
 </div>
 
-<nt-markdown-block [data]="api"></nt-markdown-block>
+<div>
+  <nt-markdown [data]="api"></nt-markdown>
+</div>

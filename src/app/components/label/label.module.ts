@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NtLabelModule } from '@ng-tangram/components/label';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExampleLabelBasicComponent } from './examples/basic';
 import { ExampleLabelColorsComponent } from './examples/colors';
@@ -16,7 +16,7 @@ import { LabelDocumentComponent } from './label.component';
     CommonModule,
     NtExampleModule,
     NtLabelModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: LabelDocumentComponent }
     ])],

@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import {
-  NtPictureAcceptError,
-  NtPictureError,
-  NtPictureSizeError,
-  NtPictureUploadError
-} from '@ng-tangram/components/picture';
+import { NtFileError, NtFileSizeError, NtFileTypeError } from '@ng-tangram/components/core';
 
 @Component({
   selector: 'example-picture-accept',
@@ -18,7 +13,7 @@ import {
   template: `
     <nt-form-field label="图片" [messages]="{ required: '请上传图片' }">
       <nt-picture  url="/files/logos"
-        maxFiles="5" name="file" [formControl]="pictureControl" accept="image/jpeg, image/gif" (error)="onError($event)">
+        name="file" [formControl]="pictureControl" accept="image/jpeg, image/gif" (error)="onError($event)">
         <i class="fa fa-upload"></i>&nbsp;Select File
       </nt-picture >
     </nt-form-field>
@@ -41,16 +36,16 @@ export class ExamplePictureAcceptComponent {
   /**
    * 错误提示
   */
-  onError(error: NtPictureError) {
-    if (error instanceof NtPictureSizeError) {
-      this.message = `图片不能超过${error.maxSizeString}`;
+  onError(error: NtFileError) {
+    if (error instanceof NtFileSizeError) {
+      this.message = `图片不能超过${error.limitSizeString}`;
     }
-    if (error instanceof NtPictureAcceptError) {
-      this.message = `不支持图片类型${error.fileAccept}`;
+    if (error instanceof NtFileTypeError) {
+      this.message = `不支持图片类型${error.type}`;
     }
-    if (error instanceof NtPictureUploadError) {
-      this.message = `${error.statusText}`;
-    }
+    // if (error instanceof NtPictureUploadError) {
+    //   this.message = `${error.statusText}`;
+    // }
     setTimeout(() => {
       this.message = '';
     }, 3000);

@@ -24,10 +24,11 @@ $navbar-active-color: $primary-color;
     display: block;
     box-sizing: border-box;
     padding: 8px 20px;
-    color: $dark-gray;
+    color: $black;
     white-space: nowrap;
     overflow: hidden;
     transition: border-right-color .3s, background-color .3s;
+    font-size: 13px;
   }
 
   .nav-tree > li > a:focus,
@@ -89,6 +90,19 @@ $navbar-active-color: $primary-color;
     opacity: 0;
     overflow: hidden;
     height: 0px;
+  }
+
+  .nav-treebar-group {
+    color: $dark-gray;
+    padding: .75em .5em;
+    // font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-top: 1em;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 }
 

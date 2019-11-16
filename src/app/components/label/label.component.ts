@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   templateUrl: 'label.component.md'
 })
 export class LabelDocumentComponent {
-  basicCode = require('!!raw-loader!./examples/basic');
-  iconCode = require('!!raw-loader!./examples/icon');
-  colorsCode = require('!!raw-loader!./examples/colors');
-  api = require('!!raw-loader!src/libs/components/label/README.md');
+  basicCode = require('!!raw-loader!./examples/basic').default;
+  iconCode = require('!!raw-loader!./examples/icon').default;
+  colorsCode = require('!!raw-loader!./examples/colors').default;
+  api = require('!!raw-loader!libs/components/label/README.md').default;
 }

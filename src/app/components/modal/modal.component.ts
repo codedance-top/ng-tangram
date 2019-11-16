@@ -6,17 +6,17 @@ import { Component } from '@angular/core';
   templateUrl: 'modal.component.md'
 })
 export class ModalDocumentComponent {
-  api = require('!!raw-loader!src/libs/components/modal/README.md');
-  basicCode = require('!!raw-loader!./examples/basic');
-  eventCode = require('!!raw-loader!./examples/event');
-  configCode = require('!!raw-loader!./examples/config');
-  dataCode = require('!!raw-loader!./examples/data');
-  widthCode = require('!!raw-loader!./examples/width');
-  heightCode = require('!!raw-loader!./examples/height');
-  topCode = require('!!raw-loader!./examples/top');
-  closableCode = require('!!raw-loader!./examples/closable');
-  hasBackdropCode = require('!!raw-loader!./examples/hasBackdrop');
-  centerVerticallyCode = require('!!raw-loader!./examples/center-vertically');
-  transparentCode = require('!!raw-loader!./examples/transparent');
-  classCode = require('!!raw-loader!./examples/class');
+  api = require('!!raw-loader!libs/components/modal/README.md').default;
+  basicCode = require('!!raw-loader!./examples/basic').default;
+  eventCode = require('!!raw-loader!./examples/event').default;
+  configCode = require('!!raw-loader!./examples/config').default;
+  dataCode = require('!!raw-loader!./examples/data').default;
+  widthCode = require('!!raw-loader!./examples/width').default;
+  heightCode = require('!!raw-loader!./examples/height').default;
+  topCode = require('!!raw-loader!./examples/top').default;
+  closableCode = require('!!raw-loader!./examples/closable').default;
+  hasBackdropCode = require('!!raw-loader!./examples/hasBackdrop').default;
+  centerVerticallyCode = require('!!raw-loader!./examples/center-vertically').default;
+  transparentCode = require('!!raw-loader!./examples/transparent').default;
+  classCode = require('!!raw-loader!./examples/class').default;
 }

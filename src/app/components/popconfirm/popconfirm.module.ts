@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NtPopConfirmModule } from '@ng-tangram/components/popconfirm';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExamplePopConfirmBasciComponent } from './examples/basic';
 import { ExamplePopconfirmChangeComponent } from './examples/change';
@@ -17,7 +17,7 @@ import { PopconfirmDocumentComponent } from './popconfirm.component';
     CommonModule,
     NtExampleModule,
     NtPopConfirmModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: PopconfirmDocumentComponent }
     ])],

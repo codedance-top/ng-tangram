@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { NtButtonModule } from '@ng-tangram/components';
 import { NtModalModule } from '@ng-tangram/components/modal';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExampleModalBasicComponent, ExampleModalComponentDialogComponent } from './examples/basic';
 import { ExampleModalCenterVerticallyComponent } from './examples/center-vertically';
@@ -29,7 +29,7 @@ import { ModalDocumentComponent } from './modal.component';
     NtButtonModule,
     NtModalModule,
     NtExampleModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: ModalDocumentComponent }
     ])],
@@ -53,8 +53,8 @@ import { ModalDocumentComponent } from './modal.component';
   ],
   entryComponents: [
     ExampleModalComponentDialogComponent,
-    ExampleModalComponentContentComponent,
-    ExampleModalComponentDataComponent
+    ExampleModalComponentDataComponent,
+    ExampleModalComponentContentComponent
   ]
 })
 export class ModalDocumentModule { }

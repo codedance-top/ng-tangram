@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import {
-  NtPictureAcceptError,
-  NtPictureError,
-  NtPictureSizeError,
-  NtPictureUploadError
-} from '@ng-tangram/components/picture';
+import { NtFileError, NtFileSizeError, NtFileTypeError } from '@ng-tangram/components/core';
 
 @Component({
   selector: 'example-picture-event',
@@ -41,15 +36,12 @@ export class ExamplePictureEventComponent {
   /**
    * 错误提示
   */
-  onError(error: NtPictureError) {
-    if (error instanceof NtPictureSizeError) {
-      this.message = `图片不能超过${error.maxSizeString}`;
+  onError(error: NtFileError) {
+    if (error instanceof NtFileSizeError) {
+      this.message = `图片不能超过${error.limitSizeString}`;
     }
-    if (error instanceof NtPictureAcceptError) {
-      this.message = `不支持图片类型${error.fileAccept}`;
-    }
-    if (error instanceof NtPictureUploadError) {
-      this.message = `${error.statusText}`;
+    if (error instanceof NtFileTypeError) {
+      this.message = `不支持图片类型${error.type}`;
     }
     setTimeout(() => {
       this.message = '';

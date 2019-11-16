@@ -8,6 +8,7 @@ import { NtInputModule } from '@ng-tangram/components/input';
 import { NtMenuModule } from '@ng-tangram/components/menu';
 import { NtSelectModule } from '@ng-tangram/components/select';
 import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExampleInputBasicComponent } from './examples/basic';
 import { ExampleInputGroupComponent } from './examples/group';
@@ -22,6 +23,7 @@ import { InputDocumentComponent } from './input.component';
     NtDropdownModule,
     NtMenuModule,
     NtSelectModule,
+    NtMarkdownModule,
     FormsModule,
     RouterModule.forChild([
       { path: '', component: InputDocumentComponent },

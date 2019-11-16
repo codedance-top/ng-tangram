@@ -8,7 +8,7 @@ import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtInputModule } from '@ng-tangram/components/input';
 import { NtSelectModule } from '@ng-tangram/components/select';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExampleFormInlineComponent } from './examples/inline';
 import { ExampleFormLoginComponent } from './examples/login';
@@ -25,7 +25,7 @@ import { FormsDocumentComponent } from './forms.component';
     NtInputModule,
     NtSelectModule,
     NtDatePickerModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: FormsDocumentComponent }
     ])

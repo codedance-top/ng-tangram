@@ -5,6 +5,7 @@ import { filter, map } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+
 import {
   ActivatedRoute,
   NavigationEnd,

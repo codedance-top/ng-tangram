@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtRadioModule } from '@ng-tangram/components/radio';
 import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExampleRadioBasicComponent } from './examples/basic';
 import { ExampleRadioChangeComponent } from './examples/change';
@@ -16,11 +17,12 @@ import { RadioDocumentComponent } from './radio.component';
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     FormsModule,
     NtFormsModule,
     NtExampleModule,
     NtRadioModule,
+    NtMarkdownModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path: '', component: RadioDocumentComponent }
     ])

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NtCheckboxModule, NtSwitchModule } from '@ng-tangram/components';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExampleSwitchBasciComponent } from './examples/basic';
 import { ExampleSwitchChangeComponent } from './examples/change';
@@ -19,7 +19,7 @@ import { SwitchDocumentComponent } from './switch.component';
     NtExampleModule,
     NtSwitchModule,
     NtCheckboxModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: SwitchDocumentComponent }
     ])],

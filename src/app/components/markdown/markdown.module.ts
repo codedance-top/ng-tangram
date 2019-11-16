@@ -2,20 +2,20 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExampleMarkdownBlockComponent } from './examples/basic';
-import { MarkdownBlockDocumentComponent } from './markdown-block.component';
+import { MarkdownDocumentComponent } from './markdown.component';
 
 @NgModule({
   imports: [
     CommonModule,
     NtExampleModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     RouterModule.forChild([
-      { path: '', component: MarkdownBlockDocumentComponent }
+      { path: '', component: MarkdownDocumentComponent }
     ])
   ],
-  declarations: [MarkdownBlockDocumentComponent, ExampleMarkdownBlockComponent]
+  declarations: [MarkdownDocumentComponent, ExampleMarkdownBlockComponent]
 })
-export class MarkdownBlockDocumentModule { }
+export class MarkdownDocumentModule { }

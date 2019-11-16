@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   templateUrl: 'avatar.component.md'
 })
 export class AvatarDocumentComponent {
-  api = require('!!raw-loader!src/libs/components/avatar/README.md');
-  basicCode = require('!!raw-loader!./examples/basic');
-  sizeCode = require('!!raw-loader!./examples/size');
-  shapeCode = require('!!raw-loader!./examples/shape');
+  api = require('!!raw-loader!libs/components/avatar/README.md').default;
+  basicCode = require('!!raw-loader!./examples/basic').default;
+  sizeCode = require('!!raw-loader!./examples/size').default;
+  shapeCode = require('!!raw-loader!./examples/shape').default;
 }

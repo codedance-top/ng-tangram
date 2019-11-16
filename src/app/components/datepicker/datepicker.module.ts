@@ -13,7 +13,7 @@ import { NtDatePickerModule } from '@ng-tangram/components/datepicker';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtRadioModule } from '@ng-tangram/components/radio';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { DatePickerDocumentComponent } from './datepicker.component';
 import { ExampleDatePickerBasicComponent } from './examples/basic';
@@ -29,7 +29,7 @@ import { ExampleDatePickerStartComponent } from './examples/start';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     NtNativeDateModule,
     NtDatePickerModule,
     NtExampleModule,

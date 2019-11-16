@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: 'progress.component.md'
 })
 export class ProgressDocumentComponent {
-  basicCode = require('!!raw-loader!./examples/basic');
-  circleCode = require('!!raw-loader!./examples/circle');
-  api = require('!!raw-loader!src/libs/components/progress/README.md');
+  basicCode = require('!!raw-loader!./examples/basic').default;
+  circleCode = require('!!raw-loader!./examples/circle').default;
+  api = require('!!raw-loader!libs/components/progress/README.md').default;
 }

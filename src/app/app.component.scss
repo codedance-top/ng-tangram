@@ -35,13 +35,14 @@ $wrapper-border: 1px solid #e6e6e6;
 
   .menu {
     background: transparent;
-
+    align-items: center;
     > li {
-      padding: 0 .5rem;
+
       > a {
         border-bottom: 2px solid transparent;
         transition: border-bottom-color .3s, color .3s;;
         color: #333;
+        // padding: 1.25rem 1rem;
       }
 
       &.active > a,

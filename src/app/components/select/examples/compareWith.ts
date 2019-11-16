@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'example-select-compareWith',
+  selector: 'example-select-compare-with',
   template: `
     <form [formGroup]="form" ntFormAutofocus>
       <nt-form-field label="单选下拉框">

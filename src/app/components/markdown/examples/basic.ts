@@ -28,7 +28,7 @@ const markdown = `
 @Component({
   selector: 'example-markdown-block',
   template: `
-    <nt-markdown-block [data]="markdown"></nt-markdown-block>
+    <nt-markdown [data]="markdown"></nt-markdown>
   `
 })
 export class ExampleMarkdownBlockComponent {

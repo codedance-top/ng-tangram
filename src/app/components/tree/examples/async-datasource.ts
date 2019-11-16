@@ -22,9 +22,9 @@ export class AsyncDataSource extends DataSource<ExampleAsyncNode> {
   }
 
   connect(collectionViewer: CollectionViewer): Observable<ExampleAsyncNode[]> {
-    this.treeControl.expansionModel.changed!.subscribe(change => {
-      if ((change as SelectionChange<ExampleAsyncNode>).added || (change as SelectionChange<ExampleAsyncNode>).removed) {
-        this.handleTreeControl(change as SelectionChange<ExampleAsyncNode>);
+    this.treeControl.expansionModel.changed.subscribe(change => {
+      if (change.added || change.removed) {
+        this.handleTreeControl(change);
       }
     });
 

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NtTooltipModule } from '@ng-tangram/components/tooltip';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExampleTooltipBasciComponent } from './examples/basic';
 import { ExampleTooltipChangeComponent } from './examples/change';
@@ -16,7 +16,7 @@ import { TooltipDocumentComponent } from './tooltip.component';
     CommonModule,
     NtExampleModule,
     NtTooltipModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: TooltipDocumentComponent }
     ])],
