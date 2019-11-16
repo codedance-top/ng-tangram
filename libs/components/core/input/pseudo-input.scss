@@ -1,0 +1,88 @@
+$nt-pseudo-caret-padding: $form-spacing / 2 !default;
+$nt-pseudo-caret-color: $select-triangle-color !default;
+
+@mixin nt-pseudo-value {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: $input-padding;
+  line-height: $input-line-height;
+  margin-top: -1px;
+}
+
+@mixin nt-pseudo-placeholder {
+  color: $input-placeholder-color;
+  user-select: none;
+}
+
+@mixin nt-pseudo-caret {
+  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
+
+  position: absolute;
+  right: $nt-pseudo-caret-padding;
+  top: ($height - $input-font-size) / 2;
+  font-size: 1em;
+  line-height: 1em;
+  color: $nt-pseudo-caret-color;
+  pointer-events: none;
+  &::after {
+    display: block;
+    left: auto;
+  }
+}
+
+@mixin nt-pseudo-validate(
+  $color: $nt-input-background-invalid,
+  $shadow: $nt-input-shadow-invalid,
+  $shadow-hover: $nt-input-shadow-invalid-focus,
+  $color-lighten: 5%) {
+  border-color: $color;
+  box-shadow: $shadow;
+
+  &:focus {
+    box-shadow: $shadow-hover;
+  }
+}
+
+
+@mixin nt-pseudo-input {
+  .nt-pseudo-input {
+    overflow: hidden;
+    cursor: pointer;
+    vertical-align: top;
+    @include form-element;
+
+    &.disabled,
+    &.readonly {
+      background-color: $input-background-disabled;
+      cursor: $input-cursor-disabled;
+    }
+
+    .nt-pseudo-value,
+    .nt-pseudo-placeholder {
+      @include nt-pseudo-value;
+    }
+
+    .nt-pseudo-placeholder {
+      @include nt-pseudo-placeholder;
+    }
+
+    .nt-pseudo-caret {
+      @include nt-pseudo-caret;
+    }
+  }
+
+  .nt-form-error .nt-pseudo-input {
+    @include nt-pseudo-validate;
+  }
+
+  .nt-form-success .nt-pseudo-input {
+    @include nt-pseudo-validate(
+      $color: $nt-input-background-valid,
+      $shadow: $nt-input-shadow-valid,
+      $shadow-hover: $nt-input-shadow-valid-focus
+    );
+  }
+}

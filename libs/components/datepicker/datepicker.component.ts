@@ -48,9 +48,8 @@ import {
   // changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'class': 'nt-datepicker',
-    '[class.disabled]': 'disabled',
-    '[class.readonly]': 'readonly',
-    '[tabindex]': 'tabIndex',
+    // '[class.disabled]': 'disabled',
+    // '[class.readonly]': 'readonly',
     '(click)': '_onClick($event)',
   },
   animations: [

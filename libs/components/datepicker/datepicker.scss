@@ -14,9 +14,6 @@ $nt-datepicker-pane-radius: $global-radius !default;
 $nt-datepicker-pane-padding: rem-calc(4) !default;
 $nt-datepicker-pane-background: $white !default;
 
-$nt-datepicker-symbol-padding: $form-spacing / 2 !default;
-$nt-datepicker-symbol-color: $dark-gray !default;
-
 @mixin nt-datepicker-table {
   table {
     font-size: $nt-datepicker-font-size;
@@ -70,7 +67,8 @@ $nt-datepicker-symbol-color: $dark-gray !default;
       color: $nt-datepicker-color-disabled;
       cursor: $input-cursor-disabled;
     }
-  } // tbody td span {
+  }
+  // tbody td span {
   //   display: block;
   // }
   tr {
@@ -82,61 +80,13 @@ $nt-datepicker-symbol-color: $dark-gray !default;
   }
 }
 
-@mixin nt-datepicker-placeholder {
-  position: absolute;
-  color: $input-placeholder-color;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  padding: $input-padding;
-  line-height: $input-line-height;
-  user-select: none;
-}
-
-@mixin nt-datepicker-validate(
-  $color: $nt-input-background-invalid,
-  $shadow: $nt-input-shadow-invalid,
-  $shadow-hover: $nt-input-shadow-invalid-focus,
-  $color-lighten: 5%) {
-  border-color: $color;
-  box-shadow: $shadow;
-
-  &:focus {
-    box-shadow: $shadow-hover;
-  }
-}
 
 @mixin nt-datepicker {
   .nt-datepicker {
     position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    @include form-element;
-
-    &.disabled,
-    &.readonly {
-      background-color: $input-background-disabled;
-      cursor: $input-cursor-disabled;
-    }
+    display: block;
+    margin: 0 0 $form-spacing;
   }
-
-  .nt-datepicker-placeholder {
-    @include nt-datepicker-placeholder;
-  }
-
-  .nt-form-error .nt-datepicker {
-    @include nt-datepicker-validate;
-  }
-
-  .nt-form-success .nt-datepicker {
-    @include nt-datepicker-validate(
-      $color: $nt-input-background-valid,
-      $shadow: $nt-input-shadow-valid,
-      $shadow-hover: $nt-input-shadow-valid-focus
-    );
-  }
-
 
   .nt-datepicker-pane {
     position: relative;
@@ -167,21 +117,8 @@ $nt-datepicker-symbol-color: $dark-gray !default;
     }
   }
 
-  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
-
-  .nt-datepicker-clear,
-  .nt-datepicker-caret {
-    position: absolute;
-    right: $nt-datepicker-symbol-padding;
-    top: ($height - $input-font-size) / 2;
-    font-size: 1em;
-    line-height: 1em;
-    color: $nt-datepicker-symbol-color;
-  }
-  .nt-datepicker-caret {
-    pointer-events: none;
-  }
   .nt-datepicker-clear {
+    pointer-events: auto !important;
     cursor: pointer;
   }
 }
