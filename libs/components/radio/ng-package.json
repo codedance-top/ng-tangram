@@ -1,0 +1,7 @@
+{
+  "lib": {
+    "entryFile": "public-api.ts",
+    "flatModuleFile": "radio",
+    "umdId": "nt.components.radio"
+  }
+}
