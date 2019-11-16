@@ -7,10 +7,12 @@ import { FormControl, Validators } from '@angular/forms';
     <nt-radio-group [(ngModel)]="status">
       <nt-radio value="normal">正常</nt-radio>
       <nt-radio value="disabled">禁用</nt-radio>
+      <nt-radio value="notriggle">不显示按钮</nt-radio>
     </nt-radio-group>
     <nt-form-field label="文件列表" [messages]="{ required: '请上传文件' }">
       <nt-attachment url="/files/logos" name="file" [formControl]="fileControl"
-        disabled="{{status === 'disabled'}}">
+        [disabled]="status === 'disabled'"
+        [notriggle]="status === 'notriggle'">
         <i class="fa fa-paperclip"></i>&nbsp;Select File
       </nt-attachment>
     </nt-form-field>
