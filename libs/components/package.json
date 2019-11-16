@@ -1,0 +1,21 @@
+{
+  "name": "@ng-tangram/components",
+  "version": "0.0.0-PLACEHOLDER",
+  "author": "livebridge",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/livebridge-lab/ng-tangram"
+  },
+  "peerDependencies": {
+    "@angular/animations": "^9.0.0-rc.1 || ^9.0.0",
+    "@angular/core": "^9.0.0-rc.1 || ^9.0.0",
+    "@angular/common": "^9.0.0-rc.1 || ^9.0.0",
+    "@angular/forms": "^9.0.0-rc.1 || ^9.0.0",
+    "@angular/cdk": "^9.0.0-rc.1 || ^9.0.0",
+    "@fortawesome/fontawesome-free": "latest",
+    "tslib": "^1.10.0",
+    "foundation-sites": "~6.5.0"
+  },
+  "sideEffects": false
+}
