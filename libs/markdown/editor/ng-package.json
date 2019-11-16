@@ -1,0 +1,12 @@
+{
+  "lib": {
+    "entryFile": "public-api.ts",
+    "flatModuleFile": "markdown-editor",
+    "umdModuleIds": {
+      "codemirror": "CodeMirror",
+      "@ng-tangram/components/core": "nt.components.core",
+      "@ng-tangram/components/forms": "nt.components.forms"
+    },
+    "umdId": "nt.markdown.editor"
+  }
+}
