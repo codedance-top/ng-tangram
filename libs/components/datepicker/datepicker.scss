@@ -82,34 +82,61 @@ $nt-datepicker-symbol-color: $dark-gray !default;
   }
 }
 
+@mixin nt-datepicker-placeholder {
+  position: absolute;
+  color: $input-placeholder-color;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: $input-padding;
+  line-height: $input-line-height;
+  user-select: none;
+}
+
+@mixin nt-datepicker-validate(
+  $color: $nt-input-background-invalid,
+  $shadow: $nt-input-shadow-invalid,
+  $shadow-hover: $nt-input-shadow-invalid-focus,
+  $color-lighten: 5%) {
+  border-color: $color;
+  box-shadow: $shadow;
+
+  &:focus {
+    box-shadow: $shadow-hover;
+  }
+}
+
 @mixin nt-datepicker {
   .nt-datepicker {
     position: relative;
-    display: block;
-    margin: 0 0 $form-spacing;
+    overflow: hidden;
+    cursor: pointer;
+    @include form-element;
 
-    input[type="text"] {
-      margin: 0;
-      padding-right: $input-font-size + $form-spacing;
-      background-color: $input-background;
-      cursor: auto !important;
-      text-overflow: ellipsis;
-
-      [pseudo="-webkit-input-placeholder"] {
-        background-color: greenyellow;
-      }
-    }
-
-    &:focus {
-      outline: none;
-      input {
-        outline: none;
-        border: $input-border-focus;
-        background-color: $input-background-focus;
-        box-shadow: $input-shadow-focus;
-      }
+    &.disabled,
+    &.readonly {
+      background-color: $input-background-disabled;
+      cursor: $input-cursor-disabled;
     }
   }
+
+  .nt-datepicker-placeholder {
+    @include nt-datepicker-placeholder;
+  }
+
+  .nt-form-error .nt-datepicker {
+    @include nt-datepicker-validate;
+  }
+
+  .nt-form-success .nt-datepicker {
+    @include nt-datepicker-validate(
+      $color: $nt-input-background-valid,
+      $shadow: $nt-input-shadow-valid,
+      $shadow-hover: $nt-input-shadow-valid-focus
+    );
+  }
+
 
   .nt-datepicker-pane {
     position: relative;
