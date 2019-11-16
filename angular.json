@@ -19,7 +19,9 @@
           "options": {
             "customWebpackConfig": {
               "path": "./webpack.markdown.js",
-              "mergeStrategies": { "module.rules": "prepend" }
+              "mergeStrategies": {
+                "module.rules": "prepend"
+              }
             },
             "outputPath": "docs/browser",
             "index": "src/index.html",
@@ -80,7 +82,9 @@
           "options": {
             "customWebpackConfig": {
               "path": "./webpack.markdown.js",
-              "mergeStrategies": { "module.rules": "prepend" }
+              "mergeStrategies": {
+                "module.rules": "prepend"
+              }
             },
             "outputPath": "docs/server",
             "main": "src/main.server.ts",
@@ -118,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "ng-tangram-docs"
+  "defaultProject": "ng-tangram-docs",
+  "cli": {
+    "analytics": "af27123f-9c5f-43a1-b801-8309ea908d94"
+  }
 }
