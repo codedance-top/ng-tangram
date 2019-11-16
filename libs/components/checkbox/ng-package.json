@@ -1,0 +1,7 @@
+{
+  "lib": {
+    "entryFile": "public-api.ts",
+    "flatModuleFile": "checkbox",
+    "umdId": "nt.components.checkbox"
+  }
+}
