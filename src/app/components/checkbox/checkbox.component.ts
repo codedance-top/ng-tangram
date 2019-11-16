@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: 'checkbox.component.md'
 })
 export class CheckboxDocumentComponent {
-  basicCode = require('!!raw-loader!./examples/basic');
-  disabledCode = require('!!raw-loader!./examples/disabled');
-  allCode = require('!!raw-loader!./examples/all');
-  changeCode = require('!!raw-loader!./examples/change');
+  basicCode = require('!!raw-loader!./examples/basic').default;
+  disabledCode = require('!!raw-loader!./examples/disabled').default;
+  allCode = require('!!raw-loader!./examples/all').default;
+  changeCode = require('!!raw-loader!./examples/change').default;
 }

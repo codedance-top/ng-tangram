@@ -4,7 +4,7 @@ import { NtModal } from '@ng-tangram/components/modal';
 import { ExampleModalComponentContentComponent } from '../examples/content';
 
 @Component({
-  selector: 'example-modal-hasBackdrop',
+  selector: 'example-modal-has-backdrop',
   template: `
     <button nt-button (click)="open()">打开模态框</button>
   `,

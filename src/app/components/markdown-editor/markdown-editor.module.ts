@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownEditorModule } from '@ng-tangram/pro';
+import { NtMarkdownEditorModule } from '@ng-tangram/markdown/editor';
 
 import { ExampleMarkdownEditorBasciComponent } from './examples/basic';
 import { MarkdownEditorDocumentComponent } from './markdown-editor.component';

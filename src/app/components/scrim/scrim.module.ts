@@ -6,7 +6,7 @@ import { NtPaginationModule } from '@ng-tangram/components/pagination';
 import { NtScrimModule } from '@ng-tangram/components/scrim';
 import { NtTableModule } from '@ng-tangram/components/table';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExampleScrimBasciComponent } from './examples/basic';
 import { ScrimDocumentComponent } from './scrim.component';
@@ -18,7 +18,7 @@ import { ScrimDocumentComponent } from './scrim.component';
     NtScrimModule,
     NtTableModule,
     NtPaginationModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: ScrimDocumentComponent }
     ])],

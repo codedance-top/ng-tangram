@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { NtButtonModule } from '@ng-tangram/components/button';
 import { NtDropdownModule } from '@ng-tangram/components/dropdown';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { DropdownDocumentComponent } from './dropdown.component';
 import { ExampleDropdownBasicComponent } from './examples/basic';
@@ -17,7 +17,7 @@ import { ExampleDropdownTriggerComponent } from './examples/trigger';
   imports: [
     CommonModule,
     NtExampleModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     NtButtonModule,
     NtDropdownModule,
     RouterModule.forChild([

@@ -22,7 +22,7 @@ registerLocaleData(locale);
 const ROUTES: Routes = [
   { path: '', component: HomeComponent, data: { title: '基于 Angular 的桌面端组件库' } },
   { path: 'components', loadChildren: () => import('./components/components.module').then(mod => mod.ComponentsModule) },
-  { path: 'pro', loadChildren: () => import('./pro/pro.module').then(mod => mod.ProModule) },
+  { path: 'changelog', loadChildren: () => import('./changelog/changelog.module').then(mod => mod.ChangelogModule) },
   { path: '**', component: PageNotFoundComponent, data: { title: '404 - 找不到此页面' } }
 ];
 
@@ -41,8 +41,8 @@ const PAGINATION_CONFIG = {
     }),
     NtButtonModule,
     NtFormsModule.forRoot(),
-    NtNativeDateModule,
     NtUploadModule.forRoot(),
+    NtNativeDateModule,
     // NtMomentDateModule,
     RouterModule.forRoot(ROUTES, {
       initialNavigation: 'enabled',

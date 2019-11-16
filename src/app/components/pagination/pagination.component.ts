@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: 'pagination.component.md'
 })
 export class PaginationDocumentComponent {
-  basicCode = require('!!raw-loader!./examples/basic');
-  moreCode = require('!!raw-loader!./examples/more');
+  basicCode = require('!!raw-loader!./examples/basic').default;
+  moreCode = require('!!raw-loader!./examples/more').default;
 }

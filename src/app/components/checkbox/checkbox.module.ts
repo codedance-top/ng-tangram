@@ -11,15 +11,17 @@ import { ExampleCheckboxAllComponent } from './examples/all';
 import { ExampleCheckboxBasicComponent } from './examples/basic';
 import { ExampleCheckboxChangeComponent } from './examples/change';
 import { ExampleCheckboxDisabledComponent } from './examples/disabled';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     FormsModule,
-    NtFormsModule,
-    NtExampleModule,
     NtCheckboxModule,
+    NtExampleModule,
+    NtFormsModule,
+    NtMarkdownModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path: '', component: CheckboxDocumentComponent }
     ])

@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtSelectModule } from '@ng-tangram/components/select';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExampleSelectCompareWithComponent } from './examples/compareWith';
 import { ExampleSelectCoordinatComponent } from './examples/coordinat';
@@ -26,7 +26,7 @@ import { SelectDocumentComponent } from './select.component';
     NtExampleModule,
     NtSelectModule,
     NtFormsModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: SelectDocumentComponent }
     ])],

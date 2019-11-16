@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "angularCompilerOptions": {
-    "entryModule": "./app/app.browser.module#AppBrowserModule"
+    "entryModule": "./app/app.browser.module#AppBrowserModule",
+    "enableIvy": false
   }
 }

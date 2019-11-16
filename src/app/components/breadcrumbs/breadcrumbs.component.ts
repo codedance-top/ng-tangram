@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: 'breadcrumbs.component.md'
 })
 export class BreadcrumbsDocumentComponent {
-  basicCode = require('!!raw-loader!./examples/basic');
+  basicCode = require('!!raw-loader!./examples/basic').default;
 }

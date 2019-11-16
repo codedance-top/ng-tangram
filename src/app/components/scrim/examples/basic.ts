@@ -55,6 +55,6 @@ export class ExampleScrimBasciComponent {
   onPageChange(index: number) {
     this.pageIndex = index;
     this.isOpen = true;
-    setTimeout(_ => this.isOpen = false, 500);
+    setTimeout(_ => this.isOpen = false, 2500);
   }
 }

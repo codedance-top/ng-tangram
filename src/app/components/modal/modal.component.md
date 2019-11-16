@@ -114,7 +114,7 @@
   <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <example-modal-hasBackdrop></example-modal-hasBackdrop>
+        <example-modal-has-backdrop></example-modal-has-backdrop>
       </nt-example-showcase>
       <nt-example-legend title="自定义背景层显示方式">
         自定义背景层显示方式案例<br>
@@ -126,7 +126,7 @@
    <div class="medium-6 large-6 cell">
     <nt-example>
       <nt-example-showcase>
-        <example-modal-centerVertically></example-modal-centerVertically>
+        <example-modal-center-vertically></example-modal-center-vertically>
       </nt-example-showcase>
       <nt-example-legend title="垂直水平居中显示对话框">
         垂直水平居中显示对话框案例<br>
@@ -162,4 +162,6 @@
 </div>
 </div>
 
-<nt-markdown-block [data]="api"></nt-markdown-block>
+<div>
+  <nt-markdown [data]="api"></nt-markdown>
+</div>

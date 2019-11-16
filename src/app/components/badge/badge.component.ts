@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   templateUrl: 'badge.component.md'
 })
 export class BadgeDocumentComponent {
-  basicCode = require('!!raw-loader!./examples/basic');
-  iconCode = require('!!raw-loader!./examples/icon');
-  colorsCode = require('!!raw-loader!./examples/colors');
+  api = require('!!raw-loader!libs/components/badge/README.md').default;
+  basicCode = require('!!raw-loader!./examples/basic').default;
+  iconCode = require('!!raw-loader!./examples/icon').default;
+  colorsCode = require('!!raw-loader!./examples/colors').default;
 }

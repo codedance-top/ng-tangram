@@ -11,7 +11,7 @@ import { NtScrimModule } from '@ng-tangram/components/scrim';
 import { NtTableModule } from '@ng-tangram/components/table';
 import { NtTooltipModule } from '@ng-tangram/components/tooltip';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExampleTableAlternateComponent } from './examples/alternate';
 import { ExampleTableBasicComponent } from './examples/basic';
@@ -34,7 +34,7 @@ import { TableDocumentComponent } from './table.component';
     NtTooltipModule,
     NtTableModule,
     NtScrimModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     NtCheckboxModule,
     NtInputModule,
     RouterModule.forChild([

@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: 'input.component.md'
 })
 export class InputDocumentComponent {
-  basicCode = require('!!raw-loader!./examples/basic');
-  groupCode = require('!!raw-loader!./examples/group');
+  basicCode = require('!!raw-loader!./examples/basic').default;
+  groupCode = require('!!raw-loader!./examples/group').default;
 }

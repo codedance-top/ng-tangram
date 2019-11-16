@@ -3,9 +3,10 @@
 
 // @import 'themes/vaadin';
 
-@import '../libs/components/styles';
-@import '../libs/pro/styles';
-@import '../libs/example/styles';
+@import '../../libs/components/styles';
+@import '../../libs/markdown/markdown';
+@import '../../libs/markdown/editor/markdown-editor';
+@import '../../libs/example/styles';
 
 @import 'containers';
 @import 'navbar';
@@ -19,8 +20,9 @@
 @include foundation-top-bar;
 
 @include ng-tangram;
-@include ng-tangram-pro;
 @include ng-tangram-example;
+@include nt-markdown;
+@include nt-markdown-editor;
 
 body {
   font-family: $body-font-family;

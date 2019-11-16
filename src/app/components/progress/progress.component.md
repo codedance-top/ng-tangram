@@ -27,6 +27,8 @@
   </div>
 </div>
 
-<nt-markdown-block [data]="api"></nt-markdown-block>
+<div>
+  <nt-markdown [data]="api"></nt-markdown>
+</div>
 
 

@@ -4,16 +4,15 @@ import { NtDatePickerComponent } from '@ng-tangram/components/datepicker';
 @Component({
   selector: 'example-datepicker-basic',
   template: `
-    <nt-radio-group [(ngModel)]="status">
-      <nt-radio value="normal">正常</nt-radio>
-      <nt-radio value="disabled">禁用</nt-radio>
+    <nt-radio-group [(ngModel)]="disabled">
+      <nt-radio [value]="false">正常</nt-radio>
+      <nt-radio [value]="true">禁用</nt-radio>
     </nt-radio-group>
     <nt-datepicker #datepicker
       placeholder="开始日期"
       [(ngModel)]="startDate"
-      disabled="{{status === 'disabled'}}">
+      [disabled]="disabled">
     </nt-datepicker>
-    <button nt-button class="button" (click)="clear()">Clear</button>
   `
 })
 export class ExampleDatePickerBasicComponent {
@@ -21,10 +20,6 @@ export class ExampleDatePickerBasicComponent {
   @ViewChild('datepicker', { static: true }) datepicker: NtDatePickerComponent<Date>;
 
   startDate = new Date(2012, 5, 20);
-  status: string = 'normal'
 
-  clear() {
-    this.datepicker.clear();
-  }
-
+  disabled = false;
 }

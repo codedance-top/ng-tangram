@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: 'drawer.component.md'
 })
 export class DrawerDocumentComponent {
-  basicCode = require('!!raw-loader!./examples/basic');
+  basicCode = require('!!raw-loader!./examples/basic').default;
 }

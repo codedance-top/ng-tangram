@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {
-  NtFileAcceptError,
+  NtFileTypeError,
   NtFileError,
   NtFileSizeError,
-  NtFileUploadError
-} from '@ng-tangram/components/file';
+} from '@ng-tangram/components/core';
 
 @Component({
-  selector: 'example-file-event',
+  selector: 'example-attachment-event',
   styles: [`
       span {
         color: #f5212d;
@@ -17,21 +16,19 @@ import {
   ],
   template: `
     <nt-form-field label="文件列表" [messages]="{ required: '请上传文件' }">
-      <nt-file url="/files/logos"
+      <nt-attachment url="/files/logos"
         maxFiles="2" maxSize="0.5" name="file" [formControl]="fileControl" (error)="onError($event)">
-        <i class="fa fa-upload"></i>&nbsp;Select File
-      </nt-file>
+        <i class="fa fa-paperclip"></i>&nbsp;Select File
+      </nt-attachment>
     </nt-form-field>
     <span>{{message}}</span>
   `
 })
-export class ExampleFileEventComponent {
+export class ExampleAttachmentEventComponent {
 
   fileControl = new FormControl([
     {
-      id: "nt-file-032132121",
       name: "microMsg.1430457292873的副本.jpg",
-      status: 4,
       link: 'https://www.baidu.com'
     }
   ], [Validators.required]);
@@ -43,14 +40,14 @@ export class ExampleFileEventComponent {
   */
   onError(error: NtFileError) {
     if (error instanceof NtFileSizeError) {
-      this.message = `文件不能超过${error.maxSizeString}`;
+      this.message = `文件不能超过${error.limitSizeString}`;
     }
-    if (error instanceof NtFileAcceptError) {
-      this.message = `不支持文件类型${error.fileAccept}`;
+    if (error instanceof NtFileTypeError) {
+      this.message = `不支持文件类型${error.type}`;
     }
-    if (error instanceof NtFileUploadError) {
-      this.message = `${error.statusText}`;
-    }
+    // if (error instanceof NtFileUploadError) {
+    //   this.message = `${error.statusText}`;
+    // }
     setTimeout(() => {
       this.message = '';
     }, 3000);

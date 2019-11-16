@@ -6,8 +6,6 @@ import { Component } from '@angular/core';
   template: `
 
   <table nt-table [dataSource]="dataSource">
-
-
     <nt-column name="select">
       <th nt-column-header *ntColumnHeaderDef>
         <nt-checkbox
@@ -62,7 +60,7 @@ export class ExampleTableSelectableComponent {
 
 
   constructor() {
-    this.selection.onChange.subscribe((data) => {
+    this.selection.changed.subscribe((data) => {
       this.selected = (data.source.selected || []).map((item: any) => item.name).join(',');
     });
   }

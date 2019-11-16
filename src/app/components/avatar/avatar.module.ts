@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NtAvatarModule } from '@ng-tangram/components/avatar';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { AvatarDocumentComponent } from './avatar.component';
 import { DemoAvatarBasicComponent } from './examples/basic';
@@ -13,7 +13,7 @@ import { DemoAvatarSizeComponent } from './examples/size';
 @NgModule({
   imports: [
     CommonModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     NtExampleModule,
     NtAvatarModule,
     RouterModule.forChild([

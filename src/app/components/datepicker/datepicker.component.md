@@ -69,5 +69,7 @@
 | `NtNativeDateModule` | `Date` | 不需要 | `@ng-tangram/components` |
 | `NtMomentDateModule` | `Moment` | Moment.js | `@ng-tangram/moment-adapter` |
 
-<nt-markdown-block [data]="api"></nt-markdown-block> 
+<div>
+  <nt-markdown [data]="api"></nt-markdown>
+</div> 
 

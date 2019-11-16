@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NtPopoverModule } from '@ng-tangram/components/popover';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExamplePopoverBasciComponent } from './examples/basic';
 import { ExamplePopoverChangeComponent } from './examples/change';
@@ -16,7 +16,7 @@ import { PopoverDocumentComponent } from './popover.component';
     CommonModule,
     NtExampleModule,
     NtPopoverModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: PopoverDocumentComponent }
     ])],

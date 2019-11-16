@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NtMenuModule, NtTreeModule } from '@ng-tangram/components';
 import { NtExampleModule } from '@ng-tangram/example';
-import { NtMarkdownBlockModule } from '@ng-tangram/pro';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExampleTreeAsyncComponent } from './examples/async.component';
 import { ExampleTreeCheckboxComponent } from './examples/checkbox.component';
@@ -18,7 +18,7 @@ import { TreeDocumentComponent } from './tree.component';
     NtExampleModule,
     NtMenuModule,
     NtTreeModule,
-    NtMarkdownBlockModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: TreeDocumentComponent }
     ])

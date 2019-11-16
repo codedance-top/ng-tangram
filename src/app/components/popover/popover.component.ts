@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   templateUrl: 'popover.component.md'
 })
 export class PopoverDocumentComponent {
-  basicCode = require('!!raw-loader!./examples/basic');
-  changeCode = require('!!raw-loader!./examples/change');
-  positionCode = require('!!raw-loader!./examples/position');
-  api = require('!!raw-loader!src/libs/components/popover/README.md');
+  basicCode = require('!!raw-loader!./examples/basic').default;
+  changeCode = require('!!raw-loader!./examples/change').default;
+  positionCode = require('!!raw-loader!./examples/position').default;
+  api = require('!!raw-loader!libs/components/popover/README.md').default;
 }
