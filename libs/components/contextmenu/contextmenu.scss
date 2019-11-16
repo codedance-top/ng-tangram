@@ -1,0 +1,42 @@
+@import '~@angular/cdk/overlay';
+
+@mixin nt-contextmenu {
+
+  // .nt-contextmenu {
+  // @include cdk-overlay;
+
+  // .nt-overlay-container {
+  //   display: block;
+  //   border-radius: $nt-overlay-radius;
+
+  //   @include overlay-container;
+  //   @include overlay-container-arrow;
+
+  //   &.no-spacing {
+  //     padding: 0 !important;
+  //     .nt-overlay-shadow {
+  //       top: 0 !important;
+  //       left: 0 !important;
+  //       right: 0 !important;
+  //       bottom: 0 !important;
+  //     }
+  //   }
+
+  //   .nt-overlay-pane {
+  //     border-radius: inherit;
+  //     position: relative;
+  //     font-size: $dropdown-font-size;
+  //     background-color: #fff;
+  //   }
+  //   .nt-overlay-shadow {
+  //     z-index: -2;
+  //     box-shadow: $prototype-box-shadow;
+  //     top: 0px;
+  //     left: 0px;
+  //     bottom: 0px;
+  //     right: 0px;
+  //     position: absolute;
+  //     border-radius: inherit;
+  //   }
+  // }
+}
