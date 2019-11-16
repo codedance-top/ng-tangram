@@ -26,7 +26,7 @@ const DEFAULT_MONTH_NAMES = {
 };
 
 /** The default date names to use if Intl API is not available. */
-const DEFAULT_DATE_NAMES = range(31, i => String(i + 1));
+// const DEFAULT_DATE_NAMES = range(31, i => String(i + 1));
 
 
 /** The default day of the week names to use if Intl API is not available. */
@@ -123,7 +123,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
       return range(31, i => this._stripDirectionalityCharacters(
         this._format(dtf, new Date(2017, 0, i + 1))));
     }
-    return DEFAULT_DATE_NAMES;
+    return range(31, i => String(i + 1));
   }
 
   getDayOfWeekNames(style: 'long' | 'short' | 'narrow', locale: string = this.locale): string[] {

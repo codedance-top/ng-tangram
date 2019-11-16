@@ -1,4 +1,3 @@
-
 import { Subject } from 'rxjs';
 
 import { Highlightable, ListKeyManagerOption } from '@angular/cdk/a11y';
