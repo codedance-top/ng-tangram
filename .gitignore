@@ -30,6 +30,7 @@ npm-debug.log
 
 /npm-*
 /package-*
+/yarn-*
 
 /dist/*
 /docs/
