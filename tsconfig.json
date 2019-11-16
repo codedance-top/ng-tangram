@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "esNext",
+    "target": "es2015",
+    "module": "esnext",
     "moduleResolution": "node",
     "noUnusedParameters": true,
     "lib": [
@@ -15,10 +15,13 @@
     "removeComments": false,
     "baseUrl": "./",
     "paths": {
-      "@ng-tangram/*": ["src/libs/*"]
+      "@ng-tangram/example": ["./libs/example"],
+      "@ng-tangram/components": ["./libs/components"],
+      "@ng-tangram/components/*": ["./libs/components/*"],
+      "@ng-tangram/markdown": ["./libs/markdown"],
+      "@ng-tangram/markdown/editor": ["./libs/markdown/editor"],
+      "@ng-tangram/moment-adapter": ["./libs/moment-adapter"],
     }
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
