@@ -1,0 +1,37 @@
+<a class="nt-attachment-trigger"
+  *ngIf="!notriggle"
+  ntFileSelect
+  [limitSize]="limitSize"
+  [multiple]="multiple"
+  [disabled]="disabled || readonly"
+  (select)="_select($event)">
+  <ng-content></ng-content>
+</a>
+<div class="nt-attachment-list">
+  <div class="nt-attachment-item" *ngFor="let item of _displayAttachmentRefs" [@fadeOut]>
+    <div class="nt-attachment-task grid-x"
+    [class.success]="item.status === 2"
+    [class.error]="item.status === 3">
+      <div class="nt-attachment-symbol cell shrink">
+        <span [class]="icons[item.category]"></span>
+      </div>
+      <div class="task-info cell auto">
+        <a class="task-name" [attr.href]="item.link" target="_blank">{{item.name}}</a>
+        <span *ngIf="item.size">{{ item.size | filesize | uppercase }}</span>
+        <span class="task-error" *ngIf="item.error">Error&nbsp;-&nbsp;{{item.error}}</span>
+      </div>
+      <div class="task-action cell shrink"
+        *ngIf="!disabled && !readonly"
+        (click)="_remove(item)">
+        <span aria-hidden="true">&times;</span>
+      </div>
+    </div>
+    <nt-progress class="nt-attachment-progress"
+      *ngIf="item.status === 1"
+      [class.success]="item.status === 2"
+      [class.alert]="item.status === 3"
+      [value]="item.progress"
+      size="tiny"
+      [@fadeOut]></nt-progress>
+  </div>
+</div>

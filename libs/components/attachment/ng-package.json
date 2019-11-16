@@ -1,0 +1,7 @@
+{
+  "lib": {
+    "entryFile": "public-api.ts",
+    "flatModuleFile": "attachment",
+    "umdId": "nt.components.attachment"
+  }
+}
