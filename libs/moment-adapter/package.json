@@ -1,0 +1,16 @@
+{
+  "name": "@ng-tangram/moment-adapter",
+  "version": "0.0.0-PLACEHOLDER",
+  "author": "livebridge",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/livebridge-lab/ng-tangram"
+  },
+  "peerDependencies": {
+    "@angular/core": "^9.0.0-rc.1 || ^9.0.0",
+    "@ng-tangram/components": ">=0.6.0",
+    "tslib": "^1.10.0"
+  },
+  "sideEffects": false
+}
