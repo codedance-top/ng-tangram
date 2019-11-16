@@ -17,6 +17,9 @@ export * from './file/file-categories';
 export * from './file/file.module';
 export * from './file/file-utils';
 
+export * from './input/pseudo-input.module';
+export * from './input/pseudo-input.component';
+export * from './input/pseudo-caret.component';
 
 export * from './option/option.module';
 export * from './option/option.component';

@@ -1,8 +1,18 @@
 
-{{ _displayValue }}
-<div class="nt-datepicker-placeholder" *ngIf="!value">{{ placeholder }}</div>
-<span class="nt-datepicker-caret {{ icons.caret }}" *ngIf="!value || disabled"></span>
-<span class="nt-datepicker-clear {{ icons.clear }}" (click)="_onClear($event)" *ngIf="value && !disabled"></span>
+<nt-pseudo-input
+  [style.margin.px]="0"
+  [attr.tabindex]="tabIndex"
+  [value]="_displayValue"
+  [placeholder]="placeholder"
+  [disabled]="disabled">
+  <nt-pseudo-caret *ngIf="!value || disabled">
+    <span [class]="icons.caret"></span>
+  </nt-pseudo-caret>
+  <nt-pseudo-caret class="nt-datepicker-clear" (click)="_onClear($event)" *ngIf="value && !disabled">
+    <span [class]="icons.clear"></span>
+  </nt-pseudo-caret>
+</nt-pseudo-input>
+
 <nt-overlay
   [origin]="origin"
   trigger="click"
