@@ -80,13 +80,13 @@ export class NtDatePickerCalendarComponent<D> implements AfterContentInit, OnCha
   @Output() readonly monthSelected: EventEmitter<D> = new EventEmitter<D>();
 
   /** Reference to the current month view component. */
-  @ViewChild(NtDatePickerMonthComponent, { static: false }) monthView: NtDatePickerMonthComponent<D>;
+  @ViewChild(NtDatePickerMonthComponent) monthView: NtDatePickerMonthComponent<D>;
 
   /** Reference to the current year view component. */
-  @ViewChild(NtDatePickerYearComponent, { static: false }) yearView: NtDatePickerYearComponent<D>;
+  @ViewChild(NtDatePickerYearComponent) yearView: NtDatePickerYearComponent<D>;
 
   /** Reference to the current multi-year view component. */
-  @ViewChild(NtDatePickerMultiYearComponent, { static: false }) multiYearView: NtDatePickerMultiYearComponent<D>;
+  @ViewChild(NtDatePickerMultiYearComponent) multiYearView: NtDatePickerMultiYearComponent<D>;
 
   /**
    * The current active date. This determines which time period is shown and which date is
