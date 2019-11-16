@@ -1,0 +1,44 @@
+
+$nt-popconfirm-width: rem-calc(180) !default;
+$nt-popconfirm-padding: $global-padding !default;
+$nt-popconfirm-radius: $global-radius !default;
+$nt-popconfirm-background: $white !default;
+$nt-popconfirm-font-size: rem-calc(14) !default;
+$nt-popconfirm-button-margin: 0 0 0 .4em !default;
+
+$nt-popconfirm-margin: 1rem !default;
+
+@mixin nt-popconfirm-action {
+  text-align: right;
+  .button {
+    margin: $nt-popconfirm-button-margin;
+  }
+}
+
+@mixin nt-popconfirm-title {
+  margin-bottom: $nt-popconfirm-margin;
+}
+
+@mixin nt-popconfirm-pane {
+  width: $nt-popconfirm-width;
+  padding: $nt-popconfirm-padding;
+  border-radius: $nt-popconfirm-radius;
+  background-color: $nt-popconfirm-background;
+  font-size: $nt-popconfirm-font-size;
+  display: block;
+}
+
+@mixin nt-popconfirm {
+  .nt-popconfirm {
+
+    @include nt-popconfirm-pane;
+
+    .nt-popconfirm-title {
+      @include nt-popconfirm-title;
+    }
+
+    .nt-popconfirm-action {
+      @include nt-popconfirm-action;
+    }
+  }
+}
