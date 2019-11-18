@@ -21,7 +21,7 @@ module.exports = {
         test: /\.component\.md$/,
         use: [
           // { loader: 'html-loader' },
-          { loader: path.resolve('scripts/markdown-template-loader.js') },
+          { loader: path.resolve('scripts/markdown-loader.js') },
         ]
       }
     ]
