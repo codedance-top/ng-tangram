@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nt-attachment-document',
   templateUrl: 'attachment.component.md'
 })
 export class AttachmentDocumentComponent {

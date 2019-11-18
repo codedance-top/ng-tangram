@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nt-breadcrumbs-document',
   templateUrl: 'breadcrumbs.component.md'
 })
 export class BreadcrumbsDocumentComponent {

@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nt-tree-document',
   templateUrl: 'tree.component.md'
 })
 export class TreeDocumentComponent {

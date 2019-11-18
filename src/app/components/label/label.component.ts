@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nt-label-document',
   templateUrl: 'label.component.md'
 })
 export class LabelDocumentComponent {

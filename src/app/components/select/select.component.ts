@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nt-select-document',
   templateUrl: 'select.component.md'
 })
 export class SelectDocumentComponent {

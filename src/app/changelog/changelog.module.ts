@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     NtMarkdownModule,
     RouterModule.forChild([
-      { path: '', component: ChangelogComponent }
+      { path: '', component: ChangelogComponent, data: { title: '变更日志' } }
     ])
   ],
   declarations: [ChangelogComponent]
