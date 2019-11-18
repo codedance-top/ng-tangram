@@ -21,16 +21,13 @@ $nt-pseudo-caret-color: $select-triangle-color !default;
   $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
 
   position: absolute;
+  display: inline-block;
   right: $nt-pseudo-caret-padding;
   top: ($height - $input-font-size) / 2;
   font-size: 1em;
   line-height: 1em;
   color: $nt-pseudo-caret-color;
   pointer-events: none;
-  &::after {
-    display: block;
-    left: auto;
-  }
 }
 
 @mixin nt-pseudo-validate(

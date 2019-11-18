@@ -4,6 +4,7 @@
 @import 'avatar/avatar';
 @import 'badge/badge';
 @import 'button/button';
+@import 'core/input/pseudo-input';
 @import 'core/overlay/overlay';
 @import 'core/option/option';
 
@@ -59,12 +60,14 @@
   @include nt-drawer;
   @include nt-dropdown;
   @include nt-forms;
+  @include nt-input-group;
   @include nt-modal;
   @include nt-overlay;
   @include nt-option;
   @include nt-picture;
   @include nt-popconfirm;
   @include nt-popover;
+  @include nt-pseudo-input;
   @include nt-progress;
   @include nt-radio;
   @include nt-scrim;
@@ -73,6 +76,5 @@
   @include nt-table;
   @include nt-tooltip;
   @include nt-tree;
-  @include nt-input-group;
 }
 

@@ -171,9 +171,8 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
     this.openedChange.emit(this._opened = opened);
   }
 
-  /** 开始点击事件的订阅 */
+  /** 开始外部点击事件的订阅 */
   private _subscribeOutsideClickEvent() {
-    // console.log('_subscribeOutsideClickEvent');
     this._outsideClickSubscription = fromOutsideClick([this._element.nativeElement], this._container)
       .pipe(takeUntil(this._destory))
       .subscribe(
@@ -187,10 +186,9 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  /** 取消点击事件的订阅 */
+  /** 取消外部点击事件的订阅 */
   private _unsubscribeOutsideClickEvent() {
     if (this._outsideClickSubscription) {
-      // console.log('_unsubscribeOutsideClickEvent');
       this._outsideClickSubscription.unsubscribe();
       this._outsideClickSubscription = null;
     }
