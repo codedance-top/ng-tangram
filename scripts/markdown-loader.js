@@ -20,9 +20,7 @@ renderer.include = function (text) {
 
 renderer.heading = function (text, level) {
   text = text.trim();
-  return `<h${level} id="${text.replace(/\<a[^>]*?\>((.|\n)*?)\<\/a\>/g, '$1').replace(/ +/g, '-')}">
-        ${text}
-      </h${level}>`;
+  return `<h${level} id="${text.replace(/\<a[^>]*?\>((.|\n)*?)\<\/a\>/g, '$1').replace(/ +/g, '-')}">${text}</h${level}>`;
 };
 
 renderer.listitem = function (text) {
@@ -50,6 +48,7 @@ kramed.setOptions({
 
 module.exports = function (source) {
   let html = kramed(source, { renderer });
+  console.log(html);
 
   return `export default ${
     JSON.stringify(html)

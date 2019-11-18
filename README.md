@@ -1,4 +1,4 @@
-# Angular 8+ Components
+# Angular 9+ Components
 
 [![npm version](https://badge.fury.io/js/%40ng-tangram%2Fcomponents.svg)](https://www.npmjs.com/@ng-tangram/components)
 
@@ -10,6 +10,7 @@
 ### yarn
 `yarn add @ng-tangram/components`
 
+<!-- 
 ## 组件列表
 
 名称 | 完成情况 | 发布版本
@@ -46,4 +47,4 @@ Slider 滚动条 | | `>= 0.6.0`
 Tabs 标签页 | | `>= 0.6.0`
 [Tooltip 提示](https://tangram.proding.net/components/tooltip) | &radic; | `0.1.0`
 Toast 提醒框 | | `>= 0.6.0` 
-[Tree 树](https://tangram.proding.net/components/tree) | &radic; | `0.5.0`
+[Tree 树](https://tangram.proding.net/components/tree) | &radic; | `0.5.0` -->
