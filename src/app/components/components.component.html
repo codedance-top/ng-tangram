@@ -1,0 +1,29 @@
+<div class="grid-x">
+  <div class="large-2 medium-3 cell nav-treebar">
+    <ng-container *ngIf="hasGroup else flatten">
+      <ng-container *ngFor="let group of groups">
+        <div class="nav-treebar-group">
+          {{ group.name }}
+        </div>
+        <ul class="nav nav-tree nav-stacked no-bullet">
+          <li *ngFor="let item of group.categories" routerLinkActive="active">
+            <a [routerLink]="['./', item.path]">
+              {{item.title}}</a>
+          </li>
+        </ul>
+      </ng-container>
+    </ng-container>
+    <ng-template #flatten>
+      <ul class="nav nav-tree nav-stacked no-bullet">
+        <li *ngFor="let item of categories" routerLinkActive="active">
+          <a [routerLink]="['./', item.path]">
+            {{item.title}}</a>
+        </li>
+      </ul>
+    </ng-template>
+  </div>
+  <div class="large-10 medium-9 cell nav-content nt-markdown">
+    <h1>{{ title }}</h1>
+    <router-outlet></router-outlet>
+  </div>
+</div>

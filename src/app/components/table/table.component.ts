@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nt-table-document',
   templateUrl: 'table.component.md'
 })
 export class TableDocumentComponent {

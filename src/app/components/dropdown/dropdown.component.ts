@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nt-dropdown-document',
   templateUrl: 'dropdown.component.md'
 })
 export class DropdownDocumentComponent {

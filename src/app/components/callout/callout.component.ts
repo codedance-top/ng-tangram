@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nt-callout-document',
   templateUrl: 'callout.component.md'
 })
 export class CalloutDocumentComponent {

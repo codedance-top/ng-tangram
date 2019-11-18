@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nt-badge-document',
   templateUrl: 'badge.component.md'
 })
 export class BadgeDocumentComponent {

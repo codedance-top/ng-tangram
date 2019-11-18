@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nt-menu-document',
   templateUrl: 'menu.component.md'
 })
 export class MenuDocumentComponent {
