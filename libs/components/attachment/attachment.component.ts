@@ -89,11 +89,11 @@ export class NtAttachmentComponent<T> extends NtFormFieldControl<NtAttachmentRef
   get readonly() { return this._readonly; }
   set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
 
-  private _notriggle = false;
+  private _notrigger = false;
 
   @Input()
-  get notriggle() { return this._notriggle; }
-  set notriggle(value: boolean) { this._notriggle = coerceBooleanProperty(value); }
+  get notrigger() { return this._notrigger; }
+  set notrigger(value: boolean) { this._notrigger = coerceBooleanProperty(value); }
 
   private _required = false;
 
@@ -118,8 +118,6 @@ export class NtAttachmentComponent<T> extends NtFormFieldControl<NtAttachmentRef
   @Input()
   get multiple() { return this._multiple; }
   set multiple(value: boolean) { this._multiple = coerceBooleanProperty(value); }
-
-  private _
 
   private _limitSize = Number.MAX_VALUE;
 
