@@ -12,11 +12,11 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { NtMarkdownEngine } from './markdown-engine';
+import { NT_MARKDOWN_ENGINE, NtMarkdownEngine } from './markdown-engine';
 
 @Component({
   selector: 'nt-markdown, [nt-markdown]',
-  template: '<div [innerHtml]="markdown"></div>',
+  template: '',
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'nt-markdown'
@@ -24,75 +24,73 @@ import { NtMarkdownEngine } from './markdown-engine';
 })
 export class NtMarkdownComponent implements OnChanges {
 
-  private _path: string;
-  private _data: string;
-  private _md: any;
   private _ext: string;
 
-  changeLog: string[] = [];
+  private _path: string;
 
-  markdown: string;
+  @Input()
+  get path() { return this._path; }
+  set path(value: string) { this._path = value || ''; }
+
+  private _data: string;
+
+  @Input()
+  get data() { return this._data; }
+  set data(value: string) { this._data = value; }
 
   constructor(
     @Inject(PLATFORM_ID) private _platformId: Object,
-    private _markdownService: NtMarkdownEngine,
+    @Inject(NT_MARKDOWN_ENGINE) private _markdownEngine: NtMarkdownEngine,
     private _elementRef: ElementRef) { }
 
   ngOnChanges(changes: SimpleChanges) {
     const pathChange = changes.path;
     const dataChange = changes.data;
     if (pathChange && !pathChange.firstChange) {
-      this.onPathChange();
+      this._pathChange();
     }
     if (dataChange && !dataChange.firstChange) {
-      this.onDataChange();
+      this._dataChange();
     }
   }
 
-  @Input()
-  get path() { return this._path; }
-  set path(value: string) { this._path = value || ''; }
-
-  @Input()
-  get data() { return this._data; }
-  set data(value: string) { this._data = value; }
-
-  // on input
-  onDataChange() {
-    if (this.data) {
-      this._elementRef.nativeElement.innerHTML = this._markdownService.compile(this.data);
-    } else {
-      this._elementRef.nativeElement.innerHTML = '';
-    }
-    this.postpare();
-  }
-
-  /**
+  /*
    *  After view init
    */
   ngAfterViewInit() {
     if (this.path) {
-      this.onPathChange();
+      this._pathChange();
     } else {
-      this.onDataChange();
+      this._dataChange();
+    }
+  }
+
+  // on input
+  private _dataChange() {
+    if (this.data) {
+      this._markdownEngine.compile(this.data).subscribe(
+        markdown => this._setMarkdownHtml(markdown)
+      );
+    } else {
+      this._setMarkdownHtml('');
     }
   }
 
   /**
    * get remote conent;
    */
-  onPathChange() {
+  private _pathChange() {
     if (this.path) {
       this._ext = this.path && this.path.split('.').splice(-1).join();
-      this._markdownService.getContent(this.path)
-        .subscribe(
-          data => {
-            this._md = this._ext !== 'md' ? '```' + this._ext + '\n' + data + '\n```' : data;
-            this._elementRef.nativeElement.innerHTML = this._markdownService.compile(this.prepare(this._md));
-            this.postpare();
-          },
-          error => this._handleError(error)
-        );
+      this._markdownEngine.getContent(this.path).subscribe(
+        content => {
+          content = this._ext !== 'md' ? ['```', `${this._ext}\n${content}\n`, '```'].join() : content;
+          this._markdownEngine.compile(this._prepare(content)).subscribe(
+            markdown => this._setMarkdownHtml(markdown)
+          );
+        },
+        error => this._handleError(error)
+      );
     }
   }
 
@@ -106,7 +104,7 @@ export class NtMarkdownComponent implements OnChanges {
   /**
    * Prepare string
    */
-  prepare(raw: string) {
+  private _prepare(raw: string) {
     if (!raw) {
       return '';
     }
@@ -122,11 +120,16 @@ export class NtMarkdownComponent implements OnChanges {
     return raw.replace(/\"/g, '\'');
   }
 
-  postpare() {
+  private _postpare() {
     // 判断是否是浏览器执行，如果是：增加代码高亮
-    typeof highlightAll === 'function'
-      && isPlatformBrowser(this._platformId)
-      && highlightAll(false);
+    if (isPlatformBrowser(this._platformId)) {
+      highlightAll(false);
+    }
+  }
+
+  private _setMarkdownHtml(markdown: string) {
+    this._elementRef.nativeElement.innerHTML = markdown;
+    this._postpare();
   }
 
   /**
