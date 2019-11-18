@@ -113,11 +113,11 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
   get readonly() { return this._readonly; }
   set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
 
-  private _notriggle = false;
+  private _notrigger = false;
 
   @Input()
-  get notriggle() { return this._notriggle; }
-  set notriggle(value: boolean) { this._notriggle = coerceBooleanProperty(value); }
+  get notrigger() { return this._notrigger; }
+  set notrigger(value: boolean) { this._notrigger = coerceBooleanProperty(value); }
 
   private _required = false;
 
