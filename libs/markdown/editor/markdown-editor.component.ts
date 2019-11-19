@@ -267,6 +267,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
 
   changeScreenFilled(fillScreen: boolean) {
     this.fillScreen = fillScreen;
+    this.instance.refresh();
     this._setEditorHeightRange();
   }
 
@@ -332,7 +333,7 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
         lineWrapping: true,
         theme: this.theme || 'default',
         placeholder: this.placeholder,
-        extraKeys: { Enter: 'newlineAndIndentContinueMarkdownList' }
+        extraKeys: { Enter: 'newlineAndIndentContinueMarkdownList' },
       });
 
       this._setEditorHeightRange();
