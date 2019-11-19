@@ -5,7 +5,7 @@
   [cdkConnectedOverlayPositions]="positionPairs"
   [cdkConnectedOverlayOrigin]="origin"
   (positionChange)="onOverlayPositionChange($event)"
-  (backdropClick)="hide()">
+  (backdropClick)="close()">
   <div class="nt-overlay-container {{paddingClass}} {{overlayClass}}"
     (mouseenter)="overlayEnter.emit($event)"
     (mouseleave)="overlayLeave.emit($event)"
