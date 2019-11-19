@@ -13,7 +13,6 @@ import { NtFileSizePipe } from './file-size.pipe';
   declarations: [
     NtFileSizePipe,
     NtFileSelectDirective
-  ],
-  providers: [NtFileSelectDirective]
+  ]
 })
 export class NtFileModule { }
