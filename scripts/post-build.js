@@ -7,7 +7,7 @@ const version = require(`${rootFolder}/package.json`).version;
 
 const lib = process.argv.slice(2).shift();
 const libFolder = join(`${rootFolder}/libs/${lib}`);
-const libPackage = require(`${libFolder}/package.json`);
+const libPackage = require(`${rootFolder}/dist/@ng-tangram/${lib}/package.json`);
 
 
 const distFolder = join(rootFolder, 'dist/@ng-tangram');
