@@ -31,7 +31,9 @@ $foundation-palette: (
 
 $body-background: #FFF;
 $body-font-color: $black;
-$body-font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+$body-font-family:
+-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+// -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
 // "open sans", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
 $body-antialiased: true;
 
@@ -111,7 +113,5 @@ $nt-input-shadow-warning: 0 0 0 0px rgba($warning-color, .1);
 $nt-input-shadow-invalid-focus: 0 0 0 2px rgba($alert-color, .2);
 $nt-input-shadow-valid-focus: 0 0 0 2px rgba($success-color, .2);
 $nt-input-shadow-warning-focus: 0 0 0 2px rgba($warning-color, .2);
-
-$nt-markdown-line-height: 2;
 
 @import '~foundation-sites/scss/foundation';

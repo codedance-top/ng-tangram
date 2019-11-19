@@ -119,7 +119,7 @@ export const COMPONENTS_ROUTES: Routes = [
   {
     path: 'scrim',
     loadChildren: () => import('./scrim/scrim.module').then(mod => mod.ScrimDocumentModule),
-    data: { title: 'Scrim 纱幕', group: COMPONENTS_GROUPS[0] }
+    data: { title: 'Scrim 纱幕', group: COMPONENTS_GROUPS[3] }
   },
   {
     path: 'select',

@@ -18,7 +18,7 @@ import {
 NProgress.configure({ showSpinner: false });
 
 @Component({
-  selector: 'app',
+  selector: 'body[app]',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
