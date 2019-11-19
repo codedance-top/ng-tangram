@@ -12,7 +12,6 @@ import {
 } from '@angular/cdk/overlay';
 import { Location } from '@angular/common';
 import {
-  AfterContentChecked,
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -37,8 +36,6 @@ import {
   NtOverlayPosition
 } from './overlay-positions';
 
-export declare type NtOverlayTriggerType = '' | 'hover' | 'click';
-
 @Component({
   selector: 'nt-overlay, [nt-overlay]',
   templateUrl: 'overlay.component.html',
@@ -51,11 +48,11 @@ export declare type NtOverlayTriggerType = '' | 'hover' | 'click';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, OnChanges, OnDestroy {
+export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   private readonly _destroy = new Subject<void>();
 
-  private _closeEvent = new EventEmitter<any>();
+  private _debounceClose = new EventEmitter<any>();
 
   private _positionChange = new EventEmitter<string>();
 
@@ -67,9 +64,7 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
 
   get opened() { return this._opened; }
 
-  private _isMouseIn = false;
-
-  get isMouseIn() { return this._isMouseIn; }
+  private _markClosed = true;
 
   private _origin: CdkOverlayOrigin;
 
@@ -117,12 +112,6 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
   set nospacing(value: boolean) { this._nospacing = coerceBooleanProperty(value); }
   get nospacing() { return this._nospacing; }
 
-  private _trigger: NtOverlayTriggerType = '';
-
-  @Input()
-  set trigger(value: NtOverlayTriggerType) { this._trigger = value; }
-  get trigger() { return this._trigger; }
-
   private _overlayClass = '';
 
   @Input()
@@ -143,6 +132,9 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
   @Output() beforeOpen = new EventEmitter<any>();
   @Output() beforeClosed = new EventEmitter<any>();
 
+  @Output() overlayEnter = new EventEmitter<any>();
+  @Output() overlayLeave = new EventEmitter<any>();
+
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
   @Output() keydownEvents = new EventEmitter<KeyboardEvent>();
@@ -152,13 +144,15 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() location: Location) {
 
-    this._closeEvent.
+    // 去抖动关闭事件，有时被动触发关闭事件造成跟预计效果不同的现象，
+    // 这可以支持你 "反悔" 关闭事件的触发（100毫米内，可以通过设置 _markClosed = false 来防止）
+    this._debounceClose.
       pipe(
         takeUntil(this._destroy),
         debounceTime(100),
-        filter(_ => this._isMouseIn === false)
+        filter(() => this._markClosed)
       ).
-      subscribe(_ => this.hide());
+      subscribe(() => this.close());
 
     this._positionChange.
       pipe(
@@ -168,7 +162,7 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
       subscribe(position => this._setContainerStyles(position));
 
     if (location) {
-      this._locationChanges = location.subscribe(() => this.hide());
+      this._locationChanges = location.subscribe(() => this.close());
     }
   }
 
@@ -181,13 +175,13 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
       )
       .subscribe(event => {
         if (event.keyCode === ESCAPE) {
-          this.hide();
+          this.close();
         }
         this.keydownEvents.next(event);
       });
 
     this.cdkConnectedOverlay.attach
-      .pipe(takeUntil(this._destroy), filter(() => this.trigger === 'click'))
+      .pipe(takeUntil(this._destroy))
       .subscribe(() => this._subscribeOutsideClickEvent());
 
     this.cdkConnectedOverlay.detach
@@ -200,10 +194,6 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
     if (change && !change.firstChange) {
       this._setPosition();
     }
-  }
-
-  ngAfterContentChecked() {
-
   }
 
   ngOnDestroy() {
@@ -220,7 +210,7 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
     this._paddingClass = getPositionClassName(this._positionPairs[0]);
   }
 
-  /** 开始点击事件的订阅 */
+  /** 开始外部点击事件的订阅 */
   private _subscribeOutsideClickEvent() {
     if (!this._outsideClickSubscription) {
       this._outsideClickSubscription = fromOutsideClick([
@@ -229,12 +219,12 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
       ])
         .pipe(takeUntil(this._destroy))
         .subscribe(() => {
-          this.hide();
+          this.close();
         });
     }
   }
 
-  /** 取消点击事件的订阅 */
+  /** 取消外部点击事件的订阅 */
   private _unsubscribeOutsideClickEvent() {
     if (this._outsideClickSubscription) {
       this._outsideClickSubscription.unsubscribe();
@@ -242,37 +232,33 @@ export class NtOverlayComponent implements AfterViewInit, AfterContentChecked, O
     }
   }
 
-  show() {
+  open() {
     this._opened = true;
+    this._markClosed = false;
     this._changeDetectorRef.markForCheck();
   }
 
-  hide() {
+  close() {
     this._opened = false;
+    this._markClosed = true;
     this._changeDetectorRef.markForCheck();
   }
 
   toggle() {
-    if (this.trigger === 'click') {
-      this.opened ? this.hide() : this.show();
-    }
+    this.opened ? this.close() : this.open();
   }
 
   onOverlayPositionChange(event: ConnectedOverlayPositionChange) {
     this._positionChange.next(getPositionClassName(event.connectionPair));
   }
 
-  onMouseEnter(_: Event) {
-    if (this.trigger === 'hover') {
-      this._isMouseIn = true;
-      this.show();
-    }
+  markOpen() {
+    this.open();
   }
 
-  onMouseLeave(_: Event) {
-    if (this.trigger === 'hover') {
-      this._closeEvent.next(this._isMouseIn = false);
-    }
+  markClose() {
+    this._markClosed = true;
+    this._debounceClose.next();
   }
 
   onAnimationStart(event: AnimationEvent): void {

@@ -25,37 +25,6 @@ export enum NtOverlayOrientation {
 }
 
 /**
- * 定义并返回一个 overlay 窗体定位
- * @param originX 主体的中心x轴，窗体会相对于主体的中心点定位。
- * @param originY 主体的中心y轴，窗体会相对于主体的中心点定位。
- * @param overlayX 窗体的中心x轴。
- * @param overlayY 窗体的中心y轴。
- */
-export function getConnectionPositionPair(
-  originX: HorizontalConnectionPos, originY: VerticalConnectionPos,
-  overlayX: HorizontalConnectionPos, overlayY: VerticalConnectionPos) {
-  return { originX, originY, overlayX, overlayY } as ConnectionPositionPair;
-}
-
-/**
- * 获取定位名称拼接字符串
- * @param pair 定位类型。
- */
-export function getPositionClassName(pair: ConnectionPositionPair) {
-  return `${pair.originX}-${pair.originY}-${pair.overlayX}-${pair.overlayY}`;
-}
-
-/**
- *
- * @param position
- */
-export function getPositionOrientation(position: string): NtOverlayOrientation {
-  return Object.keys(NT_OVERLAY_POSITION_PAIRS).indexOf(position) > 5
-    ? NtOverlayOrientation.Horizontal
-    : NtOverlayOrientation.Vertical;
-}
-
-/**
  * Overley 方向定位常量
  */
 export const [
@@ -167,3 +136,35 @@ export const NT_OVERLAY_POSITION_PAIRS = {
     LEFT_BOTTOM, LEFT_CENTER, LEFT_TOP
   ],
 };
+
+
+/**
+ * 定义并返回一个 overlay 窗体定位
+ * @param originX 主体的中心x轴，窗体会相对于主体的中心点定位。
+ * @param originY 主体的中心y轴，窗体会相对于主体的中心点定位。
+ * @param overlayX 窗体的中心x轴。
+ * @param overlayY 窗体的中心y轴。
+ */
+export function getConnectionPositionPair(
+  originX: HorizontalConnectionPos, originY: VerticalConnectionPos,
+  overlayX: HorizontalConnectionPos, overlayY: VerticalConnectionPos) {
+  return { originX, originY, overlayX, overlayY } as ConnectionPositionPair;
+}
+
+/**
+ * 获取定位名称拼接字符串
+ * @param pair 定位类型。
+ */
+export function getPositionClassName(pair: ConnectionPositionPair) {
+  return `${pair.originX}-${pair.originY}-${pair.overlayX}-${pair.overlayY}`;
+}
+
+/**
+ *
+ * @param position
+ */
+export function getPositionOrientation(position: string): NtOverlayOrientation {
+  return Object.keys(NT_OVERLAY_POSITION_PAIRS).indexOf(position) > 5
+    ? NtOverlayOrientation.Horizontal
+    : NtOverlayOrientation.Vertical;
+}

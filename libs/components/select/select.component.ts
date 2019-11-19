@@ -13,6 +13,7 @@ import {
   LEFT_ARROW,
   RIGHT_ARROW,
   SPACE,
+  TAB,
   UP_ARROW
 } from '@angular/cdk/keycodes';
 import {
@@ -38,7 +39,8 @@ import {
   QueryList,
   Self,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  Attribute
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
@@ -89,8 +91,7 @@ export class NtSelectChange {
   ],
   host: {
     'class': 'nt-select',
-    '(resize)': 'onResize()',
-    '[class.focus]': 'overlay.isOpen'
+    '(window:resize)': 'onResize()'
   }
 })
 export class NtSelectComponent extends NtFormFieldControl<any>
@@ -104,15 +105,16 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   _positionPairs: ConnectionPositionPair[] = [BOTTOM_LEFT, TOP_LEFT];
 
+  tabIndex: number;
+
   private _compareWith = (o1: any, o2: any) => o1 === o2;
   private _onChange: (value: any) => void = () => { };
   private _onTouched = () => { };
-  private _filter: (keyword: string, option: NtOptionComponent) => boolean;
 
   private _value: any;
 
   get value() { return this._value; }
-  get triggerValue(): string {
+  get displayValue(): string {
     if (this.empty) {
       return '';
     }
@@ -161,7 +163,10 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   set multiple(value: boolean) { this._multiple = coerceBooleanProperty(value); }
   get multiple() { return this._multiple; }
 
+  private _filter: (keyword: string, option: NtOptionComponent) => boolean;
+
   @Input()
+  get filter() { return this._filter; }
   set filter(value: (input: string, option: NtOptionComponent) => boolean) {
     if (typeof value === 'function') {
       this._filter = value;
@@ -172,7 +177,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       };
     }
   }
-  get filter() { return this._filter; }
 
   @Input() filterNotFound = 'Not Found';
 
@@ -189,12 +193,13 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       return this._placeholder;
     }
 
-    return this.filter ? this.triggerValue : this._placeholder;
+    return this.filter ? this.displayValue : this._placeholder;
   }
 
   _keyManager: ActiveDescendantKeyManager<NtOptionComponent>;
 
-  @ViewChild('inputElement', { static: true }) inputElement: ElementRef;
+  @ViewChild('inputElement', { static: false }) inputElement: ElementRef;
+
   @ViewChild('paneElement', { static: true }) paneElement: ElementRef;
 
   @ViewChild(NtOverlayComponent, { static: true }) overlay: NtOverlayComponent;
@@ -238,10 +243,10 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     private _ngZone: NgZone,
     private _elementRef: ElementRef,
     private _changeDetectorRef: ChangeDetectorRef,
+    @Attribute('tabindex') tabIndex: string,
     @Optional() @Self() public ngControl: NgControl,
     @Optional() @Inject(NT_SELECT_ICONS) public icons: NtSelectIcons) {
     super();
-
 
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -249,6 +254,8 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
     this.origin = new CdkOverlayOrigin(this._elementRef);
     this.icons = { ...DEFAULT_SELECT_ICONS, ...icons };
+
+    this.tabIndex = parseInt(tabIndex) || 0;
   }
 
   ngOnInit() {
@@ -269,11 +276,11 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   }
 
   onResize() {
-    this._width = this.inputElement.nativeElement.clientWidth;
+    this._width = this._elementRef.nativeElement.clientWidth;
   }
 
-  onSearch(event: KeyboardEvent) {
-    if (this.focused && this.filter && !this.disabled) {
+  _onSearch(event: KeyboardEvent) {
+    if (this.overlay.opened && this.filter && !this.disabled) {
       const target: any = event.target;
       this.options.forEach(option => option.hidden = !this.filter(target.value, option));
     }
@@ -299,7 +306,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   _afterClosed(event: any) {
     this._resetFilterResult();
-    this.inputElement.nativeElement.blur();
     this.afterClosed.next(event);
   }
 
@@ -307,19 +313,30 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     this.positionChange.next(change);
   }
 
-  onFocus() {
-    if (!this.overlay.isOpen && !this._disabled) {
-      this.overlay.show();
-      this._focused = true;
+  _onInputClick(event: Event) {
+    if (!this.disabled) {
+      this.overlay.toggle();
     }
+    event.stopPropagation();
   }
 
-  onBlur() {
+  _onInputFocus() {
+    this._focused = true;
+    this.overlay.markOpen();
+  }
+
+  _onInputBlur() {
     this._focused = false;
   }
 
   focus() {
-    this.inputElement.nativeElement.focus();
+    if (!this.disabled) {
+      if (this.filter) {
+        this.inputElement.nativeElement.focus();
+      } else {
+        this.overlay.open();
+      }
+    }
   }
 
   writeValue(value: any) {
@@ -336,15 +353,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     this._onTouched = fn;
   }
 
-  clear() {
-    if (!this.disabled) {
-      this._clearSelection();
-      this._value = null;
-      this._onChange(this.value);
-      this.valueChange.next(this.value);
-    }
-  }
-
   setDisabledState(isDisabled: boolean) {
     this._disabled = isDisabled;
   }
@@ -352,7 +360,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   /** Handles all keydown events on the select. */
   _handleKeydown(event: KeyboardEvent): void {
     if (!this.disabled) {
-      this.overlay.isOpen ? this._handleOpenKeydown(event) : this._handleClosedKeydown(event);
+      this.overlay.opened ? this._handleOpenKeydown(event) : this._handleClosedKeydown(event);
     }
   }
 
@@ -367,13 +375,15 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
     } else if (isArrowKey && event.altKey) {
       event.preventDefault();
-      this.overlay.hide();
+      this.overlay.close();
     } else if ((keyCode === ENTER || keyCode === SPACE) && manager.activeItem) {
       event.preventDefault();
       manager.activeItem.selectViaInteraction();
       if (keyCode === ENTER && this.multiple) {
-        this.overlay.hide();
+        this.overlay.close();
       }
+    } else if (keyCode === TAB) {
+      this.overlay.close();
     } else {
 
       const previouslyFocusedIndex = manager.activeItemIndex;
@@ -395,7 +405,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     // Open the select on ALT + arrow key to match the native <select>
     if (isOpenKey || ((this.multiple || event.altKey) && isArrowKey)) {
       event.preventDefault(); // prevents the page from scrolling down when pressing space
-      this.overlay.show();
+      this.overlay.open();
     } else if (!this.multiple) {
       this._keyManager.onKeydown(event);
     }
@@ -409,8 +419,8 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       .pipe(takeUntil(changedOrDestroyed), filter(event => event.isUserInput))
       .subscribe(event => {
         this._onSelect(event.source);
-        if (!this.multiple && this.overlay.isOpen) {
-          this.overlay.hide();
+        if (!this.multiple && this.overlay.opened) {
+          this.overlay.close();
         }
       });
 
@@ -436,14 +446,14 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       // Restore focus to the trigger before closing. Ensures that the focus
       // position won't be lost if the user got focus into the overlay.
       this.focus();
-      this.overlay.hide();
+      this.overlay.close();
       // this.inputElement.nativeElement.blur();
     });
 
     this._keyManager.change.pipe(takeUntil(this._destroy)).subscribe(() => {
-      if (this.overlay.isOpen && this.paneElement) {
+      if (this.overlay.opened && this.paneElement) {
         this._scrollActiveOptionIntoView();
-      } else if (!this.overlay.isOpen && !this.multiple && this._keyManager.activeItem) {
+      } else if (!this.overlay.opened && !this.multiple && this._keyManager.activeItem) {
         this._keyManager.activeItem.selectViaInteraction();
       }
     });
@@ -600,5 +610,17 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       const scrollOffset = this.paneElement.nativeElement.offsetHeight - activeOption.getOffsetHeight();
       this.paneElement.nativeElement.scrollTop = activeOption.getOffsetTop() - scrollOffset;
     }
+  }
+
+
+
+  _testOnFocus() {
+    console.log('input:focus');
+    this.overlay.markOpen();
+  }
+
+  _testOnBlur() {
+    console.log('input:blur')
+    this.overlay.markClose();
   }
 }

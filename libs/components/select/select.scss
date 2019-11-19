@@ -1,0 +1,33 @@
+$nt-select-radius: $global-radius !default;
+$nt-select-background: $white !default;
+
+@mixin nt-select {
+
+  .nt-select {
+    position: relative;
+    display: block;
+    margin: 0 0 $form-spacing;
+  }
+
+  .nt-select-pane {
+    min-width: 100px;
+    border-radius: $nt-select-radius;
+    background-color: $nt-select-background;
+    overflow-y: scroll;
+
+    /* 目前存在 max-height 的初始值为0时 OverlayPosition 判断过早导致窗口边界超出浏览器的现象，在解决这个问题之前暂时注释此代码 */
+
+    // max-height: 0px;
+    // transition: max-height .3s;
+    // &.folded {
+      max-height: 256px;
+    // }
+
+    .filter-empty {
+      padding: $nt-option-padding;
+      color: $medium-gray;
+      cursor: $input-cursor-disabled;
+      // text-align: center;
+    }
+  }
+}

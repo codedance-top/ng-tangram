@@ -2,12 +2,13 @@
 <nt-overlay
   [origin]="origin"
   [position]="position"
-  [trigger]="trigger"
   [arrow]="pane?.arrow"
   (afterOpen)="_afterOpen($event)"
   (afterClosed)="_afterClosed($event)"
   (beforeOpen)="_beforeOpen($event)"
   (beforeClosed)="_beforeClosed($event)"
+  (overlayEnter)="_onMouseEnter($event)"
+  (overlayLeave)="_onMouseLeave($event)"
   (positionChange)="_positionChange($event)">
   <ng-content select="nt-dropdown-pane"></ng-content>
 </nt-overlay>
