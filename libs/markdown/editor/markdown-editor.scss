@@ -12,6 +12,7 @@ $nt-markdown-editor-padding: $input-padding $input-padding * 1.25 !default;
 
 $nt-markdown-editor-font-family: inherit !default;
 $nt-markdown-editor-font-size: $input-font-size !default;
+$nt-markdown-editor-line-height: 1.5 !default;
 
 $nt-markdown-editor-preview-background: #fafafa !default;
 
@@ -126,6 +127,8 @@ $nt-markdown-editor-preview-background: #fafafa !default;
   z-index: 0;
   overflow: hidden;
   cursor: text;
+  line-height: $nt-markdown-editor-line-height;
+
   textarea {
     border: none;
     box-shadow: none;
