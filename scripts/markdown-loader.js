@@ -48,7 +48,6 @@ kramed.setOptions({
 
 module.exports = function (source) {
   let html = kramed(source, { renderer });
-  console.log(html);
 
   return `export default ${
     JSON.stringify(html)

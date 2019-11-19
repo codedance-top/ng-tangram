@@ -25,9 +25,7 @@
     "publish": "npm run publish:components && npm run publish:markdown && npm run publish:moment-adapter",
     "publish:components": "cd dist/@ng-tangram/components && npm publish && cd ../../../",
     "publish:markdown": "cd dist/@ng-tangram/markdown && npm publish && cd ../../../",
-    "publish:moment-adapter": "cd dist/@ng-tangram/moment-adapter && npm publish && cd ../../../",
-    "prepublish:docs": "tar -cvf ng-tangram-docs.tar.gz docs/* package.json",
-    "publish:docs": "scp -r ./ng-tangram-docs.tar.gz root@39.105.124.168:/var/www"
+    "publish:moment-adapter": "cd dist/@ng-tangram/moment-adapter && npm publish && cd ../../../"
   },
   "config": {
     "commitizen": {
@@ -99,20 +97,12 @@
     "dompurify": "^2.0.7",
     "glob": "^7.1.3",
     "highlightjs": "^9.12.0",
-    "html-loader": "^0.5.5",
     "husky": "^3.0.9",
     "jsdom": "^15.2.1",
     "kramed": "^0.5.6",
-    "loader-utils": "^1.2.3",
     "ng-packagr": "^9.0.0-rc.1",
     "nprogress": "^0.2.0",
     "prismjs": "^1.17.1",
-    "rollup": "^1.26.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-sourcemaps": "^0.4.2",
-    "rollup-plugin-uglify": "^6.0.3",
-    "sanitize-html": "^1.20.1",
     "tsickle": "^0.37.0",
     "tslib": "^1.10.0",
     "tslint": "^5.13.0",
