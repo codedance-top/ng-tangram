@@ -1,4 +1,6 @@
 import 'zone.js/dist/zone-node';
+import 'reflect-metadata';
+
 import * as domino from 'domino';
 import * as express from 'express';
 import { join } from 'path';
@@ -9,30 +11,20 @@ global['window'] = win;
 global['document'] = win.document;
 global['navigator'] = win.navigator;
 
-import { enableProdMode } from '@angular/core';
-import { ngExpressEngine } from '@nguniversal/express-engine';
-import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
-
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./server/main');
-
-enableProdMode();
-
+const { AppServerModule, ngExpressEngine } = require('./server/main');
 const app = express();
 
 const PORT = process.env.PORT || 8300;
-const DOCS_FOLDER = join(process.cwd(), 'docs');
+const DOCS_FOLDER = join(process.cwd(), 'docs/browser');
 
 app.engine('html', ngExpressEngine({
-  bootstrap: AppServerModuleNgFactory,
-  providers: [
-    provideModuleMap(LAZY_MODULE_MAP)
-  ]
+  bootstrap: AppServerModule
 }));
 
 app.set('view engine', 'html');
-app.set('views', join(DOCS_FOLDER, 'browser'));
+app.set('views', DOCS_FOLDER);
 
-app.get('*.*', express.static(join(DOCS_FOLDER, 'browser'), {
+app.get('*.*', express.static(DOCS_FOLDER, {
   maxAge: '1y'
 }));
 
