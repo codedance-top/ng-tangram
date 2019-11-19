@@ -6,7 +6,8 @@ import {
   HttpEvent,
   HttpEventType,
   HttpRequest,
-  HttpResponse
+  HttpResponse,
+  HttpErrorResponse
 } from '@angular/common/http';
 /**
  * 文件上传请求服务
@@ -47,9 +48,9 @@ export abstract class NtUploadHandler {
             : NtUploadStatus.ERROR,
           data: this.getResponseData(event.body)
         } as NtUploadResult<T>)),
-        catchError(error => of({
+        catchError((error: HttpErrorResponse) => of({
           status: NtUploadStatus.ERROR,
-          error: error.statusText
+          error: this.getErrorMessage(error)
         }))
       );
   }
@@ -86,6 +87,12 @@ export abstract class NtUploadHandler {
    * @param response 响应数据
    */
   protected abstract getResponseData<T>(body: any): T;
+
+  /**
+   * 获取文件上传结束错误数据
+   * @param error 错误
+   */
+  protected abstract getErrorMessage(error: HttpErrorResponse): any;
 }
 
 @Injectable()
@@ -94,6 +101,8 @@ export class NtNoopUploadHandler extends NtUploadHandler {
   protected getRequestData(file: File | Blob) { return file; }
 
   protected getResponseData<T>(body: any): T { return body; }
+
+  protected getErrorMessage(error: HttpErrorResponse)  { return error.statusText; }
 }
 
 
