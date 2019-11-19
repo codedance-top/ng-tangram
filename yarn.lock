@@ -138,10 +138,10 @@
   resolved "https://registry.npmjs.org/@angular/animations/-/animations-9.0.0-rc.2.tgz#14c2e5e69e56dc831ab09f0d1efe54617fd601d8"
   integrity sha512-KeqKjO7KKZ0g7rGVT2SLJK0jfbx9Z35SpzOKjtQj87C9BUyjL4sDHKGMoPv9pTjjKNmw3czMMuU8hIWVWNebsg==
 
-"@angular/cdk@^9.0.0-rc.1":
-  version "9.0.0-rc.1"
-  resolved "https://registry.npmjs.org/@angular/cdk/-/cdk-9.0.0-rc.1.tgz#aca743f537302d84a38534f7a558d9f4e89ff40f"
-  integrity sha512-ZHvvgE7Aq689ryXX80XzKTlY4Whc69GzT/WJ1yBdsZungDvksokg9FeYr5CINVkiMY0FfM6/UH4EC/W7BGrzKA==
+"@angular/cdk@^9.0.0-rc.2":
+  version "9.0.0-rc.2"
+  resolved "https://registry.npmjs.org/@angular/cdk/-/cdk-9.0.0-rc.2.tgz#b67fcd04db277d22b94a1be053533a8c4d21dadc"
+  integrity sha512-KhpE5ezCCfH5zDX9rMAbZqWPqQSi5wVB0RqUQn5uQV9hRIj8qz12wbw/J0y1Ezpe+TeyNBi9XynbQgLvXziMGg==
   optionalDependencies:
     parse5 "^5.0.0"
 
@@ -2965,10 +2965,15 @@ core-js@3.3.6:
   resolved "https://registry.npmjs.org/core-js/-/core-js-3.3.6.tgz#6ad1650323c441f45379e176ed175c0d021eac92"
   integrity sha512-u4oM8SHwmDuh5mWZdDg9UwNVq5s1uqq6ZDLLIs07VY+VJU91i3h4f3K/pgFvtUQPGdeStrZ+odKyfyt4EnKHfA==
 
-core-js@^2.4.0, core-js@~2.6.9:
+core-js@^2.4.0:
   version "2.6.10"
   resolved "https://registry.npmjs.org/core-js/-/core-js-2.6.10.tgz#8a5b8391f8cc7013da703411ce5b585706300d7f"
   integrity sha512-I39t74+4t+zau64EN1fE5v2W31Adtc/REhzWN+gWRRXg6WH5qAsZm62DHpQ1+Yhe4047T55jvzz7MUqF/dBBlA==
+
+core-js@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.npmjs.org/core-js/-/core-js-3.4.1.tgz#76dd6828412900ab27c8ce0b22e6114d7ce21b18"
+  integrity sha512-KX/dnuY/J8FtEwbnrzmAjUYgLqtk+cxM86hfG60LGiW3MmltIc2yAmDgBgEkfm0blZhUrdr1Zd84J2Y14mLxzg==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
