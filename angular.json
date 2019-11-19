@@ -23,6 +23,7 @@
                 "module.rules": "prepend"
               }
             },
+            "aot": true,
             "outputPath": "docs/browser",
             "index": "src/index.html",
             "main": "src/main.ts",

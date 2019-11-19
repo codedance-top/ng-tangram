@@ -14,6 +14,7 @@
     "allowSyntheticDefaultImports": true,
     "removeComments": false,
     "baseUrl": "./",
+    "rootDir": ".",
     "paths": {
       "@ng-tangram/example": ["./libs/example"],
       "@ng-tangram/components": ["./libs/components"],
