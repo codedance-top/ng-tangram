@@ -57,6 +57,13 @@ $nt-pseudo-caret-color: $select-triangle-color !default;
       cursor: $input-cursor-disabled;
     }
 
+    &.only-caret {
+      padding: 0 !important;
+      border: 0 !important;
+      margin: 0 !important;
+      box-shadow: none !important;
+    }
+
     .nt-pseudo-value,
     .nt-pseudo-placeholder {
       @include nt-pseudo-value;
