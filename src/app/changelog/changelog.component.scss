@@ -1,0 +1,60 @@
+@import 'src/styles/variables';
+
+.nt-changelog {
+  display: block;
+  padding: 20px 30px;
+}
+
+.nt-changelog h1,
+.nt-changelog h2,
+.nt-changelog h3,
+.nt-changelog h4,
+.nt-changelog h5,
+.nt-changelog h6 {
+  margin-top: 1em;
+}
+
+
+.nt-changelog-timeline {
+  border-left: 1px solid $light-gray;
+  // box-shadow: inset 0px 0px 5px $light-gray;
+
+  nt-markdown {
+    line-height: 2;
+  }
+
+  h1 {
+    position: relative;
+  }
+  h1:after {
+    content: '';
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    border: 2px solid $primary-color;
+    background: $white;
+    left: -39px;
+    top: 50%;
+    margin-top: -8px;
+    // box-shadow: 0px 0px 10px rgba($primary-color, .5);
+  }
+
+  h2 {
+    position: relative;
+  }
+
+  h2:after {
+    content: '';
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 1px solid $primary-color;
+    background: $white;
+    left: -36px;
+    top: 50%;
+    margin-top: -5px;
+    // box-shadow: 0px 0px 10px rgba($primary-color, .5);
+  }
+}

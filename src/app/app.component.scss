@@ -16,7 +16,8 @@ $wrapper-border: 1px solid #e6e6e6;
 .wrapper-header {
   height: $wrapper-header-height;
   background: white;
-  border-bottom: $wrapper-border;
+  // border-bottom: $wrapper-border;
+  box-shadow: 0px 0px 5px $medium-gray;
   position: fixed;
   top: 0;
   z-index: 100;
@@ -25,6 +26,8 @@ $wrapper-border: 1px solid #e6e6e6;
   .top-bar {
     height: 100%;
     background: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .top-bar-left,
@@ -38,11 +41,31 @@ $wrapper-border: 1px solid #e6e6e6;
     align-items: center;
     > li {
 
+      height: 100%;
+      align-items: center;
+
       > a {
-        border-bottom: 2px solid transparent;
         transition: border-bottom-color .3s, color .3s;;
         color: #333;
+        min-width: 60px;
         // padding: 1.25rem 1rem;
+        position: relative;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        &:before {
+          content: '';
+          position: absolute;
+          height: 2px;
+          font-size: 0;
+          left: 50%;
+          right: 50%;
+          bottom: 0;
+          background-color: $primary-color;
+          transition: left .3s, right .3s;
+        }
       }
 
       &.active > a,
@@ -53,7 +76,11 @@ $wrapper-border: 1px solid #e6e6e6;
 
       &.active > a {
         background-color: unset;
-        border-bottom-color: $primary-color;
+        // border-bottom-color: $primary-color;
+        &:before {
+          left: 0%;
+          right: 0%;
+        }
       }
     }
   }

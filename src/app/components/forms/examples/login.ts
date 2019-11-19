@@ -24,7 +24,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
           <input ntInput type="text" name="phone" formControlName="phone" placeholder="手机">
         </nt-form-field>
         <nt-form-field label="选择框">
-          <nt-select formControlName="select" placeholder="select">
+          <nt-select formControlName="select" placeholder="select" filter>
             <nt-option value="1">1</nt-option>
             <nt-option value="2">2</nt-option>
           </nt-select>
