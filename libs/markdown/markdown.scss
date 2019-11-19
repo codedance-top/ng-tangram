@@ -17,7 +17,13 @@ $nt-markdown-paragraph-margin: 0 0 $global-margin 0 !default;
 $nt-markdown-code-font-family: $font-family-monospace !default;
 $nt-markdown-code-color: #c7254e !default;
 $nt-markdown-code-background: #f9f2f4 !default;
+// $nt-markdown-code-color: #404040 !default;
+// $nt-markdown-code-background: #eee !default;
+$nt-markdown-code-padding: rem-calc(2 6) !default;
 $nt-markdown-code-radius: $global-radius !default;
+
+$nt-markdown-pre-padding: $global-padding !default;
+$nt-markdown-pre-margin: $global-margin / 2 0;
 
 @mixin nt-markdown-base {
   display: block;
@@ -44,7 +50,7 @@ $nt-markdown-code-radius: $global-radius !default;
 
   code {
     color: $nt-markdown-code-color;
-    padding: 2px 4px;
+    padding: $nt-markdown-code-padding;
     font-size: 90%;
     background-color: $nt-markdown-code-background;
     border-radius: $global-radius;
