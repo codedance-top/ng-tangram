@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { transition, trigger } from '@angular/animations';
-import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   Component,
   EventEmitter,
@@ -218,9 +218,7 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
   _select(files: File[]) {
 
     const pictureRefs = files.map(file => this._createPictureRef(file));
-
     this._displayPictureRefs.push(...pictureRefs);
-
     this._onTouched && this._onTouched();
   }
 
@@ -229,7 +227,6 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
     if (this.disabled) { return; }
 
     this._removePictureRef(pictureRef);
-
     this._onChange(this.value);
   }
 
@@ -238,8 +235,6 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
     const pictureRef = new NtPictureRef<T>(file);
 
     zipImage(file).then(data => pictureRef.thumbnail = data.thumbnail);
-
-    // pictureRef.thumbnail = (await zipImage(file)).thumbnail;
 
     pictureRef.subscription = this._uploadHandler
       .upload<T>(this.url, pictureRef)
@@ -279,7 +274,7 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
     this._onChange(this.value);
   }
 
-  private _coerceAccpetRange(array: Array<string>) {
-    return array.filter(accept => NT_PICTURE_ACCEPTS.indexOf(accept) > -1);
-  }
+  // private _coerceAccpetRange(array: Array<string>) {
+  //   return array.filter(accept => NT_PICTURE_ACCEPTS.indexOf(accept) > -1);
+  // }
 }
