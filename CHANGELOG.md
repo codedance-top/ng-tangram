@@ -4,9 +4,7 @@
 ### Bug Fixes
 
 * **markdown-editor:** 修复了全屏模式切换时滚动位置不正确的问题 ([2435aba](https://github.com/livebridge-lab/ng-tangram/commit/2435aba291fc2c836ca0476fc0aed0e56d714239))
-* **overlay:** 改进在backdrop模式下需要点击两次才可以点击其他元素的问题 ([3e96032](https://github.com/livebridge-lab/ng-tangram/commit/3e960329824c0b6bf3c14f69b1df199311906356))
 * **tree:** 修复了 angular cdk 9 的兼容性问题 ([83f84c4](https://github.com/livebridge-lab/ng-tangram/commit/83f84c483b6e88963fffd6afc564e2652cb8ae89))
-
 
 ### Features
 
@@ -26,6 +24,3 @@
 * **popover:** 改进在窗口弹出的情况下需要点击两次才可以点击其他元素的问题 ([07b5135](https://github.com/livebridge-lab/ng-tangram/commit/07b5135238e4e030e272a675ad944603cf5f3c36))
 * **pseudo-input:** 新增 only-caret 样式 ([9769b5a](https://github.com/livebridge-lab/ng-tangram/commit/9769b5a7f014316aed2e813984942bf70b257d18))
 * **upload:** 全新的 NtUploadModule ([84aefcf](https://github.com/livebridge-lab/ng-tangram/commit/84aefcf8a03f543843b6d32875b224d2474b4d49))
-
-
-
