@@ -84,7 +84,7 @@ export class NtPopConfirmComponent implements OnChanges {
 
   _closeOverlay(isConfirm: boolean) {
     (isConfirm ? this.confirm : this.cancel).emit();
-    this.overlay.hide();
+    this.overlay.close();
   }
 
   _afterOpen(event: any) {

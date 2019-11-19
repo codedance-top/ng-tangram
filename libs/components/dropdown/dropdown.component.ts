@@ -9,11 +9,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import {
-  NtOverlayComponent,
-  NtOverlayPosition,
-  NtOverlayTriggerType
-} from '@ng-tangram/components/core';
+import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
 
 import {
   NT_DROPDOWN_PARENT_COMPONENT,
@@ -21,14 +17,16 @@ import {
   NtDropdownParentComponent
 } from './dropdown-pane.component';
 
+export declare type NtDropdownTriggerType = '' | 'hover' | 'click';
+
 @Component({
   selector: 'nt-dropdown, [nt-dropdown]',
   templateUrl: 'dropdown.component.html',
   encapsulation: ViewEncapsulation.None,
   host: {
-    '(click)': 'overlay.toggle()',
-    '(mouseenter)': 'overlay.onMouseEnter($event)',
-    '(mouseleave)': 'overlay.onMouseLeave($event)'
+    '(click)': '_onClick($event)',
+    '(mouseenter)': '_onMouseEnter($event)',
+    '(mouseleave)': '_onMouseLeave($event)'
   },
   providers: [
     { provide: NT_DROPDOWN_PARENT_COMPONENT, useExisting: NtDropdownComponent }
@@ -40,7 +38,7 @@ export class NtDropdownComponent implements NtDropdownParentComponent {
 
   @Input() position: NtOverlayPosition = NtOverlayPosition.BottomLeft;
 
-  @Input() trigger: NtOverlayTriggerType = 'hover';
+  @Input() trigger: NtDropdownTriggerType = 'hover';
 
   @Output() afterOpen = new EventEmitter<any>();
   @Output() afterClosed = new EventEmitter<any>();
@@ -57,6 +55,24 @@ export class NtDropdownComponent implements NtDropdownParentComponent {
   constructor(
     _elementRef: ElementRef) {
     this.origin = new CdkOverlayOrigin(_elementRef);
+  }
+
+  _onClick(_: Event) {
+    if (this.trigger === 'click') {
+      this.overlay.toggle();
+    }
+  }
+
+  _onMouseEnter(_: Event) {
+    if (this.trigger === 'hover') {
+      this.overlay.markOpen();
+    }
+  }
+
+  _onMouseLeave(_: Event) {
+    if (this.trigger === 'hover') {
+      this.overlay.markClose();
+    }
   }
 
   _afterOpen(event: any) {

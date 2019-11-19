@@ -7,8 +7,8 @@
   (positionChange)="onOverlayPositionChange($event)"
   (backdropClick)="hide()">
   <div class="nt-overlay-container {{paddingClass}} {{overlayClass}}"
-    (mouseenter)="onMouseEnter($event)"
-    (mouseleave)="onMouseLeave($event)"
+    (mouseenter)="overlayEnter.emit($event)"
+    (mouseleave)="overlayLeave.emit($event)"
     [class.no-spacing]="nospacing"
     [@fade]
     (@fade.start)="onAnimationStart($event)"

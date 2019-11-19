@@ -162,7 +162,7 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     this.tabIndex = parseInt(tabIndex) || 0;
 
     this._overlayToggle.pipe(debounceTime(10)).subscribe(open => open
-      ? this.overlay.show()
+      ? this.overlay.open()
       : this.overlay.toggle()
     );
   }
@@ -181,12 +181,12 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
 
   select(date: D) {
     this.value = date;
-    this.overlay.hide();
+    this.overlay.close();
     this._onChange(date);
   }
 
   focus() {
-    this.overlay.show();
+    this.overlay.open();
   }
 
   _afterOpen(event: any) {

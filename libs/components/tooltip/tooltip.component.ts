@@ -19,8 +19,8 @@ import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/co
   encapsulation: ViewEncapsulation.None,
   host: {
     '[class.tooltip-trigger]': '!_isDirective',
-    '(mouseenter)': 'overlay.onMouseEnter($event)',
-    '(mouseleave)': 'overlay.onMouseLeave($event)'
+    '(mouseenter)': 'overlay.markOpen()',
+    '(mouseleave)': 'overlay.markClose()'
   }
 })
 export class NtTooltipComponent implements OnChanges {
@@ -80,7 +80,6 @@ export class NtTooltipComponent implements OnChanges {
       });
     }
   }
-
 
   _afterOpen(event: any) {
     this.afterOpen.next(event);

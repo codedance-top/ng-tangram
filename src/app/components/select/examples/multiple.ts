@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   template: `
     <form [formGroup]="form" ntFormAutofocus>
       <nt-form-field label="多选下拉框">
-        <nt-select name="multiple" placeholder="多选" formControlName="multiple" filter multiple>
+        <nt-select name="multiple" placeholder="多选" formControlName="multiple" multiple>
           <nt-option *ngFor="let alphabet of alphabets" [value]="alphabet">
             {{alphabet}}
           </nt-option>

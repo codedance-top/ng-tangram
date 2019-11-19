@@ -1,12 +1,15 @@
 <ng-content></ng-content>
 <nt-overlay
-  trigger="hover" overlayClass="tootip-overlay" arrow
+  overlayClass="tootip-overlay"
+  arrow
   [origin]="origin"
   [position]="position"
   (afterOpen)="_afterOpen($event)"
   (afterClosed)="_afterClosed($event)"
   (beforeOpen)="_beforeOpen($event)"
   (beforeClosed)="_beforeClosed($event)"
+  (overlayEnter)="overlay.markOpen()"
+  (overlayLeave)="overlay.markClose()"
   (positionChange)="_positionChange($event)">
   <div class="tooltip" *ngIf="template">
     <ng-container *ngTemplateOutlet="template"></ng-container>
