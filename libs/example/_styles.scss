@@ -150,13 +150,14 @@ $nt-example-padding: $global-padding * 1.5;
 @mixin ng-tangram-example {
 
   .nt-example {
-    // border: $nt-example-code-border;
+    border: $nt-example-code-border;
     display: block;
     box-sizing: border-box;
     background-color: $white;
     border-radius: 5px;
     margin-bottom: 1.875rem;
     overflow: auto;
+    box-shadow: 0px 0px 10px #eee;
   }
 
   .nt-example-showcase {
