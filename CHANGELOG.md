@@ -1,3 +1,12 @@
+# [0.6.0-rc.1](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc.0...0.6.0-rc.1) (2019-11-21)
+
+
+### Bug Fixes
+
+* **file:** 修复 `NtFileSelectDirective` 注入成服务的代码 ([54f773b](https://github.com/livebridge-lab/ng-tangram/commit/54f773baad97766ee4a9ee91a74f65c48b6d6f4d))
+
+
+
 # [0.6.0-rc.0](https://github.com/livebridge-lab/ng-tangram/compare/0.4.0...0.6.0-rc.0) (2019-11-19)
 
 
