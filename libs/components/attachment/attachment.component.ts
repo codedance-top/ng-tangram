@@ -2,7 +2,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { transition, trigger } from '@angular/animations';
-import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   Component,
   EventEmitter,
