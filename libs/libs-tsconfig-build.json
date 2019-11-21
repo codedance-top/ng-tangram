@@ -5,7 +5,6 @@
     "experimentalDecorators": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
-    "importHelpers": true,
     "allowSyntheticDefaultImports": true,
     "newLine": "lf",
     "module": "es2015",
