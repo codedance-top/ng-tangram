@@ -129,7 +129,7 @@ export const COMPONENTS_ROUTES: Routes = [
   {
     path: 'switch',
     loadChildren: () => import('./switch/switch.module').then(mod => mod.SwitchDocumentModule),
-    data: { title: 'Switch 开关', group: COMPONENTS_GROUPS[1] }
+    data: { title: 'Switch 开关', group: COMPONENTS_GROUPS[0] }
   },
   {
     path: 'table',
