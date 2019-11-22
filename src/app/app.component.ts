@@ -18,7 +18,7 @@ import {
 NProgress.configure({ showSpinner: false });
 
 @Component({
-  selector: 'body[app]',
+  selector: 'app',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
@@ -69,6 +69,5 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
-
   }
 }
