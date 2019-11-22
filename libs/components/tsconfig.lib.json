@@ -3,9 +3,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "rootDir": ".",
-    "paths": {
-      "@ng-tangram/components/*": ["./*"]
-    }
+    // "paths": {
+    //   "@ng-tangram/components/*": ["./*"]
+    // }
   },
   "angularCompilerOptions": {
     "skipTemplateCodegen": true,
