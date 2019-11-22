@@ -11,12 +11,12 @@
     "allowSyntheticDefaultImports": true,
     "rootDir": ".",
     "paths": {
-      "@ng-tangram/example": ["./libs/example"],
-      "@ng-tangram/components": ["./libs/components"],
-      "@ng-tangram/components/*": ["./libs/components/*"],
-      "@ng-tangram/markdown": ["./libs/markdown"],
-      "@ng-tangram/markdown/editor": ["./libs/markdown/editor"],
-      "@ng-tangram/moment-adapter": ["./libs/moment-adapter"],
+      "@ng-tangram/example": ["./src/libs/example"],
+      "@ng-tangram/components": ["./src/libs/components"],
+      "@ng-tangram/components/*": ["./src/libs/components/*"],
+      "@ng-tangram/markdown": ["./src/libs/markdown"],
+      "@ng-tangram/markdown/editor": ["./src/libs/markdown/editor"],
+      "@ng-tangram/moment-adapter": ["./src/libs/moment-adapter"],
     },
     "typeRoots": [
       "node_modules/@types"

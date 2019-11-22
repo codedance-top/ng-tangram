@@ -4,7 +4,7 @@
     "baseUrl": "./",
     "rootDir": ".",
     "paths": {
-      "@ng-tangram/components/*": ["../../dist/@ng-tangram/components/*"],
+      "@ng-tangram/components/*": ["../../../dist/@ng-tangram/components/*"],
       "@ng-tangram/markdown/*": ["./*"]
     }
   },

@@ -1,6 +1,6 @@
 {
-  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/@ng-tangram/components",
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/@ng-tangram/components",
   "whitelistedNonPeerDependencies": ["blueimp-load-image"],
   "lib": {
     "entryFile": "./public-api.ts",

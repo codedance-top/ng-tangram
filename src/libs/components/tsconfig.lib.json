@@ -2,10 +2,7 @@
   "extends": "../libs-tsconfig-build.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "rootDir": ".",
-    "paths": {
-      "@ng-tangram/components/*": ["../../dist/@ng-tangram/components/*"],
-    }
+    "rootDir": "."
   },
   "angularCompilerOptions": {
     "skipTemplateCodegen": true,

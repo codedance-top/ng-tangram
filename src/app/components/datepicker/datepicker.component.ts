@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: 'datepicker.component.md'
 })
 export class DatePickerDocumentComponent {
-  api = require('!!raw-loader!libs/components/datepicker/README.md').default;
+  api = require('!!raw-loader!src/libs/components/datepicker/README.md').default;
   basicCode = require('!!raw-loader!./examples/basic').default;
   boundaryCode = require('!!raw-loader!./examples/boundary').default;
   startCode = require('!!raw-loader!./examples/start').default;
