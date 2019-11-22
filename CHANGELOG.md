@@ -1,10 +1,18 @@
-# [0.6.0-rc.1](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc.0...0.6.0-rc.1) (2019-11-21)
-
+# [0.6.0-rc.1](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc.0...0.6.0-rc.1) (2019-11-22)
 
 ### Bug Fixes
 
+* **attachment:** 修复 errors 数据类型错误的问题 ([fb64200](https://github.com/livebridge-lab/ng-tangram/commit/fb6420040c5af71a8a93645c0a612e3b4328d87e))
 * **file:** 修复 `NtFileSelectDirective` 注入成服务的代码 ([54f773b](https://github.com/livebridge-lab/ng-tangram/commit/54f773baad97766ee4a9ee91a74f65c48b6d6f4d))
+* **picture:** 修复 errors 数据类型错误的问题 ([4b22ffe](https://github.com/livebridge-lab/ng-tangram/commit/4b22ffe863d5ca254d1933eef79457b8b011543d))
+* **table:** 修复构建时提示组件声明错误的问题 ([ad26706](https://github.com/livebridge-lab/ng-tangram/commit/ad267064b306f2c21600d5cf8bb06012aebe2eb7))
 
+
+### Features
+
+* **angular:** 更新 angular 9.0.0-rc.3 ([25866d8](https://github.com/livebridge-lab/ng-tangram/commit/25866d8a9dc2c3d779849b5d5e662346d38b5702))
+* **markdown:** 新增 `~@ng-tangram/markdown/styles` 样式导入方式 ([286595b](https://github.com/livebridge-lab/ng-tangram/commit/286595b7e4a3151c0ebc4eb892022317837a862c))
+* **upload:** 新增上传结果类型 `NtUploadEvent`, `NtUploadResponse`, `NtUploadError` ([fd9218f](https://github.com/livebridge-lab/ng-tangram/commit/fd9218f9143054f133c776abb74bb4c4e89bd715))
 
 
 # [0.6.0-rc.0](https://github.com/livebridge-lab/ng-tangram/compare/0.4.0...0.6.0-rc.0) (2019-11-19)
