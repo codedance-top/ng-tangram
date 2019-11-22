@@ -1,5 +1,4 @@
 import 'zone.js/dist/zone-node';
-import 'reflect-metadata';
 
 import * as domino from 'domino';
 import * as express from 'express';
@@ -11,14 +10,17 @@ global['window'] = win;
 global['document'] = win.document;
 global['navigator'] = win.navigator;
 
-const { AppServerModule, ngExpressEngine } = require('./server/main');
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP, provideModuleMap, ngExpressEngine } = require('./server/main');
 const app = express();
 
 const PORT = process.env.PORT || 8300;
 const DOCS_FOLDER = join(process.cwd(), 'docs/browser');
 
 app.engine('html', ngExpressEngine({
-  bootstrap: AppServerModule
+  bootstrap: AppServerModuleNgFactory,
+  providers: [
+    provideModuleMap(LAZY_MODULE_MAP)
+  ]
 }));
 
 app.set('view engine', 'html');
