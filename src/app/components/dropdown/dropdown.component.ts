@@ -9,5 +9,5 @@ export class DropdownDocumentComponent {
   changeCode = require('!!raw-loader!./examples/change').default;
   triggerCode = require('!!raw-loader!./examples/trigger').default;
   positionCode = require('!!raw-loader!./examples/position').default;
-  api = require('!!raw-loader!libs/components/dropdown/README.md').default;
+  api = require('!!raw-loader!src/libs/components/dropdown/README.md').default;
 }

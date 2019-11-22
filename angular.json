@@ -124,19 +124,19 @@
     },
     "components": {
       "projectType": "library",
-      "root": "libs/components",
-      "sourceRoot": "libs/components",
+      "root": "src/libs/components",
+      "sourceRoot": "src/libs/components",
       "prefix": "nt",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/components/tsconfig.lib.json",
-            "project": "libs/components/ng-package.json"
+            "tsConfig": "src/libs/components/tsconfig.lib.json",
+            "project": "src/libs/components/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/components/tsconfig.lib.json"
+              "tsConfig": "src/libs/components/tsconfig.lib.json"
             }
           }
         }
@@ -144,19 +144,19 @@
     },
     "markdown": {
       "projectType": "library",
-      "root": "libs/markdown",
-      "sourceRoot": "libs/markdown/src",
+      "root": "src/libs/markdown",
+      "sourceRoot": "src/libs/markdown/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/markdown/tsconfig.lib.json",
-            "project": "libs/markdown/ng-package.json"
+            "tsConfig": "src/libs/markdown/tsconfig.lib.json",
+            "project": "src/libs/markdown/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/markdown/tsconfig.lib.json"
+              "tsConfig": "src/libs/markdown/tsconfig.lib.json"
             }
           }
         }
@@ -164,19 +164,19 @@
     },
     "moment-adapter": {
       "projectType": "library",
-      "root": "libs/moment-adapter",
-      "sourceRoot": "libs/moment-adapter/src",
+      "root": "src/libs/moment-adapter",
+      "sourceRoot": "src/libs/moment-adapter/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/moment-adapter/tsconfig.lib.json",
-            "project": "libs/moment-adapter/ng-package.json"
+            "tsConfig": "src/libs/moment-adapter/tsconfig.lib.json",
+            "project": "src/libs/moment-adapter/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/moment-adapter/tsconfig.lib.json"
+              "tsConfig": "src/libs/moment-adapter/tsconfig.lib.json"
             }
           }
         }

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class TreeDocumentComponent {
 
-  api = require('!!raw-loader!libs/markdown/README.md').default;
+  api = require('!!raw-loader!src/libs/markdown/README.md').default;
 
   dataCode = require('!!raw-loader!./examples/data.ts').default;
 

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: 'switch.component.md'
 })
 export class SwitchDocumentComponent {
-  api = require('!!raw-loader!libs/components/switch/README.md').default;
+  api = require('!!raw-loader!src/libs/components/switch/README.md').default;
   basicCode = require('!!raw-loader!./examples/basic').default;
   circleCode = require('!!raw-loader!./examples/circle').default;
   sizeCode = require('!!raw-loader!./examples/size').default;

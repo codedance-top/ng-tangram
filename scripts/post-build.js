@@ -2,11 +2,11 @@ const fs = require('fs');
 const { join } = require('path');
 const relativeCopy = require('./utils');
 
-const rootFolder = join(__dirname, '../');
+const rootFolder = join(process.cwd(), './');
 const version = require(`${rootFolder}/package.json`).version;
 
 const lib = process.argv.slice(2).shift();
-const libFolder = join(`${rootFolder}/libs/${lib}`);
+const libFolder = join(`${rootFolder}/src/libs/${lib}`);
 const libPackage = require(`${rootFolder}/dist/@ng-tangram/${lib}/package.json`);
 
 

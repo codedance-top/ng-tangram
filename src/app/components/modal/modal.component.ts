@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: 'modal.component.md'
 })
 export class ModalDocumentComponent {
-  api = require('!!raw-loader!libs/components/modal/README.md').default;
+  api = require('!!raw-loader!src/libs/components/modal/README.md').default;
   basicCode = require('!!raw-loader!./examples/basic').default;
   eventCode = require('!!raw-loader!./examples/event').default;
   configCode = require('!!raw-loader!./examples/config').default;

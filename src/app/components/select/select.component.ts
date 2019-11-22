@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: 'select.component.md'
 })
 export class SelectDocumentComponent {
-  api = require('!!raw-loader!libs/components/select/README.md').default;
+  api = require('!!raw-loader!src/libs/components/select/README.md').default;
   singleCode = require('!!raw-loader!./examples/single').default;
   multipleCode = require('!!raw-loader!./examples/multiple').default;
   disabledCode = require('!!raw-loader!./examples/disabled').default;

@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 export class ProgressDocumentComponent {
   basicCode = require('!!raw-loader!./examples/basic').default;
   circleCode = require('!!raw-loader!./examples/circle').default;
-  api = require('!!raw-loader!libs/components/progress/README.md').default;
+  api = require('!!raw-loader!src/libs/components/progress/README.md').default;
 }

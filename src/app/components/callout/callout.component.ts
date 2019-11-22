@@ -9,5 +9,5 @@ export class CalloutDocumentComponent {
   reactivesCode = require('!!raw-loader!./examples/reactives').default;
   sizeCode = require('!!raw-loader!./examples/size').default;
   eventCode = require('!!raw-loader!./examples/event').default;
-  api = require('!!raw-loader!libs/components/callout/README.md').default;
+  api = require('!!raw-loader!src/libs/components/callout/README.md').default;
 }

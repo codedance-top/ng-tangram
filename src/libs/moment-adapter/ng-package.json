@@ -1,6 +1,6 @@
 {
-  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/@ng-tangram/moment-adapter",
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/@ng-tangram/moment-adapter",
   "lib": {
     "entryFile": "./public-api.ts",
     "flatModuleFile": "moment-adapter",
