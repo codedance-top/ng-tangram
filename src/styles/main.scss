@@ -4,8 +4,7 @@
 // @import 'themes/vaadin';
 
 @import '../../libs/components/styles';
-@import '../../libs/markdown/markdown';
-@import '../../libs/markdown/editor/markdown-editor';
+@import '../../libs/markdown/styles';
 @import '../../libs/example/styles';
 
 @import 'containers';
@@ -21,8 +20,7 @@
 
 @include ng-tangram;
 @include ng-tangram-example;
-@include nt-markdown;
-@include nt-markdown-editor;
+@include ng-tangram-markdown;
 
 body {
   font-family: $body-font-family;
