@@ -23,9 +23,13 @@ import {
   fadeOut,
   NT_UPLOAD_HANDLER,
   NtFileError,
+  NtFileSizeError,
+  NtFileTypeError,
+  NtUploadError,
+  NtUploadEvent,
   NtUploadHandler,
   NtUploadRef,
-  NtUploadResult,
+  NtUploadResponse,
   NtUploadStatus
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
@@ -56,6 +60,8 @@ export function zipImage(file: File, option: any = { maxWidth: 1080, orientation
 let uniqueId = 0;
 
 export const NT_PICTURE_ACCEPTS = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
+
+export declare type NtPictureError = NtFileTypeError | NtFileSizeError | NtUploadError;
 
 export class NtPictureRef<T> extends NtUploadRef<T> {
   thumbnail: string;
@@ -159,7 +165,7 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
 
   @ViewChild('previewTemplate', { static: true }) previewTemplate: TemplateRef<any>;
 
-  @Output() errors = new EventEmitter<NtFileError>();
+  @Output() errors = new EventEmitter<NtPictureError | NtPictureError[]>();
 
   private _onChange: (value: any) => void = () => { };
 
@@ -239,7 +245,7 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
     pictureRef.subscription = this._uploadHandler
       .upload<T>(this.url, pictureRef)
       .pipe(takeUntil(this._destroy))
-      .subscribe(result => this._resolveUploadedResult(pictureRef, result));
+      .subscribe(event => this._resolveUploadedResult(pictureRef, event));
 
     return pictureRef;
   }
@@ -261,15 +267,15 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
     }
   }
 
-  private _resolveUploadedResult(pictureRef: NtPictureRef<T>, result: NtUploadResult<T>) {
-    if (result.status === NtUploadStatus.SUCCESS) {
-      pictureRef.data = result.data;
+  private _resolveUploadedResult(pictureRef: NtPictureRef<T>, event: NtUploadEvent<T>) {
+    if (event instanceof NtUploadResponse) {
+      pictureRef.data = event.data;
       this._pictureRefs.push(pictureRef);
     } else {
       pictureRef.status = NtUploadStatus.ERROR;
-      pictureRef.error = result.error;
+      pictureRef.error = event.error;
       pictureRef.progress = 100;
-      this.errors.next(result.error);
+      this.errors.next(event.error);
     }
     this._onChange(this.value);
   }
