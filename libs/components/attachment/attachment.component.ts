@@ -20,10 +20,13 @@ import {
   findCategoryByExtensions,
   findCategoryByFile,
   NT_UPLOAD_HANDLER,
-  NtFileError,
+  NtFileSizeError,
+  NtFileTypeError,
+  NtUploadError,
+  NtUploadEvent,
   NtUploadHandler,
   NtUploadRef,
-  NtUploadResult,
+  NtUploadResponse,
   NtUploadStatus
 } from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
@@ -35,6 +38,8 @@ import {
 } from './attachment-icons';
 
 let uniqueId = 0;
+
+export declare type NtAttachmentError = NtFileTypeError | NtFileSizeError | NtUploadError;
 
 export class NtAttachmentRef<T> extends NtUploadRef<T> {
 
@@ -129,7 +134,7 @@ export class NtAttachmentComponent<T> extends NtFormFieldControl<NtAttachmentRef
 
   @Input() name: string = '';
 
-  @Output() errors = new EventEmitter<NtFileError | NtFileError[]>();
+  @Output() errors = new EventEmitter<NtAttachmentError | NtAttachmentError[]>();
 
   private _onChange: (value: any) => void = () => { };
 
@@ -199,7 +204,7 @@ export class NtAttachmentComponent<T> extends NtFormFieldControl<NtAttachmentRef
     attachmentRef.subscription = this._uploadHandler
       .upload<T>(this.url, attachmentRef)
       .pipe(takeUntil(this._destroy))
-      .subscribe(result => this._resolveUploadedResult(attachmentRef, result));
+      .subscribe(event => this._resolveUploadedResult(attachmentRef, event));
 
     return attachmentRef;
   }
@@ -221,15 +226,15 @@ export class NtAttachmentComponent<T> extends NtFormFieldControl<NtAttachmentRef
     }
   }
 
-  private _resolveUploadedResult(attachmentRef: NtAttachmentRef<T>, result: NtUploadResult<T>) {
-    if (result.status === NtUploadStatus.SUCCESS) {
-      attachmentRef.data = result.data;
+  private _resolveUploadedResult(attachmentRef: NtAttachmentRef<T>, event: NtUploadEvent<T>) {
+    if (event instanceof NtUploadResponse) {
+      attachmentRef.data = event.data;
       this._attachmentRefs.push(attachmentRef);
     } else {
       attachmentRef.status = NtUploadStatus.ERROR;
-      attachmentRef.error = result.error;
+      attachmentRef.error = event.error;
       attachmentRef.progress = 100;
-      this.errors.next(result.error);
+      this.errors.next(event.error);
     }
     this._onChange(this.value);
   }
