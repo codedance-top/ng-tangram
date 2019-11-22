@@ -18,11 +18,17 @@ import { NtUploadRef, NtUploadStatus } from './upload-ref';
 
 const REQUEST_PROGRESS = { reportProgress: true };
 
-export interface NtUploadResult<T> {
-  status: NtUploadStatus;
-  data?: T;
-  error?: any;
+export class NtUploadResponse<T> {
+
+  constructor(public data: T) { }
 }
+
+export class NtUploadError {
+  constructor(public file: File | Blob, public error: any) { }
+}
+
+export declare type NtUploadEvent<T> = NtUploadResponse<T> | NtUploadError;
+
 
 @Injectable()
 export abstract class NtUploadHandler {
@@ -34,7 +40,7 @@ export abstract class NtUploadHandler {
    * @param url 上传 url
    * @param uploadRef 上传任务对象
    */
-  upload<T>(url: string, uploadRef: NtUploadRef<T>): Observable<NtUploadResult<T>> {
+  upload<T>(url: string, uploadRef: NtUploadRef<T>): Observable<NtUploadEvent<T>> {
 
     const data = this.getRequestData(uploadRef.file);
 
@@ -42,17 +48,14 @@ export abstract class NtUploadHandler {
       .pipe(
         map(event => this._progress(event, uploadRef)),
         filter(event => event.type === HttpEventType.Response),
-        map((event: HttpResponse<T>) => ({
-          status: event.status >= 200 && event.status < 400
-            ? NtUploadStatus.SUCCESS
-            : NtUploadStatus.ERROR,
-          data: this.getResponseData(event.body)
-        } as NtUploadResult<T>)),
-        catchError((error: HttpErrorResponse) => of({
-          status: NtUploadStatus.ERROR,
-          error: this.getErrorMessage(error)
-        }))
-      );
+        map((event: HttpResponse<T>) =>
+          new NtUploadResponse(this.getResponseData(event.body)
+        ),
+        catchError((error: HttpErrorResponse) =>
+          of(new NtUploadError(uploadRef.file, this.getErrorMessage(error)))
+        )
+      )
+    );
   }
 
   /**
@@ -102,8 +105,7 @@ export class NtNoopUploadHandler extends NtUploadHandler {
 
   protected getResponseData<T>(body: any): T { return body; }
 
-  protected getErrorMessage(error: HttpErrorResponse)  { return error.statusText; }
+  protected getErrorMessage(error: HttpErrorResponse) { return error.statusText; }
 }
-
 
 export const NT_UPLOAD_HANDLER = new InjectionToken<NtUploadHandler>('nt-upload-handler');
