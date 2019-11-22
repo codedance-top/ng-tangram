@@ -1,6 +1,9 @@
 
 
-import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { fromEvent, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   Directive,
   ElementRef,
@@ -13,9 +16,8 @@ import {
   Renderer2,
   SimpleChanges
 } from '@angular/core';
+
 import { NtFileError, NtFileSizeError, NtFileTypeError } from './file-select-errors';
-import { fromEvent, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Directive({
   selector: '[ntFileSelect]',
@@ -91,7 +93,7 @@ export class NtFileSelectDirective implements OnInit, OnChanges, OnDestroy {
 
     fromEvent(this._input, 'change')
       .pipe(takeUntil(this._destroy))
-      .subscribe(event => this._fileChange(event));
+      .subscribe(event => this._change(event));
   }
 
   trigger(event: Event) {
@@ -107,7 +109,7 @@ export class NtFileSelectDirective implements OnInit, OnChanges, OnDestroy {
     this._renderer.setProperty(this._input, 'multiple', this.multiple ? 'multiple' : null);
   }
 
-  private _fileChange(_: Event) {
+  private _change(_: Event) {
     const errors: NtFileError[] = [];
     const files: File[] = Array.from(this._input.files || []).filter(file => {
       let valid = true;
