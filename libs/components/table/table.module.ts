@@ -22,38 +22,27 @@ import {
 } from './row.directive';
 import { NtTableComponent } from './table.component';
 
-const NT_CELL_DECLARATIONS = [
+const EXPORTS_DECLARATIONS = [
+  NtTableComponent,
+  NtTableResizable,
   NtCellDefDirective,
-  NtHeaderCellDefDirective,
-  NtFooterCellDefDirective,
+  NtCellDirective,
   NtColumnDirective,
-  NtHeaderCellDirective,
+  NtFooterCellDefDirective,
   NtFooterCellDirective,
-  NtCellDirective
-];
-
-const NT_ROW_DECLARATIONS = [
-  NtHeaderRowDefDirective,
-  NtFooterRowDefDirective,
-  NtRowDefDirective,
-  NtHeaderRowComponent,
+  NtHeaderCellDefDirective,
+  NtHeaderCellDirective,
   NtFooterRowComponent,
-  NtRowComponent
+  NtFooterRowDefDirective,
+  NtHeaderRowComponent,
+  NtHeaderRowDefDirective,
+  NtRowComponent,
+  NtRowDefDirective
 ];
 
 @NgModule({
   imports: [CommonModule, CdkTableModule],
-  exports: [
-    NtTableComponent,
-    NtTableResizable,
-    ...NT_CELL_DECLARATIONS,
-    ...NT_ROW_DECLARATIONS
-  ],
-  declarations: [
-    NtTableComponent,
-    NtTableResizable,
-    ...NT_CELL_DECLARATIONS,
-    ...NT_ROW_DECLARATIONS
-  ]
+  exports: EXPORTS_DECLARATIONS,
+  declarations: EXPORTS_DECLARATIONS
 })
 export class NtTableModule { }
