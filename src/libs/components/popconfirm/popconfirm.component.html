@@ -12,8 +12,8 @@
     <div class="nt-popconfirm-title" *ngIf="template"><ng-container *ngTemplateOutlet="template"></ng-container></div>
     <div class="nt-popconfirm-title" *ngIf="!template" [innerHtml]="title"></div>
     <div class="nt-popconfirm-action">
-      <button nt-button color="secondary" size="tiny" (click)="_closeOverlay(false)">{{cancelText}}</button>
-      <button nt-button size="tiny" (click)="_closeOverlay(true)">{{confirmText}}</button>
+      <button nt-button color="secondary" size="tiny" (click)="_closeOverlay($event, false)">{{cancelText}}</button>
+      <button nt-button size="tiny" (click)="_closeOverlay($event, true)">{{confirmText}}</button>
     </div>
   </div>
 </nt-overlay>
