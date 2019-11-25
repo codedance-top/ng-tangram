@@ -1,5 +1,5 @@
 import { Subject, Subscription, SubscriptionLike } from 'rxjs';
-import { debounceTime, filter, switchMap, take, takeUntil } from 'rxjs/operators';
+import { debounceTime, filter, switchMap, take, takeUntil, delay } from 'rxjs/operators';
 
 import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -181,7 +181,7 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
       });
 
     this.cdkConnectedOverlay.attach
-      .pipe(takeUntil(this._destroy))
+      .pipe(takeUntil(this._destroy), delay(0))
       .subscribe(() => this._subscribeOutsideClickEvent());
 
     this.cdkConnectedOverlay.detach
