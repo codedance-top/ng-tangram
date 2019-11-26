@@ -2,7 +2,6 @@
 
 ### Bug Fixes
 
-* **overlay:** 优化了 overlay 外部点击判断逻辑 ([2858d58](https://github.com/livebridge-lab/ng-tangram/commit/2858d58a9458d430f97afc0647e7c1988083c233))
 * **overlay:** 修复 overlay 弹层关闭事件订阅时机不准确的问题 ([163bbd9](https://github.com/livebridge-lab/ng-tangram/commit/163bbd9dfeef8fb206556d3aa70797bdfc4232af))
 * **overlay:** 修复了在嵌套 overlay 下点击子层内容时关闭父层的问题 ([e9b71ab](https://github.com/livebridge-lab/ng-tangram/commit/e9b71ab32405e0597b18085662eedd390a616685))
 * **popconfirm:** 修复了在嵌套层级时 (其他 overlay容器嵌套 popconfirm) 时点击确定/取消会关闭父容器的问题 ([c58d96b](https://github.com/livebridge-lab/ng-tangram/commit/c58d96b3c46475e10c5f5603c01682a5164eb1bf))
