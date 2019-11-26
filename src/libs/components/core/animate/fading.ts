@@ -42,7 +42,7 @@ export declare type FadeAnimationOptions = {
  */
 export function fade(options: FadeAnimationOptions): AnimationReferenceMetadata {
   return animation(
-    animate(`${options.timing || DEFAULT_TIMING}s ${options.delay || 0}s`,
+    animate(`${options.timing || DEFAULT_TIMING}s ${options.delay || 0}s ease`,
     keyframes([
       style({ opacity: `${options.fromOpacity}`, transform: translate3d(options.axis, options.steps.a), offset: 0 }),
       style({ opacity: `${options.toOpacity}`, transform: translate3d(options.axis, options.steps.b), offset: 1 }),
