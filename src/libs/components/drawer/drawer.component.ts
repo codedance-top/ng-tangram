@@ -1,6 +1,7 @@
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { isPlatformBrowser } from '@angular/common';
 import {
@@ -20,7 +21,7 @@ import {
   Renderer2,
   ViewEncapsulation
 } from '@angular/core';
-import { fromOutsideClick } from '@ng-tangram/components/core';
+import { fromOutsideClick, slideX, slideY } from '@ng-tangram/components/core';
 
 export declare type NtDrawerPlacement = 'left' | 'right' | 'top' | 'bottom';
 
@@ -34,15 +35,28 @@ let uniqueId = 0;
 
 @Component({
   selector: 'nt-drawer',
-  template: `
-    <ng-content></ng-content>
-  `,
+  template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('slide', [
+      transition('closed => left',  slideX({ a: '-100%', b: 0 }, .4)),
+      transition('closed => right',  slideX({ a: '100%', b: 0 }, .4)),
+      transition('closed => top',  slideY({ a: '-100%', b: 0 }, .4)),
+      transition('closed => bottom',  slideY({ a: '100%', b: 0 }, .4)),
+      transition('left => closed',  slideX({ a: 0, b: '-100%' }, .4)),
+      transition('right => closed',  slideX({ a: 0, b: '100%' }, .4)),
+      transition('top => closed',  slideY({ a: 0, b: '-100%' }, .4)),
+      transition('bottom => closed',  slideY({ a: 0, b: '100%' }, .4))
+    ])
+  ],
   host: {
     'class': 'nt-drawer',
-    '[class.opened]': 'opened',
-    '[class.backdroped]': 'backdrop'
+    '[class.opened]': 'state !== "closed"',
+    '[class.backdroped]': 'backdrop',
+    '[@slide]': 'state',
+    '(@slide.start)': 'onAnimationStart($event)',
+    '(@slide.done)': 'onAnimationDone($event)',
   }
 })
 export class NtDrawerComponent implements AfterViewInit, OnDestroy {
@@ -78,27 +92,17 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
     this._changePlacementValueAndStyle(value);
   }
 
-  private _opened: boolean;
+  state: 'closed' | NtDrawerPlacement = 'closed';
 
-  @Input()
-  get opened() { return this._opened; }
-  set opened(value: boolean) {
-    const coerceValue = coerceBooleanProperty(value);
-    if (coerceValue) {
-      this._subscribeOutsideClickEvent();
-    } else {
-      this._unsubscribeOutsideClickEvent();
-    }
-    this._opened = coerceValue;
-  }
+  @Output() afterOpen = new EventEmitter<any>();
+  @Output() afterClosed = new EventEmitter<any>();
 
-  @Output() openedChange = new EventEmitter();
-
-  @Output() outsideClick = new EventEmitter();
+  @Output() beforeOpen = new EventEmitter<any>();
+  @Output() beforeClosed = new EventEmitter<any>();
 
   constructor(
-    private _element: ElementRef,
     private _changeDetectorRef: ChangeDetectorRef,
+    private _element: ElementRef,
     private _renderer: Renderer2,
     @Inject(PLATFORM_ID) platformId: Object,
     @Optional() @Inject(NT_DRAWER_CONTAINER) container: NtDrawerContainer) {
@@ -118,8 +122,40 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
     this._unsubscribeOutsideClickEvent();
   }
 
+  open() {
+    this.state = this.placement;
+  }
+
   close() {
-    this._setOpenedValueAndEmit(false);
+    this.state = 'closed';
+  }
+
+  onAnimationDone(event: AnimationEvent): void {
+    if (event.fromState === 'void') {
+      return;
+    }
+
+    if (event.toState !== 'closed') {
+      this._subscribeOutsideClickEvent();
+      this.afterOpen.emit();
+    } else {
+      this.afterClosed.emit();
+    }
+  }
+
+  onAnimationStart(event: AnimationEvent): void {
+    if (event.fromState === 'void') {
+      return;
+    }
+
+    if (event.toState === 'closed') {
+      this._unsubscribeOutsideClickEvent();
+      this._disattachBackdropOverlay();
+      this.beforeClosed.emit();
+    } else {
+      this._attachBackdropOverlay();
+      this.beforeOpen.emit();
+    }
   }
 
   /** 调整方向的样式属性 */
@@ -154,8 +190,9 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
 
   /** 将创建好的遮罩层添加到 区域元素内（默认为 body 元素） */
   private _attachBackdropOverlay() {
-    if (this._backdropElement) {
+    if (this.backdrop && this._backdropElement) {
       this._renderer.appendChild(this._container, this._backdropElement);
+      this._renderer.addClass(this._container, 'nt-drawer-scrollblock');
     }
   }
 
@@ -163,27 +200,15 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
   private _disattachBackdropOverlay() {
     if (this._backdropElement) {
       this._renderer.removeChild(this._container, this._backdropElement);
+      this._renderer.removeClass(this._container, 'nt-drawer-scrollblock');
     }
-  }
-
-  /** 设置展开 */
-  private _setOpenedValueAndEmit(opened: boolean) {
-    this.openedChange.emit(this._opened = opened);
   }
 
   /** 开始外部点击事件的订阅 */
   private _subscribeOutsideClickEvent() {
     this._outsideClickSubscription = fromOutsideClick([this._element.nativeElement], this._container)
       .pipe(takeUntil(this._destory))
-      .subscribe(
-        event => this.outsideClick.observers.length > 0
-          ? this.outsideClick.emit(event)
-          : this._setOpenedValueAndEmit(false)
-      );
-
-    if (this.backdrop) {
-      this._attachBackdropOverlay();
-    }
+      .subscribe(_ => this.close());
   }
 
   /** 取消外部点击事件的订阅 */
@@ -191,10 +216,6 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
     if (this._outsideClickSubscription) {
       this._outsideClickSubscription.unsubscribe();
       this._outsideClickSubscription = null;
-    }
-
-    if (this.backdrop) {
-      this._disattachBackdropOverlay();
     }
   }
 }

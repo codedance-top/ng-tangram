@@ -1,6 +1,6 @@
 $nt-drawer-background: $white !default;
-$nt-drawer-backdrop-background: $black !default;
-$nt-drawer-backdrop-opacity: .5 !default;
+$nt-drawer-backdrop-background: #000 !default;
+$nt-drawer-backdrop-opacity: .6 !default;
 $nt-drawer-box-shadow: $prototype-box-shadow !default;
 $nt-drawer-box-shadow-backdroped: 0px 0px 0px 2px nth($prototype-box-shadow, length($prototype-box-shadow)) !default;
 $nt-drawer-transition-duration: .4s !default;
@@ -16,7 +16,7 @@ $nt-drawer-z-index: 100 !default;
   left: 0;
   right: 0;
   bottom: 0;
-  transition-property: transform, box-shadow;
+  transition-property: box-shadow;
   transition-duration: $nt-drawer-transition-duration;
   transition-timing-function: $nt-drawer-transition-function;
 
@@ -50,18 +50,19 @@ $nt-drawer-z-index: 100 !default;
 }
 
 @mixin nt-drawer-backdrop {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: $nt-drawer-z-index - 1;
-
+  overflow-y: scroll;
 }
 
 @mixin nt-drawer-container {
   position: relative;
   overflow: hidden;
+  transform: translate(0%, 0%);
 }
 
 @mixin nt-drawer-backdrop-style($style-name: 'default') {
@@ -98,5 +99,9 @@ $nt-drawer-z-index: 100 !default;
 
   .nt-drawer-container {
     @include nt-drawer-container;
+  }
+
+  .nt-drawer-scrollblock {
+    overflow: hidden !important;
   }
 }
