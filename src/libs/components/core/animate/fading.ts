@@ -33,7 +33,10 @@ export declare type FadeAnimationOptions = {
   timing?: number,
 
   // 延迟执行时间，默认时间 0 秒
-  delay?: number
+  delay?: number,
+
+  // 动画节奏，默认 ease
+  timingFunction?: string;
 };
 
 /**
@@ -42,7 +45,7 @@ export declare type FadeAnimationOptions = {
  */
 export function fade(options: FadeAnimationOptions): AnimationReferenceMetadata {
   return animation(
-    animate(`${options.timing || DEFAULT_TIMING}s ${options.delay || 0}s`,
+    animate(`${options.timing || DEFAULT_TIMING}s ${options.delay || 0}s ${options.timingFunction || 'ease'}`,
     keyframes([
       style({ opacity: `${options.fromOpacity}`, transform: translate3d(options.axis, options.steps.a), offset: 0 }),
       style({ opacity: `${options.toOpacity}`, transform: translate3d(options.axis, options.steps.b), offset: 1 }),
