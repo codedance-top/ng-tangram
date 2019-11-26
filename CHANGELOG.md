@@ -1,3 +1,22 @@
+# [0.6.0-rc.2](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc...0.6.0-rc.2) (2019-11-26)
+
+### Bug Fixes
+
+* **overlay:** 优化了 overlay 外部点击判断逻辑 ([2858d58](https://github.com/livebridge-lab/ng-tangram/commit/2858d58a9458d430f97afc0647e7c1988083c233))
+* **overlay:** 修复 overlay 弹层关闭事件订阅时机不准确的问题 ([163bbd9](https://github.com/livebridge-lab/ng-tangram/commit/163bbd9dfeef8fb206556d3aa70797bdfc4232af))
+* **overlay:** 修复了在嵌套 overlay 下点击子层内容时关闭父层的问题 ([e9b71ab](https://github.com/livebridge-lab/ng-tangram/commit/e9b71ab32405e0597b18085662eedd390a616685))
+* **popconfirm:** 修复了在嵌套层级时 (其他 overlay容器嵌套 popconfirm) 时点击确定/取消会关闭父容器的问题 ([c58d96b](https://github.com/livebridge-lab/ng-tangram/commit/c58d96b3c46475e10c5f5603c01682a5164eb1bf))
+
+### Features
+
+* **animate:** 渐变动画增加节奏控制参数，现在可以使用 `animation-timing-function` 参数 ([1e1747f](https://github.com/livebridge-lab/ng-tangram/commit/1e1747f6dd87f951be52ef53f078c53660cccc79))
+* **core:** 新增 fromOutsideElementClick 事件 ([bbd99c9](https://github.com/livebridge-lab/ng-tangram/commit/bbd99c93730528b4efab8a72febed7751164ccdc))
+* **drawer:** 新增事件 afterOpen,afterClosed,beforeOpen,beforeClosed 方法 open(),close() ([9cb5324](https://github.com/livebridge-lab/ng-tangram/commit/9cb532458caa7ebf32f53ffae70468cef439154a))
+
+### BREAKING CHANGES
+
+* **drawer:** 移除 opened 属性，openedChange 和 outsideClick 事件
+
 # [0.6.0-rc.1](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc.0...0.6.0-rc.1) (2019-11-22)
 
 ### Bug Fixes
