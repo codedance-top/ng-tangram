@@ -111,13 +111,13 @@ export class NtModal {
 
   private _createInjector<T>(config: NtModalConfig, modalRef: NtModalRef<T>, modalContainer: NtModalComponent): PortalInjector {
 
-    const userInjector = config && config.viewContainerRef && config.viewContainerRef.injector;
+    const injector = config && config.viewContainerRef && config.viewContainerRef.injector;
 
     const injectionTokens = new WeakMap();
     injectionTokens.set(NtModalRef, modalRef);
     injectionTokens.set(NtModalComponent, modalContainer);
     injectionTokens.set(NT_MODAL_DATA, config.data);
-    return new PortalInjector(userInjector || this._injector, injectionTokens);
+    return new PortalInjector(injector || this._injector, injectionTokens);
   }
 
   private _getOverlayConfig(config: NtModalConfig): OverlayConfig {
