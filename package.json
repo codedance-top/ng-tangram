@@ -2,7 +2,6 @@
   "name": "ng-tangram",
   "version": "0.6.0-rc.2",
   "description": "NG-TANGRAM",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/livebridge-lab/ng-tangram"
