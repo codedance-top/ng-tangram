@@ -180,6 +180,8 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
         this.keydownEvents.next(event);
       });
 
+    // 外部点击事件的主体是 body 元素，这会导致订阅之后 body 参数会接收冒泡传递的事件
+    // 这与订阅意图不同，因此延迟到下一个事件队列开始订阅
     this.cdkConnectedOverlay.attach
       .pipe(takeUntil(this._destroy), delay(0))
       .subscribe(() => this._subscribeOutsideClickEvent());
