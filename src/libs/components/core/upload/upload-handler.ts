@@ -49,12 +49,11 @@ export abstract class NtUploadHandler {
         map(event => this._progress(event, uploadRef)),
         filter(event => event.type === HttpEventType.Response),
         map((event: HttpResponse<T>) =>
-          new NtUploadResponse(this.getResponseData(event.body)
+          new NtUploadResponse<T>(this.getResponseData(event.body)),
         ),
         catchError((error: HttpErrorResponse) =>
           of(new NtUploadError(uploadRef.file, this.getErrorMessage(error)))
         )
-      )
     );
   }
 
