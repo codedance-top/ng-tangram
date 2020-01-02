@@ -24,15 +24,9 @@ export class NtMarkedEngine implements NtMarkdownEngine {
 
   // get the content from remote resource
   getContent(path: string): Observable<any> {
-    return this.http.get(path).pipe(
-      map(this.extractData),
+    return this.http.get(path, { responseType: 'text' }).pipe(
       catchError(this.handleError)
     );
-  }
-
-  // handle data
-  extractData(res: HttpResponse<any>): string {
-    return res.body || '';
   }
 
   setMarkedOptions(options: marked.MarkedOptions) {

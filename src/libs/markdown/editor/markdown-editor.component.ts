@@ -52,7 +52,7 @@ interface SyncScrollEvent {
 }
 
 const DEFAULT_MIN_ROWS = 10, DEFAULT_MAX_ROWS = 20,
-  MIN_ROWS_VALUE = 1, MAX_ROWS_VALUE = 100;
+    MIN_ROWS_VALUE = 1, MAX_ROWS_VALUE = 100;
 
 @Component({
   selector: 'nt-markdown-editor',
@@ -179,7 +179,6 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
     @Optional() @Self() public ngControl: NgControl,
     @Optional() @Inject(NT_MARKDOWN_EDITOR_ICONS) _icons: NtMarkdownEditorIcons,
     @Optional() @Inject(NT_MARKDOWN_EDITOR_CONFIG) _config: NtMarkdownEditorConfig) {
-
 
     super();
     if (this.ngControl) {
