@@ -1,3 +1,19 @@
+# [0.6.0-rc.3](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc.2...0.6.0-rc.3) (2020-01-02)
+
+
+### Bug Fixes
+
+* **drawer:** 修复 drawer 在服务器端渲染时抛出异常的问题 ([d5bf646](https://github.com/livebridge-lab/ng-tangram/commit/d5bf646eea75b9be67ad06579e0977e01c785d3a))
+* **markdown:** 修复 path 路径无法解析成文本内容的问题 ([d772353](https://github.com/livebridge-lab/ng-tangram/commit/d7723530a8339ad724c2cb0a5843d72b62e0ed82))
+* **upload:** 修复 upload 异常捕捉失效的问题 ([50604a9](https://github.com/livebridge-lab/ng-tangram/commit/50604a95bb885ef445ff305b9a560d97615fc8e2))
+
+
+### Features
+
+* **angular:** 升级到 angular 9.0.0-rc.7 ([151ff95](https://github.com/livebridge-lab/ng-tangram/commit/151ff9507b7c13397f9e4316362fd2795210d4f5))
+
+
+
 # [0.6.0-rc.2](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc...0.6.0-rc.2) (2019-11-26)
 
 ### Bug Fixes
