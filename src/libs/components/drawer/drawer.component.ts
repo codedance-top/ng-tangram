@@ -40,14 +40,14 @@ let uniqueId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('slide', [
-      transition('closed => left',  slideX({ a: '-100%', b: 0 }, .4)),
-      transition('closed => right',  slideX({ a: '100%', b: 0 }, .4)),
-      transition('closed => top',  slideY({ a: '-100%', b: 0 }, .4)),
-      transition('closed => bottom',  slideY({ a: '100%', b: 0 }, .4)),
-      transition('left => closed',  slideX({ a: 0, b: '-100%' }, .4)),
-      transition('right => closed',  slideX({ a: 0, b: '100%' }, .4)),
-      transition('top => closed',  slideY({ a: 0, b: '-100%' }, .4)),
-      transition('bottom => closed',  slideY({ a: 0, b: '100%' }, .4))
+      transition('closed => left', slideX({ a: '-100%', b: 0 }, .4)),
+      transition('closed => right', slideX({ a: '100%', b: 0 }, .4)),
+      transition('closed => top', slideY({ a: '-100%', b: 0 }, .4)),
+      transition('closed => bottom', slideY({ a: '100%', b: 0 }, .4)),
+      transition('left => closed', slideX({ a: 0, b: '-100%' }, .4)),
+      transition('right => closed', slideX({ a: 0, b: '100%' }, .4)),
+      transition('top => closed', slideY({ a: 0, b: '-100%' }, .4)),
+      transition('bottom => closed', slideY({ a: 0, b: '100%' }, .4))
     ])
   ],
   host: {
@@ -104,10 +104,10 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
     private _changeDetectorRef: ChangeDetectorRef,
     private _element: ElementRef,
     private _renderer: Renderer2,
-    @Inject(PLATFORM_ID) platformId: Object,
+    @Inject(PLATFORM_ID) private _platformId: Object,
     @Optional() @Inject(NT_DRAWER_CONTAINER) container: NtDrawerContainer) {
 
-    if (isPlatformBrowser(platformId)) {
+    if (isPlatformBrowser(_platformId)) {
       this._initContainerAndStyles(container);
     }
     this._changePlacementValueAndStyle('left');
@@ -116,9 +116,11 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() { }
 
   ngOnDestroy() {
+    if (isPlatformBrowser(this._platformId)) {
+      this._renderer.removeClass(this._container, `${this.id}-container`);
+    }
     this._destory.next();
     this._destory.complete();
-    this._renderer.removeClass(this._container, `${this.id}-container`);
     this._unsubscribeOutsideClickEvent();
   }
 
