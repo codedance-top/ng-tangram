@@ -12,7 +12,9 @@
 
 * **angular:** 升级到 angular 9.0.0-rc.7 ([151ff95](https://github.com/livebridge-lab/ng-tangram/commit/151ff9507b7c13397f9e4316362fd2795210d4f5))
 
+### BREAKING CHANGES
 
+* **table:** 删除了 ntColumnCellDef, ntColumnHeaderDef, ntColumnFooterDef, nt-column-header, th[nt-column-header], nt-column-footer, td[nt-column-footer], nt-column-cell, td[nt-column-cell]
 
 # [0.6.0-rc.2](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc...0.6.0-rc.2) (2019-11-26)
 
