@@ -25,30 +25,27 @@ export class NtColumnSortChange {
 
 /**
  * table 列单元格定义指令
- * @description ntColumnCellDef 将在 > 0.5.x 版本中弃用
  */
 @Directive({
-  selector: '[ntCellDef], [ntColumnCellDef]',
+  selector: '[ntCellDef]',
   providers: [{ provide: CdkCellDef, useExisting: NtCellDefDirective }]
 })
 export class NtCellDefDirective extends CdkCellDef { }
 
 /**
  * table 头部单元格定义指令
- * @description ntColumnHeaderDef 将在 > 0.5.x 版本中弃用
  */
 @Directive({
-  selector: '[ntHeaderCellDef], [ntColumnHeaderDef]',
+  selector: '[ntHeaderCellDef]',
   providers: [{ provide: CdkHeaderCellDef, useExisting: NtHeaderCellDefDirective }]
 })
 export class NtHeaderCellDefDirective extends CdkHeaderCellDef { }
 
 /**
  * table 底部单元格定义指令
- * @description ntColumnFooterDef 将在 > 0.5.x 版本中弃用
  */
 @Directive({
-  selector: '[ntFooterCellDef], [ntColumnFooterDef]',
+  selector: '[ntFooterCellDef]',
   providers: [{ provide: CdkFooterCellDef, useExisting: NtFooterCellDefDirective }]
 })
 export class NtFooterCellDefDirective extends CdkFooterCellDef { }
@@ -106,10 +103,9 @@ export class NtColumnDirective extends CdkColumnDef {
 
 /**
  * table 头部单元格结构指令
- * @description nt-column-header 将在 > 0.5.x 版本中弃用
  * */
 @Directive({
-  selector: 'nt-header-cell, nt-column-header, th[nt-header-cell], th[nt-column-header]',
+  selector: 'nt-header-cell, th[nt-header-cell]',
   host: {
     'class': 'nt-header-cell',
     '[class.nt-column-sortable]': 'columnDef.sortable',
@@ -128,10 +124,9 @@ export class NtHeaderCellDirective extends CdkHeaderCell {
 
 /**
  * table 底部单元格结构指令
- * @description nt-column-footer 将在 > 0.5.x 版本中弃用
  * */
 @Directive({
-  selector: 'nt-footer-cell, nt-column-footer, td[nt-footer-cell], td[nt-column-footer]',
+  selector: 'nt-footer-cell, td[nt-footer-cell]',
   host: {
     'class': 'nt-footer-cell',
     'role': 'gridcell',
@@ -146,10 +141,9 @@ export class NtFooterCellDirective extends CdkFooterCell {
 
 /**
  * table 单元格结构指令
- * @description nt-column-cell 将在 > 0.5.x 版本中弃用
  */
 @Directive({
-  selector: 'nt-cell, nt-column-cell, td[nt-cell], td[nt-column-cell]',
+  selector: 'nt-cell, td[nt-cell]',
   host: {
     'class': 'nt-cell',
     'role': 'gridcell',

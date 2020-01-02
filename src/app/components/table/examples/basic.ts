@@ -6,18 +6,18 @@ import { Component } from '@angular/core';
 
   <table nt-table [dataSource]="dataSource">
     <nt-column name="name">
-      <th nt-column-header *ntColumnHeaderDef>名称</th>
-      <td nt-column-cell *ntColumnCellDef="let item">{{ item.name }}</td>
+      <th nt-header-cell *ntHeaderCellDef>名称</th>
+      <td nt-cell *ntCellDef="let item">{{ item.name }}</td>
     </nt-column>
 
     <nt-column name="age">
-      <th nt-column-header *ntColumnHeaderDef>年龄</th>
-      <td nt-column-cell *ntColumnCellDef="let item">{{ item.age }}</td>
+      <th nt-header-cell *ntHeaderCellDef>年龄</th>
+      <td nt-cell *ntCellDef="let item">{{ item.age }}</td>
     </nt-column>
 
     <nt-column name="address">
-      <th nt-column-header *ntColumnHeaderDef>地址</th>
-      <td nt-column-cell *ntColumnCellDef="let item">{{ item.address }}</td>
+      <th nt-header-cell *ntHeaderCellDef>地址</th>
+      <td nt-cell *ntCellDef="let item">{{ item.address }}</td>
     </nt-column>
 
     <tr nt-header-row *ntHeaderRowDef="displayedColumns"></tr>

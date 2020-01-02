@@ -10,8 +10,8 @@ import { ObservableDataService } from './data.service';
 
   <nt-table [dataSource]="dataSource" [ntScrim]="loading">
     <nt-column [name]="column.field" *ngFor="let column of columns">
-      <nt-column-header *ntColumnHeaderDef>{{ column.text }}</nt-column-header>
-      <nt-column-cell *ntColumnCellDef="let item">{{ item[column.field] }}</nt-column-cell>
+      <nt-header-cell *ntHeaderCellDef>{{ column.text }}</nt-header-cell>
+      <nt-cell *ntCellDef="let item">{{ item[column.field] }}</nt-cell>
     </nt-column>
 
     <nt-header-row *ntHeaderRowDef="displayedColumns"></nt-header-row>
