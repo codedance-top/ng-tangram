@@ -166,7 +166,6 @@ export class NtRadioGroupComponent<T> extends NtFormFieldControl<T>
       });
   }
 
-
   private _setCheckedByValue(value: T) {
       this._value = value;
       this.radios.forEach(item => item.checked = false);

@@ -71,9 +71,7 @@ export class NtFileSelectDirective implements OnInit, OnChanges, OnDestroy {
 
   constructor(
     private _elementRef: ElementRef,
-    private _renderer: Renderer2) {
-    // this._renderer.appendChild(this._elementRef.nativeElement, this._fileElement);
-  }
+    private _renderer: Renderer2) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     const change = changes.accept || changes.maxSize || changes.multiple;
