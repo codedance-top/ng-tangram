@@ -1,11 +1,24 @@
 import { Routes } from '@angular/router';
 
-export const COMPONENTS_GROUPS = ['general 常规', 'forms 表单', 'layer 弹层', 'data 数据', 'markdown'];
+export const COMPONENTS_GROUPS = [
+  'general 常规',
+  'forms 表单',
+  'layer 弹层',
+  'data 数据',
+  'markdown'
+];
 
 export const COMPONENTS_ROUTES: Routes = [
   {
-    path: '', redirectTo: 'avatar', pathMatch: 'full'
+    path: '',
+    redirectTo: 'avatar',
+    pathMatch: 'full'
   },
+  // {
+  //   path: 'getting-starter',
+  //   loadChildren: () => import('./_getting-starter/getting-starter.module').then(mod => mod.GettingStarterModule),
+  //   data: { title: '开始' }
+  // },
   {
     path: 'avatar',
     loadChildren: () => import('./avatar/avatar.module').then(mod => mod.AvatarDocumentModule),
