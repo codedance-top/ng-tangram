@@ -6,18 +6,18 @@ import { NtColumnSortChange } from '@ng-tangram/components/table';
   template: `
   <nt-table #table [dataSource]="dataSource" (sortChange)="onSortChange($event)">
     <nt-column name="name">
-      <nt-column-header *ntColumnHeaderDef>名称</nt-column-header>
-      <nt-column-cell *ntColumnCellDef="let item">{{ item.name }}</nt-column-cell>
+      <nt-header-cell *ntHeaderCellDef>名称</nt-header-cell>
+      <nt-cell *ntCellDef="let item">{{ item.name }}</nt-cell>
     </nt-column>
 
     <nt-column name="age" align="center" sortable>
-      <nt-column-header *ntColumnHeaderDef>年龄</nt-column-header>
-      <nt-column-cell *ntColumnCellDef="let item">{{ item.age }}</nt-column-cell>
+      <nt-header-cell *ntHeaderCellDef>年龄</nt-header-cell>
+      <nt-cell *ntCellDef="let item">{{ item.age }}</nt-cell>
     </nt-column>
 
     <nt-column name="address" align="right" sortable>
-      <nt-column-header *ntColumnHeaderDef>地址</nt-column-header>
-      <nt-column-cell *ntColumnCellDef="let item">{{ item.address }}</nt-column-cell>
+      <nt-header-cell *ntHeaderCellDef>地址</nt-header-cell>
+      <nt-cell *ntCellDef="let item">{{ item.address }}</nt-cell>
     </nt-column>
 
     <nt-header-row *ntHeaderRowDef="displayedColumns"></nt-header-row>
