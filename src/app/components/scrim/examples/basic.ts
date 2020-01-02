@@ -6,18 +6,18 @@ import { Component } from '@angular/core';
   <nt-table [ntScrim]="isOpen" scrimText="正在加载中..." [dataSource]="dataSource">
 
     <nt-column name="name">
-      <nt-column-header *ntColumnHeaderDef>Name</nt-column-header>
-      <nt-column-cell *ntColumnCellDef="let item">{{ item.name }}</nt-column-cell>
+      <nt-header-cell *ntHeaderCellDef>Name</nt-header-cell>
+      <nt-cell *ntCellDef="let item">{{ item.name }}</nt-cell>
     </nt-column>
 
     <nt-column name="age">
-      <nt-column-header *ntColumnHeaderDef>Age</nt-column-header>
-      <nt-column-cell *ntColumnCellDef="let item">{{ item.age }}</nt-column-cell>
+      <nt-header-cell *ntHeaderCellDef>Age</nt-header-cell>
+      <nt-cell *ntCellDef="let item">{{ item.age }}</nt-cell>
     </nt-column>
 
     <nt-column name="address">
-      <nt-column-header *ntColumnHeaderDef>Address</nt-column-header>
-      <nt-column-cell *ntColumnCellDef="let item">{{ item.address }}</nt-column-cell>
+      <nt-header-cell *ntHeaderCellDef>Address</nt-header-cell>
+      <nt-cell *ntCellDef="let item">{{ item.address }}</nt-cell>
     </nt-column>
 
     <nt-header-row *ntHeaderRowDef="['name', 'age', 'address']"></nt-header-row>
