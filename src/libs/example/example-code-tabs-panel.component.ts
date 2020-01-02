@@ -21,7 +21,9 @@ export const NT_EXAMPLE_CODE_PANEL_PARENT = new InjectionToken<NtExampleCodeTabP
 @Component({
   selector: 'nt-example-code-tabs-panel',
   template: `
-    <pre class="code-container language-{{lang}}"><code class="language-{{lang}}">{{code}}</code></pre>
+    <pre class="code-container language-{{lang}}">
+      <code class="language-{{lang}}">{{code}}</code>
+    </pre>
   `,
   encapsulation: ViewEncapsulation.None,
   host: {
