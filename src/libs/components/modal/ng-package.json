@@ -1,7 +1,7 @@
 {
   "lib": {
     "entryFile": "public-api.ts",
-    "flatModuleFile": "modal",
+    "flatModuleFile": "index",
     "umdId": "nt.components.modal"
   }
 }
