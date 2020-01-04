@@ -18,7 +18,7 @@ export interface MenuCategory {
       display: block;
     }
   `],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class ComponentsComponent {
   private _destory = new Subject();
