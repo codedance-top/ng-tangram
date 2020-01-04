@@ -1,7 +1,7 @@
 {
   "lib": {
     "entryFile": "public-api.ts",
-    "flatModuleFile": "popover",
+    "flatModuleFile": "index",
     "umdId": "nt.components.popover"
   }
 }

@@ -1,7 +1,7 @@
 {
   "lib": {
     "entryFile": "public-api.ts",
-    "flatModuleFile": "markdown-editor",
+    "flatModuleFile": "index",
     "umdModuleIds": {
       "codemirror": "CodeMirror",
       "@ng-tangram/components/core": "nt.components.core",
