@@ -7,7 +7,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   `,
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'nt-changelog nt-changelog-timeline'
+    'class': 'nt-changelog nt-changelog-timeline wrapper'
   },
   styleUrls: ['changelog.component.scss']
 })
