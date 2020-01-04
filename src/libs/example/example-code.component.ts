@@ -21,9 +21,7 @@ import {
       [nt-tooltip]="shown ? '收起代码' : '展开代码'">
       <i class="icon fab fa-angular" [class.visible]="shown"></i>代码
     </span>
-    <pre class="code-container language-{{lang}}">
-      <code class="language-{{lang}}">{{code}}</code>
-    </pre>
+    <pre class="code-container language-{{lang}}"><code class="language-{{lang}}">{{code}}</code></pre>
   `,
   encapsulation: ViewEncapsulation.None,
   host: {
