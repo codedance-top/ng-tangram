@@ -1,7 +1,7 @@
 {
   "lib": {
     "entryFile": "public-api.ts",
-    "flatModuleFile": "index",
+    "flatModuleFile": "forms",
     "umdId": "nt.components.forms"
   }
 }

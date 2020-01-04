@@ -3,7 +3,7 @@
   "dest": "../../../dist/@ng-tangram/components",
   "whitelistedNonPeerDependencies": ["blueimp-load-image"],
   "lib": {
-    "entryFile": "public-api.ts",
+    "entryFile": "./public-api.ts",
     "flatModuleFile": "components",
     "umdId": "nt.components"
   }

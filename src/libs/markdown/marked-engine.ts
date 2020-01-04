@@ -1,6 +1,6 @@
 import marked from 'marked';
 import { Observable, of as observableOf } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable, Optional } from '@angular/core';
