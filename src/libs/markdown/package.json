@@ -15,9 +15,9 @@
     "@angular/cdk": "^9.0.0-rc.6 || ^9.0.0",
     "@fortawesome/fontawesome-free": "latest",
     "@ng-tangram/components": "^0.6.0-rc.3 || ^0.6.0",
-    "codemirror": "^5.44.0",
-    "foundation-sites": "~6.5.0",
-    "marked": "^0.7.0",
+    "codemirror": "^5.46.0",
+    "foundation-sites": "~6.6.1",
+    "marked": "^0.8.0",
     "prismjs": "^1.17.1",
     "tslib": "^1.10.0"
   },
