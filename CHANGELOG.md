@@ -1,3 +1,18 @@
+# [0.6.0-rc.4](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc.3...0.6.0-rc.4) (2020-01-08)
+
+
+### Bug Fixes
+
+* **markdown:** 修复 `NtMarkedEngine` 错误处理失败的问题 ([555cfd7](https://github.com/livebridge-lab/ng-tangram/commit/555cfd7857f6fb063ed545d90740b101a2e15f90))
+* **table:** 修复 `nt-column` 会提示类型错误的问题 ([e075562](https://github.com/livebridge-lab/ng-tangram/commit/e07556222df3cd6e636d67751518907489b8a82e))
+
+
+### Features
+
+* **markdown:** 升级 `marked@^0.8.0`, `codemirror@^5.46.0` ([9da265b](https://github.com/livebridge-lab/ng-tangram/commit/9da265b1bdf75e2eea534534998b02d517b917f2))
+* **style:** 升级到 `foundation-sites@6.6.1` ([0d31257](https://github.com/livebridge-lab/ng-tangram/commit/0d31257d33a5e81ff65e6b3e346a43a8ec0ba3a8))
+
+
 # [0.6.0-rc.3](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc.2...0.6.0-rc.3) (2020-01-02)
 
 
