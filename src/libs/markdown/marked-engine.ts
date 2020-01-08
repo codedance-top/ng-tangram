@@ -1,5 +1,5 @@
 import marked from 'marked';
-import { Observable, of as observableOf } from 'rxjs';
+import { Observable, of as observableOf, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
@@ -47,7 +47,7 @@ export class NtMarkedEngine implements NtMarkdownEngine {
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
-    return Observable.throw(errMsg);
+    return throwError(errMsg);
   }
 
   // extend marked render to support todo checkbox
