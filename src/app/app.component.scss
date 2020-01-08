@@ -4,7 +4,7 @@ $wrapper-header-height: 60px;
 $navbar-width: 230px;
 $navbar-background: #1e222a;
 
-$footer-background: #fbfcfb;
+$footer-background: #fafcfe;
 
 $wrapper-border: 1px solid #e6e6e6;
 
@@ -46,7 +46,7 @@ $wrapper-border: 1px solid #e6e6e6;
 
       > a {
         transition: border-bottom-color .3s, color .3s;;
-        color: #333;
+        color: $black;
         min-width: 60px;
         // padding: 1.25rem 1rem;
         position: relative;
@@ -86,7 +86,6 @@ $wrapper-border: 1px solid #e6e6e6;
   }
   .logo {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    font-weight: 300;
     display: flex;
     font-size: 18px;
     align-items: center;
@@ -108,6 +107,7 @@ $wrapper-border: 1px solid #e6e6e6;
 
   .logo b {
     line-height: 22px;
+    font-weight: normal;
   }
 }
 
