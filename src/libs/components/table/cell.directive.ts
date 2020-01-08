@@ -116,7 +116,7 @@ export class NtColumnDirective extends CdkColumnDef {
   },
 })
 export class NtHeaderCellDirective extends CdkHeaderCell {
-  constructor(public columnDef: CdkColumnDef, elementRef: ElementRef<HTMLElement>) {
+  constructor(public columnDef: NtColumnDirective, elementRef: ElementRef<HTMLElement>) {
     super(columnDef, elementRef);
     elementRef.nativeElement.classList.add(`nt-column-${columnDef.cssClassFriendlyName}`);
   }
@@ -133,7 +133,7 @@ export class NtHeaderCellDirective extends CdkHeaderCell {
   },
 })
 export class NtFooterCellDirective extends CdkFooterCell {
-  constructor(columnDef: CdkColumnDef, elementRef: ElementRef) {
+  constructor(columnDef: NtColumnDirective, elementRef: ElementRef) {
     super(columnDef, elementRef);
     elementRef.nativeElement.classList.add(`nt-column-${columnDef.cssClassFriendlyName}`);
   }
@@ -150,7 +150,7 @@ export class NtFooterCellDirective extends CdkFooterCell {
   },
 })
 export class NtCellDirective extends CdkCell {
-  constructor(columnDef: CdkColumnDef, elementRef: ElementRef<HTMLElement>) {
+  constructor(columnDef: NtColumnDirective, elementRef: ElementRef<HTMLElement>) {
     super(columnDef, elementRef);
     elementRef.nativeElement.classList.add(`nt-column-${columnDef.cssClassFriendlyName}`);
   }
