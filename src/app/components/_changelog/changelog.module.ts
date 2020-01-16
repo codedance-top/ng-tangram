@@ -4,13 +4,15 @@ import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ChangelogComponent } from './changelog.component';
 import { RouterModule } from '@angular/router';
+import { HeaderModule } from '../../shared/header';
 
 @NgModule({
   imports: [
     CommonModule,
+    HeaderModule,
     NtMarkdownModule,
     RouterModule.forChild([
-      { path: '', component: ChangelogComponent, data: { title: '变更日志' } }
+      { path: '', component: ChangelogComponent }
     ])
   ],
   declarations: [ChangelogComponent]

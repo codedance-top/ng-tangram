@@ -13,7 +13,6 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
     'class': 'nt-example-legend'
   }
 })
-
 export class NtExampleLegendComponent {
   @Input() title: string;
 }

@@ -11,23 +11,29 @@ export interface MenuCategory {
   group?: string;
 }
 
+interface MenuGroup {
+  name: string;
+  path?: string;
+  categories?: MenuCategory[]
+}
+
 @Component({
   templateUrl: 'components.component.html',
-  styles: [`
-    page-components {
-      display: block;
-    }
-  `],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['components.scss'],
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'components-docs grid-x'
+  }
 })
 export class ComponentsComponent {
+
   private _destory = new Subject();
 
   title = '';
 
   categories: Array<MenuCategory>;
 
-  groups: Array<{ name: string, categories: Array<MenuCategory> }>;
+  groups: Array<MenuGroup>;
 
   hasGroup = false;
 
@@ -66,15 +72,21 @@ export class ComponentsComponent {
     this._destory.complete();
   }
 
-  private groupByCategories(routes: any[]) {
+  private groupByCategories(routes: any[]): MenuGroup[] {
     let groups = {};
-    routes.forEach(route => {
+    routes.filter(route => route.data.group).forEach(route => {
       let group = route.data.group;
       groups[group] = groups[group] || [];
       groups[group].push({ path: route.path, title: route.data.title });
     });
-    return Object.keys(groups).map(function (group) {
+
+    const flattenGroups: MenuGroup[] = Object.keys(groups).map((group) => {
       return { name: group, categories: groups[group].sort((a, b) => a.path.localeCompare(b.path)) };
     });
+
+    return routes
+      .filter(route => !route.data.group)
+      .map(route => ({ name: route.data.title, path: route.path } as MenuGroup))
+      .concat(flattenGroups);
   }
 }
