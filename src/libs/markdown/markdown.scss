@@ -6,11 +6,12 @@ $nt-markdown-heading-margin: 0em 0 .5em !default;
 
 $nt-markdown-ol-style: decimal !default;
 $nt-markdown-ul-style: circle !default;
+$nt-markdown-list-line-height: $nt-markdown-line-height !default;
 
-$nt-markdownquote-margin: $global-margin / 2 0 !default;
-$nt-markdownquote-padding: rem-calc(8 16) !default;
-$nt-markdownquote-color: $dark-gray !default;
-$nt-markdownquote-background: #f3f3f3 !default;
+$nt-markdown-quote-margin: $global-margin / 2 0 !default;
+$nt-markdown-quote-padding: rem-calc(8 16) !default;
+$nt-markdown-quote-color: $dark-gray !default;
+$nt-markdown-quote-background: #f3f3f3 !default;
 
 $nt-markdown-paragraph-margin: 0 0 $global-margin 0 !default;
 
@@ -35,6 +36,10 @@ $nt-markdown-pre-margin: $global-margin / 2 0;
 
   p {
     margin: $nt-markdown-paragraph-margin;
+  }
+
+  ol, ul {
+    line-height: $nt-markdown-list-line-height;
   }
 }
 
@@ -81,10 +86,10 @@ $nt-markdown-pre-margin: $global-margin / 2 0;
   }
 
   blockquote {
-    margin: $nt-markdownquote-margin;
-    padding: $nt-markdownquote-padding;
-    color: $nt-markdownquote-color;
-    background: $nt-markdownquote-background;
+    margin: $nt-markdown-quote-margin;
+    padding: $nt-markdown-quote-padding;
+    color: $nt-markdown-quote-color;
+    background: $nt-markdown-quote-background;
 
     > :first-child {
       margin-top: 0;
