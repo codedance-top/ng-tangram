@@ -1,16 +1,24 @@
-
-
-<div class="home-wrapper wrapper">
-  <div class="home-splash">
-    <img src="/assets/splash-bg.png">
+<app-header></app-header>
+<div class="wrapper-pusher">
+  <div class="wrapper-body">
+    <div class="home-wrapper wrapper">
+      <div class="home-splash">
+        <img src="/assets/banner.png">
+      </div>
+      <div class="inner">
+        <h2 class="home-title">基于 Angular 的 UI 组件库
+          <small>提供 40+ 基础组件和 20+ 高级组件</small>
+        </h2>
+        <div class="section promo-section">
+          <a class="home-button button-full" [routerLink]="['/', 'components']">开始使用</a>
+          <a class="home-button" href="https://github.com/codedance-top/ng-tangram" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="inner">
-    <h2 class="home-title">基于 Angular 的桌面端组件库
-      <small>快速打造高质量的企业级中后台产品</small>
-    </h2>
-    <div class="section promo-section">
-      <a class="home-button button-full" [routerLink]="['/', 'components']">开始使用</a>
-      <a class="home-button" href="https://github.com/codedance-top/ng-tangram" target="_blank">GitHub</a>
+  <div class="wrapper-footer">
+    <div class="copyright">
+      ©2019 CodeDance 辽ICP备19008868号-1
     </div>
   </div>
 </div>

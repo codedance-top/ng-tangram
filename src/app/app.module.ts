@@ -20,7 +20,7 @@ registerLocaleData(locale);
 const ROUTES: Routes = [
   { path: '', loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule) },
   { path: 'components', loadChildren: () => import('./components/components.module').then(mod => mod.ComponentsModule) },
-  { path: 'changelog', loadChildren: () => import('./changelog/changelog.module').then(mod => mod.ChangelogModule) },
+  { path: 'advenced', loadChildren: () => import('./advenced/advenced.module').then(mod => mod.AdvencedModule) },
   { path: '**', component: PageNotFoundComponent, data: { title: '404 - 找不到此页面' } }
 ];
 

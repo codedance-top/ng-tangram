@@ -1,10 +1,19 @@
+@import 'src/styles/variables';
 
-$logo-color: #f0352f;
+$wrapper-header-height: 60px;
+$logo-color: #C90018;
+
+
+.wrapper-body {
+  flex-grow: 1;
+  align-items: stretch;
+}
 
 .home-wrapper {
   min-height: 500px;
   padding: 0 20px;
   position: relative;
+  top: 5vh;
 }
 
 .home-splash {
@@ -21,7 +30,7 @@ $logo-color: #f0352f;
 }
 
 .home-splash img {
-  height: 400px;
+  max-height: 400px;
 }
 
 .inner {
@@ -73,6 +82,44 @@ $logo-color: #f0352f;
     background: $logo-color;
     color: #fff;
     transition: box-shadow .3s;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+
+  header {
+
+    .logo {
+      font-size: rem-calc(15) !important;
+    }
+    .logo img {
+      width: 20px;
+      height: 20px;
+    }
+    .menu > li {
+      font-size: rem-calc(13);
+    }
+  }
+  .home-wrapper {
+    .home-splash {
+      position: static;
+      justify-content: center;
+      min-height: auto;
+
+      img {
+        max-height: 400px;
+      }
+    }
+
+    .inner {
+      padding:0 0rem 5rem;
+      text-align: center;
+    }
+
+    .inner .home-title {
+      font-size: 150%;
+      padding: 1em 0;
+    }
   }
 }
 

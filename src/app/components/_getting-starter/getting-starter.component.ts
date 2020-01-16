@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-getting-starter',
-  templateUrl: 'getting-starter.component.html',
-  styleUrls: ['getting-starter.component.scss']
+  template: '<nt-markdown [data]="markdown"></nt-markdown>',
+  encapsulation: ViewEncapsulation.None
 })
-export class GettingStarterComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class GettingStarterComponent {
+  markdown = require('!!raw-loader!./getting-starter.md').default;
 }

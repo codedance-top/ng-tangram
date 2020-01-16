@@ -11,14 +11,19 @@ export const COMPONENTS_GROUPS = [
 export const COMPONENTS_ROUTES: Routes = [
   {
     path: '',
-    redirectTo: 'avatar',
+    redirectTo: 'getting-starter',
     pathMatch: 'full'
   },
-  // {
-  //   path: 'getting-starter',
-  //   loadChildren: () => import('./_getting-starter/getting-starter.module').then(mod => mod.GettingStarterModule),
-  //   data: { title: '开始' }
-  // },
+  {
+    path: 'getting-starter',
+    loadChildren: () => import('./_getting-starter/getting-starter.module').then(mod => mod.GettingStarterModule),
+    data: { title: '开始使用' }
+  },
+  {
+    path: 'changelog',
+    loadChildren: () => import('./_changelog/changelog.module').then(mod => mod.ChangelogModule),
+    data: { title: '更新日志' }
+  },
   {
     path: 'avatar',
     loadChildren: () => import('./avatar/avatar.module').then(mod => mod.AvatarDocumentModule),

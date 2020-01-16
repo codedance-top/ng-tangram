@@ -43,8 +43,7 @@ $nt-example-padding: $global-padding * 1.5;
   .code-container {
     display: none;
     border-top: $nt-example-code-border;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0 !important;
     border-bottom-left-radius: $nt-example-radius;
     border-bottom-right-radius: $nt-example-radius;
   }

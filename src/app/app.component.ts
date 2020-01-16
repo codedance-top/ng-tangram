@@ -3,9 +3,15 @@ import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  ViewEncapsulation
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
-
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -21,6 +27,7 @@ NProgress.configure({ showSpinner: false });
   selector: 'app',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit, OnDestroy {
 

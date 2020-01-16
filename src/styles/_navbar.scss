@@ -11,7 +11,7 @@ $navbar-active-color: $primary-color;
 
   .nav-treebar-title {
     padding: 0px 25px;
-    color: #333;
+    color: $black;
   }
 
   .nav-tree {
@@ -33,7 +33,6 @@ $navbar-active-color: $primary-color;
 
   .nav-tree > li > a:focus,
   .nav-tree > li > a:hover {
-    background-color: #FFF;
     color: $navbar-active-color;
   }
 
@@ -69,7 +68,6 @@ $navbar-active-color: $primary-color;
 
   .nav-tree > li.has-children > a,
   .nav-tree > li.has-children.active > a {
-    background-color: #FFF;
     color: $dark-gray;
     font-weight: 500;
     border-right-color: transparent;
@@ -92,13 +90,30 @@ $navbar-active-color: $primary-color;
     height: 0px;
   }
 
+  .nav-tree-no-children {
+    color: $black;
+    padding: .75em .5em;
+    font-size: 14px;
+    display: block;
+    font-weight: 500;
+
+    &:focus,
+    &:hover  {
+      color: $navbar-active-color;
+    }
+
+    &.active {
+      color: $navbar-active-color;
+      font-weight: 500;
+    }
+  }
+
   .nav-treebar-group {
     color: $dark-gray;
     padding: .75em .5em;
-    // font-weight: 500;
     font-size: 12px;
     text-transform: uppercase;
-    margin-top: 1em;
+    // margin-top: 1em;
 
     &:first-child {
       margin-top: 0;
