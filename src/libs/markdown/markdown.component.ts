@@ -68,9 +68,9 @@ export class NtMarkdownComponent implements OnChanges {
   // on input
   private _dataChange() {
     if (this.data) {
-      this._markdownEngine.compile(this.data).subscribe(
-        markdown => this._setMarkdownHtml(markdown)
-      );
+      this._markdownEngine
+        .compile(this.data)
+        .subscribe(markdown => this._setMarkdownHtml(markdown));
     } else {
       this._setMarkdownHtml('');
     }
