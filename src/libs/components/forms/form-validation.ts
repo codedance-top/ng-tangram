@@ -51,6 +51,4 @@ export class NtFormValidationTransformer implements NtValidationTransformer {
   }
 }
 
-// export const NT_VALIDATION_TEMPLATE = new InjectionToken<NtValidationTemplate>('nt-validation-template');
-
 export const NT_VALIDATION_TRANSFOMER = new InjectionToken<NtValidationTransformer>('nt-validation-transformer');
