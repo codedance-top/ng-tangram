@@ -3,11 +3,14 @@ $nt-slider-width-vertical: 0.5rem !default;
 $nt-slider-transition: all 0.2s ease-in-out !default;
 $nt-slider-height: 0.5rem !default;
 $nt-slider-background: $light-gray !default;
-$nt-slider-fill-background: $medium-gray !default;
+$nt-slider-fill-background: $primary-color !default;
 $nt-slider-handle-height: 1rem !default;
 $nt-slider-handle-width: 1rem !default;
 $nt-slider-handle-background: $primary-color !default;
 $nt-slider-handle-radius: $global-radius !default;
+
+$nt-slider-stepmark-height: .75rem !default;
+$nt-slider-stepmark-width: .75rem !default;
 $nt-slider-opacity-disabled: 0.25 !default;
 $nt-slider-radius: $global-radius !default;
 
@@ -24,6 +27,11 @@ $nt-slider-radius: $global-radius !default;
   outline: none;
   user-select: none;
   touch-action: none;
+
+  // &:hover,
+  // &:focus {
+  //   background-color: darken($nt-slider-background, 10%);
+  // }
 }
 
 /// Adds the general styles for active fill for sliders.
@@ -57,6 +65,15 @@ $nt-slider-radius: $global-radius !default;
   transition: $nt-slider-transition;
   touch-action: manipulation;
   transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+  // border: 1px solid $nt-slider-handle-background;
+  // box-shadow: $input-shadow-focus;
+
+  &:hover {
+    background-color: scale-color($nt-slider-handle-background, $lightness: -15%);
+    box-shadow: $input-shadow-focus;
+  }
 }
 
 @mixin nt-slider-stepmark {
@@ -67,18 +84,28 @@ $nt-slider-radius: $global-radius !default;
   width: 100%;
   justify-content: space-between;
   flex-wrap: nowrap;
-  padding-top: $nt-slider-height;
+  // padding-top: $nt-slider-height;
 
   .stepmark {
+    position: absolute;
     display: inline-block;
     font-size: rem-calc(12);
-    transform: scale(.8);
-    width: 1rem;
-    height: 1rem;
-    transform: translate(-50%, -50%);
+    // transform: scale(.8);
+    // top: 0;
+    width: $nt-slider-height;
+    height: $nt-slider-height;
+    transform: translate(-50%, 0%);
     background-color: $white;
     border-radius: 50%;
-    border: 2px solid get-color(primary);
+    white-space: nowrap;
+    box-shadow: 0px 0px 0px 2px get-color(primary);
+
+    transition: background-color .2s linear;
+    // border: 2px solid get-color(primary);
+    &.is-range,
+    &:hover {
+      background-color: get-color(primary);
+    }
   }
 }
 
@@ -148,12 +175,6 @@ $nt-slider-radius: $global-radius !default;
       .nt-slider-fill {
         transition-duration: 0s;
       }
-    }
-
-    &:hover .nt-slider-handle,
-    &:focus .nt-slider-handle {
-      background-color: scale-color($nt-slider-handle-background, $lightness: -15%);
-      box-shadow: $input-shadow-focus;
     }
   }
 
