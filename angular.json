@@ -30,7 +30,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.browser.json",
             "assets": [
-              "src/assets"
+              "src/assets",
+              "src/sitemap.xml"
             ],
             "styles": [
               "./node_modules/nprogress/nprogress.css",
