@@ -3,5 +3,5 @@
 </span>
 <span class="nt-slider-fill" [style.width.%]="percent * 100"></span>
 <div class="nt-slider-stepmark" *ngIf="stepmark">
-  <span class="stepmark" *ngFor="let mark of _stepmarks">{{ mark }}</span>
+  <span class="stepmark" [class.is-range]="value >= mark" [style.left.%]="(mark - min) / (max - min) * 100" *ngFor="let mark of _stepmarks"></span>
 </div>
