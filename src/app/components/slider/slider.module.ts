@@ -8,6 +8,7 @@ import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ExampleSliderBasicComponent } from './examples/basic';
 import { ExampleSliderEventsComponent } from './examples/events';
+import { ExampleSliderFormsComponent } from './examples/forms';
 import { ExampleSliderMinMaxComponent } from './examples/min-and-max';
 import { ExampleSliderRangeComponent } from './examples/range';
 import { ExampleSliderStepComponent } from './examples/step';
@@ -32,7 +33,8 @@ import { SliderDocumentComponent } from './slider.component';
     ExampleSliderStepmarkComponent,
     ExampleSliderMinMaxComponent,
     ExampleSliderRangeComponent,
-    ExampleSliderEventsComponent
+    ExampleSliderEventsComponent,
+    ExampleSliderFormsComponent
   ]
 })
 export class SliderDocumentModule { }

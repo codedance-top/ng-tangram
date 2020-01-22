@@ -12,4 +12,5 @@ export class SliderDocumentComponent {
   stepmarkCode = require('!!raw-loader!./examples/stepmark').default;
   rangeCode = require('!!raw-loader!./examples/range').default;
   eventsCode = require('!!raw-loader!./examples/events').default;
+  formsCode = require('!!raw-loader!./examples/forms').default;
 }
