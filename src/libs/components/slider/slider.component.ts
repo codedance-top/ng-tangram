@@ -6,6 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
+import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   DOWN_ARROW,
@@ -32,19 +33,22 @@ import {
   Optional,
   Output,
   Self,
-  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 import { NtFormFieldControl } from '../forms';
-import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 
 const activeEventOptions: AddEventListenerOptions = { passive: false };
 
 export class NtSliderChange {
   value: number;
   source: NtSliderComponent;
+}
+
+interface NtSliderStepmark {
+  value: number;
+  percent: number;
 }
 
 @Component({
@@ -140,9 +144,9 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
   set stepmark(value: boolean) {
     this._stepmark = coerceBooleanProperty(value);
     if(this._stepmark) {
-      this._stepmarks = this._calculateStepmarks();
+      this._stepmarkValues = this._calculateStepmarks();
     } else {
-      this._stepmarks = [];
+      this._stepmarkValues = [];
     }
   }
 
@@ -177,7 +181,7 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
 
   _isActive: boolean = false;
 
-  _stepmarks: number[] = [];
+  _stepmarkValues: NtSliderStepmark[] = [];
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
@@ -315,6 +319,10 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
     return !this.vertical ? !this._invertAxis : this._invertAxis;
   }
 
+  _calculate() {
+
+  }
+
   private _increment(numSteps: number) {
     this.value = this._clamp((this.value || 0) + this.step * numSteps, this.min, this.max);
   }
@@ -332,7 +340,7 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
       const oldValue = this.value;
       const pointerPosition = getPointerPositionOnPage(event);
 
-      // TODO: 在点击行为发生时，同步设置为滑动模式会屏蔽过渡效果，因此将状态的改变交给下一次变更检测
+      // TODO: 在点击行为发生时（从用户的意图上），同步设置为滑动模式时过渡效果不会出现，因此将状态的改变交给下一次变更检测期
       setTimeout(() => this._isSliding = true);
       this._lastPointerEvent = event;
       event.preventDefault();
@@ -343,7 +351,6 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
       this._updateValueFromPosition(pointerPosition);
       this._valueOnSlideStart = this.value;
       this._pointerPositionOnStart = pointerPosition;
-
 
       if (oldValue != this.value) {
         this._emitInputEvent();
@@ -418,15 +425,19 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
   }
 
   private _calculateStepmarks() {
-    const stepmarks: number[] = [this.min];
+    const values: NtSliderStepmark[] = [{ value: this.min, percent: 0 }];
+    const range = this.max - this.min;
     let start = this.min;
     while((start += this.step) < this.max) {
-      stepmarks.push(start);
+      values.push({
+        value: start,
+        percent: (start - this.min) / range * 100
+      });
     }
-    if(!stepmarks.includes(this.max)) {
-      stepmarks.push(this.max);
+    if(!values.find(item => item.value === this.max)) {
+      values.push({ value: this.max, percent: 100 });
     }
-    return stepmarks;
+    return values;
   }
 
   private _clamp(value: number, min = 0, max = 1) {

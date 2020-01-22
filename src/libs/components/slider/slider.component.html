@@ -3,5 +3,9 @@
 </span>
 <span class="nt-slider-fill" [style.width.%]="percent * 100"></span>
 <div class="nt-slider-stepmark" *ngIf="stepmark">
-  <span class="stepmark" [class.is-range]="value >= mark" [style.left.%]="(mark - min) / (max - min) * 100" *ngFor="let mark of _stepmarks"></span>
+  <span *ngFor="let mark of _stepmarkValues"
+    class="stepmark"
+    [class.is-range]="value >= mark.value"
+    [style.left.%]="mark.percent">
+  </span>
 </div>
