@@ -94,4 +94,14 @@ app-header {
     line-height: 22px;
     font-weight: normal;
   }
+
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 12;
+    width: 100%;
+    box-shadow: 0px 0px 5px $medium-gray;
+  }
 }
