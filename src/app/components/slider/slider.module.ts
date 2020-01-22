@@ -14,6 +14,7 @@ import { ExampleSliderRangeComponent } from './examples/range';
 import { ExampleSliderStepComponent } from './examples/step';
 import { ExampleSliderStepmarkComponent } from './examples/stepmark';
 import { SliderDocumentComponent } from './slider.component';
+import { ExampleSliderVerticalComponent } from './examples/vertical';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { SliderDocumentComponent } from './slider.component';
     ExampleSliderMinMaxComponent,
     ExampleSliderRangeComponent,
     ExampleSliderEventsComponent,
-    ExampleSliderFormsComponent
+    ExampleSliderFormsComponent,
+    ExampleSliderVerticalComponent
   ]
 })
 export class SliderDocumentModule { }

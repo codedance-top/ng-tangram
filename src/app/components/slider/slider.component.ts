@@ -13,4 +13,5 @@ export class SliderDocumentComponent {
   rangeCode = require('!!raw-loader!./examples/range').default;
   eventsCode = require('!!raw-loader!./examples/events').default;
   formsCode = require('!!raw-loader!./examples/forms').default;
+  verticalCode = require('!!raw-loader!./examples/vertical').default;
 }

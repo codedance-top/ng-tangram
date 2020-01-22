@@ -75,6 +75,15 @@
       </nt-example-legend>
       <nt-example-code [code]="eventsCode"></nt-example-code>
     </nt-example>
+    <nt-example>
+      <nt-example-showcase>
+        <example-slider-vertical></example-slider-vertical>
+      </nt-example-showcase>
+      <nt-example-legend title="竖型">
+        <!-- 组件中有两个值改变的事件，一种为值真正改变时发生(点击以及已结束拖拽行为)，另一种在拖拽行为还未结束时发出，频繁的值改变对于表单来说价值并不大。 -->
+      </nt-example-legend>
+      <nt-example-code [code]="verticalCode"></nt-example-code>
+    </nt-example>
   </div>
 </div>
 
