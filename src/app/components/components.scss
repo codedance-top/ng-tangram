@@ -80,15 +80,6 @@ $nav-size: 300px;
       }
     }
   }
-
-  .docs-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 12;
-    width: 100%;
-    box-shadow: 0px 0px 5px $medium-gray;
-  }
 }
 
 @media only screen and (max-width: 1023px) {
@@ -109,7 +100,7 @@ $nav-size: 300px;
       height: auto;
     }
 
-    .docs-header .menu {
+    app-header .menu {
       .nav-line {
         display: unset;
       }

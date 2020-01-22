@@ -1,6 +1,6 @@
 # A Angular 9+ UI Toolkit for Web
 
-`ng-tangram` 是基于 **Angular** 和 **Foundation** 框架开发的开源组件库，以助力企业级应用为目标而生。
+`TangramUI` 是基于 **Angular** 和 **Foundation** 框架开发的开源组件库，以助力企业级应用为目标而生。
 
 [![npm version](https://badge.fury.io/js/%40ng-tangram%2Fcomponents.svg)](https://www.npmjs.com/@ng-tangram/components)
 
@@ -61,7 +61,6 @@ import {
 })
 export class MyAppModule { }
 ```
-
 <!-- ## 组件体系
 
 ![logo](./src/assets/components-diagram.png) -->
