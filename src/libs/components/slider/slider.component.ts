@@ -68,6 +68,7 @@ interface NtSliderStepmark {
     'role': 'slider',
     '[tabIndex]': 'tabIndex',
     '[class.is-sliding]': '_isSliding',
+    '[class.vertical]': 'vertical'
   },
   providers: [
     { provide: NtFormFieldControl, useExisting: NtSliderComponent, multi: true }
@@ -118,8 +119,9 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
     }
   }
 
-  get percent(): number { return this._clamp(this._percent); }
   private _percent: number = 0;
+
+  get percent(): number { return this._clamp(this._percent); }
 
   private _disabled = false;
 
@@ -143,7 +145,7 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
   get stepmark() { return this._stepmark; }
   set stepmark(value: boolean) {
     this._stepmark = coerceBooleanProperty(value);
-    if(this._stepmark) {
+    if (this._stepmark) {
       this._stepmarkValues = this._calculateStepmarks();
     } else {
       this._stepmarkValues = [];
@@ -183,6 +185,21 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
 
   _stepmarkValues: NtSliderStepmark[] = [];
 
+  get _trackFillStyles() {
+    const sizeValue = this.percent * 100;
+    return !this.vertical
+      ? { width: `${sizeValue}%` }
+      : { height: `${sizeValue}%` };
+  }
+
+  get _trackHandleStyles() {
+    const offsetValue = this.percent * 100;
+    return !this.vertical
+      ? { left: `${offsetValue}%` }
+      : { top: `${offsetValue}%` };
+  }
+
+
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
     private _elementRef: ElementRef,
@@ -208,11 +225,11 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
 
   ngOnInit() {
     this._focusMonitor
-    .monitor(this._elementRef, true)
-    .subscribe((origin: FocusOrigin) => {
-      this._isActive = !!origin && origin !== 'keyboard';
-      this._changeDetectorRef.detectChanges();
-    });
+      .monitor(this._elementRef, true)
+      .subscribe((origin: FocusOrigin) => {
+        this._isActive = !!origin && origin !== 'keyboard';
+        this._changeDetectorRef.detectChanges();
+      });
   }
 
   ngOnDestroy() {
@@ -319,8 +336,11 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
     return !this.vertical ? !this._invertAxis : this._invertAxis;
   }
 
-  _calculate() {
 
+  _trackStepmarkStyles(stepmark: NtSliderStepmark) {
+    return !this.vertical
+      ? { left: `${stepmark.percent}%` }
+      : { top: `${stepmark.percent}%` };
   }
 
   private _increment(numSteps: number) {
@@ -428,13 +448,13 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
     const values: NtSliderStepmark[] = [{ value: this.min, percent: 0 }];
     const range = this.max - this.min;
     let start = this.min;
-    while((start += this.step) < this.max) {
+    while ((start += this.step) < this.max) {
       values.push({
         value: start,
         percent: (start - this.min) / range * 100
       });
     }
-    if(!values.find(item => item.value === this.max)) {
+    if (!values.find(item => item.value === this.max)) {
       values.push({ value: this.max, percent: 100 });
     }
     return values;

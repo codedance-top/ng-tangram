@@ -151,7 +151,7 @@ $nt-slider-radius: $global-radius !default;
     left: 50%;
     width: $nt-slider-handle-height;
     height: $nt-slider-handle-width;
-    transform: translateX(-50%);
+    transform: translateY(-50%);
   }
 }
 
