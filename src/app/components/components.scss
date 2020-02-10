@@ -45,7 +45,7 @@ $nav-size: 300px;
   .nav-content-wrapper {
     width: 800px;
     // padding-right: 100px;
-    max-width: calc(100% - $nav-size);
+    max-width: calc(100% - #{$nav-size});
     position: relative;
 
     .nt-markdown {
