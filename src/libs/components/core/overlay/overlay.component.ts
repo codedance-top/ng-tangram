@@ -1,5 +1,5 @@
 import { Subject, Subscription, SubscriptionLike } from 'rxjs';
-import { debounceTime, filter, switchMap, take, takeUntil, delay } from 'rxjs/operators';
+import { debounceTime, delay, filter, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { AnimationEvent, transition, trigger } from '@angular/animations';
 import { coerceArray, coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -22,7 +22,6 @@ import {
   OnDestroy,
   Optional,
   Output,
-  Renderer2,
   SimpleChanges,
   ViewChild,
   ViewEncapsulation
@@ -87,8 +86,10 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
   private _positionPairs: ConnectionPositionPair[] = NT_OVERLAY_POSITION_PAIRS[this._position];
 
   @Input()
-  set positionPairs(value: ConnectionPositionPair[]) { this._positionPairs = coerceArray(value); }
   get positionPairs() { return this._positionPairs; }
+  set positionPairs(value: ConnectionPositionPair[]) {
+    this._positionPairs = coerceArray(value);
+  }
 
   private _paddingClass = getPositionClassName(this._positionPairs[0]);
 
@@ -97,32 +98,42 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
   private _fixed = false;
 
   @Input()
-  set fixed(value: boolean) { this._fixed = coerceBooleanProperty(value); }
   get fixed() { return this._fixed; }
+  set fixed(value: boolean) {
+    this._fixed = coerceBooleanProperty(value);
+  }
 
   private _arrow = false;
 
   @Input()
-  set arrow(value: boolean) { this._arrow = coerceBooleanProperty(value); }
   get arrow() { return this._arrow; }
+  set arrow(value: boolean) {
+    this._arrow = coerceBooleanProperty(value);
+  }
 
   private _nospacing = false;
 
   @Input()
-  set nospacing(value: boolean) { this._nospacing = coerceBooleanProperty(value); }
   get nospacing() { return this._nospacing; }
+  set nospacing(value: boolean) {
+    this._nospacing = coerceBooleanProperty(value);
+  }
 
   private _overlayClass = '';
 
   @Input()
-  set overlayClass(value: string) { this._overlayClass = value; }
   get overlayClass() { return this._overlayClass; }
+  set overlayClass(value: string) {
+    this._overlayClass = value;
+  }
 
   private _backdrop = false;
 
   @Input()
   get backdrop() { return this._backdrop; }
-  set backdrop(value: boolean) { this._backdrop = coerceBooleanProperty(value); }
+  set backdrop(value: boolean) {
+    this._backdrop = coerceBooleanProperty(value);
+  }
 
   @ViewChild(CdkConnectedOverlay, { static: true }) cdkConnectedOverlay: CdkConnectedOverlay;
 
@@ -140,26 +151,25 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Output() keydownEvents = new EventEmitter<KeyboardEvent>();
 
   constructor(
-    private _renderer: Renderer2,
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() location: Location) {
 
     // 去抖动关闭事件，有时被动触发关闭事件造成跟预计效果不同的现象，
     // 这可以支持你 "反悔" 关闭事件的触发（100毫米内，可以通过设置 _markClosed = false 来防止）
-    this._debounceClose.
-      pipe(
+    this._debounceClose
+      .pipe(
         takeUntil(this._destroy),
         debounceTime(100),
         filter(() => this._markClosed)
-      ).
-      subscribe(() => this.close());
+      )
+      .subscribe(() => this.close());
 
-    this._positionChange.
-      pipe(
+    this._positionChange
+      .pipe(
         takeUntil(this._destroy),
         filter(position => position !== this._paddingClass)
-      ).
-      subscribe(position => this._setContainerStyles(position));
+      )
+      .subscribe(position => this._paddingClass = position);
 
     if (location) {
       this._locationChanges = location.subscribe(() => this.close());
@@ -204,36 +214,6 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
     this._locationChanges.unsubscribe();
   }
 
-  private _setPosition() {
-    this._positionPairs = this.fixed ?
-      this._positionPairs.slice(0, 1) :
-      this._positionPairs;
-
-    this._paddingClass = getPositionClassName(this._positionPairs[0]);
-  }
-
-  /** 开始外部点击事件的订阅 */
-  private _subscribeOutsideClickEvent() {
-    if (!this._outsideClickSubscription) {
-      this._outsideClickSubscription = fromOutsideClick([
-        this.cdkConnectedOverlay.overlayRef.overlayElement,
-        this.origin.elementRef.nativeElement
-      ])
-        .pipe(takeUntil(this._destroy))
-        .subscribe(() => {
-          this.close();
-        });
-    }
-  }
-
-  /** 取消外部点击事件的订阅 */
-  private _unsubscribeOutsideClickEvent() {
-    if (this._outsideClickSubscription) {
-      this._outsideClickSubscription.unsubscribe();
-      this._outsideClickSubscription = null;
-    }
-  }
-
   open() {
     this._opened = true;
     this._markClosed = false;
@@ -246,12 +226,9 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
     this._changeDetectorRef.markForCheck();
   }
 
+  //
   toggle() {
     this.opened ? this.close() : this.open();
-  }
-
-  onOverlayPositionChange(event: ConnectedOverlayPositionChange) {
-    this._positionChange.next(getPositionClassName(event.connectionPair));
   }
 
   markOpen() {
@@ -261,6 +238,12 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
   markClose() {
     this._markClosed = true;
     this._debounceClose.next();
+  }
+
+  forceUpdatePosition() {
+    if (this.opened) {
+      this.cdkConnectedOverlay.overlayRef?.updatePosition();
+    }
   }
 
   onAnimationStart(event: AnimationEvent): void {
@@ -279,10 +262,35 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
     }
   }
 
-  private _setContainerStyles(position: any) {
-    const pane = this.cdkConnectedOverlay.overlayRef.overlayElement.querySelector('.nt-overlay-container');
-    this._paddingClass && this._renderer.removeClass(pane, this._paddingClass);
-    this._paddingClass = position;
-    this._renderer.addClass(pane, this._paddingClass);
+  onOverlayPositionChange(event: ConnectedOverlayPositionChange) {
+    this._positionChange.next(getPositionClassName(event.connectionPair));
+  }
+
+  private _setPosition() {
+    this._positionPairs = this.fixed ?
+      this._positionPairs.slice(0, 1) :
+      this._positionPairs;
+
+    this._paddingClass = getPositionClassName(this._positionPairs[0]);
+  }
+
+  /** 开始外部点击事件的订阅 */
+  private _subscribeOutsideClickEvent() {
+    if (!this._outsideClickSubscription) {
+      this._outsideClickSubscription = fromOutsideClick([
+        this.cdkConnectedOverlay.overlayRef.overlayElement,
+        this.origin.elementRef.nativeElement
+      ])
+        .pipe(takeUntil(this._destroy))
+        .subscribe(() => this.close());
+    }
+  }
+
+  /** 取消外部点击事件的订阅 */
+  private _unsubscribeOutsideClickEvent() {
+    if (this._outsideClickSubscription) {
+      this._outsideClickSubscription.unsubscribe();
+      this._outsideClickSubscription = null;
+    }
   }
 }
