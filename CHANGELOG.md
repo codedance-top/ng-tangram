@@ -40,18 +40,16 @@
 * **drawer:** 移除 opened 属性，openedChange 和 outsideClick 事件
 * **markdown:** $nt-markdownquote-* => $nt-markdown-quote-*
 * **markdown:** 新增 `~@ng-tangram/markdown/styles` 样式导入方式 ([286595b](https://github.com/livebridge-lab/ng-tangram/commit/286595b7e4a3151c0ebc4eb892022317837a862c))
-* **overlay:** 修改变量名称 $nt-overlay-container-padding -> $nt-overlay-container-arrow-gap, 移除了 $nt-overlay-container-arrow-cover, --nt-overlay-container-background 和
---nt-overlay-container-arrow-gap。
+* **overlay:** 修改变量名称 $nt-overlay-container-padding -> $nt-overlay-container-arrow-gap, 移除了 $nt-overlay-container-arrow-cover, --nt-overlay-container-background 和 --nt-overlay-container-arrow-gap。
+* **table:** 删除了 ntColumnCellDef, ntColumnHeaderDef, ntColumnFooterDef, nt-column-header, th[nt-column-header], nt-column-footer, td[nt-column-footer], nt-column-cell, td[nt-column-cell]
 * **upload:** 新增上传结果类型 `NtUploadEvent`, `NtUploadResponse`, `NtUploadError` ([fd9218f](https://github.com/livebridge-lab/ng-tangram/commit/fd9218f9143054f133c776abb74bb4c4e89bd715))
 
 # [0.6.0-rc.4](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc.3...0.6.0-rc.4) (2020-01-08)
-
 
 ### Bug Fixes
 
 * **markdown:** 修复 `NtMarkedEngine` 错误处理失败的问题 ([555cfd7](https://github.com/livebridge-lab/ng-tangram/commit/555cfd7857f6fb063ed545d90740b101a2e15f90))
 * **table:** 修复 `nt-column` 会提示类型错误的问题 ([e075562](https://github.com/livebridge-lab/ng-tangram/commit/e07556222df3cd6e636d67751518907489b8a82e))
-
 
 ### Features
 
