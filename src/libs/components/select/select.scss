@@ -1,5 +1,7 @@
+$nt-select-pane-min-width: 100px !default;
+$nt-select-pane-max-width: 256px !default;
 $nt-select-radius: $global-radius !default;
-$nt-select-background: $white !default;
+$nt-select-pane-background: $white !default;
 
 @mixin nt-select {
 
@@ -10,9 +12,8 @@ $nt-select-background: $white !default;
   }
 
   .nt-select-pane {
-    min-width: 100px;
+    min-width: $nt-select-pane-max-width;
     border-radius: $nt-select-radius;
-    background-color: $nt-select-background;
     overflow-y: scroll;
 
     /* 目前存在 max-height 的初始值为0时 OverlayPosition 判断过早导致窗口边界超出浏览器的现象，在解决这个问题之前暂时注释此代码 */
@@ -20,7 +21,7 @@ $nt-select-background: $white !default;
     // max-height: 0px;
     // transition: max-height .3s;
     // &.folded {
-      max-height: 256px;
+      max-height: $nt-select-pane-max-width;
     // }
 
     .filter-empty {
@@ -29,5 +30,9 @@ $nt-select-background: $white !default;
       cursor: $input-cursor-disabled;
       // text-align: center;
     }
+  }
+
+  .nt-overlay-container.nt-select-overlay {
+    --nt-overlay-container-background: #{$nt-select-pane-background};
   }
 }
