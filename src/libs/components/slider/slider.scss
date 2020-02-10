@@ -1,0 +1,253 @@
+
+$nt-slider-width-vertical: 3px !default;
+$nt-slider-transition: all 0.2s ease-in-out !default;
+$nt-slider-height: 3px !default;
+$nt-slider-background: $light-gray !default;
+$nt-slider-fill-background: $primary-color !default;
+$nt-slider-handle-height: 1rem !default;
+$nt-slider-handle-width: 1rem !default;
+$nt-slider-handle-background: $primary-color !default;
+$nt-slider-handle-radius: $global-radius !default;
+
+$nt-slider-stepmark-height: 0.75rem !default;
+$nt-slider-stepmark-width: 0.75rem !default;
+$nt-slider-opacity-disabled: 0.25 !default;
+$nt-slider-radius: $global-radius !default;
+
+$nt-slider-tooltip-background: $black !default;
+$nt-slider-tooltip-padding: 0.25rem 0.5rem !default;
+$nt-slider-tooltip-color: $white !default;
+$nt-slider-tooltip-font-size: rem-calc(12) !default;
+$nt-slider-tooltip-arrow-gap: 0.75rem !default;
+
+@mixin nt-slider-container {
+  position: relative;
+  height: $nt-slider-height;
+  margin-top: 1.25rem;
+  margin-bottom: 2.25rem;
+  display: block;
+  border-radius: $global-radius;
+
+  background-color: $nt-slider-background;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  touch-action: none;
+
+  // &:hover,
+  // &:focus {
+  //   background-color: darken($nt-slider-background, 10%);
+  // }
+}
+
+@mixin nt-slider-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: inline-block;
+  max-width: 100%;
+  height: $nt-slider-height;
+  border-radius: $global-radius;
+
+  background-color: $nt-slider-fill-background;
+  transition: $nt-slider-transition;
+}
+
+/// Adds the general styles for the slider handles.
+@mixin nt-slider-handle {
+
+  $handle-translate-y: -(rem-calc($nt-slider-handle-height) - rem-calc($nt-slider-height)) / 2;
+
+  left: 0;
+  z-index: 1;
+  position: absolute;
+
+  display: inline-block;
+  width: $nt-slider-handle-width;
+  height: $nt-slider-handle-height;
+
+  cursor: grabbing;
+  border-radius: $nt-slider-handle-radius;
+  background-color: $nt-slider-handle-background;
+  transition: $nt-slider-transition;
+  touch-action: manipulation;
+  transform: translate(-50%, $handle-translate-y);
+  border-radius: 50%;
+
+  &:hover {
+    background-color: scale-color($nt-slider-handle-background, $lightness: -15%);
+    box-shadow: $input-shadow-focus;
+  }
+}
+
+@mixin nt-slider-stepmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  // justify-content: space-between;
+  flex-wrap: nowrap;
+  // padding-top: $nt-slider-height;
+
+  span {
+    position: absolute;
+    display: inline-block;
+    font-size: rem-calc(12);
+    width: $nt-slider-height;
+    height: $nt-slider-height;
+    transform: translate(-50%, 0%);
+    background-color: $white;
+    border-radius: 50%;
+    white-space: nowrap;
+    box-shadow: 0px 0px 0px 2px get-color(primary);
+    transition: background-color .2s linear;
+
+    &.is-passed,
+    &:hover {
+      background-color: get-color(primary);
+    }
+  }
+}
+
+@mixin nt-slider-validation(
+  $color: $nt-input-background-invalid,
+  $shadow: $nt-input-shadow-invalid,
+  $shadow-hover: $nt-input-shadow-invalid-focus,
+  $color-lighten: 5%
+) {
+
+  .nt-slider-handle {
+    box-shadow: $shadow;
+  }
+
+  &:not(.disabled) {
+    .nt-slider-handle:hover {
+      box-shadow: $shadow-hover;
+    }
+  }
+}
+
+@mixin nt-slider-disabled {
+  opacity: $nt-slider-opacity-disabled;
+  cursor: not-allowed;
+}
+
+@mixin nt-slider-vertical {
+  display: inline-block;
+  width: $nt-slider-width-vertical;
+  height: 12.5rem;
+  margin: 0 1.25rem;
+  transform: scale(1, -1);
+
+  .nt-slider-fill {
+    top: 0;
+    width: $nt-slider-width-vertical;
+    max-height: 100%;
+  }
+
+  $invert-translate-x: -(rem-calc($nt-slider-handle-width) - rem-calc($nt-slider-width-vertical)) / 2;
+
+  .nt-slider-handle {
+    transform: translate($invert-translate-x, -50%);
+  }
+
+  .nt-slider-stepmark {
+    height: 100%;
+    span {
+      transform: translate(0%, -50%) !important;
+    }
+  }
+}
+
+@mixin nt-slider-invert {
+
+  $invert-translate-x: -(rem-calc($nt-slider-handle-width) - rem-calc($nt-slider-width-vertical)) / 2;
+
+  .nt-slider-fill {
+    left: unset;
+    right: 0;
+  }
+  .nt-slider-handle {
+    left: unset;
+    right: 0;
+    transform: translate(50%, -50%);
+  }
+
+  .nt-slider-stepmark {
+    left: unset;
+    right: 0;
+    span {
+      transform: translate(50%, 0%);
+    }
+  }
+
+  &.vertical {
+    transform: scale(1, 1);
+    .nt-slider-handle {
+      left: 0;
+      transform: translate($invert-translate-x, -50%);
+    }
+  }
+}
+
+@mixin nt-slider-tooltip {
+  --nt-overlay-container-background: #{$nt-slider-tooltip-background};
+  --nt-overlay-container-arrow-gap: #{$nt-slider-tooltip-arrow-gap};
+  .nt-slider-tooltip {
+    color: $nt-slider-tooltip-color;
+    padding: $nt-slider-tooltip-padding;
+    font-size: $nt-slider-tooltip-font-size;
+  }
+}
+
+@mixin nt-slider {
+
+  // Container
+  .nt-slider {
+    @include nt-slider-container;
+
+    // Disabled state
+    &.disabled {
+      @include nt-slider-disabled;
+    }
+
+    &.vertical {
+      @include nt-slider-vertical;
+    }
+
+    &.invert {
+      @include nt-slider-invert;
+    }
+
+    &.is-sliding {
+      .nt-slider-handle,
+      .nt-slider-fill {
+        transition-duration: 0s;
+      }
+    }
+  }
+
+  .nt-overlay-container.nt-slider-tooltip-overlay {
+    @include nt-slider-tooltip;
+  }
+
+  // Fill area
+  .nt-slider-fill {
+    @include nt-slider-fill;
+  }
+
+  // Draggable handle
+  .nt-slider-handle {
+    @include nt-slider-handle;
+  }
+
+  .nt-slider-stepmark {
+    @include nt-slider-stepmark;
+  }
+
+  .nt-form-error .nt-slider {
+    @include nt-slider-validation;
+  }
+}

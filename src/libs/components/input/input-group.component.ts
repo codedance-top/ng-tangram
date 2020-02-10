@@ -15,7 +15,8 @@ export class NtInputGroupComponent {
   private _transparent: boolean = false;
 
   @Input()
-  set transparent(value: boolean) { this._transparent = coerceBooleanProperty(value); }
   get transparent() { return this._transparent; }
+  set transparent(value: boolean) {
+    this._transparent = coerceBooleanProperty(value);
+  }
 }
-

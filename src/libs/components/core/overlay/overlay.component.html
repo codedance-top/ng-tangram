@@ -10,7 +10,7 @@
     (mouseenter)="overlayEnter.emit($event)"
     (mouseleave)="overlayLeave.emit($event)"
     (click)="$event.stopPropagation()"
-    [class.no-spacing]="nospacing"
+    [class.nospacing]="nospacing"
     [@fade]
     (@fade.start)="onAnimationStart($event)"
     (@fade.done)="onAnimationDone($event)">

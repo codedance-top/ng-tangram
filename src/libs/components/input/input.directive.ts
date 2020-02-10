@@ -30,6 +30,7 @@ export class NtInputDirective extends NtFormFieldControl<any> {
 
   @Input()
   get disabled(): boolean {
+    // return this.ngControl?.disabled || this._disabled;
     if (this.ngControl && this.ngControl.disabled !== null) {
       return this.ngControl.disabled;
     }

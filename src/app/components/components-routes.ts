@@ -145,6 +145,11 @@ export const COMPONENTS_ROUTES: Routes = [
     data: { title: 'Select 下拉选择框', group: COMPONENTS_GROUPS[1] }
   },
   {
+    path: 'slider',
+    loadChildren: () => import('./slider/slider.module').then(mod => mod.SliderDocumentModule),
+    data: { title: 'Slider 滚动条', group: COMPONENTS_GROUPS[1] }
+  },
+  {
     path: 'switch',
     loadChildren: () => import('./switch/switch.module').then(mod => mod.SwitchDocumentModule),
     data: { title: 'Switch 开关', group: COMPONENTS_GROUPS[0] }

@@ -24,6 +24,7 @@
 @import 'radio/radio';
 @import 'scrim/scrim';
 @import 'select/select';
+@import 'slider/slider';
 @import 'switch/switch';
 @import 'table/table';
 @import 'tooltip/tooltip';
@@ -44,10 +45,12 @@
   @include foundation-label;
   @include foundation-menu;
   @include foundation-reveal;
+  @include foundation-range-input;
   @include foundation-pagination;
   @include foundation-progress-bar;
   @include foundation-switch;
   @include foundation-table;
+
 
   @include nt-attachment;
   @include nt-avatar;
@@ -72,6 +75,7 @@
   @include nt-radio;
   @include nt-scrim;
   @include nt-select;
+  @include nt-slider;
   @include nt-switch;
   @include nt-table;
   @include nt-tooltip;

@@ -77,7 +77,7 @@ export class NtPopConfirmComponent implements OnChanges {
 
       /** 在内容更新之后提示框的位置需要更新，需要延迟执行，因为这时候画面还未渲染 */
       Promise.resolve().then(() => {
-        this.overlay.cdkConnectedOverlay.overlayRef.updatePosition();
+        this.overlay.forceUpdatePosition();
       });
     }
   }
