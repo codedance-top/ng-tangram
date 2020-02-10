@@ -331,7 +331,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   focus() {
     if (!this.disabled) {
-      if (this.filter) {
+      if (typeof this.filter === 'function') {
         this.inputElement.nativeElement.focus();
       } else {
         this.overlay.open();
@@ -465,7 +465,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   private _initializeSelection(): void {
     Promise.resolve().then(() => {
-      this._setSelectionByValue(this.ngControl ? this.ngControl.value : this.value);
+      this._setSelectionByValue(this.ngControl?.value || this.value);
     });
   }
 
@@ -495,7 +495,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   private _selectValue(value: any, isUserInput = false): NtOptionComponent | undefined {
     const correspondingOption = this.options.find((option: NtOptionComponent) => {
       try {
-        return option.value != null && this._compareWith(option.value, value);
+        return option.value !== null && this._compareWith(option.value, value);
       } catch (error) {
         if (isDevMode()) {
           console.warn(error);
@@ -610,17 +610,5 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       const scrollOffset = this.paneElement.nativeElement.offsetHeight - activeOption.getOffsetHeight();
       this.paneElement.nativeElement.scrollTop = activeOption.getOffsetTop() - scrollOffset;
     }
-  }
-
-
-
-  _testOnFocus() {
-    console.log('input:focus');
-    this.overlay.markOpen();
-  }
-
-  _testOnBlur() {
-    console.log('input:blur')
-    this.overlay.markClose();
   }
 }
