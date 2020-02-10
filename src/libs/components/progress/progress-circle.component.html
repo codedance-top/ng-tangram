@@ -7,7 +7,8 @@
       [attr.cy]="height / 2"
       fill="transparent"
       [attr.stroke-dasharray]="dasharray"
-      [attr.stroke-dashoffset]="0"></circle>
+      [attr.stroke-dashoffset]="0">
+    </circle>
 
     <circle
       class="progress-meter-circle"
@@ -16,7 +17,8 @@
       [attr.cy]="height / 2"
       fill="transparent"
       [attr.stroke-dasharray]="dasharray"
-      [attr.stroke-dashoffset]="dasharray - (dasharray / 100 * percent)"></circle>
+      [attr.stroke-dashoffset]="dasharray - (dasharray / 100 * percent)">
+    </circle>
   </svg>
   <div class="progress-inner">
     <ng-content></ng-content>
