@@ -5,8 +5,8 @@ $nt-popconfirm-radius: $global-radius !default;
 $nt-popconfirm-background: $white !default;
 $nt-popconfirm-font-size: rem-calc(14) !default;
 $nt-popconfirm-button-margin: 0 0 0 .4em !default;
-
 $nt-popconfirm-margin: 1rem !default;
+$nt-popconfirm-arrow-gap: 0.75rem !default;
 
 @mixin nt-popconfirm-action {
   text-align: right;
@@ -23,7 +23,6 @@ $nt-popconfirm-margin: 1rem !default;
   width: $nt-popconfirm-width;
   padding: $nt-popconfirm-padding;
   border-radius: $nt-popconfirm-radius;
-  background-color: $nt-popconfirm-background;
   font-size: $nt-popconfirm-font-size;
   display: block;
 }
@@ -40,5 +39,10 @@ $nt-popconfirm-margin: 1rem !default;
     .nt-popconfirm-action {
       @include nt-popconfirm-action;
     }
+  }
+
+  .nt-overlay-container.nt-popconfirm-overlay {
+    --nt-overlay-container-background: #{$nt-popconfirm-background};
+    --nt-overlay-container-arrow-gap: #{$nt-popconfirm-arrow-gap};
   }
 }
