@@ -14,4 +14,5 @@ export class SliderDocumentComponent {
   eventsCode = require('!!raw-loader!./examples/events').default;
   formsCode = require('!!raw-loader!./examples/forms').default;
   verticalCode = require('!!raw-loader!./examples/vertical').default;
+  inputCode = require('!!raw-loader!./examples/input').default;
 }
