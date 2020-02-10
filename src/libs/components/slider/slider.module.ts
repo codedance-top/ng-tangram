@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NtOverlayModule } from '@ng-tangram/components/core';
 
+import { NtSliderInputDirective } from './slider-input.directive';
+import { NtSliderRangeComponent } from './slider-range.component';
 import { NtSliderComponent } from './slider.component';
 
 @NgModule({
@@ -11,7 +13,15 @@ import { NtSliderComponent } from './slider.component';
     A11yModule,
     NtOverlayModule,
   ],
-  exports: [NtSliderComponent],
-  declarations: [NtSliderComponent]
+  exports: [
+    NtSliderComponent,
+    NtSliderRangeComponent,
+    NtSliderInputDirective
+  ],
+  declarations: [
+    NtSliderComponent,
+    NtSliderRangeComponent,
+    NtSliderInputDirective
+  ]
 })
 export class NtSliderModule { }

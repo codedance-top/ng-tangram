@@ -2,7 +2,7 @@
 
 ## 何时使用
 
-* 当输入项是数字类型，且需要在限定范围取值时。
+* 当输入项是 `number` 类型，且需要在限定范围取值时。
 
 > 如：在国内去买鞋👟时尺码通常使用欧洲的标准码（35, 36, 37, ... ,44），在这种情况下<br>
 > 如果使用普通输入框不会有太好的体验，代码也会变得冗余，因此滚动输入框很适合此类场景下使用。
@@ -15,7 +15,7 @@
         <example-slider-basic></example-slider-basic>
       </nt-example-showcase>
       <nt-example-legend title="基本">
-        默认滚动条，取之区间为 0 - 100，每次移动的间隔为1。
+        默认滚动条，取值区间为 0 - 100，每次移动的间隔为1。
       </nt-example-legend>
       <nt-example-code [code]="basicCode"></nt-example-code>
     </nt-example>
@@ -45,6 +45,15 @@
         slider 组件基于 angular 表单体系构建，因此很容易将它与 `FormsModule` 和 `ReactiveFormsModule` 结合使用。
       </nt-example-legend>
       <nt-example-code [code]="formsCode"></nt-example-code>
+    </nt-example>
+    <nt-example>
+      <nt-example-showcase>
+        <example-slider-input></example-slider-input>
+      </nt-example-showcase>
+      <nt-example-legend title="与输入框配合">
+        当取值范围较大时，常常会跟输入框配合使用，这里示范三种配合方式，第一种方式在手动输入 input 值时并不会发出 change 事件，因此需要接收 change 事件时用`ntSliderInput` 指令配合使用就可以。
+      </nt-example-legend>
+      <nt-example-code [code]="inputCode"></nt-example-code>
     </nt-example>
   </div>
   <div class="medium-6 large-6 cell">
@@ -79,8 +88,8 @@
       <nt-example-showcase>
         <example-slider-vertical></example-slider-vertical>
       </nt-example-showcase>
-      <nt-example-legend title="竖型">
-        <!-- 组件中有两个值改变的事件，一种为值真正改变时发生(点击以及已结束拖拽行为)，另一种在拖拽行为还未结束时发出，频繁的值改变对于表单来说价值并不大。 -->
+      <nt-example-legend title="垂直">
+        也可以垂直滚动。
       </nt-example-legend>
       <nt-example-code [code]="verticalCode"></nt-example-code>
     </nt-example>

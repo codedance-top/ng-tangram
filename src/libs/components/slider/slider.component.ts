@@ -1,11 +1,3 @@
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-
 import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
@@ -19,6 +11,8 @@ import {
   RIGHT_ARROW,
   UP_ARROW
 } from '@angular/cdk/keycodes';
+import { CdkOverlayOrigin } from '@angular/cdk/overlay';
+import { DOCUMENT } from '@angular/common';
 import {
   Attribute,
   ChangeDetectionStrategy,
@@ -26,6 +20,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  Inject,
   Input,
   NgZone,
   OnDestroy,
@@ -33,11 +28,18 @@ import {
   Optional,
   Output,
   Self,
+  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-
-import { NtFormFieldControl } from '../forms';
+import {
+  BOTTOM_CENTER,
+  LEFT_CENTER,
+  NtOverlayComponent,
+  RIGHT_CENTER,
+  TOP_CENTER
+} from '@ng-tangram/components/core';
+import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 const activeEventOptions: AddEventListenerOptions = { passive: false };
 
@@ -53,6 +55,7 @@ interface NtSliderStepmark {
 
 @Component({
   selector: 'nt-slider',
+  exportAs: 'ntSlider',
   templateUrl: 'slider.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -68,7 +71,8 @@ interface NtSliderStepmark {
     'role': 'slider',
     '[tabIndex]': 'tabIndex',
     '[class.is-sliding]': '_isSliding',
-    '[class.vertical]': 'vertical'
+    '[class.vertical]': 'vertical',
+    '[class.invert]': 'invert'
   },
   providers: [
     { provide: NtFormFieldControl, useExisting: NtSliderComponent, multi: true }
@@ -83,7 +87,12 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
   @Input()
   get min() { return this._min; }
   set min(value: number) {
-    this._min = coerceNumberProperty(value);
+    this._min = coerceNumberProperty(value, this._max);
+
+    if (this._value === null) {
+      this.value = this._min;
+    }
+
     this._percent = this._calculatePercentage(this._value);
     this._changeDetectorRef.markForCheck();
   }
@@ -93,7 +102,8 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
   @Input()
   get max() { return this._max; }
   set max(value: number) {
-    this._max = coerceNumberProperty(value);
+    this._max = coerceNumberProperty(value, this._min);
+
     this._percent = this._calculatePercentage(this._value);
     this._changeDetectorRef.markForCheck();
   }
@@ -103,17 +113,31 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
   @Input()
   get step() { return this._step; }
   set step(value: number) {
-    this._step = coerceNumberProperty(value);
+    this._step = coerceNumberProperty(value, this._step);
+    if (this._step % 1 !== 0) {
+      this._roundToDecimal = this._step.toString().split('.').pop()!.length;
+    }
     this._changeDetectorRef.markForCheck();
   }
 
-  private _value: number = 0;
+  private _value: number | null = null;
 
   @Input()
-  get value() { return this._value; }
-  set value(value: number) {
+  get value() {
+    if (this._value === null) {
+      this.value = this._min;
+    }
+    return this._value;
+  }
+  set value(value: number | null) {
     if (value !== this._value) {
-      this._value = coerceNumberProperty(value);
+      let _value = coerceNumberProperty(value);
+
+      if (this._roundToDecimal) {
+        _value = parseFloat(_value.toFixed(this._roundToDecimal));
+      }
+
+      this._value = this._clamp(_value, this.min, this.max);
       this._percent = this._calculatePercentage(this._value);
       this._changeDetectorRef.markForCheck();
     }
@@ -122,6 +146,13 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
   private _percent: number = 0;
 
   get percent(): number { return this._clamp(this._percent); }
+
+  get displayValue() {
+    if (this._roundToDecimal && this.value && this.value % 1 !== 0) {
+      return this.value.toFixed(this._roundToDecimal);
+    }
+    return this.value || 0;
+  }
 
   private _disabled = false;
 
@@ -152,10 +183,6 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
     }
   }
 
-  get _invertAxis() {
-    return this.vertical ? !this.invert : this.invert;
-  }
-
   private _vertical: boolean = false;
 
   @Input()
@@ -168,16 +195,28 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
 
   @Output() readonly input: EventEmitter<NtSliderChange> = new EventEmitter<NtSliderChange>();
 
+  @Output() readonly valueChange: EventEmitter<number | null> = new EventEmitter<number | null>();
+
+  @ViewChild('sliderHandle', { static: true, read: ElementRef }) _sliderHandle: ElementRef;
+
+  @ViewChild(NtOverlayComponent, { static: true }) _overlay: NtOverlayComponent;
+
   private _onChange: (value: any) => void = () => { };
   private _onTouched = () => { };
 
   private _sliderDimensions: ClientRect | null = null;
+
+  private _roundToDecimal: number;
 
   private _valueOnSlideStart: number | null;
 
   private _pointerPositionOnStart: { x: number, y: number } | null;
 
   private _lastPointerEvent: MouseEvent | TouchEvent | null;
+
+  protected _document?: Document;
+
+  _origin: CdkOverlayOrigin;
 
   _isSliding: boolean = false;
 
@@ -186,7 +225,7 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
   _stepmarkValues: NtSliderStepmark[] = [];
 
   get _trackFillStyles() {
-    const sizeValue = this.percent * 100;
+    let sizeValue = this.percent * 100;
     return !this.vertical
       ? { width: `${sizeValue}%` }
       : { height: `${sizeValue}%` };
@@ -194,21 +233,34 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
 
   get _trackHandleStyles() {
     const offsetValue = this.percent * 100;
-    return !this.vertical
+
+    if (!this.vertical) {
+    return !this.invert
       ? { left: `${offsetValue}%` }
-      : { top: `${offsetValue}%` };
+      : { right: `${offsetValue}%` };
+    } else {
+      return { top: `${offsetValue}%` }
+    }
   }
 
+  get _trackTootipPosition() {
+    return !this.vertical
+     ? [TOP_CENTER, BOTTOM_CENTER]
+     : [LEFT_CENTER, RIGHT_CENTER]
+  }
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
     private _elementRef: ElementRef,
     private _focusMonitor: FocusMonitor,
+    @Inject(DOCUMENT) document: any,
     @Attribute('tabindex') tabIndex: string,
     @Self() @Optional() public ngControl: NgControl,
     private _ngZone: NgZone
   ) {
     super();
+
+    this._document = document;
 
     this.tabIndex = parseInt(tabIndex) || 0;
 
@@ -224,6 +276,8 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
   }
 
   ngOnInit() {
+    this._origin = new CdkOverlayOrigin(this._sliderHandle);
+
     this._focusMonitor
       .monitor(this._elementRef, true)
       .subscribe((origin: FocusOrigin) => {
@@ -271,12 +325,10 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
     }
 
     this._sliderDimensions = this._getSliderDimensions();
-    // this._updateTickIntervalPercent();
   }
 
   _onFocus() {
     this._sliderDimensions = this._getSliderDimensions();
-    // this._updateTickIntervalPercent();
   }
 
   _onBlur() {
@@ -333,14 +385,17 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
   }
 
   _shouldInvertMouseCoords() {
-    return !this.vertical ? !this._invertAxis : this._invertAxis;
+    return !this.vertical ? this.invert : !this.invert;
   }
 
-
   _trackStepmarkStyles(stepmark: NtSliderStepmark) {
-    return !this.vertical
-      ? { left: `${stepmark.percent}%` }
-      : { top: `${stepmark.percent}%` };
+    if (!this.vertical) {
+      return !this.invert
+        ? { left: `${stepmark.percent}%` }
+        : { right: `${stepmark.percent}%` };
+    } else {
+      return { top: `${stepmark.percent}%` };
+    }
   }
 
   private _increment(numSteps: number) {
@@ -381,7 +436,6 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
 
   private _pointerMove = (event: TouchEvent | MouseEvent) => {
     if (this._isSliding) {
-
       event.preventDefault();
       const oldValue = this.value;
       this._lastPointerEvent = event;
@@ -390,6 +444,9 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
       if (oldValue != this.value) {
         this._emitInputEvent();
       }
+
+      this._overlay.markOpen();
+      this._overlay.forceUpdatePosition()
     }
   }
 
@@ -404,12 +461,18 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
       this._valueOnSlideStart = this._pointerPositionOnStart = this._lastPointerEvent = null;
       this._isSliding = false;
 
-      if (this._valueOnSlideStart != this.value && !this.disabled &&
-        pointerPositionOnStart && (pointerPositionOnStart.x !== currentPointerPosition.x ||
-          pointerPositionOnStart.y !== currentPointerPosition.y)) {
+      if (
+        this._valueOnSlideStart !== this.value &&
+        !this.disabled && (
+          pointerPositionOnStart?.x !== currentPointerPosition.x ||
+          pointerPositionOnStart?.y !== currentPointerPosition.y
+        )
+      ) {
         this._emitChangeEvent();
       }
     }
+
+    this._overlay.markClose();
   }
 
   private _updateValueFromPosition(pos: { x: number, y: number }) {
@@ -422,6 +485,10 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
     let posComponent = this.vertical ? pos.y : pos.x;
 
     let percent = this._clamp((posComponent - offset) / size);
+
+    if (this._shouldInvertMouseCoords()) {
+      percent = 1 - percent;
+    }
 
     if (percent === 0) {
       this.value = this.min;
@@ -465,8 +532,8 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
   }
 
   private _bindGlobalEvents(triggerEvent: TouchEvent | MouseEvent) {
-    if (typeof document !== 'undefined' && document) {
-      const body = document.body;
+    if (typeof this._document !== 'undefined' && this._document) {
+      const body = this._document.body;
       const isTouch = isTouchEvent(triggerEvent);
       const moveEventName = isTouch ? 'touchmove' : 'mousemove';
       const endEventName = isTouch ? 'touchend' : 'mouseup';
@@ -483,8 +550,8 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
   }
 
   private _removeGlobalEvents() {
-    if (typeof document !== 'undefined' && document) {
-      const body = document.body;
+    if (typeof this._document !== 'undefined' && this._document) {
+      const body = this._document.body;
       body.removeEventListener('mousemove', this._pointerMove, activeEventOptions);
       body.removeEventListener('mouseup', this._pointerUp, activeEventOptions);
       body.removeEventListener('touchmove', this._pointerMove, activeEventOptions);
@@ -512,17 +579,19 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
 
   private _emitChangeEvent() {
     this._onChange(this.value);
+    this.valueChange.emit(this.value);
     this.change.emit(this._createSliderChange());
   }
 
   private _emitInputEvent() {
-    this.input.emit(this._createSliderChange())
+    this.input.emit(this._createSliderChange());
+    this._changeDetectorRef.markForCheck();
   }
 
   private _createSliderChange() {
     const change = new NtSliderChange();
     change.source = this;
-    change.value = this.value;
+    change.value = this.value || this.min;
     return change;
   }
 }
