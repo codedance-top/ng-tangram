@@ -145,7 +145,7 @@
     "markdown": {
       "projectType": "library",
       "root": "src/libs/markdown",
-      "sourceRoot": "src/libs/markdown/src",
+      "sourceRoot": "src/libs/markdown",
       "prefix": "lib",
       "architect": {
         "build": {
@@ -165,7 +165,7 @@
     "moment-adapter": {
       "projectType": "library",
       "root": "src/libs/moment-adapter",
-      "sourceRoot": "src/libs/moment-adapter/src",
+      "sourceRoot": "src/libs/moment-adapter",
       "prefix": "lib",
       "architect": {
         "build": {
