@@ -58,10 +58,7 @@ export class NtPopoverPaneComponent implements AfterContentInit {
 
   private _checkContentChange() {
     if (this._parent.overlay.opened) {
-      const cdkConnectedOverlay = this._parent.overlay.cdkConnectedOverlay;
-      if (cdkConnectedOverlay && cdkConnectedOverlay.overlayRef) {
-        cdkConnectedOverlay.overlayRef.updatePosition();
-      }
+      this._parent.overlay.forceUpdatePosition();
     }
   }
 }
