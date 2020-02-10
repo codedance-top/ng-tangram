@@ -11,7 +11,7 @@ import {
   Self,
   ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 
 let uniqueId = 0;
 
@@ -31,7 +31,10 @@ export class NtSwitchChange<T> {
     '[class.nt-switch-checked]': 'checked',
     '[class.nt-switch-disabled]': 'disabled',
     '[class.nt-switch-circle]': 'circle'
-  }
+  },
+  providers: [
+    { provide: NG_VALUE_ACCESSOR, useExisting: NtSwitchComponent, multi: true }
+  ]
 })
 export class NtSwitchComponent<T> implements ControlValueAccessor {
 

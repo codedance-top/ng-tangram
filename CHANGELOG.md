@@ -1,3 +1,49 @@
+# [0.6.0](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc.0...0.6.0) (2020-02-10)
+
+### Bug Fixes
+
+* **attachment:** 修复 errors 数据类型错误的问题 ([fb64200](https://github.com/livebridge-lab/ng-tangram/commit/fb6420040c5af71a8a93645c0a612e3b4328d87e))
+* **drawer:** 修复 drawer 在服务器端渲染时抛出异常的问题 ([d5bf646](https://github.com/livebridge-lab/ng-tangram/commit/d5bf646eea75b9be67ad06579e0977e01c785d3a))
+* **file:** 修复 `NtFileSelectDirective` 注入成服务的代码 ([54f773b](https://github.com/livebridge-lab/ng-tangram/commit/54f773baad97766ee4a9ee91a74f65c48b6d6f4d))
+* **markdown:** 修复 `NtMarkedEngine` 错误处理失败的问题 ([555cfd7](https://github.com/livebridge-lab/ng-tangram/commit/555cfd7857f6fb063ed545d90740b101a2e15f90))
+* **markdown:** 修改样式变量的命名 ([478c9b1](https://github.com/livebridge-lab/ng-tangram/commit/478c9b123a7ab12afb1867a4aa38fc402b2937c4))
+* **markdown:** 修复 path 路径无法解析成文本内容的问题 ([d772353](https://github.com/livebridge-lab/ng-tangram/commit/d7723530a8339ad724c2cb0a5843d72b62e0ed82))
+* **overlay:** 优化了 overlay 外部点击判断逻辑 ([2858d58](https://github.com/livebridge-lab/ng-tangram/commit/2858d58a9458d430f97afc0647e7c1988083c233))
+* **overlay:** 修复 overlay 弹层关闭事件订阅时机不准确的问题 ([163bbd9](https://github.com/livebridge-lab/ng-tangram/commit/163bbd9dfeef8fb206556d3aa70797bdfc4232af))
+* **overlay:** 修复了在嵌套 overlay 下点击子层内容时关闭父层的问题 ([e9b71ab](https://github.com/livebridge-lab/ng-tangram/commit/e9b71ab32405e0597b18085662eedd390a616685))
+* **picture:** 修复 errors 数据类型错误的问题 ([4b22ffe](https://github.com/livebridge-lab/ng-tangram/commit/4b22ffe863d5ca254d1933eef79457b8b011543d))
+* **popconfirm:** 修复了在嵌套层级时 (其他 overlay容器嵌套 popconfirm) 时点击确定/取消会关闭父容器的问题 ([c58d96b](https://github.com/livebridge-lab/ng-tangram/commit/c58d96b3c46475e10c5f5603c01682a5164eb1bf))
+* **table:** 修复 `nt-column` 会提示类型错误的问题 ([e075562](https://github.com/livebridge-lab/ng-tangram/commit/e07556222df3cd6e636d67751518907489b8a82e))
+* **table:** 修复构建时提示组件声明错误的问题 ([ad26706](https://github.com/livebridge-lab/ng-tangram/commit/ad267064b306f2c21600d5cf8bb06012aebe2eb7))
+* **upload:** 修复 upload 异常捕捉失效的问题 ([50604a9](https://github.com/livebridge-lab/ng-tangram/commit/50604a95bb885ef445ff305b9a560d97615fc8e2))
+
+### Features
+
+* **angular:** 更新至 angular 9.0.0 ([f0d109c](https://github.com/livebridge-lab/ng-tangram/commit/f0d109c4b6ab80e4d2c9c33aa9ecb51c1c57ff66))
+* **animate:** 渐变动画增加节奏控制参数，现在可以使用 `animation-timing-function` 值了 ([1e1747f](https://github.com/livebridge-lab/ng-tangram/commit/1e1747f6dd87f951be52ef53f078c53660cccc79))
+* **animate:** 渐变动画增加节奏控制参数，现在可以使用 `animation-timing-function` 值了 ([a759072](https://github.com/livebridge-lab/ng-tangram/commit/a759072fd38eb22f9cb5e9c798d587068f0ed7c7))
+* **core:** 新增 fromOutsideElementClick 事件 ([bbd99c9](https://github.com/livebridge-lab/ng-tangram/commit/bbd99c93730528b4efab8a72febed7751164ccdc))
+* **datepicker:** 通过覆盖 --nt-overlay-container-background 的方式改变默认 overlay 样式 ([54aaea6](https://github.com/livebridge-lab/ng-tangram/commit/54aaea62f276e19e0ce7b055e2eb737d7f53dc07))
+* **drawer:** 新增事件 afterOpen,afterClosed,beforeOpen,beforeClosed 方法 open(),close() 并移除了opened 属性 ([9cb5324](https://github.com/livebridge-lab/ng-tangram/commit/9cb532458caa7ebf32f53ffae70468cef439154a))
+* **dropdown:** 通过覆盖 --nt-overlay-container-background 的方式改变默认 overlay 样式 ([204e4b1](https://github.com/livebridge-lab/ng-tangram/commit/204e4b1ce6acf1353567a1a21d89ab259877c5a4))
+* **markdown:** 升级 `marked@^0.8.0`, `codemirror@^5.46.0` ([9da265b](https://github.com/livebridge-lab/ng-tangram/commit/9da265b1bdf75e2eea534534998b02d517b917f2))
+* **overlay:** 增加 forceUpdatePosition 方法用于主动改变方向等信息，并且优化了样式内容。 ([65840e8](https://github.com/livebridge-lab/ng-tangram/commit/65840e88f71659d8db04acc6cdf1a5ef76c23683))
+* **popconfirm:** 通过覆盖 --nt-overlay-container-background 的方式改变默认 overlay 样式 ([0e04925](https://github.com/livebridge-lab/ng-tangram/commit/0e04925733653f4c9d447b2237fb99787b0d5f88))
+* **popover:** 通过覆盖 --nt-overlay-container-background 的方式改变默认 overlay 样式 ([71f31bc](https://github.com/livebridge-lab/ng-tangram/commit/71f31bcb67fe4f3ae0f17d864c817b5c10a2357a))
+* **select:** 通过覆盖 --nt-overlay-container-background 的方式改变默认 overlay 样式 ([610a63c](https://github.com/livebridge-lab/ng-tangram/commit/610a63c171b1c26cc311776f7ae598bc2d0a8d0d))
+* **slider:** 新增了 slider 组件 ([e16f85f](https://github.com/livebridge-lab/ng-tangram/commit/e16f85f57f1108dbb44ab9222d1185e4d3300c58))
+* **style:** 升级到 `foundation-sites@6.6.1` ([0d31257](https://github.com/livebridge-lab/ng-tangram/commit/0d31257d33a5e81ff65e6b3e346a43a8ec0ba3a8))
+* **tooltip:** 通过覆盖 --nt-overlay-container-background 的方式改变默认 overlay 样式 ([56da64e](https://github.com/livebridge-lab/ng-tangram/commit/56da64eb69a380f76467af182fb5b4b4466ed434))
+
+### BREAKING CHANGES
+
+* **drawer:** 移除 opened 属性，openedChange 和 outsideClick 事件
+* **markdown:** $nt-markdownquote-* => $nt-markdown-quote-*
+* **markdown:** 新增 `~@ng-tangram/markdown/styles` 样式导入方式 ([286595b](https://github.com/livebridge-lab/ng-tangram/commit/286595b7e4a3151c0ebc4eb892022317837a862c))
+* **overlay:** 修改变量名称 $nt-overlay-container-padding -> $nt-overlay-container-arrow-gap, 移除了 $nt-overlay-container-arrow-cover, --nt-overlay-container-background 和
+--nt-overlay-container-arrow-gap。
+* **upload:** 新增上传结果类型 `NtUploadEvent`, `NtUploadResponse`, `NtUploadError` ([fd9218f](https://github.com/livebridge-lab/ng-tangram/commit/fd9218f9143054f133c776abb74bb4c4e89bd715))
+
 # [0.6.0-rc.4](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc.3...0.6.0-rc.4) (2020-01-08)
 
 

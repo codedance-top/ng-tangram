@@ -8,18 +8,17 @@
     "url": "https://github.com/livebridge-lab/ng-tangram"
   },
   "peerDependencies": {
-    "@angular/animations": "^9.0.0-rc.9 || ^9.0.0",
-    "@angular/core": "^9.0.0-rc.9 || ^9.0.0",
-    "@angular/common": "^9.0.0-rc.9 || ^9.0.0",
-    "@angular/forms": "^9.0.0-rc.9 || ^9.0.0",
-    "@angular/cdk": "^9.0.0-rc.8 || ^9.0.0",
+    "@angular/animations": "^9.0.0",
+    "@angular/core": "^9.0.0",
+    "@angular/common": "^9.0.0",
+    "@angular/forms": "^9.0.0",
+    "@angular/cdk": "^9.0.0",
     "@fortawesome/fontawesome-free": "latest",
-    "@ng-tangram/components": "^0.6.0-rc.4 || ^0.6.0",
+    "@ng-tangram/components": "^0.6.0",
     "codemirror": "^5.46.0",
     "foundation-sites": "~6.6.1",
     "marked": "^0.8.0",
-    "prismjs": "^1.17.1",
-    "tslib": "^1.10.0"
+    "prismjs": "^1.17.1"
   },
   "sideEffects": false
 }
