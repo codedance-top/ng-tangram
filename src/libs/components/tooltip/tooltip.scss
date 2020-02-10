@@ -1,21 +1,32 @@
+$nt-tooltip-background-color: $black !default;
+$nt-tooltip-color: $white !default;
+$nt-tooltip-padding: 0.75rem !default;
+$nt-tooltip-max-width: 10rem !default;
+$nt-tooltip-font-size: $small-font-size !default;
+$nt-tooltip-radius: $global-radius !default;
+$nt-tooltip-arrow-gap: 0.75rem !default;
+
+@mixin nt-tooltip-content {
+  max-width: $nt-tooltip-max-width;
+  padding: $nt-tooltip-padding;
+  border-radius: inherit;
+  background-color: $nt-tooltip-background-color;
+  font-size: $nt-tooltip-font-size;
+  color: $nt-tooltip-color;
+}
 
 @mixin nt-tooltip {
-  .tooltip {
-    max-width: $tooltip-max-width;
-    padding: $tooltip-padding;
-    border-radius: inherit;
-    background-color: $tooltip-background-color;
-    font-size: $tooltip-font-size;
-    color: $tooltip-color;
+
+  .nt-tooltip-content {
+    @include nt-tooltip-content;
   }
 
-  .tooltip-trigger {
+  .nt-tooltip-trigger {
     display: inline-block;
   }
 
-  .nt-overlay-container.tootip-overlay {
-    .nt-overlay-arrow {
-      background-color: $tooltip-background-color;
-    }
+  .nt-tootip-overlay  {
+    --nt-overlay-container-background: #{$nt-tooltip-background-color};
+    --nt-overlay-container-arrow-gap: #{$nt-tooltip-arrow-gap};
   }
 }

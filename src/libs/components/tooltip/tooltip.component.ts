@@ -18,7 +18,8 @@ import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/co
   templateUrl: 'tooltip.component.html',
   encapsulation: ViewEncapsulation.None,
   host: {
-    '[class.tooltip-trigger]': '!_isDirective',
+    'class': 'nt-tooltip',
+    '[class.nt-tooltip-trigger]': '!_isDirective',
     '(mouseenter)': 'overlay.markOpen()',
     '(mouseleave)': 'overlay.markClose()'
   }
@@ -76,7 +77,7 @@ export class NtTooltipComponent implements OnChanges {
 
       /** 在内容更新之后提示框的位置需要更新，需要延迟执行，因为这时候画面还未渲染 */
       Promise.resolve().then(() => {
-        this.overlay.cdkConnectedOverlay.overlayRef.updatePosition();
+        this.overlay.forceUpdatePosition()
       });
     }
   }
