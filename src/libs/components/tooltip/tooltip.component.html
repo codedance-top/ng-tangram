@@ -1,6 +1,6 @@
 <ng-content></ng-content>
 <nt-overlay
-  overlayClass="tootip-overlay"
+  overlayClass="nt-tootip-overlay"
   arrow
   [origin]="origin"
   [position]="position"
@@ -11,8 +11,8 @@
   (overlayEnter)="overlay.markOpen()"
   (overlayLeave)="overlay.markClose()"
   (positionChange)="_positionChange($event)">
-  <div class="tooltip" *ngIf="template">
+  <div class="nt-tooltip-content" *ngIf="template">
     <ng-container *ngTemplateOutlet="template"></ng-container>
   </div>
-  <div class="tooltip" *ngIf="!template" [innerHtml]="title"></div>
+  <div class="nt-tooltip-content" *ngIf="!template" [innerHtml]="title"></div>
 </nt-overlay>
