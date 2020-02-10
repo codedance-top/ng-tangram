@@ -1,5 +1,6 @@
 <ng-content></ng-content>
 <nt-overlay
+  overlayClass="nt-popover-overlay"
   arrow
   [origin]="origin"
   [position]="position"
@@ -9,7 +10,9 @@
   (beforeClosed)="_beforeClosed($event)"
   (positionChange)="_positionChange($event)">
   <div class="nt-popover">
-    <div class="nt-popover-title" *ngIf="template"><ng-container *ngTemplateOutlet="template"></ng-container></div>
+    <div class="nt-popover-title" *ngIf="template">
+      <ng-container *ngTemplateOutlet="template"></ng-container>
+    </div>
     <div class="nt-popover-title" *ngIf="!template" [innerHtml]="title"></div>
     <div class="nt-popover-pane">
       <ng-content select="nt-popover-pane"></ng-content>
