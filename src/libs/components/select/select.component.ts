@@ -23,6 +23,7 @@ import {
 } from '@angular/cdk/overlay';
 import {
   AfterContentInit,
+  Attribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -39,21 +40,21 @@ import {
   QueryList,
   Self,
   ViewChild,
-  ViewEncapsulation,
-  Attribute
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
-  BOTTOM_LEFT,
+  
   fadeIn,
   fadeOut,
   NT_OPTION_PARENT_COMPONENT,
   NtOptionComponent,
   NtOptionParentComponent,
   NtOptionSelectionChange,
-  NtOverlayComponent,
-  TOP_LEFT
+  
 } from '@ng-tangram/components/core';
+
+import { BOTTOM_LEFT, NtOverlayComponent, TOP_LEFT } from '@ng-tangram/components/overlay';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { DEFAULT_SELECT_ICONS, NT_SELECT_ICONS, NtSelectIcons } from './select-icons';

@@ -27,8 +27,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { fadeIn, fadeOut } from '../animate/fading';
-import { fromOutsideClick } from '../events/click';
+import { fadeIn, fadeOut, fromOutsideClick } from '@ng-tangram/components/core';
 import {
   getPositionClassName,
   NT_OVERLAY_POSITION_PAIRS,

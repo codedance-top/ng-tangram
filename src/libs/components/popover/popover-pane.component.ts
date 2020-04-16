@@ -9,7 +9,7 @@ import {
   InjectionToken,
   ViewEncapsulation
 } from '@angular/core';
-import { NtOverlayComponent } from '@ng-tangram/components/core';
+import { NtOverlayComponent } from '@ng-tangram/components/overlay';
 
 export interface NtPopoverParentComponent {
   overlay: NtOverlayComponent;
