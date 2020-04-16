@@ -4,12 +4,9 @@ import locale from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import {
-  NT_PAGINATION_CONFIG,
-  NtFormsModule,
-  NtNativeDateModule,
-  NtUploadModule
-} from '@ng-tangram/components';
+import { NtNativeDateModule, NtUploadModule } from '@ng-tangram/components/core';
+import { NtFormsModule } from '@ng-tangram/components/forms';
+import { NT_PAGINATION_CONFIG } from '@ng-tangram/components/pagination';
 import { NtMarkedEngineModule } from '@ng-tangram/markdown';
 
 import { AppComponent } from './app.component';
