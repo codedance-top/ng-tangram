@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { NtSliderChange } from '@ng-tangram/components';
+import { NtSliderChange } from '@ng-tangram/components/slider';
 
 @Component({
   selector: 'example-slider-input',

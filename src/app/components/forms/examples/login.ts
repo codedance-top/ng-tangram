@@ -3,6 +3,7 @@ import { filter } from 'rxjs/operators';
 
 import { AfterContentInit, Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { requiredSelection } from '@ng-tangram/components/forms';
 
 @Component({
   selector: 'example-form-login',
@@ -23,13 +24,13 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
         <nt-form-field label="手机">
           <input ntInput type="text" name="phone" formControlName="phone" placeholder="手机">
         </nt-form-field>
-        <nt-form-field label="选择框">
-          <nt-select formControlName="select" placeholder="select" filter>
-            <nt-option value="1">1</nt-option>
-            <nt-option value="2">2</nt-option>
+        <nt-form-field label="性别">
+          <nt-select formControlName="select" placeholder="select">
+            <nt-option value="male">男</nt-option>
+            <nt-option value="female">女</nt-option>
           </nt-select>
         </nt-form-field>
-        <nt-form-field label="日期选择">
+        <nt-form-field label="生日">
           <nt-datepicker formControlName="datepicker" placeholder="datepicker"></nt-datepicker>
         </nt-form-field>
         <div class="grid-x">
@@ -67,11 +68,9 @@ export class ExampleFormLoginComponent implements AfterContentInit {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.maxLength(20)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      // email: ['', [Validators.required, Validators.email]],
-      // schedule: this.schedule = this.formBuilder.array(Array(5).fill(this.formBuilder.control('', Validators.required))),
       phone: ['', [Validators.required, Validators.pattern(/^1[345678]\d{9}$/)]],
-      select: ['', [Validators.required, Validators.min(2), Validators.max(5)]],
-      datepicker: ['', [Validators.required]],
+      select: ['', [requiredSelection]],
+      datepicker: ['', [requiredSelection]],
     });
 
     this.email = new FormControl('', [Validators.required, Validators.email]);

@@ -1,7 +1,7 @@
 import { Moment } from 'moment';
 
 import { Component } from '@angular/core';
-import { DateAdapter, NT_DATE_FORMATS } from '@ng-tangram/components';
+import { DateAdapter, NT_DATE_FORMATS } from '@ng-tangram/components/core';
 import { MomentDateAdapter, NT_MOMENT_DATE_FORMATS } from '@ng-tangram/moment-adapter';
 
 @Component({
