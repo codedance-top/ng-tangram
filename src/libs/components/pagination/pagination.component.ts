@@ -24,7 +24,7 @@ export class NtPaginationComponent {
 
   private _totalPage = 1;
 
-  private _pages = [1];
+  private _pages: any[] = [1];
 
   @Input()
   get options() { return this._options; }
@@ -76,7 +76,7 @@ export class NtPaginationComponent {
 
     this._totalPage = Math.ceil(this.total / this.options.pageSize);
 
-    let pages: any = [1];
+    let pages: any[] = [1];
 
     if (this._totalPage > 1) {
 

@@ -70,7 +70,7 @@ export class AppComponent implements OnInit, OnDestroy {
           return route;
         })
       )
-      .subscribe(route => this.title.setTitle(`TangramUI · ${route.snapshot.data.title} `))
+      .subscribe(route => this.title.setTitle(`${route.snapshot.data.title} · TangramUI`))
     );
   }
 
