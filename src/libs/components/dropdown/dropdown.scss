@@ -1,7 +1,7 @@
 // $nt-dropdown-toggle-symbol: '\25BC' !default;
 
 $nt-dropdown-width: 200px !default;
-$nt-dropdown-backgound: $white !default;
+$nt-dropdown-background: $white !default;
 $nt-dropdown-padding: $global-padding !default;
 $nt-dropdown-radius: $global-radius !default;
 $nt-dropdown-font-size: $dropdown-font-size !default;
@@ -40,7 +40,7 @@ $nt-dropdown-arrow-gap: 0.75rem !default;
   }
 
   .nt-overlay-container.nt-dropdown-overlay {
-    --nt-overlay-container-background: #{$nt-dropdown-backgound};
+    --nt-overlay-container-background: #{$nt-dropdown-background};
     --nt-overlay-container-arrow-gap: #{$nt-dropdown-arrow-gap};
   }
 }

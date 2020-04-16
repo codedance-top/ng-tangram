@@ -9,7 +9,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
+import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/overlay';
 
 import {
   NT_DROPDOWN_PARENT_COMPONENT,
@@ -52,8 +52,7 @@ export class NtDropdownComponent implements NtDropdownParentComponent {
 
   @ContentChild(NtDropdownPaneComponent) pane: NtDropdownPaneComponent;
 
-  constructor(
-    _elementRef: ElementRef) {
+  constructor(_elementRef: ElementRef) {
     this.origin = new CdkOverlayOrigin(_elementRef);
   }
 

@@ -38,7 +38,7 @@ import {
   NtOverlayComponent,
   RIGHT_CENTER,
   TOP_CENTER
-} from '@ng-tangram/components/core';
+} from '@ng-tangram/components/overlay';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 const activeEventOptions: AddEventListenerOptions = { passive: false };

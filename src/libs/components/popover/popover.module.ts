@@ -1,7 +1,7 @@
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NtOverlayModule } from '@ng-tangram/components/core';
+import { NtOverlayModule } from '@ng-tangram/components/overlay';
 import { NtDropdownModule } from '@ng-tangram/components/dropdown';
 
 import { NtPopoverPaneComponent } from './popover-pane.component';

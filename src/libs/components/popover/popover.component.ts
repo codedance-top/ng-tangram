@@ -9,7 +9,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
+import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/overlay';
 
 import { NT_POPOVER_PARENT_COMPONENT, NtPopoverParentComponent } from './popover-pane.component';
 

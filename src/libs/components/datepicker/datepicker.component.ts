@@ -23,15 +23,13 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
-  BOTTOM_LEFT,
   DateAdapter,
   fadeIn,
   fadeOut,
   NT_DATE_FORMATS,
   NtDateFormats,
-  NtOverlayComponent,
-  TOP_LEFT
 } from '@ng-tangram/components/core';
+import { BOTTOM_LEFT, NtOverlayComponent, TOP_LEFT } from '@ng-tangram/components/overlay';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { NtDatePickerCalendarComponent } from './calendar.component';
