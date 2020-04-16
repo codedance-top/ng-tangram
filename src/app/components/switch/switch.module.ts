@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NtCheckboxModule, NtSwitchModule } from '@ng-tangram/components';
+import { NtCheckboxModule } from '@ng-tangram/components/checkbox';
+import { NtSwitchModule } from '@ng-tangram/components/switch';
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtMarkdownModule } from '@ng-tangram/markdown';
 

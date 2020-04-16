@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NtRadioModule } from '@ng-tangram/components';
+import { NtRadioModule } from '@ng-tangram/components/radio';
 import { NtButtonModule } from '@ng-tangram/components/button';
 import { NtDrawerModule } from '@ng-tangram/components/drawer';
 import { NtExampleModule } from '@ng-tangram/example';
