@@ -18,11 +18,11 @@
   [origin]="origin"
   [positionPairs]="_positionPairs"
   arrow
-  (afterOpen)="_afterOpen($event)"
-  (afterClosed)="_afterClosed($event)"
-  (beforeOpen)="_beforeOpen($event)"
-  (beforeClosed)="_beforeClosed($event)"
-  (positionChange)="_positionChange($event)">
+  (afterOpen)="_onAfterOpen($event)"
+  (afterClosed)="_onAfterClosed($event)"
+  (beforeOpen)="_onBeforeOpen($event)"
+  (beforeClosed)="_onBeforeClosed($event)"
+  (positionChange)="_onPositionChange($event)">
   <nt-datepicker-calendar
     [selected]="value"
     [dateFilter]="dateFilter"
