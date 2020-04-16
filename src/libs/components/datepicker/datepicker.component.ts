@@ -187,25 +187,25 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     this.overlay.open();
   }
 
-  _afterOpen(event: any) {
+  _onAfterOpen(event: any) {
     this.afterOpen.next(event);
   }
 
-  _afterClosed(event: any) {
+  _onAfterClosed(event: any) {
     this.afterClosed.next(event);
   }
 
-  _beforeOpen(event: any) {
+  _onBeforeOpen(event: any) {
     this.calendar._init();
     this.beforeOpen.next(event);
   }
 
-  _beforeClosed(event: any) {
+  _onBeforeClosed(event: any) {
     typeof this._onTouched === 'function' && this._onTouched();
     this.beforeClosed.next(event);
   }
 
-  _positionChange(change: ConnectedOverlayPositionChange) {
+  _onPositionChange(change: ConnectedOverlayPositionChange) {
     this.positionChange.next(change);
   }
 
@@ -228,10 +228,6 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     this._disabled = isDisabled;
   }
 
-  /**
-   * @param obj The object to check.
-   * @returns The given object if it is both a date instance and valid, otherwise null.
-   */
   private _getValidDateOrNull(obj: any): D | null {
     return (this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj)) ? obj : null;
   }
