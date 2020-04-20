@@ -10,7 +10,7 @@ global['window'] = win;
 global['document'] = win.document;
 global['navigator'] = win.navigator;
 
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP, provideModuleMap, ngExpressEngine } = require('./server/main');
+const { AppServerModuleNgFactory, ngExpressEngine } = require('./server/main');
 const app = express();
 
 const PORT = process.env.PORT || 8300;
@@ -18,9 +18,6 @@ const DOCS_FOLDER = join(process.cwd(), 'docs/browser');
 
 app.engine('html', ngExpressEngine({
   bootstrap: AppServerModuleNgFactory,
-  providers: [
-    provideModuleMap(LAZY_MODULE_MAP)
-  ]
 }));
 
 app.set('view engine', 'html');
