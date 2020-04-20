@@ -17,6 +17,7 @@
 @import 'forms/forms';
 @import 'input/input';
 @import 'modal/modal';
+@import 'pagination/pagination';
 @import 'picture/picture';
 @import 'popconfirm/popconfirm';
 @import 'popover/popover';
@@ -46,7 +47,7 @@
   @include foundation-menu;
   @include foundation-reveal;
   @include foundation-range-input;
-  @include foundation-pagination;
+  
   @include foundation-progress-bar;
   @include foundation-switch;
   @include foundation-table;
@@ -67,6 +68,7 @@
   @include nt-modal;
   @include nt-overlay;
   @include nt-option;
+  @include nt-pagination;
   @include nt-picture;
   @include nt-popconfirm;
   @include nt-popover;

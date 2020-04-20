@@ -6,7 +6,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { NtNativeDateModule, NtUploadModule } from '@ng-tangram/components/core';
 import { NtFormsModule } from '@ng-tangram/components/forms';
-import { NT_PAGINATION_CONFIG } from '@ng-tangram/components/pagination';
 import { NtMarkedEngineModule } from '@ng-tangram/markdown';
 
 import { AppComponent } from './app.component';
@@ -20,11 +19,6 @@ const ROUTES: Routes = [
   { path: 'advenced', loadChildren: () => import('./advenced/advenced.module').then(mod => mod.AdvencedModule) },
   { path: '**', component: PageNotFoundComponent, data: { title: '404 - 找不到此页面' } }
 ];
-
-const PAGINATION_CONFIG = {
-  previousLabel: '上一页',
-  nextLabel: '下一页'
-};
 
 @NgModule({
   imports: [
@@ -43,8 +37,7 @@ const PAGINATION_CONFIG = {
     })
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'zh-CN' },
-    { provide: NT_PAGINATION_CONFIG, useValue: PAGINATION_CONFIG }
+    { provide: LOCALE_ID, useValue: 'zh-CN' }
   ],
   declarations: [
     AppComponent,

@@ -1,0 +1,168 @@
+// Foundation for Sites
+// https://get.foundation
+// Licensed under MIT Open Source
+
+////
+/// @group pagination
+////
+
+/// Font size of pagination items.
+/// @type Number
+$nt-pagination-font-size: rem-calc(14) !default;
+
+/// Default bottom margin of the pagination object.
+/// @type Number
+$nt-pagination-margin-bottom: $global-margin !default;
+
+/// Text color of pagination items.
+/// @type Color
+$nt-pagination-item-color: $black !default;
+
+/// Padding inside of pagination items.
+/// @type Number
+$nt-pagination-item-padding: rem-calc(3 10) !default;
+
+/// Right margin to separate pagination items.
+/// @type Number
+$nt-pagination-item-spacing: rem-calc(1) !default;
+
+/// Default radius for pagination items.
+/// @type Number
+$nt-pagination-radius: $global-radius !default;
+
+/// Background color of pagination items on hover.
+/// @type Color
+$nt-pagination-item-background-hover: $light-gray !default;
+
+/// Background color of pagination item for the current page.
+/// @type Color
+$nt-pagination-item-background-current: $primary-color !default;
+
+/// Text color of the pagination item for the current page.
+/// @type Color
+$nt-pagination-item-color-current: $white !default;
+
+/// Text color of a disabled pagination item.
+/// @type Color
+$nt-pagination-item-color-disabled: $medium-gray !default;
+
+/// If `false`, don't display page number links on mobile, only next/previous links
+/// and optionally current page number.
+/// @type Boolean
+$nt-pagination-mobile-items: false !default;
+
+/// If `true`, display the current page number on mobile even if `$nt-pagination-mobile-items` is set to `false`.
+/// This parameter will only override the visibility setting of the current item for `$nt-pagination-mobile-items: false;`,
+/// it will not affect the current page number visibility when `$nt-pagination-mobile-items` is set to `true`.
+/// @type Boolean
+$nt-pagination-mobile-current-item: false !default;
+
+/// If `true`, arrows are added to the next and previous links of pagination.
+/// @type Boolean
+$nt-pagination-arrows: true !default;
+
+/// Content for the previous arrow when `$nt-pagination-arrows` is `true`
+/// @type String
+$nt-pagination-arrow-previous: '\00AB' !default;
+
+/// Content for the next arrow when `$nt-pagination-arrows` is `true`
+/// @type String
+$nt-pagination-arrow-next: '\00BB' !default;
+
+/// Adds styles for a pagination container. Apply this to a `<ul>`.
+@mixin nt-pagination-container (
+  $margin-bottom: $nt-pagination-margin-bottom,
+  $font-size: $nt-pagination-font-size,
+  $spacing: $nt-pagination-item-spacing,
+  $radius: $nt-pagination-radius,
+  $color: $nt-pagination-item-color,
+  $padding: $nt-pagination-item-padding,
+  $background-hover: $nt-pagination-item-background-hover
+) {
+  @include clearfix;
+  margin-#{$global-left}: 0;
+  margin-bottom: $margin-bottom;
+
+  // List item
+  li {
+    margin-#{$global-right}: $spacing;
+    border-radius: $radius;
+    font-size: $font-size;
+
+    @if $nt-pagination-mobile-items {
+      display: inline-block;
+    }
+    @else {
+      display: none;
+
+      &:last-child,
+      &:first-child {
+        display: inline-block;
+      }
+
+      @if $nt-pagination-mobile-current-item {
+        &.current {
+          display: inline-block;
+        }
+      }
+
+      @include breakpoint(medium) {
+        display: inline-block;
+      }
+    }
+  }
+
+  // Page links
+  a,
+  button {
+    display: block;
+    padding: $padding;
+    border-radius: $radius;
+    color: $color;
+
+    &:hover {
+      background: $background-hover;
+    }
+  }
+}
+
+/// Adds styles for the current pagination item. Apply this to an `<a>`.
+@mixin nt-pagination-item-current (
+  $padding: $nt-pagination-item-padding,
+  $background-current: $nt-pagination-item-background-current,
+  $color-current: $nt-pagination-item-color-current
+) {
+  padding: $padding;
+  background: $background-current;
+  color: $color-current;
+  cursor: default;
+}
+
+/// Adds styles for a disabled pagination item. Apply this to an `<a>`.
+@mixin nt-pagination-item-disabled (
+  $padding: $nt-pagination-item-padding,
+  $color: $nt-pagination-item-color-disabled
+) {
+  padding: $padding;
+  color: $color;
+  cursor: not-allowed;
+  pointer-events: none;
+
+  &:hover {
+    background: transparent;
+  }
+}
+
+@mixin nt-pagination {
+  .nt-pagination {
+    @include nt-pagination-container;
+
+    .current {
+      @include nt-pagination-item-current;
+    }
+
+    .disabled {
+      @include nt-pagination-item-disabled;
+    }
+  }
+}
