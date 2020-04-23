@@ -5,6 +5,7 @@ import {
   QueryList,
   ViewEncapsulation
 } from '@angular/core';
+import { faAngular } from '@fortawesome/free-brands-svg-icons';
 
 import {
   NT_EXAMPLE_CODE_PANEL_PARENT,
@@ -18,7 +19,7 @@ import {
     <span class="nt-example-code-shown"
       (click)="shown=!shown"
       [nt-tooltip]="shown ? '收起代码' : '展开代码'">
-      <i class="icon fab fa-angular" [class.visible]="shown"></i>代码
+      <fa-icon [icon]="faAngular" class="icon" [class.visible]="shown"></fa-icon>代码
     </span>
     <div class="nt-example-code-tabs">
       <span class="nt-example-tabs-title" *ngFor="let pane of panes" [class.is-active]="activeTab === pane.title">
@@ -43,6 +44,8 @@ export class NtExampleCodeTabsComponent implements NtExampleCodeTabPaneParent, A
   shown = false;
 
   activeTab: string;
+
+  faAngular = faAngular;
 
   @ContentChildren(NtExampleCodeTabsPanelComponent) panes: QueryList<NtExampleCodeTabsPanelComponent>;
 
