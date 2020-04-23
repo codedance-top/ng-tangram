@@ -50,11 +50,6 @@ import { ModalDocumentComponent } from './modal.component';
     ExampleModalCenterVerticallyComponent,
     ExampleModalTransparentComponent,
     ExampleModalClassComponent
-  ],
-  entryComponents: [
-    ExampleModalComponentDialogComponent,
-    ExampleModalComponentDataComponent,
-    ExampleModalComponentContentComponent
   ]
 })
 export class ModalDocumentModule { }
