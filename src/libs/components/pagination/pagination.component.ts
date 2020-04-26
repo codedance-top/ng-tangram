@@ -4,9 +4,14 @@ import {
   EventEmitter,
   Inject,
   Input,
+  OnChanges,
   Optional,
   Output,
-  ViewEncapsulation
+  SimpleChanges,
+  ViewEncapsulation,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 
 import { NT_PAGINATION_CONFIG, NtPaginationConfig } from './pagination-config';
@@ -14,28 +19,33 @@ import { NT_PAGINATION_CONFIG, NtPaginationConfig } from './pagination-config';
 export const PAGINATION_ELLIPSIS = '...';
 
 @Component({
-  selector: 'nt-pagination, [nt-pagination]',
+  selector: 'nt-pagination',
   templateUrl: 'pagination.component.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NtPaginationComponent {
+export class NtPaginationComponent implements OnInit, OnChanges {
 
-  private _options = new NtPaginationConfig();
 
   private _totalPage = 1;
 
-  private _pages: any[] = [1];
+  get totalPage() { return this._totalPage; }
+
+  private _pageItems: any[] = [1];
+
+  get pageItems() { return this._pageItems; }
+
+  private _options = new NtPaginationConfig();
 
   @Input()
   get options() { return this._options; }
   set options(value: NtPaginationConfig) {
     if (typeof value === 'object') {
-      this._options = Object.assign(this._options, value);
+      this._options = Object.assign({}, this._options, value);
     }
   }
 
-  get totalPage() { return this._totalPage; }
-  get pages() { return this._pages; }
+  get itemSize() { return this.options.itemSize; }
 
   @Input()
   set pageSize(value: number) { this._options.pageSize = coerceNumberProperty(value); }
@@ -52,48 +62,74 @@ export class NtPaginationComponent {
   private _total = 0;
 
   @Input()
-  set total(value: number) { this._total = coerceNumberProperty(value); this._build(); }
+  set total(value: number) { this._total = coerceNumberProperty(value); }
   get total() { return this._total; }
 
   private _pageIndex = 1;
 
   @Input()
-  set pageIndex(value: number) { this._pageIndex = coerceNumberProperty(value, 1); this._build(); }
+  set pageIndex(value: number) { this._pageIndex = coerceNumberProperty(value, 1); }
   get pageIndex() { return this._pageIndex; }
 
   @Output() pageChange = new EventEmitter<number>();
 
-  constructor(@Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig) {
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    @Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig, 
+    ) {
     this._options = { ...this._options, ...defaultConfig || {} };
   }
 
-  _pageChange(index: number) {
-    this._pageIndex = coerceNumberProperty(index, 1);
-    this.pageChange.emit(index);
+  ngOnInit() {
+    this._calcPageItems();
   }
 
-  private _build() {
+  ngOnChanges(changes: SimpleChanges) {
+    const change = changes.total || changes.pageIndex;
+    if (change && !change.firstChange) {
+      this._calcPageItems();
+    }
+  }
 
-    this._totalPage = Math.ceil(this.total / this.options.pageSize);
+  _pageChange(index: number) {
+    this.pageIndex = coerceNumberProperty(index, 1);
+    this.pageChange.emit(this.pageIndex);
+  }
 
-    let pages: any[] = [1];
+  private _calcPageItems() {
+
+    this._totalPage = Math.ceil(this.total / this.pageSize);
+
+    let pageItems: any[] = [1];
+
+    /** 当新的总页数少于原来的索引时将 */
+    if (this.pageIndex > this._totalPage) {
+      this._pageIndex = this._totalPage;
+      // this.pageChange.emit(this.pageIndex);
+    }
 
     if (this._totalPage > 1) {
 
-      let start = this.pageIndex - this.options.size,
-        end = this.pageIndex + this.options.size;
+      let [start, end] = [
+        Math.max(this.pageIndex - this.itemSize, 2),
+        Math.min(this.pageIndex + this.itemSize, this.totalPage - 1)
+      ];
 
-      start = start < 2 ? 2 : start;
-      end = end > this.totalPage - 1 ? this.totalPage - 1 : end;
+      if (start - 2 >= 1) {
+        pageItems.push(PAGINATION_ELLIPSIS)
+      }
 
-      start - 2 >= 1 && (pages.push(PAGINATION_ELLIPSIS));
-      pages = pages.concat(Array(end - start + 1).fill(start).map((value, index) => value + index));
+      pageItems = pageItems.concat(Array(end - start + 1).fill(start).map((v, i) => v + i));
 
-      end + 2 <= this.totalPage && (pages.push(PAGINATION_ELLIPSIS));
+      if (end + 2 <= this.totalPage) {
+        pageItems.push(PAGINATION_ELLIPSIS)
+      }
 
-      this.totalPage > 1 && pages.push(this.totalPage);
+      if (this.totalPage > 1) {
+        pageItems.push(this.totalPage);
+      }
     }
 
-    this._pages = pages;
+    this._pageItems = pageItems;
   }
 }
