@@ -8,7 +8,7 @@
 
 /// Font size of pagination items.
 /// @type Number
-$nt-pagination-font-size: rem-calc(14) !default;
+$nt-pagination-font-size: rem-calc(12) !default;
 
 /// Default bottom margin of the pagination object.
 /// @type Number
@@ -20,11 +20,11 @@ $nt-pagination-item-color: $black !default;
 
 /// Padding inside of pagination items.
 /// @type Number
-$nt-pagination-item-padding: rem-calc(3 10) !default;
+$nt-pagination-item-padding: rem-calc(3 6) !default;
 
 /// Right margin to separate pagination items.
 /// @type Number
-$nt-pagination-item-spacing: rem-calc(1) !default;
+$nt-pagination-item-spacing: rem-calc(3) !default;
 
 /// Default radius for pagination items.
 /// @type Number
@@ -45,11 +45,6 @@ $nt-pagination-item-color-current: $white !default;
 /// Text color of a disabled pagination item.
 /// @type Color
 $nt-pagination-item-color-disabled: $medium-gray !default;
-
-/// If `false`, don't display page number links on mobile, only next/previous links
-/// and optionally current page number.
-/// @type Boolean
-$nt-pagination-mobile-items: false !default;
 
 /// If `true`, display the current page number on mobile even if `$nt-pagination-mobile-items` is set to `false`.
 /// This parameter will only override the visibility setting of the current item for `$nt-pagination-mobile-items: false;`,
@@ -88,28 +83,9 @@ $nt-pagination-arrow-next: '\00BB' !default;
     margin-#{$global-right}: $spacing;
     border-radius: $radius;
     font-size: $font-size;
-
-    @if $nt-pagination-mobile-items {
-      display: inline-block;
-    }
-    @else {
-      display: none;
-
-      &:last-child,
-      &:first-child {
-        display: inline-block;
-      }
-
-      @if $nt-pagination-mobile-current-item {
-        &.current {
-          display: inline-block;
-        }
-      }
-
-      @include breakpoint(medium) {
-        display: inline-block;
-      }
-    }
+    min-width: 2em;
+    text-align: center;
+    display: inline-block;
   }
 
   // Page links
@@ -143,7 +119,7 @@ $nt-pagination-arrow-next: '\00BB' !default;
   $padding: $nt-pagination-item-padding,
   $color: $nt-pagination-item-color-disabled
 ) {
-  padding: $padding;
+  // padding: $padding;
   color: $color;
   cursor: not-allowed;
   pointer-events: none;

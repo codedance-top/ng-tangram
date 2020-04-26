@@ -110,11 +110,11 @@ $nt-markdown-pre-margin: $global-margin / 2 0;
 
 @mixin nt-markdown-list {
 
-  ul:not(.breadcrumbs):not(.menu):not(.tabs):not(.pagination) > li {
+  ul:not(.breadcrumbs):not(.menu):not(.tabs):not(.nt-pagination) > li {
     list-style-type: $nt-markdown-ul-style;
     margin-left: 1.6em;
   }
-  ol:not(.breadcrumbs):not(.menu):not(.tabs):not(.pagination) > li {
+  ol:not(.breadcrumbs):not(.menu):not(.tabs):not(.nt-pagination) > li {
     list-style-type: $nt-markdown-ol-style;
     margin-left: 1.6em;
   }
