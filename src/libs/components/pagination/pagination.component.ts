@@ -9,7 +9,9 @@ import {
   Output,
   SimpleChanges,
   ViewEncapsulation,
-  OnInit
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 
 import { NT_PAGINATION_CONFIG, NtPaginationConfig } from './pagination-config';
@@ -19,7 +21,8 @@ export const PAGINATION_ELLIPSIS = '...';
 @Component({
   selector: 'nt-pagination',
   templateUrl: 'pagination.component.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NtPaginationComponent implements OnInit, OnChanges {
 
@@ -70,7 +73,10 @@ export class NtPaginationComponent implements OnInit, OnChanges {
 
   @Output() pageChange = new EventEmitter<number>();
 
-  constructor(@Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig) {
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    @Optional() @Inject(NT_PAGINATION_CONFIG) defaultConfig?: NtPaginationConfig, 
+    ) {
     this._options = { ...this._options, ...defaultConfig || {} };
   }
 
@@ -95,6 +101,12 @@ export class NtPaginationComponent implements OnInit, OnChanges {
     this._totalPage = Math.ceil(this.total / this.pageSize);
 
     let pageItems: any[] = [1];
+
+    /** 当新的总页数少于原来的索引时将 */
+    if (this.pageIndex > this._totalPage) {
+      this._pageIndex = this._totalPage;
+      // this.pageChange.emit(this.pageIndex);
+    }
 
     if (this._totalPage > 1) {
 
