@@ -1,13 +1,15 @@
-<ul class="pagination">
-  <li class="pagination-previous disabled" *ngIf="pageIndex <= 1">{{ previousLabel }}</li>
-  <li class="pagination-previous" *ngIf="pageIndex > 1"><a (click)="_pageChange(pageIndex - 1)">{{ previousLabel }}</a></li>
+<ul class="nt-pagination">
+  <li class="nt-pagination-previous">
+    <a [class.disabled]="pageIndex === 1" (click)="_pageChange(pageIndex - 1)">{{ previousLabel }}</a>
+  </li>
 
-  <ng-container *ngFor="let page of pages">
-    <li *ngIf="page === pageIndex" [class.current]="page === pageIndex">{{ page }}</li>
-    <li *ngIf="page !== pageIndex && page !== '...'"><a (click)="_pageChange(page)">{{ page }}</a></li>
-    <li class="ellipsis" *ngIf="page === '...'"></li>
+  <ng-container *ngFor="let item of pageItems">
+    <li *ngIf="item === pageIndex" [class.current]="item === pageIndex">{{ item }}</li>
+    <li *ngIf="item !== pageIndex && item !== '...'"><a (click)="_pageChange(item)">{{ item }}</a></li>
+    <li class="ellipsis" *ngIf="item === '...'">{{item}}</li>
   </ng-container>
 
-  <li class="pagination-next disabled" *ngIf="pageIndex >= totalPage">{{ nextLabel }}</li>
-  <li class="pagination-next" *ngIf="pageIndex < totalPage"><a (click)="_pageChange(pageIndex + 1)">{{ nextLabel }}</a></li>
+  <li class="nt-pagination-next">
+    <a [class.disabled]="pageIndex === totalPage" (click)="_pageChange(pageIndex + 1)">{{ nextLabel }}</a>
+  </li>
 </ul>
