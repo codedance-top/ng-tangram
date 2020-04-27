@@ -1,6 +1,6 @@
 {
   "lib": {
-    "entryFile": "public-api.ts",
+    "entryFile": "index.ts",
     "flatModuleFile": "tooltip",
     "umdId": "nt.components.tooltip"
   }
