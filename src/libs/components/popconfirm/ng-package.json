@@ -1,6 +1,6 @@
 {
   "lib": {
-    "entryFile": "index.ts",
+    "entryFile": "public-api.ts",
     "flatModuleFile": "popconfirm",
     "umdId": "nt.components.popconfirm"
   }

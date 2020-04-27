@@ -1,6 +1,6 @@
 {
   "lib": {
-    "entryFile": "index.ts",
+    "entryFile": "public-api.ts",
     "flatModuleFile": "switch",
     "umdId": "nt.components.switch"
   }

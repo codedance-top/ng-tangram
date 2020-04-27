@@ -1,6 +1,6 @@
 {
   "lib": {
-    "entryFile": "index.ts",
+    "entryFile": "public-api.ts",
     "flatModuleFile": "badge",
     "umdId": "nt.components.badge"
   }
