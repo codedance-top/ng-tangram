@@ -1,6 +1,6 @@
 {
   "lib": {
-    "entryFile": "index.ts",
+    "entryFile": "public-api.ts",
     "flatModuleFile": "datepicker",
     "umdModuleIds": {
       "@ng-tangram/components/core": "nt.components.core",
