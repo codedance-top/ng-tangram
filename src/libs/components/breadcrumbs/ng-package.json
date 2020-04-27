@@ -1,6 +1,6 @@
 {
   "lib": {
-    "entryFile": "public-api.ts",
+    "entryFile": "index.ts",
     "flatModuleFile": "breadcrumbs",
     "umdId": "nt.components.breadcrumbs"
   }
