@@ -1,0 +1,7 @@
+{
+  "lib": {
+    "entryFile": "index.ts",
+    "flatModuleFile": "autocomplete",
+    "umdId": "nt.components.autocomplete"
+  }
+}
