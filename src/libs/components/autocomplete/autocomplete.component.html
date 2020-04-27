@@ -1,0 +1,26 @@
+<!--
+<nt-overlay
+  overlayClass="nt-autocomplete-overlay"
+  [origin]="origin"
+  [positionPairs]="_positionPairs"
+  (afterOpen)="_afterOpen($event)"
+  (afterClosed)="_afterClosed($event)"
+  (beforeOpen)="_beforeOpen($event)"
+  (beforeClosed)="_beforeClosed($event)"
+  (positionChange)="_positionChange($event)"
+  (keydownEvents)="_handleKeydown($event)">
+  <div #paneElement
+      class="nt-select-pane"
+      [class.folded]="state === 'folded'"
+      [style.width.px]="width">
+    <ng-content select="nt-option"></ng-content>
+    <div class="filter-empty" [hidden]="!optionEmpty">
+      {{ filterNotFound }}
+    </div>
+  </div>
+</nt-overlay> -->
+<ng-template>
+  <div class="nt-autocomplete-panel" role="listbox" [id]="id" [ngClass]="_classList" #panel>
+    <ng-content></ng-content>
+  </div>
+</ng-template>
