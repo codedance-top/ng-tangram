@@ -32,7 +32,7 @@ export function requiredUpload (control: AbstractControl): ValidationErrors | nu
 export function equalTo (equalControl: AbstractControl, equalLabel: string): ValidatorFn {
   let subscribe: Subscription;
 
-  return (control: AbstractControl): { [key: string]: any } | null => {
+  return (control: AbstractControl): { [key: string]: any } => {
     if (!subscribe) {
       subscribe = equalControl.valueChanges
         .pipe(filter(() => control.touched))
@@ -55,7 +55,7 @@ export function equalTo (equalControl: AbstractControl, equalLabel: string): Val
  */
 export function unequalTo (equalControl: AbstractControl, unequalLabel?: string): ValidatorFn {
   let subscribe: Subscription;
-  return (control: AbstractControl): { [key: string]: any } | null => {
+  return (control: AbstractControl): { [key: string]: any } => {
     if (!subscribe) {
       subscribe = equalControl.valueChanges
         .pipe(filter(() => control.touched))
@@ -71,7 +71,7 @@ export function unequalTo (equalControl: AbstractControl, unequalLabel?: string)
 }
 
 export function interval (intervalLabel?: string): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } | null => {
+  return (control: AbstractControl): { [key: string]: any } => {
     if (control.value) {
       const controlValue: string = control.value.split(/(\(|\)|\[|\]|,)/g);
       return Number(controlValue[2]) < Number(controlValue[4]) ? null : { intervalTo: true, intervalLabel };
@@ -87,7 +87,7 @@ export function interval (intervalLabel?: string): ValidatorFn {
  */
 export function ltTo (withControl: AbstractControl, ltLabel?: string): ValidatorFn {
   let subscribe: Subscription;
-  return (control: AbstractControl): { [key: string]: any } | null => {
+  return (control: AbstractControl): { [key: string]: any } => {
 
     if (!subscribe) {
       subscribe = withControl.valueChanges
@@ -113,7 +113,7 @@ export function ltTo (withControl: AbstractControl, ltLabel?: string): Validator
  */
 export function ltDateTo (withControl: AbstractControl, ltLabel: string, dateAdapter: DateAdapter<any>): ValidatorFn {
   let subscribe: Subscription;
-  return (control: AbstractControl): { [key: string]: any } | null => {
+  return (control: AbstractControl): { [key: string]: any } => {
 
     if (!subscribe) {
       subscribe = withControl.valueChanges.subscribe(() => {
@@ -137,7 +137,7 @@ export function ltDateTo (withControl: AbstractControl, ltLabel: string, dateAda
  */
 export function gtDateTo (withControl: AbstractControl, gtLabel: string, dateAdapter: DateAdapter<any>): ValidatorFn {
   let subscribe: Subscription;
-  return (control: AbstractControl): { [key: string]: any } | null => {
+  return (control: AbstractControl): { [key: string]: any } => {
 
     if (!subscribe) {
       subscribe = withControl.valueChanges.subscribe(() => {
