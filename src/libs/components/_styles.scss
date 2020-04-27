@@ -1,6 +1,7 @@
 @import '~foundation-sites/scss/foundation';
 
 @import 'attachment/attachment';
+@import 'autocomplete/autocomplete';
 @import 'avatar/avatar';
 @import 'badge/badge';
 @import 'button/button';
@@ -54,6 +55,7 @@
 
 
   @include nt-attachment;
+  @include nt-autocomplete;
   @include nt-avatar;
   @include nt-badge;
   @include nt-button;
