@@ -25,6 +25,11 @@ export const COMPONENTS_ROUTES: Routes = [
     data: { title: '更新日志' }
   },
   {
+    path: 'autocomplete',
+    loadChildren: () => import('./autocomplete/autocomplete.module').then(mod => mod.AutocompleteDocumentModule),
+    data: { title: 'Autocomplete 自动完成', group: COMPONENTS_GROUPS[1] }
+  },
+  {
     path: 'avatar',
     loadChildren: () => import('./avatar/avatar.module').then(mod => mod.AvatarDocumentModule),
     data: { title: 'Avatar 头像', group: COMPONENTS_GROUPS[0] }
