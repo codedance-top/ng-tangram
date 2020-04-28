@@ -3,8 +3,9 @@ import locale from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { NtNativeDateModule, NtUploadModule } from '@ng-tangram/components/core';
+import { NtNativeDateModule } from '@ng-tangram/components/core';
 import { NtFormsModule } from '@ng-tangram/components/forms';
+import { NtNoopUploadModule } from '@ng-tangram/components/noop-upload';
 import { NtMarkedEngineModule } from '@ng-tangram/markdown';
 
 import { AppComponent } from './app.component';
@@ -26,7 +27,7 @@ const ROUTES: Routes = [
     }),
     CommonModule,
     NtFormsModule.forRoot(),
-    NtUploadModule.forRoot(),
+    NtNoopUploadModule,
     NtNativeDateModule,
     NtMarkedEngineModule,
     RouterModule.forRoot(ROUTES, {

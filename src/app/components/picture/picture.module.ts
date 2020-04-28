@@ -27,6 +27,11 @@ import { PictureDocumentComponent } from './picture.component';
       { path: '', component: PictureDocumentComponent }
     ])
   ],
-  declarations: [PictureDocumentComponent, ExamplePictureBasciComponent, ExamplePictureEventComponent, ExamplePictureAcceptComponent]
+  declarations: [
+    PictureDocumentComponent, 
+    ExamplePictureBasciComponent, 
+    ExamplePictureEventComponent, 
+    ExamplePictureAcceptComponent
+  ]
 })
 export class PictureDocumentModule { }

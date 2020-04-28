@@ -3,34 +3,20 @@ import { catchError, filter, map } from 'rxjs/operators';
 
 import {
   HttpClient,
+  HttpErrorResponse,
   HttpEvent,
   HttpEventType,
   HttpRequest,
-  HttpResponse,
-  HttpErrorResponse
+  HttpResponse
 } from '@angular/common/http';
-/**
- * 文件上传请求服务
- */
-import { Injectable, InjectionToken } from '@angular/core';
 
+import { NtUploadError, NtUploadResponse } from './upload-models';
 import { NtUploadRef, NtUploadStatus } from './upload-ref';
 
 const REQUEST_PROGRESS = { reportProgress: true };
 
-export class NtUploadResponse<T> {
-
-  constructor(public data: T) { }
-}
-
-export class NtUploadError {
-  constructor(public file: File | Blob, public error: any) { }
-}
-
 export declare type NtUploadEvent<T> = NtUploadResponse<T> | NtUploadError;
 
-
-@Injectable()
 export abstract class NtUploadHandler {
 
   constructor(private _http: HttpClient) { }
@@ -82,29 +68,17 @@ export abstract class NtUploadHandler {
    * 获取文件上传数据格式
    * @param file 上传文件
    */
-  protected abstract getRequestData(file: File | Blob): any;
+  abstract getRequestData(file: File | Blob): any;
 
   /**
    * 获取文件上传结束响应数据
    * @param response 响应数据
    */
-  protected abstract getResponseData<T>(body: any): T;
+  abstract getResponseData<T>(body: any): T;
 
   /**
    * 获取文件上传结束错误数据
    * @param error 错误
    */
-  protected abstract getErrorMessage(error: HttpErrorResponse): any;
+  abstract getErrorMessage(error: HttpErrorResponse): any;
 }
-
-@Injectable()
-export class NtNoopUploadHandler extends NtUploadHandler {
-
-  protected getRequestData(file: File | Blob) { return file; }
-
-  protected getResponseData<T>(body: any): T { return body; }
-
-  protected getErrorMessage(error: HttpErrorResponse) { return error.statusText; }
-}
-
-export const NT_UPLOAD_HANDLER = new InjectionToken<NtUploadHandler>('nt-upload-handler');

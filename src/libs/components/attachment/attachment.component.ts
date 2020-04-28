@@ -19,7 +19,6 @@ import {
   fadeOut,
   findCategoryByExtensions,
   findCategoryByFile,
-  NT_UPLOAD_HANDLER,
   NtFileSizeError,
   NtFileTypeError,
   NtUploadError,
@@ -141,7 +140,7 @@ export class NtAttachmentComponent<T> extends NtFormFieldControl<NtAttachmentRef
   private _onTouched = () => { };
 
   constructor(
-    @Inject(NT_UPLOAD_HANDLER) private _uploadHandler: NtUploadHandler,
+    @Optional() private _uploadHandler: NtUploadHandler,
     @Optional() @Self() public ngControl: NgControl,
     @Optional() @Inject(NT_ATTACHMENT_ICONS) public icons: NtAttachmentIcons) {
     super();
