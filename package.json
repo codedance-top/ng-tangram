@@ -61,7 +61,7 @@
     "@fortawesome/free-brands-svg-icons": "latest",
     "@fortawesome/free-solid-svg-icons": "latest",
     "@nguniversal/express-engine": "^9.1.0",
-    "blueimp-load-image": "^2.19.0",
+    "blueimp-load-image": "^3.0.0",
     "codemirror": "^5.52.2",
     "codemirror-minified": "^5.52.2",
     "core-js": "^3.6.5",
