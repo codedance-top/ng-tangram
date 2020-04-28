@@ -1,3 +1,11 @@
+# [0.7.0-beta.1](https://github.com/livebridge-lab/ng-tangram/compare/0.7.0-beta.0...0.7.0-beta.1) (2020-04-28)
+
+
+### Bug Fixes
+
+* **picture:** 修复无法读取图片预览图的问题 ([6002814](https://github.com/livebridge-lab/ng-tangram/commit/600281402df45fe24269189585274f136894a310))
+* **upload:** 修复 upload 模块在 ivy 模式下编译错误的问题 ([ee4bc4e](https://github.com/livebridge-lab/ng-tangram/commit/ee4bc4ebaa3bebdbcdaadd5b14156ec6b89c0a7e))
+
 # [0.7.0-beta.0](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0...0.7.0-beta.0) (2020-04-27)
 
 
