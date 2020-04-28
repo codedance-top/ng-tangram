@@ -21,7 +21,6 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
   fadeIn,
   fadeOut,
-  NT_UPLOAD_HANDLER,
   NtFileSizeError,
   NtFileTypeError,
   NtUploadError,
@@ -172,10 +171,11 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
 
   constructor(
     private _modal: NtModal,
-    @Inject(NT_UPLOAD_HANDLER) private _uploadHandler: NtUploadHandler,
+    @Optional() private _uploadHandler: NtUploadHandler,
     @Optional() @Self() public ngControl: NgControl,
     @Optional() @Inject(NT_PICTURE_ICONS) public icons: NtPictureIcons) {
     super();
+    console.log(_uploadHandler);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
