@@ -1,5 +1,4 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import locale from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,7 +25,6 @@ const ROUTES: Routes = [
       appId: 'ng-tangram-docs'
     }),
     CommonModule,
-    HttpClientModule,
     NtFormsModule.forRoot(),
     NtUploadModule.forRoot(),
     NtNativeDateModule,
