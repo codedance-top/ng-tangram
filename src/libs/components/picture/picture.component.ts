@@ -22,7 +22,6 @@ import {
   fadeIn,
   fadeOut,
   NT_UPLOAD_HANDLER,
-  NtFileError,
   NtFileSizeError,
   NtFileTypeError,
   NtUploadError,
@@ -40,7 +39,7 @@ import { DEFAULT_PICTURE_ICONS, NT_PICTURE_ICONS, NtPictureIcons } from './pictu
 /**
  * 压缩图片
  */
-export function zipImage(file: File, option: any = { maxWidth: 1080, orientation: true }): Promise<any> {
+export function zipImage(file: File, option: any = { maxWidth: 1080, orientation: true, canvas: true }): Promise<any> {
   return new Promise((resolve, reject) => {
     loadImage(file, (canvas: HTMLCanvasElement) => {
       if (canvas.toBlob) {
