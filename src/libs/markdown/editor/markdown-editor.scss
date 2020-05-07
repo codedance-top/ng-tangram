@@ -1,0 +1,220 @@
+@import '~codemirror/lib/codemirror.css';
+
+$nt-markdown-editor-tools-shadow: 0px 1px 2px $light-gray !default;
+$nt-markdown-editor-tools-padding: $global-padding / 2 !default;
+$nt-markdown-editor-tools-spacing: $global-padding / 2 !default;
+$nt-markdown-editor-tools-size: 30px !default;
+$nt-markdown-editor-tools-background: $white !default;
+$nt-markdown-editor-tools-active-color: lighten($light-gray, 5%) !default;
+
+$nt-markdown-editor-tools-border: 1px solid $light-gray !default;
+$nt-markdown-editor-padding: $input-padding $input-padding * 1.25 !default;
+
+$nt-markdown-editor-font-family: inherit !default;
+$nt-markdown-editor-font-size: $input-font-size !default;
+$nt-markdown-editor-line-height: 1.5 !default;
+
+$nt-markdown-editor-preview-background: #fafafa !default;
+
+@mixin nt-markdown-editor-container {
+  border: $input-border;
+  background: $input-background;
+  border-radius: $input-radius;
+  display: block;
+  margin-bottom: $form-spacing;
+  overflow: hidden;
+
+  &.focus {
+    border: $input-border-focus;
+    box-shadow: $input-shadow-focus;
+  }
+
+  $tools-height:
+    rem-calc($nt-markdown-editor-tools-size) + (
+      get-side($nt-markdown-editor-tools-padding, 'top') +
+      get-side($nt-markdown-editor-tools-padding, 'bottom')
+    );
+
+  &.fill-screen {
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin-bottom: 0;
+    padding-top: $tools-height;
+
+    .nt-markdown-editor-tools {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+    .nt-markdown-editor-container {
+      overflow: hidden;
+      min-height: 100%;
+      max-height: 100%;
+    }
+  }
+
+  @if has-value($input-transition) {
+    transition: $input-transition;
+  }
+}
+
+@mixin nt-markdown-editor-tools {
+  padding: $nt-markdown-editor-tools-padding 0;
+  box-shadow: $nt-markdown-editor-tools-shadow;
+  background-color: $nt-markdown-editor-tools-background;
+  position: relative;
+  z-index: 1;
+  user-select: none;
+  .tools-group {
+    border-right: $nt-markdown-editor-tools-border;
+    display: inline-block;
+    padding: 0 $nt-markdown-editor-tools-spacing;
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+
+  .tools-item {
+    display: inline-block;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: $nt-markdown-editor-tools-size;
+    height: $nt-markdown-editor-tools-size;
+    line-height: $nt-markdown-editor-tools-size;
+    text-align: center;
+    border-radius: $global-radius;
+    border: 1px solid transparent;
+    margin: 0 2px;
+    &:not(.disabled):hover {
+      background-color: $nt-markdown-editor-tools-active-color;
+    }
+
+    &.disabled {
+      cursor: $input-cursor-disabled;
+      color: $medium-gray;
+    }
+
+    &.active {
+      border-color: $medium-gray;
+    }
+  }
+
+  .fa-heading-x {
+    margin-left: -1px;
+    &::after {
+      font-size: 65%;
+      vertical-align: text-bottom;
+      position: relative;
+      top: 2px;
+    }
+  }
+
+  .fa-heading-1::after { content: '1'; }
+  .fa-heading-2::after { content: '2'; }
+  .fa-heading-3::after { content: '3'; }
+  .fa-heading-4::after { content: '4'; }
+  .fa-heading-5::after { content: '5'; }
+  .fa-heading-6::after { content: '6'; }
+}
+
+@mixin nt-markdown-editor-content {
+  z-index: 0;
+  overflow: hidden;
+  cursor: text;
+  line-height: $nt-markdown-editor-line-height;
+
+  textarea {
+    border: none;
+    box-shadow: none;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+  .CodeMirror {
+    font-size: $nt-markdown-editor-font-size;
+    font-family: $nt-markdown-editor-font-family;
+    color: $input-color;
+    height: 100%;
+    padding: $nt-markdown-editor-padding;
+
+    // .CodeMirror-sizer {
+    //   padding: $nt-markdown-editor-padding;
+    //   box-sizing: border-box;
+    // }
+    .CodeMirror-lines,
+    .CodeMirror-line {
+      padding: 0px !important;
+    }
+    .CodeMirror-placeholder {
+      color: $input-placeholder-color;
+      padding: 0px !important;
+    }
+  }
+}
+
+@mixin nt-markdown-editor-validate(
+  $color: $nt-input-background-invalid,
+  $shadow: $nt-input-shadow-invalid,
+  $shadow-focus: $nt-input-shadow-invalid-focus) {
+
+  border-color: $color;
+  box-shadow: $shadow;
+
+  &.focus {
+    border-color: $color;
+    box-shadow: $shadow-focus;
+  }
+}
+
+@mixin nt-markdown-editor {
+  .nt-markdown-editor {
+    @include nt-markdown-editor-container;
+  }
+
+  .nt-markdown-editor-tools {
+    @include nt-markdown-editor-tools;
+  }
+
+  .nt-markdown-editor-content {
+    @include nt-markdown-editor-content;
+  }
+
+  .nt-markdown-editor-container {
+    display: flex;
+    flex-flow: row;
+  }
+
+  .nt-markdown-editor-content,
+  .nt-markdown-editor-preview {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .nt-markdown-editor-preview {
+    padding: $nt-markdown-editor-padding;
+    overflow: auto;
+    box-sizing: content-box;
+    box-shadow: 0px 1px 5px $light-gray inset;
+    background-color: $nt-markdown-editor-preview-background;
+  }
+
+  .nt-form-error .nt-markdown-editor {
+    @include nt-markdown-editor-validate;
+  }
+
+  .nt-form-success .nt-markdown-editor {
+    @include nt-markdown-editor-validate(
+      $color: $nt-input-background-valid,
+      $shadow: $nt-input-shadow-valid,
+      $shadow-focus: $nt-input-shadow-valid-focus
+    );
+  }
+}

@@ -1,12 +1,12 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nt-badge-document',
   templateUrl: 'badge.component.md'
 })
 export class BadgeDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
-  iconCode = require('!!raw-loader!./demos/icon');
-  colorsCode = require('!!raw-loader!./demos/colors');
+  api = require('!!raw-loader!src/libs/components/badge/README.md').default;
+  basicCode = require('!!raw-loader!./examples/basic').default;
+  iconCode = require('!!raw-loader!./examples/icon').default;
+  colorsCode = require('!!raw-loader!./examples/colors').default;
 }

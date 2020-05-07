@@ -1,34 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-import { NtExampleModule } from '@ng-tangram/example';
 import { NtCalloutModule } from '@ng-tangram/components/callout';
-import { NtIconModule } from '@ng-tangram/components/icon';
+import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { CalloutDocumentComponent } from './callout.component';
-
-import { DemoBasicCalloutComponent } from './demos/basic';
-import { DemoCalloutColorComponent } from './demos/color';
-import { DemoCalloutReactivesComponent } from './demos/reactives';
-import { DemoCalloutSizeComponent } from './demos/size';
-import { DemoCalloutEventComponent } from './demos/event';
+import { ExampleBasicCalloutComponent } from './examples/basic';
+import { ExampleCalloutColorComponent } from './examples/color';
+import { ExampleCalloutEventComponent } from './examples/event';
+import { ExampleCalloutReactivesComponent } from './examples/reactives';
+import { ExampleCalloutSizeComponent } from './examples/size';
 
 @NgModule({
   imports: [
-    NtIconModule,
     NtCalloutModule,
     NtExampleModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: CalloutDocumentComponent }
     ])
   ],
   declarations: [
     CalloutDocumentComponent,
-    DemoBasicCalloutComponent,
-    DemoCalloutColorComponent,
-    DemoCalloutReactivesComponent,
-    DemoCalloutSizeComponent,
-    DemoCalloutEventComponent
+    ExampleBasicCalloutComponent,
+    ExampleCalloutColorComponent,
+    ExampleCalloutReactivesComponent,
+    ExampleCalloutSizeComponent,
+    ExampleCalloutEventComponent
   ]
 })
 export class CalloutDocumentModule { }

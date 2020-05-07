@@ -14,9 +14,6 @@ $nt-datepicker-pane-radius: $global-radius !default;
 $nt-datepicker-pane-padding: rem-calc(4) !default;
 $nt-datepicker-pane-background: $white !default;
 
-$nt-datepicker-symbol-padding: $form-spacing / 2 !default;
-$nt-datepicker-symbol-color: $dark-gray !default;
-
 @mixin nt-datepicker-table {
   table {
     font-size: $nt-datepicker-font-size;
@@ -55,7 +52,7 @@ $nt-datepicker-symbol-color: $dark-gray !default;
     &[colspan="3"] {
       width: $nt-datepicker-block-width * 3;
       span {
-        padding: 0;
+        padding: 0 2px;
       }
     }
     &.active span {
@@ -68,9 +65,10 @@ $nt-datepicker-symbol-color: $dark-gray !default;
     }
     &.disabled span {
       color: $nt-datepicker-color-disabled;
-      cursor: no-drop;
+      cursor: $input-cursor-disabled;
     }
-  } // tbody td span {
+  }
+  // tbody td span {
   //   display: block;
   // }
   tr {
@@ -82,20 +80,17 @@ $nt-datepicker-symbol-color: $dark-gray !default;
   }
 }
 
+
 @mixin nt-datepicker {
   .nt-datepicker {
     position: relative;
     display: block;
-
-    &:focus {
-      outline: none;
-    }
+    margin: 0 0 $form-spacing;
   }
 
   .nt-datepicker-pane {
     position: relative;
     border-radius: $nt-datepicker-pane-radius;
-    background-color: $nt-datepicker-pane-background;
     padding: $nt-datepicker-pane-padding;
     @include nt-datepicker-table;
 
@@ -121,32 +116,12 @@ $nt-datepicker-symbol-color: $dark-gray !default;
     }
   }
 
-  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
+  .nt-overlay-container.nt-datepicker-overlay {
+    --nt-overlay-container-background: #{$nt-datepicker-pane-background};
+  }
 
-  .nt-datepicker-clear,
-  .nt-datepicker-caret {
-    position: absolute;
-    right: $nt-datepicker-symbol-padding;
-    top: ($height - $input-font-size) / 2;
-    font-size: 1em;
-    line-height: 1em;
-    &::after {
-      font-family: "anticon";
-      display: block;
-      color: $nt-datepicker-symbol-color;
-      left: auto;
-    }
-  }
-  .nt-datepicker-caret {
-    pointer-events: none;
-    &::after {
-      content: '\e6bb';
-    }
-  }
   .nt-datepicker-clear {
+    pointer-events: auto !important;
     cursor: pointer;
-    &::after {
-      content: '\e633';
-    }
   }
 }

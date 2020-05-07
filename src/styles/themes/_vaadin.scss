@@ -1,0 +1,23 @@
+$select-background: #f3f5f7;
+$select-border: 0px;
+$select-border-focus: 0px;
+// $input-font-size: rem-calc(14);
+$input-background: #f3f5f7;
+$input-border: 0px;
+$input-border-focus: 0px;
+$input-shadow: none;
+$input-placeholder-color: $dark-gray;
+$input-transition: background-color .6s, box-shadow .6s;
+$input-padding: $form-spacing / 2;
+
+$button-sizes: (
+  tiny: 0.5rem,
+  small: 0.7rem,
+  default: 0.8rem,
+  large: 1rem,
+);
+
+$callout-border: 0px;
+
+$nt-checkbox-border: 0px;
+$nt-checkbox-border-disabled: 0px;

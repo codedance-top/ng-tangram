@@ -10,7 +10,7 @@ import { InjectionToken } from '@angular/core';
 
 export type NtDateFormats = {
   parse: { dateInput: any },
-  display: { dateInput: any, monthYearLabel: any }
+  display: { dateInput: any, monthYearLabel: any, monthLabel: any }
 };
 
 export const NT_DATE_FORMATS = new InjectionToken<NtDateFormats>('nt-date-formats');

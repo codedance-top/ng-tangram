@@ -1,13 +1,13 @@
-import { Component, OnInit, ViewContainerRef, ComponentFactoryResolver, Injectable } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nt-callout-document',
   templateUrl: 'callout.component.md'
 })
 export class CalloutDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
-  colorCode = require('!!raw-loader!./demos/color');
-  reactivesCode = require('!!raw-loader!./demos/reactives');
-  sizeCode = require('!!raw-loader!./demos/size');
-  eventCode = require('!!raw-loader!./demos/event');
+  basicCode = require('!!raw-loader!./examples/basic').default;
+  colorCode = require('!!raw-loader!./examples/color').default;
+  reactivesCode = require('!!raw-loader!./examples/reactives').default;
+  sizeCode = require('!!raw-loader!./examples/size').default;
+  eventCode = require('!!raw-loader!./examples/event').default;
+  api = require('!!raw-loader!src/libs/components/callout/README.md').default;
 }

@@ -1,7 +1,17 @@
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  Optional,
+  Output,
+  ViewEncapsulation
+} from '@angular/core';
 import { DateAdapter } from '@ng-tangram/components/core';
-import { NtDatePickerCell } from './datepicker-models';
-import { Component, EventEmitter, Input, OnInit, ViewEncapsulation, Output, ChangeDetectorRef, Optional, ChangeDetectionStrategy } from '@angular/core';
+
 import { createMissingDateImplError } from './datepicker-errors';
+import { NtDatePickerCell } from './datepicker-models';
 
 export const yearsPerPage = 12;
 

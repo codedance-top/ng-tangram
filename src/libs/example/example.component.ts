@@ -1,20 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'nt-example',
-  template: `
-    <div class="example-section">
-      <ng-content></ng-content>
-    </div>
-  `,
-  styles: [`
-    .example-section {
-      border: 1px solid #ccc;
-      background-color: #fff;
-      border-radius: 5px;
-      margin-bottom: 1.875rem;
-    }
-  `]
+  template: `<ng-content></ng-content>`,
+  host: {
+    'class': 'nt-example'
+  },
+  encapsulation: ViewEncapsulation.None
 })
 
 export class NtExampleComponent { }

@@ -1,0 +1,7 @@
+{
+  "lib": {
+    "entryFile": "index.ts",
+    "flatModuleFile": "core",
+    "umdId": "nt.components.core"
+  }
+}

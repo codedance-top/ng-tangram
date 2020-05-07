@@ -1,22 +1,32 @@
 
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-import { NtExampleModule } from '@ng-tangram/example';
 import { NtPopConfirmModule } from '@ng-tangram/components/popconfirm';
-import { PopconfirmDocumentComponent } from './popconfirm.component';
+import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
-import { DemoPopConfirmBasciComponent } from './demos/basic';
+import { ExamplePopConfirmBasciComponent } from './examples/basic';
+import { ExamplePopconfirmChangeComponent } from './examples/change';
+import { ExamplePopConfirmPositionComponent } from './examples/position';
+import { ExamplePopConfirmTextComponent } from './examples/text';
+import { PopconfirmDocumentComponent } from './popconfirm.component';
 
 @NgModule({
   imports: [
     CommonModule,
     NtExampleModule,
     NtPopConfirmModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: PopconfirmDocumentComponent }
     ])],
-  declarations: [PopconfirmDocumentComponent, DemoPopConfirmBasciComponent],
+  declarations: [
+    PopconfirmDocumentComponent,
+    ExamplePopConfirmBasciComponent,
+    ExamplePopConfirmTextComponent,
+    ExamplePopConfirmPositionComponent,
+    ExamplePopconfirmChangeComponent
+  ],
 })
 export class PopconfirmDocumentModule { }

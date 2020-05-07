@@ -1,26 +1,31 @@
 
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-import { NtExampleModule } from '@ng-tangram/example';
 import { NtBadgeModule } from '@ng-tangram/components/badge';
-import { NtIconModule } from '@ng-tangram/components/icon';
+import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { BadgeDocumentComponent } from './badge.component';
-import { DemoBadgeBasicComponent } from './demos/basic';
-import { DemoBadgeIconComponent } from './demos/icon';
-import { DemoBadgeColorsComponent } from './demos/colors';
+import { ExampleBadgeBasicComponent } from './examples/basic';
+import { ExampleBadgeColorsComponent } from './examples/colors';
+import { ExampleBadgeIconComponent } from './examples/icon';
 
 @NgModule({
   imports: [
     CommonModule,
+    NtMarkdownModule,
     NtExampleModule,
     NtBadgeModule,
-    NtIconModule,
     RouterModule.forChild([
       { path: '', component: BadgeDocumentComponent }
-    ])],
-  declarations: [BadgeDocumentComponent, DemoBadgeBasicComponent, DemoBadgeIconComponent, DemoBadgeColorsComponent],
+    ])
+  ],
+  declarations: [
+    BadgeDocumentComponent,
+    ExampleBadgeBasicComponent,
+    ExampleBadgeColorsComponent,
+    ExampleBadgeIconComponent
+  ]
 })
 export class BadgeDocumentModule { }

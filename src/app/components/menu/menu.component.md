@@ -1,6 +1,4 @@
 
-# Menu 导航菜单
-
 为页面和功能提供导航的菜单列表。
 
 ## 何时使用
@@ -11,29 +9,31 @@
 
 ## 代码演示
 
-<nt-example>
-  <nt-example-showcase>
-    <demo-menu-basic></demo-menu-basic>
-  </nt-example-showcase>
-  <nt-example-legend title="基本">最简单的下拉菜单。</nt-example-legend>
-  <nt-example-code [code]="basicCode"></nt-example-code>
-</nt-example>
+<div>
+  <nt-example>
+    <nt-example-showcase>
+      <example-menu-basic></example-menu-basic>
+    </nt-example-showcase>
+    <nt-example-legend title="基本">最简单的下拉菜单。</nt-example-legend>
+    <nt-example-code [code]="basicCode"></nt-example-code>
+  </nt-example>
 
-<nt-example>
-  <nt-example-showcase>
-    <demo-menu-align></demo-menu-align>
-  </nt-example-showcase>
-  <nt-example-legend title="基本">最简单的下拉菜单。</nt-example-legend>
-  <nt-example-code [code]="alignCode"></nt-example-code>
-</nt-example>
+  <nt-example>
+    <nt-example-showcase>
+      <example-menu-align></example-menu-align>
+    </nt-example-showcase>
+    <nt-example-legend title="基本">最简单的下拉菜单。</nt-example-legend>
+    <nt-example-code [code]="alignCode"></nt-example-code>
+  </nt-example>
 
-<nt-example>
-  <nt-example-showcase>
-    <demo-menu-nested></demo-menu-nested>
-  </nt-example-showcase>
-  <nt-example-legend title="基本">最简单的下拉菜单。</nt-example-legend>
-  <nt-example-code [code]="nestedCode"></nt-example-code>
-</nt-example>
+  <nt-example>
+    <nt-example-showcase>
+      <example-menu-nested></example-menu-nested>
+    </nt-example-showcase>
+    <nt-example-legend title="基本">最简单的下拉菜单。</nt-example-legend>
+    <nt-example-code [code]="nestedCode"></nt-example-code>
+  </nt-example>
+</div>
 
 ## API
 

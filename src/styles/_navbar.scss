@@ -1,0 +1,136 @@
+
+$wrapper-header-height: 64px;
+$navbar-width: 230px;
+
+$navbar-active-color: $primary-color;
+
+.nav-treebar {
+  padding-top: 3em;
+  padding-bottom: 3em;
+  border-right: 0px;
+
+  .nav-treebar-title {
+    padding: 0px 25px;
+    color: $black;
+  }
+
+  .nav-tree {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .nav-tree > li > a {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    padding: 8px 20px;
+    color: $black;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: border-right-color .3s, background-color .3s;
+    font-size: 13px;
+  }
+
+  .nav-tree > li > a:focus,
+  .nav-tree > li > a:hover {
+    color: $navbar-active-color;
+  }
+
+  .nav-tree > li.active > a,
+  .nav-tree > li.active > a:hover {
+    font-weight: 500;
+    color: $navbar-active-color;
+  }
+  .nav-tree > li.has-children > a {
+    position: relative;
+
+    &::before {
+      font-size: 0px;
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-left: 1px solid $dark-gray;
+      border-bottom: 1px solid $dark-gray; // border-right: 1px solid transparent;
+      // border-top: 1px solid transparent;
+      border-radius: 1px;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      margin-top: -4px;
+      transition: transform .25s, -ms-transform .25s, -webkit-transform .25s;
+      transform: rotate(135deg);
+    }
+  }
+
+  .nav-tree > li.has-children.folded > a::before {
+    transform: rotate(315deg);
+  }
+
+  .nav-tree > li.has-children > a,
+  .nav-tree > li.has-children.active > a {
+    color: $dark-gray;
+    font-weight: 500;
+    border-right-color: transparent;
+  }
+
+  .has-children .nav-tree > li > a {
+    text-indent: 15px;
+  }
+
+  .has-children .nav-tree {
+    padding: 6px 0px;
+    opacity: 1;
+    transition: padding .3s, opacity .45s;
+  }
+
+  .nav-tree > li.folded > .nav-tree {
+    padding: 0;
+    opacity: 0;
+    overflow: hidden;
+    height: 0px;
+  }
+
+  .nav-tree-no-children {
+    color: $black;
+    padding: .75em .5em;
+    font-size: 14px;
+    display: block;
+    font-weight: 500;
+
+    &:focus,
+    &:hover  {
+      color: $navbar-active-color;
+    }
+
+    &.active {
+      color: $navbar-active-color;
+      font-weight: 500;
+    }
+  }
+
+  .nav-treebar-group {
+    color: $dark-gray;
+    padding: .75em .5em;
+    font-size: 12px;
+    text-transform: uppercase;
+    // margin-top: 1em;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.nav-content {
+  padding: 20px 30px;
+}
+
+@media (min-width: 640px) {
+  .content {
+    margin: 20px 20px;
+  }
+  .nav-treebar {
+    padding-right: 0px;
+    // border-right: 1px solid lighten(#ccc, 5%);
+  }
+}

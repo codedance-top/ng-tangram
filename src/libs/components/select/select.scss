@@ -1,73 +1,38 @@
+$nt-select-pane-min-width: 100px !default;
+$nt-select-pane-max-width: 256px !default;
 $nt-select-radius: $global-radius !default;
-$nt-select-background: $white !default;
-
-$nt-select-symbol-padding: $form-spacing / 2 !default;
-$nt-select-symbol-color: $select-triangle-color !default;
+$nt-select-pane-background: $white !default;
 
 @mixin nt-select {
 
   .nt-select {
     position: relative;
     display: block;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
-
-  .nt-select-clear,
-  .nt-select-caret {
-    position: absolute;
-    right: $nt-datepicker-symbol-padding;
-    top: ($height - $input-font-size) / 2;
-    font-size: 1em;
-    line-height: 1em;
-    &::after {
-      font-family: "anticon";
-      display: block;
-      color: $nt-datepicker-symbol-color;
-      left: auto;
-    }
-  }
-
-  .nt-select-caret {
-    pointer-events: none;
-    &::after {
-      display: inline-block;
-      color: $nt-select-symbol-color;
-      content: '\25BC';
-    }
-  }
-
-  .nt-select-clear {
-    cursor: pointer;
-    &::after {
-      content: '\e633';
-    }
+    margin: 0 0 $form-spacing;
   }
 
   .nt-select-pane {
-    min-width: 100px;
+    min-width: $nt-select-pane-max-width;
     border-radius: $nt-select-radius;
-    background-color: $nt-select-background;
-    max-height: 0px;
     overflow-y: scroll;
-    transition: max-height .3s;
-    &.folded {
-      max-height: 256px;
-    }
+
+    /* 目前存在 max-height 的初始值为0时 OverlayPosition 判断过早导致窗口边界超出浏览器的现象，在解决这个问题之前暂时注释此代码 */
+
+    // max-height: 0px;
+    // transition: max-height .3s;
+    // &.folded {
+      max-height: $nt-select-pane-max-width;
+    // }
 
     .filter-empty {
       padding: $nt-option-padding;
       color: $medium-gray;
-      cursor: no-drop;
+      cursor: $input-cursor-disabled;
       // text-align: center;
     }
   }
 
-  .nt-select-pane nt-ant-icon {
-    margin-right: .3rem;
+  .nt-overlay-container.nt-select-overlay {
+    --nt-overlay-container-background: #{$nt-select-pane-background};
   }
 }

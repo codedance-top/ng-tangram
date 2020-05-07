@@ -1,5 +1,7 @@
 
 export * from './table.module';
 export * from './table.component';
-export * from './column';
-export * from './column.directive';
+export * from './table-data-source';
+export * from './cell.directive';
+export * from './row.directive';
+export * from './resizable.directive';

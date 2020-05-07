@@ -1,0 +1,16 @@
+{
+  "extends": "../libs-tsconfig-build.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "rootDir": ".",
+    "paths": {
+      "@ng-tangram/components/*": ["../../../dist/@ng-tangram/components/*"],
+    }
+  },
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableResourceInlining": true,
+    "enableIvy": false
+  }
+}

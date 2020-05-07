@@ -7,7 +7,7 @@ $nt-option-color-selected: $white !default;
 $nt-option-color-disabled: $medium-gray !default;
 
 $nt-option-background: $white !default;
-$nt-option-background-hovered: rgba(get-color(primary), .3) !default;
+$nt-option-background-hovered: rgba(get-color(primary), .1) !default;
 $nt-option-background-selected: get-color(primary) !default;
 $nt-option-background-disabled: $white !default;
 
@@ -21,23 +21,25 @@ $nt-option-background-disabled: $white !default;
     font-size: $nt-option-font-size;
     padding: $nt-option-padding;
     color: $nt-option-color;
-    &:hover {
+
+    &:hover,
+    &.nt-option-active {
       color: $nt-option-color-hover;
       background-color: $nt-option-background-hovered;
     }
 
-    &.selected {
+    &.nt-option-selected {
       color: $nt-option-color-selected;
       background-color: $nt-option-background-selected;
     }
 
-    &.disabled {
+    &.nt-option-disabled {
       color: $nt-option-color-disabled;
       background-color: $nt-option-background-disabled;
-      cursor: no-drop;
+      cursor: $input-cursor-disabled;
     }
 
-    &.hidden {
+    &.nt-option-hidden {
       display: none;
     }
   }

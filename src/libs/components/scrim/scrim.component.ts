@@ -1,7 +1,7 @@
+import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { AnimationEvent, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, Input, Renderer2, ViewEncapsulation } from '@angular/core';
-import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { fadeIn, fadeOut } from '@ng-tangram/components/core';
 
 @Component({
   selector: '[nt-scrim], nt-scrim',
@@ -18,10 +18,10 @@ export class NtScrimComponent {
 
   private _isOpen = false;
 
-  @Input() text = 'Loading...';
+  @Input() text = '';
 
   set isOpen(value: boolean) { this._isOpen = coerceBooleanProperty(value); }
   get isOpen() { return this._isOpen; }
 
-  constructor(private elementRef: ElementRef) { }
+  constructor() { }
 }

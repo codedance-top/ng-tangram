@@ -1,0 +1,130 @@
+@import 'src/styles/variables';
+
+$wrapper-header-height: 60px;
+$logo-color: #C90018;
+
+
+.wrapper-body {
+  flex-grow: 1;
+  align-items: stretch;
+}
+
+.home-wrapper {
+  min-height: 500px;
+  padding: 0 20px;
+  position: relative;
+  top: 5vh;
+}
+
+.home-splash {
+  align-items: center;
+  vertical-align: baseline;
+  display: flex;
+  justify-content: flex-end;
+  left: 0;
+  padding: 2em 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.home-splash img {
+  max-height: 400px;
+}
+
+.inner {
+  font-size: 16px;
+}
+
+.inner .home-title {
+  font-size: 300%;
+  margin: 0.3em 0;
+  padding: 2.5em 0 1em;
+  font-weight: 300;
+  line-height: 1.25;
+}
+
+.inner .home-title > small {
+  display: block;
+  font-weight: 300;
+  font-size: 50%;
+  line-height: 1em;
+  margin: 0.7em 0 1.3em;
+  color: #888;
+}
+
+.home-button {
+  padding: 0em 1.6em;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid transparent;
+  position: relative;
+  background-color: #fff;
+  background-clip: padding-box;
+  transition: background .3s,box-shadow .3s;
+  text-transform: unset;
+  color: $logo-color;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none!important;
+  border-radius: 37px;
+  line-height: 35px;
+  margin: 0 6px;
+  border: 1px solid $logo-color;
+
+  &:hover {
+    background: #fff;
+    box-shadow: 0px 0px 0px 3px rgba($logo-color, .2);
+  }
+
+  &.button-full {
+    background: $logo-color;
+    color: #fff;
+    transition: box-shadow .3s;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+
+  header {
+
+    .logo {
+      font-size: rem-calc(15) !important;
+    }
+    .logo img {
+      width: 20px;
+      height: 20px;
+    }
+    .menu > li {
+      font-size: rem-calc(13);
+    }
+  }
+  .home-wrapper {
+    .home-splash {
+      position: static;
+      justify-content: center;
+      min-height: auto;
+
+      img {
+        max-height: 400px;
+      }
+    }
+
+    .inner {
+      padding:0 0rem 5rem;
+      text-align: center;
+    }
+
+    .inner .home-title {
+      font-size: 150%;
+      padding: 1em 0;
+    }
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .home-wrapper {
+    max-width: 1200px;
+  }
+}

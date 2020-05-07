@@ -14,92 +14,35 @@ $nt-input-background-invalid: $nt-input-color-invalid !default;
 $nt-input-background-valid: $nt-input-color-valid !default;
 $nt-input-background-warning: $nt-input-color-warning !default;
 
-$nt-input-symbol-offset: $input-font-size + $form-spacing !default;
-
 $nt-form-label-width: 120px !default;
-$nt-form-label-line-height: $form-label-font-size + rem-calc(4) !default;
-$nt-form-label-padding-horizontal: $form-spacing !default;
+// $nt-form-label-line-height: $form-label-font-size !default;
+// $nt-form-label-padding-horizontal: $form-spacing !default;
 
-@mixin nt-form-control {
-
-  // .input-group {
-  //   box-shadow: $input-shadow;
-  //   border-radius: $input-radius;
-  //   background-color: $input-background;
-  //   transition: $input-transition;
-  //   .input-group-label {
-  //     color: $input-placeholder-color;
-  //     border: 0;
-  //     background-color: transparent;
-  //     & + {
-  //       select,
-  //       textarea,
-  //       input {
-  //         padding-left: 0px;
-  //       }
-  //     }
-  //   }
-  //   select,
-  //   textarea,
-  //   input {
-  //     box-shadow: none;
-  //     background-color: transparent;
-  //     & + .input-group-label {
-  //       padding-right: 0px;
-  //     }
-  //   }
-  // }
-
-  // margin: 0 0 $form-spacing;
-
-  font-size: $input-font-size;
-
-  & > input {
-    background-color: $input-background;
-    cursor: auto !important;
-    text-overflow: ellipsis;
-
-
-    &.nt-has-symbol {
-      padding-right: $nt-input-symbol-offset;
-    }
-
-    [pseudo="-webkit-input-placeholder"] {
-      background-color: greenyellow;
-    }
-  }
-
-  &.focus input {
-    outline: none;
-    border: $input-border-focus;
-    background-color: $input-background-focus;
-    box-shadow: $input-shadow-focus;
-  }
-}
-
+// @mixin nt-form-control {
+//   font-size: $input-font-size;
+//   border-radius: $input-radius;
+//   border: $input-border;
+// }
 
 @mixin nt-form-validate (
   $color: $nt-input-background-invalid,
-  $input-shadow: $nt-input-shadow-invalid,
-  $input-shadow-focus: $nt-input-shadow-invalid-focus,
+  $shadow: $nt-input-shadow-invalid,
+  $shadow-focus: $nt-input-shadow-invalid-focus,
   $color-lighten: 5%) {
 
   .nt-form-label { color: $color; }
 
   select,
   textarea,
-  input,
-  .nt-form-control input {
+  input {
     border-color: $color;
-    box-shadow: $input-shadow;
-    // background-color: mix($color, $white, $color-lighten);
+    box-shadow: $shadow;
   }
   select:focus,
   textarea:focus,
-  input:focus,
-  .nt-form-control.focus input {
+  input:focus {
     border-color: $color;
-    box-shadow: $input-shadow-focus;
+    box-shadow: $shadow-focus;
   }
 }
 
@@ -119,12 +62,9 @@ $nt-form-label-padding-horizontal: $form-spacing !default;
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
-  padding-left: .4em;
   &.required {
     position: relative;
     &:before {
-      margin-left: -.6em;
-      position: absolute;
       content: '*';
       color: $nt-input-color-invalid;
     }
@@ -135,15 +75,18 @@ $nt-form-label-padding-horizontal: $form-spacing !default;
 
   position: relative;
 
-  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
+  $form-element-height: ($input-font-size * unitless-calc($input-line-height))
+    + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom'))
+    - rem-calc(1);
+  $padding: ($form-element-height - $form-label-font-size) / 2 $form-spacing;
 
   .nt-form-label {
     vertical-align: top;
     position: absolute;
     left: 0;
     width: $nt-form-label-width;
-    line-height: $nt-form-label-line-height;
-    padding: ($height - $nt-form-label-line-height) / 2 $nt-form-label-padding-horizontal;
+    line-height: $form-label-font-size;
+    padding: $padding;
     margin-bottom: 0;
     text-align: right;
   }
@@ -154,9 +97,9 @@ $nt-form-label-padding-horizontal: $form-spacing !default;
 
 @mixin nt-forms {
 
-  .nt-form-control {
-    @include nt-form-control;
-  }
+  // .nt-form-control {
+  //   @include nt-form-control;
+  // }
 
   .nt-form-field {
     display: block;
@@ -171,15 +114,15 @@ $nt-form-label-padding-horizontal: $form-spacing !default;
   .nt-form-success {
     @include nt-form-validate(
       $color: $nt-input-background-valid,
-      $input-shadow: $nt-input-shadow-valid,
-      $input-shadow-focus: $nt-input-shadow-valid-focus
+      $shadow: $nt-input-shadow-valid,
+      $shadow-focus: $nt-input-shadow-valid-focus
     );
   }
   .nt-form-warning {
     @include nt-form-validate(
       $color: $nt-input-background-warning,
-      $input-shadow: $nt-input-shadow-warning,
-      $input-shadow-focus: $nt-input-shadow-warning-focus
+      $shadow: $nt-input-shadow-warning,
+      $shadow-focus: $nt-input-shadow-warning-focus
     );
   }
 }

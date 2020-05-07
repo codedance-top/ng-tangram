@@ -1,10 +1,18 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nt-select-document',
   templateUrl: 'select.component.md'
 })
 export class SelectDocumentComponent {
-  basicCode = require('!!raw-loader!./demos/basic');
+  api = require('!!raw-loader!src/libs/components/select/README.md').default;
+  singleCode = require('!!raw-loader!./examples/single').default;
+  multipleCode = require('!!raw-loader!./examples/multiple').default;
+  disabledCode = require('!!raw-loader!./examples/disabled').default;
+  requiredCode = require('!!raw-loader!./examples/required').default;
+  compareWithCode = require('!!raw-loader!./examples/compareWith').default;
+  placeholderCode = require('!!raw-loader!./examples/placeholder').default;
+  eventCode = require('!!raw-loader!./examples/event').default;
+  filterCode = require('!!raw-loader!./examples/filter').default;
+  coordinatCode = require('!!raw-loader!./examples/coordinat').default;
 }

@@ -1,11 +1,7 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import {
-  Component, EventEmitter, HostListener, Input, Output, ViewEncapsulation
-} from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 export declare type NtButtonStyle = '' | 'hollow' | 'clear';
-export declare type NtButtonColor = '' | 'primary' | 'secondary' | 'success' | 'warning' | 'alert';
-export declare type NtButtonSize = '' | 'tiny' | 'small' | 'large' | 'medium';
 
 @Component({
   selector: '[nt-button]',
@@ -13,9 +9,7 @@ export declare type NtButtonSize = '' | 'tiny' | 'small' | 'large' | 'medium';
   encapsulation: ViewEncapsulation.None,
   host: {
     '[class]': '["button", color, style, size, class].join(" ")',
-    '[class.expanded]': 'expanded',
-    // '[class.clicked]': '_clicked',
-    // '(click)': '_ripple()'
+    '[class.expanded]': 'expanded'
   }
 })
 export class NtButtonComponent {
@@ -24,17 +18,22 @@ export class NtButtonComponent {
 
   private _expanded: boolean = false;
 
-  _clicked = false;
-
+  /**
+   * 定义此属性是为了避免内部的动态样式 class 和外部设置的值起冲突，所以用此属性接收外部的值并且合并 class 来避免这个问题。
+   *
+   * TODO: 官方会在 Ivy Renderer 中修复这个问题，预计会在 Angular 9.0。
+   * 有关此问题的Issue: https://github.com/angular/angular/issues/7289
+   * @deprecated >= 0.6.0
+   */
   @Input() class: string = '';
 
-  @Input() color: NtButtonColor = '';
+  @Input() color: string = '';
 
-  @Input() size: NtButtonSize = '';
+  @Input() size: string = '';
 
   @Input('nt-button')
-  set _default(value: NtButtonStyle) {
-    if (value && this._validStyle(value)) {
+  set button(value: NtButtonStyle) {
+    if (this._validStyle(value)) {
       this._style = value;
     }
   }
@@ -50,9 +49,4 @@ export class NtButtonComponent {
   private _validStyle(value: string) {
     return ['', 'hollow', 'clear'].indexOf(value) > -1;
   }
-
-  // _ripple() {
-  //   this._clicked = true;
-  //   setTimeout(() => this._clicked = false, 500);
-  // }
 }

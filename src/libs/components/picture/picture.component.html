@@ -1,21 +1,26 @@
-<input #fileElement type="file" [accept]="accept" (change)="_fileChanged()">
-<div class="nt-picture-item {{ type }}"
-  *ngFor="let file of files"
-  [style.backgroundImage]="'url(' + file.thumbnail + ')'"
-  [class.nt-upload-error]="file.status === 3"
-  [class.nt-upload-success]="file.status === 2">
-  <div class="nt-picture-action" *ngIf="file.status !== 0 && file.status !== 1 && !disabled">
-    <nt-ant-icon type="search1" (click)="preview(file)"></nt-ant-icon>
-    <nt-ant-icon type="delete" (click)="removeFile(file)"></nt-ant-icon>
+<div class="nt-picture-item {{ shape }}"
+  *ngFor="let item of _displayPictureRefs"
+  [style.backgroundImage]="item.thumbnail ? 'url(' + item.thumbnail + ')' : 'unset'"
+  [class.nt-upload-error]="item.status === 3"
+  [class.nt-upload-success]="item.status === 2">
+  <div class="nt-picture-action" *ngIf="item.status !== 0 && item.status !== 1">
+    <span class="nt-picture-symbol {{ icons.preview }}" (click)="preview(item)"></span>
+    <span *ngIf="!readonly && !disabled" class="nt-picture-symbol {{ icons.remove }}" (click)="_remove(item)"></span>
   </div>
-  <div class="nt-picture-progress" *ngIf="file.status === 1" [@fadeOut]>
-    <nt-progress *ngIf="file.status === 1" [value]="file.progress" size="tiny" color="success"></nt-progress>
+  <div class="nt-picture-progress" *ngIf="item.status === 1" [@fadeOut]>
+    <nt-progress *ngIf="item.status === 1" [value]="item.progress" size="tiny" color="success"></nt-progress>
   </div>
 </div>
-<div class="nt-picture-add {{ type }}" (click)="onTriggerClick()" *ngIf="this.files.length < maxFiles && !disabled">
-  <nt-ant-icon type="plus"></nt-ant-icon>
+<div class="nt-picture-add {{ shape }}"
+  *ngIf="!notrigger"
+  ntFileSelect
+  [accept]="accept"
+  [limitSize]="limitSize"
+  [multiple]="multiple"
+  [disabled]="disabled || readonly"
+  (select)="_select($event)">
+  <span class="nt-picture-symbol {{ icons.add }}"></span>
 </div>
-
 <ng-template #previewTemplate let-data>
   <div class="nt-picture-preview">
     <img [src]="data.link || data.thumbnail">

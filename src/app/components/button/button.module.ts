@@ -1,24 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-import { NtExampleModule } from '@ng-tangram/example';
 import { NtButtonModule } from '@ng-tangram/components/button';
-import { NtIconModule } from '@ng-tangram/components/icon';
+import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
 import { ButtonDocumentComponent } from './button.component';
-
-import { DemoButtonBasicComponent } from './demos/basic';
-import { DemoButtonGroupComponent } from './demos/group';
+import { ExampleButtonBasicComponent } from './examples/basic';
+import { ExampleButtonGroupComponent } from './examples/group';
 
 @NgModule({
   imports: [
-    NtExampleModule,
     NtButtonModule,
-    NtIconModule,
+    NtExampleModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: ButtonDocumentComponent }
     ])
   ],
-  declarations: [ButtonDocumentComponent, DemoButtonBasicComponent, DemoButtonGroupComponent]
+  declarations: [
+    ButtonDocumentComponent,
+    ExampleButtonBasicComponent,
+    ExampleButtonGroupComponent
+  ]
 })
 export class ButtonDocumentModule { }

@@ -1,0 +1,134 @@
+@import 'src/styles/variables';
+$nav-size: 300px;
+// $nav-size: calc((100% - 1200px) / 2 + $nav-size);
+
+.components-docs {
+  height: 100%;
+  padding-left: calc((100% - 1200px) / 2 + #{$nav-size});
+  overflow: auto;
+
+  .docs-nav-drawer {
+    // padding: 1rem;
+    padding: 80px 1rem 20px;
+    z-index: -1;
+  }
+
+  .docs-nav-treebar {
+    width: calc((100% - 1200px) / 2 + #{$nav-size});
+    background-color: #F9FBFE;
+    border-right: 1px solid #E7EBF0;
+    position: fixed;
+    left: 0;
+    z-index: 11;
+    height: 100%;
+    padding: 80px 0 20px 0;
+    min-width: 280px;
+    overflow: auto;
+
+    .docs-nav {
+      max-width: 248px;
+      padding-left: 1rem;
+      margin-left: auto;
+    }
+  }
+
+  .docs-nav-content {
+    padding-top: 80px;
+    position: relative;
+
+    hr {
+      margin: 1rem auto;
+      border-bottom: 1px solid #E7EBF0;
+    }
+  }
+
+  .nav-content-wrapper {
+    width: 800px;
+    // padding-right: 100px;
+    max-width: calc(100% - #{$nav-size});
+    position: relative;
+
+    .nt-markdown {
+      p, h1, h2, h3, h4, h5, h6 {
+        line-height: 2;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        margin: 1em 0 .5rem;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        line-height: 1.3;
+        font-size: 90%;
+        margin: 0 0 1rem;
+        font-family: $font-family-monospace;
+      }
+
+      ul:not([class]), ol:not([class]) {
+        line-height: 2;
+        margin-bottom: 1rem;
+      }
+
+      pre:not([class]) {
+        margin: 0 0 1rem;
+      }
+
+      blockquote {
+        margin: 0 0 1rem 0;
+        background-color: #fafafa;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .components-docs {
+    padding-left: 0px;
+
+    .docs-nav-treebar {
+      width: 100%;
+      height: auto;
+      display: none;
+      .docs-nav {
+        margin-left: 0px;
+      }
+    }
+
+    .nav-content-wrapper {
+      width: 100%;
+      height: auto;
+    }
+
+    app-header .menu {
+      .nav-line {
+        display: unset;
+      }
+
+      .logo {
+        display: none;
+      }
+    }
+
+    .docs-nav-drawer {
+      z-index: 10;
+    }
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+
+  $large-nav-size: calc((100% - 1500px) / 2 + #{$nav-size});
+
+  .components-docs {
+    padding-left: $large-nav-size;
+
+    .docs-nav-treebar {
+      width: $large-nav-size;
+    }
+
+    .nav-content-wrapper {
+      width: 1100px;
+    }
+  }
+}

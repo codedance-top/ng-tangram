@@ -1,0 +1,7 @@
+{
+  "lib": {
+    "entryFile": "index.ts",
+    "flatModuleFile": "popover",
+    "umdId": "nt.components.popover"
+  }
+}

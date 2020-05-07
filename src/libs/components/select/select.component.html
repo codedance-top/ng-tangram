@@ -1,19 +1,45 @@
-<input #inputElement type="text" class="nt-has-symbol"
-  (focus)="onFocus()" (blur)="onBlur()" (window:resize)="onResize()"
-  (keyup)="onSearch($event)"
-  [readonly]="!filter" [placeholder]="placeholder" [disabled]="disabled"
-  [value]="filter && focused ? '' : triggerValue">
-<span class="nt-select-caret" [@fade] *ngIf="!triggerValue || disabled"></span>
-<span class="nt-select-clear" (click)="clear()" [@fade] *ngIf="triggerValue && !disabled"></span>
+<nt-pseudo-input
+  *ngIf="!filter"
+  [style.margin.px]="0"
+  [attr.tabindex]="tabIndex"
+  [value]="displayValue"
+  [placeholder]="placeholder"
+  [disabled]="disabled"
+  (click)="_onInputClick($event)">
+  <nt-pseudo-caret>
+    <span [class]="icons.caret"></span>
+  </nt-pseudo-caret>
+</nt-pseudo-input>
+<div *ngIf="filter" class="nt-pseudo-input only-caret">
+  <input #inputElement type="text"
+    [style.margin.px]="0"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [value]="focused && overlay.opened ? '' : displayValue"
+    (focus)="_onInputFocus()"
+    (blur)="_onInputBlur()"
+    (keyup)="_onSearch($event)">
+    <nt-pseudo-caret>
+      <span [class]="icons.caret"></span>
+    </nt-pseudo-caret>
+</div>
 <nt-overlay
-  [origin]="origin" trigger="click" position="bottomLeft" fixed
-  (afterClosed)="onAfterClosed()"
-  (beforeOpen)="onBeforeOpen()"
-  (beforeClosed)="onBeforeClosed()">
-  <div #paneElement class="nt-select-pane" [class.folded]="state === 'folded'" [style.width.px]="width">
+  overlayClass="nt-select-overlay"
+  [origin]="origin"
+  [positionPairs]="_positionPairs"
+  (afterOpen)="_afterOpen($event)"
+  (afterClosed)="_afterClosed($event)"
+  (beforeOpen)="_beforeOpen($event)"
+  (beforeClosed)="_beforeClosed($event)"
+  (positionChange)="_positionChange($event)"
+  (keydownEvents)="_handleKeydown($event)">
+  <div #paneElement
+      class="nt-select-pane"
+      [class.folded]="state === 'folded'"
+      [style.width.px]="width">
     <ng-content select="nt-option"></ng-content>
-    <div class="filter-empty" *ngIf="filter && _filterEmpty" (click)="overlay.hide()">
-      {{ filterNotFound  }}
+    <div class="filter-empty" [hidden]="!optionEmpty">
+      {{ filterNotFound }}
     </div>
   </div>
 </nt-overlay>

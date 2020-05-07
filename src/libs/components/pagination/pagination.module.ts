@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+
 import { NT_PAGINATION_CONFIG, NtPaginationConfig } from './pagination-config';
 import { NtPaginationComponent } from './pagination.component';
 
@@ -9,7 +10,8 @@ import { NtPaginationComponent } from './pagination.component';
   declarations: [NtPaginationComponent]
 })
 export class NtPaginationModule {
-  public static forRoot(config?: NtPaginationConfig): ModuleWithProviders {
+
+  public static withConfig(config?: NtPaginationConfig): ModuleWithProviders<NtPaginationModule> {
     return {
       ngModule: NtPaginationModule,
       providers: [

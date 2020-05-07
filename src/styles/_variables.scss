@@ -1,0 +1,209 @@
+
+@import '~foundation-sites/scss/util/util';
+
+// Common Global
+// ---------
+// Base
+$header-styles: (
+  small: (
+    'h1': ('font-size': 24),
+    'h2': ('font-size': 20),
+    'h3': ('font-size': 19),
+    'h4': ('font-size': 18),
+    'h5': ('font-size': 17),
+    'h6': ('font-size': 16),
+  ),
+  medium: (
+    'h1': ('font-size': 32),
+    'h2': ('font-size': 26),
+    'h3': ('font-size': 22),
+    'h4': ('font-size': 20),
+    'h5': ('font-size': 18),
+    'h6': ('font-size': 16),
+  ),
+);
+
+$contrast-warnings: false;
+
+$global-font-size: 14px;
+$global-width: rem-calc(1200);
+$global-lineheight: 1.6;
+
+$lighter-gray: #F3F5F7;
+$light-gray: #dfe4ea;
+$medium-gray: #ced6e0;
+$dark-gray: #a4b0be;
+$darker-gray: #8696a9;
+$black: #3F4F6F;
+$white: #ffffff;
+
+$color-scale: 10%;
+
+$primary-color: #1890ff ;
+$primary-color-light: lighten($primary-color, $color-scale);
+$primary-color-dark: darken($primary-color, $color-scale);
+
+$secondary-color: #8c8c8c;
+$secondary-color-light: lighten($secondary-color, $color-scale);
+$secondary-color-dark: darkten($secondary-color, $color-scale);
+
+$success-color: #53c41a;
+$success-color-light: lighten($success-color, $color-scale);
+$success-color-dark: darkten($success-color, $color-scale);
+
+$warning-color: #faad13;
+$warning-color-light: lighten($warning-color, $color-scale);
+$warning-color-dark: darkten($warning-color, $color-scale);
+
+$alert-color: #f5212d;
+$alert-color-light: lighten($alert-color, $color-scale);
+$alert-color-dark: darkten($alert-color, $color-scale);
+
+$foundation-palette: (
+  primary: $primary-color,
+  secondary: $secondary-color,
+  success: $success-color,
+  warning: $warning-color,
+  alert: $alert-color
+);
+
+$body-background: #FFF;
+$body-font-color: $black !default;
+$body-font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica,
+                   "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif
+                   !default;
+$body-antialiased: true;
+
+$global-margin: 1rem !default;
+$global-padding: 1rem !default;
+$global-position: 1rem !default;
+$global-weight-normal: normal !default;
+$global-weight-bold: bold !default;
+$global-radius: 3px !default;
+$global-menu-padding: 0.7rem 1rem !default;
+$global-menu-nested-margin: 1rem !default;
+$global-text-direction: ltr !default;
+$global-flexbox: true !default;
+$global-prototype-breakpoints: true !default;
+$global-button-cursor: auto !default;
+$global-color-pick-contrast-tolerance: 0 !default;
+
+// Prototype
+$prototype-box-shadow: 0 0 10px $medium-gray !default;
+$blockquote-border: 3px solid $medium-gray;
+$header-font-weight: 500;
+
+// Grid
+$grid-columns: 12 !default;
+
+// Code
+$code-color: #c7254e !default;
+$code-background: #f9f2f4 !default;
+$font-family-monospace: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
+
+// Forms Global
+$form-spacing: 1rem !default;
+
+// Prints
+$print-transparent-backgrounds: true !default;
+
+// Button
+$button-sizes: (
+  tiny: 12px,
+  small: 13px,
+  default: 14px,
+  large: 16px,
+) !default;
+
+$button-padding: .75em 1em;
+$button-color-alt: $white !default;
+
+// Badge
+$badge-color-alt: $white !default;
+
+// Dropdown
+$dropdown-padding: .5rem 0;
+
+// Label
+$label-color-alt: $white !default;
+
+// Tabs
+$tab-item-font-size: 1rem !default;
+
+// Table
+$table-padding: .5rem 1.25rem !default;
+$table-is-striped: false !default;
+
+// TopBar
+$topbar-unstack-breakpoint: small !default;
+$topbar-background: $white;
+
+// Tooltip
+$nt-tooltip-max-width: 200px;
+$nt-tooltip-padding: .6rem;
+
+// Switch
+$switch-height: rem-calc(20) !default;
+$switch-height-tiny: rem-calc(16) !default;
+$switch-height-small: rem-calc(18) !default;
+$switch-height-large: rem-calc(24) !default;
+$switch-paddle-offset: rem-calc(2) !default;
+
+// Menu
+$menu-simple-margin: 1rem !default;
+$menu-item-color-active: $primary-color !default;
+$menu-item-background-active: rgba($primary-color, .1) !default;
+
+// Forms
+$form-label-font-size: 1rem !default;
+// $form-spacing: 1rem !default;
+// $input-line-height: 1 !default;
+
+$input-font-size: rem-calc(14) !default;
+$input-border-focus: 1px solid $primary-color !default;
+$input-placeholder-color: $dark-gray !default;
+
+$input-shadow: 0 0 0 0px rgba($black, 0.1) !default;
+$input-shadow-focus: 0 0 0px 3px rgba($primary-color-dark, .2) !default;
+$input-transition: background-color .3s, box-shadow .3s, border .3s !default;
+
+$helptext-color: $dark-gray !default;
+$helptext-font-style: inherit !default;
+
+// Seleton
+$skeleton-color: #f3f3f3 !default;
+$skeleton-color-blink: #f8f8f8 !default;
+
+// Avatar
+$nt-avatar-shadow-focus: 0px 0px 0px 3px rgba($primary-color-dark, .2) !default;
+
+$nt-input-shadow-invalid: 0 0 0 0px rgba($alert-color, .1) !default;
+$nt-input-shadow-valid: 0 0 0 0px rgba($success-color, .1) !default;
+$nt-input-shadow-warning: 0 0 0 0px rgba($warning-color, .1) !default;
+
+$nt-input-shadow-invalid-focus: 0 0 0 2px rgba($alert-color, .2) !default;
+$nt-input-shadow-valid-focus: 0 0 0 2px rgba($success-color, .2) !default;
+$nt-input-shadow-warning-focus: 0 0 0 2px rgba($warning-color, .2) !default;
+
+// table
+$table-background: $white;
+$table-head-background: $white;
+
+// Overlay
+$nt-overlay-container-arrow-offset: $global-padding;
+
+// Markdown editor
+$nt-markdown-heading-margin: 1em 0 .5rem;
+$nt-markdown-editor-tools-size: 24px;
+$nt-markdown-editor-tools-padding: .25rem;
+$nt-markdown-editor-tools-spacing: 0;
+// $nt-markdown-line-height: 2;
+// $nt-markdown-editor-font-size: 12px;
+
+
+// Pagination
+$nt-pagination-margin-bottom: 0;
+
+// Slider
+$nt-slider-fill-background: rgba($primary-color, .3);

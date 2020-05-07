@@ -1,0 +1,193 @@
+@import '~@angular/cdk/a11y';
+
+$nt-radio-size: rem-calc(16) !default;
+$nt-radio-transition: $input-transition, background-color .3s !default;
+
+$nt-radio-circle-size: $nt-radio-size / 2 !default;
+$nt-radio-label-spacing: $form-spacing / 2 !default;
+
+$nt-radio-group-padding: $form-spacing / 2 !default;
+$nt-radio-group-margin: 0 0 $form-spacing / 2 !default;
+$nt-radio-group-line-height: $nt-radio-size !default;
+
+$nt-radio-background: $input-background !default;
+$nt-radio-background-checked: get-color(primary) !default;
+$nt-radio-background-disabled: $medium-gray !default;
+
+$nt-radio-border: $input-border !default;
+$nt-radio-border-focus: $input-border-focus !default;
+$nt-radio-border-disabled: 1px solid $medium-gray !default;
+
+@mixin nt-radio-input {
+
+  height: $nt-radio-size;
+
+  .nt-radio-input {
+    display: inline-block;
+    width: $nt-radio-size;
+    height: $nt-radio-size;
+    border-radius: 50%;
+    border: $nt-radio-border;
+    position: relative;
+    outline: none;
+    background: $nt-checkbox-background;
+
+    @if has-value($input-transition) {
+      transition: $nt-radio-transition;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      width: $nt-radio-circle-size;
+      height: $nt-radio-circle-size;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      font-size: 0;
+      top: 50%;
+      border-radius: 50%;
+      margin-top: -($nt-radio-circle-size / 2);
+      transform: scale(0);
+      transition: transform .3s, border-color .3s;
+    }
+  }
+
+  input:checked + .nt-radio-input {
+    // background: $nt-radio-background-checked;
+    border: $nt-radio-border-focus;
+    &::after {
+      background: $nt-radio-background-checked;
+      transform: scale(1);
+    }
+  }
+}
+
+@mixin nt-radio-disabled {
+  input:disabled + .nt-radio-input {
+    border: $nt-radio-border-disabled;
+  }
+  input:checked:disabled + .nt-radio-input {
+    border: $nt-radio-border-disabled;
+    &::after {
+      background: $nt-radio-background-disabled;
+    }
+  }
+
+  .nt-radio-layout {
+    cursor: $input-cursor-disabled;
+  }
+
+  .nt-radio-label {
+    color: $nt-radio-background-disabled;
+  }
+}
+
+@mixin nt-radio-label {
+  margin-left: $nt-radio-label-spacing;
+}
+
+@mixin nt-radio-validate(
+  $color: $nt-input-background-invalid,
+  $shadow: $nt-input-shadow-invalid,
+  $shadow-hover: $nt-input-shadow-invalid-focus,
+  $color-lighten: 5%) {
+
+  .nt-radio-input {
+    border-color: $color;
+    box-shadow: $shadow;
+  }
+
+  &:not(.nt-radio-disabled) {
+
+    input:checked + .nt-radio-input {
+      border-color: $color;
+      &::after {
+        background-color: $color;
+      }
+    }
+    input:focus + .nt-radio-input,
+    &:hover .nt-radio-input {
+      border-color: $color;
+      box-shadow: $shadow-hover;
+    }
+  }
+}
+
+@mixin nt-radio-highlight {
+  &:not(.nt-radio-disabled) {
+    input:focus + .nt-radio-input,
+    &:hover .nt-radio-input {
+      box-shadow: $input-shadow-focus;
+      border: $nt-radio-border-focus;
+    }
+  }
+}
+
+@mixin nt-radio-group {
+  $form-element-height: ($input-font-size * unitless-calc($input-line-height)) +
+    (get-side($input-padding, 'top') + get-side($input-padding, 'bottom'))  - rem-calc(1);
+
+  $padding: ($form-element-height - $nt-radio-group-line-height) / 2 $nt-radio-group-padding;
+
+  display: block;
+  line-height: $nt-radio-group-line-height;
+  padding: $padding;
+  margin: $nt-radio-group-margin;
+
+  .nt-radio {
+    margin: 0 $form-spacing $form-spacing / 2 0;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+@mixin nt-radio {
+  .nt-radio {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: $nt-radio-size;
+    // margin: 0 0 $form-spacing / 2;
+
+    @include nt-radio-highlight;
+
+    .nt-radio-layout {
+      line-height: $nt-radio-group-line-height;
+      cursor: pointer;
+    }
+
+    &.nt-radio-disabled {
+      @include nt-radio-disabled;
+    }
+
+    .nt-radio-input-container {
+      display: inline-block;
+      vertical-align: top;
+      @include nt-radio-input;
+    }
+
+    .nt-radio-label {
+      @include nt-radio-label;
+    }
+  }
+
+  .nt-radio-group {
+    @include nt-radio-group;
+  }
+
+  .nt-form-error .nt-radio {
+    @include nt-radio-validate;
+  }
+
+  .nt-form-success .nt-radio {
+    @include nt-radio-validate(
+      $color: $nt-input-background-valid,
+      $shadow: $nt-input-shadow-valid,
+      $shadow-hover: $nt-input-shadow-valid-focus
+    );
+  }
+
+  @include cdk-a11y;
+}

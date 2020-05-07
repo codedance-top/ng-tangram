@@ -1,0 +1,130 @@
+
+$nt-markdown-font-family: inherit !default;
+$nt-markdown-line-height: $global-lineheight !default;
+
+$nt-markdown-heading-margin: 0em 0 .5em !default;
+
+$nt-markdown-ol-style: decimal !default;
+$nt-markdown-ul-style: circle !default;
+$nt-markdown-list-line-height: $nt-markdown-line-height !default;
+
+$nt-markdown-quote-margin: $global-margin / 2 0 !default;
+$nt-markdown-quote-padding: rem-calc(8 16) !default;
+$nt-markdown-quote-color: $dark-gray !default;
+$nt-markdown-quote-background: #f3f3f3 !default;
+
+$nt-markdown-paragraph-margin: 0 0 $global-margin 0 !default;
+
+$nt-markdown-code-font-family: $font-family-monospace !default;
+$nt-markdown-code-color: #c7254e !default;
+$nt-markdown-code-background: #f9f2f4 !default;
+// $nt-markdown-code-color: #404040 !default;
+// $nt-markdown-code-background: #eee !default;
+$nt-markdown-code-padding: rem-calc(2 6) !default;
+$nt-markdown-code-radius: $global-radius !default;
+
+$nt-markdown-pre-padding: $global-padding !default;
+$nt-markdown-pre-margin: $global-margin / 2 0;
+
+@mixin nt-markdown-base {
+  display: block;
+  word-break: break-all;
+  line-height: $nt-markdown-line-height;
+  img {
+    max-width: 100%;
+  }
+
+  p {
+    margin: $nt-markdown-paragraph-margin;
+  }
+
+  ol, ul {
+    line-height: $nt-markdown-list-line-height;
+  }
+}
+
+@mixin nt-markdown-code {
+
+  // Inline code
+  pre, code {
+    font-family: $font-family-monospace;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  }
+
+  code {
+    color: $nt-markdown-code-color;
+    padding: $nt-markdown-code-padding;
+    font-size: 90%;
+    background-color: $nt-markdown-code-background;
+    border-radius: $global-radius;
+    border: 0;
+  }
+
+  pre {
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+    padding: 1em;
+    margin: .5em 0;
+    overflow: auto;
+  }
+
+  pre code {
+    padding: 0px;
+    color: inherit;
+    background-color: transparent;
+    border-radius: 0;
+  }
+
+  blockquote {
+    margin: $nt-markdown-quote-margin;
+    padding: $nt-markdown-quote-padding;
+    color: $nt-markdown-quote-color;
+    background: $nt-markdown-quote-background;
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@mixin nt-markdown-heading {
+  h1, h2, h3, h4, h5, h6, hr {
+    clear: both;
+    margin: $nt-markdown-heading-margin;
+  }
+}
+
+@mixin nt-markdown-list {
+
+  ul:not(.breadcrumbs):not(.menu):not(.tabs):not(.nt-pagination) > li {
+    list-style-type: $nt-markdown-ul-style;
+    margin-left: 1.6em;
+  }
+  ol:not(.breadcrumbs):not(.menu):not(.tabs):not(.nt-pagination) > li {
+    list-style-type: $nt-markdown-ol-style;
+    margin-left: 1.6em;
+  }
+}
+
+@mixin nt-markdown {
+  .nt-markdown {
+    @include nt-markdown-base;
+    @include nt-markdown-heading;
+    @include nt-markdown-list;
+    @include nt-markdown-code;
+  }
+}

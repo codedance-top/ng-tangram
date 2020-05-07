@@ -1,32 +1,92 @@
-import { Component, OnInit } from '@angular/core';
-import { COMPONENTS_ROUTES } from './components.routes';
+
+import { Subject } from 'rxjs';
+import { filter, map, takeUntil } from 'rxjs/operators';
+
+import { Component, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+
+export interface MenuCategory {
+  path: string;
+  title: string;
+  group?: string;
+}
+
+interface MenuGroup {
+  name: string;
+  path?: string;
+  categories?: MenuCategory[]
+}
 
 @Component({
-  selector: 'page-components',
-  template: `
-    <div class="grid-x">
-      <div class="large-2 medium-3 cell nav-treebar">
-        <ul class="nav nav-tree nav-stacked no-bullet">
-          <li *ngFor="let item of categories" routerLinkActive="active">
-            <a [routerLink]="['./', item.path]">
-              {{item.title}}</a>
-          </li>
-        </ul>
-      </div>
-      <div class="large-10 medium-9 cell nav-content markdown">
-        <router-outlet></router-outlet>
-      </div>
-    </div>`
+  templateUrl: 'components.component.html',
+  styleUrls: ['components.scss'],
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'components-docs grid-x'
+  }
 })
-export class ComponentsComponent implements OnInit {
+export class ComponentsComponent {
 
-  categories = COMPONENTS_ROUTES
-    .filter(route => route.path !== '')
-    .map(route => ({ path: route.path, title: route.data.title }))
-    .sort((a, b) => a.path.localeCompare(b.path));
+  private _destory = new Subject();
 
-  constructor() {
+  title = '';
+
+  categories: Array<MenuCategory>;
+
+  groups: Array<MenuGroup>;
+
+  hasGroup = false;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
+
+    const routes = activatedRoute.routeConfig.children || [];
+    if (this.hasGroup = routes.some(route => route.data && !!route.data.group)) {
+      // 当存在 group 属性时启用 group mode
+      this.groups = this.groupByCategories(routes.filter(route => route.path !== ''));
+
+    } else {
+      // 扁平的菜单结构 flatten mode
+      this.categories = routes
+        .filter(route => route.path !== '')
+        .map(route => ({ path: route.path, title: route.data.title }))
+        .sort((a, b) => a.path.localeCompare(b.path));
+    }
+
+    this.router.events.pipe(
+      takeUntil(this._destory),
+      filter(event => event instanceof NavigationEnd),
+      map(() => this.activatedRoute),
+      map(route => {
+        while (route.firstChild) { route = route.firstChild; }
+        return route;
+      })
+    ).subscribe(route => {
+      this.title = route.snapshot.data.title;
+    });
   }
 
-  ngOnInit() { }
+  ngOnDestroy() {
+    this._destory.next();
+    this._destory.complete();
+  }
+
+  private groupByCategories(routes: any[]): MenuGroup[] {
+    let groups = {};
+    routes.filter(route => route.data.group).forEach(route => {
+      let group = route.data.group;
+      groups[group] = groups[group] || [];
+      groups[group].push({ path: route.path, title: route.data.title });
+    });
+
+    const flattenGroups: MenuGroup[] = Object.keys(groups).map((group) => {
+      return { name: group, categories: groups[group].sort((a, b) => a.path.localeCompare(b.path)) };
+    });
+
+    return routes
+      .filter(route => !route.data.group)
+      .map(route => ({ name: route.data.title, path: route.path } as MenuGroup))
+      .concat(flattenGroups);
+  }
 }

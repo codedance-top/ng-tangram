@@ -1,52 +1,47 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import locale from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { NtNativeDateModule } from '@ng-tangram/components/core';
 import { NtFormsModule } from '@ng-tangram/components/forms';
-import { NtIconModule } from '@ng-tangram/components/icon';
-import { NT_PAGINATION_CONFIG, NtPaginationConfig } from '@ng-tangram/components/pagination';
+import { NtNoopUploadModule } from '@ng-tangram/components/noop-upload';
+import { NtMarkedEngineModule } from '@ng-tangram/markdown';
 
-import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 
 registerLocaleData(locale);
 
 const ROUTES: Routes = [
-  { path: '', redirectTo: 'components', pathMatch: 'full' },
-  { path: 'components', loadChildren: './components/components.module#ComponentsModule', data: { title: '组件' } },
-  { path: 'utils', loadChildren: './utils/utils.module#UtilsModule', data: { title: '工具' } },
+  { path: '', loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule) },
+  { path: 'components', loadChildren: () => import('./components/components.module').then(mod => mod.ComponentsModule) },
+  { path: 'advenced', loadChildren: () => import('./advenced/advenced.module').then(mod => mod.AdvencedModule) },
   { path: '**', component: PageNotFoundComponent, data: { title: '404 - 找不到此页面' } }
 ];
 
-const PAGINATION_CONFIG = {
-  previousLabel: '上一页',
-  nextLabel: '下一页'
-};
-
 @NgModule({
-  bootstrap: [AppComponent],
   imports: [
-    CommonModule,
-    NtIconModule,
-    HttpClientModule,
     BrowserModule.withServerTransition({
-      appId: 'ng-tangram-demo'
+      appId: 'ng-tangram-docs'
     }),
-    BrowserTransferStateModule,
+    CommonModule,
     NtFormsModule.forRoot(),
+    NtNoopUploadModule,
+    NtNativeDateModule,
+    NtMarkedEngineModule,
     RouterModule.forRoot(ROUTES, {
       initialNavigation: 'enabled',
-      useHash: !environment.production
+      paramsInheritanceStrategy: 'always'
     })
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'zh' },
-    { provide: NT_PAGINATION_CONFIG, useValue: PAGINATION_CONFIG }
+    { provide: LOCALE_ID, useValue: 'zh-CN' }
   ],
-  declarations: [AppComponent, PageNotFoundComponent],
+  declarations: [
+    AppComponent,
+    PageNotFoundComponent
+  ],
   exports: [AppComponent]
 })
 export class AppModule { }

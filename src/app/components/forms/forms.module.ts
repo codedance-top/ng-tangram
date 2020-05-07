@@ -1,21 +1,18 @@
-import { NtDatePickerModule } from '@ng-tangram/components/datepicker';
-import { NtSelectModule } from '@ng-tangram/components/select';
-
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
-import { NtExampleModule } from '@ng-tangram/example';
-import { NtIconModule } from '@ng-tangram/components/icon';
-import { NtFormsModule } from '@ng-tangram/components/forms';
-
-import { FormsDocumentComponent } from './forms.component';
-
-import { DemoFormLoginComponent } from './demos/login';
-import { DemoFormInlineComponent } from './demos/inline';
 import { NtCalloutModule } from '@ng-tangram/components/callout';
+import { NtDatePickerModule } from '@ng-tangram/components/datepicker';
+import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtInputModule } from '@ng-tangram/components/input';
+import { NtSelectModule } from '@ng-tangram/components/select';
+import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
+
+import { ExampleFormInlineComponent } from './examples/inline';
+import { ExampleFormLoginComponent } from './examples/login';
+import { FormsDocumentComponent } from './forms.component';
 
 @NgModule({
   imports: [
@@ -28,11 +25,15 @@ import { NtInputModule } from '@ng-tangram/components/input';
     NtInputModule,
     NtSelectModule,
     NtDatePickerModule,
-    NtIconModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: FormsDocumentComponent }
     ])
   ],
-  declarations: [FormsDocumentComponent, DemoFormLoginComponent, DemoFormInlineComponent]
+  declarations: [
+    FormsDocumentComponent,
+    ExampleFormLoginComponent,
+    ExampleFormInlineComponent
+  ]
 })
 export class FormsDocumentModule { }

@@ -14,7 +14,7 @@ desktop.ini
 /.idea/
 
 # NPM 模块路径
-/node_modules/*/
+/node_modules/*
 
 # eclipse 工程信息文件
 .project
@@ -30,9 +30,14 @@ npm-debug.log
 
 /npm-*
 /package-*
+/yarn-*
 
 /dist/*
 /docs/
 /out-tsc/*
 
 /**/*/_TODOS/*
+
+INTRO.md
+ROADMAP.md
+CHANGELOG_GUIDE.md

@@ -1,6 +1,18 @@
 import {
-  AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject,
-  Input, OnChanges, OnDestroy, OnInit, Optional, Output, SimpleChanges, ViewChild, ViewEncapsulation
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Optional,
+  Output,
+  SimpleChanges,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { DateAdapter, NT_DATE_FORMATS, NtDateFormats } from '@ng-tangram/components/core';
 
@@ -26,28 +38,36 @@ export class NtDatePickerCalendarComponent<D> implements AfterContentInit, OnCha
 
   @Input()
   get startAt(): D | null { return this._startAt; }
-  set startAt(value: D | null) { this._startAt = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
+  set startAt(value: D | null) {
+    this._startAt = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
+  }
 
   /** The currently selected date. */
   private _selected: D | null;
 
   @Input()
   get selected(): D | null { return this._selected; }
-  set selected(value: D | null) { this._selected = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
+  set selected(value: D | null) {
+    this._selected = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
+  }
 
   /** The minimum selectable date. */
   private _minDate: D | null;
 
   @Input()
   get minDate(): D | null { return this._minDate; }
-  set minDate(value: D | null) { this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
+  set minDate(value: D | null) {
+    this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
+  }
 
   /** The maximum selectable date. */
   private _maxDate: D | null;
 
   @Input()
   get maxDate(): D | null { return this._maxDate; }
-  set maxDate(value: D | null) { this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
+  set maxDate(value: D | null) {
+    this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
+  }
 
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
@@ -83,10 +103,12 @@ export class NtDatePickerCalendarComponent<D> implements AfterContentInit, OnCha
   private _clampedActiveDate: D;
 
   get _activeDate(): D { return this._clampedActiveDate; }
-  set _activeDate(value: D) { this._clampedActiveDate = this._dateAdapter.clampDate(value, this.minDate, this.maxDate); }
+  set _activeDate(value: D) {
+    this._clampedActiveDate = this._dateAdapter.clampDate(value, this.minDate, this.maxDate);
+  }
 
   get _monthLabel() {
-    return this._dateAdapter.format(this._activeDate, this._dateFormats.display.monthYearLabel).toLocaleUpperCase();
+    return this._dateAdapter.format(this._activeDate, this._dateFormats.display.monthLabel).toLocaleUpperCase();
   }
 
   get _yearLabel() { return this._dateAdapter.getYearName(this._activeDate); }

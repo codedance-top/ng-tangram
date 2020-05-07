@@ -1,10 +1,20 @@
 <ng-content></ng-content>
-<nt-overlay [origin]="origin" [position]="position" trigger="click" arrow>
-  <nt-dropdown-pane>
-    <p class="popconfirm"><nt-ant-icon class="popconfirm-icon" type="infocirlce"></nt-ant-icon> {{ title }}</p>
-    <div class="popconfirm-action">
-      <button nt-button color="secondary" size="tiny" (click)="_closeOverlay(false)">{{cancelText}}</button>
-      <button nt-button size="tiny" (click)="_closeOverlay(true)">{{confirmText}}</button>
+<nt-overlay
+  overlayClass="nt-popconfirm-overlay"
+  arrow
+  [origin]="origin"
+  [position]="position"
+  (afterOpen)="_afterOpen($event)"
+  (afterClosed)="_afterClosed($event)"
+  (beforeOpen)="_beforeOpen($event)"
+  (beforeClosed)="_beforeClosed($event)"
+  (positionChange)="_positionChange($event)">
+  <div class="nt-popconfirm">
+    <div class="nt-popconfirm-title" *ngIf="template"><ng-container *ngTemplateOutlet="template"></ng-container></div>
+    <div class="nt-popconfirm-title" *ngIf="!template" [innerHtml]="title"></div>
+    <div class="nt-popconfirm-action">
+      <button nt-button color="secondary" size="tiny" (click)="_closeOverlay($event, false)">{{cancelText}}</button>
+      <button nt-button size="tiny" (click)="_closeOverlay($event, true)">{{confirmText}}</button>
     </div>
-  </nt-dropdown-pane>
+  </div>
 </nt-overlay>

@@ -1,0 +1,178 @@
+@import '~prismjs/themes/prism.css';
+@import '~foundation-sites/scss/foundation';
+
+$nt-example-code-border: 1px solid $light-gray !default;
+$nt-example-radius: $global-radius !default;
+
+$nt-example-tabs-min-width: 100px !default;
+$nt-example-tabs-active-color: get-color(primary) !default;
+$nt-example-padding: $global-padding * 1.5;
+
+@mixin nt-example-showcase {
+  display: block;
+  padding: $nt-example-padding;
+  min-height: 100px;
+}
+
+@mixin nt-example-legend {
+
+  padding: $nt-example-padding;
+  position: relative;
+  border-top: $nt-example-code-border;
+  display: block;
+
+  .nt-example-legend-title {
+    position: absolute;
+    top: -16px;
+    padding: 5px 5px;
+    font-weight: 500;
+    background-color: $white;
+  }
+
+  .nt-example-legend-content {
+    line-height: 1.8;
+  }
+}
+
+@mixin nt-example-code {
+
+  position: relative;
+  display: block;
+  margin-top: 1em;
+
+  .code-container {
+    display: none;
+    border-top: $nt-example-code-border;
+    margin: 0 !important;
+    border-bottom-left-radius: $nt-example-radius;
+    border-bottom-right-radius: $nt-example-radius;
+  }
+
+  &.shown .code-container {
+    display: block;
+    word-break: break-all;
+    * {
+      word-break: break-all;
+    }
+  }
+
+  .nt-example-code-shown {
+    position: absolute;
+    top: -30px;
+    right: 20px;
+    cursor: pointer;
+    color: $dark-gray;
+  }
+
+  .nt-example-code-shown .icon {
+    margin-right: 3px;
+
+    &.visible {
+      color: #da0b36;
+    }
+  }
+}
+
+@mixin nt-example-code-tabs {
+
+  .nt-example-code-tabs {
+    @include clearfix;
+    margin: 0;
+    border-top: $nt-example-code-border;
+    list-style-type: none;
+
+    .nt-example-tabs-title {
+      float: left;
+      position: relative;
+      > a {
+        display: block;
+        padding: 1.25em 1em;
+        font-size: 1em;
+        text-transform: uppercase;
+        line-height: 1;
+        color: $dark-gray;
+        min-width: $nt-example-tabs-min-width;
+        text-align: center;
+        transition: color .2s;
+
+        &::after {
+          content: '';
+          background-color: $nt-example-tabs-active-color;
+          height: 2px;
+          font-size: 0;
+          position: absolute;
+          bottom: -1px;
+          left: 50%;
+          right: 50%;
+          transition: left .3s, right .3s;
+        }
+
+        &:hover {
+          color: $nt-example-tabs-active-color;
+        }
+      }
+
+      &.is-active > a {
+        color: $nt-example-tabs-active-color;
+        &::after {
+          left: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  .nt-example-code-tabs-panel {
+    @include tabs-panel;
+    padding: 0;
+    display: none;
+
+    &.is-active {
+      display: block;
+    }
+  }
+
+  .nt-example-code-tabs,
+  .nt-example-code-tabs-content {
+    display: none;
+  }
+
+  &.shown {
+
+    .nt-example-code-tabs,
+    .nt-example-code-tabs-content {
+      display: block;
+    }
+  }
+}
+
+@mixin ng-tangram-example {
+
+  .nt-example {
+    border: $nt-example-code-border;
+    display: block;
+    box-sizing: border-box;
+    background-color: $white;
+    border-radius: 5px;
+    margin-bottom: 1.875rem;
+    overflow: auto;
+    box-shadow: 0px 0px 10px #eee;
+  }
+
+  .nt-example-showcase {
+    @include nt-example-showcase;
+  }
+
+  .nt-example-legend {
+    @include nt-example-legend;
+  }
+
+  .nt-example-code {
+    @include nt-example-code;
+  }
+
+  .nt-example-code-tabs {
+    @include nt-example-code;
+    @include nt-example-code-tabs;
+  }
+}

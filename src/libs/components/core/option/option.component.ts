@@ -1,11 +1,20 @@
+import { Subject } from 'rxjs';
 
-import {
-  AfterViewChecked, Component, ChangeDetectorRef, ElementRef, EventEmitter, Input,
-  Inject, InjectionToken, Output, Optional, ViewChild, ViewEncapsulation
-} from '@angular/core';
+import { Highlightable, ListKeyManagerOption } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-
-import { Subject } from 'rxjs/Subject';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  InjectionToken,
+  Input,
+  Optional,
+  Output,
+  ViewEncapsulation
+} from '@angular/core';
 
 export interface NtOptionParentComponent {
   disabled?: boolean;
@@ -26,22 +35,33 @@ export const NT_OPTION_PARENT_COMPONENT = new InjectionToken<NtOptionParentCompo
   encapsulation: ViewEncapsulation.None,
   host: {
     'class': 'nt-option',
-    '[class.selected]': 'selected',
-    '[class.disabled]': 'disabled',
-    '[class.hidden]': '_hidden',
+    '[class.nt-option-selected]': 'selected',
+    '[class.nt-option-disabled]': 'disabled',
+    '[class.nt-option-active]': '_isActive',
+    '[class.nt-option-hidden]': 'hidden',
     '(click)': 'selectViaInteraction()'
   }
 })
-export class NtOptionComponent implements AfterViewChecked {
+export class NtOptionComponent implements AfterViewChecked, Highlightable, ListKeyManagerOption {
 
   private _value: any;
   private _selected = false;
   private _disabled = false;
+  private _label = '';
+  private _hidden = false;
+
   private _mostRecentViewValue = '';
 
-  _hidden = false;
+  _isActive = false;
 
-  get label() { return (this._element.nativeElement.textContent || '').trim(); }
+  @Input()
+  set label(value: string) { this._label = value; }
+  get label() {
+    if (!this._label.trim()) {
+      return (this._element.nativeElement.textContent || '').trim();
+    }
+    return this._label.trim();
+  }
 
   get multiple() { return this._parent && this._parent.multiple; }
 
@@ -52,6 +72,12 @@ export class NtOptionComponent implements AfterViewChecked {
   @Input()
   set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
   get disabled() { return this._disabled; }
+
+  set hidden(value: boolean) {
+    this._hidden = coerceBooleanProperty(value);
+    this._disabled = this._hidden;
+  }
+  get hidden() { return this._hidden; }
 
   get selected() { return this._selected; }
 
@@ -100,11 +126,27 @@ export class NtOptionComponent implements AfterViewChecked {
     }
   }
 
-  getOffsetY() {
+  setActiveStyles() {
+    this._isActive = true;
+  }
+
+  setInactiveStyles() {
+    this._isActive = false;
+  }
+
+  getLabel() {
+    return this.label;
+  }
+
+  getOffsetTop() {
     return this._element.nativeElement.offsetTop;
   }
 
-  private _emitSelectionChangeEvent(isUserInput = false): void {
+  getOffsetHeight() {
+    return this._element.nativeElement.offsetHeight;
+  }
+
+  protected _emitSelectionChangeEvent(isUserInput = false): void {
     this.selectionChange.emit(new NtOptionSelectionChange(this, isUserInput));
   }
 }

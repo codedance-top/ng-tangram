@@ -1,23 +1,31 @@
 
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-import { NtExampleModule } from '@ng-tangram/example';
 import { NtTooltipModule } from '@ng-tangram/components/tooltip';
-import { TooltipDocumentComponent } from './tooltip.component';
+import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
-import { DemoTooltipBasciComponent } from './demos/basic';
+import { ExampleTooltipBasciComponent } from './examples/basic';
+import { ExampleTooltipChangeComponent } from './examples/change';
+import { ExampleTooltipPositionComponent } from './examples/position';
+import { TooltipDocumentComponent } from './tooltip.component';
 
 @NgModule({
   imports: [
     CommonModule,
     NtExampleModule,
     NtTooltipModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: TooltipDocumentComponent }
     ])],
   exports: [TooltipDocumentComponent],
-  declarations: [TooltipDocumentComponent, DemoTooltipBasciComponent],
+  declarations: [
+    TooltipDocumentComponent,
+    ExampleTooltipBasciComponent,
+    ExampleTooltipChangeComponent,
+    ExampleTooltipPositionComponent
+  ],
 })
 export class TooltipDocumentModule { }

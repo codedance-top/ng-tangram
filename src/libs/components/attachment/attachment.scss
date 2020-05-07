@@ -1,0 +1,100 @@
+$nt-attachment-item-margin: $form-spacing !default;
+$nt-attachment-task-color: $dark-gray !default;
+$nt-attachment-task-color-error: get-color(alert) !default;
+$nt-attachment-task-padding: $global-padding / 2 !default;
+$nt-attachment-task-background: rgba(get-color(primary), .1) !default;
+$nt-attachment-task-background-success: rgba(get-color(success), .1) !default;
+$nt-attachment-task-background-error: rgba(get-color(alert), .1) !default;
+$nt-attachment-task-background-trans-transition: background .5s !default;
+
+$nt-attachment-font-size: rem-calc(12) !default;
+
+@mixin nt-attachment-task-color (
+  $color: $nt-attachment-task-color,
+  $background: $nt-attachment-task-background
+) {
+  color: $color;
+  background-color: $background;
+}
+
+@mixin nt-attachment-task {
+  font-size: $nt-attachment-font-size;
+  transition: $nt-attachment-task-background-trans-transition;
+  display: flex;
+  & > .cell {
+    padding: $nt-attachment-task-padding;
+  }
+
+  .task-info {
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .task-name {
+    margin-right: .5em;
+    &:not([href]) {
+      cursor: auto;
+      color: $dark-gray;
+    }
+  }
+
+  .task-error {
+    color: $nt-attachment-task-color-error;
+    margin-left: .5em;
+  }
+
+  .task-action {
+    cursor: pointer;
+  }
+
+  @include nt-attachment-task-color;
+
+  &.success {
+    @include nt-attachment-task-color($background: $nt-attachment-task-background-success);
+  }
+  &.error {
+    @include nt-attachment-task-color($background: $nt-attachment-task-background-error);
+  }
+}
+
+@mixin nt-attachment-item {
+  position: relative;
+  margin-top: $form-spacing * 0.5;
+  &:last-child {
+    margin-bottom: $form-spacing;
+  }
+  .nt-attachment-progress {
+    margin-bottom: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@mixin nt-attachment {
+  .nt-attachment {
+    display: block;
+    margin: 0 0 $form-spacing;
+
+    &.disabled .nt-attachment-trigger {
+      opacity: .5;
+      cursor: no-drop;
+    }
+
+    &.readonly .nt-attachment-trigger {
+      display: none;
+    }
+  }
+
+  .nt-attachment-item {
+    @include nt-attachment-item;
+  }
+
+  .nt-attachment-task {
+    @include nt-attachment-task;
+  }
+}

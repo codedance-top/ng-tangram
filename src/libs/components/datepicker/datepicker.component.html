@@ -1,13 +1,28 @@
-<input #inputElement class="nt-has-symbol" type="text" (focus)="_onInputFocus()" readonly [placeholder]="placeholder" [disabled]="disabled">
-<span class="nt-datepicker-caret" [@fade] *ngIf="!value || disabled"></span>
-<span class="nt-datepicker-clear" (click)="clear()" [@fade] *ngIf="value && !disabled"></span>
+
+<nt-pseudo-input
+  [style.margin.px]="0"
+  [attr.tabindex]="tabIndex"
+  [value]="_displayValue"
+  [placeholder]="placeholder"
+  [disabled]="disabled">
+  <nt-pseudo-caret *ngIf="!value || disabled">
+    <span [class]="icons.caret"></span>
+  </nt-pseudo-caret>
+  <nt-pseudo-caret class="nt-datepicker-clear" (click)="_onClear($event)" *ngIf="value && !disabled">
+    <span [class]="icons.clear"></span>
+  </nt-pseudo-caret>
+</nt-pseudo-input>
+
 <nt-overlay
+  overlayClass="nt-datepicker-overlay"
   [origin]="origin"
-  trigger="click"
-  position="bottomLeft"
+  [positionPairs]="_positionPairs"
   arrow
-  (beforeOpen)="onBeforeOpen()"
-  (beforeClosed)="onBeforeClosed()">
+  (afterOpen)="_onAfterOpen($event)"
+  (afterClosed)="_onAfterClosed($event)"
+  (beforeOpen)="_onBeforeOpen($event)"
+  (beforeClosed)="_onBeforeClosed($event)"
+  (positionChange)="_onPositionChange($event)">
   <nt-datepicker-calendar
     [selected]="value"
     [dateFilter]="dateFilter"

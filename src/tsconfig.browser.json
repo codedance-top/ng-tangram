@@ -1,6 +1,17 @@
 {
   "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "types": ["node"],
+  },
+  "files": [
+    "./main.ts",
+    "./polyfills.ts"
+  ],
+  "include": [
+    "./**/*.d.ts"
+  ],
   "angularCompilerOptions": {
-    "entryModule": "./app/app.browser.module#AppBrowserModule"
+    "entryModule": "./app/app.browser.module#AppBrowserModule",
   }
 }

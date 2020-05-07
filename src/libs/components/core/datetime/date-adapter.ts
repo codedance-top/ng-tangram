@@ -1,3 +1,5 @@
+import { Observable, Subject } from 'rxjs';
+
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -5,15 +7,18 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { InjectionToken, LOCALE_ID } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { inject, InjectionToken, LOCALE_ID } from '@angular/core';
 
 /** InjectionToken for datepicker that can be used to override default locale code. */
-export const NT_DATE_LOCALE = new InjectionToken<string>('nt-date-locale');
+export const NT_DATE_LOCALE = new InjectionToken<string>('nt-date-locale', {
+  providedIn: 'root',
+  factory: NT_DATE_LOCALE_FACTORY
+});
 
-/** Provider for NT_DATE_LOCALE injection token. */
-export const NT_DATE_LOCALE_PROVIDER = { provide: NT_DATE_LOCALE, useExisting: LOCALE_ID };
+/** @docs-private */
+export function NT_DATE_LOCALE_FACTORY(): string {
+  return inject(LOCALE_ID);
+}
 
 /** Adapts type `D` to be usable as a date by cdk-based components that work with dates. */
 export abstract class DateAdapter<D> {
@@ -44,6 +49,13 @@ export abstract class DateAdapter<D> {
    * @returns The month component (1-indexed, 1 = first of month).
    */
   abstract getDate(date: D): number;
+
+  /**
+   * Gets the milliseconds of the given date.
+   * @param date The date to extract the milliseconds from.
+   * @returns The milliseconds component.
+   */
+  abstract getMilliseconds(date: D): number;
 
   /**
    * Gets the day of the week component of the given date.

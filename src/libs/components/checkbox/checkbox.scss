@@ -1,0 +1,236 @@
+@import '~@angular/cdk/a11y';
+
+$nt-checkbox-size: rem-calc(16) !default;
+$nt-checkbox-radius: $global-radius !default;
+$nt-checkbox-transition: $input-transition, background-color .3s !default;
+
+$nt-checkbox-check-size: rem-calc(12) !default;
+$nt-checkbox-indeterminate-size: rem-calc(8) !default;
+
+$nt-checkbox-label-spacing: $form-spacing / 2 !default;
+
+$nt-checkbox-group-padding: $form-spacing / 2 !default;
+$nt-checkbox-group-margin: 0 0 $form-spacing / 2 !default;
+$nt-checkbox-group-line-height: $nt-checkbox-size !default;
+
+$nt-checkbox-check-border-width: 2px !default;
+
+$nt-checkbox-background: $input-background !default;
+$nt-checkbox-background-checked: get-color(primary) !default;
+$nt-checkbox-background-disabled: $medium-gray !default;
+
+$nt-checkbox-border: $input-border !default;
+$nt-checkbox-border-focus: $input-border-focus !default;
+$nt-checkbox-border-disabled: 1px solid $medium-gray !default;
+
+@mixin nt-checkbox-input {
+
+  height: $nt-checkbox-size;
+
+  .nt-checkbox-input {
+    display: inline-block;
+    width: $nt-checkbox-size;
+    height: $nt-checkbox-size;
+    border-radius: $nt-checkbox-radius;
+    border: $nt-checkbox-border;
+    position: relative;
+    outline: none;
+    background: $nt-checkbox-background;
+    text-align: center;
+    line-height: $nt-checkbox-size;
+
+    @if has-value($input-transition) {
+      transition: $nt-checkbox-transition;
+    }
+
+    @if has-value($nt-checkbox-border) {
+      line-height: 100%;
+    }
+
+    &::after {
+      display: inline-block;
+      content: '';
+      width: $nt-checkbox-check-size * .5;
+      height: $nt-checkbox-check-size;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      box-sizing: border-box;
+      border: $nt-checkbox-check-border-width solid transparent;
+      border-top-width: 0px;
+      border-left-width: 0px;
+      transform: rotate(45deg) scale(0);
+      transition: transform .3s, border-color .3s;
+    }
+  }
+
+  input:checked + .nt-checkbox-input {
+    background: $nt-checkbox-background-checked;
+    border: $nt-checkbox-border-focus;
+    &::after {
+      border-color: #FFF;
+      transform: rotate(45deg) scale(1);
+    }
+  }
+
+}
+
+@mixin nt-checkbox-disabled {
+
+  input:disabled + .nt-checkbox-input {
+    border: $nt-checkbox-border-disabled;
+  }
+
+  input:checked:disabled + .nt-checkbox-input {
+    background: $nt-checkbox-background-disabled;
+    border: $nt-checkbox-border-disabled;
+  }
+
+  .nt-checkbox-layout {
+    cursor: $input-cursor-disabled;
+  }
+
+  .nt-checkbox-label {
+    color: $nt-checkbox-background-disabled;
+  }
+}
+
+@mixin nt-checkbox-indeterminate() {
+
+  .nt-checkbox-input::before {
+    position: absolute;
+    content: '';
+    width: $nt-checkbox-indeterminate-size;
+    height: $nt-checkbox-indeterminate-size;
+    left: 50%;
+    top: 50%;
+    margin-top: -($nt-checkbox-indeterminate-size / 2);
+    margin-left: -($nt-checkbox-indeterminate-size / 2);
+    border-radius: 1px;
+    transform: scale(0);
+    transition: transform .3s, background-color .3s;
+  }
+
+  &.nt-checkbox-indeterminate {
+
+    .nt-checkbox-input::before {
+      background: $nt-checkbox-background-checked;
+      transform: scale(1);
+    }
+
+    &.nt-checkbox-disabled .nt-checkbox-input::before{
+      background: $nt-checkbox-background-disabled;
+    }
+
+    &.nt-checkbox-checked .nt-checkbox-input::before {
+      transform: scale(0);
+      background: unset;
+    }
+  }
+}
+
+@mixin nt-checkbox-label {
+  margin-left: $nt-checkbox-label-spacing;
+}
+
+@mixin nt-checkbox-validate(
+  $color: $nt-input-background-invalid,
+  $shadow: $nt-input-shadow-invalid,
+  $shadow-hover: $nt-input-shadow-invalid-focus,
+  $color-lighten: 5%) {
+
+  .nt-checkbox-input {
+    border-color: $color;
+    box-shadow: $shadow;
+  }
+
+  &:not(.nt-checkbox-disabled) {
+
+    input:checked + .nt-checkbox-input {
+      border-color: $color;
+      background-color: $color;
+    }
+    input:focus + .nt-checkbox-input,
+    &:hover .nt-checkbox-input {
+      border-color: $color;
+      box-shadow: $shadow-hover;
+    }
+  }
+}
+
+@mixin nt-checkbox-highlight {
+  &:not(.nt-checkbox-disabled) {
+    input:focus + .nt-checkbox-input,
+    &:hover .nt-checkbox-input {
+      box-shadow: $input-shadow-focus;
+      border: $nt-checkbox-border-focus;
+    }
+  }
+}
+
+@mixin nt-checkbox-group {
+  $form-element-height: ($input-font-size * unitless-calc($input-line-height)) +
+    (get-side($input-padding, 'top') + get-side($input-padding, 'bottom'))  - rem-calc(1);
+  $padding: ($form-element-height - $nt-checkbox-group-line-height) / 2 $nt-checkbox-group-padding;
+
+  display: block;
+  line-height: $nt-checkbox-group-line-height;
+  padding: $padding;
+  margin: $nt-checkbox-group-margin;
+
+  .nt-checkbox {
+    margin: 0 $form-spacing $form-spacing / 2 0;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+@mixin nt-checkbox {
+  .nt-checkbox {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: $nt-checkbox-size;
+
+    @include nt-checkbox-highlight;
+    @include nt-checkbox-indeterminate;
+
+    .nt-checkbox-layout {
+      line-height: $nt-checkbox-group-line-height;
+      cursor: pointer;
+    }
+
+    &.nt-checkbox-disabled {
+      @include nt-checkbox-disabled;
+    }
+
+    .nt-checkbox-input-container {
+      display: inline-block;
+      cursor: inherit;
+      @include nt-checkbox-input;
+    }
+
+    .nt-checkbox-label {
+      @include nt-checkbox-label;
+    }
+  }
+
+  .nt-checkbox-group {
+    @include nt-checkbox-group;
+  }
+
+  .nt-form-error .nt-checkbox {
+    @include nt-checkbox-validate;
+  }
+
+  .nt-form-success .nt-checkbox {
+    @include nt-checkbox-validate(
+      $color: $nt-input-background-valid,
+      $shadow: $nt-input-shadow-valid,
+      $shadow-hover: $nt-input-shadow-valid-focus
+    );
+  }
+
+  @include cdk-a11y;
+}

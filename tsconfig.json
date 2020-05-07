@@ -1,20 +1,30 @@
 {
   "compilerOptions": {
-    "module": "es2015",
-    "target": "es5",
+    "baseUrl": "./",
+    "sourceMap": true,
+    "declaration": false,
+    "target": "es2015",
+    "module": "esnext",
     "moduleResolution": "node",
-    "noUnusedParameters": true,
-    "lib": ["es2016", "es2017", "dom"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": false,
-    "baseUrl": "./",
+    "allowSyntheticDefaultImports": true,
+    "rootDir": ".",
     "paths": {
-      "@ng-tangram/*": ["src/libs/*"]
+      "@ng-tangram/example": ["./src/libs/example"],
+      "@ng-tangram/components": ["./src/libs/components"],
+      "@ng-tangram/components/*": ["./src/libs/components/*"],
+      "@ng-tangram/markdown": ["./src/libs/markdown"],
+      "@ng-tangram/markdown/editor": ["./src/libs/markdown/editor"],
+      "@ng-tangram/moment-adapter": ["./src/libs/moment-adapter"],
     },
     "typeRoots": [
       "node_modules/@types"
     ],
+    "lib": [
+      "es2018",
+      "dom"
+    ]
   },
-  "exclude": ["node_modules"]
+  // "include": ["libs/*"],
 }

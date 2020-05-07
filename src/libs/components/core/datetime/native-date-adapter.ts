@@ -8,6 +8,7 @@
 
 import { Platform } from '@angular/cdk/platform';
 import { Inject, Injectable, Optional } from '@angular/core';
+
 import { DateAdapter, NT_DATE_LOCALE } from './date-adapter';
 
 // TODO(mmalerba): Remove when we no longer support safari 9.
@@ -25,7 +26,7 @@ const DEFAULT_MONTH_NAMES = {
 };
 
 /** The default date names to use if Intl API is not available. */
-const DEFAULT_DATE_NAMES = range(31, i => String(i + 1));
+// const DEFAULT_DATE_NAMES = range(31, i => String(i + 1));
 
 
 /** The default day of the week names to use if Intl API is not available. */
@@ -43,6 +44,10 @@ const DEFAULT_DAY_OF_WEEK_NAMES = {
 const ISO_8601_REGEX =
   /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|(?:(?:\+|-)\d{2}:\d{2}))?)?$/;
 
+// like ISO 8601
+const LIKE_ISO_8601_REGEX =
+  /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:(?:\+|-)\d{4})?)?$/;
+
 
 /** Creates an array and fills it with values. */
 function range<T>(length: number, valueFunction: (index: number) => T): T[] {
@@ -58,8 +63,6 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
 export class NativeDateAdapter extends DateAdapter<Date> {
   /** Whether to clamp the date between 1 and 9999 to avoid IE and Edge errors. */
   private readonly _clampDate: boolean;
-
-  private readonly _strings: { 'MONTH_NAMES': any, 'DAY_OF_WEEK_NAMES': any };
 
   /**
    * Whether to use `timeZone: 'utc'` with `Intl.DateTimeFormat` when formatting dates.
@@ -96,6 +99,10 @@ export class NativeDateAdapter extends DateAdapter<Date> {
     return date.getDate();
   }
 
+  getMilliseconds(date: Date): number {
+    return date.getTime();
+  }
+
   getDayOfWeek(date: Date): number {
     return date.getDay();
   }
@@ -116,7 +123,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
       return range(31, i => this._stripDirectionalityCharacters(
         this._format(dtf, new Date(2017, 0, i + 1))));
     }
-    return DEFAULT_DATE_NAMES;
+    return range(31, i => String(i + 1));
   }
 
   getDayOfWeekNames(style: 'long' | 'short' | 'narrow', locale: string = this.locale): string[] {
@@ -246,6 +253,12 @@ export class NativeDateAdapter extends DateAdapter<Date> {
       if (!value) {
         return null;
       }
+
+      // like ISO 8601 value, 2018-05-30T12:00:00.000+0000 -> 2018-05-30T12:00:00.000+00:00
+      if (LIKE_ISO_8601_REGEX.test(value)) {
+        value = `${value.slice(0, value.length - 2)}:${value.slice(value.length - 2)}`;
+      }
+
       // The `Date` constructor accepts formats other than ISO 8601, so we need to make sure the
       // string is the right format first.
       if (ISO_8601_REGEX.test(value)) {

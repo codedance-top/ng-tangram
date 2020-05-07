@@ -1,31 +1,92 @@
-import { AnimationEvent, transition, trigger } from '@angular/animations';
-import { OverlayOrigin } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import {
-  Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild, ViewEncapsulation
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
-import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
-import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/core';
+import { NtOverlayComponent, NtOverlayPosition } from '@ng-tangram/components/overlay';
+
+import { NT_POPOVER_PARENT_COMPONENT, NtPopoverParentComponent } from './popover-pane.component';
 
 @Component({
   selector: '[nt-popover]',
   templateUrl: 'popover.component.html',
   encapsulation: ViewEncapsulation.None,
   host: {
-    '(click)': 'overlay.click()'
-  }
+    '(click)': 'overlay.toggle()'
+  },
+  providers: [
+    { provide: NT_POPOVER_PARENT_COMPONENT, useExisting: NtPopoverComponent }
+  ]
 })
-export class NtPopoverComponent {
+export class NtPopoverComponent implements NtPopoverParentComponent {
 
-  readonly origin: OverlayOrigin;
+  private _title = '';
 
-  @Input('nt-popover') title = '';
-  @Input() position = 'top';
+  private _template: TemplateRef<any> | null;
 
-  @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
+  readonly origin: CdkOverlayOrigin;
+
+  @Input()
+  set title(value: string) { this._title = value; }
+  get title() { return this._title; }
+
+  @Input()
+  set template(value: TemplateRef<any> | null) { this._template = value; }
+  get template() { return this._template; }
+
+  @Input('nt-popover')
+  set popover(value: string | TemplateRef<any>) {
+    if (value instanceof TemplateRef) {
+      this._template = value;
+    } else {
+      this._title = value;
+      this._template = null;
+    }
+  }
+
+  @Input() position: NtOverlayPosition = NtOverlayPosition.Top;
+
+  @Output() confirm = new EventEmitter<any>();
+  @Output() cancel = new EventEmitter<any>();
+
+  @Output() afterOpen = new EventEmitter<any>();
+  @Output() afterClosed = new EventEmitter<any>();
+
+  @Output() beforeOpen = new EventEmitter<any>();
+  @Output() beforeClosed = new EventEmitter<any>();
+
+  @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
+
+  @ViewChild(NtOverlayComponent, { static: true }) overlay: NtOverlayComponent;
 
   constructor(
-    private _renderer: Renderer2,
     private _elementRef: ElementRef) {
-    this.origin = new OverlayOrigin(_elementRef);
+    this.origin = new CdkOverlayOrigin(this._elementRef);
+  }
+
+  _afterOpen(event: any) {
+    this.afterOpen.next(event);
+  }
+
+  _afterClosed(event: any) {
+    this.afterClosed.next(event);
+  }
+
+  _beforeOpen(event: any) {
+    this.beforeOpen.next(event);
+  }
+
+  _beforeClosed(event: any) {
+    this.beforeClosed.next(event);
+  }
+
+  _positionChange(change: ConnectedOverlayPositionChange) {
+    this.positionChange.next(change);
   }
 }

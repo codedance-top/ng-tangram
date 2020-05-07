@@ -1,17 +1,14 @@
-## Table
+### NtTableComponent `nt-table`
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| dataSource | 属性：数据源 | `Array` | - |
-| selectable | 属性：可选模式 | `boolean` | `false` |
-| selectedChange | 事件：选择事件 | `function` | - |
-| sortChange | 事件：排序事件 | `function` | - |
+| dataSource | 数据源 | `Array<T>`、`DataSource<T>`、`Observable<T[]>` | - |
+| trackBy | 数据源变化跟踪属性，类似 ngFor 的 trackBy | `function` | - |
+| sortChange | 事件：排序时触发，列要设置成可排序列（sortable） | `($event: NtColumnSortChange) => void` | - |
 
-## Column
+### NtColumnDirective `nt-column`
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| name | 属性：表格列名称 | `string` | - |
-| width | 属性：列宽度 | `string` | `auto` |
-| align | 属性：列对齐方式 | `left` 、`center`、 `right` | `left` |
-| sortable | 属性：可排序列 | `boolean` | `false` |
+| name | 列名称 | `string` | - |
+| sortable | 是否可排序，会触发 `NtTableComponent` 的 `sortChange` 事件 | `boolean` | `false` |

@@ -1,0 +1,138 @@
+@import '~@angular/cdk/overlay';
+
+/**
+ * CSS Variables List
+ *  --nt-overlay-container-background
+ *  --nt-overlay-container-arrow-gap
+ */
+
+$nt-overlay-container-arrow: 8px !default;
+$nt-overlay-container-arrow-offset: $global-padding !default;
+$nt-overlay-container-arrow-gap: 3px !default;
+$nt-overlay-container-background: $white !default;
+$nt-overlay-radius: $global-radius !default;
+
+@mixin nt-overlay-arrow-direction($direction: 'top') {
+  #{$direction}: var(--nt-overlay-container-arrow-gap);
+  margin-#{$direction}: -($nt-overlay-container-arrow / 2);
+}
+
+@mixin nt-overlay-container-arrow {
+
+  .nt-overlay-arrow {
+    z-index: -1;
+    position: absolute;
+    width: $nt-overlay-container-arrow;
+    height: $nt-overlay-container-arrow;
+    background-color: var(--nt-overlay-container-background);
+    box-shadow: $prototype-box-shadow;
+    transform: rotate(-135deg);
+  }
+
+  &.start-bottom-start-top .nt-overlay-arrow { @include nt-overlay-arrow-direction('top'); left: $nt-overlay-container-arrow-offset; }
+  &.center-bottom-center-top .nt-overlay-arrow { @include nt-overlay-arrow-direction('top'); left: 50%; margin-left: -($nt-overlay-container-arrow / 2); }
+  &.end-bottom-end-top .nt-overlay-arrow { @include nt-overlay-arrow-direction('top'); right: $nt-overlay-container-arrow-offset; }
+
+  &.start-top-start-bottom .nt-overlay-arrow { @include nt-overlay-arrow-direction('bottom'); left: $nt-overlay-container-arrow-offset; }
+  &.center-top-center-bottom .nt-overlay-arrow { @include nt-overlay-arrow-direction('bottom'); left: 50%; margin-left: -($nt-overlay-container-arrow / 2); }
+  &.end-top-end-bottom .nt-overlay-arrow { @include nt-overlay-arrow-direction('bottom'); right: $nt-overlay-container-arrow-offset; }
+
+  &.end-top-start-top .nt-overlay-arrow { @include nt-overlay-arrow-direction('left');  top: $nt-overlay-container-arrow-offset;   }
+  &.end-center-start-center .nt-overlay-arrow { @include nt-overlay-arrow-direction('left'); top: 50%; margin-top: -($nt-overlay-container-arrow / 2); }
+  &.end-bottom-start-bottom .nt-overlay-arrow { @include nt-overlay-arrow-direction('left'); bottom: $nt-overlay-container-arrow-offset; }
+
+  &.start-top-end-top .nt-overlay-arrow { @include nt-overlay-arrow-direction('right'); top: $nt-overlay-container-arrow-offset; }
+  &.start-center-end-center .nt-overlay-arrow { @include nt-overlay-arrow-direction('right'); top: 50%; margin-top: -($nt-overlay-container-arrow / 2); }
+  &.start-bottom-end-bottom .nt-overlay-arrow { @include nt-overlay-arrow-direction('right'); bottom: $nt-overlay-container-arrow-offset; }
+}
+
+@mixin nt-overlay-container {
+
+  display: block;
+  border-radius: $nt-overlay-radius;
+
+  --nt-overlay-container-background: #{$nt-overlay-container-background};
+  --nt-overlay-container-arrow-gap: #{$nt-overlay-container-arrow-gap};
+
+  &.start-bottom-start-top,
+  &.center-bottom-center-top,
+  &.end-bottom-end-top {
+    padding-top: var(--nt-overlay-container-arrow-gap);
+    .nt-overlay-shadow { top: var(--nt-overlay-container-arrow-gap); }
+  }
+
+  &.start-top-start-bottom,
+  &.center-top-center-bottom,
+  &.end-top-end-bottom {
+    padding-bottom: var(--nt-overlay-container-arrow-gap);
+    .nt-overlay-shadow { bottom: var(--nt-overlay-container-arrow-gap); }
+  }
+
+  &.end-top-start-top,
+  &.end-center-start-center,
+  &.end-bottom-start-bottom {
+    padding-left: var(--nt-overlay-container-arrow-gap);
+    .nt-overlay-shadow { left: var(--nt-overlay-container-arrow-gap); }
+  }
+
+  &.start-top-end-top,
+  &.start-center-end-center,
+  &.start-bottom-end-bottom {
+    padding-right: var(--nt-overlay-container-arrow-gap);
+    .nt-overlay-shadow { right: var(--nt-overlay-container-arrow-gap); }
+  }
+}
+
+@mixin nt-overlay-container-nospacing {
+  &.nospacing {
+    padding: 0 !important;
+    .nt-overlay-shadow {
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+    }
+  }
+}
+
+@mixin nt-overlay-pane {
+  border-radius: inherit;
+  position: relative;
+  font-size: $dropdown-font-size;
+  background-color: var(--nt-overlay-container-background);
+}
+
+@mixin nt-overlay-shadow {
+  z-index: -2;
+  box-shadow: $prototype-box-shadow;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  position: absolute;
+  border-radius: inherit;
+}
+
+@mixin nt-overlay {
+
+  @include cdk-overlay;
+
+  .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+    background: transparent;
+    opacity: 0 !important;
+  }
+
+  .nt-overlay-container {
+
+    @include nt-overlay-container;
+    @include nt-overlay-container-arrow;
+    @include nt-overlay-container-nospacing;
+  }
+
+  .nt-overlay-pane {
+    @include nt-overlay-pane;
+  }
+  .nt-overlay-shadow {
+    @include nt-overlay-shadow;
+  }
+}

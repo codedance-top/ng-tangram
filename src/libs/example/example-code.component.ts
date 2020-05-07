@@ -1,60 +1,59 @@
-import { Component, Input, AfterContentInit, Inject, PLATFORM_ID, ElementRef } from '@angular/core';
+import { highlightAll } from 'prismjs';
+
 import { isPlatformBrowser } from '@angular/common';
-import { highlightAll, highlight } from 'prismjs';
+import {
+  AfterContentInit,
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnChanges,
+  PLATFORM_ID,
+  SimpleChanges,
+  ViewEncapsulation
+} from '@angular/core';
+import { faAngular } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'nt-example-code',
   template: `
-    <div class="example-code" [class.shown]="shown">
-      <span class="code-shown"
-        (click)="shown=!shown"
-        [nt-tooltip]="shown ? '收起代码' : '展开代码'"><nt-ant-icon [type]="!shown ? 'eyeo' : 'eye'"></nt-ant-icon>代码</span>
-      <pre class="language-{{lang}}"><code class="language-{{lang}}">{{code}}</code></pre>
-    </div>
+    <span class="nt-example-code-shown"
+      (click)="shown=!shown"
+      [nt-tooltip]="shown ? '收起代码' : '展开代码'">
+      <fa-icon [icon]="faAngular" class="icon" [class.visible]="shown"></fa-icon>代码
+    </span>
+    <pre class="code-container language-{{lang}}"><code class="language-{{lang}}">{{code}}</code></pre>
   `,
-  styles: [`
-    .example-code {
-      position: relative;
-    }
-    .example-code .code-shown {
-      position: absolute;
-      top: -30px;
-      right: 20px;
-      cursor: pointer;
-      color: #666;
-    }
-    .example-code .code-shown nt-ant-icon {
-      margin-right: 3px;
-    }
-    .example-code pre {
-      display: none;
-      border-top: 1px solid #ccc;
-      margin-top: 0;
-      margin-bottom: 0;
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
-    }
-    .example-code.shown pre {
-      display: block;
-    }
-  `]
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'nt-example-code',
+    '[class.shown]': 'shown'
+  }
 })
+export class NtExampleCodeComponent implements AfterContentInit, OnChanges {
 
-export class NtExampleCodeComponent implements AfterContentInit {
+  @Input() code: string;
 
-  @Input()
-  code: string;
-
-  @Input()
-  lang: string = 'typescript';
+  @Input() lang: string = 'typescript';
 
   shown = false;
+
+  faAngular = faAngular;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private elementRef: ElementRef) { }
 
   ngAfterContentInit() {
-    isPlatformBrowser(this.platformId) && setTimeout(() => highlightAll(this.elementRef.nativeElement), 0);
+    isPlatformBrowser(this.platformId) && Promise
+      .resolve()
+      .then(() => highlightAll(this.elementRef.nativeElement));
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const change = changes.code || changes.lang;
+    if (change && !change.firstChange && isPlatformBrowser(this.platformId)) {
+      highlightAll(this.elementRef.nativeElement);
+    }
   }
 }

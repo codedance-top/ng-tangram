@@ -1,8 +1,20 @@
 <ng-content></ng-content>
-<nt-overlay [origin]="origin" [position]="position" trigger="click" arrow>
-  <div class="dropdown-pane small popover">
-    <div class="popover-title" *ngIf="title">{{title}}</div>
-    <div class="popover-pane">
+<nt-overlay
+  overlayClass="nt-popover-overlay"
+  arrow
+  [origin]="origin"
+  [position]="position"
+  (afterOpen)="_afterOpen($event)"
+  (afterClosed)="_afterClosed($event)"
+  (beforeOpen)="_beforeOpen($event)"
+  (beforeClosed)="_beforeClosed($event)"
+  (positionChange)="_positionChange($event)">
+  <div class="nt-popover">
+    <div class="nt-popover-title" *ngIf="template">
+      <ng-container *ngTemplateOutlet="template"></ng-container>
+    </div>
+    <div class="nt-popover-title" *ngIf="!template" [innerHtml]="title"></div>
+    <div class="nt-popover-pane">
       <ng-content select="nt-popover-pane"></ng-content>
     </div>
   </div>

@@ -1,0 +1,7 @@
+{
+  "lib": {
+    "entryFile": "index.ts",
+    "flatModuleFile": "pagination",
+    "umdId": "nt.components.pagination"
+  }
+}

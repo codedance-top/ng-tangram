@@ -1,0 +1,7 @@
+{
+  "lib": {
+    "entryFile": "index.ts",
+    "flatModuleFile": "popconfirm",
+    "umdId": "nt.components.popconfirm"
+  }
+}

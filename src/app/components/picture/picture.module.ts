@@ -3,27 +3,35 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NtFormsModule } from '@ng-tangram/components/forms';
-import { NtIconModule } from '@ng-tangram/components/icon';
 import { NtPictureModule } from '@ng-tangram/components/picture';
+import { NtRadioModule } from '@ng-tangram/components/radio';
 import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
-import { DemoPictureBasciComponent } from './demos/basic';
+import { ExamplePictureAcceptComponent } from './examples/accept';
+import { ExamplePictureBasciComponent } from './examples/basic';
+import { ExamplePictureEventComponent } from './examples/event';
 import { PictureDocumentComponent } from './picture.component';
 
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     NtExampleModule,
-    NtIconModule,
+    NtMarkdownModule,
+    NtRadioModule,
     NtPictureModule,
     NtFormsModule,
     RouterModule.forChild([
       { path: '', component: PictureDocumentComponent }
     ])
   ],
-  declarations: [PictureDocumentComponent, DemoPictureBasciComponent]
+  declarations: [
+    PictureDocumentComponent, 
+    ExamplePictureBasciComponent, 
+    ExamplePictureEventComponent, 
+    ExamplePictureAcceptComponent
+  ]
 })
 export class PictureDocumentModule { }

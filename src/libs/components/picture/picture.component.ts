@@ -1,33 +1,44 @@
-import { state, transition, trigger } from '@angular/animations';
-import { coerceArray, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import loadImage from 'blueimp-load-image';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+import { transition, trigger } from '@angular/animations';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
-  HttpEvent, HttpEventType, HttpProgressEvent, HttpResponse, HttpResponseBase, HttpSentEvent
-} from '@angular/common/http';
-import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit,
-  Optional, Output, Self, TemplateRef, ViewChild, ViewEncapsulation
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnInit,
+  Optional,
+  Output,
+  Self,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
+import {
+  fadeIn,
+  fadeOut,
+  NtFileSizeError,
+  NtFileTypeError,
+  NtUploadError,
+  NtUploadEvent,
+  NtUploadHandler,
+  NtUploadRef,
+  NtUploadResponse,
+  NtUploadStatus
+} from '@ng-tangram/components/core';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import { NtModal } from '@ng-tangram/components/modal';
-import {
-  NtFileAcceptError, NtFileSizeError, NtFileUploadError, NtUpload, NtUploadControl,
-  NtUploadControlError, NtUploadFile, NtUploadHandler, NtUploadStatus
-} from '@ng-tangram/components/upload';
 
-import loadImage from 'blueimp-load-image';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
-import { VIEWPORT_RULER_PROVIDER } from '@angular/cdk/scrolling';
-
-// const loadImage = _loadImage;
+import { DEFAULT_PICTURE_ICONS, NT_PICTURE_ICONS, NtPictureIcons } from './picture-icons';
 
 /**
  * 压缩图片
  */
-export function zipToImage(file: File, option: any): Promise<any> {
+export function zipImage(file: File, option: any = { maxWidth: 1080, orientation: true, canvas: true }): Promise<any> {
   return new Promise((resolve, reject) => {
     loadImage(file, (canvas: HTMLCanvasElement) => {
       if (canvas.toBlob) {
@@ -46,20 +57,27 @@ export function zipToImage(file: File, option: any): Promise<any> {
 
 let uniqueId = 0;
 
-export const NtPictureAccepts = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
+export const NT_PICTURE_ACCEPTS = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
 
-export class NtPicture extends NtUploadFile {
-  id: string = `nt-picture-${uniqueId++}`;
-  progress?: number;
-  uploader?: Subscription;
+export declare type NtPictureError = NtFileTypeError | NtFileSizeError | NtUploadError;
+
+export class NtPictureRef<T> extends NtUploadRef<T> {
   thumbnail: string;
+  constructor(
+    public file: File,
+    public id: string = `nt-picture-${uniqueId++}`
+  ) {
+    super(file, file.name, file.size);
+  }
 }
 
 @Component({
   selector: 'nt-picture',
   templateUrl: 'picture.component.html',
   host: {
-    'class': 'nt-form-control nt-picture'
+    'class': 'nt-picture',
+    '[class.disabled]': 'disabled',
+    '[class.readonly]': 'readonly'
   },
   encapsulation: ViewEncapsulation.None,
   providers: [
@@ -75,75 +93,93 @@ export class NtPicture extends NtUploadFile {
     ])
   ]
 })
-export class NtPictureComponent extends NtUploadControl<NtPicture> implements OnInit, ControlValueAccessor {
+export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]> implements OnInit, ControlValueAccessor {
 
   private readonly _destroy = new Subject<void>();
 
+  private _accept = NT_PICTURE_ACCEPTS.join(',');
+
+  _displayPictureRefs: NtPictureRef<T>[] = [];
+
+  private _pictureRefs: NtPictureRef<T>[] = [];
+
+  get value() { return this._pictureRefs; }
+
   private _disabled = false;
-  private _required = false;
-  private _autoupload = true;
-  private _value: NtPicture[] = [];
-  private _maxFiles = 1;
-  private _maxSize = 5;
-  private _accept = NtPictureAccepts;
-
-  files: NtPicture[] = [];
-
-  @Input() url: string = '';
-
-  @Input() name: string = '';
-
-  @Input() type: '' | 'circle' | 'square' = '';
-
-  get value() { return this._value; }
 
   @Input()
-  set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
   get disabled() { return this._disabled; }
+  set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
+
+  private _readonly = false;
+
+  @Input()
+  get readonly() { return this._readonly; }
+  set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
+
+  private _notrigger = false;
+
+  @Input()
+  get notrigger() { return this._notrigger; }
+  set notrigger(value: boolean) { this._notrigger = coerceBooleanProperty(value); }
+
+  private _required = false;
 
   @Input()
   get required(): boolean { return this._required; }
   set required(value: boolean) { this._required = coerceBooleanProperty(value); }
 
   @Input()
+  get accept() { return this._accept; }
   set accept(value: string | Array<string>) {
     if (typeof value === 'string') {
       if (value === '*') {
-        this._accept = NtPictureAccepts;
+        this._accept = NT_PICTURE_ACCEPTS.join(',');
       } else {
-        this._accept = value.replace(' ', '').split(',').filter(accept => NtPictureAccepts.indexOf(accept) > -1);
+        this._accept = value.replace(' ', '');
       }
     } else {
-      this._accept = coerceArray(value).filter(accept => NtPictureAccepts.indexOf(accept) > -1);
+      this._accept = value.join(',');
     }
   }
-  get accept() { return this._accept; }
+
+  private _multiple = true;
 
   @Input()
-  set maxSize(value: number) { this._maxSize = coerceNumberProperty(value, 5); }
-  get maxSize() { return this._maxSize; }
+  get multiple() { return this._multiple; }
+  set multiple(value: boolean) { this._multiple = coerceBooleanProperty(value); }
+
+  private _limitSize = Number.MAX_VALUE;
 
   @Input()
-  set maxFiles(value: number) { this._maxFiles = coerceNumberProperty(value, 1); }
-  get maxFiles() { return this._maxFiles; }
+  get limitSize() { return this._limitSize; }
+  set limitSize(value: number) { this._limitSize = coerceNumberProperty(value, 5); }
 
-  @Input()
-  set autoupload(value: boolean) { this._autoupload = coerceBooleanProperty(value); }
-  get autoupload() { return this._autoupload; }
+  @Input() url: string = '';
 
-  @ViewChild('fileElement') fileElement: ElementRef;
+  @Input() name: string = '';
 
-  @ViewChild('previewTemplate') previewTemplate: TemplateRef<any>;
+  @Input() shape: '' | 'circle' | 'square' = '';
 
-  @Output() error = new EventEmitter<NtUploadControlError>();
+  @ViewChild('previewTemplate', { static: true }) previewTemplate: TemplateRef<any>;
 
-  @Output() remove = new EventEmitter<NtPicture>();
+  @Output() errors = new EventEmitter<NtPictureError | NtPictureError[]>();
+
+  private _onChange: (value: any) => void = () => { };
+
+  private _onTouched = () => { };
 
   constructor(
     private _modal: NtModal,
-    uploader: NtUpload,
-    @Self() @Optional() ngControl: NgControl) {
-    super(uploader, ngControl);
+    @Optional() private _uploadHandler: NtUploadHandler,
+    @Optional() @Self() public ngControl: NgControl,
+    @Optional() @Inject(NT_PICTURE_ICONS) public icons: NtPictureIcons) {
+    super();
+    console.log(_uploadHandler);
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
+    this.icons = { ...DEFAULT_PICTURE_ICONS, ...icons };
   }
 
   ngOnInit() { }
@@ -151,84 +187,31 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
   ngOnDestroy() {
     this._destroy.next();
     this._destroy.complete();
-    this.error.complete();
-    this.remove.complete();
+    this.errors.complete();
   }
 
-  onTriggerClick() {
-    if (this.files.length < this.maxFiles) {
-      this.fileElement.nativeElement.click();
+  writeValue(value: NtPictureRef<T>[]) {
+    if (value) {
+      this._pictureRefs.splice(0, this._pictureRefs.length, ...value);
+      this._displayPictureRefs.splice(0, this._displayPictureRefs.length, ...value);
     }
   }
 
-  async _fileChanged() {
-
-    const file = this.fileElement.nativeElement.files[0];
-    if (file && this.files.length < this.maxFiles) {
-
-      if (!this._fileSizeValid(file)) {
-        this.error.next(new NtFileSizeError(file, this.maxSize * 1024 * 1024, `${this.maxSize}MB`));
-        return;
-      }
-
-      if (!this._fileTypeValid(file)) {
-        this.error.next(new NtFileAcceptError(file, file.type));
-        return;
-      }
-
-      let ntFile = new NtPicture(file.name, file.size, file.type);
-
-      let loadImageOptions = { maxWidth: 1080, orientation: true, canvas: true };
-      const data = await zipToImage(file, loadImageOptions);
-      ntFile.thumbnail = data.thumbnail;
-      const count = this.files.push(ntFile);
-
-      const handlers = {
-        begin: () => this._onUploadBegin(ntFile),
-        progress: event => this._onUploadProgress(event, ntFile),
-        done: () => this._onUploadDone(ntFile)
-      };
-
-      if (this.autoupload) {
-
-        ntFile.uploader = this._uploader.upload(this.url, this._getFormData(file), handlers)
-          .pipe(takeUntil(this._destroy))
-          .subscribe(result => {
-            if ((ntFile.status = result.status) === NtUploadStatus.SUCCESS) {
-              ntFile.data = result.data;
-              this._value.push(ntFile);
-              this._onChange(this._value);
-            }
-          }, error => {
-            ntFile.status = NtUploadStatus.ERROR;
-            ntFile.error = error.statusText;
-            ntFile.progress = 100;
-            this.error.next(new NtFileUploadError(error.status, error.statusText));
-          });
-      }
-    }
-    this._onTouched && this._onTouched();
-    this.fileElement.nativeElement.value = '';
+  registerOnChange(fn: (_: any) => {}) {
+    this._onChange = fn;
   }
 
-  removeFile(file: NtPicture) {
-    if (this.disabled) {
-      return;
-    }
-    file.uploader && file.uploader.unsubscribe();
-    const vindex = this._value.indexOf(file);
-    vindex > -1 && this._value.splice(vindex, 1);
-
-    const findex = this.files.indexOf(file);
-    findex > -1 && this.files.splice(findex, 1);
-
-    this.remove.next(file);
-    this._onChange(this._value);
+  registerOnTouched(fn: () => {}) {
+    this._onTouched = fn;
   }
 
-  preview(file: NtPicture) {
-    const modal = this._modal.open(this.previewTemplate, {
-      data: file,
+  setDisabledState(isDisabled: boolean) {
+    this._disabled = isDisabled;
+  }
+
+  preview(pictureRef: NtPictureRef<T>) {
+    this._modal.open(this.previewTemplate, {
+      data: pictureRef,
       centerVertically: true,
       maxWidth: '90vw',
       maxHeight: '90vh',
@@ -237,44 +220,66 @@ export class NtPictureComponent extends NtUploadControl<NtPicture> implements On
     });
   }
 
-  setDisabledState(isDisabled: boolean) {
-    this._disabled = isDisabled;
+  _select(files: File[]) {
+
+    const pictureRefs = files.map(file => this._createPictureRef(file));
+    this._displayPictureRefs.push(...pictureRefs);
+    this._onTouched && this._onTouched();
   }
 
-  setValue(value: NtPicture[]) {
-    if (value) {
-      this._value.length = 0;
-      this._value.push(...value);
-      this.files.length = 0;
-      this.files.push(...this._value);
+  _remove(pictureRef: NtPictureRef<T>) {
+
+    if (this.disabled) { return; }
+
+    this._removePictureRef(pictureRef);
+    this._onChange(this.value);
+  }
+
+  private _createPictureRef(file: File) {
+
+    const pictureRef = new NtPictureRef<T>(file);
+
+    zipImage(file).then(data => pictureRef.thumbnail = data.thumbnail);
+
+    pictureRef.subscription = this._uploadHandler
+      .upload<T>(this.url, pictureRef)
+      .pipe(takeUntil(this._destroy))
+      .subscribe(event => this._resolveUploadedResult(pictureRef, event));
+
+    return pictureRef;
+  }
+
+  private _removePictureRef(pictureRef: NtPictureRef<T>) {
+
+    if (pictureRef.subscription && !pictureRef.subscription.closed) {
+      pictureRef.subscription.unsubscribe();
+    }
+
+    if (this._pictureRefs.includes(pictureRef)) {
+      const index = this._pictureRefs.indexOf(pictureRef);
+      this._pictureRefs.splice(index, 1);
+    }
+
+    if (this._displayPictureRefs.includes(pictureRef)) {
+      const displayIndex = this._displayPictureRefs.indexOf(pictureRef);
+      this._displayPictureRefs.splice(displayIndex, 1);
     }
   }
 
-  private _fileTypeValid(file: File) {
-    if (file) {
-      return this.accept.indexOf(file.type) > -1 || this.accept.indexOf('*') > -1;
+  private _resolveUploadedResult(pictureRef: NtPictureRef<T>, event: NtUploadEvent<T>) {
+    if (event instanceof NtUploadResponse) {
+      pictureRef.data = event.data;
+      this._pictureRefs.push(pictureRef);
+    } else {
+      pictureRef.status = NtUploadStatus.ERROR;
+      pictureRef.error = event.error;
+      pictureRef.progress = 100;
+      this.errors.next(event.error);
     }
-    return false;
+    this._onChange(this.value);
   }
 
-  private _fileSizeValid(file: File) {
-    if (file) {
-      return file.size <= this.maxSize * 1024 * 1024;
-    }
-    return false;
-  }
-
-  private _onUploadBegin(file: NtPicture) {
-    file.status = NtUploadStatus.SENDING;
-  }
-
-  private _onUploadProgress(event: HttpProgressEvent, file: NtPicture) {
-    if (event.total && event.total > 0) {
-      file.progress = Math.round(event.loaded / event.total * 100);
-    }
-  }
-
-  private _onUploadDone(file: NtPicture) {
-    file.status = NtUploadStatus.SUCCESS;
-  }
+  // private _coerceAccpetRange(array: Array<string>) {
+  //   return array.filter(accept => NT_PICTURE_ACCEPTS.indexOf(accept) > -1);
+  // }
 }

@@ -1,26 +1,54 @@
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { OverlayOrigin } from '@angular/cdk/overlay';
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Inject, Input,
-  NgZone, Optional, Output, Renderer2, Self, ViewChild, ViewEncapsulation
+  CdkOverlayOrigin,
+  ConnectedOverlayPositionChange,
+  ConnectionPositionPair
+} from '@angular/cdk/overlay';
+import {
+  Attribute,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  Optional,
+  Output,
+  Self,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { fadeIn, fadeOut } from '@ng-tangram/animate/fading';
 import {
-  DateAdapter, NT_DATE_FORMATS, NtDateFormats, NtOverlayComponent
+  DateAdapter,
+  fadeIn,
+  fadeOut,
+  NT_DATE_FORMATS,
+  NtDateFormats,
 } from '@ng-tangram/components/core';
+import { BOTTOM_LEFT, NtOverlayComponent, TOP_LEFT } from '@ng-tangram/components/overlay';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 
 import { NtDatePickerCalendarComponent } from './calendar.component';
+import {
+  DEFAULT_DATEPICKER_ICONS,
+  NT_DATEPICKER_ICONS,
+  NtDatePickerIcons
+} from './datepicker-icons';
 
 @Component({
   selector: 'nt-datepicker',
   templateUrl: 'datepicker.component.html',
   encapsulation: ViewEncapsulation.None,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'nt-datepicker nt-form-control',
-    '[class.focus]': 'overlay.isOpen'
+    'class': 'nt-datepicker',
+    // '[class.disabled]': 'disabled',
+    // '[class.readonly]': 'readonly',
+    '(click)': '_onClick($event)',
   },
   animations: [
     trigger('fade', [
@@ -34,56 +62,62 @@ import { NtDatePickerCalendarComponent } from './calendar.component';
 })
 export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements ControlValueAccessor {
 
-  readonly origin: OverlayOrigin;
+  private _overlayToggle = new Subject<boolean>();
 
-  private _disabled = false;
-  private _lastValueValid = false;
-  private _readonly = false;
-  private _required = false;
+  tabIndex: number;
 
-  private _value: D | null;
-  private _startAt: D | null;
-  private _minDate: D | null;
-  private _maxDate: D | null;
+  _positionPairs: ConnectionPositionPair[] = [BOTTOM_LEFT, TOP_LEFT];
 
-  private _focused = false;
+  _displayValue: string = '';
 
   get empty() { return !this.value; }
-  get focused(): boolean { return this._focused; }
+
+  private _value: D | null;
 
   get value(): D | null { return this._value; }
   set value(value: D | null) {
-    value = this._dateAdapter.deserialize(value);
-    this._lastValueValid = !value || this._dateAdapter.isValid(value);
-    value = this._getValidDateOrNull(value);
-    const oldDate = this.value;
+    value = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
     this._value = value;
-    this.inputElement.nativeElement.value = value ? this._dateAdapter.format(value, this._dateFormats.display.dateInput) : '';
+    this._displayValue = value ? this._dateAdapter.format(value, this._dateFormats.display.dateInput) : '';
   }
 
-  @Input() placeholder = '';
+  private _placeholder = '';
+
+  @Input()
+  set placeholder(value: string) { this._placeholder = value; }
+  get placeholder() { return this._placeholder; }
+
+  private _disabled = false;
 
   @Input()
   set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
   get disabled() { return this._disabled; }
 
+  private _required = false;
+
   @Input()
   get required(): boolean { return this._required; }
-  set required(value: boolean) {
-    this._required = coerceBooleanProperty(value);
-  }
+  set required(value: boolean) { this._required = coerceBooleanProperty(value); }
+
+  private _readonly = false;
 
   @Input()
   set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
   get readonly() { return this._readonly; }
 
+  private _startAt: D | null;
+
   @Input()
   get startAt(): D | null { return this._startAt || this.value; }
   set startAt(value: D | null) { this._startAt = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
 
+  private _minDate: D | null;
+
   @Input()
   get minDate(): D | null { return this._minDate; }
   set minDate(value: D | null) { this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
+
+  private _maxDate: D | null;
 
   @Input()
   get maxDate(): D | null { return this._maxDate; }
@@ -91,28 +125,44 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
 
   @Input() dateFilter: (date: D) => boolean;
 
-  @ViewChild('inputElement') inputElement: ElementRef;
+  @Output() afterOpen = new EventEmitter<any>();
+  @Output() afterClosed = new EventEmitter<any>();
 
-  @ViewChild(NtOverlayComponent) overlay: NtOverlayComponent;
-  @ViewChild(NtDatePickerCalendarComponent) calendar: NtDatePickerCalendarComponent<D>;
+  @Output() beforeOpen = new EventEmitter<any>();
+  @Output() beforeClosed = new EventEmitter<any>();
 
-  /** Emits when the value changes (either due to user input or programmatic change). */
-  private _valueChange = new EventEmitter<D | null>();
-  private _onChange: (value: any) => void = () => {};
-  private _onTouched = () => {};
+  @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
+
+  @ViewChild(NtOverlayComponent, { static: true }) overlay: NtOverlayComponent;
+  @ViewChild(NtDatePickerCalendarComponent, { static: true }) calendar: NtDatePickerCalendarComponent<D>;
+
+  private _onChange: (value: any) => void = () => { };
+
+  private _onTouched = () => { };
+
+  readonly origin: CdkOverlayOrigin;
 
   constructor(
-    @Optional() private _dateAdapter: DateAdapter<D>,
-    @Optional() @Inject(NT_DATE_FORMATS) private _dateFormats: NtDateFormats,
     private _elementRef: ElementRef,
-    private _ngZone: NgZone,
-    private _renderer: Renderer2,
-    @Self() @Optional() public ngControl: NgControl) {
+    private _dateAdapter: DateAdapter<D>,
+    @Inject(NT_DATE_FORMATS) private _dateFormats: NtDateFormats,
+    @Attribute('tabindex') tabIndex: string,
+    @Optional() @Self() public ngControl: NgControl,
+    @Optional() @Inject(NT_DATEPICKER_ICONS) public icons: NtDatePickerIcons) {
     super();
-    this.origin = new OverlayOrigin(_elementRef);
+    this.origin = new CdkOverlayOrigin(_elementRef);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
+
+    this.icons = { ...DEFAULT_DATEPICKER_ICONS, ...icons };
+
+    this.tabIndex = parseInt(tabIndex) || 0;
+
+    this._overlayToggle.pipe(debounceTime(10)).subscribe(open => open
+      ? this.overlay.open()
+      : this.overlay.toggle()
+    );
   }
 
   writeValue(value: D) {
@@ -127,49 +177,57 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements C
     this._onTouched = fn;
   }
 
-  _onInputFocus() {
-    if (!this.disabled) {
-      this.overlay.show();
-    }
-  }
-
-  onBeforeOpen() {
-    this._focused = true;
-    this.calendar._init();
-  }
-
-  onBeforeClosed() {
-    this._focused = false;
-    typeof this._onTouched === 'function' && this._onTouched();
-  }
-
-  focus() {
-    if (!this.disabled) {
-      this.inputElement.nativeElement.focus();
-    }
-  }
-
   select(date: D) {
     this.value = date;
-    this.overlay.hide();
+    this.overlay.close();
     this._onChange(date);
   }
 
-  clear() {
+  focus() {
+    this.overlay.open();
+  }
+
+  _onAfterOpen(event: any) {
+    this.afterOpen.next(event);
+  }
+
+  _onAfterClosed(event: any) {
+    this.afterClosed.next(event);
+  }
+
+  _onBeforeOpen(event: any) {
+    this.calendar._init();
+    this.beforeOpen.next(event);
+  }
+
+  _onBeforeClosed(event: any) {
+    typeof this._onTouched === 'function' && this._onTouched();
+    this.beforeClosed.next(event);
+  }
+
+  _onPositionChange(change: ConnectedOverlayPositionChange) {
+    this.positionChange.next(change);
+  }
+
+  _onClick(event: Event) {
+    if (!this.disabled) {
+      this.overlay.toggle();
+    }
+    event.stopPropagation();
+  }
+
+  _onClear(event: Event) {
     if (this.value !== null && !this.disabled) {
       this.value = null;
       this._onChange(this.value);
     }
+    event.stopPropagation();
   }
 
   setDisabledState(isDisabled: boolean) {
     this._disabled = isDisabled;
   }
 
-  /**
-   * @param obj The object to check.
-   * @returns The given object if it is both a date instance and valid, otherwise null.
-   */
   private _getValidDateOrNull(obj: any): D | null {
     return (this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj)) ? obj : null;
   }

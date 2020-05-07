@@ -1,6 +1,14 @@
 import {
-  AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject,
-  Input, Optional, Output, ViewChild, ViewEncapsulation
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  Optional,
+  Output,
+  ViewEncapsulation
 } from '@angular/core';
 import { DateAdapter, NT_DATE_FORMATS, NtDateFormats } from '@ng-tangram/components/core';
 
@@ -149,6 +157,14 @@ export class NtDatePickerMonthComponent<D> implements AfterContentInit {
     this._createWeekCells();
     this._changeDetectorRef.markForCheck();
   }
+
+  // _todaySelected() {
+  //   this.selectedChange.emit(this._dateAdapter.today());
+  // }
+
+  // _isTodaySelected() {
+  //   return this._dateAdapter.sameDate(this.selected, this._dateAdapter.today());
+  // }
 
   /** Creates MatCalendarCells for the dates in this month. */
   private _createWeekCells() {

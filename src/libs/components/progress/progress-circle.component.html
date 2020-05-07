@@ -1,0 +1,27 @@
+<div class="progress-container">
+  <svg attr.viewPort="0 0 {{width / 2}} {{height / 2}}" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    [attr.width]="width" [attr.height]="height">
+    <circle
+      [attr.r]="radius"
+      [attr.cx]="width / 2"
+      [attr.cy]="height / 2"
+      fill="transparent"
+      [attr.stroke-dasharray]="dasharray"
+      [attr.stroke-dashoffset]="0">
+    </circle>
+
+    <circle
+      class="progress-meter-circle"
+      [attr.r]="radius"
+      [attr.cx]="width / 2"
+      [attr.cy]="height / 2"
+      fill="transparent"
+      [attr.stroke-dasharray]="dasharray"
+      [attr.stroke-dashoffset]="dasharray - (dasharray / 100 * percent)">
+    </circle>
+  </svg>
+  <div class="progress-inner">
+    <ng-content></ng-content>
+  </div>
+</div>
+<!-- <div class="nt-progress-circle-inner"><ng-content></ng-content></div> -->

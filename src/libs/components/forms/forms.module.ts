@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule, Type } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { NtFormAutofocusDirective } from './form-autofocus.directive';
 import { NtFormErrorPipe } from './form-error.pipe';
 import { NtFormFieldComponent } from './form-field.component';
 import { NtFormLabelWidthDirective } from './form-label-width.directive';
 import { NtFormOrientationDirective } from './form-orientation.directive';
 import {
-  NT_VALIDATION_TRANSFOMER, NtFormValidationTransformer, NtValidationTransformer
+  NT_VALIDATION_TRANSFOMER,
+  NtFormValidationTransformer,
+  NtValidationTransformer
 } from './form-validation';
 
 @NgModule({
@@ -28,7 +30,7 @@ import {
   ]
 })
 export class NtFormsModule {
-  public static forRoot(transformer?: Type<NtValidationTransformer>): ModuleWithProviders {
+  public static forRoot(transformer?: Type<NtValidationTransformer>): ModuleWithProviders<NtFormsModule> {
     return {
       ngModule: NtFormsModule,
       providers: [

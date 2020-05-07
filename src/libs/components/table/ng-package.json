@@ -1,0 +1,7 @@
+{
+  "lib": {
+    "entryFile": "index.ts",
+    "flatModuleFile": "table",
+    "umdId": "nt.components.table"
+  }
+}

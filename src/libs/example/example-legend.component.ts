@@ -1,33 +1,46 @@
-import { Component, Input } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
+import { NT_MARKDOWN_ENGINE, NtMarkdownEngine } from '@ng-tangram/markdown';
 
 @Component({
   selector: 'nt-example-legend',
   template: `
-    <div class="example-legend">
-      <div class="example-legend-title" *ngIf="title">{{title}}</div>
-      <div class="example-legend-content">
-        <ng-content></ng-content>
-      </div>
+    <div class="nt-example-legend-title" *ngIf="title">{{title}}</div>
+    <div class="nt-example-legend-content" #content>
+      <ng-content></ng-content>
     </div>
   `,
-  styles: [`
-    .example-legend {
-      padding: 20px 20px 32px 20px;
-      position: relative;
-      border-top: 1px solid #ccc;
-    }
-    .example-legend .example-legend-title {
-      position: absolute;
-      top: -16px;
-      padding: 5px 5px;
-      background-color: #FFF;
-    }
-    .example-legend .example-legend-content {
-      line-height: 1.8;
-    }
-  `]
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'nt-example-legend'
+  }
 })
+export class NtExampleLegendComponent implements AfterContentInit {
 
-export class NtExampleLegendComponent {
   @Input() title: string;
+
+  @ViewChild('content', { static: true, read: ElementRef }) content: ElementRef;
+
+  constructor(
+    @Inject(NT_MARKDOWN_ENGINE) private _markdownEngine: NtMarkdownEngine) {
+
+  }
+
+  ngAfterContentInit() {
+    this._compileContent();
+  }
+
+  private _compileContent() {
+    const contentElement = this.content.nativeElement;
+    this._markdownEngine
+      .compile(contentElement.innerHTML)
+      .subscribe(result => contentElement.innerHTML = result);
+  }
 }

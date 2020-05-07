@@ -1,26 +1,25 @@
 
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-import { NtExampleModule } from '@ng-tangram/example';
 import { NtLabelModule } from '@ng-tangram/components/label';
-import { NtIconModule } from '@ng-tangram/components/icon';
+import { NtExampleModule } from '@ng-tangram/example';
+import { NtMarkdownModule } from '@ng-tangram/markdown';
 
+import { ExampleLabelBasicComponent } from './examples/basic';
+import { ExampleLabelColorsComponent } from './examples/colors';
+import { ExampleLabelIconComponent } from './examples/icon';
 import { LabelDocumentComponent } from './label.component';
-import { DemoLabelBasicComponent } from './demos/basic';
-import { DemoLabelIconComponent } from './demos/icon';
-import { DemoLabelColorsComponent } from './demos/colors';
 
 @NgModule({
   imports: [
     CommonModule,
     NtExampleModule,
     NtLabelModule,
-    NtIconModule,
+    NtMarkdownModule,
     RouterModule.forChild([
       { path: '', component: LabelDocumentComponent }
     ])],
-  declarations: [LabelDocumentComponent, DemoLabelBasicComponent, DemoLabelIconComponent, DemoLabelColorsComponent],
+  declarations: [LabelDocumentComponent, ExampleLabelBasicComponent, ExampleLabelIconComponent, ExampleLabelColorsComponent],
 })
 export class LabelDocumentModule { }

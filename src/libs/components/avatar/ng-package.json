@@ -1,0 +1,7 @@
+{
+  "lib": {
+    "entryFile": "index.ts",
+    "flatModuleFile": "avatar",
+    "umdId": "nt.components.avatar"
+  }
+}

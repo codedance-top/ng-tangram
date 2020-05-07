@@ -1,9 +1,9 @@
 import { InjectionToken } from '@angular/core';
 
 export class NtPaginationConfig {
-  previousLabel: string = 'Previous';
-  nextLabel: string = 'Next';
-  size: number = 3;
+  previousLabel: string = '«';
+  nextLabel: string = '»';
+  itemSize: number = 2;
   pageSize: number = 10;
 }
 

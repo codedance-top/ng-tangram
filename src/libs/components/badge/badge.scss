@@ -26,8 +26,8 @@ $nt-badge-float-border: 1px solid $white !default;
   border: $nt-badge-float-border;
   font-size: .8em;
   border-radius: 1rem;
+  line-height: 1;
 }
-
 
 @mixin nt-badge {
 
