@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NtDatePickerModule } from '@ng-tangram/components';
+import { NtDatePickerModule } from '@ng-tangram/components/datepicker';
 import { NtMomentDateModule } from '@ng-tangram/moment-adapter';
 
 import { ExampleDatePickerMomentComponent } from './moment';

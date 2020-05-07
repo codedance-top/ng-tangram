@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NtInputModule, NtSliderModule } from '@ng-tangram/components';
+import { NtInputModule } from '@ng-tangram/components/input';
+import { NtSliderModule } from '@ng-tangram/components/slider';
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtMarkdownModule } from '@ng-tangram/markdown';
 

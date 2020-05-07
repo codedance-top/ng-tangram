@@ -1,0 +1,7 @@
+{
+  "lib": {
+    "entryFile": "index.ts",
+    "flatModuleFile": "noopupload",
+    "umdId": "nt.components.noopupload"
+  }
+}

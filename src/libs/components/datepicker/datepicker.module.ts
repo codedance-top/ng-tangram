@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NtOverlayModule, NtPseudoInputModule } from '@ng-tangram/components/core';
+import { NtPseudoInputModule } from '@ng-tangram/components/core';
+import { NtOverlayModule  } from '@ng-tangram/components/overlay';
 
 import { NtDatePickerCalendarComponent } from './calendar.component';
 import { NtDatePickerComponent } from './datepicker.component';

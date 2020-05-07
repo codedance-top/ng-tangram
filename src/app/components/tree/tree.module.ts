@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NtMenuModule, NtTreeModule } from '@ng-tangram/components';
+import { NtMenuModule } from '@ng-tangram/components/menu';
+import { NtTreeModule } from '@ng-tangram/components/tree';
 import { NtExampleModule } from '@ng-tangram/example';
 import { NtMarkdownModule } from '@ng-tangram/markdown';
 

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NtOptionModule, NtOverlayModule, NtPseudoInputModule } from '@ng-tangram/components/core';
-
+import { NtOptionModule, NtPseudoInputModule } from '@ng-tangram/components/core';
+import { NtOverlayModule } from '@ng-tangram/components/overlay';
 import { NtSelectComponent } from './select.component';
 
 @NgModule({

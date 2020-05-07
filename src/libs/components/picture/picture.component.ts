@@ -21,8 +21,6 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
   fadeIn,
   fadeOut,
-  NT_UPLOAD_HANDLER,
-  NtFileError,
   NtFileSizeError,
   NtFileTypeError,
   NtUploadError,
@@ -40,7 +38,7 @@ import { DEFAULT_PICTURE_ICONS, NT_PICTURE_ICONS, NtPictureIcons } from './pictu
 /**
  * 压缩图片
  */
-export function zipImage(file: File, option: any = { maxWidth: 1080, orientation: true }): Promise<any> {
+export function zipImage(file: File, option: any = { maxWidth: 1080, orientation: true, canvas: true }): Promise<any> {
   return new Promise((resolve, reject) => {
     loadImage(file, (canvas: HTMLCanvasElement) => {
       if (canvas.toBlob) {
@@ -173,10 +171,11 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
 
   constructor(
     private _modal: NtModal,
-    @Inject(NT_UPLOAD_HANDLER) private _uploadHandler: NtUploadHandler,
+    @Optional() private _uploadHandler: NtUploadHandler,
     @Optional() @Self() public ngControl: NgControl,
     @Optional() @Inject(NT_PICTURE_ICONS) public icons: NtPictureIcons) {
     super();
+    console.log(_uploadHandler);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }

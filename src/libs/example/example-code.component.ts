@@ -12,6 +12,7 @@ import {
   SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
+import { faAngular } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'nt-example-code',
@@ -19,7 +20,7 @@ import {
     <span class="nt-example-code-shown"
       (click)="shown=!shown"
       [nt-tooltip]="shown ? '收起代码' : '展开代码'">
-      <i class="icon fab fa-angular" [class.visible]="shown"></i>代码
+      <fa-icon [icon]="faAngular" class="icon" [class.visible]="shown"></fa-icon>代码
     </span>
     <pre class="code-container language-{{lang}}"><code class="language-{{lang}}">{{code}}</code></pre>
   `,
@@ -36,6 +37,8 @@ export class NtExampleCodeComponent implements AfterContentInit, OnChanges {
   @Input() lang: string = 'typescript';
 
   shown = false;
+
+  faAngular = faAngular;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,

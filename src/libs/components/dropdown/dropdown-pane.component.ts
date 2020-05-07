@@ -12,7 +12,7 @@ import {
   OnDestroy,
   ViewEncapsulation
 } from '@angular/core';
-import { NtOverlayComponent } from '@ng-tangram/components/core';
+import { NtOverlayComponent } from '@ng-tangram/components/overlay';
 
 export declare type NtDropdownPaneSize = '' | 'tiny' | 'small' | 'large';
 

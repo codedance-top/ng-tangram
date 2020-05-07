@@ -8,7 +8,7 @@ import {
   NT_DATE_FORMATS,
   NT_NATIVE_DATE_FORMATS,
   NtNativeDateModule
-} from '@ng-tangram/components';
+} from '@ng-tangram/components/core';
 import { NtDatePickerModule } from '@ng-tangram/components/datepicker';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtRadioModule } from '@ng-tangram/components/radio';

@@ -6,3 +6,4 @@ export * from './form-autofocus.directive';
 export * from './form-label-width.directive';
 export * from './form-orientation.directive';
 export * from './form-validation';
+export * from './validators';

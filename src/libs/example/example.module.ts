@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NtTooltipModule } from '@ng-tangram/components/tooltip';
 import { NtMarkedEngineModule } from '@ng-tangram/markdown';
 
@@ -22,6 +23,7 @@ export const NT_EXAMPLE_COMPONENTS = [
 @NgModule({
   imports: [
     CommonModule,
+    FontAwesomeModule,
     NtTooltipModule,
     NtMarkedEngineModule
   ],

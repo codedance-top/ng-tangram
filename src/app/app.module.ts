@@ -1,15 +1,11 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import locale from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import {
-  NT_PAGINATION_CONFIG,
-  NtFormsModule,
-  NtNativeDateModule,
-  NtUploadModule
-} from '@ng-tangram/components';
+import { NtNativeDateModule } from '@ng-tangram/components/core';
+import { NtFormsModule } from '@ng-tangram/components/forms';
+import { NtNoopUploadModule } from '@ng-tangram/components/noop-upload';
 import { NtMarkedEngineModule } from '@ng-tangram/markdown';
 
 import { AppComponent } from './app.component';
@@ -24,20 +20,14 @@ const ROUTES: Routes = [
   { path: '**', component: PageNotFoundComponent, data: { title: '404 - 找不到此页面' } }
 ];
 
-const PAGINATION_CONFIG = {
-  previousLabel: '上一页',
-  nextLabel: '下一页'
-};
-
 @NgModule({
   imports: [
     BrowserModule.withServerTransition({
       appId: 'ng-tangram-docs'
     }),
     CommonModule,
-    HttpClientModule,
     NtFormsModule.forRoot(),
-    NtUploadModule.forRoot(),
+    NtNoopUploadModule,
     NtNativeDateModule,
     NtMarkedEngineModule,
     RouterModule.forRoot(ROUTES, {
@@ -46,8 +36,7 @@ const PAGINATION_CONFIG = {
     })
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'zh-CN' },
-    { provide: NT_PAGINATION_CONFIG, useValue: PAGINATION_CONFIG }
+    { provide: LOCALE_ID, useValue: 'zh-CN' }
   ],
   declarations: [
     AppComponent,

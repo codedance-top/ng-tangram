@@ -38,6 +38,13 @@ app {
     margin: 0;
     padding: 1em;
     text-align: center;
+    a { 
+      color: inherit;
+
+      &:hover { 
+        color: $primary-color;
+      }
+    }
   }
 }
 

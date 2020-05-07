@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { NtCheckboxChange } from '@ng-tangram/components';
+import { NtCheckboxChange } from '@ng-tangram/components/checkbox';
 
 @Component({
   selector: 'example-checkbox-all',

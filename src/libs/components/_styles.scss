@@ -1,15 +1,16 @@
 @import '~foundation-sites/scss/foundation';
 
 @import 'attachment/attachment';
+@import 'autocomplete/autocomplete';
 @import 'avatar/avatar';
 @import 'badge/badge';
 @import 'button/button';
 @import 'core/input/pseudo-input';
-@import 'core/overlay/overlay';
 @import 'core/option/option';
 
 @import 'callout/callout';
 @import 'checkbox/checkbox';
+@import 'overlay/overlay';
 @import 'contextmenu/contextmenu';
 @import 'datepicker/datepicker';
 @import 'drawer/drawer';
@@ -17,6 +18,7 @@
 @import 'forms/forms';
 @import 'input/input';
 @import 'modal/modal';
+@import 'pagination/pagination';
 @import 'picture/picture';
 @import 'popconfirm/popconfirm';
 @import 'popover/popover';
@@ -46,13 +48,14 @@
   @include foundation-menu;
   @include foundation-reveal;
   @include foundation-range-input;
-  @include foundation-pagination;
+  
   @include foundation-progress-bar;
   @include foundation-switch;
   @include foundation-table;
 
 
   @include nt-attachment;
+  @include nt-autocomplete;
   @include nt-avatar;
   @include nt-badge;
   @include nt-button;
@@ -67,6 +70,7 @@
   @include nt-modal;
   @include nt-overlay;
   @include nt-option;
+  @include nt-pagination;
   @include nt-picture;
   @include nt-popconfirm;
   @include nt-popover;

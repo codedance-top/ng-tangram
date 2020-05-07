@@ -1,3 +1,31 @@
+# [0.7.0-beta.1](https://github.com/livebridge-lab/ng-tangram/compare/0.7.0-beta.0...0.7.0-beta.1) (2020-04-28)
+
+
+### Bug Fixes
+
+* **picture:** 修复无法读取图片预览图的问题 ([6002814](https://github.com/livebridge-lab/ng-tangram/commit/600281402df45fe24269189585274f136894a310))
+* **upload:** 修复 upload 模块在 ivy 模式下编译错误的问题 ([ee4bc4e](https://github.com/livebridge-lab/ng-tangram/commit/ee4bc4ebaa3bebdbcdaadd5b14156ec6b89c0a7e))
+
+# [0.7.0-beta.0](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0...0.7.0-beta.0) (2020-04-27)
+
+
+### Bug Fixes
+
+* **pagination:** 修复更改 pageCount 属性时，页码高于计算之后的最大页数会出现错误的问题 ([f07ceca](https://github.com/livebridge-lab/ng-tangram/commit/f07cecae9ac5ba70ea074f52ac765506023f88c5))
+
+
+### Features
+
+* 支持 Ivy Renderer
+* 优化 typescript 导入路径 ([cbdaa10](https://github.com/livebridge-lab/ng-tangram/commit/cbdaa1048779abe5b779d4e822a50a840903740c))
+* **angular:** 支持 angular 9.1.x ([aef9223](https://github.com/livebridge-lab/ng-tangram/commit/aef92236f02ea6946ecbe744e3959b12f55fbeb7))
+* **autocomplete:** 新增了 autocomplete 组件 ([d44ed3f](https://github.com/livebridge-lab/ng-tangram/commit/d44ed3f187ebce7a397405268a7e2466290abc52))
+* **forms:** 新增内置验证器 ([e01f249](https://github.com/livebridge-lab/ng-tangram/commit/e01f249cfc8a1bfb15b2b4fcedc5356500b8d6c4))
+* **overlay:** 支持 ivy render ([8c7beb3](https://github.com/livebridge-lab/ng-tangram/commit/8c7beb36c306d39c650739c3bbb9832f1b695dda))
+* **pagination:** 样式采用自定义的方式，不再依赖 foundation, CssClass `pagination` => `nt-pagination` ([02bac13](https://github.com/livebridge-lab/ng-tangram/commit/02bac13f02e4968651c080561be232283c4b355a))
+
+
+
 # [0.6.0](https://github.com/livebridge-lab/ng-tangram/compare/0.6.0-rc.0...0.6.0) (2020-02-10)
 
 ### Bug Fixes
