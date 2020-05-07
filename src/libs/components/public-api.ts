@@ -28,4 +28,4 @@
 // export * from '@ng-tangram/components/table';
 // export * from '@ng-tangram/components/tooltip';
 // export * from '@ng-tangram/components/tree';
-export const NT_COMPONENT_PLACEHOLDER = '';
+export const NT_COMPONENT_PLACEHOLDER = '0.0.0-PLACEHOLDER';
