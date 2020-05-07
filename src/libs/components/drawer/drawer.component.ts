@@ -21,7 +21,7 @@ import {
   Renderer2,
   ViewEncapsulation
 } from '@angular/core';
-import { fromOutsideClick, slideX, slideY } from '@ng-tangram/components/core';
+import { fromOutsideClick, slideX, slideY, fromOutsideTouch } from '@ng-tangram/components/core';
 
 export declare type NtDrawerPlacement = 'left' | 'right' | 'top' | 'bottom';
 
@@ -208,7 +208,7 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
 
   /** 开始外部点击事件的订阅 */
   private _subscribeOutsideClickEvent() {
-    this._outsideClickSubscription = fromOutsideClick([this._element.nativeElement], this._container)
+    this._outsideClickSubscription = fromOutsideTouch([this._element.nativeElement], this._container)
       .pipe(takeUntil(this._destory))
       .subscribe(_ => this.close());
   }
