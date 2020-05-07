@@ -9,7 +9,6 @@ export const DEFAULT_TEMPLATES = {
   pattern: "{0}不是合法的数据",
   maxlength: "{0}长度为最大{1}",
   minlength: "{0}长度为最小{1}",
-
   selection: '请选择{0}',
   upload: '请上传{0}',
   equalTo: '两次输入不一致',
