@@ -44,14 +44,14 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
-  
+
   fadeIn,
   fadeOut,
   NT_OPTION_PARENT_COMPONENT,
   NtOptionComponent,
   NtOptionParentComponent,
   NtOptionSelectionChange,
-  
+
 } from '@ng-tangram/components/core';
 
 import { BOTTOM_LEFT, NtOverlayComponent, TOP_LEFT } from '@ng-tangram/components/overlay';
@@ -158,6 +158,12 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   get width() { return this._width; }
 
+  private _clearable = false;
+
+  @Input()
+  set clearable(value: boolean) { this._clearable = coerceBooleanProperty(value); }
+  get clearable() { return this._clearable; }
+
   private _multiple = false;
 
   @Input()
@@ -183,6 +189,10 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   get selected(): NtOptionComponent | NtOptionComponent[] {
     return this.multiple ? this._selectionModel.selected : this._selectionModel.selected[0];
+  }
+
+  get hasSelectedValue() {
+    return this._selectionModel.selected.length > 0;
   }
 
   private _placeholder = '';
@@ -328,6 +338,21 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   _onInputBlur() {
     this._focused = false;
+  }
+
+
+  _onClear(event: Event) {
+    if (this.value !== null && !this.disabled) {
+      // this._setSelectionByValue(null, true);
+      this._clearSelection();
+      this._value = null;
+      this.valueChange.emit(null);
+      this._onChange(null);
+      this.selectionChange.emit(new NtSelectChange(this, null));
+      this._changeDetectorRef.markForCheck();
+    }
+
+    event.stopPropagation();
   }
 
   focus() {
@@ -494,6 +519,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   }
 
   private _selectValue(value: any, isUserInput = false): NtOptionComponent | undefined {
+    // console.log(value);
     const correspondingOption = this.options.find((option: NtOptionComponent) => {
       try {
         return option.value !== null && this._compareWith(option.value, value);
@@ -508,6 +534,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     if (correspondingOption) {
       isUserInput ? correspondingOption.selectViaInteraction() : correspondingOption.select();
       this._selectionModel.select(correspondingOption);
+      // this._value = correspondingOption.value;
     }
 
     return correspondingOption;
