@@ -5,11 +5,11 @@ $nt-drawer-box-shadow: $prototype-box-shadow !default;
 $nt-drawer-box-shadow-backdroped: 0px 0px 0px 2px nth($prototype-box-shadow, length($prototype-box-shadow)) !default;
 $nt-drawer-transition-duration: .4s !default;
 $nt-drawer-transition-function: ease !default;
-$nt-drawer-z-index: 100 !default;
+$nt-drawer-zindex: 100 !default;
 
 @mixin nt-drawer-base() {
   position: fixed;
-  z-index: $nt-drawer-z-index;
+  z-index: $nt-drawer-zindex;
   max-width: 100%;
   max-height: 100%;
   top: 0;
@@ -41,7 +41,7 @@ $nt-drawer-z-index: 100 !default;
   }
 
   &.opened {
-    transform: translate(0%, 0%) !important;
+    transform: translate(0%, 0%);
   }
 
   &.nested {
@@ -55,7 +55,7 @@ $nt-drawer-z-index: 100 !default;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: $nt-drawer-z-index - 1;
+  z-index: $nt-drawer-zindex - 1;
   overflow-y: scroll;
 }
 

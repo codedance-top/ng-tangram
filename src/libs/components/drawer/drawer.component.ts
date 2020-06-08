@@ -21,7 +21,17 @@ import {
   Renderer2,
   ViewEncapsulation
 } from '@angular/core';
-import { fromOutsideClick, slideX, slideY, fromOutsideTouch } from '@ng-tangram/components/core';
+import {
+  fromOutsideClick,
+  slideInDown,
+  slideInLeft,
+  slideInRight,
+  slideInUp,
+  slideOutDown,
+  slideOutLeft,
+  slideOutRight,
+  slideOutUp
+} from '@ng-tangram/components/core';
 
 export declare type NtDrawerPlacement = 'left' | 'right' | 'top' | 'bottom';
 
@@ -30,6 +40,8 @@ export interface NtDrawerContainer {
 }
 
 export const NT_DRAWER_CONTAINER = new InjectionToken<NtDrawerContainer>('nt-drawer-container');
+
+const ANIMATION_TIMING = 0.4;
 
 let uniqueId = 0;
 
@@ -40,14 +52,14 @@ let uniqueId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('slide', [
-      transition('closed => left', slideX({ a: '-100%', b: 0 }, .4)),
-      transition('closed => right', slideX({ a: '100%', b: 0 }, .4)),
-      transition('closed => top', slideY({ a: '-100%', b: 0 }, .4)),
-      transition('closed => bottom', slideY({ a: '100%', b: 0 }, .4)),
-      transition('left => closed', slideX({ a: 0, b: '-100%' }, .4)),
-      transition('right => closed', slideX({ a: 0, b: '100%' }, .4)),
-      transition('top => closed', slideY({ a: 0, b: '-100%' }, .4)),
-      transition('bottom => closed', slideY({ a: 0, b: '100%' }, .4))
+      transition('closed => left', slideInLeft(ANIMATION_TIMING)),
+      transition('closed => right', slideInRight(ANIMATION_TIMING)),
+      transition('closed => top', slideInUp(ANIMATION_TIMING)),
+      transition('closed => bottom', slideInDown(ANIMATION_TIMING)),
+      transition('left => closed', slideOutLeft(ANIMATION_TIMING)),
+      transition('right => closed', slideOutRight(ANIMATION_TIMING)),
+      transition('top => closed', slideOutUp(ANIMATION_TIMING)),
+      transition('bottom => closed', slideOutDown(ANIMATION_TIMING))
     ])
   ],
   host: {
@@ -125,6 +137,7 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
   }
 
   open() {
+    // console.log();
     this.state = this.placement;
   }
 
