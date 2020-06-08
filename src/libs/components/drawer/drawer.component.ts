@@ -22,6 +22,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import {
+  fromOutsideClick,
   fromOutsideTouch,
   slideInDown,
   slideInLeft,
@@ -77,7 +78,7 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
 
   private _destory = new Subject();
 
-  private _outsideClickSubscription: Subscription | null;
+  private _outsideActionSubscription: Subscription | null;
 
   private _container: Element;
 
@@ -102,6 +103,14 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
   get placement() { return this._placement; }
   set placement(value: NtDrawerPlacement) {
     this._changePlacementValueAndStyle(value);
+  }
+
+  private _touchmode: boolean = false;
+
+  @Input()
+  get touchmode() { return this._touchmode; }
+  set touchmode(value: boolean) {
+    this._touchmode = coerceBooleanProperty(value);
   }
 
   state: 'closed' | NtDrawerPlacement = 'closed';
@@ -133,7 +142,7 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
     }
     this._destory.next();
     this._destory.complete();
-    this._unsubscribeOutsideClickEvent();
+    this._unsubscribeOutsideActionEvent();
   }
 
   open() {
@@ -151,7 +160,7 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
     }
 
     if (event.toState !== 'closed') {
-      this._subscribeOutsideClickEvent();
+      this._subscribeOutsideActionEvent();
       this.afterOpen.emit();
     } else {
       this.afterClosed.emit();
@@ -164,7 +173,7 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
     }
 
     if (event.toState === 'closed') {
-      this._unsubscribeOutsideClickEvent();
+      this._unsubscribeOutsideActionEvent();
       this._disattachBackdropOverlay();
       this.beforeClosed.emit();
     } else {
@@ -219,18 +228,19 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  /** 开始外部点击事件的订阅 */
-  private _subscribeOutsideClickEvent() {
-    this._outsideClickSubscription = fromOutsideTouch([this._element.nativeElement], this._container)
+  /** 开始外部事件的订阅 */
+  private _subscribeOutsideActionEvent() {
+    const outsideAction = this.touchmode ? fromOutsideTouch : fromOutsideClick;
+    this._outsideActionSubscription = outsideAction([this._element.nativeElement], this._container)
       .pipe(takeUntil(this._destory))
       .subscribe(_ => this.close());
   }
 
-  /** 取消外部点击事件的订阅 */
-  private _unsubscribeOutsideClickEvent() {
-    if (this._outsideClickSubscription) {
-      this._outsideClickSubscription.unsubscribe();
-      this._outsideClickSubscription = null;
+  /** 取消外部事件的订阅 */
+  private _unsubscribeOutsideActionEvent() {
+    if (this._outsideActionSubscription) {
+      this._outsideActionSubscription.unsubscribe();
+      this._outsideActionSubscription = null;
     }
   }
 }
