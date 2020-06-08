@@ -35,4 +35,9 @@ $nt-select-pane-background: $white !default;
   .nt-overlay-container.nt-select-overlay {
     --nt-overlay-container-background: #{$nt-select-pane-background};
   }
+
+  .nt-select-clear {
+    pointer-events: auto !important;
+    cursor: pointer;
+  }
 }
