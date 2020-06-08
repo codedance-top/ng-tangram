@@ -22,7 +22,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import {
-  fromOutsideClick,
+  fromOutsideTouch,
   slideInDown,
   slideInLeft,
   slideInRight,
