@@ -221,7 +221,7 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
 
   /** 开始外部点击事件的订阅 */
   private _subscribeOutsideClickEvent() {
-    this._outsideClickSubscription = fromOutsideClick([this._element.nativeElement], this._container)
+    this._outsideClickSubscription = fromOutsideTouch([this._element.nativeElement], this._container)
       .pipe(takeUntil(this._destory))
       .subscribe(_ => this.close());
   }

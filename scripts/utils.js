@@ -2,12 +2,17 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 
-
 function _recursiveMkDir(dir) {
   if (!fs.existsSync(dir)) {
     _recursiveMkDir(path.dirname(dir));
     fs.mkdirSync(dir);
   }
+}
+
+function _replaceFileContent(file, placeholder, format) {
+  const content = fs.readFileSync(file, 'utf8');
+  const formatted = content.replace(placeholder, format);
+  fs.writeFileSync(file, formatted, 'utf8');
 }
 
 // Copy files maintaining relative paths.
@@ -23,3 +28,4 @@ module.exports = async function (fileGlob, from, to) {
 };
 
 module.exports.recursiveMkDir = _recursiveMkDir;
+module.exports.replaceFileContent = _replaceFileContent;
