@@ -1,3 +1,15 @@
+# [0.7.0-beta.2](https://github.com/livebridge-lab/ng-tangram/compare/0.7.0-beta.1...0.7.0-beta.2) (2020-06-08)
+
+### Bug Fixes
+
+* **drawer:** 修复在 chrome 和 firefox 浏览器下弹出动画失效的问题 ([4c322c5](https://github.com/livebridge-lab/ng-tangram/commit/4c322c5f31afbcac5e92c0da6734c71cb10942de))
+* **overlay:** 优化了 overlay 外部点击判断逻辑 ([2858d58](https://github.com/livebridge-lab/ng-tangram/commit/2858d58a9458d430f97afc0647e7c1988083c233))
+
+### Features
+
+* **angular:** 升级至 v9.1.9 ([fb12760](https://github.com/livebridge-lab/ng-tangram/commit/fb12760ed246a40de04f7fb0e927960722adb846))
+* **select:** 增加控制显示清除icon的 clearable 属性 ([7f134c6](https://github.com/livebridge-lab/ng-tangram/commit/7f134c60f97209374416639d18f410ed012dbbac))
+
 # [0.7.0-beta.1](https://github.com/livebridge-lab/ng-tangram/compare/0.7.0-beta.0...0.7.0-beta.1) (2020-04-28)
 
 
@@ -49,7 +61,6 @@
 
 * **angular:** 更新至 angular 9.0.0 ([f0d109c](https://github.com/livebridge-lab/ng-tangram/commit/f0d109c4b6ab80e4d2c9c33aa9ecb51c1c57ff66))
 * **animate:** 渐变动画增加节奏控制参数，现在可以使用 `animation-timing-function` 值了 ([1e1747f](https://github.com/livebridge-lab/ng-tangram/commit/1e1747f6dd87f951be52ef53f078c53660cccc79))
-* **animate:** 渐变动画增加节奏控制参数，现在可以使用 `animation-timing-function` 值了 ([a759072](https://github.com/livebridge-lab/ng-tangram/commit/a759072fd38eb22f9cb5e9c798d587068f0ed7c7))
 * **core:** 新增 fromOutsideElementClick 事件 ([bbd99c9](https://github.com/livebridge-lab/ng-tangram/commit/bbd99c93730528b4efab8a72febed7751164ccdc))
 * **datepicker:** 通过覆盖 --nt-overlay-container-background 的方式改变默认 overlay 样式 ([54aaea6](https://github.com/livebridge-lab/ng-tangram/commit/54aaea62f276e19e0ce7b055e2eb737d7f53dc07))
 * **drawer:** 新增事件 afterOpen,afterClosed,beforeOpen,beforeClosed 方法 open(),close() 并移除了opened 属性 ([9cb5324](https://github.com/livebridge-lab/ng-tangram/commit/9cb532458caa7ebf32f53ffae70468cef439154a))
