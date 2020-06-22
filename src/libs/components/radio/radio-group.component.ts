@@ -15,7 +15,8 @@ import {
   Optional,
   QueryList,
   Self,
-  ViewEncapsulation
+  ViewEncapsulation,
+  Output
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
@@ -88,7 +89,7 @@ export class NtRadioGroupComponent<T> extends NtFormFieldControl<T>
     }
   }
 
-  readonly checkedChanges: Observable<NtRadioChange<T>> = defer(() => {
+  @Output() readonly checkedChanges: Observable<NtRadioChange<T>> = defer(() => {
     if (this.radios) {
       return merge<NtRadioChange<T>>(...this.radios.map(item => item.change));
     }
@@ -167,10 +168,10 @@ export class NtRadioGroupComponent<T> extends NtFormFieldControl<T>
   }
 
   private _setCheckedByValue(value: T) {
-      this._value = value;
-      this.radios.forEach(item => item.checked = false);
-      this._checkedValue(value);
-      this._changeDetectorRef.markForCheck();
+    this._value = value;
+    this.radios.forEach(item => item.checked = false);
+    this._checkedValue(value);
+    this._changeDetectorRef.markForCheck();
   }
 
   private _checkedValue(value: any): NtRadioComponent<T> | undefined {
