@@ -1,8 +1,18 @@
-# [0.7.0-beta.3](https://github.com/livebridge-lab/ng-tangram/compare/0.7.2...0.7.0-beta.3) (2020-06-08)
+# [0.7.0-beta.4](https://github.com/codedance-top/ng-tangram/compare/0.7.0-beta.3...0.7.0-beta.4) (2020-06-22)
+
+### Bug Fixes
+
+* **option:** 修复 disabled 属性不起作用的问题 ([9d92aa6](https://github.com/codedance-top/ng-tangram/commit/9d92aa6ab4400573ca215c9bcafe467ade0b6ed6))
 
 ### Features
 
-* **drawer:** 增加 touchmode 属性，可以在触碰时关闭 ([4d3d6f4](https://github.com/livebridge-lab/ng-tangram/commit/4d3d6f41e681a689399f386557b594d983c2c8c2))
+* **checkbox,radio:** 新增 checkbox 和 radio 的 group 组件事件 `(selectionChange)` ([2f38fc6](https://github.com/codedance-top/ng-tangram/commit/2f38fc68eb4ebd15c32489dd69b4f6b784490244))
+
+# [0.7.0-beta.3](https://github.com/codedance-top/ng-tangram/compare/0.7.0-beta.2...0.7.0-beta.3) (2020-06-08)
+
+### Features
+
+* **drawer:** 增加 touchmode 属性，可以在触碰时关闭 ([4d3d6f4](https://github.com/codedance-top/ng-tangram/commit/4d3d6f41e681a689399f386557b594d983c2c8c2))
 
 # [0.7.0-beta.2](https://github.com/codedance-top/ng-tangram/compare/0.7.0-beta.1...0.7.0-beta.2) (2020-06-08)
 

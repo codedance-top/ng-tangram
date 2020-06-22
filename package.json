@@ -1,10 +1,10 @@
 {
   "name": "ng-tangram",
-  "version": "0.7.0-beta.3",
+  "version": "0.7.0-beta.4",
   "description": "NG-TANGRAM",
   "repository": {
     "type": "git",
-    "url": "https://github.com/livebridge-lab/ng-tangram"
+    "url": "https://github.com/codedance-top/ng-tangram"
   },
   "scripts": {
     "commit": "npx git-cz",
