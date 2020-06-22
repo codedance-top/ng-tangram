@@ -15,7 +15,8 @@ import {
   Optional,
   QueryList,
   Self,
-  ViewEncapsulation
+  ViewEncapsulation,
+  Output
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
@@ -79,7 +80,7 @@ export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>
     }
   }
 
-  readonly checkedChanges: Observable<NtCheckboxChange> = defer(() => {
+  @Output() readonly checkedChanges: Observable<NtCheckboxChange> = defer(() => {
     if (this.checkboxes) {
       return merge<NtCheckboxChange>(...this.checkboxes.map(item => item.change));
     }
