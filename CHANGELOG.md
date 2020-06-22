@@ -1,3 +1,8 @@
+# [0.7.0-beta.5](https://github.com/codedance-top/ng-tangram/compare/0.7.0-beta.4...0.7.0-beta.5) (2020-06-22)
+
+### Bug Fixes
+* **option:** 修复 option 的 disabled 属性不起作用的问题 ([29ac088](https://github.com/codedance-top/ng-tangram/commit/29ac0889941a97cd9e2f8db2ccc418df183336a6))
+
 # [0.7.0-beta.4](https://github.com/codedance-top/ng-tangram/compare/0.7.0-beta.3...0.7.0-beta.4) (2020-06-22)
 
 ### Bug Fixes
