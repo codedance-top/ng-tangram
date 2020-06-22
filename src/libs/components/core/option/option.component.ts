@@ -70,12 +70,13 @@ export class NtOptionComponent implements AfterViewChecked, Highlightable, ListK
   get value() { return this._value; }
 
   @Input()
-  set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
-  get disabled() { return this._disabled; }
+  get disabled() { return this._disabled || this.hidden; }
+  set disabled(value: boolean) {
+    this._disabled = coerceBooleanProperty(value);
+  }
 
   set hidden(value: boolean) {
     this._hidden = coerceBooleanProperty(value);
-    this._disabled = this._hidden;
   }
   get hidden() { return this._hidden; }
 
