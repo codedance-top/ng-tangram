@@ -22,7 +22,7 @@ $logo-color: #C90018;
   display: flex;
   justify-content: flex-end;
   left: 0;
-  padding: 2em 0;
+  padding: 2em;
   position: absolute;
   right: 0;
   top: 0;
@@ -30,7 +30,7 @@ $logo-color: #C90018;
 }
 
 .home-splash img {
-  max-height: 400px;
+  max-height: 320px;
 }
 
 .inner {
