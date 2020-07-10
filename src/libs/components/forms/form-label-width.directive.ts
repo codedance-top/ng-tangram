@@ -23,7 +23,6 @@ export class NtFormLabelWidthDirective implements OnChanges, OnDestroy {
   ngOnChanges(changes: SimpleChanges) {
     const change = changes.width;
     if (change.currentValue !== change.previousValue) {
-      console.log(change.currentValue);
       this._widthChange.next(change.currentValue);
     }
   }
