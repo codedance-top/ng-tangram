@@ -2,8 +2,8 @@
 
 ### Bug Fixes
 
-* **forms:** 优化 form-field 组件的排列设置方式 ([bbb4b00](https://github.com/codedance-top/ng-tangram/commit/bbb4b001b3deacd87149f8cd1606c489bcfac514))
-* **overlay:** 优化 Overlay 中的 takeUntil 顺序 ([5fc6028](https://github.com/codedance-top/ng-tangram/commit/5fc6028a8641af5065bd383d7e0e9fd80b384e2d))
+* **forms:** 优化 form-field 组件的排列设置方式 ([5fc6028](https://github.com/codedance-top/ng-tangram/commit/5fc6028a8641af5065bd383d7e0e9fd80b384e2d))
+* **overlay:** 优化 Overlay 中的 takeUntil 顺序 ([bbb4b00](https://github.com/codedance-top/ng-tangram/commit/bbb4b001b3deacd87149f8cd1606c489bcfac514))
 
 # [0.7.0-beta.5](https://github.com/codedance-top/ng-tangram/compare/0.7.0-beta.4...0.7.0-beta.5) (2020-06-22)
 
