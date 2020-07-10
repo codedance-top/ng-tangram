@@ -1,3 +1,9 @@
+# [0.7.0-beta.7](https://github.com/codedance-top/ng-tangram/compare/0.7.0-beta.6...0.7.0-beta.7) (2020-07-10)
+
+### Bug Fixes
+
+* **forms:** 修复 form-field 的 labelWidth 属性和 ntFormLabelWidth 冲突的问题 ([7b21b21](https://github.com/codedance-top/ng-tangram/commit/7b21b213b6f20ea557a7c0456c241a3d5711c20c))
+
 # [0.7.0-beta.6](https://github.com/codedance-top/ng-tangram/compare/0.7.0-beta.5...0.7.0-beta.6) (2020-07-10)
 
 ### Bug Fixes
