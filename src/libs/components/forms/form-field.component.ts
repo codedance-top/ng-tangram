@@ -1,6 +1,6 @@
 
 import { defer, Observable, of as observableOf, Subject } from 'rxjs';
-import { filter, switchMap, take, takeUntil } from 'rxjs/operators';
+import { switchMap, take, takeUntil, filter } from 'rxjs/operators';
 
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -12,8 +12,10 @@ import {
   ContentChild,
   Input,
   NgZone,
+  OnChanges,
   OnDestroy,
   Optional,
+  SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
 import {
@@ -56,7 +58,7 @@ import { NtFormOrientation, NtFormOrientationDirective } from './form-orientatio
   host: {
     'class': 'nt-form-field',
     '[class.nt-form-error]': '_invalid',
-    '[class.nt-form-horizontal]': 'horizontal'
+    '[class.nt-form-horizontal]': 'isHorizontal()'
   }
 })
 export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
@@ -69,10 +71,6 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   private _labelWidth;
 
   private _orientation;
-
-  private _selfLabelWidth = false;
-
-  private _selfOrientation = false;
 
   private _markVisible = true;
 
@@ -88,28 +86,27 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   @Input() label: string;
 
   @Input()
-  set labelVisible(value: boolean) { this._labelVisible = coerceBooleanProperty(value); }
   get labelVisible() { return this._labelVisible; }
+  set labelVisible(value: boolean) {
+    this._labelVisible = coerceBooleanProperty(value);
+  }
+
 
   @Input()
+  get labelWidth() { return this._labelWidth || 120; }
   set labelWidth(value: number) {
-    this._labelWidth = coerceNumberProperty(value, 0);
-    this._selfLabelWidth = this._labelWidth > 0;
+    this._labelWidth = coerceNumberProperty(value, 120);
     this._setHorizontalStyles();
   }
-  get labelWidth() { return this._labelWidth || 120; }
 
   @Input() messages: { [key: string]: string };
 
   @Input()
+  get orientation() { return this._orientation; }
   set orientation(value: NtFormOrientation) {
     this._orientation = value;
-    this._selfOrientation = true;
     this._setHorizontalStyles();
   }
-  get orientation() { return this._orientation; }
-
-  get horizontal() { return this.orientation === 'horizontal'; }
 
   @Input()
   get markVisible() { return this._markVisible; }
@@ -164,19 +161,11 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
     this._ngForm = parentForm || parentFormGroup;
 
     if (this._formLabelWidth) {
-      this._formLabelWidth.widthChange.pipe(takeUntil(this._destroy), filter(() => !this._selfLabelWidth))
-        .subscribe(width => {
-          this._labelWidth = width;
-          this._setHorizontalStyles();
-        });
+      this._subscribeContainerWidthChange();
     }
 
     if (this._formOrientation) {
-      this._formOrientation.orientationChange.pipe(takeUntil(this._destroy), filter(() => !this._selfOrientation))
-        .subscribe(orientation => {
-          this._orientation = orientation;
-          this._setHorizontalStyles();
-        });
+      this._subscribeContainerOrientationChange();
     }
 
     this.statusChanges
@@ -197,6 +186,18 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
     this._destroy.complete();
   }
 
+  _clearValidateMessage() {
+    this._invalid = false;
+  }
+
+  isHorizontal() {
+    return this.orientation === 'horizontal';
+  }
+
+  isVertical() {
+    return this.orientation === 'vertical';
+  }
+
   private _validate() {
     if (this.ngControl) {
       this._invalid = !!this.ngControl.invalid;
@@ -204,12 +205,32 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  _clearValidateMessage() {
-    this._invalid = false;
+  private _subscribeContainerWidthChange() {
+    this._formLabelWidth.widthChange.pipe(
+      filter(() => coerceNumberProperty(this._labelWidth, 0) === 0),
+      takeUntil(this._destroy)
+    )
+      .subscribe(width => {
+        this._labelWidth = width;
+        this._setHorizontalStyles();
+      });
+  }
+
+  private _subscribeContainerOrientationChange() {
+    this._formOrientation.orientationChange
+      .pipe(
+        filter(() => !this._orientation),
+        takeUntil(this._destroy)
+      )
+      .subscribe(orientation => {
+        this._orientation = orientation;
+        this._setHorizontalStyles();
+      });
+
   }
 
   private _setHorizontalStyles() {
-    if (this.labelWidth > 0 && this.horizontal) {
+    if (this.labelWidth > 0 && this.isHorizontal()) {
       this._labelStyles['width.px'] = this.labelWidth;
       this._groupStyles['margin-left.px'] = this.labelWidth;
     } else {
@@ -217,4 +238,5 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
       delete this._groupStyles['margin-left.px'];
     }
   }
+
 }

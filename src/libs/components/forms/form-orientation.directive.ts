@@ -1,25 +1,37 @@
-import { Directive, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
+
+import { Directive, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 
 export declare type NtFormOrientation = 'vertical' | 'horizontal';
 
 @Directive({
   selector: 'form[ntFormOrientation]',
 })
-export class NtFormOrientationDirective implements OnDestroy {
+export class NtFormOrientationDirective implements OnDestroy, OnChanges {
+
+  private readonly _orientationChange = new Subject<NtFormOrientation>();
 
   private _orientation: NtFormOrientation;
 
   @Input('ntFormOrientation')
+  get orientation() { return this._orientation; }
   set orientation(value: NtFormOrientation) {
     this._orientation = value;
-    this.orientationChange.next(this._orientation);
+    this._orientationChange.next(this._orientation);
   }
-  get orientation() { return this._orientation; }
 
-  orientationChange = new EventEmitter<NtFormOrientation>();
+  get orientationChange() {
+    return this._orientationChange.asObservable();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const change = changes.orientation;
+    if (change.currentValue !== change.previousValue) {
+      this._orientationChange.next(change.currentValue);
+    }
+  }
 
   ngOnDestroy() {
-    this.orientationChange.next();
-    this.orientationChange.complete();
+    this._orientationChange.complete();
   }
 }
