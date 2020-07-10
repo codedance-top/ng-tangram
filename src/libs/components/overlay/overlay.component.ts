@@ -157,16 +157,16 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
     // 这可以支持你 "反悔" 关闭事件的触发（100毫米内，可以通过设置 _markClosed = false 来防止）
     this._debounceClose
       .pipe(
-        takeUntil(this._destroy),
         debounceTime(100),
-        filter(() => this._markClosed)
+        filter(() => this._markClosed),
+        takeUntil(this._destroy)
       )
       .subscribe(() => this.close());
 
     this._positionChange
       .pipe(
-        takeUntil(this._destroy),
-        filter(position => position !== this._paddingClass)
+        filter(position => position !== this._paddingClass),
+        takeUntil(this._destroy)
       )
       .subscribe(position => this._paddingClass = position);
 
@@ -192,7 +192,7 @@ export class NtOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
     // 外部点击事件的主体是 body 元素，这会导致订阅之后 body 参数会接收冒泡传递的事件
     // 这与订阅意图不同，因此延迟到下一个事件队列开始订阅
     this.cdkConnectedOverlay.attach
-      .pipe(takeUntil(this._destroy), delay(0))
+      .pipe(delay(0), takeUntil(this._destroy))
       .subscribe(() => this._subscribeOutsideClickEvent());
 
     this.cdkConnectedOverlay.detach
