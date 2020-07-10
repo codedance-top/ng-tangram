@@ -1,6 +1,6 @@
 
 import { defer, Observable, of as observableOf, Subject } from 'rxjs';
-import { switchMap, take, takeUntil, filter } from 'rxjs/operators';
+import { switchMap, take, takeUntil, filter, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -65,14 +65,9 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
   private readonly _destroy = new Subject<void>();
 
-  /** 表单可见性 */
-  private _labelVisible = true;
-
-  private _labelWidth;
-
-  private _orientation;
-
   private _markVisible = true;
+
+  private _isUnsetedWidthValue = true;
 
   private _ngForm: NgForm | FormGroupDirective | null = null;
 
@@ -85,21 +80,34 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
   @Input() label: string;
 
+  /** 表单可见性 */
+  private _labelVisible = true;
+
   @Input()
   get labelVisible() { return this._labelVisible; }
   set labelVisible(value: boolean) {
     this._labelVisible = coerceBooleanProperty(value);
   }
 
+  private _labelWidth = 120;
 
   @Input()
-  get labelWidth() { return this._labelWidth || 120; }
+  get labelWidth() { return this._labelWidth; }
   set labelWidth(value: number) {
-    this._labelWidth = coerceNumberProperty(value, 120);
+    const coercedValue = coerceNumberProperty(value, 0);
+    if (coercedValue > 0) {
+      this._isUnsetedWidthValue = false;
+      this._labelWidth = coercedValue;
+    } else {
+      this._isUnsetedWidthValue = true;
+      this._labelWidth = 120;
+    }
     this._setHorizontalStyles();
   }
 
   @Input() messages: { [key: string]: string };
+
+  private _orientation;
 
   @Input()
   get orientation() { return this._orientation; }
@@ -207,7 +215,7 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
   private _subscribeContainerWidthChange() {
     this._formLabelWidth.widthChange.pipe(
-      filter(() => coerceNumberProperty(this._labelWidth, 0) === 0),
+      filter(() => this._isUnsetedWidthValue),
       takeUntil(this._destroy)
     )
       .subscribe(width => {
@@ -238,5 +246,4 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
       delete this._groupStyles['margin-left.px'];
     }
   }
-
 }

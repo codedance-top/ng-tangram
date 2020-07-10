@@ -7,7 +7,7 @@ export declare type NtFormOrientation = 'vertical' | 'horizontal';
 @Directive({
   selector: 'form[ntFormOrientation]',
 })
-export class NtFormOrientationDirective implements OnDestroy, OnChanges {
+export class NtFormOrientationDirective implements OnChanges, OnDestroy {
 
   private readonly _orientationChange = new Subject<NtFormOrientation>();
 
@@ -17,7 +17,6 @@ export class NtFormOrientationDirective implements OnDestroy, OnChanges {
   get orientation() { return this._orientation; }
   set orientation(value: NtFormOrientation) {
     this._orientation = value;
-    this._orientationChange.next(this._orientation);
   }
 
   get orientationChange() {
