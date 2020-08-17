@@ -2,8 +2,6 @@ import { defer, merge, Observable, Subject } from 'rxjs';
 import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { Directionality } from '@angular/cdk/bidi';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { SelectionModel } from '@angular/cdk/collections';
 import { Platform } from '@angular/cdk/platform';
 import { CDK_TABLE_TEMPLATE, CdkTable } from '@angular/cdk/table';
 import { DOCUMENT } from '@angular/common';
@@ -41,11 +39,7 @@ import { NtColumnDirective, NtColumnSort, NtColumnSortChange } from './cell.dire
 })
 export class NtTableComponent<T> extends CdkTable<T> implements AfterContentInit, OnChanges {
 
-  private _selectionModel: SelectionModel<T> = new SelectionModel(true, undefined, false);
-
   private _multiSortable = false;
-
-  private _selectable = false;
 
   private readonly _destroy = new Subject<void>();
 
@@ -59,17 +53,15 @@ export class NtTableComponent<T> extends CdkTable<T> implements AfterContentInit
       .pipe(take(1), switchMap(() => this.columSortChanges));
   });
 
+  private _sort: string;
+
   @Input()
-  set selectable(value: boolean) { this._selectable = coerceBooleanProperty(value); }
-  get selectable() { return this._selectable; }
-
-  get isAllSelected() { return false; }
-
-  get selected() { return this._selectionModel.selected; }
+  get sort() { return this._sort; }
+  set sort(value: string) {
+    this._sort = value;
+  }
 
   @ContentChildren(NtColumnDirective) _contentColumns: QueryList<NtColumnDirective>;
-
-  @Output() readonly selectedChange: EventEmitter<T | T[]> = new EventEmitter();
 
   @Output() readonly sortChange: EventEmitter<NtColumnSortChange | NtColumnSortChange[]> = new EventEmitter();
 
@@ -89,36 +81,41 @@ export class NtTableComponent<T> extends CdkTable<T> implements AfterContentInit
       this._resetOptions();
       this._changeDetectorRef.markForCheck();
     });
+
+    this.columSortChanges.pipe(takeUntil(this._destroy)).subscribe(change => {
+      this._setSortValue(change.column, change.sort);
+    });
+    if (this.sort) {
+      const [column, sort] = this.sort.split(':');
+      if (column) {
+        this._checkSortInputAndSetValue(column, sort);
+      }
+    }
   }
 
-  selectAll() {
-    if (!this.isAllSelected) {
-      // this._selectionModel.select(...this.dataSource);
+  ngOnChanges(changes: SimpleChanges) {
+    const change = changes.sortValue;
+    if (change && !change.firstChange) {
+      const [column, sort] = change.currentValue.split(':');
+      if (column) {
+        this._checkSortInputAndSetValue(column, sort);
+      }
+    }
+  }
+
+  private _setSortValue(column: string, sort: string) {
+    if (sort && ['asc', 'desc'].includes(sort)) {
+      this._sort = `${column}:${sort}`;
     } else {
-      this._selectionModel.clear();
-    }
-    this.selectedChange.emit(this._selectionModel.selected);
-  }
-
-  select(item: T) {
-    const wasSelected = this.checkSelected(item);
-    if (wasSelected) {
-      this._selectionModel.deselect(item);
-    } else {
-      this._selectionModel.select(item);
-    }
-
-    this.selectedChange.emit(this._selectionModel.selected);
-  }
-
-  ngOnChanges(change: SimpleChanges) {
-    if (change && change.dataSource && !change.dataSource.firstChange) {
-      this._selectionModel.clear();
+      this._sort = '';
     }
   }
 
-  checkSelected(item: T) {
-    return this._selectionModel.isSelected(item);
+  private _checkSortInputAndSetValue(column: string, sort: string) {
+    const findColumn = this._contentColumns.find(col => col.name === column);
+    if (findColumn) {
+      findColumn.sort = sort as NtColumnSort;
+    }
   }
 
   private _clearSort(filter?: NtColumnSortChange) {
@@ -142,11 +139,8 @@ export class NtTableComponent<T> extends CdkTable<T> implements AfterContentInit
 
     merge(...this._contentColumns.map(column => column._sortChange))
       .pipe(takeUntil(changedOrDestroyed))
-      .subscribe(() => {
-        this._changeDetectorRef.markForCheck();
-      });
+      .subscribe(() => this._changeDetectorRef.markForCheck());
   }
-
 
   ngOnDestroy() {
     this._destroy.next();

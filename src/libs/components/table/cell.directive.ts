@@ -59,18 +59,18 @@ export class NtFooterCellDefDirective extends CdkFooterCellDef { }
 })
 export class NtColumnDirective extends CdkColumnDef {
 
-  private _sortable = false;
-
   sort: NtColumnSort = NtColumnSort.NONE;
 
   @Input('nt-column')
-  set ntColumn(value: string) { this.name = value; }
+  set column(value: string) { this.name = value; }
 
   @Input() name: string;
 
   @Input() sticky: boolean;
 
   @Input() stickyEnd: boolean;
+
+  private _sortable = false;
 
   @Input()
   set sortable(value: boolean) { this._sortable = coerceBooleanProperty(value); }
