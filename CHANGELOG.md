@@ -1,3 +1,32 @@
+# [0.7.0](https://github.com/codedance-top/ng-tangram/compare/0.6.0...0.7.0) (2020-08-17)
+
+### Bug Fixes
+
+* **forms:** 修复 form-field 的 labelWidth 属性和 ntFormLabelWidth 冲突的问题 ([7b21b21](https://github.com/codedance-top/ng-tangram/commit/7b21b213b6f20ea557a7c0456c241a3d5711c20c))
+* **forms:** 优化 form-field 组件的排列设置方式 ([5fc6028](https://github.com/codedance-top/ng-tangram/commit/5fc6028a8641af5065bd383d7e0e9fd80b384e2d))
+* **option:** 修复 disabled 属性不起作用的问题 ([9d92aa6](https://github.com/codedance-top/ng-tangram/commit/9d92aa6ab4400573ca215c9bcafe467ade0b6ed6))
+* **option:** 修复 option 的 disabled 属性不起作用的问题 ([29ac088](https://github.com/codedance-top/ng-tangram/commit/29ac0889941a97cd9e2f8db2ccc418df183336a6))
+* **pagination:** 修复更改 pageCount 属性时，页码高于计算之后的最大页数会出现错误的问题 ([f07ceca](https://github.com/codedance-top/ng-tangram/commit/f07cecae9ac5ba70ea074f52ac765506023f88c5))
+* **picture:** 修复无法读取图片预览图的问题 ([6002814](https://github.com/codedance-top/ng-tangram/commit/600281402df45fe24269189585274f136894a310))
+* **upload:** 修复 upload 模块在 ivy 模式下编译错误的问题 ([ee4bc4e](https://github.com/codedance-top/ng-tangram/commit/ee4bc4ebaa3bebdbcdaadd5b14156ec6b89c0a7e))
+* **drawer:** 修复在 chrome 和 firefox 浏览器下弹出动画失效的问题 ([4c322c5](https://github.com/codedance-top/ng-tangram/commit/4c322c5f31afbcac5e92c0da6734c71cb10942de))
+* **overlay:** 优化了 overlay 外部点击判断逻辑 ([2858d58](https://github.com/codedance-top/ng-tangram/commit/2858d58a9458d430f97afc0647e7c1988083c233))
+* **overlay:** 优化了 Overlay 的 takeUntil 顺序 ([bbb4b00](https://github.com/codedance-top/ng-tangram/commit/bbb4b001b3deacd87149f8cd1606c489bcfac514))
+
+### Features
+
+* 支持 Ivy Renderer
+* 优化 typescript 导入路径 ([cbdaa10](https://github.com/codedance-top/ng-tangram/commit/cbdaa1048779abe5b779d4e822a50a840903740c))
+* **angular:** 支持 angular 9.1.x ([aef9223](https://github.com/codedance-top/ng-tangram/commit/aef92236f02ea6946ecbe744e3959b12f55fbeb7))
+* **select:** 增加控制显示清除icon的 clearable 属性 ([7f134c6](https://github.com/codedance-top/ng-tangram/commit/7f134c60f97209374416639d18f410ed012dbbac))
+* **autocomplete:** 新增了 autocomplete 组件 ([d44ed3f](https://github.com/codedance-top/ng-tangram/commit/d44ed3f187ebce7a397405268a7e2466290abc52))
+* **forms:** 新增内置验证器 ([e01f249](https://github.com/codedance-top/ng-tangram/commit/e01f249cfc8a1bfb15b2b4fcedc5356500b8d6c4))
+* **overlay:** 支持 ivy render ([8c7beb3](https://github.com/codedance-top/ng-tangram/commit/8c7beb36c306d39c650739c3bbb9832f1b695dda))
+* **pagination:** 样式采用自定义的方式，不再依赖 foundation, CssClass `pagination` => `nt-pagination` ([02bac13](https://github.com/codedance-top/ng-tangram/commit/02bac13f02e4968651c080561be232283c4b355a))
+* **checkbox,radio:** 新增 checkbox 和 radio 的 group 组件事件 `(selectionChange)` ([2f38fc6](https://github.com/codedance-top/ng-tangram/commit/2f38fc68eb4ebd15c32489dd69b4f6b784490244))
+* **drawer:** 增加 touchmode 属性，可以在触碰时关闭 ([4d3d6f4](https://github.com/codedance-top/ng-tangram/commit/4d3d6f41e681a689399f386557b594d983c2c8c2))
+* **table:** 新增了 talbe 的 sort属性，用于改变设置列的初始sort值 ([8bb4b95](https://github.com/codedance-top/ng-tangram/commit/8bb4b9564383801aa25dbee37fc82e4425bc56b3))
+
 # [0.7.0-beta.7](https://github.com/codedance-top/ng-tangram/compare/0.7.0-beta.6...0.7.0-beta.7) (2020-07-10)
 
 ### Bug Fixes
@@ -14,6 +43,7 @@
 # [0.7.0-beta.5](https://github.com/codedance-top/ng-tangram/compare/0.7.0-beta.4...0.7.0-beta.5) (2020-06-22)
 
 ### Bug Fixes
+
 * **option:** 修复 option 的 disabled 属性不起作用的问题 ([29ac088](https://github.com/codedance-top/ng-tangram/commit/29ac0889941a97cd9e2f8db2ccc418df183336a6))
 
 # [0.7.0-beta.4](https://github.com/codedance-top/ng-tangram/compare/0.7.0-beta.3...0.7.0-beta.4) (2020-06-22)
