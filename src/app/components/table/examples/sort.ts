@@ -4,7 +4,7 @@ import { NtColumnSort, NtColumnSortChange, NtTableComponent } from '@ng-tangram/
 @Component({
   selector: 'example-table-sort',
   template: `
-  <nt-table [dataSource]="dataSource" (sortChange)="onSortChange($event)">
+  <nt-table [dataSource]="dataSource" (sortChange)="onSortChange($event)" sort="address:desc">
     <nt-column name="name">
       <nt-header-cell *ntHeaderCellDef>名称</nt-header-cell>
       <nt-cell *ntCellDef="let item">{{ item.name }}</nt-cell>
@@ -44,13 +44,7 @@ export class ExampleTableSortComponent implements AfterViewInit {
 
   @ViewChild(NtTableComponent, { static: true }) table: NtTableComponent<any>;
 
-  ngAfterViewInit() { 
-    this.table._contentColumns.toArray().forEach(item => { 
-      if (item.name === 'address') { 
-        setTimeout(() => item.sort = NtColumnSort.DESC);
-      }
-    });
-  }
+  ngAfterViewInit() { }
 
   onSortChange(change: NtColumnSortChange) {
     this.sortChange = change;

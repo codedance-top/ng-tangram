@@ -38,10 +38,10 @@ app {
     margin: 0;
     padding: 1em;
     text-align: center;
-    a { 
+    a {
       color: inherit;
 
-      &:hover { 
+      &:hover {
         color: $primary-color;
       }
     }

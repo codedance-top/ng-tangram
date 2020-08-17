@@ -2,8 +2,21 @@ import { Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { AfterContentInit, Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { requiredSelection } from '@ng-tangram/components/forms';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
+
+export function compareProductValueValidator(ltLabel?: string): ValidatorFn {
+  return  (control: FormGroup): ValidationErrors | null =>  {
+    console.log(2);
+    const originalPrice = control.get('username');
+    const alterEgo = control.get('password');
+    const originalLength = coerceNumberProperty(originalPrice.value?.length, 0);
+    const alterEgoLength = coerceNumberProperty(alterEgo.value?.length, 0);
+    console.log(alterEgoLength <= originalLength ? null : { ltTo: true, ltLabel });
+    return alterEgoLength <= originalLength ? null : { ltTo: true, ltLabel };
+  }
+}
 
 @Component({
   selector: 'example-form-login',
@@ -71,6 +84,8 @@ export class ExampleFormLoginComponent implements AfterContentInit {
       phone: ['', [Validators.required, Validators.pattern(/^1[345678]\d{9}$/)]],
       select: ['', [requiredSelection]],
       datepicker: ['', [requiredSelection]],
+    }, {
+      validators: compareProductValueValidator('划线价格')
     });
 
     this.email = new FormControl('', [Validators.required, Validators.email]);

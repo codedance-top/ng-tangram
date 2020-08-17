@@ -22,7 +22,7 @@ $nav-size: 300px;
     z-index: 11;
     height: 100%;
     padding: 80px 0 20px 0;
-    min-width: 280px;
+    // min-width: 280px;
     overflow: auto;
 
     .docs-nav {
@@ -43,9 +43,9 @@ $nav-size: 300px;
   }
 
   .nav-content-wrapper {
-    width: 800px;
+    // width: 800px;
     // padding-right: 100px;
-    max-width: calc(100% - #{$nav-size});
+    // max-width: calc(100% - #{$nav-size});
     position: relative;
 
     .nt-markdown {
@@ -98,6 +98,7 @@ $nav-size: 300px;
     .nav-content-wrapper {
       width: 100%;
       height: auto;
+      max-width: 800px;
     }
 
     app-header .menu {
