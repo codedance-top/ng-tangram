@@ -1,21 +1,18 @@
-
-import { defer, Observable, of as observableOf, Subject } from 'rxjs';
-import { switchMap, take, takeUntil, filter, distinctUntilChanged, map } from 'rxjs/operators';
+import { defer, Observable, of, Subject } from 'rxjs';
+import { filter, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { transition, trigger } from '@angular/animations';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
-  AfterViewInit,
+  AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChild,
   Input,
   NgZone,
-  OnChanges,
   OnDestroy,
   Optional,
-  SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
 import {
@@ -61,7 +58,7 @@ import { NtFormOrientation, NtFormOrientationDirective } from './form-orientatio
     '[class.nt-form-horizontal]': 'isHorizontal()'
   }
 })
-export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
+export class NtFormFieldComponent implements AfterContentInit, OnDestroy {
 
   private readonly _destroy = new Subject<void>();
 
@@ -151,7 +148,7 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
 
   readonly statusChanges: Observable<any> = defer(() => {
     if (this.control && this.ngControl) {
-      return this.ngControl.statusChanges ? this.ngControl.statusChanges : observableOf(null);
+      return this.ngControl.statusChanges ? this.ngControl.statusChanges : of(null);
     }
     return this._ngZone.onStable
       .asObservable()
@@ -181,7 +178,7 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
       .subscribe(() => this._validate());
   }
 
-  ngAfterViewInit() {
+  ngAfterContentInit() {
     if (this._ngForm && this.ngControl) {
       this._ngForm.ngSubmit
         .pipe(takeUntil(this._destroy))
@@ -214,10 +211,11 @@ export class NtFormFieldComponent implements AfterViewInit, OnDestroy {
   }
 
   private _subscribeContainerWidthChange() {
-    this._formLabelWidth.widthChange.pipe(
-      filter(() => this._isUnsetedWidthValue),
-      takeUntil(this._destroy)
-    )
+    this._formLabelWidth.widthChange
+      .pipe(
+        filter(() => this._isUnsetedWidthValue),
+        takeUntil(this._destroy)
+      )
       .subscribe(width => {
         this._labelWidth = width;
         this._setHorizontalStyles();
