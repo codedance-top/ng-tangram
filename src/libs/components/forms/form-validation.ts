@@ -30,6 +30,9 @@ export interface NtValidationTransformer {
 export class NtFormValidationTransformer implements NtValidationTransformer {
 
   transform(errors?: ValidationErrors, label?: string, messages?: { [key: string]: string }) {
+
+    console.log(errors);
+
     if (!errors) {
       return '';
     }

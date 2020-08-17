@@ -175,7 +175,6 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
     @Optional() @Self() public ngControl: NgControl,
     @Optional() @Inject(NT_PICTURE_ICONS) public icons: NtPictureIcons) {
     super();
-    console.log(_uploadHandler);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
