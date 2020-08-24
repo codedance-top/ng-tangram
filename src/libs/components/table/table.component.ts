@@ -3,7 +3,7 @@ import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
-import { CDK_TABLE_TEMPLATE, CdkTable } from '@angular/cdk/table';
+import { CDK_TABLE_TEMPLATE, CdkTable, _CoalescedStyleScheduler, CDK_TABLE } from '@angular/cdk/table';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterContentInit,
@@ -33,6 +33,11 @@ import { NtColumnDirective, NtColumnSort, NtColumnSortChange } from './cell.dire
   template: CDK_TABLE_TEMPLATE,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    _CoalescedStyleScheduler,
+    { provide: CdkTable, useExisting: NtTableComponent },
+    { provide: CDK_TABLE, useExisting: NtTableComponent },
+  ],
   host: {
     'class': 'nt-table'
   }
@@ -69,11 +74,13 @@ export class NtTableComponent<T> extends CdkTable<T> implements AfterContentInit
     private _ngZone: NgZone,
     protected _differs: IterableDiffers,
     protected _changeDetectorRef: ChangeDetectorRef,
+    protected _coalescedStyleScheduler: _CoalescedStyleScheduler,
     protected _elementRef: ElementRef,
     @Attribute('role') role: string,
     @Optional() protected readonly _dir: Directionality,
-    @Inject(DOCUMENT) _document: any, _platform: Platform) {
-    super(_differs, _changeDetectorRef, _elementRef, role, _dir, _document, _platform);
+    @Inject(DOCUMENT) _document: any,
+    _platform: Platform) {
+    super(_differs, _changeDetectorRef, _coalescedStyleScheduler, _elementRef, role, _dir, _document, _platform);
   }
 
   ngAfterContentInit() {

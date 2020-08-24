@@ -204,7 +204,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
       return this._placeholder;
     }
 
-    return this.filter ? this.displayValue : this._placeholder;
+    return typeof this.filter === 'function' ? this.displayValue : this._placeholder;
   }
 
   _keyManager: ActiveDescendantKeyManager<NtOptionComponent>;
