@@ -46,3 +46,24 @@ a {
     color: darken($primary-color, 10%);
   }
 }
+
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:horizontal {
+  border-radius: 2px;
+  background: rgba($dark-gray, 0.75);
+  transition: background-color 0.2s;
+  &:hover {
+    background: $dark-gray;
+  }
+}

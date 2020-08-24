@@ -41,7 +41,13 @@
               "./node_modules/@fortawesome/fontawesome-free/css/regular.min.css",
               "src/styles/main.scss"
             ],
-            "es5BrowserSupport": true
+            "allowedCommonJsDependencies": [
+              "nprogress",
+              "blueimp-load-image",
+              "codemirror/addon/display/placeholder",
+              "codemirror/addon/edit/continuelist",
+              "codemirror/mode/gfm/gfm"
+            ]
           },
           "configurations": {
             "production": {
