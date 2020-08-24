@@ -1,3 +1,10 @@
+# [0.8.0-beta.0](https://github.com/codedance-top/ng-tangram/compare/0.7.0...0.8.0-beta.0) (2020-08-24)
+
+### Features
+
+* **angular:** 升级至 angular v10 ([3a0f323](https://github.com/codedance-top/ng-tangram/commit/3a0f323d778d675ac4b6c9cec002092ac548eb06))
+* **table:** 排序的 icon 样式现在采用 fontawesome 的字体 ([9850faa](https://github.com/codedance-top/ng-tangram/commit/9850faac36ba0abc7eb109d526b37f2ae55b92fe))
+
 # [0.7.0](https://github.com/codedance-top/ng-tangram/compare/0.6.0...0.7.0) (2020-08-17)
 
 ### Bug Fixes
