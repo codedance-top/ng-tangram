@@ -6,6 +6,7 @@ import { join } from 'path';
 
 /** 用来在服务器渲染时欺骗 codemirror */
 const win = domino.createWindow();
+// @ts-ignore
 global['window'] = win;
 global['document'] = win.document;
 global['navigator'] = win.navigator;
