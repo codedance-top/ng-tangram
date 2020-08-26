@@ -1,3 +1,9 @@
+# [0.8.0-beta.1](https://github.com/codedance-top/ng-tangram/compare/0.8.0-beta.0...0.8.0-beta.1) (2020-08-26)
+
+### Bug Fixes
+
+* **select:** 修复当 value 为数字 0 时不会被选中的问题 ([5567a96](https://github.com/codedance-top/ng-tangram/commit/5567a960552eefd56e4eb754c50c1d96f210991a))
+
 # [0.8.0-beta.0](https://github.com/codedance-top/ng-tangram/compare/0.7.0...0.8.0-beta.0) (2020-08-24)
 
 ### Features
