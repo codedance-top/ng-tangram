@@ -491,7 +491,7 @@ export class NtSelectComponent extends NtFormFieldControl<any>
 
   private _initializeSelection(): void {
     Promise.resolve().then(() => {
-      this._setSelectionByValue(this.ngControl?.value || this.value);
+      this._setSelectionByValue(this.ngControl ? this.ngControl.value : this.value);
     });
   }
 
