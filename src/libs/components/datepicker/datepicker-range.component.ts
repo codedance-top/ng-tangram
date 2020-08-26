@@ -9,7 +9,6 @@ import {
   ConnectionPositionPair
 } from '@angular/cdk/overlay';
 import {
-  AfterViewInit,
   Attribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -45,12 +44,12 @@ import {
 } from './datepicker-icons';
 
 @Component({
-  selector: 'nt-datepicker',
-  templateUrl: 'datepicker.component.html',
+  selector: 'nt-datepicker-range',
+  templateUrl: 'datepicker-range.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'nt-datepicker',
+    'class': 'nt-datepicker nt-datepicker-range',
     // '[class.disabled]': 'disabled',
     // '[class.readonly]': 'readonly',
     '(click)': '_onClick($event)',
@@ -62,10 +61,10 @@ import {
     ])
   ],
   providers: [
-    { provide: NtFormFieldControl, useExisting: NtDatePickerComponent }
+    { provide: NtFormFieldControl, useExisting: NtDatePickerRangeComponent }
   ]
 })
-export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements AfterViewInit, OnChanges, ControlValueAccessor {
+export class NtDatePickerRangeComponent<D> extends NtFormFieldControl<D> implements OnChanges, ControlValueAccessor {
 
   private _overlayToggle = new Subject<boolean>();
 
@@ -84,6 +83,7 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements A
     value = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
     this._value = value;
     this._displayValue = value ? this._dateAdapter.format(value, this._dateFormats.display.dateInput) : '';
+    // this._changeDetectorRef.markForCheck();
   }
 
   private _placeholder = '';
@@ -171,15 +171,11 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements A
     );
   }
 
-  ngAfterViewInit() {
-    this._changeDetectorRef.markForCheck();
-  }
-
   ngOnChanges(changes: SimpleChanges) {
-    const change = changes.value || changes.startAt || changes.minDate || changes.maxDate;
-    if(change && !change.firstChange) {
-      this._changeDetectorRef.markForCheck();
-    }
+    // const change = changes.value || changes.startAt || changes.minDate || changes.maxDate;
+    // if(change && !change.firstChange) {
+    //   this._changeDetectorRef.markForCheck();
+    // }
   }
 
   writeValue(value: D) {
@@ -196,7 +192,7 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements A
 
   select(date: D) {
     this.value = date;
-    this.overlay.close();
+    // this.overlay.close();
     this._onChange(date);
   }
 

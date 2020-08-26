@@ -13,6 +13,12 @@ import { NtDatePickerComponent } from '@ng-tangram/components/datepicker';
       [(ngModel)]="startDate"
       [disabled]="disabled">
     </nt-datepicker>
+
+    <nt-datepicker-range
+      placeholder="开始日期"
+      [(ngModel)]="startDate"
+      [disabled]="disabled">
+    </nt-datepicker-range>
   `
 })
 export class ExampleDatePickerBasicComponent {

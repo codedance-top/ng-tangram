@@ -27,7 +27,10 @@ export type NtDatePickerViewType = 'month' | 'year' | 'multi-year';
   selector: 'nt-datepicker-calendar',
   templateUrl: 'calendar.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'class': 'nt-datepicker-calendar'
+  }
 })
 export class NtDatePickerCalendarComponent<D> implements AfterContentInit, OnChanges, OnDestroy {
 

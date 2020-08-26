@@ -88,6 +88,10 @@ $nt-datepicker-pane-background: $white !default;
     margin: 0 0 $form-spacing;
   }
 
+  .nt-datepicker-calendar {
+    display: inline-block;
+  }
+
   .nt-datepicker-pane {
     position: relative;
     border-radius: $nt-datepicker-pane-radius;
