@@ -1,4 +1,4 @@
-# [0.8.0-beta.2](https://github.com/codedance-top/ng-tangram/compare/0.8.0-beta.0...0.8.0-beta.2) (2020-08-27)
+# [0.8.0-beta.2](https://github.com/codedance-top/ng-tangram/compare/0.8.0-beta.1...0.8.0-beta.2) (2020-08-27)
 
 ### Bug Fixes
 
