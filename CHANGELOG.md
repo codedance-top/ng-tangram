@@ -1,3 +1,9 @@
+# [0.8.0-beta.2](https://github.com/codedance-top/ng-tangram/compare/0.8.0-beta.0...0.8.0-beta.2) (2020-08-27)
+
+### Bug Fixes
+
+* **table:** 修复 sort 在空值时状态不更新的问题 ([0eb9b1a](https://github.com/codedance-top/ng-tangram/commit/0eb9b1ab5874af45693297b52277f981c066779a))
+
 # [0.8.0-beta.1](https://github.com/codedance-top/ng-tangram/compare/0.8.0-beta.0...0.8.0-beta.1) (2020-08-26)
 
 ### Bug Fixes
