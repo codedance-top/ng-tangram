@@ -101,11 +101,14 @@ export class NtTableComponent<T> extends CdkTable<T> implements AfterContentInit
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const change = changes.sortValue;
+    const change = changes.sort;
     if (change && !change.firstChange) {
-      const [column, sort] = change.currentValue.split(':');
+      const currentValue = change.currentValue || '';
+      const [column, sort] = currentValue.split(':');
       if (column) {
         this._checkSortInputAndSetValue(column, sort);
+      } else {
+        this._clearSort();
       }
     }
   }
