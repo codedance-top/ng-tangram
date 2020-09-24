@@ -3,8 +3,6 @@ import { NtUploadHandler } from '@ng-tangram/components/core';
 
 import { NtNoopUploadHandler } from './noop-upload-handler';
 
-
-
 @NgModule({
   providers: [
     { provide: NtUploadHandler, useClass: NtNoopUploadHandler }

@@ -35,7 +35,7 @@ import { NtFormOrientation, NtFormOrientationDirective } from './form-orientatio
       *ngIf="labelVisible"
       [ngStyle]="_labelStyles"
       [class.required]="markVisible && required">
-      {{label}}
+      {{ label }}
     </label>
     <div class="nt-form-group" [ngStyle]="_groupStyles">
       <ng-content></ng-content>
@@ -64,7 +64,7 @@ export class NtFormFieldComponent implements AfterContentInit, OnDestroy {
 
   private _markVisible = true;
 
-  private _isUnsetedWidthValue = true;
+  private _isDefaultWidthValue = true;
 
   private _ngForm: NgForm | FormGroupDirective | null = null;
 
@@ -93,10 +93,10 @@ export class NtFormFieldComponent implements AfterContentInit, OnDestroy {
   set labelWidth(value: number) {
     const coercedValue = coerceNumberProperty(value, 0);
     if (coercedValue > 0) {
-      this._isUnsetedWidthValue = false;
+      this._isDefaultWidthValue = false;
       this._labelWidth = coercedValue;
     } else {
-      this._isUnsetedWidthValue = true;
+      this._isDefaultWidthValue = true;
       this._labelWidth = 120;
     }
     this._setHorizontalStyles();
@@ -213,7 +213,7 @@ export class NtFormFieldComponent implements AfterContentInit, OnDestroy {
   private _subscribeContainerWidthChange() {
     this._formLabelWidth.widthChange
       .pipe(
-        filter(() => this._isUnsetedWidthValue),
+        filter(() => this._isDefaultWidthValue),
         takeUntil(this._destroy)
       )
       .subscribe(width => {
@@ -232,7 +232,6 @@ export class NtFormFieldComponent implements AfterContentInit, OnDestroy {
         this._orientation = orientation;
         this._setHorizontalStyles();
       });
-
   }
 
   private _setHorizontalStyles() {

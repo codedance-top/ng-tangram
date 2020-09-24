@@ -35,7 +35,7 @@ export declare type FadeAnimationOptions = {
   // 延迟执行时间，默认时间 0 秒
   delay?: number,
 
-  // 动画节奏，默认 ease
+  // 定时函数，默认 ease
   timingFunction?: string;
 };
 

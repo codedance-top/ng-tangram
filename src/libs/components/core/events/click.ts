@@ -1,5 +1,5 @@
 import { fromEvent, merge, Observable } from 'rxjs';
-import { debounceTime, filter, map, tap } from 'rxjs/operators';
+import { filter, tap } from 'rxjs/operators';
 
 /**
  * 订阅来自元素外的点击
@@ -88,15 +88,15 @@ export function fromOutsideTouch(zones: HTMLElement[], container: Element = docu
   const isTouchZone = (event: MouseEvent | TouchEvent, zone: HTMLElement) => {
 
     const rect = zone.getBoundingClientRect();
-    let touchX: number, touchY: number, 
+    let touchX: number, touchY: number,
       x1 = rect.left,
       y1 = rect.top,
       x2 = rect.right,
       y2 = rect.bottom;
-    if(event instanceof TouchEvent) {
+    if (event instanceof TouchEvent) {
       touchX = event.touches.item(0)?.clientX || -1;
       touchY = event.touches.item(0)?.clientY || -1;
-    } else { 
+    } else {
       touchX = event.clientX;
       touchY = event.clientY;
     }

@@ -27,10 +27,10 @@ import {
   fadeIn,
   fadeOut,
   NT_DATE_FORMATS,
-  NtDateFormats,
+  NtDateFormats
 } from '@ng-tangram/components/core';
-import { BOTTOM_LEFT, NtOverlayComponent, TOP_LEFT } from '@ng-tangram/components/overlay';
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
+import { BOTTOM_LEFT, NtOverlayComponent, TOP_LEFT } from '@ng-tangram/components/overlay';
 
 import { NtDatePickerCalendarComponent } from './calendar.component';
 import {

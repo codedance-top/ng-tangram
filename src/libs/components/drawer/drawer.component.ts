@@ -66,7 +66,7 @@ let uniqueId = 0;
   host: {
     'class': 'nt-drawer',
     '[class.opened]': 'state !== "closed"',
-    '[class.backdroped]': 'backdrop',
+    '[class.backdrop]': 'backdrop',
     '[@slide]': 'state',
     '(@slide.start)': 'onAnimationStart($event)',
     '(@slide.done)': 'onAnimationDone($event)',
@@ -102,7 +102,7 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
   @Input()
   get placement() { return this._placement; }
   set placement(value: NtDrawerPlacement) {
-    this._changePlacementValueAndStyle(value);
+    this._changePlacementAndStyles(value);
   }
 
   private _touchmode: boolean = false;
@@ -131,7 +131,7 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
     if (isPlatformBrowser(_platformId)) {
       this._initContainerAndStyles(container);
     }
-    this._changePlacementValueAndStyle('left');
+    this._changePlacementAndStyles('left');
   }
 
   ngAfterViewInit() { }
@@ -146,7 +146,6 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
   }
 
   open() {
-    // console.log();
     this.state = this.placement;
   }
 
@@ -183,7 +182,7 @@ export class NtDrawerComponent implements AfterViewInit, OnDestroy {
   }
 
   /** 调整方向的样式属性 */
-  private _changePlacementValueAndStyle(placement: NtDrawerPlacement) {
+  private _changePlacementAndStyles(placement: NtDrawerPlacement) {
     if (this._placement) {
       this._renderer.removeClass(this._element.nativeElement, this._placement);
     }

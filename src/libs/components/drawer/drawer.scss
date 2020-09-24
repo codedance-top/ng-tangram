@@ -1,9 +1,9 @@
 $nt-drawer-background: $white !default;
 $nt-drawer-backdrop-background: #000 !default;
-$nt-drawer-backdrop-opacity: .6 !default;
+$nt-drawer-backdrop-opacity: 0.6 !default;
 $nt-drawer-box-shadow: $prototype-box-shadow !default;
-$nt-drawer-box-shadow-backdroped: 0px 0px 0px 2px nth($prototype-box-shadow, length($prototype-box-shadow)) !default;
-$nt-drawer-transition-duration: .4s !default;
+$nt-drawer-box-shadow-backdrop: 0px 0px 0px 2px nth($prototype-box-shadow, length($prototype-box-shadow)) !default;
+$nt-drawer-transition-duration: 0.4s !default;
 $nt-drawer-transition-function: ease !default;
 $nt-drawer-zindex: 100 !default;
 
@@ -56,7 +56,7 @@ $nt-drawer-zindex: 100 !default;
   right: 0;
   bottom: 0;
   z-index: $nt-drawer-zindex - 1;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 
 @mixin nt-drawer-container {
@@ -72,7 +72,7 @@ $nt-drawer-zindex: 100 !default;
   }
   background: $nt-drawer-backdrop-background;
   opacity: $nt-drawer-backdrop-opacity;
-  animation: #{$style-name}-fade-in .5s 1;
+  animation: #{$style-name}-fade-in 0.5s 1;
 }
 
 @mixin nt-drawer-style {
@@ -81,9 +81,9 @@ $nt-drawer-zindex: 100 !default;
     box-shadow: $nt-drawer-box-shadow;
   }
 
-  &.backdroped,
-  &.backdroped.opened {
-    box-shadow: $nt-drawer-box-shadow-backdroped;
+  &.backdrop,
+  &.backdrop.opened {
+    box-shadow: $nt-drawer-box-shadow-backdrop;
   }
 }
 

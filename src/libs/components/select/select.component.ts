@@ -519,7 +519,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
   }
 
   private _selectValue(value: any, isUserInput = false): NtOptionComponent | undefined {
-    // console.log(value);
     const correspondingOption = this.options.find((option: NtOptionComponent) => {
       try {
         return option.value !== null && this._compareWith(option.value, value);
