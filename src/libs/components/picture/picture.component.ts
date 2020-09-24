@@ -205,6 +205,10 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
 
   writeValue(value: NtPictureRef<T>[]) {
     if (value) {
+      const surplusCount = this.maxFiles - this._displayPictureRefs.length;
+      if (value.length > surplusCount) {
+        value = value.splice(0, surplusCount);
+      }
       this._pictureRefs.splice(0, this._pictureRefs.length, ...value);
       this._displayPictureRefs.splice(0, this._displayPictureRefs.length, ...value);
       this._setTriggerVisible();
