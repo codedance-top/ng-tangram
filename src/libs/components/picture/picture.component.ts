@@ -105,6 +105,10 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
 
   get value() { return this._pictureRefs; }
 
+  private _isFulled = false;
+
+  get isFulled() {  return this._isFulled; };
+
   private _disabled = false;
 
   @Input()
@@ -119,6 +123,9 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
 
   private _notrigger = false;
 
+  /**
+   * @deprecated 即将废弃
+   */
   @Input()
   get notrigger() { return this._notrigger; }
   set notrigger(value: boolean) { this._notrigger = coerceBooleanProperty(value); }
@@ -143,17 +150,24 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
     }
   }
 
-  private _multiple = true;
+  private _multiple = false;
 
-  @Input()
   get multiple() { return this._multiple; }
-  set multiple(value: boolean) { this._multiple = coerceBooleanProperty(value); }
 
   private _limitSize = Number.MAX_VALUE;
 
   @Input()
   get limitSize() { return this._limitSize; }
   set limitSize(value: number) { this._limitSize = coerceNumberProperty(value, 5); }
+
+  private _maxFiles = 1;
+
+  @Input()
+  get maxFiles() { return this._maxFiles; }
+  set maxFiles(value: number) {
+    this._maxFiles = coerceNumberProperty(value, 1);
+    this._checkMultipleableSelector();
+  }
 
   @Input() url: string = '';
 
@@ -193,6 +207,7 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
     if (value) {
       this._pictureRefs.splice(0, this._pictureRefs.length, ...value);
       this._displayPictureRefs.splice(0, this._displayPictureRefs.length, ...value);
+      this._setTriggerVisible();
     }
   }
 
@@ -221,8 +236,14 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
 
   _select(files: File[]) {
 
+    const surplusCount = this.maxFiles - this._displayPictureRefs.length;
+    if (files.length > surplusCount) {
+      files = files.splice(0, surplusCount);
+    }
+
     const pictureRefs = files.map(file => this._createPictureRef(file));
     this._displayPictureRefs.push(...pictureRefs);
+    this._setTriggerVisible();
     this._onTouched && this._onTouched();
   }
 
@@ -263,6 +284,8 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
       const displayIndex = this._displayPictureRefs.indexOf(pictureRef);
       this._displayPictureRefs.splice(displayIndex, 1);
     }
+
+    this._setTriggerVisible();
   }
 
   private _resolveUploadedResult(pictureRef: NtPictureRef<T>, event: NtUploadEvent<T>) {
@@ -276,6 +299,18 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
       this.errors.next(event.error);
     }
     this._onChange(this.value);
+  }
+
+  private _checkMultipleableSelector() {
+    if (this.maxFiles > 1) {
+      this._multiple = true;
+    } else {
+      this._multiple = false;
+    }
+  }
+
+  private _setTriggerVisible() {
+    this._isFulled = this._displayPictureRefs.length >= this.maxFiles;
   }
 
   // private _coerceAccpetRange(array: Array<string>) {

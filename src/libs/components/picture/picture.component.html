@@ -12,7 +12,7 @@
   </div>
 </div>
 <div class="nt-picture-add {{ shape }}"
-  *ngIf="!notrigger"
+  *ngIf="!notrigger && !isFulled"
   ntFileSelect
   [accept]="accept"
   [limitSize]="limitSize"

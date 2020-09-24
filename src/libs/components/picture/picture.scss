@@ -127,17 +127,16 @@ $nt-picture-preview-height: 90vh !default;
       @include nt-picture-add;
     }
 
-    &.disabled .nt-picture-add {
-      opacity: .5;
-      cursor: no-drop;
-      box-shadow: none;
-      &:hover {
-        border: $nt-picture-border;
+    &.readonly,
+    &.disabled {
+      .nt-picture-add {
+        opacity: .5;
+        cursor: no-drop;
+        box-shadow: none;
+        &:hover {
+          border: $nt-picture-border;
+        }
       }
-    }
-
-    &.readonly .nt-picture-add {
-      display: none;
     }
   }
 
