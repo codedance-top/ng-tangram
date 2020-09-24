@@ -1,3 +1,14 @@
+# [0.8.0-beta.3](https://github.com/codedance-top/ng-tangram/compare/0.8.0-beta.0...0.8.0-beta.3) (2020-09-24)
+
+### Bug Fixes
+
+* **picture:** 修复了当设置 maxFiles 之后还能设置超出长度的问题 ([5ccaf79](https://github.com/codedance-top/ng-tangram/commit/5ccaf79988e79592b5b08c2fb64c84307b3aef0a))
+
+### Features
+
+* **picture:** 增加了 maxFiles 属性，取消了 multiple 属性，现在根据 maxFiles 自动判断 multiple 选项 ([619aa0c](https://github.com/codedance-top/ng-tangram/commit/619aa0c8b6e0580959c3a2505bc042245a537e3c))
+
+
 # [0.8.0-beta.2](https://github.com/codedance-top/ng-tangram/compare/0.8.0-beta.1...0.8.0-beta.2) (2020-08-27)
 
 ### Bug Fixes
