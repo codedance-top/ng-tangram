@@ -56,6 +56,7 @@ export class NtFooterCellDefDirective extends CdkFooterCellDef { }
 @Directive({
   selector: 'nt-column, [nt-column]',
   providers: [{ provide: CdkColumnDef, useExisting: NtColumnDirective }],
+  inputs: ['name', 'sticky', 'stickyEnd']
 })
 export class NtColumnDirective extends CdkColumnDef {
 
@@ -63,12 +64,6 @@ export class NtColumnDirective extends CdkColumnDef {
 
   @Input('nt-column')
   set column(value: string) { this.name = value; }
-
-  @Input() name: string;
-
-  @Input() sticky: boolean;
-
-  @Input() stickyEnd: boolean;
 
   private _sortable = false;
 
