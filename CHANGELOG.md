@@ -1,3 +1,9 @@
+# [0.8.0-beta.4](https://github.com/codedance-top/ng-tangram/compare/0.8.0-beta.3...0.8.0-beta.4) (2020-10-29)
+
+### Bug Fixes
+
+* **table:** 修复 table 与 最近版本CDK 不兼容的问题 ([8a02942](https://github.com/codedance-top/ng-tangram/commit/8a02942911e8fa526963a0746bf203c342536c63))
+
 # [0.8.0-beta.3](https://github.com/codedance-top/ng-tangram/compare/0.8.0-beta.0...0.8.0-beta.3) (2020-09-24)
 
 ### Bug Fixes
