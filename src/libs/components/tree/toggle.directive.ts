@@ -3,8 +3,9 @@ import { Directive, Input } from '@angular/core';
 
 @Directive({
   selector: '[ntTreeNodeToggle]',
-  providers: [{ provide: CdkTreeNodeToggle, useExisting: NtTreeNodeToggleDirective }]
+  providers: [
+    { provide: CdkTreeNodeToggle, useExisting: NtTreeNodeToggleDirective }
+  ],
+  inputs: ['recursive: ntTreeNodeToggleRecursive']
 })
-export class NtTreeNodeToggleDirective<T> extends CdkTreeNodeToggle<T> {
-  @Input('ntTreeNodeToggleRecursive') recursive: boolean = false;
-}
+export class NtTreeNodeToggleDirective<T> extends CdkTreeNodeToggle<T> { }
