@@ -16,7 +16,7 @@ import { NtFormFieldControl } from '@ng-tangram/components/forms';
     { provide: NtFormFieldControl, useExisting: NtInputDirective }
   ]
 })
-export class NtInputDirective extends NtFormFieldControl<any> {
+export class NtInputDirective implements NtFormFieldControl<any> {
 
   private _disabled = false;
   private _value: any;
@@ -74,8 +74,7 @@ export class NtInputDirective extends NtFormFieldControl<any> {
   constructor(
     @Optional() @Self() public ngControl: NgControl,
     private _platform: Platform,
-    private _elementRef: ElementRef) { super();
-  }
+    private _elementRef: ElementRef) { }
 
   focus() { this._elementRef.nativeElement.focus(); }
 

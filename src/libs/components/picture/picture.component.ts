@@ -93,7 +93,7 @@ export class NtPictureRef<T> extends NtUploadRef<T> {
     ])
   ]
 })
-export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]> implements OnInit, ControlValueAccessor {
+export class NtPictureComponent<T> implements OnInit, ControlValueAccessor, NtFormFieldControl<NtPictureRef<T>[]> {
 
   private readonly _destroy = new Subject<void>();
 
@@ -188,7 +188,7 @@ export class NtPictureComponent<T> extends NtFormFieldControl<NtPictureRef<T>[]>
     @Optional() private _uploadHandler: NtUploadHandler,
     @Optional() @Self() public ngControl: NgControl,
     @Optional() @Inject(NT_PICTURE_ICONS) public icons: NtPictureIcons) {
-    super();
+
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }

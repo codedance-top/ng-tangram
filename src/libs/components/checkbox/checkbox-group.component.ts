@@ -41,8 +41,8 @@ let uniqueId = 0;
     'class': 'nt-checkbox-group'
   }
 })
-export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>
-  implements ControlValueAccessor, AfterViewInit, OnDestroy {
+export class NtCheckboxGroupComponent<T>
+  implements ControlValueAccessor, AfterViewInit, OnDestroy,  NtFormFieldControl<T[]> {
 
   readonly id: string = `nt-checkbox-group-${uniqueId++}`;
 
@@ -98,7 +98,6 @@ export class NtCheckboxGroupComponent<T> extends NtFormFieldControl<T[]>
     private _ngZone: NgZone,
     private _changeDetectorRef: ChangeDetectorRef,
     @Self() @Optional() public ngControl: NgControl) {
-    super();
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }

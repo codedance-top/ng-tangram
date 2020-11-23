@@ -78,7 +78,7 @@ interface NtSliderStepmark {
     { provide: NtFormFieldControl, useExisting: NtSliderComponent, multi: true }
   ]
 })
-export class NtSliderComponent extends NtFormFieldControl<number> implements ControlValueAccessor, OnInit, OnDestroy {
+export class NtSliderComponent implements ControlValueAccessor, OnInit, OnDestroy, NtFormFieldControl<number> {
 
   tabIndex: number;
 
@@ -258,8 +258,6 @@ export class NtSliderComponent extends NtFormFieldControl<number> implements Con
     @Self() @Optional() public ngControl: NgControl,
     private _ngZone: NgZone
   ) {
-    super();
-
     this._document = document;
 
     this.tabIndex = parseInt(tabIndex) || 0;

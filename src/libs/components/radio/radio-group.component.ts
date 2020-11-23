@@ -41,8 +41,8 @@ let uniqueId = 0;
     'class': 'nt-radio-group'
   }
 })
-export class NtRadioGroupComponent<T> extends NtFormFieldControl<T>
-  implements ControlValueAccessor, AfterViewInit, OnDestroy {
+export class NtRadioGroupComponent<T>
+  implements ControlValueAccessor, AfterViewInit, OnDestroy,  NtFormFieldControl<T> {
 
   readonly id: string = `nt-radio-group-${uniqueId++}`;
 
@@ -107,7 +107,6 @@ export class NtRadioGroupComponent<T> extends NtFormFieldControl<T>
     private _ngZone: NgZone,
     private _changeDetectorRef: ChangeDetectorRef,
     @Self() @Optional() public ngControl: NgControl) {
-    super();
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }

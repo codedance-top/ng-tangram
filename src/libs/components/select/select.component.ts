@@ -95,8 +95,8 @@ export class NtSelectChange {
     '(window:resize)': 'onResize()'
   }
 })
-export class NtSelectComponent extends NtFormFieldControl<any>
-  implements AfterContentInit, ControlValueAccessor, NtOptionParentComponent, OnDestroy {
+export class NtSelectComponent
+  implements AfterContentInit, ControlValueAccessor, NtOptionParentComponent, OnDestroy,  NtFormFieldControl<any> {
 
   private readonly _destroy = new Subject<void>();
 
@@ -257,7 +257,6 @@ export class NtSelectComponent extends NtFormFieldControl<any>
     @Attribute('tabindex') tabIndex: string,
     @Optional() @Self() public ngControl: NgControl,
     @Optional() @Inject(NT_SELECT_ICONS) public icons: NtSelectIcons) {
-    super();
 
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;

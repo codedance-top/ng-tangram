@@ -73,8 +73,8 @@ const DEFAULT_MIN_ROWS = 10, DEFAULT_MAX_ROWS = 20,
     '[class.fill-screen]': 'fillScreen'
   }
 })
-export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
-  implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
+export class NtMarkdownEditorComponent
+  implements ControlValueAccessor, OnInit, OnChanges, OnDestroy,  NtFormFieldControl<string> {
 
   private readonly _destroy = new Subject<void>();
 
@@ -179,8 +179,6 @@ export class NtMarkdownEditorComponent extends NtFormFieldControl<string>
     @Optional() @Self() public ngControl: NgControl,
     @Optional() @Inject(NT_MARKDOWN_EDITOR_ICONS) _icons: NtMarkdownEditorIcons,
     @Optional() @Inject(NT_MARKDOWN_EDITOR_CONFIG) _config: NtMarkdownEditorConfig) {
-
-    super();
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }

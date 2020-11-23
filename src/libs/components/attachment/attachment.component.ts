@@ -71,7 +71,7 @@ export class NtAttachmentRef<T> extends NtUploadRef<T> {
     ])
   ]
 })
-export class NtAttachmentComponent<T> extends NtFormFieldControl<NtAttachmentRef<T>[]> implements OnInit, ControlValueAccessor {
+export class NtAttachmentComponent<T> implements OnInit, ControlValueAccessor, NtFormFieldControl<NtAttachmentRef<T>[]> {
 
   private readonly _destroy = new Subject<void>();
 
@@ -143,7 +143,6 @@ export class NtAttachmentComponent<T> extends NtFormFieldControl<NtAttachmentRef
     @Optional() private _uploadHandler: NtUploadHandler,
     @Optional() @Self() public ngControl: NgControl,
     @Optional() @Inject(NT_ATTACHMENT_ICONS) public icons: NtAttachmentIcons) {
-    super();
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
