@@ -1,0 +1,32 @@
+<!-- Create the first row separately so we can include a special spacer cell. -->
+<tr *ngFor="let row of rows; let rowIndex = index" role="row">
+  <td *ngFor="let item of row; let colIndex = index"
+      role="gridcell"
+      class="nt-calendar-cell"
+      [ngClass]="item.cssClasses"
+      [tabindex]="_isActiveCell(rowIndex, colIndex) ? 0 : -1"
+      [attr.data-nt-row]="rowIndex"
+      [attr.data-nt-col]="colIndex"
+      [class.nt-calendar-cell-disabled]="!item.enabled"
+      [class.nt-calendar-cell-active]="_isActiveCell(rowIndex, colIndex)"
+      [class.nt-calendar-cell-range-start]="_isRangeStart(item.compareValue)"
+      [class.nt-calendar-cell-range-end]="_isRangeEnd(item.compareValue)"
+      [class.nt-calendar-cell-in-range]="_isInRange(item.compareValue)"
+      [class.nt-calendar-cell-comparison-bridge-start]="_isComparisonBridgeStart(item.compareValue, rowIndex, colIndex)"
+      [class.nt-calendar-cell-comparison-bridge-end]="_isComparisonBridgeEnd(item.compareValue, rowIndex, colIndex)"
+      [class.nt-calendar-cell-comparison-start]="_isComparisonStart(item.compareValue)"
+      [class.nt-calendar-cell-comparison-end]="_isComparisonEnd(item.compareValue)"
+      [class.nt-calendar-cell-in-comparison-range]="_isInComparisonRange(item.compareValue)"
+      [class.nt-calendar-cell-preview-start]="_isPreviewStart(item.compareValue)"
+      [class.nt-calendar-cell-preview-end]="_isPreviewEnd(item.compareValue)"
+      [class.nt-calendar-cell-in-preview]="_isInPreview(item.compareValue)"
+      (click)="_cellClicked(item, $event)">
+      <span class="nt-calendar-cell-content nt-focus-indicator"
+        [class.nt-calendar-cell-selected]="_isSelected(item.compareValue)"
+        [class.nt-calendar-cell-comparison-identical]="_isComparisonIdentical(item.compareValue)"
+        [class.nt-calendar-cell-today]="todayValue === item.compareValue">
+        {{item.displayValue}}
+      </span>
+      <div class="nt-calendar-body-cell-preview"></div>
+  </td>
+</tr>

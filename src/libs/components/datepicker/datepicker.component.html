@@ -5,10 +5,10 @@
   [value]="_displayValue"
   [placeholder]="placeholder"
   [disabled]="disabled">
-  <nt-pseudo-caret *ngIf="!value || disabled">
+  <nt-pseudo-caret *ngIf="!_displayValue || disabled">
     <span [class]="icons.caret"></span>
   </nt-pseudo-caret>
-  <nt-pseudo-caret class="nt-datepicker-clear" (click)="_onClear($event)" *ngIf="value && !disabled">
+  <nt-pseudo-caret class="nt-datepicker-clear" (click)="_onClear($event)" *ngIf="_displayValue && !disabled">
     <span [class]="icons.clear"></span>
   </nt-pseudo-caret>
 </nt-pseudo-input>
@@ -23,12 +23,7 @@
   (beforeOpen)="_onBeforeOpen($event)"
   (beforeClosed)="_onBeforeClosed($event)"
   (positionChange)="_onPositionChange($event)">
-  <nt-datepicker-calendar
-    [selected]="value"
-    [dateFilter]="dateFilter"
-    [startAt]="startAt"
-    [maxDate]="maxDate"
-    [minDate]="minDate"
-    (selectedChange)="select($event)">
-  </nt-datepicker-calendar>
+  <div class="nt-datepicker-pane">
+    <ng-template [cdkPortalOutlet]="_portal"></ng-template>
+  </div>
 </nt-overlay>

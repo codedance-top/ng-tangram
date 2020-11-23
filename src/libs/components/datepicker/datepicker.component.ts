@@ -8,6 +8,7 @@ import {
   ConnectedOverlayPositionChange,
   ConnectionPositionPair
 } from '@angular/cdk/overlay';
+import { CdkPortalOutlet, ComponentPortal, Portal } from '@angular/cdk/portal';
 import {
   AfterViewInit,
   Attribute,
@@ -19,6 +20,7 @@ import {
   Inject,
   Input,
   OnChanges,
+  OnDestroy,
   Optional,
   Output,
   Self,
@@ -26,7 +28,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { NgControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import {
   DateAdapter,
   fadeIn,
@@ -37,12 +39,21 @@ import {
 import { NtFormFieldControl } from '@ng-tangram/components/forms';
 import { BOTTOM_LEFT, NtOverlayComponent, TOP_LEFT } from '@ng-tangram/components/overlay';
 
-import { NtDatePickerCalendarComponent } from './calendar.component';
+import { NtCalendarCellClassFunction } from './calendar-body.component';
+import { NtDatePickerContent } from './datepicker-content.component';
+import { DateFilterFn, NT_DATE_PICKER_CONTROL, NtDatePickerControl } from './datepicker-control';
 import {
   DEFAULT_DATEPICKER_ICONS,
   NT_DATEPICKER_ICONS,
   NtDatePickerIcons
 } from './datepicker-icons';
+import { NtDatePickerInputBase } from './datepicker-input-base';
+import { NT_SINGLE_DATE_SELECTION_MODEL_PROVIDER, NtDateSelectionModel } from './selections';
+
+let datepickerUid = 0;
+
+// const _NtDatePickerInputBase: NtOverlayControlCtor &
+//   typeof NtDatePickerInputBase = mixinOverlayControl(NtDatePickerInputBase);
 
 @Component({
   selector: 'nt-datepicker',
@@ -51,8 +62,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'class': 'nt-datepicker',
-    // '[class.disabled]': 'disabled',
-    // '[class.readonly]': 'readonly',
     '(click)': '_onClick($event)',
   },
   animations: [
@@ -62,29 +71,43 @@ import {
     ])
   ],
   providers: [
-    { provide: NtFormFieldControl, useExisting: NtDatePickerComponent }
+    { provide: NtFormFieldControl, useExisting: NtDatePicker },
+    { provide: NT_DATE_PICKER_CONTROL, useExisting: NtDatePicker },
+    NT_SINGLE_DATE_SELECTION_MODEL_PROVIDER
   ]
 })
-export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements AfterViewInit, OnChanges, ControlValueAccessor {
+export class NtDatePicker<D> extends NtDatePickerInputBase<D, D>
+  implements NtFormFieldControl<D>, NtDatePickerControl<D>, AfterViewInit, OnChanges, OnDestroy {
 
   private _overlayToggle = new Subject<boolean>();
 
+  _displayValue = '';
+
+  id: string = `nt-datepicker-${datepickerUid++}`;
+
   tabIndex: number;
+
+  _portal: Portal<any>;
 
   _positionPairs: ConnectionPositionPair[] = [BOTTOM_LEFT, TOP_LEFT];
 
-  _displayValue: string = '';
+  private _startAt: D | null;
 
-  get empty() { return !this.value; }
+  @Input()
+  get startAt(): D | null { return this._startAt || this._getStartValue(); }
+  set startAt(value: D | null) { this._startAt = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(value)); }
 
-  private _value: D | null;
+  private _min: D | null;
 
-  get value(): D | null { return this._value; }
-  set value(value: D | null) {
-    value = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
-    this._value = value;
-    this._displayValue = value ? this._dateAdapter.format(value, this._dateFormats.display.dateInput) : '';
-  }
+  @Input()
+  get min(): D | null { return this._min; }
+  set min(value: D | null) { this._min = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(value)); }
+
+  private _max: D | null;
+
+  @Input()
+  get max(): D | null { return this._max; }
+  set max(value: D | null) { this._max = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(value)); }
 
   private _placeholder = '';
 
@@ -92,41 +115,14 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements A
   set placeholder(value: string) { this._placeholder = value; }
   get placeholder() { return this._placeholder; }
 
-  private _disabled = false;
-
-  @Input()
-  set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
-  get disabled() { return this._disabled; }
-
-  private _required = false;
-
-  @Input()
-  get required(): boolean { return this._required; }
-  set required(value: boolean) { this._required = coerceBooleanProperty(value); }
-
   private _readonly = false;
 
   @Input()
   set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
   get readonly() { return this._readonly; }
 
-  private _startAt: D | null;
-
-  @Input()
-  get startAt(): D | null { return this._startAt || this.value; }
-  set startAt(value: D | null) { this._startAt = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
-
-  private _minDate: D | null;
-
-  @Input()
-  get minDate(): D | null { return this._minDate; }
-  set minDate(value: D | null) { this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
-
-  private _maxDate: D | null;
-
-  @Input()
-  get maxDate(): D | null { return this._maxDate; }
-  set maxDate(value: D | null) { this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value)); }
+    /** Function that can be used to add custom CSS classes to dates. */
+  @Input() dateClass: NtCalendarCellClassFunction<D>;
 
   @Input() dateFilter: (date: D) => boolean;
 
@@ -139,27 +135,34 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements A
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
   @ViewChild(NtOverlayComponent, { static: true }) overlay: NtOverlayComponent;
-  @ViewChild(NtDatePickerCalendarComponent, { static: true }) calendar: NtDatePickerCalendarComponent<D>;
 
-  private _onChange: (value: any) => void = () => { };
+  @ViewChild(CdkPortalOutlet, { static: true }) _portalOutlet: CdkPortalOutlet;
 
-  private _onTouched = () => { };
+  _validator: ValidatorFn;
 
   readonly origin: CdkOverlayOrigin;
 
+  readonly _stateChanges = new Subject<void>();
+
   constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
-    private _elementRef: ElementRef,
-    private _dateAdapter: DateAdapter<D>,
-    @Inject(NT_DATE_FORMATS) private _dateFormats: NtDateFormats,
+    public _elementRef: ElementRef,
     @Attribute('tabindex') tabIndex: string,
-    @Optional() @Self() public ngControl: NgControl,
-    @Optional() @Inject(NT_DATEPICKER_ICONS) public icons: NtDatePickerIcons) {
-    super();
-    this.origin = new CdkOverlayOrigin(_elementRef);
+    @Optional() @Inject(NT_DATEPICKER_ICONS) public  icons: NtDatePickerIcons,
+    @Inject(NT_DATE_FORMATS) private  _dateFormats: NtDateFormats,
+    private _changeDetectorRef: ChangeDetectorRef,
+    dateAdapter: DateAdapter<D>,
+    _model: NtDateSelectionModel<D, D>,
+    @Optional() @Self() public ngControl: NgControl) {
+
+    super(dateAdapter);
+
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
+
+    this._registerModel(_model);
+
+    this.origin = new CdkOverlayOrigin(_elementRef);
 
     this.icons = { ...DEFAULT_DATEPICKER_ICONS, ...icons };
 
@@ -169,6 +172,21 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements A
       ? this.overlay.open()
       : this.overlay.toggle()
     );
+
+    this._model.selectionChanged.subscribe(value => {
+      this._formatValue(value.selection);
+    });
+  }
+  focused?: boolean;
+  empty?: boolean;
+
+
+  getErrors?(): ValidationErrors {
+    return this.ngControl?.errors;
+  }
+
+  _isActivated(): boolean {
+    return !this.disabled;
   }
 
   ngAfterViewInit() {
@@ -180,28 +198,19 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements A
     if(change && !change.firstChange) {
       this._changeDetectorRef.markForCheck();
     }
+    this._stateChanges.next(undefined);
   }
 
-  writeValue(value: D) {
-    this.value = value;
-  }
-
-  registerOnChange(fn: (_: any) => {}) {
-    this._onChange = fn;
-  }
-
-  registerOnTouched(fn: () => {}) {
-    this._onTouched = fn;
-  }
-
-  select(date: D) {
-    this.value = date;
-    this.overlay.close();
-    this._onChange(date);
+  ngOnDestroy() {
+    this._stateChanges.complete();
   }
 
   focus() {
     this.overlay.open();
+  }
+
+  select(date: D): void {
+    this._model.add(date);
   }
 
   _onAfterOpen(event: any) {
@@ -210,15 +219,15 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements A
 
   _onAfterClosed(event: any) {
     this.afterClosed.next(event);
+    this._portal.detach();
   }
 
   _onBeforeOpen(event: any) {
-    this.calendar._init();
+    this._portal = new ComponentPortal(NtDatePickerContent);
     this.beforeOpen.next(event);
   }
 
   _onBeforeClosed(event: any) {
-    typeof this._onTouched === 'function' && this._onTouched();
     this.beforeClosed.next(event);
   }
 
@@ -234,18 +243,47 @@ export class NtDatePickerComponent<D> extends NtFormFieldControl<D> implements A
   }
 
   _onClear(event: Event) {
-    if (this.value !== null && !this.disabled) {
-      this.value = null;
-      this._onChange(this.value);
+    if (!this.disabled) {
+      this._model.updateSelection(this._getDefaultModelValue(), this);
     }
     event.stopPropagation();
   }
 
-  setDisabledState(isDisabled: boolean) {
-    this._disabled = isDisabled;
+  _assignValueToModel(value: D): void {
+    if (this._model) {
+      value = this._dateAdapter.deserialize(value);
+      this._model.updateSelection(value, this);
+      this._valueChange(value);
+    }
   }
 
-  private _getValidDateOrNull(obj: any): D | null {
-    return (this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj)) ? obj : null;
+  _getValueFromModel(modelValue: D): D {
+    return modelValue;
+  }
+
+  _getMinDate(): D {
+    return this.min;
+  }
+
+  _getMaxDate(): D {
+    return this.max;
+  }
+
+  _getDateFilter(): DateFilterFn<D> {
+    return this.dateFilter;
+  }
+
+  _getStartValue() { return this._model?.selection; }
+
+  protected _formatValue(modelValue: D) {
+    if(modelValue) {
+      this._displayValue = this._dateAdapter.format(modelValue, this._dateFormats.display.dateInput);
+    } else {
+      this._displayValue = '';
+    }
+  }
+
+  protected _getDefaultModelValue() {
+    return null;
   }
 }

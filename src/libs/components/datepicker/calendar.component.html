@@ -1,65 +1,38 @@
-<div class="nt-datepicker-pane" [ngSwitch]="_currentView">
-  <table>
-    <thead>
-      <tr *ngSwitchCase="'month'"><ng-container *ngTemplateOutlet="monthControl"></ng-container></tr>
-      <tr *ngSwitchCase="'year'"><ng-container *ngTemplateOutlet="yearControl"></ng-container></tr>
-      <tr *ngSwitchCase="'multi-year'"><ng-container *ngTemplateOutlet="multiYearControl"></ng-container></tr>
-    </thead>
-  </table>
-  <nt-datepicker-month
+<nt-calendar-header></nt-calendar-header>
+
+<ng-container [ngSwitch]="currentView">
+  <nt-calendar-month
     *ngSwitchCase="'month'"
-    [(activeDate)]="_activeDate"
+    [(activeDate)]="activeDate"
     [selected]="selected"
     [dateFilter]="dateFilter"
     [maxDate]="maxDate"
     [minDate]="minDate"
-    (selectedChange)="_dateSelected($event)">
-  </nt-datepicker-month>
-  <nt-datepicker-year
+    [dateClass]="dateClass"
+    [comparisonStart]="comparisonStart"
+    [comparisonEnd]="comparisonEnd"
+    (_userSelection)="_dateSelected($event)">
+  </nt-calendar-month>
+  <nt-calendar-year
     *ngSwitchCase="'year'"
-    [activeDate]="_activeDate"
+    [(activeDate)]="activeDate"
     [selected]="selected"
     [dateFilter]="dateFilter"
     [maxDate]="maxDate"
     [minDate]="minDate"
+    [dateClass]="dateClass"
     (monthSelected)="_monthSelectedInYearView($event)"
     (selectedChange)="_goToDateInView($event, 'month')">
-  </nt-datepicker-year>
-  <nt-datepicker-multi-year
+  </nt-calendar-year>
+  <nt-calendar-multi-year
     *ngSwitchCase="'multi-year'"
-    [activeDate]="_activeDate"
+    [(activeDate)]="activeDate"
     [selected]="selected"
     [dateFilter]="dateFilter"
     [maxDate]="maxDate"
     [minDate]="minDate"
+    [dateClass]="dateClass"
     (yearSelected)="_yearSelectedInMultiYearView($event)"
     (selectedChange)="_goToDateInView($event, 'year')">
-  </nt-datepicker-multi-year>
-</div>
-
-<ng-template #monthControl>
-  <th (click)="prevYear()" [class.disabled]=""><span>&laquo;</span></th>
-  <th (click)="prevMonth()" [class.disabled]=""><span>&lsaquo;</span></th>
-  <th colspan="3">
-    <span (click)=" _currentView = 'multi-year' ">{{ _yearLabel }}</span>
-    <span (click)=" _currentView = 'year' ">{{ _monthLabel }}</span>
-  </th>
-  <th (click)="nextMonth()" [class.disabled]=""><span>&rsaquo;</span></th>
-  <th (click)="nextYear()" [class.disabled]=""><span>&raquo;</span></th>
-</ng-template>
-<ng-template #yearControl>
-  <th (click)="prevYear()" [class.disabled]=""><span>&laquo;</span></th>
-  <th>&nbsp;</th>
-  <th colspan="3">
-    <span (click)=" _currentView = 'multi-year' ">{{ _yearLabel }}</span>
-  </th>
-  <th>&nbsp;</th>
-  <th (click)="nextYear()" [class.disabled]=""><span>&raquo;</span></th>
-</ng-template>
-<ng-template #multiYearControl>
-  <th (click)="prevYearArray()"><span>&laquo;</span></th>
-  <th>&nbsp;</th>
-  <th colspan="3">{{_multiYearLabel}}</th>
-  <th>&nbsp;</th>
-  <th (click)="nextYearArray()"><span>&raquo;</span></th>
-</ng-template>
+  </nt-calendar-multi-year>
+</ng-container>

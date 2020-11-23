@@ -1,13 +1,12 @@
 <table>
-  <tbody>
-    <tr *ngFor="let _rows of _years">
-      <td *ngFor="let year of _rows"
-        [class.disabled]="!year.enabled"
-        [class.selected]="year.value === _selectedYear && year.enabled"
-        (click)="_yearSelected(year.value)">
-        <span *ngIf="year.enabled">{{ year.displayValue }}</span>
-        <span *ngIf="!year.enabled">{{ year.displayValue }}</span>
-      </td>
-    </tr>
+  <tbody nt-calendar-body
+    [rows]="_years"
+    [todayValue]="_todayYear"
+    [startValue]="_selectedYear!"
+    [endValue]="_selectedYear!"
+    [numCols]="3"
+    [cellAspectRatio]="3 / 7"
+    [activeCell]="_getActiveCell()"
+    (selectedValueChange)="_yearSelected($event)">
   </tbody>
 </table>

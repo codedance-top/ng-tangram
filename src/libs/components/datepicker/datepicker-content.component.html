@@ -1,0 +1,14 @@
+<div cdkTrapFocus>
+  <nt-datepicker-calendar
+    [id]="datepicker.id"
+    [startAt]="datepicker.startAt"
+    [minDate]="datepicker.min"
+    [maxDate]="datepicker.max"
+    [dateFilter]="datepicker.dateFilter"
+    [selected]="_getSelected()"
+    [dateClass]="datepicker.dateClass"
+    [comparisonStart]="comparisonStart"
+    [comparisonEnd]="comparisonEnd"
+    (_userSelection)="_handleUserSelection($event)">
+  </nt-datepicker-calendar>
+</div>

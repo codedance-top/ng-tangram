@@ -1,3 +1,5 @@
+import { Subject } from 'rxjs';
+
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -16,10 +18,12 @@ import {
 } from '@angular/core';
 import { DateAdapter, NT_DATE_FORMATS, NtDateFormats } from '@ng-tangram/components/core';
 
+import { NtCalendarCellClassFunction, NtCalendarUserEvent } from './calendar-body.component';
+import { DateRange } from './selections';
 import { createMissingDateImplError } from './datepicker-errors';
-import { NtDatePickerMonthComponent } from './month.component';
-import { NtDatePickerMultiYearComponent, yearsPerPage } from './multi-year.component';
-import { NtDatePickerYearComponent } from './year.component';
+import { NtCalendarMonth } from './month.component';
+import { NtCalendarMultiYear } from './multi-year.component';
+import { NtCalendarYear } from './year.component';
 
 export type NtDatePickerViewType = 'month' | 'year' | 'multi-year';
 
@@ -32,26 +36,38 @@ export type NtDatePickerViewType = 'month' | 'year' | 'multi-year';
     'class': 'nt-datepicker-calendar'
   }
 })
-export class NtDatePickerCalendarComponent<D> implements AfterContentInit, OnChanges, OnDestroy {
+export class NtDatePickerCalendar<D> implements AfterContentInit, OnChanges, OnDestroy {
 
-  _viewType: NtDatePickerViewType = 'month';
-  _currentView: NtDatePickerViewType = 'month';
+  /**
+   * Used for scheduling that focus should be moved to the active cell on the next tick.
+   * We need to schedule it, rather than do it immediately, because we have to wait
+   * for Angular to re-evaluate the view children.
+   */
+  private _moveFocusOnNextTick = false;
+
+  /** Whether the calendar should be started in month or year view. */
+  @Input() startView: NtDatePickerViewType = 'month';
 
   private _startAt: D | null;
 
   @Input()
   get startAt(): D | null { return this._startAt; }
   set startAt(value: D | null) {
-    this._startAt = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
+    this._startAt = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
 
   /** The currently selected date. */
-  private _selected: D | null;
+  private _selected: DateRange<D> | D | null ;
 
   @Input()
-  get selected(): D | null { return this._selected; }
-  set selected(value: D | null) {
-    this._selected = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
+  @Input()
+  get selected(): DateRange<D> | D | null { return this._selected; }
+  set selected(value: DateRange<D> | D | null) {
+    if (value instanceof DateRange) {
+      this._selected = value;
+    } else {
+      this._selected = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(value));
+    }
   }
 
   /** The minimum selectable date. */
@@ -60,7 +76,7 @@ export class NtDatePickerCalendarComponent<D> implements AfterContentInit, OnCha
   @Input()
   get minDate(): D | null { return this._minDate; }
   set minDate(value: D | null) {
-    this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
+    this._minDate = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
 
   /** The maximum selectable date. */
@@ -69,35 +85,54 @@ export class NtDatePickerCalendarComponent<D> implements AfterContentInit, OnCha
   @Input()
   get maxDate(): D | null { return this._maxDate; }
   set maxDate(value: D | null) {
-    this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
+    this._maxDate = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
 
-  /** A function used to filter which dates are selectable. */
+  stateChanges = new Subject<void>();
+
+  /** Function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
 
-  /** Emits when the currently selected date changes. */
-  @Output() readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
+  /** Function that can be used to add custom CSS classes to dates. */
+  @Input() dateClass: NtCalendarCellClassFunction<D>;
 
-  /**
-   * Emits the year chosen in multiyear view.
-   * This doesn't imply a change on the selected date.
-   */
+  /** Start of the comparison range. */
+  @Input() comparisonStart: D | null;
+
+  /** End of the comparison range. */
+  @Input() comparisonEnd: D | null;
+
+  @Output() readonly selectedChange: EventEmitter<D | null> = new EventEmitter<D | null>();
+
   @Output() readonly yearSelected: EventEmitter<D> = new EventEmitter<D>();
 
-  /**
-   * Emits the month chosen in year view.
-   * This doesn't imply a change on the selected date.
-   */
   @Output() readonly monthSelected: EventEmitter<D> = new EventEmitter<D>();
 
-  /** Reference to the current month view component. */
-  @ViewChild(NtDatePickerMonthComponent) monthView: NtDatePickerMonthComponent<D>;
+  @Output() readonly viewChanged: EventEmitter<NtDatePickerViewType> =
+    new EventEmitter<NtDatePickerViewType>(true);
 
-  /** Reference to the current year view component. */
-  @ViewChild(NtDatePickerYearComponent) yearView: NtDatePickerYearComponent<D>;
+  @Output() readonly _userSelection: EventEmitter<NtCalendarUserEvent<D | null>> =
+      new EventEmitter<NtCalendarUserEvent<D | null>>();
 
-  /** Reference to the current multi-year view component. */
-  @ViewChild(NtDatePickerMultiYearComponent) multiYearView: NtDatePickerMultiYearComponent<D>;
+  @ViewChild(NtCalendarMonth) monthView: NtCalendarMonth<D>;
+
+  @ViewChild(NtCalendarYear) yearView: NtCalendarYear<D>;
+
+  @ViewChild(NtCalendarMultiYear) multiYearView: NtCalendarMultiYear<D>;
+
+  private _currentView: NtDatePickerViewType;
+
+  /** Whether the calendar is in month view. */
+  get currentView(): NtDatePickerViewType { return this._currentView; }
+  set currentView(value: NtDatePickerViewType) {
+    const viewChangedResult = this._currentView !== value ? value : null;
+    this._currentView = value;
+    this._moveFocusOnNextTick = true;
+    this._changeDetectorRef.markForCheck();
+    if (viewChangedResult) {
+      this.viewChanged.emit(viewChangedResult);
+    }
+  }
 
   /**
    * The current active date. This determines which time period is shown and which date is
@@ -105,24 +140,11 @@ export class NtDatePickerCalendarComponent<D> implements AfterContentInit, OnCha
    */
   private _clampedActiveDate: D;
 
-  get _activeDate(): D { return this._clampedActiveDate; }
-  set _activeDate(value: D) {
+  get activeDate(): D { return this._clampedActiveDate; }
+  set activeDate(value: D) {
     this._clampedActiveDate = this._dateAdapter.clampDate(value, this.minDate, this.maxDate);
-  }
-
-  get _monthLabel() {
-    return this._dateAdapter.format(this._activeDate, this._dateFormats.display.monthLabel).toLocaleUpperCase();
-  }
-
-  get _yearLabel() { return this._dateAdapter.getYearName(this._activeDate); }
-
-  get _multiYearLabel() {
-    const activeYear = this._dateAdapter.getYear(this._activeDate);
-    const firstYearInView = this._dateAdapter.getYearName(
-      this._dateAdapter.createDate(activeYear - activeYear % yearsPerPage, 0, 1), 'en-US');
-    const lastYearInView = this._dateAdapter.getYearName(
-      this._dateAdapter.createDate(activeYear + yearsPerPage - 1 - activeYear % yearsPerPage, 0, 1), 'en-US');
-    return `${firstYearInView} \u2013 ${lastYearInView}`;
+    this.stateChanges.next();
+    this._changeDetectorRef.markForCheck();
   }
 
   constructor(
@@ -140,59 +162,73 @@ export class NtDatePickerCalendarComponent<D> implements AfterContentInit, OnCha
   }
 
   ngAfterContentInit() {
-    this._init();
+    this.activeDate = this.startAt || this._dateAdapter.today();
+
+    // Assign to the private property since we don't want to move focus on init.
+    this._currentView = this.startView;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const change = changes.minDate || changes.maxDate || changes.dateFilter;
+    const change =
+        changes['minDate'] || changes['maxDate'] || changes['dateFilter'];
+
     if (change && !change.firstChange) {
-      const view = this.monthView || this.yearView || this.multiYearView;
+      const view = this._getCurrentViewComponent();
+
       if (view) {
+        // We need to `detectChanges` manually here, because the `minDate`, `maxDate` etc. are
+        // passed down to the view via data bindings which won't be up-to-date when we call `_init`.
+        this._changeDetectorRef.detectChanges();
         view._init();
       }
+    }
+
+    this.stateChanges.next();
+  }
+
+  ngAfterViewChecked() {
+    if (this._moveFocusOnNextTick) {
+      this._moveFocusOnNextTick = false;
+      this.focusActiveCell();
     }
   }
 
   ngOnDestroy() {
-    // throw new Error("Method not implemented.");
+    this.stateChanges.complete();
   }
 
-  prevMonth() {
-    this._activeDate = this._dateAdapter.addCalendarMonths(this._activeDate, -1);
+  focusActiveCell() {
+    this._getCurrentViewComponent()._focusActiveCell(false);
   }
 
-  nextMonth() {
-    this._activeDate = this._dateAdapter.addCalendarMonths(this._activeDate, 1);
-  }
+  /** Updates today's date after an update of the active date */
+  updateTodaysDate() {
+    const currentView = this.currentView;
+    let view: NtCalendarMonth<D> | NtCalendarYear<D> | NtCalendarMultiYear<D>;
 
-  prevYear() {
-    this._activeDate = this._dateAdapter.addCalendarYears(this._activeDate, -1);
-  }
+    if (currentView === 'month') {
+      view = this.monthView;
+    } else if (currentView === 'year') {
+      view = this.yearView;
+    } else {
+      view = this.multiYearView;
+    }
 
-  nextYear() {
-    this._activeDate = this._dateAdapter.addCalendarYears(this._activeDate, 1);
-  }
-
-  prevYearArray() {
-    this._activeDate = this._dateAdapter.addCalendarYears(this._activeDate, -yearsPerPage);
-  }
-
-  nextYearArray() {
-    this._activeDate = this._dateAdapter.addCalendarYears(this._activeDate, yearsPerPage);
-  }
-
-  _init() {
-    this._activeDate = this.startAt || this._dateAdapter.today();
-    this._currentView = this._viewType;
-    this._changeDetectorRef.markForCheck();
+    view._init();
   }
 
   /** Handles date selection in the month view. */
-  _dateSelected(date: D) {
-    if (!this._dateAdapter.sameDate(date, this.selected)) {
+  _dateSelected(event: NtCalendarUserEvent<D | null>): void {
+    const date = event.value;
+
+    if (this.selected instanceof DateRange ||
+        (date && !this._dateAdapter.sameDate(date, this.selected))) {
       this.selectedChange.emit(date);
     }
+
+    this._userSelection.emit(event);
   }
+
 
   /** Handles year selection in the multiyear view. */
   _yearSelectedInMultiYearView(normalizedYear: D) {
@@ -206,15 +242,12 @@ export class NtDatePickerCalendarComponent<D> implements AfterContentInit, OnCha
 
   /** Handles year/month selection in the multi-year/year views. */
   _goToDateInView(date: D, view: 'month' | 'year' | 'multi-year'): void {
-    this._activeDate = date;
-    this._currentView = view;
+    this.activeDate = date;
+    this.currentView = view;
   }
 
-  /**
-   * @param obj The object to check.
-   * @returns The given object if it is both a date instance and valid, otherwise null.
-   */
-  private _getValidDateOrNull(obj: any): D | null {
-    return (this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj)) ? obj : null;
+  /** Returns the component instance that corresponds to the current calendar view. */
+  private _getCurrentViewComponent() {
+    return this.monthView || this.yearView || this.multiYearView;
   }
 }
