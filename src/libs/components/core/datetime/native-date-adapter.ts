@@ -254,7 +254,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
         return null;
       }
 
-      // like ISO 8601 value, 2018-05-30T12:00:00.000+0000 -> 2018-05-30T12:00:00.000+00:00
+      // convert like ISO 8601 value, 2018-05-30T12:00:00.000+0000 -> 2018-05-30T12:00:00.000+00:00
       if (LIKE_ISO_8601_REGEX.test(value)) {
         value = `${value.slice(0, value.length - 2)}:${value.slice(value.length - 2)}`;
       }
