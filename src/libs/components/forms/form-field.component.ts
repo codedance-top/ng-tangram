@@ -121,9 +121,7 @@ export class NtFormFieldComponent implements AfterContentInit, OnDestroy {
 
   get required() {
 
-    if (this.ngControl &&
-      this.ngControl.control &&
-      this.ngControl.control.validator) {
+    if (this.ngControl?.control?.validator) {
       const control = new FormControl();
       const validateResult = this.ngControl.control.validator(control);
       return validateResult && validateResult.hasOwnProperty('required');
@@ -137,14 +135,17 @@ export class NtFormFieldComponent implements AfterContentInit, OnDestroy {
   }
 
   get errors(): ValidationErrors | null {
-    return this.control.ngControl ? this.control.ngControl.errors : null;
+    if (typeof this.control.getErrors === 'function') {
+      return this.control.getErrors();
+    }
+    return this.control.ngControl?.errors || null;
   }
 
   // 表单模型
   // TODO: 支持多表单控件
   @ContentChild(NtFormFieldControl) control: NtFormFieldControl<any>;
 
-  get ngControl(): NgControl | null { return this.control ? this.control.ngControl : null; }
+  get ngControl(): NgControl | null { return this.control?.ngControl || null; }
 
   readonly statusChanges: Observable<any> = defer(() => {
     if (this.control && this.ngControl) {
