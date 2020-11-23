@@ -1,5 +1,6 @@
 
 export * from './animate/index';
+export * from './composition/index';
 export * from './datetime/index';
 export * from './events/index';
 export * from './file/index';
