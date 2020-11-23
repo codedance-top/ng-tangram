@@ -29,6 +29,7 @@ import {
   OnChanges,
   OnDestroy,
   Optional,
+  Provider,
   SimpleChanges,
   ViewContainerRef
 } from '@angular/core';
@@ -49,13 +50,13 @@ export function NT_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () =>
   return () => overlay.scrollStrategies.reposition();
 }
 
-export const NT_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
+export const NT_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER: Provider = {
   provide: NT_AUTOCOMPLETE_SCROLL_STRATEGY,
   deps: [Overlay],
   useFactory: NT_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY,
 };
 
-export const MAT_AUTOCOMPLETE_VALUE_ACCESSOR: any = {
+export const NT_AUTOCOMPLETE_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => NtAutocompleteTriggerDirective),
   multi: true
@@ -78,7 +79,7 @@ export function getMatAutocompleteMissingPanelError(): Error {
     '(keydown)': '_handleKeydown($event)',
   },
   exportAs: 'ntAutocompleteTrigger',
-  providers: [MAT_AUTOCOMPLETE_VALUE_ACCESSOR]
+  providers: [NT_AUTOCOMPLETE_VALUE_ACCESSOR]
 })
 export class NtAutocompleteTriggerDirective implements ControlValueAccessor, AfterViewInit, OnChanges, OnDestroy {
   private _overlayRef: OverlayRef | null;
