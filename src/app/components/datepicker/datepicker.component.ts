@@ -14,4 +14,6 @@ export class DatePickerDocumentComponent {
   momentCode = require('!!raw-loader!./examples/moment').default;
   formsCode = require('!!raw-loader!./examples/forms').default;
   momentModuleCode = require('!!raw-loader!./examples/moment.module').default;
+  rangeCode = require('!!raw-loader!./examples/range').default;
+  rangeStrategyCode = require('!!raw-loader!./examples/range-strategy').default;
  }

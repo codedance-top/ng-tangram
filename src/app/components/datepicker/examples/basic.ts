@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NtDatePickerComponent } from '@ng-tangram/components/datepicker';
+import { NtDatePicker } from '@ng-tangram/components/datepicker';
 
 @Component({
   selector: 'example-datepicker-basic',
@@ -13,17 +13,11 @@ import { NtDatePickerComponent } from '@ng-tangram/components/datepicker';
       [(ngModel)]="startDate"
       [disabled]="disabled">
     </nt-datepicker>
-
-    <nt-datepicker-range
-      placeholder="开始日期"
-      [(ngModel)]="startDate"
-      [disabled]="disabled">
-    </nt-datepicker-range>
   `
 })
 export class ExampleDatePickerBasicComponent {
 
-  @ViewChild('datepicker', { static: true }) datepicker: NtDatePickerComponent<Date>;
+  @ViewChild('datepicker', { static: true }) datepicker: NtDatePicker<Date>;
 
   startDate = new Date(2012, 5, 20);
 

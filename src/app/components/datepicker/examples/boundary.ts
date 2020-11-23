@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'example-datepicker-boundary',
   template: `
-      <nt-datepicker placeholder="限制日期选择" [minDate]="minDate" [maxDate]="maxDate"></nt-datepicker>
+      <nt-datepicker placeholder="限制日期选择" [min]="minDate" [max]="maxDate"></nt-datepicker>
   `
 })
 export class ExampleDatePickerBoundaryComponent {

@@ -4,6 +4,8 @@
 
 ## 代码演示
 
+### 日期选择器 DatePicker
+
 <div class="grid-x grid-margin-x">
   <div class="medium-6 large-6 cell">
     <nt-example>
@@ -60,13 +62,37 @@
   </div>
 </div>
 
-## 选择日期模块
+### 日期范围选择器 DateRangePicker
 
-日期选择框是可导入不同的日期模块。
+<div class="grid-x grid-margin-x">
+  <div class="medium-6 large-6 cell">
+    <nt-example>
+      <nt-example-showcase>
+        <example-datepicker-range></example-datepicker-range>
+        <example-datepicker-forms></example-datepicker-forms>
+      </nt-example-showcase>
+      <nt-example-legend title="日期范围选择器">选择一个区间的日期值，值将会以 `&#123; state: D, end: D &#125;` 结构返回。</nt-example-legend>
+      <nt-example-code [code]="rangeCode"></nt-example-code>
+    </nt-example>
+  </div>
+    <div class="medium-6 large-6 cell">
+    <nt-example>
+      <nt-example-showcase>
+        <example-datepicker-range-strategy></example-datepicker-range-strategy>
+      </nt-example-showcase>
+      <nt-example-legend title="选择策略">可以自定义选择策略，这里使用内置的 `WEEKLY_NT_CALENDAR_RANGE_STRATEGY_PROVIDER` 选择策略。</nt-example-legend>
+      <nt-example-code [code]="rangeStrategyCode"></nt-example-code>
+    </nt-example>
+  </div>
+</div>
+
+### 日期适配器 DateAdapter
+
+日期相关的组件需要导入日期适配器模块，组件库中默认实现了2种适配器，需要在根模块(`AppModule`)中导入其中之一或自定义的适配器。
 
 | 模块 | 日期类型  | 依赖 | 从哪里导入 |
 | --- | --- | --- | --- |
-| `NtNativeDateModule` | `Date` | 不需要 | `@ng-tangram/components` |
+| `NtNativeDateModule` | `Date` | 不需要 | `@ng-tangram/components/core` |
 | `NtMomentDateModule` | `Moment` | Moment.js | `@ng-tangram/moment-adapter` |
 
 <div>
