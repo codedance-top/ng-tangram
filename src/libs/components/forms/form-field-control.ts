@@ -20,5 +20,5 @@ export abstract class NtFormFieldControl<T> {
 
   getErrors?(): ValidationErrors | null;
 
-  focus?(): void { }
+  focus?(): void;
 }

@@ -36,7 +36,7 @@ export class NtFormAutofocusDirective implements AfterContentInit, OnDestroy {
         .pipe(takeUntil(this._destory))
         .subscribe(() => {
           const field = this.fields.find(field => !!field.ngControl && !!field.ngControl.invalid);
-          if (field && field.control) {
+          if (typeof field?.control?.focus === 'function') {
             field.control.focus();
           }
         });
