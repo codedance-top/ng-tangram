@@ -13,7 +13,7 @@ import {
 @Directive({
   selector: 'nt-tree-node, [nt-tree-node]',
   exportAs: 'ntTreeNode',
-  inputs: ['disabled', 'tabIndex'],
+  inputs: ['disabled', 'tabIndex', 'role'],
   host: {
     'class': 'nt-tree-node'
   },
@@ -31,7 +31,11 @@ export class NtTreeNodeDirective<T> extends CdkTreeNode<T> {
   get tabIndex(): number { return this.disabled ? -1 : this._tabIndex; }
   set tabIndex(value: number) { this._tabIndex = value != null ? value : 0; }
 
-  @Input() role: 'treeitem' | 'group' = 'treeitem';
+  private _role: 'treeitem' | 'group' = 'treeitem';
+  public get role(): 'treeitem' | 'group' { return this._role; }
+  public set role(value: 'treeitem' | 'group') {
+    this._role = value;
+  }
 
   constructor(
     protected _elementRef: ElementRef,
