@@ -103,7 +103,7 @@ export abstract class NtDatePickerBase<S, D = ExtractDateTypeFromSelection<S>>
 
   protected abstract _isActivated(): boolean;
   protected abstract _getStartValue(): D | null;
-  protected abstract _getDefaultModelValue(): S | null;
+  protected abstract _getDefaultModelValue(): S;
   protected abstract _formatValue(modelValue: S): void;
 
   readonly origin: CdkOverlayOrigin;

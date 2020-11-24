@@ -35,6 +35,7 @@ export interface DateSelectionModelChange<S> {
 }
 
 /** A selection model containing a date selection. */
+// @dynamic
 @Directive()
 export abstract class NtDateSelectionModel<S, D = ExtractDateTypeFromSelection<S>>
     implements OnDestroy {

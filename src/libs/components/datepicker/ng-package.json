@@ -4,6 +4,7 @@
     "flatModuleFile": "datepicker",
     "umdModuleIds": {
       "@ng-tangram/components/core": "nt.components.core",
+      "@ng-tangram/components/overlay": "nt.components.overlay",
       "@ng-tangram/components/forms": "nt.components.forms"
     },
     "umdId": "nt.components.datepicker"

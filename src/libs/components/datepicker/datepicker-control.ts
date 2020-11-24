@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import { InjectionToken } from '@angular/core';
 
-import { NtOverlayComponent } from '../overlay';
+import { NtOverlayComponent } from '@ng-tangram/components/overlay';
 import { NtCalendarCellClassFunction } from './calendar-body.component';
 
 /** Function that can be used to filter out dates from a calendar. */

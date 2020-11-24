@@ -76,7 +76,7 @@ let datepickerUid = 0;
     NT_SINGLE_DATE_SELECTION_MODEL_PROVIDER
   ]
 })
-export class NtDatePicker<D> extends NtDatePickerInputBase<D, D>
+export class NtDatePicker<D> extends NtDatePickerInputBase<D | null, D>
   implements NtFormFieldControl<D>, NtDatePickerControl<D>, AfterViewInit, OnChanges, OnDestroy {
 
   private _overlayToggle = new Subject<boolean>();
@@ -181,7 +181,7 @@ export class NtDatePicker<D> extends NtDatePickerInputBase<D, D>
   empty?: boolean;
 
 
-  getErrors?(): ValidationErrors {
+  getErrors() {
     return this.ngControl?.errors;
   }
 
@@ -249,7 +249,7 @@ export class NtDatePicker<D> extends NtDatePickerInputBase<D, D>
     event.stopPropagation();
   }
 
-  _assignValueToModel(value: D): void {
+  _assignValueToModel(value: D | null): void {
     if (this._model) {
       value = this._dateAdapter.deserialize(value);
       this._model.updateSelection(value, this);
@@ -261,11 +261,11 @@ export class NtDatePicker<D> extends NtDatePickerInputBase<D, D>
     return modelValue;
   }
 
-  _getMinDate(): D {
+  _getMinDate(): D | null {
     return this.min;
   }
 
-  _getMaxDate(): D {
+  _getMaxDate(): D | null {
     return this.max;
   }
 
@@ -275,7 +275,7 @@ export class NtDatePicker<D> extends NtDatePickerInputBase<D, D>
 
   _getStartValue() { return this._model?.selection; }
 
-  protected _formatValue(modelValue: D) {
+  protected _formatValue(modelValue: D | null) {
     if(modelValue) {
       this._displayValue = this._dateAdapter.format(modelValue, this._dateFormats.display.dateInput);
     } else {
@@ -283,7 +283,7 @@ export class NtDatePicker<D> extends NtDatePickerInputBase<D, D>
     }
   }
 
-  protected _getDefaultModelValue() {
+  protected _getDefaultModelValue(): D | null {
     return null;
   }
 }

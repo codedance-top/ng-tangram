@@ -95,7 +95,7 @@ export class NtDateRangeStart<D> extends NtDateRangePart<D> {
       this._valueChange(value);
     }
   }
-  protected _getValueFromModel(modelValue: DateRange<D>): D {
+  protected _getValueFromModel(modelValue: DateRange<D>) {
     return modelValue.start;
   }
 
@@ -130,7 +130,7 @@ export class NtDateRangeEnd<D> extends NtDateRangePart<D> {
       this._valueChange(value);
     }
   }
-  protected _getValueFromModel(modelValue: DateRange<D>): D {
+  protected _getValueFromModel(modelValue: DateRange<D>) {
     return modelValue.end;
   }
 

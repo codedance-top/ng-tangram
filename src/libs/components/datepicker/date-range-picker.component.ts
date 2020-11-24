@@ -147,7 +147,7 @@ export class NtDateRangePicker<D> extends NtDatePickerBase<DateRange<D>, D>
     };
   }
 
-  protected _getValueFromModel(modelValue: DateRange<D>): D {
+  protected _getValueFromModel(modelValue: DateRange<D>) {
     return modelValue.start;
   }
 
@@ -161,11 +161,11 @@ export class NtDateRangePicker<D> extends NtDatePickerBase<DateRange<D>, D>
     }
   }
 
-  protected _getDefaultModelValue() {
-    return new DateRange(null, null);
+  protected _getDefaultModelValue(): DateRange<D> {
+    return new DateRange<D>(null, null);
   }
 
-  private _formatPartValue(value: D) {
+  private _formatPartValue(value: D | null) {
     return value ? this._dateAdapter.format(value, this._dateFormats.display.dateInput) : ''
   }
 }

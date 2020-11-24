@@ -56,7 +56,7 @@ export abstract class NtDatePickerInputBase<S, D = ExtractDateTypeFromSelection<
     if (this.ngControl?.control?.validator) {
       const control = new FormControl();
       const validateResult = this.ngControl.control.validator(control);
-      return validateResult && validateResult.hasOwnProperty("required");
+      return Object.prototype.hasOwnProperty.call(validateResult, 'required');
     }
     return this._required;
   }
