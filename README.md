@@ -1,4 +1,4 @@
-# A Angular 9+ UI Toolkit for Web
+# Angular UI Components
 
 `TangramUI` 是基于 **Angular** 和 **Foundation** 框架开发的开源组件库，以助力企业级应用为目标而生。
 
@@ -43,20 +43,9 @@ yarn add @ng-tangram/components
 import { NgModule } from '@angular/core';
 import { NtButtonModule } from '@ng-tangram/components/button';
 
-// 如果导入多个模块时可以在全局命名空间导入
-// *注意* 从 0.6.0 开始已不支持这种方式的导入
-import { 
-  NtAvatarModule, 
-  NtDropdown, 
-  NtModalModule 
-} from '@ng-tangram/components';
-
 @NgModule({
   imports: [
-    NtAvatarModule, 
-    NtButtonModule, 
-    NtDropdown,
-    NtModalModule
+    NtButtonModule
   ],
   ...
 })
