@@ -1,3 +1,25 @@
+# [0.8.0](https://github.com/codedance-top/ng-tangram/compare/0.7.0...0.8.0) (2020-11-24)
+
+### Bug Fixes
+
+* **autocomplete:** 修复类型信息错误的问题 ([37dcc49](https://github.com/codedance-top/ng-tangram/commit/37dcc497ee1f0909b52f9d42a5271099f4c6e8e0))
+* **datepicker:** 修复 datepicker 类型错误问题 ([fa1f6ff](https://github.com/codedance-top/ng-tangram/commit/fa1f6fff8d1e2d48a7586e989318bee7cdc60302))
+* **forms:** 修复编译时 focus 方法的类型错误问题 ([1d1025e](https://github.com/codedance-top/ng-tangram/commit/1d1025e6fa9cd823fa9494ea755b14f94f9ca9c1))
+* **picture:** 修复了当设置 maxFiles 之后还能设置超出长度的问题 ([5ccaf79](https://github.com/codedance-top/ng-tangram/commit/5ccaf79988e79592b5b08c2fb64c84307b3aef0a))
+* **select:** 修复当 value 为数字 0 时不会被选中的问题 ([5567a96](https://github.com/codedance-top/ng-tangram/commit/5567a960552eefd56e4eb754c50c1d96f210991a))
+* **table:** 修复 sort 在空值时状态不更新的问题 ([0eb9b1a](https://github.com/codedance-top/ng-tangram/commit/0eb9b1ab5874af45693297b52277f981c066779a))
+* **table:** 修复 table 与 最近版本CDK 不兼容的问题 ([8a02942](https://github.com/codedance-top/ng-tangram/commit/8a02942911e8fa526963a0746bf203c342536c63))
+* **typescript:** 修复继承 `NtFormFieldControl` 导致的类型信息错误问题 ([2e19fb3](https://github.com/codedance-top/ng-tangram/commit/2e19fb3a2efbccb112acdacfc00f1a725250dfb3))
+
+### Features
+
+* **angular:** 升级至 angular v10 ([3a0f323](https://github.com/codedance-top/ng-tangram/commit/3a0f323d778d675ac4b6c9cec002092ac548eb06))
+* **core:** `DateApdater` 增加 `getValidDateOrNull` 方法 ([3ffc9df](https://github.com/codedance-top/ng-tangram/commit/3ffc9df1edc65bec16ade27e6121d5aa1843fba0))
+* **datepicker:** 增加 DateRangePicker 组件 ([5286f8a](https://github.com/codedance-top/ng-tangram/commit/5286f8a5e1323970efdfe0a23456b834af24a725))
+* **forms:** `NtFormFieldControl` 增加 `getErrors` 方法，用于获取非 ControlValueAceesor 控件的错误 ([b4fb5a1](https://github.com/codedance-top/ng-tangram/commit/b4fb5a14a6c99e3203022463e98a4a65a912e6c6))
+* **picture:** 增加了 maxFiles 属性，取消了 multiple 属性，现在根据 maxFiles 自动判断 multiple 选项 ([619aa0c](https://github.com/codedance-top/ng-tangram/commit/619aa0c8b6e0580959c3a2505bc042245a537e3c))
+* **table:** 排序的 icon 样式现在采用 fontawesome 的字体 ([9850faa](https://github.com/codedance-top/ng-tangram/commit/9850faac36ba0abc7eb109d526b37f2ae55b92fe))
+
 # [0.8.0-beta.4](https://github.com/codedance-top/ng-tangram/compare/0.8.0-beta.3...0.8.0-beta.4) (2020-10-29)
 
 ### Bug Fixes
