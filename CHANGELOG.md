@@ -1,3 +1,9 @@
+## [0.8.1](https://github.com/codedance-top/ng-tangram/compare/0.8.0...0.8.1) (2020-11-24)
+
+### Bug Fixes
+
+* **datepicker:** 修复 `NtDatePickerControl` 导出会报错的问题 ([4456356](https://github.com/codedance-top/ng-tangram/commit/4456356ce6d64da10e8c06c317fd85a8772c6417))
+
 # [0.8.0](https://github.com/codedance-top/ng-tangram/compare/0.7.0...0.8.0) (2020-11-24)
 
 ### Bug Fixes
