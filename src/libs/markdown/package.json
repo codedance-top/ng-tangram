@@ -14,7 +14,7 @@
     "@angular/forms": "^10.0.0",
     "@angular/cdk": "^10.0.0",
     "@fortawesome/fontawesome-free": "latest",
-    "@ng-tangram/components": "^0.8.0-beta.0 | 0.8.0",
+    "@ng-tangram/components": "^0.8.0-beta.0 || 0.8.0",
     "codemirror": "^5.56.0",
     "foundation-sites": "~6.6.3",
     "marked": "^1.1.0",

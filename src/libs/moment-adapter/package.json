@@ -9,7 +9,7 @@
   },
   "peerDependencies": {
     "@angular/core": "^10.0.0",
-    "@ng-tangram/components": "^0.8.0-beta.0 | 0.8.0"
+    "@ng-tangram/components": "^0.8.0-beta.0 || 0.8.0"
   },
   "sideEffects": false
 }
