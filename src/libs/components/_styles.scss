@@ -18,6 +18,7 @@
 @import 'forms/forms';
 @import 'input/input';
 @import 'modal/modal';
+@import 'notifier/notifier';
 @import 'pagination/pagination';
 @import 'picture/picture';
 @import 'popconfirm/popconfirm';
@@ -48,7 +49,7 @@
   @include foundation-menu;
   @include foundation-reveal;
   @include foundation-range-input;
-  
+
   @include foundation-progress-bar;
   @include foundation-switch;
   @include foundation-table;
@@ -68,6 +69,7 @@
   @include nt-forms;
   @include nt-input-group;
   @include nt-modal;
+  @include nt-notifier;
   @include nt-overlay;
   @include nt-option;
   @include nt-pagination;

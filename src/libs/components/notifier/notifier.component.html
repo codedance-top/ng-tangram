@@ -1,0 +1,14 @@
+<ng-container *ngIf="notification.template; else predefinedNotification" [ngTemplateOutlet]="notification.template" [ngTemplateOutletContext]="{ notification: notification }">
+</ng-container>
+
+<ng-template #predefinedNotification>
+  <div class="nt-notifier-icon" *ngIf="_hasIcon">
+    <span [class]="icons[notification.type]"></span>
+  </div>
+	<div class="nt-notifier-message">
+    {{ notification.message }}
+  </div>
+	<button class="nt-notifier-button" type="button" title="dismiss" *ngIf="config.behaviour.showDismissButton" (click)="onClickDismiss()">
+		<span [class]="icons.close"></span>
+	</button>
+</ng-template>

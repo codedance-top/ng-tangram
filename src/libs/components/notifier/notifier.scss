@@ -1,0 +1,98 @@
+
+$nt-notifier-font-size: 1rem !default;
+$nt-notifier-default-color: $secondary-color !default;
+$nt-notifier-backgound-alpha: 0.1 !default;
+$nt-notifier-padding: $global-padding / 2 $global-padding !default;
+// $nt-notifier-margin:  !default;
+$nt-notifier-z-index: 10000 !default;
+$nt-notifier-radius: $global-radius !default;
+$nt-notifier-box-shadow: 0 1px 3px  rgba(0, 0, 0, .2) !default;
+$nt-notifier-size: rem-calc(32) !default;
+
+
+$nt-notifier-button-margin: 0 -10px 0 10px !default;
+$nt-notifier-button-padding: rem-calc(6) !default;
+
+$nt-notifier-message-margin: 0 !default;
+$nt-notifier-message-padding: 0 !default;
+
+@mixin nt-notifier-container {
+  // display: block;
+  box-sizing: border-box;
+}
+
+@mixin nt-notifier-button {
+  display: inline-block;
+  transition: opacity .2s ease;
+  opacity: .5;
+  margin: $nt-notifier-button-margin;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer; // Make it obvious that the "button" (or, more honestly, icon) is clickable (#UX)
+  padding: $nt-notifier-button-padding;
+  width: $nt-notifier-size;
+  height: $nt-notifier-size;
+  vertical-align: top;
+}
+
+@mixin nt-notifier-message {
+  display: inline-block;
+  margin: $nt-notifier-message-margin;
+  vertical-align: top;
+  line-height: $nt-notifier-size;
+  font-size: $nt-notifier-font-size;
+}
+
+@mixin nt-notifier-style($color: $nt-notifier-default-color, $alpha: $nt-notifier-backgound-alpha) {
+
+  background-color: rgba($color, $alpha);
+
+  .nt-notifier-icon,
+  .nt-notifier-message,
+  .nt-notifier-button {
+    color: $color;
+  }
+}
+
+@mixin nt-notifier {
+
+  .nt-notifier {
+    border-radius: $nt-notifier-radius;
+    box-shadow: $nt-notifier-box-shadow;
+    backface-visibility: hidden;
+    padding: $nt-notifier-padding;
+    display: block;
+    position: fixed;
+    visibility: hidden;
+    cursor: default;
+		will-change: transform;
+    z-index: $nt-notifier-z-index;
+
+    @include nt-notifier-style;
+
+    @each $name, $color in $foundation-palette {
+      &.#{$name} {
+        @include nt-notifier-style($color);
+      }
+    }
+  }
+
+  .nt-notifier-icon {
+    display: inline-block;
+    line-height: $nt-notifier-size;
+    margin-right: 0.5rem;
+  }
+
+  .nt-notifier-container {
+    @include nt-notifier-container;
+  }
+
+  .nt-notifier-button {
+    @include nt-notifier-button;
+  }
+
+  .nt-notifier-message {
+    @include nt-notifier-message;
+  }
+}
