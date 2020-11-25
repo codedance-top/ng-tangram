@@ -1,3 +1,17 @@
+# [0.9.0-beta-1](https://github.com/codedance-top/ng-tangram/compare/0.8.1...0.9.0-beta-1) (2020-11-25)
+
+
+### Bug Fixes
+
+* **datepicker:** 修复 `NtDatePickerControl` 导出会报错的问题 ([4456356](https://github.com/codedance-top/ng-tangram/commit/4456356ce6d64da10e8c06c317fd85a8772c6417))
+* **table:** 修复 cdk v11 兼容性问题 ([6fc9ca7](https://github.com/codedance-top/ng-tangram/commit/6fc9ca77f9a1b1a913ebc355398317a029c56335))
+* **table:** 修复 table 与 最近版本 CDK 不兼容的问题 ([8a02942](https://github.com/codedance-top/ng-tangram/commit/8a02942911e8fa526963a0746bf203c342536c63))
+
+### Features
+
+* **angular:** 支持 angular v11 ([8ac03eb](https://github.com/codedance-top/ng-tangram/commit/8ac03ebe61cbc5bd8b32836c09dcc159c42825a5))
+* **notifier:** 新增通知组件模块 `NtNotifierModule` ([3d696fd](https://github.com/codedance-top/ng-tangram/commit/3d696fd80ba7a80951773ab432f1f5f89f11ddd2))
+
 ## [0.8.1](https://github.com/codedance-top/ng-tangram/compare/0.8.0...0.8.1) (2020-11-24)
 
 ### Bug Fixes
