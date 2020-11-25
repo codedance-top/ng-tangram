@@ -18,6 +18,6 @@ export class ExampleNotifierBasicComponent {
   }
 
   showNotice(type: string, message: string) {
-    this._notifier.notify(type, message + message + message + message  + message + message + message + message + message);
+    this._notifier.notify(type, message);
   }
 }
