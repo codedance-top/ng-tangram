@@ -110,6 +110,11 @@ export const COMPONENTS_ROUTES: Routes = [
     data: { title: 'Modal 模态框', group: COMPONENTS_GROUPS[2] }
   },
   {
+    path: 'notifier',
+    loadChildren: () => import('./notifier/notifier.module').then(mod => mod.NotifierDocumentModule),
+    data: { title: 'Nofitier 通知栏', group: COMPONENTS_GROUPS[2] }
+  },
+  {
     path: 'pagination',
     loadChildren: () => import('./pagination/pagination.module').then(mod => mod.PaginationDocumentModule),
     data: { title: 'Pagination 分页', group: COMPONENTS_GROUPS[0] }

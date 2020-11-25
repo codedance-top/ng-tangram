@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NtNativeDateModule } from '@ng-tangram/components/core';
 import { NtFormsModule } from '@ng-tangram/components/forms';
 import { NtNoopUploadModule } from '@ng-tangram/components/noop-upload';
+import { NtNotifierModule } from '@ng-tangram/components/notifier';
 import { NtMarkedEngineModule } from '@ng-tangram/markdown';
 
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ const ROUTES: Routes = [
     NtFormsModule.forRoot(),
     NtNoopUploadModule,
     NtNativeDateModule,
+    NtNotifierModule,
     NtMarkedEngineModule,
     RouterModule.forRoot(ROUTES, {
       initialNavigation: 'enabled',
