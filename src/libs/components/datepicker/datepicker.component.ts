@@ -28,7 +28,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { NgControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { NgControl, ValidatorFn } from '@angular/forms';
 import {
   DateAdapter,
   fadeIn,
