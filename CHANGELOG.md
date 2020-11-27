@@ -1,5 +1,11 @@
-# [0.9.0-beta-1](https://github.com/codedance-top/ng-tangram/compare/0.8.1...0.9.0-beta-1) (2020-11-25)
+# [0.9.0-beta-2](https://github.com/codedance-top/ng-tangram/compare/0.9.0-beta.1...0.9.0-beta-2) (2020-11-27)
 
+### Bug Fixes
+
+* **notifier:** 修复通知栏背景色透明的问题 ([2c5d1df](https://github.com/codedance-top/ng-tangram/commit/2c5d1dfde08ba06f4fe2a65d6b50b1cea6050ccb))
+
+
+# [0.9.0-beta-1](https://github.com/codedance-top/ng-tangram/compare/0.8.1...0.9.0-beta-1) (2020-11-25)
 
 ### Bug Fixes
 
@@ -11,6 +17,7 @@
 
 * **angular:** 支持 angular v11 ([8ac03eb](https://github.com/codedance-top/ng-tangram/commit/8ac03ebe61cbc5bd8b32836c09dcc159c42825a5))
 * **notifier:** 新增通知组件模块 `NtNotifierModule` ([3d696fd](https://github.com/codedance-top/ng-tangram/commit/3d696fd80ba7a80951773ab432f1f5f89f11ddd2))
+
 
 ## [0.8.1](https://github.com/codedance-top/ng-tangram/compare/0.8.0...0.8.1) (2020-11-24)
 
