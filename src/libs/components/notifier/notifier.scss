@@ -1,3 +1,4 @@
+@import '../core/scss/colors';
 
 $nt-notifier-font-size: 1rem !default;
 $nt-notifier-default-color: $secondary-color !default;
@@ -46,7 +47,7 @@ $nt-notifier-message-padding: 0 !default;
 
 @mixin nt-notifier-style($color: $nt-notifier-default-color, $alpha: $nt-notifier-backgound-alpha) {
 
-  background-color: rgba($color, $alpha);
+  background-color: rgba-to-rgb(rgba($color, $alpha));
 
   .nt-notifier-icon,
   .nt-notifier-message,
